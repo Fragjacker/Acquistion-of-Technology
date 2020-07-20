@@ -5,4 +5,4 @@ tags={
 	"Overhaul"
 }
 name="Acquisiton of Technology"
-supported_version="2.7.2"
+supported_version="2.7.*"
