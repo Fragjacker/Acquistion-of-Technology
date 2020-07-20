@@ -1,0 +1,398 @@
+##########################################################################
+# Decisions
+##########################################################################
+
+
+# Create Awesome Palace
+decision_transform_into_awesome = {
+	owned_planets_only = yes
+	icon = decision_surreal_visions
+	
+	enactment_time = 600
+	prerequisites = {
+		"tech_ancient_palace"
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			minerals = 5000
+			influence = 100
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+		}	
+		cost = {
+			trigger = {
+				owner = {
+					is_ai = yes
+				}
+			}
+			minerals = 2500
+			influence = 10
+			sr_dark_matter = 25
+			acot_sr_dark_energy = 25
+		}
+	}
+	
+	potential = {
+		NOT = { has_modifier = penal_colony }
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_modifier = resort_colony }
+		owner = { 
+			is_regular_empire = yes 
+			has_technology = tech_ancient_palace
+		}
+		NOR = { 
+			has_building = building_ancient_control_center
+			has_building = building_ancient_palace
+			has_building = building_ancient_hive_cluster
+		}
+	}
+	
+	allow = {
+		num_pops >= 20
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_modifier = acot_modifier_ascended_city
+				}
+			 }
+			 add_modifier = {
+				modifier = acot_modifier_ascended_city
+				days = -1
+			}	
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_building = building_colony_shelter
+				 }
+				 remove_building = building_colony_shelter
+				 add_building = building_ancient_palace			
+			}
+			if = {
+				limit = {
+					has_building = building_capital
+				 }
+				 remove_building = building_capital
+				 add_building = building_ancient_palace			
+			}
+			if = {
+				limit = {
+					has_building = building_major_capital
+				 }
+				 remove_building = building_major_capital
+				 add_building = building_ancient_palace			
+			}
+			if = {
+				limit = {
+					has_building = building_system_capital
+				 }
+				 remove_building = building_system_capital
+				 add_building = building_ancient_palace			
+			}
+			if = {
+				limit = {
+					has_building = building_hab_capital
+				 }
+				 remove_building = building_hab_capital
+				 add_building = building_ancient_palace			
+			}
+			if = {
+				limit = {
+					has_building = building_hab_major_capital
+				 }
+				 remove_building = building_hab_major_capital
+				 add_building = building_ancient_palace			
+			}			
+			if = {
+				limit = {
+					has_building = building_ancient_palace
+				 }
+				 remove_building = building_ancient_palace
+				 add_building = building_ancient_palace			
+			}		
+			if = {
+				limit = {
+					has_building = building_ancient_control_center
+				 }
+				 remove_building = building_ancient_control_center
+				 add_building = building_ancient_palace			
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 10000
+	}
+}
+
+
+# Create Awesome Nexus
+decision_transform_into_awesome_machine = {
+	owned_planets_only = yes
+	icon = decision_surreal_visions
+	
+	enactment_time = 600
+	prerequisites = {
+		"tech_ancient_control_center"
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			minerals = 5000
+			influence = 100
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+		}	
+		cost = {
+			trigger = {
+				owner = {
+					is_ai = yes
+				}
+			}
+			minerals = 2500
+			influence = 10
+			sr_dark_matter = 25
+			acot_sr_dark_energy = 25
+		}
+	}
+	
+	potential = {
+		NOT = { has_modifier = penal_colony }
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_modifier = resort_colony }
+		owner = { 
+			is_machine_empire = yes 
+			has_technology = tech_ancient_control_center
+		}
+		NOR = { 
+			has_building = building_ancient_control_center
+			has_building = building_ancient_palace
+			has_building = building_ancient_hive_cluster
+		}
+	}
+	
+	allow = {
+		num_pops >= 20
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_modifier = acot_modifier_ascended_city
+				}
+			 }
+			 add_modifier = {
+				modifier = acot_modifier_ascended_city
+				days = -1
+			}	
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_building = building_deployment_post
+				 }
+				 remove_building = building_deployment_post
+				 add_building = building_ancient_control_center			
+			}
+			if = {
+				limit = {
+					has_building = building_machine_capital
+				 }
+				 remove_building = building_machine_capital
+				 add_building = building_ancient_control_center
+			}
+			if = {
+				limit = {
+					has_building = building_machine_major_capital
+				 }
+				 remove_building = building_machine_major_capital
+				 add_building = building_ancient_control_center			
+			}
+			if = {
+				limit = {
+					has_building = building_machine_system_capital
+				 }
+				 remove_building = building_machine_system_capital
+				 add_building = building_ancient_control_center			
+			}
+			if = {
+				limit = {
+					has_building = building_hab_capital
+				 }
+				 remove_building = building_hab_capital
+				 add_building = building_ancient_control_center			
+			}
+			if = {
+				limit = {
+					has_building = building_hab_major_capital
+				 }
+				 remove_building = building_hab_major_capital
+				 add_building = building_ancient_control_center			
+			}	
+			if = {
+				limit = {
+					has_building = building_ancient_palace
+				 }
+				 remove_building = building_ancient_palace
+				 add_building = building_ancient_control_center			
+			}	
+			if = {
+				limit = {
+					has_building = building_ancient_control_center
+				 }
+				 remove_building = building_ancient_control_center
+				 add_building = building_ancient_control_center			
+			}	
+		}
+
+
+	}
+	
+	ai_weight = {
+		weight = 10000
+	}
+}
+
+# Create Awesome Nexus
+decision_transform_into_awesome_hive = {
+	owned_planets_only = yes
+	icon = decision_surreal_visions
+	
+	enactment_time = 600
+	prerequisites = {
+		"tech_ancient_hive_cluster"
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			minerals = 5000
+			influence = 100
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+		}	
+		cost = {
+			trigger = {
+				owner = {
+					is_ai = yes
+				}
+			}
+			minerals = 2500
+			influence = 10
+			sr_dark_matter = 25
+			acot_sr_dark_energy = 25
+		}
+	}
+	
+	potential = {
+		NOT = { has_modifier = penal_colony }
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_modifier = resort_colony }
+		owner = { 
+			is_hive_empire = yes 
+			has_technology = tech_ancient_hive_cluster
+		}
+		NOR = { 
+			has_building = building_ancient_control_center
+			has_building = building_ancient_palace
+			has_building = building_ancient_hive_cluster
+		}
+	}
+	
+	allow = {
+		num_pops >= 20
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_modifier = acot_modifier_ascended_city
+				}
+			 }
+			 add_modifier = {
+				modifier = acot_modifier_ascended_city
+				days = -1
+			}	
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_building = building_colony_shelter
+				 }
+				 remove_building = building_colony_shelter
+				 add_building = building_ancient_hive_cluster			
+			}
+			if = {
+				limit = {
+					has_building = building_hive_capital
+				 }
+				 remove_building = building_hive_capital
+				 add_building = building_ancient_hive_cluster			
+			}
+			if = {
+				limit = {
+					has_building = building_hive_major_capital
+				 }
+				 remove_building = building_hive_major_capital
+				 add_building = building_ancient_hive_cluster			
+			}
+			if = {
+				limit = {
+					has_building = building_hab_capital
+				 }
+				 remove_building = building_hab_capital
+				 add_building = building_ancient_hive_cluster			
+			}
+			if = {
+				limit = {
+					has_building = building_hab_major_capital
+				 }
+				 remove_building = building_hab_major_capital
+				 add_building = building_ancient_hive_cluster			
+			}
+			if = {
+				limit = {
+					has_building = building_ancient_palace
+				 }
+				 remove_building = building_ancient_palace
+				 add_building = building_ancient_hive_cluster			
+			}
+			if = {
+				limit = {
+					has_building = building_ancient_control_center
+				 }
+				 remove_building = building_ancient_control_center
+				 add_building = building_ancient_hive_cluster			
+			}
+		}
+
+
+	}
+	
+	ai_weight = {
+		weight = 10000
+	}
+}

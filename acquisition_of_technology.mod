@@ -1,0 +1,1 @@
+D:/godly_000/Documents/Paradox Interactive/Stellaris/mod/acquisition_of_technology.mod
