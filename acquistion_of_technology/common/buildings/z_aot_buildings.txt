@@ -837,6 +837,99 @@ building_fe_stronghold = {
 	}
 }
 
+building_ae_stronghold = {
+	base_buildtime = 400
+	planetary_ftl_inhibitor = yes
+	add_to_first_building_slot = yes
+	can_build = no
+
+	category = army
+	
+	allow = {
+		has_ascended_capital = yes
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 10
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				is_fallen_empire = no
+				is_gestalt = no 
+			}
+		}
+		modifier = {
+			job_acot_enforcer_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				is_fallen_empire = no
+				is_gestalt = yes 
+			}
+		}
+		modifier = {
+			job_acot_enforcer_drone_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_protector_add = 5
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+			sr_dark_matter = 100
+			acot_sr_dark_energy = 100
+		}			
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			energy = 1
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+		}
+	}
+	
+	prerequisites = {
+		"tech_ae_stronghold"
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100000
+			num_pops >= 40
+			NOR = {
+				num_buildings = {
+					type = building_ae_stronghold
+					value <= 2
+				}
+			}
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value <= 3
+				}
+			}
+		}
+	}
+}
+
 building_giga_fortress_fe = {
 	base_buildtime = 1200
 	add_to_first_building_slot = yes
@@ -848,6 +941,7 @@ building_giga_fortress_fe = {
 	category = army
 	
 	allow = {
+		has_ascended_capital = yes
 	}
 	
 	planet_modifier = {
@@ -891,6 +985,10 @@ building_giga_fortress_fe = {
 			}
 		 }
 		 job_acot_giga_fortress_operator_add = 3
+	}
+
+	prerequisites = {
+		"tech_giga_fortress_fe"
 	}
 	
 	upgrades = {
