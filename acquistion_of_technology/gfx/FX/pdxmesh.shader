@@ -1393,9 +1393,9 @@ PixelShader =
 		float4 main( VS_OUTPUT_PDXMESHSTANDARD In ) : PDX_COLOR
 		{
 			float3 RimColor = HSVtoRGB( float3( 2.3f, 1.0f, 1.0f ) );
-			const float RimAlpha = 0.10f;
-			const float vRimStart = 0.5f;
-			const float vRimStop = 0.25f;
+			const float RimAlpha = 0.15f;
+			const float vRimStart = 0.75f;
+			const float vRimStop = 0.5f;
 
 			// Normal
 			float3 vInNormal = normalize( In.vNormal );
@@ -1433,10 +1433,10 @@ PixelShader =
 	[[
 		float4 main( VS_OUTPUT_PDXMESHSTANDARD In ) : PDX_COLOR
 		{
-			float3 RimColor = HSVtoRGB( float3( 3.3f, 1.0f, 1.0f ) );
-			const float RimAlpha = 0.2f;
-			const float vRimStart = 0.5f;
-			const float vRimStop = 0.25f;
+			float3 RimColor = HSVtoRGB( float3( 3.8f, 1.0f, 1.0f ) );
+			const float RimAlpha = 0.35f;
+			const float vRimStart = 1.0f;
+			const float vRimStop = 0.5f;
 
 			// Normal
 			float3 vInNormal = normalize( In.vNormal );
