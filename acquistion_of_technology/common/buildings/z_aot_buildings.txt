@@ -1,6 +1,6 @@
 # Government Buildings
 building_ancient_palace = {
-	base_buildtime = 600
+	base_buildtime = 480
 	capital = yes
 	can_demolish = no
 	can_be_ruined = no
@@ -9,15 +9,25 @@ building_ancient_palace = {
 	prerequisites = {
 		"tech_ancient_palace"
 	}
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
 	convert_to = {
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ancient_control_center
 		building_hive_major_capital
 	}
-	upgrades = {
-		building_ae_ancient_palace
-	}
 	planet_modifier = {
-		planet_housing_add = 20
-		planet_amenities_add = 35
+		planet_housing_add = 15
+		planet_amenities_add = 15
 	}
 	##### FIR DEFUALT ###
 	triggered_planet_modifier = {
@@ -169,6 +179,7 @@ building_ancient_palace = {
 		}
 	}
 	upgrades = {
+		building_ae_ancient_palace
 	}
 	ai_weight = {
 		weight = 100
@@ -176,7 +187,7 @@ building_ancient_palace = {
 }
 
 building_ancient_control_center = {
-	base_buildtime = 600
+	base_buildtime = 480
 	capital = yes
 	can_demolish = no
 	can_be_ruined = no
@@ -192,9 +203,6 @@ building_ancient_control_center = {
 		building_ancient_palace
 		building_ancient_hive_cluster
 	}
-	upgrades = {
-		building_ae_ancient_control_center
-	}
 	allow = {
 		num_pops >= 25
 	}
@@ -205,8 +213,8 @@ building_ancient_control_center = {
 		is_machine_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 20
-		planet_amenities_add = 35
+		planet_housing_add = 10
+		planet_amenities_add = 10
 	}
 	##### FOR DEFEARTHH ###
 	triggered_planet_modifier = {
@@ -218,39 +226,9 @@ building_ancient_control_center = {
 		}
 		modifier = {
 			job_coordinator_add = 5
-			job_replicator_add = 3
-			job_maintenance_drone_add = 3
-			job_acot_robodrone_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_machine_empire = no
-			}
-			NOR = {
-				is_planet_class = pc_dark_fractured
-				is_planet_class = pc_dark_fractured_ae
-			}
-		}
-		modifier = {
-			job_acot_enforcer_drone_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_machine_empire = no
-			}
-			OR = {
-				is_planet_class = pc_dark_fractured
-				is_planet_class = pc_dark_fractured_ae
-			}
-		}
-		modifier = {
-			job_acot_enforcer_drone_add = 1
+			job_replicator_add = 6
+			job_patrol_drone_add = 3
+			job_maintenance_drone_add = 4
 		}
 	}
 	##### FOR FE ###
@@ -267,30 +245,8 @@ building_ancient_control_center = {
 	}
 	resources = {
 		category = planet_buildings
-		cost = {
-			minerals = 500
-			sr_dark_matter = 50
-		}
-		produces = {
-			energy = 5
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 5
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
+		upkeep = {
 			energy = 10
-			sr_dark_matter = 3
-			acot_sr_dark_energy = 3
 		}
 	}
 	triggered_desc = {
@@ -302,13 +258,16 @@ building_ancient_control_center = {
 	triggered_desc = {
 		text = job_patrol_drone_effect_desc
 	}
+	upgrades = {
+		building_ae_ancient_control_center
+	}
 	ai_weight = {
 		weight = 100
 	}
 }
 
 building_ancient_hive_cluster = {
-	base_buildtime = 600
+	base_buildtime = 480
 	capital = yes
 	can_build = no
 	can_demolish = no
@@ -335,8 +294,8 @@ building_ancient_hive_cluster = {
 		is_hive_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 20
-		planet_amenities_add = 35
+		planet_housing_add = 10
+		planet_amenities_add = 15
 		job_synapse_drone_add = 4
 		job_maintenance_drone_add = 3
 	}
@@ -352,7 +311,7 @@ building_ancient_hive_cluster = {
 			}
 		}
 		modifier = {
-			job_acot_enforcer_drone_add = 2
+			job_patrol_drone_add = 2
 		}
 	}
 	triggered_planet_modifier = {
@@ -367,35 +326,13 @@ building_ancient_hive_cluster = {
 			}
 		}
 		modifier = {
-			job_acot_enforcer_drone_add = 1
+			job_patrol_drone_add = 1
 		}
 	}
 	resources = {
 		category = planet_buildings
-		cost = {
-			minerals = 500
-			sr_dark_matter = 50
-		}
-		produces = {
-			energy = 5
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 5
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
+		upkeep = {
 			energy = 10
-			sr_dark_matter = 3
-			acot_sr_dark_energy = 3
 		}
 	}
 	triggered_desc = {
@@ -406,6 +343,9 @@ building_ancient_hive_cluster = {
 	}
 	triggered_desc = {
 		text = job_patrol_drone_effect_desc
+	}
+	upgrades = {
+		building_ae_ancient_hive_cluster
 	}
 	ai_weight = {
 		weight = 100
@@ -418,7 +358,6 @@ building_fe_dimensional_fabricator = {
 	can_build = yes
 	can_demolish = yes
 	icon = building_dimensional_fabricator
-	#	base_cap_amount = 5
 	category = resource
 	potential = {
 		NOT = {
@@ -481,7 +420,6 @@ building_fe_nourishment_center = {
 	can_build = yes
 	can_demolish = yes
 	icon = building_nourishment_center
-	#	base_cap_amount = 3
 	category = resource
 	potential = {
 		NOT = {
@@ -538,7 +476,6 @@ building_fe_affluence_center = {
 	can_build = yes
 	can_demolish = yes
 	icon = building_affluence_center
-	#	base_cap_amount = 3
 	category = manufacturing
 	potential = {
 		exists = owner
@@ -671,10 +608,7 @@ building_fe_stronghold = {
 	add_to_first_building_slot = yes
 	category = army
 	allow = {
-		OR = {
-			has_dark_matter_capital = yes
-			has_ascended_capital = yes
-		}
+		has_any_enigmatic_capital = yes
 	}
 	planet_modifier = {
 		planet_housing_add = 5
@@ -854,10 +788,7 @@ building_giga_fortress_fe = {
 	planetary_ftl_inhibitor = yes
 	category = army
 	allow = {
-		OR = {
-			has_dark_matter_capital = yes
-			has_ascended_capital = yes
-		}
+		has_any_enigmatic_capital = yes
 	}
 	planet_modifier = {
 		planet_amenities_add = 20
@@ -1006,5 +937,124 @@ building_giga_fortress = {
 		building_giga_fortress_array
 		building_giga_fortress_lab
 		building_giga_fortress_obelisk
+	}
+}
+
+#####################
+# Misc Building
+#####################
+building_dark_energy_psg = {
+	base_buildtime = 600
+	base_cap_amount = 1
+	add_to_first_building_slot = yes
+	category = army
+	allow = {
+		has_any_enigmatic_capital = yes
+	}
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.65
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 450
+			acot_sr_dark_energy = 50
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			energy = 1
+			acot_sr_dark_energy = 3
+		}
+	}
+	prerequisites = {
+		"tech_dark_energy_psg"
+	}
+	ai_weight = {
+		weight = 15000
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value <= 3
+				}
+			}
+		}
+	}
+	upgrades = {
+		building_ae_dark_energy_psg
+	}
+}
+
+building_ae_dark_energy_psg = {
+	base_buildtime = 500
+	add_to_first_building_slot = yes
+	can_build = no
+	category = army
+	allow = {
+		has_ascended_capital = yes
+	}
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.8
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_researcher_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_brain_drone_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_calculator_add = 3
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 100
+			sr_dark_matter = 50
+			acot_sr_dark_energy = 150
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+		}
+	}
+	prerequisites = {
+		"tech_ae_dark_energy_psg"
+	}
+	ai_weight = {
+		weight = 15000
 	}
 }
