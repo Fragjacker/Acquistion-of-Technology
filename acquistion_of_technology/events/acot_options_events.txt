@@ -1,0 +1,882 @@
+namespace = acot_mod_options
+
+country_event = {
+	id = acot_mod_options.1
+	title = acot_mod_options_title
+	desc = acot_mod_options_desc
+	picture = GFX_evt_acot_greetings
+	is_triggered_only = yes
+	show_sound = event_acot_greetings
+
+### enable or disable AOT planetary shields FX
+
+option = {
+	name = acot_mod_options.0.a
+	custom_tooltip = acot_mod_options.0.a.tooltip
+	trigger = { NOT = { has_global_flag = dm_planetary_shields_OFF } }
+	hidden_effect = {
+		set_global_flag = dm_planetary_shields_OFF
+		country_event = { id = acot_mod_options.1 days = 0 }
+	}
+}
+option = {
+	name = acot_mod_options.0.b
+	custom_tooltip = acot_mod_options.0.b.tooltip
+	trigger = { has_global_flag = dm_planetary_shields_OFF }
+	hidden_effect = {
+		remove_global_flag = dm_planetary_shields_OFF
+		country_event = { id = acot_mod_options.1 days = 0 }
+	}
+}
+
+### enable or disable ACOT weapons
+
+	option = {
+		name = acot_mod_options.1.a
+		custom_tooltip = acot_mod_options.1.a.tooltip
+		trigger = { NOT = { has_global_flag = acot_weapons_forbidden } }
+		hidden_effect = {
+			set_global_flag = acot_weapons_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+	option = {
+		name = acot_mod_options.1.b
+		custom_tooltip = acot_mod_options.1.b.tooltip
+		trigger = { has_global_flag = acot_weapons_forbidden }
+		hidden_effect = {
+			remove_global_flag = acot_weapons_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+
+### enable or disable ACOT armors and shields
+
+	option = {
+		name = acot_mod_options.2.a
+		custom_tooltip = acot_mod_options.2.a.tooltip
+		trigger = { NOT = { has_global_flag = acot_utilitys_forbidden } }
+		hidden_effect = {
+			set_global_flag = acot_utilitys_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+	option = {
+		name = acot_mod_options.2.b
+		custom_tooltip = acot_mod_options.2.b.tooltip
+		trigger = { has_global_flag = acot_utilitys_forbidden }
+		hidden_effect = {
+			remove_global_flag = acot_utilitys_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+
+### enable or disable ACOT auxes.
+
+	option = {
+		name = acot_mod_options.3.a
+		custom_tooltip = acot_mod_options.3.a.tooltip
+		trigger = { NOT = { has_global_flag = acot_aux_forbidden } }
+		hidden_effect = {
+			set_global_flag = acot_aux_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+	option = {
+		name = acot_mod_options.3.b
+		custom_tooltip = acot_mod_options.3.b.tooltip
+		trigger = { has_global_flag = acot_aux_forbidden }
+		hidden_effect = {
+			remove_global_flag = acot_aux_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+
+### enable or disable ACOT Reactors, sensors, FTL systems and others
+
+	option = {
+		name = acot_mod_options.4.a
+		custom_tooltip = acot_mod_options.4.a.tooltip
+		trigger = { NOT = { has_global_flag = acot_shipcom_forbidden } }
+		hidden_effect = {
+			set_global_flag = acot_shipcom_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+	option = {
+		name = acot_mod_options.4.b
+		custom_tooltip = acot_mod_options.4.b.tooltip
+		trigger = { has_global_flag = acot_shipcom_forbidden }
+		hidden_effect = {
+			remove_global_flag = acot_shipcom_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+
+### enable or disable ACOT armies, in case you want to stick to vanilla/others
+
+	option = {
+		name = acot_mod_options.5.a
+		custom_tooltip = acot_mod_options.5.a.tooltip
+		trigger = { NOT = { has_global_flag = acot_army_forbidden } }
+		hidden_effect = {
+			set_global_flag = acot_army_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+	option = {
+		name = acot_mod_options.5.b
+		custom_tooltip = acot_mod_options.5.b.tooltip
+		trigger = { has_global_flag = acot_army_forbidden }
+		hidden_effect = {
+			remove_global_flag = acot_army_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+
+### enable or disable ACOT buildings, in case you don't want buildings
+
+	option = {
+		name = acot_mod_options.6.a
+		custom_tooltip = acot_mod_options.6.a.tooltip
+		trigger = { NOT = { has_global_flag = acot_building_forbidden } }
+		hidden_effect = {
+			set_global_flag = acot_building_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+	option = {
+		name = acot_mod_options.6.b
+		custom_tooltip = acot_mod_options.6.b.tooltip
+		trigger = { has_global_flag = acot_building_forbidden }
+		hidden_effect = {
+			remove_global_flag = acot_building_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+
+### enable or disable Punishment and Exterminatus, in case you don't want them
+
+	option = {
+		name = acot_mod_options.7.a
+		custom_tooltip = acot_mod_options.7.a.tooltip
+		trigger = { NOT = { has_global_flag = acot_exterminatus_forbidden } }
+		hidden_effect = {
+			set_global_flag = acot_exterminatus_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+	option = {
+		name = acot_mod_options.7.b
+		custom_tooltip = acot_mod_options.7.b.tooltip
+		trigger = { has_global_flag = acot_exterminatus_forbidden }
+		hidden_effect = {
+			remove_global_flag = acot_exterminatus_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+	
+### enable or disable Ethics-based Tech, in case you don't want them
+
+	option = {
+		name = acot_mod_options.8.a
+		custom_tooltip = acot_mod_options.8.a.tooltip
+		trigger = { NOT = { has_global_flag = acot_ethictech_forbidden } }
+		hidden_effect = {
+			set_global_flag = acot_ethictech_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+	option = {
+		name = acot_mod_options.8.b
+		custom_tooltip = acot_mod_options.8.b.tooltip
+		trigger = { has_global_flag = acot_ethictech_forbidden }
+		hidden_effect = {
+			remove_global_flag = acot_ethictech_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+
+### Set AI AE Difficulty
+
+	option = {
+		name = acot_mod_options.9
+		custom_tooltip = acot_mod_options.9.tooltip
+		hidden_effect = {
+			country_event = { id = acot_mod_options.200 days = 0 }
+		}
+	}
+
+### Enable or Diable AI HELPER
+
+option = {
+	name = acot_mod_options.12.a
+	custom_tooltip = acot_mod_options.12.a.tooltip
+	trigger = { NOT = { has_global_flag = acot_ai_helper_disabled } }
+	hidden_effect = {
+		set_global_flag = acot_ai_helper_disabled
+		country_event = { id = acot_mod_options.1 days = 0 }
+	}
+}
+option = {
+	name = acot_mod_options.12.b
+	custom_tooltip = acot_mod_options.12.b.tooltip
+	trigger = { has_global_flag = acot_ai_helper_disabled }
+	hidden_effect = {
+		remove_global_flag = acot_ai_helper_disabled
+		country_event = { id = acot_mod_options.1 days = 0 }
+	}
+}
+
+### Enable or Diable Events
+
+	option = {
+		name = acot_mod_options.10.a
+		custom_tooltip = acot_mod_options.10.a.tooltip
+		trigger = { NOT = { has_global_flag = acot_events_forbidden } }
+		hidden_effect = {
+			set_global_flag = acot_events_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+	option = {
+		name = acot_mod_options.10.b
+		custom_tooltip = acot_mod_options.10.b.tooltip
+		trigger = { has_global_flag = acot_events_forbidden }
+		hidden_effect = {
+			remove_global_flag = acot_events_forbidden
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+
+	option = {
+		name = acot_mod_options.exit
+	}
+}
+
+# Difficulty Changer
+country_event = {
+	id = acot_mod_options.200
+	title = acot_mod_options.200.name
+	picture = GFX_evt_acot_greetings
+	is_triggered_only = yes
+
+	desc = {
+		trigger = {
+			NOR = {
+				has_global_flag = normal_acot			
+				has_global_flag = medium_acot	
+				has_global_flag = hard_acot			
+			}
+		}
+		text = "acot_mod_options.200.a.desc"
+	}
+	desc = {
+		trigger = {
+			has_global_flag = normal_acot
+			NOR = {
+				has_global_flag = medium_acot	
+				has_global_flag = hard_acot							
+			}
+		}
+		text = "acot_mod_options.200.b.desc"
+	}
+	desc = {
+		trigger = {
+			has_global_flag = medium_acot
+			NOR = {
+				has_global_flag = normal_acot	
+				has_global_flag = hard_acot							
+			}
+		}
+		text = "acot_mod_options.200.c.desc"
+	}
+	desc = {
+		trigger = {
+			has_global_flag = hard_acot
+			NOR = {
+				has_global_flag = normal_acot	
+				has_global_flag = medium_acot							
+			}
+		}
+		text = "acot_mod_options.200.d.desc"
+	}
+
+	option = {
+		name = acot_mod_options.200.a
+		hidden_effect = {
+			country_event = { id = acot_mod_options.200 days = 0 }
+			remove_global_flag = normal_acot
+			remove_global_flag = medium_acot	
+			remove_global_flag = hard_acot
+			every_country = {
+				limit = {
+					is_ai = yes
+					OR = {
+						is_country_type = ascended_empire
+						is_country_type = lost_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			remove_modifier = easy_acot
+			remove_modifier = medium_acot
+			remove_modifier = hard_acot
+			}	
+			every_country = {
+				limit = {
+					is_ai = yes
+					is_country_type = default					
+				}
+				remove_modifier = easy_acot_pleb
+				remove_modifier = medium_acot_pleb
+				remove_modifier = hard_acot_pleb
+			}
+		}		
+	}
+
+	option = {
+		name = acot_mod_options.200.b
+		hidden_effect = {
+			country_event = { id = acot_mod_options.200 days = 0 }
+			remove_global_flag = medium_acot
+			remove_global_flag = hard_acot
+			set_global_flag = normal_acot	
+			every_country = {
+				limit = {
+					is_ai = yes
+					OR = {
+						is_country_type = ascended_empire
+						is_country_type = lost_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			remove_modifier = hard_acot
+			remove_modifier = medium_acot
+			add_modifier = { modifier = easy_acot }
+			}	
+			every_country = {
+				limit = {
+					is_ai = yes
+					is_country_type = default					
+				}
+				add_modifier = { modifier = easy_acot_pleb }
+				remove_modifier = hard_acot_pleb
+				remove_modifier = medium_acot_pleb
+			}	
+		}		
+	}
+
+	option = {
+		name = acot_mod_options.200.c
+		hidden_effect = {
+			country_event = { id = acot_mod_options.200 days = 0 }
+			remove_global_flag = normal_acot
+			remove_global_flag = hard_acot
+			set_global_flag = medium_acot	
+			every_country = {
+				limit = {
+					is_ai = yes
+					OR = {
+						is_country_type = ascended_empire
+						is_country_type = lost_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			remove_modifier = hard_acot
+			remove_modifier = easy_acot
+			add_modifier = { modifier = medium_acot }
+			}	
+			every_country = {
+				limit = {
+					is_ai = yes
+					is_country_type = default					
+				}
+				add_modifier = { modifier = medium_acot }
+				remove_modifier = easy_acot_pleb
+				remove_modifier = hard_acot_pleb
+			}	
+		}		
+	}
+
+	option = {
+		name = acot_mod_options.200.d
+		hidden_effect = {
+			country_event = { id = acot_mod_options.200 days = 0 }
+			remove_global_flag = normal_acot
+			remove_modifier = medium_acot
+			set_global_flag = hard_acot	
+			every_country = {
+				limit = {
+					is_ai = yes
+					OR = {
+						is_country_type = ascended_empire
+						is_country_type = lost_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			remove_modifier = easy_acot
+			remove_modifier = medium_acot
+			add_modifier = { modifier = hard_acot }
+			}
+			every_country = {
+				limit = {
+					is_ai = yes
+					is_country_type = default					
+				}
+				add_modifier = { modifier = hard_acot_pleb }
+				remove_modifier = easy_acot_pleb
+				remove_modifier = medium_acot_pleb
+			}		
+		}		
+	}
+	option = {
+		name = return_to_menu
+		hidden_effect = {
+			country_event = { id = acot_mod_options.1 days = 0 }
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+
+}
+
+#####################################################FOR REVATILIOZAIOTNS
+
+country_event = {
+	id = acot_mod_options.3
+	title = acot_mod_options.3.title
+	desc = acot_mod_options.3.desc
+	picture = GFX_evt_society_research
+	is_triggered_only = yes
+
+### Cleaning Shitty Leader Traits
+
+	option = {
+		name = acot_mod_options.3.1.name
+		custom_tooltip = acot_mod_options.3.1.explain
+		allow = {
+			fail_text = { text = not_has_shitty_leaders }
+			any_owned_leader = {
+				is_organic_species = yes
+				OR = {
+					has_trait = leader_trait_arrested_development #leader_trait_eager
+					has_trait = leader_trait_substance_abuser #leader_trait_resilient
+					has_trait = leader_trait_stubborn #leader_trait_adaptable
+
+					has_trait = leader_trait_paranoid #leader_trait_carefree
+					has_trait = leader_trait_nervous #leader_trait_unyielding
+					has_trait = leader_trait_lethargic #leader_trait_gale_speed
+
+					has_trait = leader_trait_corrupt #leader_trait_righteous
+					has_trait = leader_trait_armchair_commander #leader_trait_glory_seeker
+				}
+			}	
+			resource_stockpile_compare = {
+				resource = influence
+				value >= 150
+			}		
+		}
+		add_resource = {
+			influence = -150
+		}
+		every_owned_leader = {
+			limit = {
+				is_organic_species = yes
+			}
+			if = {
+				limit = { has_trait = leader_trait_arrested_development }
+				remove_trait = leader_trait_arrested_development
+				add_trait = leader_trait_eager
+			}
+
+			if = {
+				limit = { has_trait = leader_trait_substance_abuser }
+				remove_trait = leader_trait_substance_abuser
+				add_trait = leader_trait_resilient
+			}	
+			
+			if = {
+				limit = { has_trait = leader_trait_stubborn }
+				remove_trait = leader_trait_stubborn
+				add_trait = leader_trait_adaptable
+			}					
+
+			if = {
+				limit = { has_trait = leader_trait_nervous }
+				remove_trait = leader_trait_nervous
+				add_trait = leader_trait_carefree
+			}	
+
+			if = {
+				limit = { has_trait = leader_trait_paranoid }
+				remove_trait = leader_trait_paranoid
+				add_trait = leader_trait_unyielding
+			}	
+
+
+			if = {
+				limit = { has_trait = leader_trait_lethargic }
+				remove_trait = leader_trait_lethargic
+				add_trait = leader_trait_gale_speed
+			}					
+
+			if = {
+				limit = { has_trait = leader_trait_corrupt }
+				remove_trait = leader_trait_corrupt
+				add_trait = leader_trait_righteous
+			}	
+
+			if = {
+				limit = { has_trait = leader_trait_armchair_commander }
+				remove_trait = leader_trait_armchair_commander
+				add_trait = leader_trait_glory_seeker
+			}	
+		}
+		hidden_effect = {
+		}
+	}
+
+	option = {
+		name = acot_mod_options.3.2.name
+		custom_tooltip = acot_mod_options.3.2.explain
+		allow = {
+			fail_text = { text = too_soon_to_do_that_nub }
+			NOT = {
+				has_modifier = jumpstarted_exp_development
+			}
+			resource_stockpile_compare = {
+				resource = influence
+				value >= 250
+			}		
+		}
+		add_resource = {
+			influence = -250
+		}
+		add_modifier = {
+			modifier = jumpstarted_exp_development
+			days = 1800
+		}
+		hidden_effect = {
+			every_owned_leader = {
+				limit = {
+					is_organic_species = yes
+				}
+				add_experience = 2500
+	
+			}
+			every_owned_leader = {
+				limit = { 
+					leader_class = scientist
+					has_level >= 6
+				}
+				add_trait = leader_trait_spark_of_genius
+			}		
+		}
+	}
+
+
+	option = {
+		name = acot_mod_options.exit
+		custom_tooltip = acot_mod_options.exit.tooltip
+	}
+}
+
+
+#####################################################FOR REVATILIOZAIOTNS
+
+country_event = {
+	id = acot_mod_options.4
+	title = acot_mod_options.4.title
+	desc = acot_mod_options.4.desc
+	picture = GFX_evt_machine_sapience
+	is_triggered_only = yes
+
+### Cleaning Shitty Leader Traits
+
+	option = {
+		name = acot_mod_options.4.1.name
+		custom_tooltip = acot_mod_options.4.1.explain
+		allow = {
+			fail_text = { text = not_has_shitty_leaders_machine }
+			any_owned_leader = {
+				species = {
+					OR = {
+						is_archetype = MACHINE	
+						is_archetype = ROBOT							
+					}		
+				}
+				OR = {
+					has_trait = leader_trait_arrested_development #leader_trait_eager
+					has_trait = leader_trait_substance_abuser #leader_trait_resilient
+					has_trait = leader_trait_stubborn #leader_trait_adaptable
+
+					has_trait = leader_trait_paranoid #leader_trait_carefree
+					has_trait = leader_trait_nervous #leader_trait_unyielding
+					has_trait = leader_trait_lethargic #leader_trait_gale_speed
+
+					has_trait = leader_trait_corrupt #leader_trait_righteous
+					has_trait = leader_trait_armchair_commander #leader_trait_glory_seeker
+
+					has_trait = leader_trait_rigid_programming #leader_trait_flexible_programming
+					has_trait = leader_trait_erratic_morality_core #leader_trait_demoralizer
+					has_trait = leader_trait_unstable_code_base #leader_trait_unyielding
+				}
+			}	
+			resource_stockpile_compare = {
+				resource = influence
+				value >= 150
+			}		
+		}
+		add_resource = {
+			influence = -150
+		}
+		every_owned_leader = {
+			limit = {
+				species = {
+					OR = {
+						is_archetype = MACHINE	
+						is_archetype = ROBOT							
+					}		
+				}
+			}
+
+			if = {
+				limit = { has_trait = leader_trait_rigid_programming }
+				remove_trait = leader_trait_rigid_programming
+				add_trait = leader_trait_flexible_programming
+			}
+
+			if = {
+				limit = { has_trait = leader_trait_erratic_morality_core }
+				remove_trait = leader_trait_erratic_morality_core
+				add_trait = leader_trait_demoralizer
+			}	
+			
+			if = {
+				limit = { has_trait = leader_trait_unstable_code_base }
+				remove_trait = leader_trait_unstable_code_base
+				add_trait = leader_trait_unyielding
+			}	
+
+			if = {
+				limit = { has_trait = leader_trait_arrested_development }
+				remove_trait = leader_trait_arrested_development
+				add_trait = leader_trait_eager
+			}
+
+			if = {
+				limit = { has_trait = leader_trait_substance_abuser }
+				remove_trait = leader_trait_substance_abuser
+				add_trait = leader_trait_resilient
+			}	
+			
+			if = {
+				limit = { has_trait = leader_trait_stubborn }
+				remove_trait = leader_trait_stubborn
+				add_trait = leader_trait_adaptable
+			}					
+
+			if = {
+				limit = { has_trait = leader_trait_nervous }
+				remove_trait = leader_trait_nervous
+				add_trait = leader_trait_carefree
+			}	
+
+			if = {
+				limit = { has_trait = leader_trait_paranoid }
+				remove_trait = leader_trait_paranoid
+				add_trait = leader_trait_unyielding
+			}	
+
+
+			if = {
+				limit = { has_trait = leader_trait_lethargic }
+				remove_trait = leader_trait_lethargic
+				add_trait = leader_trait_gale_speed
+			}					
+
+			if = {
+				limit = { has_trait = leader_trait_corrupt }
+				remove_trait = leader_trait_corrupt
+				add_trait = leader_trait_righteous
+			}	
+
+			if = {
+				limit = { has_trait = leader_trait_armchair_commander }
+				remove_trait = leader_trait_armchair_commander
+				add_trait = leader_trait_glory_seeker
+			}	
+		}
+		hidden_effect = {
+		}
+	}
+
+	#option = {
+	#	name = acot_mod_options.4.2.a
+	##	custom_tooltip = acot_mod_options.4.2.a.tooltip
+	#	trigger = { NOT = { has_country_flag = reservice_enabled } }
+	#	hidden_effect = {
+	#		set_country_flag = reservice_enabled
+	#		country_event = { id = acot_mod_options.4 days = 0 }
+	#		add_modifier = {
+	#			modifier = resurface_protocol
+	#		}
+	#		every_owned_leader = {										
+     #           limit = {
+	#				OR = {
+	#					leader_class = admiral
+	#					leader_class = scientist
+	#					leader_class = general
+	#					leader_class = governor
+	#					leader_class = ruler
+	#				}
+	##				species = {
+	#					OR = {
+	##						is_archetype = MACHINE	
+	#						is_archetype = ROBOT							
+	#					}		
+	#				}
+  #             }
+ #               add_trait = leader_trait_acot_immortality
+#			}
+#		}
+#	}
+#	option = {
+#		name = acot_mod_options.4.2.b
+#		custom_tooltip = acot_mod_options.4.2.b.tooltip
+#		trigger = { has_country_flag = reservice_enabled }
+#		hidden_effect = {
+#			remove_country_flag = reservice_enabled
+#			country_event = { id = acot_mod_options.4 days = 0 }
+#			remove_modifier = resurface_protocol
+#			every_owned_leader = {										
+ #               limit = {
+#					has_trait = leader_trait_acot_immortality
+ #              }
+#				remove_trait = leader_trait_acot_immortality
+#			}
+#		}
+#	}
+
+
+	option = {
+		name = acot_mod_options.exit
+		custom_tooltip = acot_mod_options.exit.tooltip
+	}
+}
+
+# On Synth Leaderleader death
+country_event = {
+	id = acot_mod_options.5
+	is_triggered_only = yes
+	title = acot_mod_options.50.title
+	desc = acot_mod_options.50.desc
+	picture = GFX_evt_machine_sapience
+
+	trigger = {
+		has_modifier = resurface_protocol
+		from = {
+			has_trait = leader_trait_acot_immortality
+		}
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = acot_mod_options.50.a
+		custom_tooltip = acot_mod_options.50.a.explain
+		if = {
+			limit = { 
+				FROM = {
+					leader_class = scientist
+				}
+			}
+			clone_leader = {
+				target = from
+				class = scientist
+			}			
+		}
+		if = {
+			limit = { 
+				FROM = {
+					leader_class = general
+				}
+			}
+			clone_leader = {
+				target = from
+				class = general
+			}			
+		}
+		if = {
+			limit = { 
+				FROM = {
+					leader_class = admiral
+				}
+			}
+			clone_leader = {
+				target = from
+				class = admiral
+			}			
+		}
+		if = {
+			limit = { 
+				FROM = {
+					leader_class = governor
+				}
+			}
+			clone_leader = {
+				target = from
+				class = governor
+			}			
+		}
+		if = {
+			limit = { 
+				FROM = {
+					leader_class = ruler
+				}
+			}
+			clone_leader = {
+				target = from
+				class = ruler
+			}			
+		}		
+	}
+
+	option = {
+		name = acot_mod_options.50.b
+	}
+}
+
+country_event = {
+	id = acot_mod_options.6
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = { 																	
+			limit = { 
+				has_country_flag = reservice_enabled
+			} 
+			every_owned_leader = {										
+                limit = {
+					OR = {
+						leader_class = admiral
+						leader_class = scientist
+						leader_class = general
+						leader_class = governor
+						leader_class = ruler
+					}
+					species = {
+						OR = {
+							is_archetype = MACHINE	
+							is_archetype = ROBOT							
+						}		
+					}
+               }
+                add_trait = leader_trait_acot_immortality
+			}
+		}
+	}
+}
