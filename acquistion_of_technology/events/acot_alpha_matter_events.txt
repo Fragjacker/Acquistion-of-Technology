@@ -1,0 +1,628 @@
+############DARK MATTER EVENTS
+namespace = acot_alpha_matter_events
+#ALPHA EXISTENCE
+country_event = {
+	id = acot_alpha_matter_events.1
+	title = acot_alpha_matter_events.1.name
+	desc = acot_alpha_matter_events.1.desc
+	picture = GFX_evt_ancient_records
+	show_sound = event_mystery
+	trigger = {
+		OR = {
+			is_country_type = default
+			AND = {
+				is_country_type = ascended_empire
+				OR = {
+					any_country = {
+						is_country_type = default
+						has_technology = tech_dark_matter_power_core_ae
+					}
+					has_precursaor_tech = yes
+				}
+			}
+		}
+		has_technology = "tech_dark_matter_power_core"
+		has_technology = "tech_mine_dark_energy"
+		has_technology = "tech_mine_dark_matter"
+		NOR = {
+			has_country_flag = hear_precursor_rumor
+			has_technology = "tech_precursor_design"
+			has_tech_option = "tech_precursor_design"
+			has_technology = "tech_dark_matter_power_core_ae"
+			has_tech_option = "tech_dark_matter_power_core_ae"
+		}
+		OR = {
+			any_owned_planet = {
+				OR = {
+					has_building = building_fe_dome
+					has_building = building_dimensional_fabricator
+					has_building = building_ancient_palace
+					has_building = building_fe_xeno_zoo
+					has_building = building_ancient_control_center
+					has_building = building_affluence_center
+					has_building = building_nourishment_center
+					has_building = building_class_4_singularity
+					has_building = building_nano_forge
+					has_building = building_master_archive
+					has_building = building_ancient_cryo_chamber
+					has_building = building_fe_stronghold
+					has_building = building_giga_fortress_fe
+				}
+			}
+			any_owned_ship = {
+				OR = {
+					is_ship_size = small_ship_fallen_empire
+					is_ship_size = large_ship_fallen_empire
+					is_ship_size = massive_ship_fallen_empire
+					is_ship_size = military_station_small_fallen_empire
+				}
+			}
+			any_neighbor_country = {
+				is_fallen_empire = yes
+			}
+			any_owned_planet = {
+				OR = {
+					has_planet_flag = fallen_empire_world
+					is_planet_class = pc_dark_fractured
+					is_planet_class = pc_dark_fractured_ae
+				}
+			}
+			has_precursaor_tech = yes
+		}
+	}
+	mean_time_to_happen = {
+		years = 2
+	}
+	immediate = {
+		set_country_flag = hear_precursor_rumor
+	}
+	option = {
+		name = acot_alpha_matter_events.1.a
+		trigger = {
+			is_ai = no
+		}
+		set_country_flag = allow_databank_steal
+		begin_event_chain = {
+			event_chain = acot_alpha_tech_chain
+		}
+		capital_scope = {
+			create_point_of_interest = {
+				id = acot_alpha_research.1
+				name = "acot_databank_attack_fe"
+				desc = "acot_databank_attack_fe_desc"
+				event_chain = acot_alpha_tech_chain
+				location = this
+			}
+			create_point_of_interest = {
+				id = acot_alpha_research.2
+				name = "acot_databank_trick_fe"
+				desc = "acot_databank_trick_fe_desc"
+				event_chain = acot_alpha_tech_chain
+				location = this
+			}
+		}
+	}
+	option = {
+		name = acot_alpha_matter_events.1.b
+		custom_tooltip = acot_alpha_matter_events.1.b_desc
+		default_hide_option = yes
+		trigger = {
+			is_ai = no
+			any_owned_leader = {
+				leader_class = scientist
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = acot_alpha_matter_events.6
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_event_chain = acot_alpha_tech_chain
+				}
+			}
+			begin_event_chain = {
+				event_chain = acot_alpha_tech_chain
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	### AI IS TOO STUPID TO RELIABLY UNDERSTAND COMPLEX SYSTEMS WITHOUT BUNCH OF  CODES
+	option = {
+		name = EXCELLENT
+		trigger = {
+			is_ai = yes
+		}
+		give_technology = {
+			tech = tech_precursor_design
+		}
+		country_event = {
+			id = acot_precursor_databank.3
+			days = 1800
+		}
+		set_country_flag = learned_dm_alpha_existence
+	}
+}
+
+# DATABANK Acquired
+country_event = {
+	id = acot_alpha_matter_events.100
+	title = acot_alpha_matter_events.100.name
+	desc = acot_alpha_matter_events.100.desc
+	picture = GFX_evt_ancient_databank
+	show_sound = event_mystery
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = has_databank
+		hidden_effect = {
+			remove_point_of_interest = acot_alpha_research.1
+			remove_point_of_interest = acot_alpha_research.2
+			remove_point_of_interest = acot_alpha_diy_research.1
+		}
+	}
+	option = {
+		name = acot_alpha_matter_events.100.a
+		default_hide_option = yes
+		add_research_option = tech_precursor_design
+	}
+}
+
+# DATABANK OPINION CHECK
+country_event = {
+	id = acot_alpha_matter_events.101
+	hide_window = yes
+	show_sound = event_mystic_reveal
+	trigger = {
+		NOR = {
+			has_global_flag = acot_events_forbidden
+			has_country_flag = has_databank
+		}
+		has_country_flag = hear_precursor_rumor
+		is_country_type = default
+		any_country = {
+			is_ai = yes
+			is_country_type = fallen_empire
+			is_at_war = no
+			NOT = {
+				has_ethic = ethic_gestalt_consciousness
+			}
+			is_patronizing_to = root
+		}
+	}
+	mean_time_to_happen = {
+		years = 4
+	}
+	immediate = {
+		random_country = {
+			limit = {
+				is_ai = yes
+				is_country_type = fallen_empire
+				is_at_war = no
+				NOT = {
+					has_ethic = ethic_gestalt_consciousness
+				}
+				is_patronizing_to = root
+			}
+			save_event_target_as = FallenEmpireTaskOrigin
+		}
+		save_event_target_as = FallenEmpireTaskTarget
+		country_event = {
+			id = acot_alpha_matter_events.102
+		}
+	}
+}
+
+country_event = {
+	id = acot_alpha_matter_events.102
+	title = acot_alpha_matter_events.102.name
+	is_triggered_only = yes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = event_target:FallenEmpireTaskOrigin
+		planet_background = event_target:FallenEmpireTaskOrigin
+		graphical_culture = event_target:FallenEmpireTaskOrigin
+		city_level = event_target:FallenEmpireTaskOrigin
+		room = event_target:FallenEmpireTaskOrigin.ruler
+	}
+	desc = {
+		text = acot_alpha_matter_events.102.desc.spiritualist
+		trigger = {
+			event_target:FallenEmpireTaskOrigin = {
+				has_ethic = ethic_fanatic_spiritualist
+			}
+		}
+	}
+	desc = {
+		text = acot_alpha_matter_events.102.desc.materialist
+		trigger = {
+			event_target:FallenEmpireTaskOrigin = {
+				has_ethic = ethic_fanatic_materialist
+			}
+		}
+	}
+	desc = {
+		text = acot_alpha_matter_events.102.desc.xenophile
+		trigger = {
+			event_target:FallenEmpireTaskOrigin = {
+				has_ethic = ethic_fanatic_xenophile
+			}
+		}
+	}
+	desc = {
+		text = acot_alpha_matter_events.102.desc.xenophobe
+		trigger = {
+			event_target:FallenEmpireTaskOrigin = {
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+	}
+	option = {
+		name = acot_alpha_matter_events.102.a
+		response_text = acot_alpha_matter_events.102.a.response
+		#custom_tooltip = acot_alpha_matter_events.102.a.tooltip
+		default_hide_option = yes
+		ruler = {
+			add_trait = leader_trait_substance_abuser
+		}
+		hidden_effect = {
+			country_event = {
+				id = acot_alpha_matter_events.100
+				days = 1
+			}
+		}
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 5
+				OR = {
+					is_xenophile = yes
+					is_pacifist = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_alpha_matter_events.102.b
+		response_text = acot_alpha_matter_events.102.b.response
+		save_event_target_as = FallenEmpireTaskTarget
+		event_target:FallenEmpireTaskOrigin = {
+			add_opinion_modifier = {
+				who = root
+				modifier = opinion_majorly_failed_fallen_empire_task
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				OR = {
+					relative_power = {
+						who = event_target:FallenEmpireTaskOrigin
+						value = superior
+					}
+				}
+			}
+		}
+	}
+}
+
+# DATABANK Analyzed
+country_event = {
+	id = acot_alpha_matter_events.2
+	title = acot_alpha_matter_events.2.name
+	desc = acot_alpha_matter_events.2.desc
+	picture = GFX_evt_physics_research
+	show_sound = event_curious
+	#location = event_target:candidate_outergateway
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_technology = tech_dark_matter_power_core_ae
+		}
+		last_increased_tech = tech_precursor_design
+		#NOT = {	has_country_flag = know_dark_power_ae_final }
+	}
+	immediate = {
+		#set_country_flag = has_databank
+		establish_communications_no_message = event_target:acot_precursor_databank_country
+		hidden_effect = {
+			remove_point_of_interest = acot_alpha_research.1
+			remove_point_of_interest = acot_alpha_research.2
+		}
+	}
+	option = {
+		name = acot_alpha_matter_events.2.a
+		default_hide_option = yes
+		trigger = {
+			is_ai = no
+		}
+		hidden_effect = {
+			country_event = {
+				id = acot_precursor_databank.101
+			}
+		}
+	}
+	option = {
+		name = acot_alpha_matter_events.2.b
+	}
+}
+
+#Dark Matter Power FINAL
+country_event = {
+	id = acot_alpha_matter_events.3
+	title = acot_alpha_matter_events.3.name
+	desc = {
+		trigger = {
+			last_increased_tech = tech_precursor_design_engineering
+		}
+		text = acot_alpha_matter_events.3.desc.engi
+	}
+	desc = {
+		trigger = {
+			last_increased_tech = tech_precursor_design_history
+		}
+		text = acot_alpha_matter_events.3.desc.hist
+	}
+	desc = {
+		trigger = {
+			last_increased_tech = tech_precursor_design_physics
+		}
+		text = acot_alpha_matter_events.3.desc.phys
+	}
+	picture = GFX_evt_matter_decompressor
+	show_sound = event_curious
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			last_increased_tech = tech_precursor_design_engineering
+			last_increased_tech = tech_precursor_design_history
+			last_increased_tech = tech_precursor_design_physics
+		}
+	}
+	immediate = {
+		change_variable = {
+			which = acot_alpha_tech_score
+			value = 1
+		}
+	}
+	option = {
+		name = acot_alpha_matter_events.3.a
+		add_resource = {
+			influence = 50
+		}
+		default_hide_option = yes
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = {
+						which = acot_alpha_tech_score
+						value = 3
+					}
+				}
+				country_event = {
+					id = acot_alpha_matter_events.4
+					days = 1
+				}
+			}
+		}
+	}
+}
+
+#Dark Matter Power FINAL
+country_event = {
+	id = acot_alpha_matter_events.4
+	title = acot_alpha_matter_events.4.name
+	desc = acot_alpha_matter_events.4.desc
+	picture = GFX_evt_matter_decompressor
+	show_sound = event_mystery
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		name = acot_alpha_matter_events.4.a
+		default_hide_option = yes
+		add_research_option = tech_dark_matter_power_core_ae
+	}
+	option = {
+		name = acot_alpha_matter_events.4.b
+		every_owned_leader = {
+			kill_leader = {
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+#ALPHA COMPLETED
+country_event = {
+	id = acot_alpha_matter_events.5
+	title = acot_alpha_matter_events.5.name
+	desc = acot_alpha_matter_events.5.desc
+	picture = GFX_evt_matter_decompressor
+	show_sound = event_completed
+	is_triggered_only = yes
+	trigger = {
+		is_country_type = default
+		last_increased_tech = tech_dark_matter_power_core_ae
+	}
+	immediate = {
+		end_event_chain = acot_alpha_tech_chain
+	}
+	option = {
+		name = acot_alpha_matter_events.5.a
+		default_hide_option = yes
+	}
+}
+
+#SELECT LEADER FOR ALPHA DIY PROJECT
+country_event = {
+	id = acot_alpha_matter_events.6
+	title = alpha_diy_events.3.name
+	desc = alpha_diy_events.3.desc
+	picture = GFX_evt_physics_research
+	show_sound = event_conversation
+	is_triggered_only = yes
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+			}
+			save_event_target_as = leader_1
+		}
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+				NOT = {
+					is_same_value = event_target:leader_1
+				}
+			}
+			save_event_target_as = leader_2
+		}
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+				NOR = {
+					is_same_value = event_target:leader_1
+					is_same_value = event_target:leader_2
+				}
+			}
+			save_event_target_as = leader_3
+		}
+	}
+	option = {
+		name = "utopia.3190.1.a"
+		event_target:leader_1 = {
+			set_leader_flag = alpha_research_leader
+		}
+		capital_scope = {
+			enable_special_project = {
+				name = "RESEARCH_ALPHA_POWER"
+				location = this
+				owner = root
+			}
+		}
+	}
+	option = {
+		name = "utopia.3190.1.b"
+		event_target:leader_2 = {
+			set_leader_flag = alpha_research_leader
+		}
+		capital_scope = {
+			enable_special_project = {
+				name = "RESEARCH_ALPHA_POWER"
+				location = this
+				owner = root
+			}
+		}
+	}
+	option = {
+		name = "utopia.3190.1.c"
+		event_target:leader_3 = {
+			set_leader_flag = alpha_research_leader
+		}
+		capital_scope = {
+			enable_special_project = {
+				name = "RESEARCH_ALPHA_POWER"
+				location = this
+				owner = root
+			}
+		}
+	}
+}
+
+#ALPHA PROJECT FAILED DOCTOR FREEMAN, TRY AGAIN!
+country_event = {
+	id = acot_alpha_matter_events.7
+	title = alpha_diy_events.4.name
+	desc = alpha_diy_events.4.desc.a
+	desc = alpha_diy_events.4.desc.b
+	desc = alpha_diy_events.4.desc.c
+	desc = alpha_diy_events.4.desc.d
+	desc = alpha_diy_events.4.desc.e
+	desc = alpha_diy_events.4.desc.f
+	desc = alpha_diy_events.4.desc.g
+	desc = alpha_diy_events.4.desc.h
+	desc = alpha_diy_events.4.desc.i
+	picture = GFX_evt_nuclear_explosion
+	show_sound = event_ship_explosion
+	is_triggered_only = yes
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				has_leader_flag = alpha_research_leader
+			}
+			kill_leader = {
+			}
+		}
+		abort_special_project = {
+			type = RESEARCH_ALPHA_POWER
+		}
+	}
+	option = {
+		name = stellarite_events.4.a
+		trigger = {
+			any_owned_leader = {
+				leader_class = scientist
+			}
+		}
+		country_event = {
+			id = acot_alpha_matter_events.6
+		}
+	}
+	option = {
+		name = acot_alpha_diy_fail_reconsider
+		custom_tooltip = acot_alpha_diy_fail_reconsider_desc
+		trigger = {
+			is_ai = no
+		}
+		set_country_flag = allow_databank_steal
+		capital_scope = {
+			create_point_of_interest = {
+				id = acot_alpha_research.1
+				name = "acot_databank_attack_fe"
+				desc = "acot_databank_attack_fe_desc"
+				event_chain = acot_alpha_tech_chain
+				location = this
+			}
+			create_point_of_interest = {
+				id = acot_alpha_research.2
+				name = "acot_databank_trick_fe"
+				desc = "acot_databank_trick_fe_desc"
+				event_chain = acot_alpha_tech_chain
+				location = this
+			}
+		}
+	}
+	option = {
+		name = stellarite_events.4.b
+		hidden_effect = {
+			country_event = {
+				id = acot_alpha_matter_events.8
+			}
+			country_event = {
+				id = acot_alpha_matter_events.1
+			}
+		}
+	}
+}
+
+#ALPHA FAILED
+country_event = {
+	id = acot_alpha_matter_events.8
+	title = acot_alpha_diy_fail
+	desc = acot_alpha_diy_fail_desc
+	picture = GFX_alert
+	show_sound = event_bad_omen
+	is_triggered_only = yes
+	immediate = {
+		end_event_chain = acot_alpha_tech_chain
+	}
+}
