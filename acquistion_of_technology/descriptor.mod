@@ -5,4 +5,5 @@ tags={
 	"Overhaul"
 }
 name="Acquisiton of Technology"
+picture="thumbnail.png"
 supported_version="2.7.*"

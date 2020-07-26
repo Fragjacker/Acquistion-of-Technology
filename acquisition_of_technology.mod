@@ -5,5 +5,6 @@ tags={
 	"Overhaul"
 }
 name="Acquisiton of Technology"
+picture="thumbnail.png"
 supported_version="2.7.*"
 path="D:/godly_000/Documents/Paradox Interactive/Stellaris/mod/acquisition_of_technology"
