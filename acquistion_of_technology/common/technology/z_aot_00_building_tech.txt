@@ -243,3 +243,36 @@ tech_ancient_control_center = {
 		}
 	}
 }
+
+# Disable ZOFE synth dark matter since ACOT does this better already.
+tech_synthetic_dark_matter = {
+	area = physics
+	cost = @tier5cost1
+	tier = 5
+	category = {
+		particles
+	}
+	potential = {
+		NOR = {
+			has_tech_option = tech_enigmatic_power_core
+			has_technology = tech_enigmatic_power_core
+		}
+	}
+	is_rare = yes
+	weight = @tier5weight1
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				is_country_type = lost_empire
+				is_country_type = ascended_empire
+			}
+		}
+	}
+	prerequisites = {
+		"tech_fallen_technologies_4"
+	}
+	ai_weight = {
+		factor = 10		#Ascension is good
+	}
+}
