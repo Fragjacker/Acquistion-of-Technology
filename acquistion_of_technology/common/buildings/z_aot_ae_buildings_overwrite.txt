@@ -1,0 +1,671 @@
+#####################
+# Government Building
+#####################
+#####################
+# Enigmatic Building
+#####################
+
+building_ae_affluence_center = {
+	base_buildtime = 600
+	can_demolish = yes
+	can_build = no
+	
+	category = manufacturing
+	
+	potential = {
+		exists = owner
+	}
+
+	prerequisites = {
+		tech_aot_ae_affluence_center
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = no	}
+		 }
+		job_acot_artisan_add = 2	
+	}
+	
+	allow = {
+		has_ascended_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 750
+			sr_dark_matter = 250	
+			acot_sr_dark_energy = 250		
+		}	
+		produces = {
+			consumer_goods = 75
+			unity = 30
+		}
+		upkeep = {
+			acot_sr_dark_energy = 10
+			sr_dark_matter = 10
+		}
+	}
+		
+	upgrades = {
+	}
+	
+	
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 5
+			owner = { 
+				has_monthly_income = {
+					resource = consumer_goods
+					value < 10
+				}
+				has_monthly_income = {
+					resource = minerals
+					value > 12
+				}
+			}
+		}
+	}
+
+	ai_resource_production = {
+		consumer_goods = 6
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+
+building_ae_nourishment_center = {
+	base_buildtime = 600
+	can_demolish = yes
+	can_build = no
+	
+	category = resource
+	
+	potential = {
+		exists = owner
+	}
+
+	prerequisites = {
+		tech_aot_ae_nourishment_center
+	}
+	
+	allow = {
+		has_ascended_capital = yes
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_regular_empire = yes 
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_foodman_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_regular_empire = no 
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_fooddrone_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 750
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
+		}		
+		produces = {
+			food = 150
+		}
+		upkeep = {
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+	}
+		
+	upgrades = {
+	}
+	
+	
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 5
+			owner = { 
+				has_monthly_income = {
+					resource = food
+					value < 10
+				}
+			}
+		}
+	}
+
+	ai_resource_production = {
+		food = 10
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_ae_dimensional_fabricator = {
+	base_buildtime = 600
+	can_demolish = yes
+	can_build = no
+	
+	category = resource
+	
+	potential = {
+		exists = owner
+	}
+	
+	prerequisites = {
+		tech_aot_ae_dimensional_fabricator
+	}
+
+	allow = {
+		has_ascended_capital = yes
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_regular_empire = yes
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_dimesiona_traveler_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_regular_empire = no
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_dimesiona_traveler_drone_add = 5
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 750
+			acot_sr_dark_energy = 250
+			sr_dark_matter = 250
+		}
+		produces = {
+			minerals = 150
+			rare_crystals = 4
+			exotic_gases = 4
+			volatile_motes = 4
+			sr_zro = 4
+			sr_dark_matter = 4
+			sr_living_metal = 4	
+		}
+		upkeep = {
+			acot_sr_dark_energy = 10
+		}
+	}
+		
+	upgrades = {
+	}
+	
+	
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 5
+			owner = { 
+				has_monthly_income = {
+					resource = minerals
+					value < 10
+				}
+			}
+		}
+	}
+
+	ai_resource_production = {
+		minerals = 1000
+		rare_crystals = 50
+		exotic_gases = 50
+		volatile_motes = 50
+		sr_living_metal = 25
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+
+building_ae_class_4_singularity = {
+	base_buildtime = 600
+	can_demolish = yes
+	can_build = no
+	
+	category = resource
+	
+	prerequisites = {
+		tech_aot_ae_class_4_singularity
+	}
+
+	potential = {
+		exists = owner
+	}
+	
+	allow = {
+		has_ascended_capital = yes
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_regular_empire = yes 
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_energyman_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_regular_empire = no 
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_energydrone_add = 2
+		}
+	}
+
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 750
+			acot_sr_dark_energy = 250
+			sr_dark_matter = 250
+		}
+		produces = {
+			energy = 450
+			acot_sr_dark_energy = 45
+		}
+		upkeep = {
+			sr_dark_matter = 20
+		}
+	}
+		
+	upgrades = {
+	}
+	
+	
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 5
+			owner = { 
+				has_monthly_income = {
+					resource = energy
+					value < 20
+				}
+			}
+		}
+	}
+
+	ai_resource_production = {
+		energy = 800
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_ae_nano_forge = {
+	base_buildtime = 600
+	can_demolish = yes
+	can_build = no
+	
+	category = manufacturing
+	
+	prerequisites = {
+		tech_aot_ae_nano_forge
+	}
+
+	potential = {
+		exists = owner
+	}
+	
+	allow = {
+		has_ascended_capital = yes
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_regular_empire = yes 
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_alloyman_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_regular_empire = no 
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_alloydrone_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 100
+			acot_sr_dark_energy = 100			
+		}
+		produces = {
+			alloys = 45
+		}
+		upkeep = {
+			acot_sr_dark_energy = 20
+			sr_dark_matter = 20
+		}
+	}
+		
+	upgrades = {
+	}
+	
+	
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 5
+			owner = { 
+				has_monthly_income = {
+					resource = alloys
+					value < 30
+				}
+			}
+		}
+	}
+
+	ai_resource_production = {
+		alloys = 100
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_ae_master_archive = {
+	base_buildtime = 600
+	can_demolish = yes
+	can_build = no
+	
+	category = research
+	
+	prerequisites = {
+		tech_aot_ae_master_archive
+	}
+
+	potential = {
+		exists = owner
+	}
+	
+	allow = {
+		has_ascended_capital = yes
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_regular_empire = yes 
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_researcher_add = 2
+			job_researcher_add = 20
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_hive_empire = yes 
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_researcher_add = 2
+			job_brain_drone_add = 20
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_acot_researcher_add = 2
+			job_calculator_add = 20
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+		job_fe_archivist_add = 15
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1500
+			acot_sr_dark_energy = 500
+			sr_dark_matter = 500
+		}
+		produces = {
+			physics_research = 150
+			society_research = 150
+			engineering_research = 150
+		}
+		upkeep = {
+			acot_sr_dark_energy = 15
+			sr_dark_matter = 15
+		}
+	}
+		
+	upgrades = {
+	}
+	
+	ai_weight = {
+		weight = 100
+	}
+
+	ai_resource_production = {
+		physics_research = 500
+		society_research = 500
+		engineering_research = 500
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_ae_empyrean_shrine = {
+	base_buildtime = 600
+	can_demolish = yes
+	can_build = no
+	
+	category = unity
+	
+	prerequisites = {
+		tech_aot_ae_empyrean_shrine
+	}
+
+	potential = {
+		exists = owner
+	}	
+	
+	allow = {
+		has_ascended_capital = yes
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+		job_fe_augur_add = 8
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_empire = no 
+				is_spiritualist = yes
+			}
+		}
+		job_acot_priest_add = 2
+		job_priest_add = 20
+		pop_ethic_spiritualist_attraction_mult = 0.50
+	}	
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_empire = no 
+				is_spiritualist = no
+			}
+		}
+		job_researcher_add = 4
+		job_culture_worker_add = 15
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			sr_dark_matter = 150
+			acot_sr_dark_energy = 150
+		}	
+		produces = {
+			society_research = 40
+			unity = 40
+			influence = 1
+		}
+		upkeep = {
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+	}
+	
+		
+	upgrades = {
+	}
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+building_ae_sky_dome = {
+	base_buildtime = 600
+	can_build = no
+	
+	category = amenity
+	
+	prerequisites = {
+		tech_aot_ae_sky_dome
+	}
+
+	potential = {
+		exists = owner
+	}
+	
+	allow = {
+		has_ascended_capital = yes
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 50
+		planet_amenities_add = 50
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire = no
+			}					
+		}
+		modifier = {
+			job_acot_entertainer_add = 2
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 750
+			sr_dark_matter = 150
+			acot_sr_dark_energy = 150
+		}
+		upkeep = {
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+	}
+	
+	upgrades = {
+	}
+	
+	ai_weight = {
+		weight = 5
+	}
+}

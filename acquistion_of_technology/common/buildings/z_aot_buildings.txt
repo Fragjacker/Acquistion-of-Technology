@@ -408,6 +408,72 @@ building_fe_class_4_singularity = {
 	}
 }
 
+building_aot_fe_empyrean_shrine = {
+	base_buildtime = 480
+	can_demolish = yes
+	category = unity
+	icon = building_empyrean_shrine
+	potential = {
+		exists = owner
+	}
+	allow = {
+		has_any_enigmatic_capital = yes
+		owner = {
+			is_machine_empire = no
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire = yes
+			}
+		}
+		job_fe_augur_add = 3
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire = no
+				is_spiritualist = yes
+			}
+		}
+		job_priest_add = 10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire = no
+				is_spiritualist = no
+			}
+		}
+		job_culture_worker_add = 10
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 750
+			sr_dark_matter = 50
+			sr_zro = 50
+		}
+		produces = {
+			society_research = 25
+			unity = 25
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+	prerequisites = {
+		"tech_aot_fe_empyrean_shrine"
+	}
+	upgrades = {
+		building_ae_empyrean_shrine
+	}
+}
+
 building_fe_nano_forge = {
 	base_buildtime = 360
 	can_build = yes
@@ -2815,70 +2881,5 @@ building_ae_ancient_cryo_chamber = {
 			factor = 0
 			free_housing > 1
 		}
-	}
-}
-
-building_empyrean_shrine = {
-	base_buildtime = 480
-	can_demolish = yes
-	category = unity
-	potential = {
-		exists = owner
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-		owner = {
-			is_machine_empire = no
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire = yes
-			}
-		}
-		job_fe_augur_add = 3
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire = no
-				is_spiritualist = yes
-			}
-		}
-		job_priest_add = 10
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire = no
-				is_spiritualist = no
-			}
-		}
-		job_culture_worker_add = 10
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 750
-			sr_dark_matter = 50
-			sr_zro = 50
-		}
-		produces = {
-			society_research = 25
-			unity = 25
-		}
-		upkeep = {
-			energy = 10
-		}
-	}
-	prerequisites = {
-		"tech_ascended_society_2"
-	}
-	upgrades = {
-		building_ae_empyrean_shrine
 	}
 }
