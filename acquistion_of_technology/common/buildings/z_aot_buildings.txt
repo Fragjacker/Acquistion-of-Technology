@@ -1902,6 +1902,130 @@ building_fe_mineral_processing_plant = {
 	}
 }
 
+building_fe_factory = {
+	base_buildtime = 450
+	category = manufacturing
+	allow = {
+		has_any_enigmatic_capital = yes
+	}
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				is_gestalt = no
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+		NOT = {
+			has_modifier = resort_colony
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+	}
+	destroy_trigger = {
+		# destroys if true
+		OR = {
+			owner = {
+				AND = {
+					is_gestalt = yes
+					NOT = {
+						has_valid_civic = civic_machine_servitor
+					}
+				}
+			}
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_artisan_add = 12
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			job_artisan_drone_add = 12
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+			sr_dark_matter = 100
+		}
+		upkeep = {
+			energy = 4
+			sr_dark_matter = 2
+		}
+	}
+	prerequisites = {
+		tech_fe_factory
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		text = job_artisan_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		text = job_artisan_drone_effect_desc
+	}
+	ai_weight = {
+		weight = 2
+		modifier = {
+			factor = 5
+			owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value < 5
+				}
+				has_monthly_income = {
+					resource = minerals
+					value > 6
+				}
+			}
+		}
+		# There are already unworked jobs
+		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
+		# Will be improved... at some point
+		modifier = {
+			factor = 0
+			free_jobs > 0
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 1
+		trigger = {
+			always = yes
+		}
+	}
+	upgrades = {
+		building_ae_factory
+	}
+}
+
 ##########ENERGY NEXOUS
 building_fe_power_hub = {
 	base_buildtime = 480

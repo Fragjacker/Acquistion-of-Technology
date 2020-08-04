@@ -4,7 +4,8 @@ namespace = acot_alpha_matter_events
 country_event = {
 	id = acot_alpha_matter_events.1
 	title = acot_alpha_matter_events.1.name
-	desc = acot_alpha_matter_events.1.desc
+	desc = acot_alpha_matter_events.1.a.desc
+	desc = acot_alpha_matter_events.1.b.desc
 	picture = GFX_evt_ancient_records
 	show_sound = event_mystery
 	trigger = {
@@ -12,12 +13,9 @@ country_event = {
 			is_country_type = default
 			AND = {
 				is_country_type = ascended_empire
-				OR = {
-					any_country = {
-						is_country_type = default
-						has_technology = tech_dark_matter_power_core_ae
-					}
-					has_precursaor_tech = yes
+				resource_stockpile_compare = {
+					resource = influence
+					value >= 1000
 				}
 			}
 		}
@@ -34,11 +32,12 @@ country_event = {
 		OR = {
 			any_owned_planet = {
 				OR = {
+					has_building = building_ancient_hive_cluster
+					has_building = building_ancient_palace
+					has_building = building_ancient_control_center
 					has_building = building_fe_dome
 					has_building = building_dimensional_fabricator
-					has_building = building_ancient_palace
 					has_building = building_fe_xeno_zoo
-					has_building = building_ancient_control_center
 					has_building = building_affluence_center
 					has_building = building_nourishment_center
 					has_building = building_class_4_singularity
@@ -47,6 +46,16 @@ country_event = {
 					has_building = building_ancient_cryo_chamber
 					has_building = building_fe_stronghold
 					has_building = building_giga_fortress_fe
+					# ACOT/AOT/ZOFE automated Buildings here
+					has_building = building_fe_class_4_singularity
+					has_building = building_fe_nano_forge
+					has_building = building_fe_dimensional_fabricator
+					has_building = building_fe_nourishment_center
+					has_building = building_fe_affluence_center
+					has_building = building_fe_sky_dome
+					has_building = building_fe_stronghold
+					has_building = building_giga_fortress_fe
+					has_building = building_dark_energy_psg
 				}
 			}
 			any_owned_ship = {
@@ -55,6 +64,11 @@ country_event = {
 					is_ship_size = large_ship_fallen_empire
 					is_ship_size = massive_ship_fallen_empire
 					is_ship_size = military_station_small_fallen_empire
+					is_ship_size = fe_escort
+					is_ship_size = fe_battlecruiser
+					is_ship_size = fe_titan
+					is_ship_size = fe_small_station
+					is_ship_size = fe_large_station
 				}
 			}
 			any_neighbor_country = {
@@ -79,6 +93,7 @@ country_event = {
 	option = {
 		name = acot_alpha_matter_events.1.a
 		trigger = {
+			is_country_type = default
 			is_ai = no
 		}
 		set_country_flag = allow_databank_steal
@@ -104,13 +119,60 @@ country_event = {
 	}
 	option = {
 		name = acot_alpha_matter_events.1.b
-		custom_tooltip = acot_alpha_matter_events.1.b_desc
+		custom_tooltip = acot_alpha_matter_events.1.b.explain
+		trigger = {
+			is_country_type = ascended_empire
+			is_ai = no
+		}
+		allow = {
+			resource_stockpile_compare = {
+				resource = influence
+				value >= 1000
+			}
+		}
+		add_resource = {
+			influence = -1000
+		}
+		set_country_flag = allow_databank_steal
+		begin_event_chain = {
+			event_chain = acot_alpha_tech_chain
+		}
+		capital_scope = {
+			create_point_of_interest = {
+				id = acot_alpha_research.1
+				name = "acot_databank_attack_fe"
+				desc = "acot_databank_attack_fe_desc"
+				event_chain = acot_alpha_tech_chain
+				location = this
+			}
+			create_point_of_interest = {
+				id = acot_alpha_research.2
+				name = "acot_databank_trick_fe"
+				desc = "acot_databank_trick_fe_desc"
+				event_chain = acot_alpha_tech_chain
+				location = this
+			}
+		}
+	}
+	option = {
+		name = acot_alpha_matter_events.1.bb
+		custom_tooltip = acot_alpha_matter_events.1.bb_desc
 		default_hide_option = yes
 		trigger = {
 			is_ai = no
+			is_country_type = ascended_empire
 			any_owned_leader = {
 				leader_class = scientist
 			}
+		}
+		allow = {
+			resource_stockpile_compare = {
+				resource = influence
+				value >= 1000
+			}
+		}
+		add_resource = {
+			influence = -1000
 		}
 		hidden_effect = {
 			country_event = {
@@ -127,8 +189,12 @@ country_event = {
 				event_chain = acot_alpha_tech_chain
 			}
 		}
-		ai_chance = {
-			factor = 10
+	}
+	option = {
+		name = acot_alpha_matter_events.1.c
+		trigger = {
+			is_country_type = ascended_empire
+			is_ai = no
 		}
 	}
 	### AI IS TOO STUPID TO RELIABLY UNDERSTAND COMPLEX SYSTEMS WITHOUT BUNCH OF  CODES
@@ -328,10 +394,42 @@ country_event = {
 	}
 	immediate = {
 		#set_country_flag = has_databank
+		IF = {
+			limit = {
+				NOT = {
+					exists = event_target:acot_precursor_databank_country
+				}
+			}
+			create_country = {
+				name = "NAME_ACOT_DATABANK"
+				type = acot_databank
+				flag = {
+					icon = {
+						category = "spherical"
+						file = "flag_spherical_23.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "v.dds"
+					}
+					colors = {
+						"black"
+						"teal"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					set_country_flag = acot_precursor_databank_country
+					save_global_event_target_as = acot_precursor_databank_country
+				}
+			}
+		}
 		establish_communications_no_message = event_target:acot_precursor_databank_country
 		hidden_effect = {
 			remove_point_of_interest = acot_alpha_research.1
 			remove_point_of_interest = acot_alpha_research.2
+			remove_point_of_interest = acot_alpha_diy_research.1
 		}
 	}
 	option = {
@@ -567,6 +665,15 @@ country_event = {
 		}
 	}
 	option = {
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 50000
+			}
+		}
+		add_resource = {
+			energy = -50000
+		}
 		name = stellarite_events.4.a
 		trigger = {
 			any_owned_leader = {
