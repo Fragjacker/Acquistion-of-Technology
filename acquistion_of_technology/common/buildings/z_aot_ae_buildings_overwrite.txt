@@ -1,6 +1,474 @@
 #####################
 # Government Building
 #####################
+building_ae_ancient_palace = {
+	base_buildtime = 900
+	capital = yes
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	can_build = no
+	category = government
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+	convert_to = {
+		building_resort_major_capital
+		building_slave_major_capital
+		building_ae_ancient_control_center
+		building_ae_ancient_hive_cluster
+	}
+	allow = {
+		num_pops >= 20
+	}
+	prerequisites = {
+		"tech_ae_ancient_palace"
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	planet_modifier = {
+		planet_housing_add = 30
+		planet_amenities_add = 50
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire = no
+			}
+			NOR = {
+				is_planet_class = pc_dark_fractured
+				is_planet_class = pc_dark_fractured_ae
+			}
+		}
+		modifier = {
+			job_acot_enforcer_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire = no
+			}
+			OR = {
+				is_planet_class = pc_dark_fractured
+				is_planet_class = pc_dark_fractured_ae
+			}
+		}
+		modifier = {
+			job_acot_enforcer_add = 1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_non_swapped_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_mechanical_empire = yes
+			}
+		}
+		job_acot_roboman_add = 2
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				NOR = {
+					has_authority = auth_corporate
+					has_civic = civic_exalted_priesthood
+					has_civic = civic_aristocratic_elite
+					has_civic = civic_merchant_guilds
+					has_civic = civic_technocracy
+				}
+			}
+		}
+		modifier = {
+			job_administrator_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = auth_corporate
+			}
+		}
+		modifier = {
+			job_executive_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_exalted_priesthood
+			}
+		}
+		modifier = {
+			job_high_priest_add = 6
+			job_administrator_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_aristocratic_elite
+			}
+		}
+		modifier = {
+			job_noble_add = 4
+			job_administrator_add = 6
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_technocracy
+			}
+		}
+		modifier = {
+			job_head_researcher_add = 4
+			job_administrator_add = 5
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_merchant_guilds
+			}
+		}
+		modifier = {
+			job_merchant_add = 6
+			job_administrator_add = 4
+		}
+	}
+	##### FOR FE ###
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = no
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_overseer_add = 4
+			job_fe_protector_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_sky_cardinal_add = 4
+			job_fe_protector_add = 4
+		}
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 10
+			sr_dark_matter = 3
+			acot_sr_dark_energy = 3
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured
+			}
+			energy = 10
+			sr_dark_matter = 3
+			acot_sr_dark_energy = 3
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae
+			}
+			energy = 20
+			sr_dark_matter = 7
+			acot_sr_dark_energy = 7
+		}
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 100
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+# Supra Nexus
+building_ae_ancient_control_center = {
+	base_buildtime = 900
+	capital = yes
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	category = government
+	potential = {
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
+	}
+	convert_to = {
+		building_ae_ancient_palace
+		building_ae_ancient_hive_cluster
+	}
+	allow = {
+		num_pops >= 25
+	}
+	prerequisites = {
+		"tech_ae_ancient_control_center"
+	}
+	show_tech_unlock_if = {
+		is_machine_empire = yes
+	}
+	planet_modifier = {
+		planet_housing_add = 20
+		planet_amenities_add = 30
+	}
+	##### FOR DEFEARTHH ###
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_machine_empire = no
+			}
+		}
+		modifier = {
+			job_coordinator_add = 10
+			job_replicator_add = 6
+			job_maintenance_drone_add = 6
+			job_acot_robodrone_add = 1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_machine_empire = no
+			}
+			NOR = {
+				is_planet_class = pc_dark_fractured
+				is_planet_class = pc_dark_fractured_ae
+			}
+		}
+		modifier = {
+			job_acot_enforcer_drone_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_machine_empire = no
+			}
+			OR = {
+				is_planet_class = pc_dark_fractured
+				is_planet_class = pc_dark_fractured_ae
+			}
+		}
+		modifier = {
+			job_acot_enforcer_drone_add = 1
+		}
+	}
+	##### FOR FE ###
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_guardian_bot_add = 10
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 100
+		}
+		produces = {
+			energy = 10
+			sr_dark_matter = 3
+			acot_sr_dark_energy = 3
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured
+			}
+			energy = 10
+			sr_dark_matter = 3
+			acot_sr_dark_energy = 3
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae
+			}
+			energy = 20
+			sr_dark_matter = 7
+			acot_sr_dark_energy = 7
+		}
+	}
+	triggered_desc = {
+		text = job_coordinator_effect_desc
+	}
+	triggered_desc = {
+		text = job_replicator_effect_desc
+	}
+	triggered_desc = {
+		text = job_patrol_drone_effect_desc
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+# Hive Nexus
+building_ae_ancient_hive_cluster = {
+	base_buildtime = 900
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	category = government
+	potential = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
+	}
+	convert_to = {
+		building_ae_ancient_control_center
+		building_ae_ancient_palace
+	}
+	allow = {
+		num_pops >= 20
+	}
+	prerequisites = {
+		"tech_ae_ancient_hive_cluster"
+	}
+	show_tech_unlock_if = {
+		is_hive_empire = yes
+	}
+	planet_modifier = {
+		planet_housing_add = 20
+		planet_amenities_add = 30
+		job_synapse_drone_add = 8
+		job_maintenance_drone_add = 6
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_machine_empire = no
+			}
+			NOR = {
+				is_planet_class = pc_dark_fractured
+				is_planet_class = pc_dark_fractured_ae
+			}
+		}
+		modifier = {
+			job_acot_enforcer_drone_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_machine_empire = no
+			}
+			OR = {
+				is_planet_class = pc_dark_fractured
+				is_planet_class = pc_dark_fractured_ae
+			}
+		}
+		modifier = {
+			job_acot_enforcer_drone_add = 1
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 100
+		}
+		produces = {
+			energy = 10
+			sr_dark_matter = 3
+			acot_sr_dark_energy = 3
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured
+			}
+			energy = 10
+			sr_dark_matter = 3
+			acot_sr_dark_energy = 3
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae
+			}
+			energy = 20
+			sr_dark_matter = 7
+			acot_sr_dark_energy = 7
+		}
+	}
+	triggered_desc = {
+		text = job_synapse_drone_effect_desc
+	}
+	triggered_desc = {
+		text = job_maintenance_drone_effect_desc
+	}
+	triggered_desc = {
+		text = job_patrol_drone_effect_desc
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
 #####################
 # Enigmatic Building
 #####################
@@ -11,6 +479,11 @@ building_ae_affluence_center = {
 	category = manufacturing
 	potential = {
 		exists = owner
+		owner = {
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
 	}
 	prerequisites = {
 		tech_aot_ae_affluence_center
@@ -76,6 +549,11 @@ building_ae_nourishment_center = {
 	category = resource
 	potential = {
 		exists = owner
+		owner = {
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
 	}
 	prerequisites = {
 		tech_aot_ae_nourishment_center
@@ -151,6 +629,11 @@ building_ae_dimensional_fabricator = {
 	category = resource
 	potential = {
 		exists = owner
+		owner = {
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
 	}
 	prerequisites = {
 		tech_aot_ae_dimensional_fabricator
@@ -238,6 +721,11 @@ building_ae_class_4_singularity = {
 	}
 	potential = {
 		exists = owner
+		owner = {
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
 	}
 	allow = {
 		has_ascended_capital = yes
@@ -313,6 +801,11 @@ building_ae_nano_forge = {
 	}
 	potential = {
 		exists = owner
+		owner = {
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
 	}
 	allow = {
 		has_ascended_capital = yes
@@ -388,6 +881,11 @@ building_ae_master_archive = {
 	}
 	potential = {
 		exists = owner
+		owner = {
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
 	}
 	allow = {
 		has_ascended_capital = yes
@@ -481,6 +979,11 @@ building_ae_empyrean_shrine = {
 	}
 	potential = {
 		exists = owner
+		owner = {
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
 	}
 	allow = {
 		has_ascended_capital = yes
@@ -550,6 +1053,11 @@ building_ae_sky_dome = {
 	}
 	potential = {
 		exists = owner
+		owner = {
+			NOT = {
+				is_fallen_empire = yes
+			}
+		}
 	}
 	allow = {
 		has_ascended_capital = yes
