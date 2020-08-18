@@ -54,7 +54,6 @@ aot_dm_enforcer = {
 				}
 			}
 			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
 		}
 	}
 	
@@ -243,7 +242,6 @@ aot_dm_enforcer_drone = {
 				}
 			}
 			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
 		}
 	}
 	triggered_pop_modifier = {
@@ -402,6 +400,39 @@ aot_dm_giga_fortress_operator = {
 		
 	planet_modifier = {
 		planet_crime_add = -50
+	}
+
+	resources = {
+		category = planet_enforcers
+		produces = {
+			unity = 5
+		}	
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured	
+				}
+			}
+			unity = 16
+		}	
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured_ae
+				}
+			}
+			unity = 40
+		}	
+		upkeep = {
+			trigger = {
+				planet = {
+					NOT = {
+						is_planet_class = pc_dark_fractured_ae
+					}
+				}
+			}
+			sr_dark_matter = 10
+		}
 	}
 	
 	triggered_planet_modifier = {

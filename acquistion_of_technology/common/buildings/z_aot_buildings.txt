@@ -379,14 +379,14 @@ building_fe_class_4_singularity = {
 		category = planet_buildings
 		cost = {
 			minerals = 1000
-			exotic_gases = 120
+			sr_dark_matter = 150
 		}
 		upkeep = {
-			sr_dark_matter = 1
-			exotic_gases = 1
+			sr_dark_matter = 3
 		}
 		produces = {
 			energy = 250
+			acot_sr_dark_energy = 25
 		}
 		produces = {
 			trigger = {
@@ -500,13 +500,12 @@ building_fe_nano_forge = {
 			minerals = 1000
 			sr_living_metal = 50
 		}
-		upkeep = {
-			energy = 10
-			minerals = 5
-			sr_living_metal = 1
-		}
 		produces = {
 			alloys = 25
+		}
+		upkeep = {
+			minerals = 40
+			energy = 10
 		}
 		produces = {
 			trigger = {
@@ -555,17 +554,19 @@ building_fe_dimensional_fabricator = {
 		category = planet_buildings
 		cost = {
 			minerals = 1000
-			sr_living_metal = 50
-		}
-		upkeep = {
-			sr_dark_matter = 2
-			sr_living_metal = 1
+			sr_living_metal = 75
 		}
 		produces = {
 			minerals = 100
 			rare_crystals = 2
 			exotic_gases = 2
 			volatile_motes = 2
+			sr_zro = 2
+			sr_dark_matter = 2
+			sr_living_metal = 2
+		}
+		upkeep = {
+			energy = 20
 		}
 		produces = {
 			trigger = {
@@ -617,14 +618,13 @@ building_fe_nourishment_center = {
 		category = planet_buildings
 		cost = {
 			minerals = 1000
-			volatile_motes = 120
-		}
-		upkeep = {
-			energy = 20
-			volatile_motes = 2
+			volatile_motes = 150
 		}
 		produces = {
 			food = 100
+		}
+		upkeep = {
+			energy = 20
 		}
 		produces = {
 			trigger = {
@@ -675,15 +675,14 @@ building_fe_affluence_center = {
 		category = planet_buildings
 		cost = {
 			minerals = 1000
-			rare_crystals = 120
-		}
-		upkeep = {
-			energy = 10
-			minerals = 10
-			rare_crystals = 2
+			rare_crystals = 150
 		}
 		produces = {
 			consumer_goods = 50
+		}
+		upkeep = {
+			minerals = 25
+			energy = 10
 		}
 		produces = {
 			trigger = {
@@ -757,11 +756,10 @@ building_fe_sky_dome = {
 		category = planet_buildings
 		cost = {
 			minerals = 750
-			rare_crystals = 75
+			rare_crystals = 100
 		}
 		upkeep = {
 			energy = 10
-			rare_crystals = 2
 		}
 	}
 	upgrades = {
@@ -833,17 +831,15 @@ building_fe_master_archive = {
 		category = planet_buildings
 		cost = {
 			minerals = 1000
-			exotic_gases = 120
-		}
-		upkeep = {
-			energy = 20
-			exotic_gases = 2
-			sr_living_metal = 2
+			exotic_gases = 200
 		}
 		produces = {
 			physics_research = 100
 			society_research = 100
 			engineering_research = 100
+		}
+		upkeep = {
+			energy = 20
 		}
 		produces = {
 			trigger = {
@@ -940,9 +936,8 @@ building_fe_stronghold = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 300
+			minerals = 600
 			sr_dark_matter = 40
-			acot_sr_dark_energy = 40
 		}
 		upkeep = {
 			trigger = {
@@ -950,99 +945,12 @@ building_fe_stronghold = {
 					is_ai = no
 				}
 			}
-			energy = 3
+			energy = 10
 			sr_dark_matter = 2
-			acot_sr_dark_energy = 2
 		}
 	}
 	upgrades = {
 		building_ae_stronghold
-	}
-}
-
-building_ae_stronghold = {
-	base_buildtime = 400
-	planetary_ftl_inhibitor = yes
-	add_to_first_building_slot = yes
-	can_build = no
-	category = army
-	allow = {
-		has_ascended_capital = yes
-	}
-	planet_modifier = {
-		planet_housing_add = 10
-	}
-	triggered_planet_modifier = {
-		potential = {
-			owner = {
-				is_fallen_empire = no
-				is_gestalt = no
-			}
-		}
-		modifier = {
-			job_acot_enforcer_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_enforcer_drone_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			owner = {
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_protector_add = 5
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 400
-			sr_dark_matter = 100
-			acot_sr_dark_energy = 100
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			energy = 1
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
-		}
-	}
-	prerequisites = {
-		"tech_ae_stronghold"
-	}
-	ai_weight = {
-		weight = 0
-		modifier = {
-			weight = 100000
-			num_pops >= 40
-			NOR = {
-				num_buildings = {
-					type = building_ae_stronghold
-					value <= 2
-				}
-			}
-			owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
-				}
-			}
-		}
 	}
 }
 
@@ -1254,75 +1162,6 @@ building_dark_energy_psg = {
 	}
 	upgrades = {
 		building_ae_dark_energy_psg
-	}
-}
-
-building_ae_dark_energy_psg = {
-	base_buildtime = 500
-	add_to_first_building_slot = yes
-	can_build = no
-	category = army
-	allow = {
-		has_ascended_capital = yes
-	}
-	planet_modifier = {
-		planet_orbital_bombardment_damage = -0.8
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_researcher_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		modifier = {
-			job_brain_drone_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_machine_empire = yes
-			}
-		}
-		modifier = {
-			job_calculator_add = 3
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 100
-			sr_dark_matter = 50
-			acot_sr_dark_energy = 150
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
-		}
-	}
-	prerequisites = {
-		"tech_ae_dark_energy_psg"
-	}
-	ai_weight = {
-		weight = 15000
 	}
 }
 
@@ -2872,8 +2711,7 @@ building_fe_ancient_cryo_chamber = {
 			sr_dark_matter = 50
 		}
 		upkeep = {
-			energy = 2
-			sr_dark_matter = 2
+			energy = 20
 		}
 	}
 	prerequisites = {
@@ -2926,8 +2764,7 @@ building_dm_ancient_cryo_chamber = {
 			sr_dark_matter = 50
 		}
 		upkeep = {
-			energy = 2
-			sr_dark_matter = 2
+			energy = 20
 		}
 	}
 	prerequisites = {
@@ -2950,60 +2787,5 @@ building_dm_ancient_cryo_chamber = {
 	}
 	upgrades = {
 		building_ae_ancient_cryo_chamber
-	}
-}
-
-building_ae_ancient_cryo_chamber = {
-	base_buildtime = 450
-	can_demolish = yes
-	can_build = no
-	category = amenity
-	potential = {
-		owner = {
-			is_machine_empire = yes
-		}
-	}
-	convert_to = {
-		building_ae_mansion
-		building_ae_hive_depot
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	planet_modifier = {
-		planet_housing_add = 35
-		planet_amenities_add = 35
-		job_maintenance_drone_add = 5
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 550
-			sr_dark_matter = 50
-			acot_sr_dark_energy = 50
-		}
-		upkeep = {
-			energy = 2
-			sr_dark_matter = 2
-			acot_sr_dark_energy = 2
-		}
-	}
-	prerequisites = {
-		"tech_ae_ancient_cryo_chamber"
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
-		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			free_housing > 1
-		}
 	}
 }
