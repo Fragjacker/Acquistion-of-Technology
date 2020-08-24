@@ -562,11 +562,12 @@ building_fe_dimensional_fabricator = {
 			exotic_gases = 2
 			volatile_motes = 2
 			sr_zro = 2
-			sr_dark_matter = 2
+			sr_dark_matter = 25
 			sr_living_metal = 2
 		}
 		upkeep = {
 			energy = 20
+			acot_sr_dark_energy = 3
 		}
 		produces = {
 			trigger = {
@@ -2787,5 +2788,88 @@ building_dm_ancient_cryo_chamber = {
 	}
 	upgrades = {
 		building_ae_ancient_cryo_chamber
+	}
+}
+
+##Disable ZOFE empyrean shrine when using ACOT since it is bettah ya git!
+building_fe_empyrean_shrine = {
+	base_buildtime = @b7time
+	can_build = yes
+	can_demolish = yes
+	icon = building_citadel_of_faith
+	base_cap_amount = 1
+	
+	category = unity
+	
+	potential = {
+		exists = owner
+		owner = { 
+			OR = {
+				is_country_type = ascended_empire
+				is_country_type = default
+			}
+			NOR = {
+				has_tech_option = tech_enigmatic_power_core
+				has_technology = tech_enigmatic_power_core
+				has_tech_option = tech_dark_matter_power_core
+				has_technology = tech_dark_matter_power_core
+			}
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+		}
+	}
+	
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+	
+	destroy_trigger = {
+		AND = {
+			exists = owner
+			owner = { 
+				NOT = { has_ethic = ethic_fanatic_spiritualist }
+			}
+		}
+	}
+	
+	show_tech_unlock_if = { has_ethic = ethic_fanatic_spiritualist }
+	
+	planet_modifier = {
+		pop_ethic_spiritualist_attraction_mult = 0.5
+		job_priest_add = 10	
+	}
+	
+	triggered_desc = {
+		text = job_priest_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b7cost
+			rare_crystals = 150
+		}
+		upkeep = {
+			energy = @b8upkeep
+			rare_crystals = 2
+		}
+	}
+	
+	prerequisites = {
+		"tech_ascended_society_2"
+	}
+	
+	triggered_desc = {
+		text = job_priest_effect_desc
+	}
+		
+	upgrades = {
+	}
+	
+	ai_weight = {
+		weight = 50
 	}
 }
