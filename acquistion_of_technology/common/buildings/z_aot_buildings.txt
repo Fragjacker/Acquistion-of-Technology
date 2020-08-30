@@ -2798,12 +2798,10 @@ building_fe_empyrean_shrine = {
 	can_demolish = yes
 	icon = building_citadel_of_faith
 	base_cap_amount = 1
-	
 	category = unity
-	
 	potential = {
 		exists = owner
-		owner = { 
+		owner = {
 			OR = {
 				is_country_type = ascended_empire
 				is_country_type = default
@@ -2821,31 +2819,29 @@ building_fe_empyrean_shrine = {
 			has_modifier = resort_colony
 		}
 	}
-	
 	allow = {
 		has_major_upgraded_capital = yes
 	}
-	
 	destroy_trigger = {
 		AND = {
 			exists = owner
-			owner = { 
-				NOT = { has_ethic = ethic_fanatic_spiritualist }
+			owner = {
+				NOT = {
+					has_ethic = ethic_fanatic_spiritualist
+				}
 			}
 		}
 	}
-	
-	show_tech_unlock_if = { has_ethic = ethic_fanatic_spiritualist }
-	
+	show_tech_unlock_if = {
+		has_ethic = ethic_fanatic_spiritualist
+	}
 	planet_modifier = {
 		pop_ethic_spiritualist_attraction_mult = 0.5
-		job_priest_add = 10	
+		job_priest_add = 10
 	}
-	
 	triggered_desc = {
 		text = job_priest_effect_desc
 	}
-
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -2857,19 +2853,113 @@ building_fe_empyrean_shrine = {
 			rare_crystals = 2
 		}
 	}
-	
 	prerequisites = {
 		"tech_ascended_society_2"
 	}
-	
 	triggered_desc = {
 		text = job_priest_effect_desc
 	}
-		
 	upgrades = {
 	}
-	
 	ai_weight = {
 		weight = 50
+	}
+}
+
+#####################
+# STELLARITE
+#####################
+building_stellarite_generator_ae = {
+	base_buildtime = 750
+	can_demolish = yes
+	can_build = no
+	category = manufacturing
+	potential = {
+		NOT = {
+			has_modifier = resort_colony
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			job_aot_ae_stellaritedrone_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			job_aot_ae_stellariteman_add = 4
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 850
+			energy = 850
+			acot_sr_dark_energy = 500
+			sr_dark_matter = 500
+		}
+		produces = {
+			trigger = {
+				owner = {
+					is_ai = yes
+				}
+			}
+			acot_sr_stellarite = 100
+			energy = 200
+		}
+		produces = {
+			trigger = {
+				has_building = building_stellarite_nexus
+			}
+			acot_sr_stellarite = 30
+		}
+		upkeep = {
+			energy = 20
+		}
+	}
+	prerequisites = {
+		"tech_stellarite_generator_ae"
+	}
+	ai_weight = {
+		weight = 150000
+		modifier = {
+			factor = 100000
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value <= 3
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			num_buildings = {
+				type = building_stellarite_generator
+				value >= 2
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				is_country_type = awakened_fallen_empire
+			}
+		}
 	}
 }

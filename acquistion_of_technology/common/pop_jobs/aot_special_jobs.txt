@@ -603,3 +603,109 @@ aot_energydrone = {
 		}		
 	}
 }
+
+aot_ae_stellariteman = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_stellarite_generator_ae
+	clothes_texture_index = 3
+	
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+	
+	resources = {
+		category = planet_jobs
+		produces = {
+			acot_sr_stellarite = 10
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = no				
+				}
+			}
+			energy = 150
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = yes				
+				}
+			}
+			energy = 10
+		}
+	}	
+	
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no	
+			NOT = { has_trait = trait_mechanical }	
+		}		
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}	
+		modifier = {
+			factor = 1.5
+			has_job = aot_ae_stellariteman
+		}		
+	}
+}
+
+aot_ae_stellaritedrone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_stellarite_generator_ae
+	
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible = {
+		drone_job_check_trigger = yes
+	}
+
+	resources = {
+		category = planet_jobs
+		produces = {
+			acot_sr_stellarite = 10
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = no				
+				}
+			}
+			energy = 150
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = yes				
+				}
+			}
+			energy = 10
+		}
+	}	
+	
+	weight = {
+		weight = @complex_drone_job_weight
+		modifier = {
+            factor = 1.5
+            has_job = aot_ae_stellaritedrone
+		}
+	}
+}
