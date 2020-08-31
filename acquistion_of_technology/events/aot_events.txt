@@ -1,0 +1,49 @@
+namespace = aot_events
+# Ascended Empire ENERGIZE Edict Unlock
+country_event = {
+	id = aot_events.1
+	title = aot_events.1.name
+	desc = aot_events.1.desc
+	picture = GFX_evt_fallen_empire
+	trigger = {
+		is_country_type = ascended_empire
+		is_at_war = no
+		has_technology = tech_dark_matter_power_core_ae
+		NOT = {
+			has_country_flag = ae_decadence_edict_gained
+		}
+		any_owned_pop = {
+			has_job = ae_hedonist
+		}
+	}
+	mean_time_to_happen = {
+		years = 5
+	}
+	option = {
+		name = aot_events.1.a
+		custom_tooltip = enable_ae_decadence_edict
+		hidden_effect = {
+			set_country_flag = ae_decadence_edict_gained
+		}
+		ai_chance = {
+			# AI chance
+			factor = 1000
+		}
+	}
+}
+
+# Ascended Empire ENERGIZING Notification
+country_event = {
+	id = aot_events.2
+	title = aot_events.2.name
+	desc = aot_events.2.desc
+	picture = GFX_evt_fallen_empire
+	is_triggered_only = yes
+	option = {
+		name = aot_events.2.a
+		ai_chance = {
+			# AI chance
+			factor = 1000
+		}
+	}
+}

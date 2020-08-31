@@ -1,0 +1,85 @@
+#Ascended Empire Ambitions
+@ambitionDuration = 3600
+energize_society = {
+	length = @ambitionDuration
+	icon = "GFX_edict_type_time"
+	is_ambition = yes
+	resources = {
+		category = edicts
+	}
+	potential = {
+		is_country_type = ascended_empire
+		has_country_flag = ae_decadence_edict_gained
+	}
+	allow = {
+	}
+	prerequisites = {
+	}
+	effect = {
+		every_owned_pop = {
+			limit = {
+				has_job = ae_hedonist
+			}
+			remove_pop_flag = decadent_pop
+			set_pop_flag = free_energyzed_man
+			unemploy_pop = yes
+		}
+		every_country = {
+			limit = {
+				NOT = {
+					is_same_value = root
+				}
+				is_ai = no
+			}
+			country_event = {
+				id = aot_events.2
+			}
+		}
+		set_timed_country_flag = {
+			flag = no_decadence
+			days = 7200
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+# Hide this ambition once we got the proper one above.
+rejuvenate_society = {
+	length = @ambitionDuration
+	icon = "GFX_edict_type_time"
+	is_ambition = yes
+	resources = {
+		category = edicts
+	}
+	potential = {
+		is_country_type = ascended_empire
+		has_country_flag = decadence_edict_gained
+		NOT = {
+			has_country_flag = ae_decadence_edict_gained
+		}
+	}
+	allow = {
+	}
+	effect = {
+		every_country = {
+			limit = {
+				NOT = {
+					is_same_value = root
+				}
+				is_ai = no
+			}
+			country_event = {
+				id = zofe.4
+			}
+		}
+		set_timed_country_flag = {
+			flag = no_decadence
+			days = 7200
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
