@@ -1,0 +1,875 @@
+#########################################
+#
+# on_action_events
+#
+#########################################
+namespace = acot_exterminatus_event
+# Planet is turned into tomb world by Exterminatus bombing stance
+planet_event = {
+	id = acot_exterminatus_event.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_orbital_bombardment_stance = exterminatus
+		OR = {
+			is_memeable_planet = yes
+			is_memeable_space_habitat = yes
+			is_memeable_ringworld = yes
+		}
+	}
+	immediate = {
+		add_threat = {
+			who = from
+			amount = 2
+		}
+		every_owned_pop = {
+			kill_pop = yes
+		}
+		planet_owner = {
+			add_static_war_exhaustion = {
+				attacker = from
+				location = root
+				value_for_planet_destruction = 0.5
+			}
+			country_event = {
+				id = acot_exterminatus_event.2
+			}
+		}
+		from = {
+			country_event = {
+				id = acot_exterminatus_event.3
+			}
+		}
+		remove_all_buildings = yes
+		reroll_deposits = yes
+		remove_modifier = "natural_beauty"
+		remove_modifier = "acot_modifier_ascended_city"
+		remove_modifier = "atmospheric_aphrodisiac"
+		remove_modifier = "atmospheric_hallucinogen"
+		remove_modifier = "lush_planet"
+		remove_modifier = "dangerous_wildlife"
+		if = {
+			limit = {
+				is_memeable_planet = yes
+			}
+			change_pc = pc_nuked
+		}
+		if = {
+			limit = {
+				is_memeable_ringworld = yes
+			}
+			change_pc = pc_ringworld_habitable_damaged
+			spawn_ringworld_cracker_effect = yes
+		}
+		if = {
+			limit = {
+				is_memeable_space_habitat = yes
+			}
+			remove_planet = yes
+			spawn_habitat_cracker_effect = yes
+		}
+	}
+}
+
+# Colony Rolls Chance to being MEMED
+planet_event = {
+	id = acot_exterminatus_event.100
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		planet_devastation >= 100
+		has_orbital_bombardment_stance = punishment
+		FROM = {
+			NOT = {
+				has_technology = tech_bombardment_ae_final
+			}
+		}
+		OR = {
+			is_memeable_planet = yes
+			is_memeable_space_habitat = yes
+			is_memeable_ringworld = yes
+			NOT = {
+				has_planet_flag = bombardment_cooldown
+			}
+		}
+	}
+	immediate = {
+		set_timed_planet_flag = {
+			flag = bombardment_cooldown
+			days = 60
+		}
+		random_list = {
+			80 = {
+				IF = {
+					limit = {
+						has_building = building_dark_energy_psg
+					}
+					while = {
+						count = 3
+						random_pop = {
+							kill_pop = yes
+						}
+					}
+				}
+				IF = {
+					limit = {
+						NOR = {
+							has_building = building_dark_energy_psg
+							has_building = building_ae_dark_energy_psg
+						}
+					}
+					while = {
+						count = 5
+						random_pop = {
+							kill_pop = yes
+						}
+					}
+				}
+			}
+			20 = {
+				modifier = {
+					factor = 0.75
+					has_building = building_planetary_shield_generator
+				}
+				modifier = {
+					factor = 0.25
+					has_building = building_dark_energy_psg
+				}
+				modifier = {
+					factor = 0
+					has_building = building_ae_dark_energy_psg
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_global_flag = fractured_happened
+						}
+					}
+					set_global_flag = fractured_happened
+				}
+				add_threat = {
+					who = from
+					amount = 10
+				}
+				planet_owner = {
+					add_static_war_exhaustion = {
+						attacker = from
+						location = root
+						value_for_planet_destruction = 0.5
+					}
+					country_event = {
+						id = acot_exterminatus_event.101
+					}
+				}
+				from = {
+					country_event = {
+						id = acot_exterminatus_event.102
+					}
+				}
+				every_playable_country = {
+					limit = {
+						NOR = {
+							is_same_value = root.owner
+							is_same_value = from
+						}
+					}
+					country_event = {
+						id = acot_exterminatus_event.103
+					}
+				}
+				every_owned_pop = {
+					kill_pop = yes
+				}
+				remove_all_buildings = yes
+				destroy_colony = yes
+				remove_modifier = "natural_beauty"
+				remove_modifier = "acot_modifier_ascended_city"
+				remove_modifier = "atmospheric_aphrodisiac"
+				remove_modifier = "atmospheric_hallucinogen"
+				remove_modifier = "lush_planet"
+				remove_modifier = "dangerous_wildlife"
+				if = {
+					limit = {
+						NOR = {
+							is_memeable_space_habitat = yes
+						}
+					}
+					change_pc = pc_dark_fractured_unstable
+					reset_planet = yes
+					planet_event = {
+						id = acot_exterminatus_event.1000
+						days = 3600
+						random = 1800
+					}
+				}
+				else_if = {
+					limit = {
+						is_memeable_ringworld = yes
+					}
+					change_pc = pc_ringworld_habitable_damaged
+					reset_planet = yes
+				}
+				else_if = {
+					limit = {
+						is_memeable_space_habitat = yes
+					}
+					remove_planet = yes
+				}
+			}
+		}
+	}
+}
+
+# Colony Rolls Chance to being MEMED
+planet_event = {
+	id = acot_exterminatus_event.200
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		planet_devastation >= 100
+		has_orbital_bombardment_stance = exterminatus
+		FROM = {
+			NOT = {
+				has_technology = tech_bombardment_ae_final
+			}
+		}
+		OR = {
+			is_memeable_planet = yes
+			is_memeable_space_habitat = yes
+			is_memeable_ringworld = yes
+		}
+		NOT = {
+			has_planet_flag = bombardment_cooldown
+		}
+	}
+	immediate = {
+		set_timed_planet_flag = {
+			flag = bombardment_cooldown
+			days = 60
+		}
+		random_list = {
+			80 = {
+				IF = {
+					limit = {
+						has_building = building_dark_energy_psg
+					}
+					while = {
+						count = 10
+						random_pop = {
+							kill_pop = yes
+						}
+					}
+				}
+				IF = {
+					limit = {
+						has_building = building_ae_dark_energy_psg
+					}
+					while = {
+						count = 5
+						random_pop = {
+							kill_pop = yes
+						}
+					}
+				}
+				IF = {
+					limit = {
+						NOR = {
+							has_building = building_dark_energy_psg
+							has_building = building_ae_dark_energy_psg
+						}
+					}
+					while = {
+						count = 20
+						random_pop = {
+							kill_pop = yes
+						}
+					}
+				}
+			}
+			20 = {
+				modifier = {
+					factor = 0.5
+					has_building = building_dark_energy_psg
+				}
+				modifier = {
+					factor = 0.25
+					has_building = building_ae_dark_energy_psg
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_global_flag = fractured_happened
+						}
+					}
+					set_global_flag = fractured_happened
+				}
+				add_threat = {
+					who = from
+					amount = 10
+				}
+				planet_owner = {
+					add_static_war_exhaustion = {
+						attacker = from
+						location = root
+						value_for_planet_destruction = 0.5
+					}
+					country_event = {
+						id = acot_exterminatus_event.104
+					}
+				}
+				from = {
+					country_event = {
+						id = acot_exterminatus_event.105
+					}
+				}
+				every_playable_country = {
+					limit = {
+						NOR = {
+							is_same_value = root.owner
+							is_same_value = from
+						}
+					}
+					country_event = {
+						id = acot_exterminatus_event.105
+					}
+				}
+				every_owned_pop = {
+					kill_pop = yes
+				}
+				remove_all_buildings = yes
+				destroy_colony = yes
+				remove_modifier = "natural_beauty"
+				remove_modifier = "acot_modifier_ascended_city"
+				remove_modifier = "atmospheric_aphrodisiac"
+				remove_modifier = "atmospheric_hallucinogen"
+				remove_modifier = "lush_planet"
+				remove_modifier = "dangerous_wildlife"
+				if = {
+					limit = {
+						NOR = {
+							is_memeable_space_habitat = yes
+						}
+					}
+					change_pc = pc_dark_fractured_ae_unstable
+					planet_event = {
+						id = acot_exterminatus_event.1000
+						days = 7200
+						random = 3600
+					}
+					reset_planet = yes
+				}
+				else_if = {
+					limit = {
+						is_memeable_ringworld = yes
+					}
+					change_pc = pc_ringworld_habitable_damaged
+					reset_planet = yes
+				}
+				else_if = {
+					limit = {
+						is_memeable_space_habitat = yes
+					}
+					remove_planet = yes
+				}
+			}
+		}
+	}
+}
+
+# Planet is turned into Fractired world by Punishment bombing stance (former owner)
+country_event = {
+	id = acot_exterminatus_event.101
+	title = "exterminatus_event.101.name"
+	picture = GFX_evt_planet_beam
+	desc = "exterminatus_event.101.desc"
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.101.a
+		custom_tooltip = bombed_to_fractured_world
+	}
+	option = {
+		name = exterminatus_event.101.b
+		custom_tooltip = bombed_to_fractured_world
+	}
+	option = {
+		name = exterminatus_event.101.c
+		custom_tooltip = bombed_to_fractured_world
+	}
+}
+
+# Planet is turned into tomb world by Armageddon bombing stance (bombarder)
+country_event = {
+	id = acot_exterminatus_event.102
+	title = "exterminatus_event.101.name"
+	picture = GFX_evt_planet_beam
+	desc = "exterminatus_event.102.desc"
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.102.a
+		custom_tooltip = bombed_to_fractured_world
+	}
+	option = {
+		name = exterminatus_event.102.b
+		custom_tooltip = bombed_to_fractured_world
+	}
+	option = {
+		name = exterminatus_event.102.c
+		custom_tooltip = bombed_to_fractured_world
+	}
+}
+
+# Planet is turned into Fractired world by Exterminatus bombing stance (Others)
+country_event = {
+	id = acot_exterminatus_event.103
+	title = "exterminatus_event.101.name"
+	picture = GFX_evt_planet_beam
+	desc = "exterminatus_event.103.desc"
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.103.a
+		custom_tooltip = bombed_to_fractured_world
+	}
+	option = {
+		name = exterminatus_event.103.b
+		custom_tooltip = bombed_to_fractured_world
+	}
+	option = {
+		name = exterminatus_event.103.c
+		custom_tooltip = bombed_to_fractured_world
+	}
+}
+
+# Planet is turned into Fractired world by Exterminatus bombing stance (former owner)
+country_event = {
+	id = acot_exterminatus_event.104
+	title = "exterminatus_event.101.name"
+	picture = GFX_evt_planet_beam
+	desc = "exterminatus_event.101.desc"
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.101.a
+		custom_tooltip = bombed_to_ultrafractured_world
+	}
+	option = {
+		name = exterminatus_event.102.a
+		custom_tooltip = bombed_to_ultrafractured_world
+	}
+	option = {
+		name = exterminatus_event.103.a
+		custom_tooltip = bombed_to_ultrafractured_world
+	}
+}
+
+# Planet is turned into tomb world by Exterminatus bombing stance (bombarder)
+country_event = {
+	id = acot_exterminatus_event.105
+	title = "exterminatus_event.101.name"
+	picture = GFX_evt_planet_beam
+	desc = "exterminatus_event.102.desc"
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.102.a
+		custom_tooltip = bombed_to_ultrafractured_world
+	}
+	option = {
+		name = exterminatus_event.102.b
+		custom_tooltip = bombed_to_ultrafractured_world
+	}
+	option = {
+		name = exterminatus_event.103.c
+		custom_tooltip = bombed_to_ultrafractured_world
+	}
+}
+
+# Planet is turned into Fractired world by Exterminatus bombing stance (Others)
+country_event = {
+	id = acot_exterminatus_event.106
+	title = "exterminatus_event.101.name"
+	picture = GFX_evt_planet_beam
+	desc = "exterminatus_event.103.desc"
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.103.a
+		custom_tooltip = bombed_to_ultrafractured_world
+	}
+	option = {
+		name = exterminatus_event.103.a
+		custom_tooltip = bombed_to_ultrafractured_world
+	}
+	option = {
+		name = exterminatus_event.103.a
+		custom_tooltip = bombed_to_ultrafractured_world
+	}
+}
+
+######################### MARVELOUS ####################################
+# Planet is turned into tomb world by Armageddon bombing stance (former owner)
+country_event = {
+	id = acot_exterminatus_event.2
+	title = "exterminatus_event.2.name"
+	picture = GFX_evt_planet_beam
+	desc = exterminatus_event.2.desc
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.2.a
+		custom_tooltip = bombed_to_molten_world
+	}
+}
+
+# Planet is turned into tomb world by Armageddon bombing stance (bombarder)
+country_event = {
+	id = acot_exterminatus_event.3
+	title = "exterminatus_event.2.name"
+	picture = GFX_evt_planet_beam
+	desc = exterminatus_event.3.desc
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.3.a
+		custom_tooltip = bombed_to_molten_world
+	}
+}
+
+# Planet is turned into meme after Final Destination
+planet_event = {
+	id = acot_exterminatus_event.4
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_orbital_bombardment_stance = final_destionation
+		planet_devastation >= 100
+		OR = {
+			is_memeable_planet = yes
+			is_memeable_space_habitat = yes
+			is_memeable_ringworld = yes
+		}
+		planet_owner = {
+			or = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+				is_country_type = awakened_marauders
+				is_country_type = ascended_empire
+				is_country_type = lost_empire
+			}
+		}
+	}
+	immediate = {
+		save_event_target_as = showered_planet
+		add_threat = {
+			who = from
+			amount = 10
+		}
+		every_owned_pop = {
+			kill_pop = yes
+		}
+		planet_owner = {
+			add_static_war_exhaustion = {
+				attacker = from
+				location = root
+				value_for_planet_destruction = 1
+			}
+			country_event = {
+				id = acot_exterminatus_event.6
+			}
+		}
+		from = {
+			country_event = {
+				id = acot_exterminatus_event.5
+			}
+		}
+		remove_all_buildings = yes
+		reroll_deposits = yes
+		destroy_colony = yes
+		remove_modifier = "natural_beauty"
+		remove_modifier = "acot_modifier_ascended_city"
+		remove_modifier = "atmospheric_aphrodisiac"
+		remove_modifier = "atmospheric_hallucinogen"
+		remove_modifier = "lush_planet"
+		remove_modifier = "dangerous_wildlife"
+		if = {
+			limit = {
+				is_memeable_planet = yes
+			}
+			change_pc = pc_molten
+		}
+		else = {
+			if = {
+				limit = {
+					is_memeable_ringworld = yes
+				}
+				change_pc = pc_ringworld_habitable_damaged
+				spawn_ringworld_cracker_effect = yes
+			}
+			if = {
+				limit = {
+					is_memeable_space_habitat = yes
+				}
+				remove_planet = yes
+				spawn_habitat_cracker_effect = yes
+			}
+		}
+	}
+}
+
+# Planet is turned into tomb world by Annihilatus bombing stance (boomboomer)
+country_event = {
+	id = acot_exterminatus_event.5
+	title = "exterminatus_event.5.name"
+	picture = GFX_evt_planet_beam
+	desc = exterminatus_event.5.desc
+	show_sound = event_super_explosion
+	location = event_target:showered_planet
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.5.a
+		custom_tooltip = bombed_to_molten_world
+	}
+}
+
+# Planet is turned into tomb world by Annihilatus bombing stance (former owner)
+country_event = {
+	id = acot_exterminatus_event.6
+	title = "exterminatus_event.5.name"
+	picture = GFX_evt_planet_beam
+	desc = exterminatus_event.6.desc
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.6.a
+		custom_tooltip = bombed_to_molten_world
+	}
+}
+
+# Planet is turned into meme after Final Destination
+planet_event = {
+	id = acot_exterminatus_event.7
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			has_orbital_bombardment_stance = exterminatus
+			has_orbital_bombardment_stance = punishment
+		}
+		planet_devastation >= 100
+		OR = {
+			is_memeable_planet = yes
+			is_memeable_space_habitat = yes
+			is_memeable_ringworld = yes
+		}
+		planet_owner = {
+			or = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+				is_country_type = awakened_marauders
+				is_country_type = ascended_empire
+				is_country_type = lost_empire
+			}
+		}
+		FROM = {
+			has_technology = tech_bombardment_ae_final
+		}
+		NOT = {
+			has_planet_flag = bombardment_cooldown
+		}
+	}
+	immediate = {
+		set_timed_planet_flag = {
+			flag = bombardment_cooldown
+			days = 60
+		}
+		save_event_target_as = showered_planet
+		FROM = {
+			country_event = {
+				id = acot_exterminatus_event.8
+			}
+		}
+	}
+}
+
+# CAnnihilatust
+country_event = {
+	id = acot_exterminatus_event.8
+	title = "exterminatus_event.8.name"
+	picture = GFX_evt_planet_beam
+	desc = exterminatus_event.8.desc
+	show_sound = event_super_explosion
+	location = event_target:showered_planet
+	is_triggered_only = yes
+	option = {
+		name = exterminatus_event.8.a
+		custom_tooltip = exterminatus_event.8.a.explain
+		hidden_effect = {
+			event_target:showered_planet = {
+				set_timed_planet_flag = {
+					flag = bombardment_cooldown
+					days = 360
+				}
+			}
+		}
+	}
+	option = {
+		name = exterminatus_event.8.b
+		custom_tooltip = exterminatus_event.8.b.explain
+		hidden_effect = {
+			event_target:showered_planet = {
+				add_threat = {
+					who = from
+					amount = 10
+				}
+				every_owned_pop = {
+					kill_pop = yes
+				}
+				planet_owner = {
+					add_static_war_exhaustion = {
+						attacker = from
+						location = event_target:showered_planet
+						value_for_planet_destruction = 1
+					}
+					country_event = {
+						id = acot_exterminatus_event.101
+					}
+				}
+				country_event = {
+					id = acot_exterminatus_event.102
+				}
+				remove_all_buildings = yes
+				reroll_deposits = yes
+				destroy_colony = yes
+				remove_modifier = "natural_beauty"
+				remove_modifier = "acot_modifier_ascended_city"
+				remove_modifier = "atmospheric_aphrodisiac"
+				remove_modifier = "atmospheric_hallucinogen"
+				remove_modifier = "lush_planet"
+				remove_modifier = "dangerous_wildlife"
+				if = {
+					limit = {
+						is_memeable_planet = yes
+					}
+					change_pc = pc_dark_fractured_unstable
+					planet_event = {
+						id = acot_exterminatus_event.1000
+						days = 3600
+						random = 1800
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							is_memeable_ringworld = yes
+						}
+						change_pc = pc_ringworld_habitable_damaged
+					}
+					if = {
+						limit = {
+							is_memeable_space_habitat = yes
+						}
+						remove_planet = yes
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = exterminatus_event.8.c
+		custom_tooltip = exterminatus_event.8.c.explain
+		hidden_effect = {
+			event_target:showered_planet = {
+				add_threat = {
+					who = from
+					amount = 10
+				}
+				every_owned_pop = {
+					kill_pop = yes
+				}
+				planet_owner = {
+					add_static_war_exhaustion = {
+						attacker = from
+						location = event_target:showered_planet
+						value_for_planet_destruction = 1
+					}
+					country_event = {
+						id = acot_exterminatus_event.101
+					}
+				}
+				country_event = {
+					id = acot_exterminatus_event.102
+				}
+				remove_all_buildings = yes
+				reroll_deposits = yes
+				destroy_colony = yes
+				remove_modifier = "natural_beauty"
+				remove_modifier = "acot_modifier_ascended_city"
+				remove_modifier = "atmospheric_aphrodisiac"
+				remove_modifier = "atmospheric_hallucinogen"
+				remove_modifier = "lush_planet"
+				remove_modifier = "dangerous_wildlife"
+				if = {
+					limit = {
+						is_memeable_planet = yes
+					}
+					change_pc = pc_dark_fractured_ae_unstable
+					planet_event = {
+						id = acot_exterminatus_event.1000
+						days = 7200
+						random = 3600
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							is_memeable_ringworld = yes
+						}
+						change_pc = pc_ringworld_habitable_damaged
+					}
+					if = {
+						limit = {
+							is_memeable_space_habitat = yes
+						}
+						remove_planet = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+# Planet turns into stable form
+planet_event = {
+	id = acot_exterminatus_event.1000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		if = {
+			limit = {
+				is_planet_class = pc_dark_fractured_unstable
+			}
+			change_pc = pc_dark_fractured
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_dark_fractured_ae_unstable
+			}
+			change_pc = pc_dark_fractured_ae
+		}
+	}
+}
