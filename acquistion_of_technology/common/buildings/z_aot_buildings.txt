@@ -13,6 +13,7 @@ building_ancient_palace = {
 		exists = owner
 		owner = {
 			is_regular_empire = yes
+			has_technology = tech_ancient_palace
 		}
 		NOR = {
 			has_modifier = resort_colony
@@ -197,6 +198,7 @@ building_ancient_control_center = {
 		exists = owner
 		owner = {
 			is_machine_empire = yes
+			has_technology = tech_ancient_control_center
 		}
 	}
 	convert_to = {
@@ -278,6 +280,7 @@ building_ancient_hive_cluster = {
 		exists = owner
 		owner = {
 			is_hive_empire = yes
+			has_technology = tech_ancient_hive_cluster
 		}
 	}
 	convert_to = {
@@ -352,6 +355,9 @@ building_ancient_hive_cluster = {
 	}
 }
 
+#####################
+# Production
+#####################
 building_fe_class_4_singularity = {
 	base_buildtime = 360
 	can_build = yes
@@ -368,6 +374,10 @@ building_fe_class_4_singularity = {
 		}
 		NOT = {
 			is_planet_class = pc_habitat
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_fe_class_4_singularity
 		}
 	}
 	allow = {
@@ -401,7 +411,7 @@ building_fe_class_4_singularity = {
 		building_ae_class_4_singularity
 	}
 	prerequisites = {
-		tech_fe_class_4_singularity
+		"tech_fe_class_4_singularity"
 	}
 	ai_weight = {
 		weight = 10000
@@ -415,6 +425,9 @@ building_aot_fe_empyrean_shrine = {
 	icon = building_empyrean_shrine
 	potential = {
 		exists = owner
+		owner = {
+			has_technology = tech_aot_fe_empyrean_shrine
+		}
 	}
 	allow = {
 		has_any_enigmatic_capital = yes
@@ -488,6 +501,10 @@ building_fe_nano_forge = {
 		NOT = {
 			has_modifier = slave_colony
 		}
+		exists = owner
+		owner = {
+			has_technology = tech_fe_nano_forge
+		}
 	}
 	allow = {
 		has_any_enigmatic_capital = yes
@@ -520,7 +537,7 @@ building_fe_nano_forge = {
 		building_ae_nano_forge
 	}
 	prerequisites = {
-		tech_fe_nano_forge
+		"tech_fe_nano_forge"
 	}
 	ai_weight = {
 		weight = 10000
@@ -543,6 +560,10 @@ building_fe_dimensional_fabricator = {
 		}
 		NOT = {
 			has_modifier = slave_colony
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_fe_dimensional_fabricator
 		}
 	}
 	allow = {
@@ -609,6 +630,11 @@ building_fe_nourishment_center = {
 		NOT = {
 			has_modifier = resort_colony
 		}
+		exists = owner
+		owner = {
+			is_machine_empire = no
+			has_technology = tech_fe_nourishment_center
+		}
 	}
 	allow = {
 		has_any_enigmatic_capital = yes
@@ -661,6 +687,7 @@ building_fe_affluence_center = {
 				is_gestalt = no
 				has_valid_civic = civic_machine_servitor
 			}
+			has_technology = tech_fe_affluence_center
 		}
 		NOT = {
 			has_modifier = resort_colony
@@ -728,6 +755,7 @@ building_fe_sky_dome = {
 		exists = owner
 		owner = {
 			is_regular_empire = yes
+			has_technology = tech_fe_sky_dome
 		}
 	}
 	allow = {
@@ -795,6 +823,10 @@ building_fe_master_archive = {
 		NOT = {
 			is_planet_class = pc_habitat
 		}
+		exists = owner
+		owner = {
+			has_technology = tech_fe_master_archive
+		}
 	}
 	allow = {
 		has_any_enigmatic_capital = yes
@@ -857,7 +889,7 @@ building_fe_master_archive = {
 		building_ae_master_archive
 	}
 	prerequisites = {
-		tech_fe_master_archive
+		"tech_fe_master_archive"
 	}
 	ai_weight = {
 		weight = 10000
@@ -872,6 +904,12 @@ building_fe_stronghold = {
 	category = army
 	allow = {
 		has_any_enigmatic_capital = yes
+	}
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_fe_stronghold
+		}
 	}
 	planet_modifier = {
 		planet_housing_add = 5
@@ -955,6 +993,58 @@ building_fe_stronghold = {
 	}
 }
 
+building_ae_dark_matter_synthersizer = {
+	base_buildtime = 400
+	can_build = no
+	category = manufacturing
+	potential = {
+		NOT = {
+			has_modifier = resort_colony
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_dark_matter_synthersizer_ae
+		}
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 3500
+			energy = 3500
+		}
+		produces = {
+			sr_dark_matter = 30
+			acot_sr_dark_energy = 30
+		}
+		upkeep = {
+			minerals = 50
+			energy = 50
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_synthersizer_ae"
+	}
+	ai_weight = {
+		weight = 25000
+	}
+	ai_resource_production = {
+		sr_dark_matter = 100
+		acot_sr_dark_energy = 100
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+#####################
+# Military
+#####################
 building_giga_fortress_fe = {
 	base_buildtime = 1200
 	add_to_first_building_slot = yes
@@ -966,6 +1056,12 @@ building_giga_fortress_fe = {
 	category = army
 	allow = {
 		has_any_enigmatic_capital = yes
+	}
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_giga_fortress_fe
+		}
 	}
 	planet_modifier = {
 		planet_amenities_add = 10
@@ -1028,6 +1124,12 @@ building_giga_fortress = {
 	category = army
 	allow = {
 		has_ascended_capital = yes
+	}
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_giga_fortress
+		}
 	}
 	planet_modifier = {
 		planet_amenities_add = 20
@@ -1124,6 +1226,12 @@ building_dark_energy_psg = {
 	base_cap_amount = 1
 	add_to_first_building_slot = yes
 	category = army
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_dark_energy_psg
+		}
+	}
 	allow = {
 		has_any_enigmatic_capital = yes
 	}
@@ -1175,8 +1283,10 @@ building_fe_clone_vats = {
 	base_cap_amount = 1
 	category = government
 	potential = {
+		exists = owner
 		owner = {
 			has_ascension_perk = ap_engineered_evolution
+			has_technology = tech_elite_clone
 		}
 		NOT = {
 			has_modifier = resort_colony
@@ -1218,7 +1328,7 @@ building_fe_clone_vats = {
 		building_ae_clone_vats
 	}
 	prerequisites = {
-		tech_elite_clone
+		"tech_elite_clone"
 	}
 	ai_weight = {
 		weight = 10000
@@ -1240,11 +1350,13 @@ building_super_assembly = {
 		has_any_enigmatic_capital = yes
 	}
 	potential = {
+		exists = owner
 		owner = {
 			is_regular_empire = yes
 			NOT = {
 				has_policy_flag = robots_outlawed
 			}
+			has_technology = tech_super_assembly
 		}
 		NOT = {
 			has_modifier = slave_colony
@@ -1301,17 +1413,19 @@ building_super_assembly = {
 	}
 }
 
-#############
+#####################
 # Machine buildings
-#############
+#####################
 building_super_assembly_machine = {
 	icon = building_super_assembly
 	base_buildtime = 360
 	base_cap_amount = 1
 	category = pop_assembly
 	potential = {
+		exists = owner
 		owner = {
 			is_machine_empire = yes
+			has_technology = tech_super_assembly
 		}
 	}
 	planet_modifier = {
@@ -1374,6 +1488,12 @@ building_super_assembly_machine = {
 building_fe_alloy_forge = {
 	base_buildtime = 400
 	category = manufacturing
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_fe_alloy_foundry
+		}
+	}
 	allow = {
 		has_any_enigmatic_capital = yes
 	}
@@ -1425,7 +1545,7 @@ building_fe_alloy_forge = {
 		}
 	}
 	prerequisites = {
-		tech_fe_alloy_foundry
+		"tech_fe_alloy_foundry"
 	}
 	triggered_desc = {
 		trigger = {
@@ -1515,6 +1635,10 @@ building_fe_transmutor = {
 		}
 		NOT = {
 			has_modifier = slave_colony
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_fe_transmutor
 		}
 	}
 	allow = {
@@ -1618,6 +1742,12 @@ building_fe_mineral_processing_plant = {
 	base_buildtime = 480
 	category = resource
 	base_cap_amount = 1
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_fe_mineral_processing_plant
+		}
+	}
 	allow = {
 		has_any_enigmatic_capital = yes
 	}
@@ -1677,7 +1807,7 @@ building_fe_mineral_processing_plant = {
 		}
 	}
 	prerequisites = {
-		tech_fe_mineral_processing_plant
+		"tech_fe_mineral_processing_plant"
 	}
 	triggered_desc = {
 		trigger = {
@@ -1755,6 +1885,7 @@ building_fe_factory = {
 				is_gestalt = no
 				has_valid_civic = civic_machine_servitor
 			}
+			has_technology = tech_fe_factory
 		}
 		NOT = {
 			has_modifier = resort_colony
@@ -1812,7 +1943,7 @@ building_fe_factory = {
 		}
 	}
 	prerequisites = {
-		tech_fe_factory
+		"tech_fe_factory"
 	}
 	triggered_desc = {
 		trigger = {
@@ -1871,6 +2002,12 @@ building_fe_power_hub = {
 	base_buildtime = 480
 	category = resource
 	base_cap_amount = 1
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_fe_power_hub
+		}
+	}
 	allow = {
 		has_any_enigmatic_capital = yes
 	}
@@ -1930,7 +2067,7 @@ building_fe_power_hub = {
 		}
 	}
 	prerequisites = {
-		tech_fe_power_hub
+		"tech_fe_power_hub"
 	}
 	triggered_desc = {
 		trigger = {
@@ -1985,6 +2122,12 @@ building_fe_food_processing_complex = {
 	base_buildtime = 520
 	category = resource
 	base_cap_amount = 1
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_fe_food_processing
+		}
+	}
 	planet_modifier = {
 		planet_jobs_food_produces_mult = 0.1
 	}
@@ -2127,6 +2270,12 @@ building_enigmatic_lab = {
 	can_demolish = yes
 	can_be_disabled = yes
 	category = research
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_enigmatic_lab
+		}
+	}
 	allow = {
 		has_any_enigmatic_capital = yes
 	}
@@ -2284,6 +2433,9 @@ building_fe_institute = {
 			has_modifier = slave_colony
 		}
 		exists = owner
+		owner = {
+			has_technology = tech_fe_institute
+		}
 	}
 	allow = {
 		has_any_enigmatic_capital = yes
@@ -2390,8 +2542,10 @@ building_fe_hospital = {
 	base_cap_amount = 1
 	category = amenity
 	potential = {
+		exists = owner
 		owner = {
 			is_regular_empire = yes
+			has_technology = tech_fe_hospital
 		}
 	}
 	allow = {
@@ -2458,8 +2612,10 @@ building_fe_hive_pool = {
 	base_cap_amount = 1
 	category = amenity
 	potential = {
+		exists = owner
 		owner = {
 			is_hive_empire = yes
+			has_technology = tech_fe_hive_depot
 		}
 	}
 	allow = {
@@ -2528,11 +2684,13 @@ building_fe_mansion = {
 	base_buildtime = 520
 	category = amenity
 	potential = {
+		exists = owner
 		owner = {
 			is_regular_empire = yes
 			NOT = {
 				has_valid_civic = civic_shared_burden
 			}
+			has_technology = tech_dark_mansion
 		}
 	}
 	allow = {
@@ -2603,8 +2761,10 @@ building_fe_hive_depot = {
 	base_buildtime = 480
 	category = amenity
 	potential = {
+		exists = owner
 		owner = {
 			is_hive_empire = yes
+			has_technology = tech_fe_hive_depot
 		}
 	}
 	allow = {
@@ -2680,6 +2840,7 @@ building_fe_ancient_cryo_chamber = {
 		owner = {
 			is_country_type = ascended_empire
 			is_machine_empire = yes
+			has_technology = tech_ascended_society_1
 		}
 		NOT = {
 			is_planet_class = pc_habitat
@@ -2743,8 +2904,10 @@ building_dm_ancient_cryo_chamber = {
 	can_demolish = yes
 	category = amenity
 	potential = {
+		exists = owner
 		owner = {
 			is_machine_empire = yes
+			has_technology = tech_dm_ancient_cryo_chamber
 		}
 	}
 	allow = {
@@ -2869,6 +3032,179 @@ building_fe_empyrean_shrine = {
 #####################
 # STELLARITE
 #####################
+building_stellarite_nexus = {
+	base_buildtime = 650
+	category = manufacturing
+	base_cap_amount = 1
+	potential = {
+		NOT = {
+			has_modifier = resort_colony
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_stellarite_nexus
+		}
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 2500
+			sr_dark_matter = 1000
+			acot_sr_dark_energy = 1000
+		}
+		produces = {
+			acot_sr_stellarite = 25
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			acot_sr_dark_energy = 100
+			sr_dark_matter = 100
+		}
+	}
+	prerequisites = {
+		"tech_stellarite_nexus"
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0
+			owner = {
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			factor = 10000
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value <= 1
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			num_buildings = {
+				type = building_stellarite_nexus
+				value >= 2
+			}
+		}
+	}
+	ai_resource_production = {
+		acot_sr_stellarite = 500
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_stellarite_generator = {
+	base_buildtime = 600
+	can_demolish = yes
+	category = manufacturing
+	potential = {
+		NOT = {
+			has_modifier = resort_colony
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_stellarite_reactor
+		}
+	}
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			job_acot_stellaritedrone_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			job_acot_stellariteman_add = 2
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1150
+			energy = 1150
+		}
+		produces = {
+			trigger = {
+				owner = {
+					is_ai = yes
+				}
+			}
+			acot_sr_stellarite = 100
+			energy = 200
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			energy = 10
+		}
+	}
+	prerequisites = {
+		"tech_stellarite_reactor"
+	}
+	upgrades = {
+		building_stellarite_generator_ae
+	}
+	ai_weight = {
+		weight = 150000
+		modifier = {
+			factor = 100000
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value <= 3
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			num_buildings = {
+				type = building_stellarite_generator
+				value >= 2
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+}
+
 building_stellarite_generator_ae = {
 	base_buildtime = 750
 	can_demolish = yes
@@ -2880,6 +3216,10 @@ building_stellarite_generator_ae = {
 		}
 		NOT = {
 			has_modifier = slave_colony
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_stellarite_generator_ae
 		}
 	}
 	allow = {

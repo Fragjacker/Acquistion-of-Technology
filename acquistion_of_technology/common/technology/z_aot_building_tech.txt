@@ -834,3 +834,125 @@ tech_stellarite_generator_ae = {
 		factor = 200		#components are OP
 	}
 }
+
+# Global Defense Grid
+tech_ae_stronghold = {
+	cost = @tier4cost3
+	area = society
+	tier = 7
+	category = { military_theory }
+	prerequisites = { "tech_global_defense_grid" "tech_dark_matter_power_core_ae" }
+	weight = @tier4weight3
+	
+	potential = {
+		NOT = { has_global_flag = acot_building_forbidden }
+		has_technology = tech_dark_matter_power_core_ae
+	}
+
+	# unlocks fortress
+	
+	modifier = {
+		army_defense_health_mult = 0.25
+	}	
+	
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 1.25
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_military_theory"
+			}
+		}
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_ae_ancient_control_center
+				has_technology = tech_ae_ancient_palace
+				has_technology = tech_ae_ancient_hive_cluster
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 2
+		modifier = {
+			factor = 1.25
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_military_theory"
+			}
+		}
+	}
+}
+
+# Global Defense Grid
+tech_giga_fortress = {
+	cost = @tier5cost3
+	area = society
+	tier = 7
+	category = { military_theory }
+	prerequisites = { "tech_ae_stronghold" "tech_dark_matter_power_core_ae" }
+	weight = @tier5weight3
+	
+	potential = {
+		NOT = { has_global_flag = acot_building_forbidden }
+		has_technology = tech_dark_matter_power_core_ae
+	}
+
+	# unlocks fortress
+	
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 1.25
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_military_theory"
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 2
+		modifier = {
+			factor = 1.25
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_military_theory"
+			}
+		}
+	}
+}

@@ -303,36 +303,24 @@ country_event = {
 		}
 	}
 	### Enable or Diable AI HELPER
-	option = {
-		name = acot_mod_options.12.a
-		custom_tooltip = acot_mod_options.12.a.tooltip
-		trigger = {
-			NOT = {
-				has_global_flag = acot_ai_helper_disabled
-			}
-		}
-		hidden_effect = {
-			set_global_flag = acot_ai_helper_disabled
-			country_event = {
-				id = acot_mod_options.1
-				days = 0
-			}
-		}
-	}
-	option = {
-		name = acot_mod_options.12.b
-		custom_tooltip = acot_mod_options.12.b.tooltip
-		trigger = {
-			has_global_flag = acot_ai_helper_disabled
-		}
-		hidden_effect = {
-			remove_global_flag = acot_ai_helper_disabled
-			country_event = {
-				id = acot_mod_options.1
-				days = 0
-			}
-		}
-	}
+	#option = {
+	#	name = acot_mod_options.12.a
+	#	custom_tooltip = acot_mod_options.12.a.tooltip
+	#	trigger = { NOT = { has_global_flag = acot_ai_helper_disabled } }
+	#	hidden_effect = {
+	#		set_global_flag = acot_ai_helper_disabled
+	#		country_event = { id = acot_mod_options.1 days = 0 }
+	#	}
+	#}
+	#option = {
+	#	name = acot_mod_options.12.b
+	#	custom_tooltip = acot_mod_options.12.b.tooltip
+	#	trigger = { has_global_flag = acot_ai_helper_disabled }
+	#	hidden_effect = {
+	#		remove_global_flag = acot_ai_helper_disabled
+	#		country_event = { id = acot_mod_options.1 days = 0 }
+	#	}
+	#}
 	### Enable or Diable Events
 	option = {
 		name = acot_mod_options.10.a
@@ -388,30 +376,18 @@ country_event = {
 	desc = {
 		trigger = {
 			has_global_flag = normal_acot
-			NOR = {
-				has_global_flag = medium_acot
-				has_global_flag = hard_acot
-			}
 		}
 		text = "acot_mod_options.200.b.desc"
 	}
 	desc = {
 		trigger = {
 			has_global_flag = medium_acot
-			NOR = {
-				has_global_flag = normal_acot
-				has_global_flag = hard_acot
-			}
 		}
 		text = "acot_mod_options.200.c.desc"
 	}
 	desc = {
 		trigger = {
 			has_global_flag = hard_acot
-			NOR = {
-				has_global_flag = normal_acot
-				has_global_flag = medium_acot
-			}
 		}
 		text = "acot_mod_options.200.d.desc"
 	}
@@ -495,6 +471,7 @@ country_event = {
 				days = 0
 			}
 			remove_global_flag = normal_acot
+			remove_global_flag = medium_acot
 			remove_global_flag = hard_acot
 			set_global_flag = medium_acot
 			every_country = {
@@ -506,8 +483,9 @@ country_event = {
 						is_country_type = awakened_fallen_empire
 					}
 				}
-				remove_modifier = hard_acot
 				remove_modifier = easy_acot
+				remove_modifier = medium_acot
+				remove_modifier = hard_acot
 				add_modifier = {
 					modifier = medium_acot
 				}
@@ -517,11 +495,12 @@ country_event = {
 					is_ai = yes
 					is_country_type = default
 				}
-				add_modifier = {
-					modifier = medium_acot
-				}
 				remove_modifier = easy_acot_pleb
+				remove_modifier = medium_acot_pleb
 				remove_modifier = hard_acot_pleb
+				add_modifier = {
+					modifier = medium_acot_pleb
+				}
 			}
 		}
 	}
@@ -533,7 +512,8 @@ country_event = {
 				days = 0
 			}
 			remove_global_flag = normal_acot
-			remove_modifier = medium_acot
+			remove_global_flag = medium_acot
+			remove_global_flag = hard_acot
 			set_global_flag = hard_acot
 			every_country = {
 				limit = {
@@ -546,6 +526,7 @@ country_event = {
 				}
 				remove_modifier = easy_acot
 				remove_modifier = medium_acot
+				remove_modifier = hard_acot
 				add_modifier = {
 					modifier = hard_acot
 				}
@@ -555,11 +536,12 @@ country_event = {
 					is_ai = yes
 					is_country_type = default
 				}
+				remove_modifier = easy_acot_pleb
+				remove_modifier = medium_acot_pleb
+				remove_modifier = hard_acot_pleb
 				add_modifier = {
 					modifier = hard_acot_pleb
 				}
-				remove_modifier = easy_acot_pleb
-				remove_modifier = medium_acot_pleb
 			}
 		}
 	}
