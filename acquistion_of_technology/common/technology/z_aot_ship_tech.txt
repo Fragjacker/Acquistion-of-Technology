@@ -1,0 +1,84 @@
+tech_ascended_juggernaut = {
+	cost = @tier5cost3
+	area = engineering
+	category = {
+		voidcraft
+	}
+	tier = 6
+	prerequisites = {
+		"tech_dark_matter_power_core"
+		"tech_juggernaut"
+	}
+	weight = @tier5weight3
+	is_rare = yes
+	potential = {
+		host_has_dlc = "Federations"
+		OR = {
+			is_country_type = ascended_empire
+			is_country_type = fallen_empire
+		}
+	}
+	# unlocks Juggernaut
+	weight_modifier = {
+		factor = 0.25
+		modifier = {
+			factor = 1.5
+			OR = {
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_expertise_voidcraft"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_maniacal"
+				}
+			}
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = {
+					has_technology = tech_juggernaut
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_technology = "tech_titans"
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_ASCENDED_JUGGERNAUT_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_ASCENDED_JUGGERNAUT_CONSTRUCTION_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 100		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
