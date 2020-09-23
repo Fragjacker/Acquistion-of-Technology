@@ -1,0 +1,230 @@
+create_fallen_empire_starting_navy = {
+	create_fallen_empire_fleet = yes
+	create_fallen_empire_fleet = yes
+	create_fallen_empire_fleet = yes
+	random = {
+		chance = 20
+		create_fallen_empire_fleet = yes
+	}
+	if = {
+		limit = {
+			host_has_dlc = "Apocalypse"
+		}
+		create_fleet = {
+			effect = {
+				set_owner = prev.owner
+				create_fallen_empire_colossus = yes
+				set_location = {
+					target = prev
+					distance = 30
+					angle = random
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			host_has_dlc = "Federations"
+		}
+		create_fleet = {
+			effect = {
+				set_owner = prev.owner
+				create_fallen_empire_warbarge = yes
+				set_location = {
+					target = prev
+					distance = 30
+					angle = random
+				}
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev.owner
+			create_fallen_empire_construction_ship = yes
+			set_location = {
+				target = prev
+				distance = 60
+				angle = random
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev.owner
+			create_fallen_empire_construction_ship = yes
+			set_location = {
+				target = prev
+				distance = 80
+				angle = random
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev.owner
+			create_fallen_empire_construction_ship = yes
+			set_location = {
+				target = prev
+				distance = 100
+				angle = random
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev.owner
+			create_fallen_empire_construction_ship = yes
+			set_location = {
+				target = prev
+				distance = 40
+				angle = random
+			}
+		}
+	}
+}
+
+create_fallen_empire_reinforcements = {
+	create_fleet = {
+		settings = {
+			can_change_composition = no
+		}
+		effect = {
+			set_owner = prev.owner
+			while = {
+				count = 10
+				create_fallen_empire_large_ship = yes
+			}
+			while = {
+				count = 25
+				create_fallen_empire_small_ship = yes
+			}
+			create_fallen_empire_titan = yes
+			random_list = {
+				25 = {
+					set_location = {
+						target = prev
+						distance = 30
+						angle = random
+					}
+				}
+				25 = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+				25 = {
+					set_location = {
+						target = prev
+						distance = 60
+						angle = random
+					}
+				}
+				25 = {
+					set_location = {
+						target = prev
+						distance = 75
+						angle = random
+					}
+				}
+			}
+			create_fallen_empire_warbarge = yes
+			random_list = {
+				25 = {
+					set_location = {
+						target = prev
+						distance = 30
+						angle = random
+					}
+				}
+				25 = {
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+				}
+				25 = {
+					set_location = {
+						target = prev
+						distance = 60
+						angle = random
+					}
+				}
+				25 = {
+					set_location = {
+						target = prev
+						distance = 75
+						angle = random
+					}
+				}
+			}
+		}
+	}
+}
+
+create_fallen_empire_warbarge = {
+	if = {
+		limit = {
+			owner = { has_authority = auth_machine_intelligence }
+		}
+		create_ship = {
+			name = random
+			design = "NAME_Machine_Warbarge"
+			graphical_culture = root
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_ethic = ethic_fanatic_materialist
+			}
+		}
+		create_ship = {
+			name = random
+			design = "NAME_Materialist_Warbarge"
+			graphical_culture = root
+		}
+	}
+	###
+	if = {
+		limit = {
+			owner = {
+				has_ethic = ethic_fanatic_spiritualist
+			}
+		}
+		create_ship = {
+			name = random
+			design = "NAME_Spiritualist_Warbarge"
+			graphical_culture = root
+		}
+	}
+	###
+	if = {
+		limit = {
+			owner = {
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		create_ship = {
+			name = random
+			design = "NAME_Xenophobe_Warbarge"
+			graphical_culture = root
+		}
+	}
+	###
+	if = {
+		limit = {
+			owner = {
+				has_ethic = ethic_fanatic_xenophile
+			}
+		}
+		create_ship = {
+			name = random
+			design = "NAME_Xenophile_Warbarge"
+			graphical_culture = root
+		}
+	}
+}

@@ -1,0 +1,116 @@
+@ascended_juggernaut_collision_radius = 4
+@ascended_juggernaut_formation_priority = 4
+
+@ascended_juggernaut_hp = 250000
+@ascended_juggernaut_evasion = 2
+@ascended_juggernaut_build_time = 3600
+
+@ascended_juggernaut_upkeep_energy = 60
+@ascended_juggernaut_upkeep_alloys = 20
+
+ascended_juggernaut = {
+	formation_priority = @ascended_juggernaut_formation_priority
+	max_speed = @speed_very_slow
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = @ascended_juggernaut_collision_radius
+	max_hitpoints = @ascended_juggernaut_hp
+	modifier = {
+		ship_evasion_add = @ascended_juggernaut_evasion
+		ship_shield_mult = 5
+		ship_armor_mult = 5
+		starbase_shipyard_capacity_add = 6
+	}
+	base_buildtime = @ascended_juggernaut_build_time
+	resources = {
+		category = ships
+		upkeep = {
+			energy = @ascended_juggernaut_upkeep_energy
+			alloys = @ascended_juggernaut_upkeep_alloys
+		}
+	}
+	combat_size_multiplier = 5
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = {
+		"core" = {
+			locator = "part1"
+		}
+	}
+	potential_construction = {
+		OR = {
+			AND = {
+				is_scope_type = starbase
+				NOR = {
+					has_starbase_size = juggernaut
+					has_starbase_size = ascended_juggernaut
+				}
+			}
+			AND = {
+				is_scope_type = megastructure
+				OR = {
+					is_megastructure_type = mega_shipyard_3
+					is_megastructure_type = mega_shipyard_restored
+				}
+			}
+		}
+	}
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = starbase_citadel_trigger
+			OR = {
+				AND = {
+					is_scope_type = megastructure
+					OR = {
+						is_megastructure_type = mega_shipyard_3
+						is_megastructure_type = mega_shipyard_restored
+					}
+				}
+				AND = {
+					is_scope_type = starbase
+					has_starbase_size >= starbase_citadel
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = starbase_colossal_yards_trigger
+			OR = {
+				AND = {
+					is_scope_type = megastructure
+					OR = {
+						is_megastructure_type = mega_shipyard_3
+						is_megastructure_type = mega_shipyard_restored
+					}
+				}
+				AND = {
+					is_scope_type = starbase
+					has_starbase_building = colossus_yards
+				}
+			}
+		}
+	}
+	empire_limit = {
+		base = 1
+	}
+	num_target_locators = 0
+	can_have_federation_design = yes
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	can_disable = no
+	icon_frame = 7
+	ship_class_icon_frame = 35
+	default_behavior = artillery
+	prerequisites = {
+		"tech_ascended_juggernaut"
+	}
+	class = shipclass_starbase
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "ship_aura_components"
+	min_upgrade_cost = {
+		alloys = 50
+	}
+}

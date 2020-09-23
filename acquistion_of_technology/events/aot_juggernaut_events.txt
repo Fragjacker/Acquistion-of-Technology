@@ -1,0 +1,62 @@
+namespace = aotjuggernaut
+### JUGGERNAUT CONSTRUCTED - BUILDER EVENT
+ship_event = {
+	id = aotjuggernaut.1
+	title = "juggevt.1.name"
+	desc = "juggevt.1.desc"
+	picture = GFX_evt_ascended_juggernaut
+	show_sound = event_default
+	is_triggered_only = yes
+	trigger = {
+		is_ship_size = ascended_juggernaut
+		owner = {
+			NOT = {
+				has_country_flag = ascended_juggernaut_constructed
+			}
+		}
+	}
+	immediate = {
+		owner = {
+			set_country_flag = ascended_juggernaut_constructed
+		}
+		every_playable_country = {
+			limit = {
+				has_communications = root.owner
+				NOT = {
+					is_same_value = root.owner
+				}
+			}
+			country_event = {
+				id = aotjuggernaut.2
+			}
+		}
+	}
+	after = {
+	}
+	option = {
+		name = juggevt.1.a
+		name = juggevt.1.b
+		name = juggevt.1.c
+	}
+}
+
+### JUGGERNAUT CONSTRUCTED - OTHER EMPIRES EVENT
+country_event = {
+	id = aotjuggernaut.2
+	title = "juggevt.2.name"
+	desc = "juggevt.2.desc"
+	picture = GFX_evt_ascended_juggernaut
+	show_sound = event_default
+	is_triggered_only = yes
+	immediate = {
+	}
+	after = {
+	}
+	option = {
+		name = juggevt.2.a
+		name = juggevt.2.b
+		name = juggevt.2.c
+		name = juggevt.2.d
+		name = juggevt.2.e
+	}
+}
