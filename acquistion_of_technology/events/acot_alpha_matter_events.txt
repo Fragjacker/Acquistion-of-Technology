@@ -676,6 +676,9 @@ country_event = {
 		abort_special_project = {
 			type = RESEARCH_ALPHA_POWER
 		}
+		abort_special_project = {
+			type = RESEARCH_ALPHA_ARTIFACT_POWER
+		}
 	}
 	option = {
 		allow = {
@@ -695,6 +698,31 @@ country_event = {
 		}
 		country_event = {
 			id = acot_alpha_matter_events.6
+		}
+	}
+	option = {
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 50000
+			}
+			resource_stockpile_compare = {
+				resource = minor_artifacts
+				value >= 100
+			}
+		}
+		add_resource = {
+			minor_artifacts = -100
+			energy = -50000
+		}
+		name = aot_artifact_events.1.a
+		trigger = {
+			any_owned_leader = {
+				leader_class = scientist
+			}
+		}
+		country_event = {
+			id = acot_alpha_matter_events.9
 		}
 	}
 	option = {
@@ -746,6 +774,82 @@ country_event = {
 		set_timed_country_flag = {
 			flag = block_precursor_rumor
 			days = 360
+		}
+	}
+}
+
+#SELECT LEADER FOR ALPHA DIY PROJECT
+country_event = {
+	id = acot_alpha_matter_events.9
+	title = alpha_diy_events.4.name
+	desc = alpha_diy_events.4.desc
+	picture = GFX_evt_physics_research
+	show_sound = event_conversation
+	is_triggered_only = yes
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+			}
+			save_event_target_as = leader_1
+		}
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+				NOT = {
+					is_same_value = event_target:leader_1
+				}
+			}
+			save_event_target_as = leader_2
+		}
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+				NOR = {
+					is_same_value = event_target:leader_1
+					is_same_value = event_target:leader_2
+				}
+			}
+			save_event_target_as = leader_3
+		}
+	}
+	option = {
+		name = "utopia.3190.1.a"
+		event_target:leader_1 = {
+			set_leader_flag = alpha_research_leader
+		}
+		capital_scope = {
+			enable_special_project = {
+				name = "RESEARCH_ALPHA_ARTIFACT_POWER"
+				location = this
+				owner = root
+			}
+		}
+	}
+	option = {
+		name = "utopia.3190.1.b"
+		event_target:leader_2 = {
+			set_leader_flag = alpha_research_leader
+		}
+		capital_scope = {
+			enable_special_project = {
+				name = "RESEARCH_ALPHA_ARTIFACT_POWER"
+				location = this
+				owner = root
+			}
+		}
+	}
+	option = {
+		name = "utopia.3190.1.c"
+		event_target:leader_3 = {
+			set_leader_flag = alpha_research_leader
+		}
+		capital_scope = {
+			enable_special_project = {
+				name = "RESEARCH_ALPHA_ARTIFACT_POWER"
+				location = this
+				owner = root
+			}
 		}
 	}
 }
