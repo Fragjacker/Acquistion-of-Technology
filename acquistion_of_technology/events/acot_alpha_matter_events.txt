@@ -9,19 +9,19 @@ country_event = {
 	picture = GFX_evt_ancient_records
 	show_sound = event_mystery
 	trigger = {
-		OR = {
-			is_country_type = default
-			AND = {
+		AND = {
+			OR = {
+				is_country_type = default
 				is_country_type = ascended_empire
-				resource_stockpile_compare = {
-					resource = influence
-					value >= 1000
-				}
 			}
+			resource_stockpile_compare = {
+				resource = influence
+				value >= 1000
+			}
+			has_technology = "tech_dark_matter_power_core"
+			has_technology = "tech_mine_dark_energy"
+			has_technology = "tech_mine_dark_matter"
 		}
-		has_technology = "tech_dark_matter_power_core"
-		has_technology = "tech_mine_dark_energy"
-		has_technology = "tech_mine_dark_matter"
 		NOR = {
 			has_country_flag = hear_precursor_rumor
 			has_country_flag = block_precursor_rumor
