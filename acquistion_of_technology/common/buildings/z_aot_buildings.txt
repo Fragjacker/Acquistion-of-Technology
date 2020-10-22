@@ -1,360 +1,3 @@
-# Government Buildings
-building_ancient_palace = {
-	base_buildtime = 480
-	capital = yes
-	can_demolish = no
-	can_be_ruined = no
-	can_build = no
-	category = government
-	prerequisites = {
-		"tech_ancient_palace"
-	}
-	potential = {
-		exists = owner
-		owner = {
-			is_regular_empire = yes
-			has_technology = tech_ancient_palace
-		}
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-		}
-	}
-	convert_to = {
-		building_resort_major_capital
-		building_slave_major_capital
-		building_ancient_control_center
-		building_hive_major_capital
-	}
-	planet_modifier = {
-		planet_housing_add = 15
-		planet_amenities_add = 15
-	}
-	##### FIR DEFUALT ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_aot_dm_enforcer_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_non_swapped_tradition = tr_domination_imperious_architecture
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			planet_housing_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_mechanical_empire = yes
-				is_fallen_empire = no
-			}
-		}
-		job_roboticist_add = 5
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				NOR = {
-					has_authority = auth_corporate
-					has_civic = civic_exalted_priesthood
-					has_civic = civic_aristocratic_elite
-					has_civic = civic_merchant_guilds
-					has_civic = civic_technocracy
-				}
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_administrator_add = 5
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_authority = auth_corporate
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_executive_add = 5
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_exalted_priesthood
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_high_priest_add = 3
-			job_administrator_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_aristocratic_elite
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_noble_add = 2
-			job_administrator_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_technocracy
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_head_researcher_add = 2
-			job_administrator_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_merchant_guilds
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_merchant_add = 3
-			job_administrator_add = 2
-		}
-	}
-	##### FOR FE ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire_spiritualist = no
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_overseer_add = 2
-			job_fe_protector_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire_spiritualist = yes
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_sky_cardinal_add = 2
-			job_fe_protector_add = 2
-		}
-	}
-	resources = {
-		category = planet_buildings
-		upkeep = {
-			energy = 10
-		}
-	}
-	upgrades = {
-		building_ae_ancient_palace
-	}
-	ai_weight = {
-		weight = 100
-	}
-}
-
-building_ancient_control_center = {
-	base_buildtime = 480
-	capital = yes
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	category = government
-	potential = {
-		exists = owner
-		owner = {
-			is_machine_empire = yes
-			has_technology = tech_ancient_control_center
-		}
-	}
-	convert_to = {
-		building_ancient_palace
-		building_ancient_hive_cluster
-	}
-	allow = {
-		num_pops >= 25
-	}
-	prerequisites = {
-		"tech_ancient_control_center"
-	}
-	show_tech_unlock_if = {
-		is_machine_empire = yes
-	}
-	planet_modifier = {
-		planet_housing_add = 10
-		planet_amenities_add = 10
-	}
-	##### FOR DEFEARTHH ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_machine_empire = no
-			}
-		}
-		modifier = {
-			job_coordinator_add = 5
-			job_replicator_add = 6
-			job_patrol_drone_add = 3
-			job_maintenance_drone_add = 4
-		}
-	}
-	##### FOR FE ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_machine_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_guardian_bot_add = 5
-		}
-	}
-	resources = {
-		category = planet_buildings
-		upkeep = {
-			energy = 10
-		}
-	}
-	triggered_desc = {
-		text = job_coordinator_effect_desc
-	}
-	triggered_desc = {
-		text = job_replicator_effect_desc
-	}
-	triggered_desc = {
-		text = job_patrol_drone_effect_desc
-	}
-	upgrades = {
-		building_ae_ancient_control_center
-	}
-	ai_weight = {
-		weight = 100
-	}
-}
-
-building_ancient_hive_cluster = {
-	base_buildtime = 480
-	capital = yes
-	can_build = no
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	category = government
-	potential = {
-		exists = owner
-		owner = {
-			is_hive_empire = yes
-			has_technology = tech_ancient_hive_cluster
-		}
-	}
-	convert_to = {
-		building_ancient_control_center
-		building_ancient_palace
-	}
-	allow = {
-		num_pops >= 20
-	}
-	prerequisites = {
-		"tech_ancient_hive_cluster"
-	}
-	show_tech_unlock_if = {
-		is_hive_empire = yes
-	}
-	planet_modifier = {
-		planet_housing_add = 10
-		planet_amenities_add = 15
-		job_synapse_drone_add = 4
-		job_maintenance_drone_add = 3
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_machine_empire = no
-			}
-			NOR = {
-				is_planet_class = pc_dark_fractured
-				is_planet_class = pc_dark_fractured_ae
-			}
-		}
-		modifier = {
-			job_patrol_drone_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_machine_empire = no
-			}
-			OR = {
-				is_planet_class = pc_dark_fractured
-				is_planet_class = pc_dark_fractured_ae
-			}
-		}
-		modifier = {
-			job_patrol_drone_add = 1
-		}
-	}
-	resources = {
-		category = planet_buildings
-		upkeep = {
-			energy = 10
-		}
-	}
-	triggered_desc = {
-		text = job_synapse_drone_effect_desc
-	}
-	triggered_desc = {
-		text = job_maintenance_drone_effect_desc
-	}
-	triggered_desc = {
-		text = job_patrol_drone_effect_desc
-	}
-	upgrades = {
-		building_ae_ancient_hive_cluster
-	}
-	ai_weight = {
-		weight = 100
-	}
-}
-
 #####################
 # Production
 #####################
@@ -896,9 +539,9 @@ building_fe_master_archive = {
 	}
 }
 
-building_fe_stronghold = {
+building_dm_stronghold = {
 	can_build = yes
-	base_buildtime = 300
+	base_buildtime = 400
 	planetary_ftl_inhibitor = yes
 	add_to_first_building_slot = yes
 	category = army
@@ -956,7 +599,7 @@ building_fe_stronghold = {
 			num_pops >= 25
 			NOR = {
 				num_buildings = {
-					type = building_fe_stronghold
+					type = building_dm_stronghold
 					value <= 2
 				}
 			}
@@ -975,10 +618,20 @@ building_fe_stronghold = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 600
-			sr_dark_matter = 40
+			minerals = 400
+			sr_dark_matter = 100
+			acot_sr_dark_energy = 100
 		}
 		upkeep = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 2
+			acot_sr_dark_energy = 2
 			trigger = {
 				owner = {
 					is_ai = no
@@ -990,6 +643,31 @@ building_fe_stronghold = {
 	}
 	upgrades = {
 		building_ae_stronghold
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100000
+			num_pops >= 40
+			NOR = {
+				OR = {
+					num_buildings = {
+						type = building_dm_stronghold
+						value <= 1
+					}
+					num_buildings = {
+						type = building_ae_stronghold
+						value <= 1
+					}
+				}
+			}
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value <= 3
+				}
+			}
+		}
 	}
 }
 
@@ -1109,7 +787,16 @@ building_giga_fortress_fe = {
 		building_giga_fortress
 	}
 	ai_weight = {
-		weight = 150000
+		weight = 15000
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value <= 3
+				}
+			}
+		}
 	}
 }
 

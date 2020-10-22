@@ -15,14 +15,8 @@ building_ae_ancient_palace = {
 			is_regular_empire = yes
 			has_technology = tech_ae_ancient_palace
 		}
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-		}
 	}
 	convert_to = {
-		building_resort_major_capital
-		building_slave_major_capital
 		building_ae_ancient_control_center
 		building_ae_ancient_hive_cluster
 	}
@@ -36,8 +30,11 @@ building_ae_ancient_palace = {
 		is_regular_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 30
+		planet_housing_add = 50
 		planet_amenities_add = 50
+		planet_max_districts_add = 5
+		trade_value_add = 15
+		trade_value_mult = 1
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -51,33 +48,9 @@ building_ae_ancient_palace = {
 			}
 		}
 		modifier = {
-			job_acot_enforcer_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire = no
-			}
-			OR = {
-				is_planet_class = pc_dark_fractured
-				is_planet_class = pc_dark_fractured_ae
-			}
-		}
-		modifier = {
-			job_acot_enforcer_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_non_swapped_tradition = tr_domination_imperious_architecture
-			}
-		}
-		modifier = {
-			planet_housing_add = 2
+			job_acot_overlord_add = 1
+			job_acot_overseer_add = 8
+			job_acot_enforcer_add = 8
 		}
 	}
 	triggered_planet_modifier = {
@@ -89,82 +62,6 @@ building_ae_ancient_palace = {
 		}
 		job_acot_roboman_add = 2
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				NOR = {
-					has_authority = auth_corporate
-					has_civic = civic_exalted_priesthood
-					has_civic = civic_aristocratic_elite
-					has_civic = civic_merchant_guilds
-					has_civic = civic_technocracy
-				}
-			}
-		}
-		modifier = {
-			job_administrator_add = 8
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_authority = auth_corporate
-			}
-		}
-		modifier = {
-			job_executive_add = 8
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_exalted_priesthood
-			}
-		}
-		modifier = {
-			job_high_priest_add = 6
-			job_administrator_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_aristocratic_elite
-			}
-		}
-		modifier = {
-			job_noble_add = 4
-			job_administrator_add = 6
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_technocracy
-			}
-		}
-		modifier = {
-			job_head_researcher_add = 4
-			job_administrator_add = 5
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_merchant_guilds
-			}
-		}
-		modifier = {
-			job_merchant_add = 6
-			job_administrator_add = 4
-		}
-	}
 	##### FOR FE ###
 	triggered_planet_modifier = {
 		potential = {
@@ -175,8 +72,8 @@ building_ae_ancient_palace = {
 			}
 		}
 		modifier = {
-			job_fe_overseer_add = 4
-			job_fe_protector_add = 4
+			job_fe_overseer_add = 8
+			job_fe_protector_add = 8
 		}
 	}
 	triggered_planet_modifier = {
@@ -188,36 +85,46 @@ building_ae_ancient_palace = {
 			}
 		}
 		modifier = {
-			job_fe_sky_cardinal_add = 4
-			job_fe_protector_add = 4
+			job_fe_sky_cardinal_add = 8
+			job_fe_protector_add = 8
 		}
 	}
 	resources = {
 		category = planet_buildings
 		produces = {
-			energy = 10
-			sr_dark_matter = 3
-			acot_sr_dark_energy = 3
+			energy = 40
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured
 			}
-			energy = 10
-			sr_dark_matter = 3
-			acot_sr_dark_energy = 3
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured_ae
 			}
-			energy = 20
-			sr_dark_matter = 7
-			acot_sr_dark_energy = 7
+			energy = 40
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis
+			}
+			energy = 120
+			sr_dark_matter = 60
+			acot_sr_dark_energy = 60
 		}
 		cost = {
-			minerals = 1000
-			sr_dark_matter = 100
+			minerals = 500
+			influence = 100
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
 		}
 	}
 	ai_weight = {
@@ -245,7 +152,7 @@ building_ae_ancient_control_center = {
 		building_ae_ancient_hive_cluster
 	}
 	allow = {
-		num_pops >= 25
+		num_pops >= 20
 	}
 	prerequisites = {
 		"tech_ae_ancient_control_center"
@@ -254,10 +161,9 @@ building_ae_ancient_control_center = {
 		is_machine_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 20
-		planet_amenities_add = 30
+		planet_housing_add = 50
+		planet_amenities_add = 50
 	}
-	##### FOR DEFEARTHH ###
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -266,40 +172,10 @@ building_ae_ancient_control_center = {
 			}
 		}
 		modifier = {
-			job_coordinator_add = 10
-			job_replicator_add = 6
-			job_maintenance_drone_add = 6
-			job_acot_robodrone_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_machine_empire = no
-			}
-			NOR = {
-				is_planet_class = pc_dark_fractured
-				is_planet_class = pc_dark_fractured_ae
-			}
-		}
-		modifier = {
-			job_acot_enforcer_drone_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_machine_empire = no
-			}
-			OR = {
-				is_planet_class = pc_dark_fractured
-				is_planet_class = pc_dark_fractured_ae
-			}
-		}
-		modifier = {
-			job_acot_enforcer_drone_add = 1
+			job_acot_overlord_droid_add = 1
+			job_acot_overseer_droid_add = 8
+			job_acot_enforcer_drone_add = 8
+			job_acot_robodrone_add = 4
 		}
 	}
 	##### FOR FE ###
@@ -311,45 +187,46 @@ building_ae_ancient_control_center = {
 			}
 		}
 		modifier = {
-			job_fe_guardian_bot_add = 10
+			job_fe_guardian_bot_add = 20
 		}
 	}
 	resources = {
 		category = planet_buildings
-		cost = {
-			minerals = 1000
-			sr_dark_matter = 100
-		}
 		produces = {
-			energy = 10
-			sr_dark_matter = 3
-			acot_sr_dark_energy = 3
+			energy = 40
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured
 			}
-			energy = 10
-			sr_dark_matter = 3
-			acot_sr_dark_energy = 3
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured_ae
 			}
-			energy = 20
-			sr_dark_matter = 7
-			acot_sr_dark_energy = 7
+			energy = 40
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
 		}
-	}
-	triggered_desc = {
-		text = job_coordinator_effect_desc
-	}
-	triggered_desc = {
-		text = job_replicator_effect_desc
-	}
-	triggered_desc = {
-		text = job_patrol_drone_effect_desc
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis
+			}
+			energy = 120
+			sr_dark_matter = 60
+			acot_sr_dark_energy = 60
+		}
+		cost = {
+			minerals = 500
+			influence = 100
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+		}
 	}
 	ai_weight = {
 		weight = 100
@@ -377,7 +254,7 @@ building_ae_ancient_hive_cluster = {
 		building_ae_ancient_palace
 	}
 	allow = {
-		num_pops >= 20
+		num_pops >= 25
 	}
 	prerequisites = {
 		"tech_ae_ancient_hive_cluster"
@@ -386,77 +263,49 @@ building_ae_ancient_hive_cluster = {
 		is_hive_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 20
-		planet_amenities_add = 30
-		job_synapse_drone_add = 8
-		job_maintenance_drone_add = 6
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_machine_empire = no
-			}
-			NOR = {
-				is_planet_class = pc_dark_fractured
-				is_planet_class = pc_dark_fractured_ae
-			}
-		}
-		modifier = {
-			job_acot_enforcer_drone_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_machine_empire = no
-			}
-			OR = {
-				is_planet_class = pc_dark_fractured
-				is_planet_class = pc_dark_fractured_ae
-			}
-		}
-		modifier = {
-			job_acot_enforcer_drone_add = 1
-		}
+		planet_housing_add = 50
+		planet_amenities_add = 50
+		job_acot_overlord_drone_add = 1
+		job_acot_overseer_drone_add = 8
+		job_acot_enforcer_drone_add = 8
 	}
 	resources = {
 		category = planet_buildings
-		cost = {
-			minerals = 1000
-			sr_dark_matter = 100
-		}
 		produces = {
-			energy = 10
-			sr_dark_matter = 3
-			acot_sr_dark_energy = 3
+			energy = 40
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured
 			}
-			energy = 10
-			sr_dark_matter = 3
-			acot_sr_dark_energy = 3
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured_ae
 			}
-			energy = 20
-			sr_dark_matter = 7
-			acot_sr_dark_energy = 7
+			energy = 40
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
 		}
-	}
-	triggered_desc = {
-		text = job_synapse_drone_effect_desc
-	}
-	triggered_desc = {
-		text = job_maintenance_drone_effect_desc
-	}
-	triggered_desc = {
-		text = job_patrol_drone_effect_desc
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis
+			}
+			energy = 120
+			sr_dark_matter = 60
+			acot_sr_dark_energy = 60
+		}
+		cost = {
+			minerals = 500
+			influence = 100
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+		}
 	}
 	ai_weight = {
 		weight = 100
@@ -480,28 +329,19 @@ building_ae_affluence_center = {
 	prerequisites = {
 		tech_aot_ae_affluence_center
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire = no
-			}
-		}
-		job_acot_artisan_add = 2
-	}
 	allow = {
 		has_ascended_capital = yes
 	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 750
-			sr_dark_matter = 250
-			acot_sr_dark_energy = 250
+			minerals = 250
+			sr_dark_matter = 750
+			acot_sr_dark_energy = 750
 		}
 		produces = {
-			consumer_goods = 75
-			unity = 30
+			consumer_goods = 150
+			unity = 300
 		}
 		upkeep = {
 			acot_sr_dark_energy = 10
@@ -551,39 +391,15 @@ building_ae_nourishment_center = {
 	allow = {
 		has_ascended_capital = yes
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_foodman_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = no
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_fooddrone_add = 2
-		}
-	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 750
-			sr_dark_matter = 250
-			acot_sr_dark_energy = 250
+			minerals = 250
+			sr_dark_matter = 750
+			acot_sr_dark_energy = 750
 		}
 		produces = {
-			food = 150
+			food = 300
 		}
 		upkeep = {
 			sr_dark_matter = 10
@@ -629,48 +445,24 @@ building_ae_dimensional_fabricator = {
 	allow = {
 		has_ascended_capital = yes
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_dimesiona_traveler_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = no
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_dimesiona_traveler_drone_add = 5
-		}
-	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 750
-			acot_sr_dark_energy = 250
-			sr_dark_matter = 250
+			minerals = 250
+			acot_sr_dark_energy = 750
+			sr_dark_matter = 750
 		}
 		produces = {
-			minerals = 150
-			rare_crystals = 4
-			exotic_gases = 4
-			volatile_motes = 4
-			sr_zro = 4
-			sr_dark_matter = 45
-			sr_living_metal = 4
+			minerals = 300
+			rare_crystals = 8
+			exotic_gases = 8
+			volatile_motes = 8
+			sr_zro = 8
+			sr_living_metal = 8
+			sr_dark_matter = 60
 		}
 		upkeep = {
-			acot_sr_dark_energy = 20
+			acot_sr_dark_energy = 30
 		}
 	}
 	upgrades = {
@@ -716,43 +508,19 @@ building_ae_class_4_singularity = {
 	allow = {
 		has_ascended_capital = yes
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_aot_energyman_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = no
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_aot_energydrone_add = 2
-		}
-	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 750
-			acot_sr_dark_energy = 250
-			sr_dark_matter = 250
+			minerals = 250
+			acot_sr_dark_energy = 750
+			sr_dark_matter = 750
 		}
 		produces = {
-			energy = 450
-			acot_sr_dark_energy = 45
+			energy = 600
+			acot_sr_dark_energy = 60
 		}
 		upkeep = {
-			sr_dark_matter = 20
+			sr_dark_matter = 30
 		}
 	}
 	upgrades = {
@@ -794,43 +562,19 @@ building_ae_nano_forge = {
 	allow = {
 		has_ascended_capital = yes
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_alloyman_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = no
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_alloydrone_add = 2
-		}
-	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1000
-			sr_dark_matter = 100
-			acot_sr_dark_energy = 100
+			minerals = 100
+			sr_dark_matter = 1000
+			acot_sr_dark_energy = 1000
 		}
 		produces = {
-			alloys = 45
+			alloys = 100
 		}
 		upkeep = {
-			acot_sr_dark_energy = 20
-			sr_dark_matter = 20
+			acot_sr_dark_energy = 30
+			sr_dark_matter = 30
 		}
 	}
 	upgrades = {
@@ -881,8 +625,7 @@ building_ae_master_archive = {
 			}
 		}
 		modifier = {
-			job_acot_researcher_add = 2
-			job_researcher_add = 20
+			job_acot_researcher_add = 6
 		}
 	}
 	triggered_planet_modifier = {
@@ -894,8 +637,7 @@ building_ae_master_archive = {
 			}
 		}
 		modifier = {
-			job_acot_researcher_add = 2
-			job_brain_drone_add = 20
+			job_acot_researcher_add = 4
 		}
 	}
 	triggered_planet_modifier = {
@@ -906,8 +648,7 @@ building_ae_master_archive = {
 			}
 		}
 		modifier = {
-			job_acot_researcher_add = 2
-			job_calculator_add = 20
+			job_acot_researcher_add = 4
 		}
 	}
 	triggered_planet_modifier = {
@@ -922,14 +663,14 @@ building_ae_master_archive = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1500
-			acot_sr_dark_energy = 500
-			sr_dark_matter = 500
+			minerals = 150
+			acot_sr_dark_energy = 1500
+			sr_dark_matter = 1500
 		}
 		produces = {
-			physics_research = 150
-			society_research = 150
-			engineering_research = 150
+			physics_research = 250
+			society_research = 250
+			engineering_research = 250
 		}
 		upkeep = {
 			acot_sr_dark_energy = 15
@@ -985,9 +726,7 @@ building_ae_empyrean_shrine = {
 				is_spiritualist = yes
 			}
 		}
-		job_acot_priest_add = 2
-		job_priest_add = 20
-		pop_ethic_spiritualist_attraction_mult = 0.5
+		job_acot_priest_add = 4
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -998,23 +737,22 @@ building_ae_empyrean_shrine = {
 			}
 		}
 		job_researcher_add = 4
-		job_culture_worker_add = 15
 	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 500
-			sr_dark_matter = 150
-			acot_sr_dark_energy = 150
+			minerals = 150
+			sr_dark_matter = 600
+			acot_sr_dark_energy = 600
 		}
 		produces = {
-			society_research = 40
-			unity = 40
+			society_research = 80
+			unity = 80
 			influence = 1
 		}
 		upkeep = {
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
+			sr_dark_matter = 15
+			acot_sr_dark_energy = 15
 		}
 	}
 	upgrades = {
@@ -1041,30 +779,19 @@ building_ae_sky_dome = {
 		has_ascended_capital = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 50
-		planet_amenities_add = 50
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_entertainer_add = 2
-		}
+		planet_housing_add = 100
+		planet_amenities_add = 100
 	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 750
-			sr_dark_matter = 150
-			acot_sr_dark_energy = 150
+			minerals = 150
+			sr_dark_matter = 750
+			acot_sr_dark_energy = 750
 		}
 		upkeep = {
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
 		}
 	}
 	upgrades = {
@@ -1100,7 +827,7 @@ building_ae_stronghold = {
 			}
 		}
 		modifier = {
-			job_acot_enforcer_add = 3
+			job_acot_enforcer_add = 4
 		}
 	}
 	triggered_planet_modifier = {
@@ -1111,7 +838,7 @@ building_ae_stronghold = {
 			}
 		}
 		modifier = {
-			job_acot_enforcer_drone_add = 3
+			job_acot_enforcer_drone_add = 4
 		}
 	}
 	triggered_planet_modifier = {
@@ -1127,9 +854,9 @@ building_ae_stronghold = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 400
-			sr_dark_matter = 100
-			acot_sr_dark_energy = 100
+			minerals = 100
+			sr_dark_matter = 400
+			acot_sr_dark_energy = 400
 		}
 		upkeep = {
 			trigger = {
@@ -1137,9 +864,8 @@ building_ae_stronghold = {
 					is_ai = no
 				}
 			}
-			energy = 1
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
 		}
 	}
 	prerequisites = {
@@ -1175,7 +901,7 @@ building_ae_dark_energy_psg = {
 		has_ascended_capital = yes
 	}
 	planet_modifier = {
-		planet_orbital_bombardment_damage = -0.8
+		planet_orbital_bombardment_damage = -0.95
 	}
 	potential = {
 		exists = owner
@@ -1183,44 +909,9 @@ building_ae_dark_energy_psg = {
 			has_technology = tech_ae_dark_energy_psg
 		}
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_researcher_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		modifier = {
-			job_brain_drone_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_machine_empire = yes
-			}
-		}
-		modifier = {
-			job_calculator_add = 3
-		}
-	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 100
-			sr_dark_matter = 50
 			acot_sr_dark_energy = 150
 		}
 		upkeep = {
@@ -1229,8 +920,7 @@ building_ae_dark_energy_psg = {
 					is_ai = no
 				}
 			}
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
+			acot_sr_dark_energy = 2
 		}
 	}
 	prerequisites = {
