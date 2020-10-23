@@ -1,6 +1,9 @@
+#####################
+# Delta Government
+#####################
 #Galactic Administration
 tech_ae_ancient_palace = {
-	cost = @tier5cost3
+	cost = @acot_tier7cost3
 	area = society
 	tier = 7
 	category = {
@@ -8,14 +11,14 @@ tech_ae_ancient_palace = {
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_ae"
+		"tech_dm_ancient_palace"
 	}
 	weight = 100000
 	gateway = capital	# unlocks Empire Capital-Complex
 	potential = {
 		is_regular_empire = yes
-		NOR = {
+		NOT = {
 			has_global_flag = acot_building_forbidden
-			is_fallen_empire = yes
 		}
 		has_technology = tech_dark_matter_power_core_ae
 	}
@@ -42,7 +45,7 @@ tech_ae_ancient_palace = {
 }
 
 tech_ae_ancient_control_center = {
-	cost = @tier5cost3
+	cost = @acot_tier7cost3
 	area = society
 	tier = 7
 	category = {
@@ -50,14 +53,14 @@ tech_ae_ancient_control_center = {
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_ae"
+		"tech_dm_ancient_control_center"
 	}
 	weight = 100000
 	gateway = capital	# unlocks Empire Capital-Complex
 	potential = {
 		is_machine_empire = yes
-		NOR = {
+		NOT = {
 			has_global_flag = acot_building_forbidden
-			is_fallen_empire = yes
 		}
 		has_technology = tech_dark_matter_power_core_ae
 	}
@@ -84,7 +87,7 @@ tech_ae_ancient_control_center = {
 }
 
 tech_ae_ancient_hive_cluster = {
-	cost = @tier5cost3
+	cost = @acot_tier7cost3
 	area = society
 	tier = 7
 	category = {
@@ -92,14 +95,14 @@ tech_ae_ancient_hive_cluster = {
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_ae"
+		"tech_dm_ancient_hive_cluster"
 	}
 	weight = 100000
 	gateway = capital	# unlocks Empire Capital-Complex
 	potential = {
 		is_hive_empire = yes
-		NOR = {
+		NOT = {
 			has_global_flag = acot_building_forbidden
-			is_fallen_empire = yes
 		}
 		has_technology = tech_dark_matter_power_core_ae
 	}
@@ -125,7 +128,9 @@ tech_ae_ancient_hive_cluster = {
 	}
 }
 
-# Global Defense Grid
+#####################
+# Delta Military
+#####################
 tech_fe_stronghold = {
 	cost = @tier5cost1
 	area = society
@@ -251,129 +256,9 @@ tech_giga_fortress_fe = {
 	}
 }
 
-tech_ancient_palace = {
-	cost = @tier5cost1
-	area = society
-	tier = 6
-	category = {
-		statecraft
-	}
-	prerequisites = {
-		"tech_dark_matter_power_core"
-	}
-	weight = 100000
-	gateway = capital	# unlocks Empire Capital-Complex
-	potential = {
-		is_regular_empire = yes
-		has_technology = tech_dark_matter_power_core
-		NOT = {
-			has_global_flag = acot_building_forbidden
-		}
-	}
-	weight_modifier = {
-		factor = 4
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_statecraft"
-			}
-		}
-	}
-	ai_weight = {
-		factor = 10
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_statecraft"
-			}
-		}
-	}
-}
-
-tech_ancient_hive_cluster = {
-	cost = @tier5cost1
-	area = society
-	tier = 6
-	category = {
-		statecraft
-	}
-	prerequisites = {
-		"tech_dark_matter_power_core"
-	}
-	weight = 100000
-	gateway = capital	# unlocks Empire Capital-Complex
-	potential = {
-		has_technology = tech_dark_matter_power_core
-		is_hive_empire = yes
-		NOT = {
-			has_global_flag = acot_building_forbidden
-		}
-	}
-	weight_modifier = {
-		factor = 4
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_statecraft"
-			}
-		}
-	}
-	ai_weight = {
-		factor = 10
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_statecraft"
-			}
-		}
-	}
-}
-
-tech_ancient_control_center = {
-	cost = @tier5cost1
-	area = society
-	tier = 6
-	category = {
-		statecraft
-	}
-	prerequisites = {
-		"tech_dark_matter_power_core"
-	}
-	weight = 100000
-	gateway = capital	# unlocks Empire Capital-Complex
-	potential = {
-		is_machine_empire = yes
-		has_technology = tech_dark_matter_power_core
-		NOT = {
-			has_global_flag = acot_building_forbidden
-		}
-	}
-	weight_modifier = {
-		factor = 4
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_statecraft"
-			}
-		}
-	}
-	ai_weight = {
-		factor = 10
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_statecraft"
-			}
-		}
-	}
-}
-
+#####################
+# ZOFE Overwrites
+#####################
 # Disable ZOFE synth dark matter since ACOT does this better already.
 tech_synthetic_dark_matter = {
 	area = physics
@@ -809,6 +694,9 @@ tech_aot_ae_sky_dome = {
 	}
 }
 
+#####################
+# Stellarite
+#####################
 tech_stellarite_generator_ae = {
 	area = physics
 	cost = 60000
@@ -832,132 +720,5 @@ tech_stellarite_generator_ae = {
 	}
 	ai_weight = {
 		factor = 200		#components are OP
-	}
-}
-
-# Global Defense Grid
-tech_ae_stronghold = {
-	cost = @tier4cost3
-	area = society
-	tier = 7
-	category = {
-		military_theory
-	}
-	prerequisites = {
-		"tech_global_defense_grid"
-		"tech_dark_matter_power_core_ae"
-	}
-	weight = @tier4weight3
-	potential = {
-		NOT = {
-			has_global_flag = acot_building_forbidden
-		}
-		has_technology = tech_dark_matter_power_core_ae
-	}
-	# unlocks fortress
-	modifier = {
-		army_defense_health_mult = 0.25
-	}
-	weight_modifier = {
-		factor = 2
-		modifier = {
-			factor = 1.25
-			has_ethic = ethic_militarist
-		}
-		modifier = {
-			factor = 1.5
-			has_ethic = ethic_fanatic_militarist
-		}
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_military_theory"
-			}
-		}
-		modifier = {
-			factor = 0
-			NOR = {
-				has_technology = tech_ae_ancient_control_center
-				has_technology = tech_ae_ancient_palace
-				has_technology = tech_ae_ancient_hive_cluster
-			}
-		}
-	}
-	ai_weight = {
-		factor = 2
-		modifier = {
-			factor = 1.25
-			has_ethic = ethic_militarist
-		}
-		modifier = {
-			factor = 1.5
-			has_ethic = ethic_fanatic_militarist
-		}
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_military_theory"
-			}
-		}
-	}
-}
-
-# Global Defense Grid
-tech_giga_fortress = {
-	cost = @tier5cost3
-	area = society
-	tier = 7
-	category = {
-		military_theory
-	}
-	prerequisites = {
-		"tech_ae_stronghold"
-		"tech_dark_matter_power_core_ae"
-	}
-	weight = @tier5weight3
-	potential = {
-		NOT = {
-			has_global_flag = acot_building_forbidden
-		}
-		has_technology = tech_dark_matter_power_core_ae
-	}
-	# unlocks fortress
-	weight_modifier = {
-		factor = 2
-		modifier = {
-			factor = 1.25
-			has_ethic = ethic_militarist
-		}
-		modifier = {
-			factor = 1.5
-			has_ethic = ethic_fanatic_militarist
-		}
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_military_theory"
-			}
-		}
-	}
-	ai_weight = {
-		factor = 2
-		modifier = {
-			factor = 1.25
-			has_ethic = ethic_militarist
-		}
-		modifier = {
-			factor = 1.5
-			has_ethic = ethic_fanatic_militarist
-		}
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_military_theory"
-			}
-		}
 	}
 }

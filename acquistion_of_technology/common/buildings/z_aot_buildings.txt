@@ -1,3 +1,316 @@
+###############################################################
+# Government Building
+###############################################################
+building_dm_ancient_palace = {
+	base_buildtime = 900
+	capital = yes
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	can_build = no
+	upgrades = {
+		building_ae_ancient_palace
+	}
+	category = government
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+	convert_to = {
+		building_dm_ancient_control_center
+		building_dm_ancient_hive_cluster
+	}
+	allow = {
+	}
+	prerequisites = {
+		"tech_dm_ancient_palace"
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	planet_modifier = {
+		planet_housing_add = 30
+		planet_amenities_add = 30
+		trade_value_add = 5
+		trade_value_mult = 0.5
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_acot_overlord_add = 1
+			job_acot_overseer_add = 4
+			job_aot_dm_enforcer_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_mechanical_empire = yes
+			}
+		}
+		job_acot_roboman_add = 1
+	}
+	##### FOR FE ###
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = no
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_overseer_add = 4
+			job_fe_protector_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_sky_cardinal_add = 4
+			job_fe_protector_add = 4
+		}
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured
+			}
+			energy = 10
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae
+			}
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis
+			}
+			energy = 60
+			sr_dark_matter = 30
+			acot_sr_dark_energy = 30
+		}
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 100
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+# Supra Nexus
+building_dm_ancient_control_center = {
+	base_buildtime = 900
+	capital = yes
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	category = government
+	upgrades = {
+		building_ae_ancient_control_center
+	}
+	potential = {
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+		}
+	}
+	convert_to = {
+		building_dm_ancient_palace
+		building_dm_ancient_hive_cluster
+	}
+	allow = {
+		num_pops >= 25
+	}
+	prerequisites = {
+		"tech_dm_ancient_control_center"
+	}
+	show_tech_unlock_if = {
+		is_machine_empire = yes
+	}
+	planet_modifier = {
+		planet_housing_add = 30
+		planet_amenities_add = 30
+	}
+	##### FOR DEFEARTHH ###
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_machine_empire = no
+			}
+		}
+		modifier = {
+			job_acot_overlord_droid_add = 1
+			job_acot_overseer_droid_add = 4
+			job_aot_dm_enforcer_drone_add = 4
+			job_acot_robodrone_add = 1
+		}
+	}
+	##### FOR FE ###
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_guardian_bot_add = 10
+		}
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured
+			}
+			energy = 10
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae
+			}
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis
+			}
+			energy = 60
+			sr_dark_matter = 30
+			acot_sr_dark_energy = 30
+		}
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 100
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
+# Hive Nexus
+building_dm_ancient_hive_cluster = {
+	base_buildtime = 900
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	upgrades = {
+		building_ae_ancient_hive_cluster
+	}
+	category = government
+	potential = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+		}
+	}
+	convert_to = {
+		building_dm_ancient_control_center
+		building_dm_ancient_palace
+	}
+	allow = {
+		num_pops >= 20
+	}
+	prerequisites = {
+		"tech_dm_ancient_hive_cluster"
+	}
+	show_tech_unlock_if = {
+		is_hive_empire = yes
+	}
+	planet_modifier = {
+		planet_housing_add = 30
+		planet_amenities_add = 30
+		job_acot_overlord_drone_add = 1
+		job_acot_overseer_drone_add = 4
+		job_aot_dm_enforcer_drone_add = 4
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured
+			}
+			energy = 10
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae
+			}
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis
+			}
+			energy = 60
+			sr_dark_matter = 30
+			acot_sr_dark_energy = 30
+		}
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 100
+		}
+	}
+	ai_weight = {
+		weight = 100
+	}
+}
+
 #####################
 # Production
 #####################
@@ -24,7 +337,7 @@ building_fe_class_4_singularity = {
 		}
 	}
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	planet_modifier = {
 	}
@@ -73,7 +386,7 @@ building_aot_fe_empyrean_shrine = {
 		}
 	}
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 		owner = {
 			is_machine_empire = no
 		}
@@ -150,7 +463,7 @@ building_fe_nano_forge = {
 		}
 	}
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	planet_modifier = {
 	}
@@ -210,7 +523,7 @@ building_fe_dimensional_fabricator = {
 		}
 	}
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	planet_modifier = {
 	}
@@ -280,7 +593,7 @@ building_fe_nourishment_center = {
 		}
 	}
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	planet_modifier = {
 	}
@@ -340,7 +653,7 @@ building_fe_affluence_center = {
 		}
 	}
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	resources = {
 		category = planet_buildings
@@ -402,7 +715,7 @@ building_fe_sky_dome = {
 		}
 	}
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	convert_to = {
 		building_drone_megastorage
@@ -472,7 +785,7 @@ building_fe_master_archive = {
 		}
 	}
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	#	triggered_planet_modifier = {
 	#		potential = {
@@ -546,7 +859,7 @@ building_dm_stronghold = {
 	add_to_first_building_slot = yes
 	category = army
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	potential = {
 		exists = owner
@@ -733,7 +1046,7 @@ building_giga_fortress_fe = {
 	base_cap_amount = 1
 	category = army
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	potential = {
 		exists = owner
@@ -905,1616 +1218,6 @@ building_giga_fortress = {
 	}
 }
 
-#####################
-# Misc Building
-#####################
-building_dark_energy_psg = {
-	base_buildtime = 600
-	base_cap_amount = 1
-	add_to_first_building_slot = yes
-	category = army
-	potential = {
-		exists = owner
-		owner = {
-			has_technology = tech_dark_energy_psg
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	planet_modifier = {
-		planet_orbital_bombardment_damage = -0.65
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 450
-			acot_sr_dark_energy = 50
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			energy = 1
-			acot_sr_dark_energy = 3
-		}
-	}
-	prerequisites = {
-		"tech_dark_energy_psg"
-	}
-	ai_weight = {
-		weight = 15000
-		modifier = {
-			factor = 0
-			owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
-				}
-			}
-		}
-	}
-	upgrades = {
-		building_ae_dark_energy_psg
-	}
-}
-
-#####################
-# Training Building
-#####################
-#Biological path
-building_fe_clone_vats = {
-	base_buildtime = 360
-	base_cap_amount = 1
-	category = government
-	potential = {
-		exists = owner
-		owner = {
-			has_ascension_perk = ap_engineered_evolution
-			has_technology = tech_elite_clone
-		}
-		NOT = {
-			has_modifier = resort_colony
-		}
-	}
-	show_tech_unlock_if = {
-		owner = {
-			has_ascension_perk = ap_engineered_evolution
-		}
-		NOT = {
-			has_modifier = resort_colony
-		}
-	}
-	planet_modifier = {
-		pop_growth_speed = 0.55
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 250
-			sr_dark_matter = 100
-			acot_sr_dark_energy = 100
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			energy = 5
-			sr_dark_matter = 3
-			acot_sr_dark_energy = 3
-		}
-	}
-	upgrades = {
-		building_ae_clone_vats
-	}
-	prerequisites = {
-		"tech_elite_clone"
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_fe_clone_vats
-				has_building = building_ae_clone_vats
-			}
-		}
-	}
-}
-
-building_super_assembly = {
-	base_buildtime = 480
-	base_cap_amount = 1
-	category = pop_assembly
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	potential = {
-		exists = owner
-		owner = {
-			is_regular_empire = yes
-			NOT = {
-				has_policy_flag = robots_outlawed
-			}
-			has_technology = tech_super_assembly
-		}
-		NOT = {
-			has_modifier = slave_colony
-		}
-	}
-	planet_modifier = {
-		job_acot_roboman_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			owner = {
-				has_ascension_perk = ap_the_flesh_is_weak
-			}
-		}
-		job_acot_roboman_add = 2
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 1000
-			sr_dark_matter = 100
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			energy = 10
-			sr_dark_matter = 3
-		}
-	}
-	prerequisites = {
-		"tech_super_assembly"
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			OR = {
-				num_buildings = {
-					type = building_super_assembly
-					value >= 1
-				}
-				num_buildings = {
-					type = building_ae_super_assembly
-					value >= 1
-				}
-			}
-		}
-	}
-	upgrades = {
-		building_ae_super_assembly
-	}
-}
-
-#####################
-# Machine buildings
-#####################
-building_super_assembly_machine = {
-	icon = building_super_assembly
-	base_buildtime = 360
-	base_cap_amount = 1
-	category = pop_assembly
-	potential = {
-		exists = owner
-		owner = {
-			is_machine_empire = yes
-			has_technology = tech_super_assembly
-		}
-	}
-	planet_modifier = {
-		job_acot_robodrone_add = 2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			owner = {
-				has_ascension_perk = ap_synthetic_age
-			}
-		}
-		job_acot_robodrone_add = 1
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	prerequisites = {
-		"tech_super_assembly"
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 1000
-			sr_dark_matter = 100
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			energy = 10
-			sr_dark_matter = 3
-		}
-	}
-	upgrades = {
-		building_ae_super_assembly_machine
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			OR = {
-				num_buildings = {
-					type = building_super_assembly_machine
-					value >= 1
-				}
-				num_buildings = {
-					type = building_ae_super_assembly_machine
-					value >= 1
-				}
-			}
-		}
-	}
-}
-
-#####################
-# Resource Building
-#####################
-building_fe_alloy_forge = {
-	base_buildtime = 400
-	category = manufacturing
-	potential = {
-		exists = owner
-		owner = {
-			has_technology = tech_fe_alloy_foundry
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		modifier = {
-			job_alloy_drone_add = 10
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_machine_empire = yes
-			}
-		}
-		modifier = {
-			job_fabricator_add = 10
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_foundry_add = 10
-		}
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			alloys = 5
-		}
-		cost = {
-			minerals = 650
-			sr_dark_matter = 50
-		}
-		upkeep = {
-			energy = 5
-			sr_dark_matter = 1
-		}
-	}
-	prerequisites = {
-		"tech_fe_alloy_foundry"
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		text = job_foundry_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		text = job_alloy_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_machine_empire = yes
-			}
-		}
-		text = job_fabricator_effect_desc
-	}
-	ai_weight = {
-		weight = 100000
-		modifier = {
-			factor = 0
-			OR = {
-				num_buildings = {
-					type = building_fe_alloy_forge
-					value >= 3
-				}
-				num_buildings = {
-					type = building_ae_alloy_forge
-					value >= 3
-				}
-			}
-		}
-		modifier = {
-			factor = 50
-			owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 5
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 2
-				}
-			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		alloys = 10
-		trigger = {
-			always = yes
-		}
-	}
-	upgrades = {
-		building_ae_alloy_forge
-	}
-}
-
-building_fe_transmutor = {
-	base_buildtime = 400
-	category = manufacturing
-	potential = {
-		NOT = {
-			has_modifier = resort_colony
-		}
-		NOT = {
-			has_modifier = slave_colony
-		}
-		exists = owner
-		owner = {
-			has_technology = tech_fe_transmutor
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = no
-			}
-		}
-		modifier = {
-			job_translucer_add = 2
-			job_chemist_add = 2
-			job_gas_refiner_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_translucer_drone_add = 2
-			job_chemist_drone_add = 2
-			job_gas_refiner_drone_add = 2
-		}
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			volatile_motes = 2
-			exotic_gases = 2
-			rare_crystals = 2
-		}
-		cost = {
-			minerals = 400
-			sr_dark_matter = 50
-		}
-		upkeep = {
-			energy = 1
-			sr_dark_matter = 1
-		}
-	}
-	prerequisites = {
-		"tech_fe_transmutor"
-	}
-	ai_weight = {
-		weight = 20000
-		modifier = {
-			factor = 5000
-			owner = {
-				OR = {
-					has_monthly_income = {
-						resource = rare_crystals
-						value < 4
-					}
-					has_monthly_income = {
-						resource = exotic_gases
-						value < 4
-					}
-					has_monthly_income = {
-						resource = volatile_motes
-						value < 4
-					}
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			num_buildings = {
-				type = building_fe_transmutor
-				value >= 1
-			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		volatile_motes = 10
-		exotic_gases = 10
-		rare_crystals = 10
-		trigger = {
-			always = yes
-		}
-	}
-	upgrades = {
-		building_ae_transmutor
-	}
-}
-
-building_fe_mineral_processing_plant = {
-	base_buildtime = 480
-	category = resource
-	base_cap_amount = 1
-	potential = {
-		exists = owner
-		owner = {
-			has_technology = tech_fe_mineral_processing_plant
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	planet_modifier = {
-		planet_jobs_minerals_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			is_ringworld = no
-		}
-		modifier = {
-			district_mining_max = 4
-			planet_max_districts_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_miner_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_mining_drone_add = 4
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 500
-			sr_dark_matter = 50
-		}
-		cost = {
-			trigger = {
-				owner = {
-					is_robot_empire = yes
-				}
-			}
-			minerals = 400
-			alloys = 100
-			sr_dark_matter = 50
-		}
-		upkeep = {
-			energy = 2
-			sr_dark_matter = 1
-		}
-	}
-	prerequisites = {
-		"tech_fe_mineral_processing_plant"
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		text = job_mining_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = no
-			}
-		}
-		text = job_miner_effect_desc
-	}
-	ai_weight = {
-		weight = 2000
-		modifier = {
-			factor = 5
-			owner = {
-				has_monthly_income = {
-					resource = minerals
-					value < 5
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 5
-				}
-			}
-		}
-		# No one to work it
-		modifier = {
-			factor = 0
-			count_owned_pops = {
-				limit = {
-					OR = {
-						is_unemployed = yes
-						has_job = servant
-					}
-				}
-				count < 3
-			}
-		}
-	}
-	ai_resource_production = {
-		minerals = 10
-		trigger = {
-			always = yes
-		}
-	}
-	upgrades = {
-		building_ae_mineral_processing_plant
-	}
-}
-
-building_fe_factory = {
-	base_buildtime = 450
-	category = manufacturing
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	potential = {
-		exists = owner
-		owner = {
-			OR = {
-				is_gestalt = no
-				has_valid_civic = civic_machine_servitor
-			}
-			has_technology = tech_fe_factory
-		}
-		NOT = {
-			has_modifier = resort_colony
-		}
-		NOT = {
-			has_modifier = slave_colony
-		}
-	}
-	destroy_trigger = {
-		# destroys if true
-		OR = {
-			owner = {
-				AND = {
-					is_gestalt = yes
-					NOT = {
-						has_valid_civic = civic_machine_servitor
-					}
-				}
-			}
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_artisan_add = 12
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_artisan_drone_add = 12
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 800
-			sr_dark_matter = 100
-		}
-		upkeep = {
-			energy = 4
-			sr_dark_matter = 2
-		}
-	}
-	prerequisites = {
-		"tech_fe_factory"
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		text = job_artisan_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		text = job_artisan_drone_effect_desc
-	}
-	ai_weight = {
-		weight = 2
-		modifier = {
-			factor = 5
-			owner = {
-				has_monthly_income = {
-					resource = consumer_goods
-					value < 5
-				}
-				has_monthly_income = {
-					resource = minerals
-					value > 6
-				}
-			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		consumer_goods = 1
-		trigger = {
-			always = yes
-		}
-	}
-	upgrades = {
-		building_ae_factory
-	}
-}
-
-##########ENERGY NEXOUS
-building_fe_power_hub = {
-	base_buildtime = 480
-	category = resource
-	base_cap_amount = 1
-	potential = {
-		exists = owner
-		owner = {
-			has_technology = tech_fe_power_hub
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	planet_modifier = {
-		planet_jobs_energy_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			is_ringworld = no
-		}
-		modifier = {
-			district_generator_max = 4
-			planet_max_districts_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_technician_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_technician_drone_add = 4
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 450
-			acot_sr_dark_energy = 50
-		}
-		cost = {
-			trigger = {
-				owner = {
-					is_robot_empire = yes
-				}
-			}
-			minerals = 350
-			alloys = 100
-			acot_sr_dark_energy = 50
-		}
-		upkeep = {
-			energy = 2
-			acot_sr_dark_energy = 1
-		}
-	}
-	prerequisites = {
-		"tech_fe_power_hub"
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		text = job_technician_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = no
-			}
-		}
-		text = job_technician_effect_desc
-	}
-	ai_weight = {
-		weight = 3000
-		modifier = {
-			factor = 5
-			owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 10
-				}
-			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		energy = 10
-		trigger = {
-			always = yes
-		}
-	}
-	upgrades = {
-		building_ae_power_hub
-	}
-}
-
-### FOOOD FIDDLEEE ###
-building_fe_food_processing_complex = {
-	base_buildtime = 520
-	category = resource
-	base_cap_amount = 1
-	potential = {
-		exists = owner
-		owner = {
-			has_technology = tech_fe_food_processing
-		}
-	}
-	planet_modifier = {
-		planet_jobs_food_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			is_ringworld = no
-		}
-		modifier = {
-			district_farming_max = 4
-			planet_max_districts_add = 2
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_farmer_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_agri_drone_add = 4
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 400
-			sr_dark_matter = 50
-		}
-		upkeep = {
-			energy = 2
-			sr_dark_matter = 1
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		text = job_agri_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = no
-			}
-		}
-		text = job_farmer_effect_desc
-	}
-	prerequisites = {
-		"tech_fe_food_processing"
-	}
-	ai_weight = {
-		weight = 2
-		modifier = {
-			factor = 5
-			owner = {
-				has_monthly_income = {
-					resource = food
-					value < 5
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				OR = {
-					is_mechanical_empire = no
-					AND = {
-						is_mechanical_empire = yes
-						OR = {
-							has_civic = civic_machine_servitor
-							has_civic = civic_machine_assimilator
-						}
-					}
-				}
-				has_monthly_income = {
-					resource = energy
-					value < 5
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				is_mechanical_empire = yes
-				NOR = {
-					has_civic = civic_machine_servitor
-					has_civic = civic_machine_assimilator
-				}
-			}
-		}
-		# No one to work it
-		modifier = {
-			factor = 0
-			count_owned_pops = {
-				limit = {
-					OR = {
-						is_unemployed = yes
-						has_job = servant
-					}
-				}
-				count < 1
-			}
-		}
-	}
-	ai_resource_production = {
-		food = 10
-		trigger = {
-			always = yes
-		}
-	}
-	upgrades = {
-		building_ae_food_processing_complex
-	}
-}
-
-#####################
-# Research Building
-#####################
-building_enigmatic_lab = {
-	base_buildtime = 680
-	can_demolish = yes
-	can_be_disabled = yes
-	category = research
-	potential = {
-		exists = owner
-		owner = {
-			has_technology = tech_enigmatic_lab
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_researcher_add = 15
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		modifier = {
-			job_brain_drone_add = 15
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_machine_empire = yes
-			}
-		}
-		modifier = {
-			job_calculator_add = 15
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 1500
-			sr_dark_matter = 150
-		}
-		produces = {
-			trigger = {
-				owner = {
-					is_ai = yes
-				}
-			}
-			consumer_goods = 10
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			energy = 20
-			sr_dark_matter = 3
-		}
-	}
-	prerequisites = {
-		"tech_enigmatic_lab"
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		text = job_researcher_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		text = job_brain_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_machine_empire = yes
-			}
-		}
-		text = job_calculator_effect_desc
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 5000000
-			num_buildings = {
-				type = building_enigmatic_lab
-				value <= 1
-			}
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				num_buildings = {
-					type = building_enigmatic_lab
-					value >= 3
-				}
-				num_buildings = {
-					type = building_ae_enigmatic_lab
-					value >= 3
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				has_monthly_income = {
-					resource = energy
-					value <= 10
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				has_monthly_income = {
-					resource = consumer_goods
-					value <= 10
-				}
-			}
-		}
-	}
-	upgrades = {
-		building_ae_enigmatic_lab
-	}
-}
-
-building_fe_institute = {
-	base_buildtime = 520
-	base_cap_amount = 1
-	category = research
-	potential = {
-		NOT = {
-			has_modifier = resort_colony
-		}
-		NOT = {
-			has_modifier = slave_colony
-		}
-		exists = owner
-		owner = {
-			has_technology = tech_fe_institute
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 500
-			sr_dark_matter = 100
-			acot_sr_dark_energy = 100
-		}
-		upkeep = {
-			energy = 5
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
-		}
-	}
-	planet_modifier = {
-		planet_researchers_produces_mult = 0.25
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-			}
-		}
-		job_head_researcher_add = 2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		modifier = {
-			job_brain_drone_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_machine_empire = yes
-			}
-		}
-		modifier = {
-			job_calculator_add = 2
-		}
-	}
-	prerequisites = {
-		"tech_fe_institute"
-	}
-	triggered_desc = {
-		text = job_head_researcher_effect_desc
-	}
-	show_tech_unlock_if = {
-	}
-	ai_weight = {
-		weight = 1000
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				has_monthly_income = {
-					resource = energy
-					value <= 10
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				has_monthly_income = {
-					resource = acot_sr_dark_energy
-					value <= 3
-				}
-			}
-		}
-	}
-	upgrades = {
-		building_ae_institute
-	}
-}
-
-building_fe_hospital = {
-	base_buildtime = 480
-	base_cap_amount = 1
-	category = amenity
-	potential = {
-		exists = owner
-		owner = {
-			is_regular_empire = yes
-			has_technology = tech_fe_hospital
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	destroy_trigger = {
-		owner = {
-			is_regular_empire = no
-		}
-	}
-	planet_modifier = {
-		job_healthcare_add = 8
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 450
-			sr_dark_matter = 50
-		}
-		upkeep = {
-			energy = 2
-			sr_dark_matter = 1
-		}
-	}
-	prerequisites = {
-		"tech_fe_hospital"
-	}
-	show_tech_unlock_if = {
-		is_regular_empire = yes
-	}
-	triggered_desc = {
-		text = job_healthcare_effect_desc
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			free_amenities < 2
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-		modifier = {
-			factor = 0
-			owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
-				}
-			}
-		}
-	}
-	upgrades = {
-		building_ae_hospital
-	}
-}
-
-building_fe_hive_pool = {
-	base_buildtime = 450
-	base_cap_amount = 1
-	category = amenity
-	potential = {
-		exists = owner
-		owner = {
-			is_hive_empire = yes
-			has_technology = tech_fe_hive_depot
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	destroy_trigger = {
-		owner = {
-			is_hive_empire = no
-		}
-	}
-	planet_modifier = {
-		job_spawning_drone_add = 3
-	}
-	prerequisites = {
-		tech_fe_hive_depot
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 500
-			acot_sr_dark_energy = 100
-		}
-		upkeep = {
-			energy = 2
-			acot_sr_dark_energy = 2
-		}
-	}
-	triggered_desc = {
-		text = job_spawning_drone_effect_desc
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 5
-			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			count_owned_pops = {
-				limit = {
-					OR = {
-						is_unemployed = yes
-						has_job = servant
-					}
-				}
-				count < 1
-			}
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_fe_hive_pool
-				has_building = building_ae_hive_pool
-			}
-		}
-	}
-	upgrades = {
-		building_ae_hive_pool
-	}
-}
-
-#####################
-# OTHER STUFFS
-#####################
-building_fe_mansion = {
-	base_buildtime = 520
-	category = amenity
-	potential = {
-		exists = owner
-		owner = {
-			is_regular_empire = yes
-			NOT = {
-				has_valid_civic = civic_shared_burden
-			}
-			has_technology = tech_dark_mansion
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	planet_modifier = {
-		planet_housing_add = 15
-		planet_amenities_add = 15
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_non_swapped_tradition = tr_domination_imperious_architecture
-			}
-		}
-		modifier = {
-			planet_housing_add = 2
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 450
-			sr_dark_matter = 25
-		}
-		upkeep = {
-			energy = 2
-			sr_dark_matter = 1
-		}
-	}
-	prerequisites = {
-		"tech_dark_mansion"
-	}
-	show_tech_unlock_if = {
-		owner = {
-			is_regular_empire = yes
-			NOT = {
-				has_valid_civic = civic_shared_burden
-			}
-		}
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 300000
-			free_amenities < 0
-		}
-		modifier = {
-			factor = 500000
-			free_housing < 1
-		}
-		modifier = {
-			factor = 0
-			free_housing > 1
-		}
-	}
-	upgrades = {
-		building_ae_mansion
-	}
-	convert_to = {
-		building_fe_hive_depot
-		building_dm_ancient_cryo_chamber
-	}
-}
-
-building_fe_hive_depot = {
-	base_buildtime = 480
-	category = amenity
-	potential = {
-		exists = owner
-		owner = {
-			is_hive_empire = yes
-			has_technology = tech_fe_hive_depot
-		}
-	}
-	allow = {
-		has_any_enigmatic_capital = yes
-	}
-	show_tech_unlock_if = {
-		owner = {
-			is_hive_empire = yes
-		}
-	}
-	convert_to = {
-		building_fe_mansion
-		building_dm_ancient_cryo_chamber
-	}
-	planet_modifier = {
-		planet_housing_add = 20
-		job_maintenance_drone_add = 5
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_non_swapped_tradition = tr_domination_imperious_architecture
-			}
-		}
-		modifier = {
-			planet_housing_add = 2
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 550
-			acot_sr_dark_energy = 50
-		}
-		upkeep = {
-			energy = 2
-			acot_sr_dark_energy = 2
-		}
-	}
-	prerequisites = {
-		tech_fe_hive_depot
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
-		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			free_housing > 1
-		}
-	}
-	upgrades = {
-		building_ae_hive_depot
-	}
-}
-
 ##Disable ZOFE Machine Buildings override
 building_fe_ancient_cryo_chamber = {
 	base_buildtime = 360
@@ -2543,7 +1246,7 @@ building_fe_ancient_cryo_chamber = {
 		has_authority = auth_machine_intelligence
 	}
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	convert_to = {
 		building_fe_mansion
@@ -2598,7 +1301,7 @@ building_dm_ancient_cryo_chamber = {
 		}
 	}
 	allow = {
-		has_any_enigmatic_capital = yes
+		has_enigmatic_capital = yes
 	}
 	convert_to = {
 		building_fe_mansion
@@ -2955,7 +1658,7 @@ building_stellarite_generator_ae = {
 			trigger = {
 				has_building = building_stellarite_nexus
 			}
-			acot_sr_stellarite = 30
+			acot_sr_stellarite = 10
 		}
 		upkeep = {
 			energy = 20
