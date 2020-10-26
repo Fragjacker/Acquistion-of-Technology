@@ -23,11 +23,23 @@ planet_event = {
 	immediate = {
 		add_threat = {
 			who = from
-			amount = 2
+			amount = 10
 		}
 		every_owned_pop = {
 			kill_pop = yes
 		}
+		remove_all_buildings = yes
+		reroll_deposits = yes
+		clear_planet_modifiers = yes
+		if = {
+			limit = {
+				NOT = {
+					has_global_flag = fractured_happened
+				}
+			}
+			set_global_flag = fractured_happened
+		}
+		### FRACTURE
 		planet_owner = {
 			add_static_war_exhaustion = {
 				attacker = from
@@ -35,18 +47,25 @@ planet_event = {
 				value_for_planet_destruction = 0.5
 			}
 			country_event = {
-				id = acot_exterminatus_event.2
+				id = acot_exterminatus_event.101
 			}
 		}
 		from = {
 			country_event = {
-				id = acot_exterminatus_event.3
+				id = acot_exterminatus_event.102
 			}
 		}
-		remove_all_buildings = yes
-		reroll_deposits = yes
-		clear_planet_modifiers = yes
-		### FRACTURE
+		every_playable_country = {
+			limit = {
+				NOR = {
+					is_same_value = root.owner
+					is_same_value = from
+				}
+			}
+			country_event = {
+				id = acot_exterminatus_event.103
+			}
+		}
 		if = {
 			limit = {
 				has_orbital_bombardment_stance = punishment
@@ -56,22 +75,38 @@ planet_event = {
 			reset_planet = yes
 			add_modifier = {
 				modifier = acot_modifier_fractured_cooldown
-				days = 3600
 			}
 			planet_event = {
 				id = acot_exterminatus_event.1000
 				days = 3600
 			}
 		}
+		else_if = {
+			limit = {
+				has_orbital_bombardment_stance = punishment
+				is_memeable_ringworld = yes
+			}
+			change_pc = pc_ringworld_habitable_damaged
+			reset_planet = yes
+			spawn_ringworld_cracker_effect = yes
+		}
+		else_if = {
+			limit = {
+				has_orbital_bombardment_stance = punishment
+				is_memeable_space_habitat = yes
+			}
+			spawn_habitat_cracker_effect = yes
+			remove_planet = yes
+		}
+		### ALPHAFRACT
 		if = {
 			limit = {
 				has_orbital_bombardment_stance = exterminatus
-				is_memeable_ringworld = yes
+				is_memeable_planet = yes
 			}
 			change_pc = pc_dark_fractured_ae_unstable
 			add_modifier = {
 				modifier = acot_modifier_fractured_cooldown
-				days = 7200
 			}
 			planet_event = {
 				id = acot_exterminatus_event.1000
@@ -82,7 +117,7 @@ planet_event = {
 		else_if = {
 			limit = {
 				has_orbital_bombardment_stance = exterminatus
-				is_memeable_space_habitat = yes
+				is_memeable_ringworld = yes
 			}
 			change_pc = pc_ringworld_habitable_damaged
 			reset_planet = yes
@@ -112,13 +147,13 @@ planet_event = {
 				has_technology = tech_bombardment_ae_final
 			}
 		}
+		NOT = {
+			has_planet_flag = bombardment_cooldown
+		}
 		OR = {
 			is_memeable_planet = yes
 			is_memeable_space_habitat = yes
 			is_memeable_ringworld = yes
-			NOT = {
-				has_planet_flag = bombardment_cooldown
-			}
 		}
 	}
 	immediate = {
@@ -128,6 +163,10 @@ planet_event = {
 		}
 		random_list = {
 			80 = {
+				modifier = {
+					factor = 0
+					num_pops <= 5
+				}
 				IF = {
 					limit = {
 						has_building = building_dark_energy_psg
@@ -213,15 +252,12 @@ planet_event = {
 				clear_planet_modifiers = yes
 				if = {
 					limit = {
-						NOR = {
-							is_memeable_space_habitat = yes
-						}
+						is_memeable_planet = yes
 					}
 					change_pc = pc_dark_fractured_unstable
 					reset_planet = yes
 					add_modifier = {
 						modifier = acot_modifier_fractured_cooldown
-						days = 3600
 					}
 					planet_event = {
 						id = acot_exterminatus_event.1000
@@ -259,13 +295,13 @@ planet_event = {
 				has_technology = tech_bombardment_ae_final
 			}
 		}
+		NOT = {
+			has_planet_flag = bombardment_cooldown
+		}
 		OR = {
 			is_memeable_planet = yes
 			is_memeable_space_habitat = yes
 			is_memeable_ringworld = yes
-		}
-		NOT = {
-			has_planet_flag = bombardment_cooldown
 		}
 	}
 	immediate = {
@@ -367,14 +403,11 @@ planet_event = {
 				clear_planet_modifiers = yes
 				if = {
 					limit = {
-						NOR = {
-							is_memeable_space_habitat = yes
-						}
+						is_memeable_planet = yes
 					}
 					change_pc = pc_dark_fractured_ae_unstable
 					add_modifier = {
 						modifier = acot_modifier_fractured_cooldown
-						days = 7200
 					}
 					planet_event = {
 						id = acot_exterminatus_event.1000
@@ -793,7 +826,6 @@ country_event = {
 					change_pc = pc_dark_fractured_unstable
 					add_modifier = {
 						modifier = acot_modifier_fractured_cooldown
-						days = 3600
 					}
 					planet_event = {
 						id = acot_exterminatus_event.1000
@@ -854,7 +886,6 @@ country_event = {
 					change_pc = pc_dark_fractured_ae_unstable
 					add_modifier = {
 						modifier = acot_modifier_fractured_cooldown
-						days = 7200
 					}
 					planet_event = {
 						id = acot_exterminatus_event.1000
@@ -888,6 +919,7 @@ planet_event = {
 	trigger = {
 	}
 	immediate = {
+		remove_modifier = acot_modifier_fractured_cooldown
 		if = {
 			limit = {
 				is_planet_class = pc_dark_fractured_unstable
@@ -964,14 +996,6 @@ planet_event = {
 				}
 			}
 		}
-		If = {
-			limit = {
-				NOT = {
-					exists = owner
-				}
-			}
-			set_owner = event_target:lifeform_country
-		}
 		while = {
 			count = 3
 			random_list = {
@@ -1042,5 +1066,31 @@ planet_event = {
 				}
 			}
 		}
+	}
+}
+
+# Planet turns into stable form and starts spawning shits
+planet_event = {
+	id = acot_exterminatus_event.1001
+	hide_window = yes
+	mean_time_to_happen = {
+		days = 320
+	}
+	trigger = {
+		OR = {
+			is_planet_class = pc_dark_fractured
+			is_planet_class = pc_dark_fractured_ae
+		}
+		exists = owner
+		owner = {
+			is_playable_country = no
+		}
+		has_army = yes
+		attacker = {
+			is_playable_country = yes
+		}
+	}
+	immediate = {
+		set_owner = attacker
 	}
 }
