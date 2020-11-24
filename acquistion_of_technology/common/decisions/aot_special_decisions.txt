@@ -1,0 +1,134 @@
+# Arcology Project
+decision_convert_habitat = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 20000
+		}
+	}
+	potential = {
+		NOR = {
+			is_planet_class = pc_ascended_habitat
+			has_planet_flag = advanced_ascended_habitat
+			has_planet_flag = advanced_ascended_habitat_2
+		}
+		is_planet_class = pc_habitat
+		exists = owner
+	}
+	allow = {
+	}
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_arcology_project_effects
+		hidden_effect = {
+			clear_deposits = yes
+			change_pc = pc_ascended_habitat
+			set_planet_entity = {
+				graphical_culture = owner
+				entity = "ascended_habitat_phase_01_entity"
+			}
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# Advanced Habitat
+decision_upgrade_ascended_habitat = {
+	owned_planets_only = yes
+	icon = decision_satellite_in_orbit
+	enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 1000
+		}
+	}
+	potential = {
+		is_planet_class = pc_ascended_habitat
+		NOT = {
+			has_planet_flag = advanced_ascended_habitat
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_habitat_2
+		}
+	}
+	allow = {
+		free_district_slots = 0
+	}
+	effect = {
+		hidden_effect = {
+			set_planet_entity = {
+				entity = "ascended_habitat_phase_02_entity"
+				graphical_culture = owner
+			}
+			set_planet_flag = advanced_ascended_habitat
+		}
+		set_planet_size = 12
+		if = {
+			limit = {
+				owner = {
+					has_ascension_perk = ap_voidborn
+					NOT = {
+						has_technology = tech_habitat_3
+					}
+					NOT = {
+						has_tech_option = tech_habitat_3
+					}
+				}
+			}
+			owner = {
+				add_research_option = tech_habitat_3
+			}
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+decision_upgrade_ascendedn_habitat_2 = {
+	owned_planets_only = yes
+	icon = decision_satellite_in_orbit
+	enactment_time = 1440
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 1500
+		}
+	}
+	potential = {
+		is_planet_class = pc_ascended_habitat
+		has_planet_flag = advanced_ascended_habitat
+		NOT = {
+			has_planet_flag = advanced_ascended_habitat_2
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_habitat_3
+		}
+	}
+	allow = {
+		free_district_slots = 0
+		has_major_upgraded_capital = yes
+	}
+	effect = {
+		hidden_effect = {
+			set_planet_entity = {
+				entity = "ascended_habitat_phase_02_entity"
+				graphical_culture = owner
+			}
+			set_planet_flag = advanced_ascended_habitat_2
+		}
+		set_planet_size = 16
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
