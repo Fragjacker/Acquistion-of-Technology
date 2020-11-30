@@ -1,4 +1,4 @@
-# Arcology Project
+# Dark Matter habitat Project
 decision_convert_habitat = {
 	owned_planets_only = yes
 	icon = decision_arcology_project
@@ -6,8 +6,10 @@ decision_convert_habitat = {
 	resources = {
 		category = decisions
 		cost = {
-			influence = 200
-			minerals = 20000
+			influence = 50
+			alloys = 3000
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
 		}
 	}
 	potential = {
@@ -15,6 +17,14 @@ decision_convert_habitat = {
 			is_planet_class = pc_ascended_habitat
 			has_planet_flag = advanced_ascended_habitat
 			has_planet_flag = advanced_ascended_habitat_2
+		}
+		owner = {
+			is_ascended_empire = yes
+			OR = {
+				has_technology = tech_dm_ancient_palace
+				has_technology = tech_dm_ancient_control_center
+				has_technology = tech_dm_ancient_hive_cluster
+			}
 		}
 		is_planet_class = pc_habitat
 		exists = owner
@@ -32,6 +42,110 @@ decision_convert_habitat = {
 				graphical_culture = owner
 			}
 			set_planet_size = 8
+
+			if = {
+				limit = {
+					has_building = building_colony_shelter
+				 }
+				 remove_building = building_colony_shelter
+			}
+			if = {
+				limit = {
+					has_building = building_capital
+				 }
+				 remove_building = building_capital
+			}
+			if = {
+				limit = {
+					has_building = building_major_capital
+				 }
+				 remove_building = building_major_capital		
+			}
+			if = {
+				limit = {
+					has_building = building_system_capital
+				 }
+				 remove_building = building_system_capital	
+			}
+			if = {
+				limit = {
+					has_building = building_hab_capital
+				 }
+				 remove_building = building_hab_capital
+			}		
+			if = {
+				limit = {
+					has_building = building_hab_major_capital
+				 }
+				 remove_building = building_hab_major_capital		
+			}	
+
+			if = {
+				limit = {
+					has_building = building_resort_capital
+				 }
+				 remove_building = building_resort_capital		
+			}	
+			if = {
+				limit = {
+					has_building = building_resort_major_capital
+				 }
+				 remove_building = building_resort_major_capital		
+			}				
+
+			if = {
+				limit = {
+					has_building = building_slave_capital
+				 }
+				 remove_building = building_slave_capital		
+			}	
+			if = {
+				limit = {
+					has_building = building_slave_major_capital
+				 }
+				 remove_building = building_slave_major_capital		
+			}		
+
+			if = {
+				limit = {
+					has_building = building_ancient_palace
+				 }
+				 remove_building = building_ancient_palace		
+			}	
+
+			if = {
+				limit = {
+					has_building = building_ancient_control_center
+				 }
+				 
+				 remove_building = building_ancient_control_center	
+			}
+
+			# Add the appropriate building now.
+			if = {
+				limit = {
+					owner = {
+						is_regular_empire = yes
+					}
+				 }
+				 add_building = building_dm_ancient_palace	
+			}
+			if = {
+				limit = {
+					owner = {
+						is_machine_empire = yes
+					}
+				 }
+				 add_building = building_dm_ancient_control_center	
+			}
+			if = {
+				limit = {
+					owner = {
+						is_hive_empire = yes
+					}
+				 }
+				 add_building = building_dm_ancient_hive_cluster	
+			}
 		}
 	}
 	ai_weight = {
@@ -48,6 +162,8 @@ decision_upgrade_ascended_habitat = {
 		category = decisions
 		cost = {
 			alloys = 1000
+			sr_dark_matter = 1500
+			acot_sr_dark_energy = 1500
 		}
 	}
 	potential = {
@@ -61,7 +177,10 @@ decision_upgrade_ascended_habitat = {
 		}
 	}
 	allow = {
-		free_district_slots = 0
+		custom_tooltip = {
+			fail_text = decision_dm_habitat_expand_requirements
+			free_district_slots = 0
+		}
 	}
 	effect = {
 		hidden_effect = {
@@ -72,22 +191,6 @@ decision_upgrade_ascended_habitat = {
 			set_planet_flag = advanced_ascended_habitat
 		}
 		set_planet_size = 12
-		if = {
-			limit = {
-				owner = {
-					has_ascension_perk = ap_voidborn
-					NOT = {
-						has_technology = tech_habitat_3
-					}
-					NOT = {
-						has_tech_option = tech_habitat_3
-					}
-				}
-			}
-			owner = {
-				add_research_option = tech_habitat_3
-			}
-		}
 	}
 	ai_weight = {
 		weight = 1
@@ -101,7 +204,9 @@ decision_upgrade_ascended_habitat_2 = {
 	resources = {
 		category = decisions
 		cost = {
-			alloys = 1500
+			alloys = 1000
+			sr_dark_matter = 3500
+			acot_sr_dark_energy = 3500
 		}
 	}
 	potential = {
@@ -116,8 +221,10 @@ decision_upgrade_ascended_habitat_2 = {
 		}
 	}
 	allow = {
-		free_district_slots = 0
-		# has_major_upgraded_capital = yes
+		custom_tooltip = {
+			fail_text = decision_dm_habitat_expand_requirements
+			free_district_slots = 0
+		}
 	}
 	effect = {
 		hidden_effect = {
