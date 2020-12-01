@@ -1,8 +1,8 @@
 # Dark Matter habitat Project
 decision_convert_habitat = {
 	owned_planets_only = yes
-	icon = decision_arcology_project
-	enactment_time = 3600
+	icon = decision_convert_to_dm_habitat
+	enactment_time = 1080
 	resources = {
 		category = decisions
 		cost = {
@@ -19,15 +19,13 @@ decision_convert_habitat = {
 			has_planet_flag = advanced_ascended_habitat_2
 		}
 		owner = {
-			is_ascended_empire = yes
-			OR = {
-				has_technology = tech_dm_ancient_palace
-				has_technology = tech_dm_ancient_control_center
-				has_technology = tech_dm_ancient_hive_cluster
-			}
+			has_technology = tech_dm_habitat
 		}
 		is_planet_class = pc_habitat
 		exists = owner
+	}
+	prerequisites = {
+		tech_dm_habitat
 	}
 	allow = {
 	}
@@ -156,7 +154,7 @@ decision_convert_habitat = {
 # Advanced Habitat
 decision_upgrade_ascended_habitat = {
 	owned_planets_only = yes
-	icon = decision_satellite_in_orbit
+	icon = decision_upgrade_dm_habitat
 	enactment_time = 720
 	resources = {
 		category = decisions
@@ -173,8 +171,11 @@ decision_upgrade_ascended_habitat = {
 		}
 		exists = owner
 		owner = {
-			has_technology = tech_habitat_2
+			has_technology = tech_dm_habitat_upgrade_I
 		}
+	}
+	prerequisites = {
+		tech_dm_habitat_upgrade_I
 	}
 	allow = {
 		custom_tooltip = {
@@ -199,7 +200,7 @@ decision_upgrade_ascended_habitat = {
 
 decision_upgrade_ascended_habitat_2 = {
 	owned_planets_only = yes
-	icon = decision_satellite_in_orbit
+	icon = decision_upgrade_dm_habitat
 	enactment_time = 1440
 	resources = {
 		category = decisions
@@ -217,8 +218,11 @@ decision_upgrade_ascended_habitat_2 = {
 		}
 		exists = owner
 		owner = {
-			has_technology = tech_habitat_3
+			has_technology = tech_dm_habitat_upgrade_II
 		}
+	}
+	prerequisites = {
+		tech_dm_habitat_upgrade_II
 	}
 	allow = {
 		custom_tooltip = {
