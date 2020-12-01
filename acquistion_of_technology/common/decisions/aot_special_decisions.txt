@@ -40,109 +40,107 @@ decision_convert_habitat = {
 				graphical_culture = owner
 			}
 			set_planet_size = 8
-
+			set_planet_flag = is_base_dm_habitat
+			add_modifier = {
+				modifier = dm_habitat_mod
+				days = -1
+			}
 			if = {
 				limit = {
 					has_building = building_colony_shelter
-				 }
-				 remove_building = building_colony_shelter
+				}
+				remove_building = building_colony_shelter
 			}
 			if = {
 				limit = {
 					has_building = building_capital
-				 }
-				 remove_building = building_capital
+				}
+				remove_building = building_capital
 			}
 			if = {
 				limit = {
 					has_building = building_major_capital
-				 }
-				 remove_building = building_major_capital		
+				}
+				remove_building = building_major_capital
 			}
 			if = {
 				limit = {
 					has_building = building_system_capital
-				 }
-				 remove_building = building_system_capital	
+				}
+				remove_building = building_system_capital
 			}
 			if = {
 				limit = {
 					has_building = building_hab_capital
-				 }
-				 remove_building = building_hab_capital
-			}		
+				}
+				remove_building = building_hab_capital
+			}
 			if = {
 				limit = {
 					has_building = building_hab_major_capital
-				 }
-				 remove_building = building_hab_major_capital		
-			}	
-
+				}
+				remove_building = building_hab_major_capital
+			}
 			if = {
 				limit = {
 					has_building = building_resort_capital
-				 }
-				 remove_building = building_resort_capital		
-			}	
+				}
+				remove_building = building_resort_capital
+			}
 			if = {
 				limit = {
 					has_building = building_resort_major_capital
-				 }
-				 remove_building = building_resort_major_capital		
-			}				
-
+				}
+				remove_building = building_resort_major_capital
+			}
 			if = {
 				limit = {
 					has_building = building_slave_capital
-				 }
-				 remove_building = building_slave_capital		
-			}	
+				}
+				remove_building = building_slave_capital
+			}
 			if = {
 				limit = {
 					has_building = building_slave_major_capital
-				 }
-				 remove_building = building_slave_major_capital		
-			}		
-
+				}
+				remove_building = building_slave_major_capital
+			}
 			if = {
 				limit = {
 					has_building = building_ancient_palace
-				 }
-				 remove_building = building_ancient_palace		
-			}	
-
+				}
+				remove_building = building_ancient_palace
+			}
 			if = {
 				limit = {
 					has_building = building_ancient_control_center
-				 }
-				 
-				 remove_building = building_ancient_control_center	
+				}
+				remove_building = building_ancient_control_center
 			}
-
 			# Add the appropriate building now.
 			if = {
 				limit = {
 					owner = {
 						is_regular_empire = yes
 					}
-				 }
-				 add_building = building_dm_ancient_palace	
+				}
+				add_building = building_dm_ancient_palace
 			}
 			if = {
 				limit = {
 					owner = {
 						is_machine_empire = yes
 					}
-				 }
-				 add_building = building_dm_ancient_control_center	
+				}
+				add_building = building_dm_ancient_control_center
 			}
 			if = {
 				limit = {
 					owner = {
 						is_hive_empire = yes
 					}
-				 }
-				 add_building = building_dm_ancient_hive_cluster	
+				}
+				add_building = building_dm_ancient_hive_cluster
 			}
 		}
 	}
@@ -237,6 +235,173 @@ decision_upgrade_ascended_habitat_2 = {
 				graphical_culture = owner
 			}
 			set_planet_flag = advanced_ascended_habitat_2
+		}
+		set_planet_size = 16
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+decision_retrofit_ascended_habitat = {
+	owned_planets_only = yes
+	icon = decision_convert_to_dm_habitat
+	enactment_time = 1440
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 1000
+			sr_dark_matter = 1000
+			acot_sr_dark_energy = 1000
+			acot_sr_stellarite = 5000
+		}
+	}
+	potential = {
+		is_planet_class = pc_ascended_habitat
+		NOT = {
+			has_planet_flag = retrofitted_ascended_habitat
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_stellarite_habitat
+		}
+	}
+	prerequisites = {
+		tech_stellarite_habitat
+	}
+	allow = {
+	}
+	effect = {
+		hidden_effect = {
+			set_planet_flag = retrofitted_ascended_habitat
+			remove_modifier = dm_habitat_mod
+			change_pc = pc_ascended_stellarite_habitat
+			add_modifier = {
+				modifier = stellarite_habitat_mod
+				days = -1
+			}
+			if = {
+				limit = {
+					has_planet_flag = is_base_dm_habitat
+				}
+				set_planet_entity = {
+					entity = "ascended_habitat_phase_01_entity"
+					graphical_culture = owner
+				}
+				set_planet_size = 8
+			}
+			if = {
+				limit = {
+					has_planet_flag = advanced_ascended_habitat
+				}
+				set_planet_entity = {
+					entity = "ascended_habitat_phase_02_entity"
+					graphical_culture = owner
+				}
+				set_planet_size = 12
+			}
+			if = {
+				limit = {
+					has_planet_flag = advanced_ascended_habitat_2
+				}
+				set_planet_entity = {
+					entity = "ascended_habitat_phase_03_entity"
+					graphical_culture = owner
+				}
+				set_planet_size = 16
+			}
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+decision_upgrade_stellarite_habitat = {
+	owned_planets_only = yes
+	icon = decision_upgrade_dm_habitat
+	enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 1000
+			sr_dark_matter = 1500
+			acot_sr_dark_energy = 1500
+		}
+	}
+	potential = {
+		is_planet_class = pc_ascended_stellarite_habitat
+		NOT = {
+			has_planet_flag = advanced_ascended_stellarite_habitat
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_stellarite_habitat_upgrade_I
+		}
+	}
+	prerequisites = {
+		tech_stellarite_habitat_upgrade_I
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_dm_habitat_expand_requirements
+			free_district_slots = 0
+		}
+	}
+	effect = {
+		hidden_effect = {
+			set_planet_entity = {
+				entity = "ascended_habitat_phase_02_entity"
+				graphical_culture = owner
+			}
+			set_planet_flag = advanced_ascended_stellarite_habitat
+		}
+		set_planet_size = 12
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+decision_upgrade_stellarite_habitat_2 = {
+	owned_planets_only = yes
+	icon = decision_upgrade_dm_habitat
+	enactment_time = 1440
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 1000
+			sr_dark_matter = 3500
+			acot_sr_dark_energy = 3500
+		}
+	}
+	potential = {
+		is_planet_class = pc_ascended_stellarite_habitat
+		has_planet_flag = advanced_ascended_stellarite_habitat
+		NOT = {
+			has_planet_flag = advanced_ascended_stellarite_habitat_2
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_stellarite_habitat_upgrade_II
+		}
+	}
+	prerequisites = {
+		tech_stellarite_habitat_upgrade_II
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_dm_habitat_expand_requirements
+			free_district_slots = 0
+		}
+	}
+	effect = {
+		hidden_effect = {
+			set_planet_entity = {
+				entity = "ascended_habitat_phase_03_entity"
+				graphical_culture = owner
+			}
+			set_planet_flag = advanced_ascended_stellarite_habitat_2
 		}
 		set_planet_size = 16
 	}
