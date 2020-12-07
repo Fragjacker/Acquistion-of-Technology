@@ -501,6 +501,73 @@ aot_dm_giga_fortress_operator = {
 	}
 }
 
+ae_hedonist = {
+	category = worker
+	is_capped_by_modifier = no
+	building_icon = building_hyper_entertainment_forum
+	clothes_texture_index = 2
+	possible = {
+		hidden_trigger = {
+			exists = owner
+		}
+		owner = {
+			OR = {
+				is_country_type = ascended_empire
+				is_country_type = lost_empire
+			}
+			is_gestalt = no
+		}
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		NOT = {
+			has_trait = trait_syncretic_proles
+		}
+		NOT = {
+			has_trait = trait_nerve_stapled
+		}
+		NOT = {
+			has_pop_flag = free_energyzed_man
+		}
+		NOR = {
+			has_trait = trait_mechanical
+			has_trait = trait_machine_unit
+		}
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			unity = 5
+		}
+		upkeep = {
+			energy = 1
+			food = 1
+			consumer_goods = 1
+		}
+	}
+	pop_modifier = {
+		pop_happiness = 0.25
+	}
+	weight = {
+		weight = 0.1
+		modifier = {
+			factor = 0
+			OR = {
+				NOT = {
+					has_pop_flag = decadent_pop
+				}
+				has_pop_flag = free_energyzed_man
+			}
+		}
+		modifier = {
+			factor = 10000
+			has_pop_flag = decadent_pop
+		}
+	}
+}
+###################
+# Specialist Jobs
+###################
 aot_ae_stellariteman = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -601,67 +668,318 @@ aot_ae_stellaritedrone = {
 	}
 }
 
-ae_hedonist = {
-	category = worker
-	is_capped_by_modifier = no
-	building_icon = building_hyper_entertainment_forum
-	clothes_texture_index = 2
-	possible = {
-		hidden_trigger = {
-			exists = owner
-		}
-		owner = {
-			OR = {
-				is_country_type = ascended_empire
-				is_country_type = lost_empire
-			}
-			is_gestalt = no
-		}
+aot_stellarite_energyman = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_stellarite_power_hub
+	clothes_texture_index = 3
+	possible_pre_triggers = {
+		has_owner = yes
 		is_enslaved = no
 		is_being_purged = no
 		is_being_assimilated = no
-		NOT = {
-			has_trait = trait_syncretic_proles
-		}
-		NOT = {
-			has_trait = trait_nerve_stapled
-		}
-		NOT = {
-			has_pop_flag = free_energyzed_man
-		}
-		NOR = {
-			has_trait = trait_mechanical
-			has_trait = trait_machine_unit
-		}
+	}
+	possible = {
+		specialist_job_check_trigger = yes
 	}
 	resources = {
-		category = planet_jobs
+		category = planet_metallurgists
 		produces = {
-			unity = 5
+			energy = 40
 		}
 		upkeep = {
-			energy = 1
-			food = 1
-			consumer_goods = 1
+			acot_sr_stellarite = 8
 		}
 	}
-	pop_modifier = {
-		pop_happiness = 0.25
-	}
 	weight = {
-		weight = 0.1
+		weight = @specialist_job_weight
 		modifier = {
-			factor = 0
-			OR = {
-				NOT = {
-					has_pop_flag = decadent_pop
-				}
-				has_pop_flag = free_energyzed_man
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
 			}
 		}
 		modifier = {
-			factor = 10000
-			has_pop_flag = decadent_pop
+			factor = 0.1
+			can_take_servant_job = yes
 		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = aot_stellarite_energyman
+		}
+		modifier = {
+			factor = 1.2
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_indentured
+			}
+		}
+	}
+}
+
+aot_stellarite_energydrone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_stellarite_power_hub
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		drone_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			energy = 40
+		}
+		upkeep = {
+			acot_sr_stellarite = 8
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = aot_stellarite_energydrone
+		}
+	}
+}
+
+aot_stellarite_mineralman = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_stellarite_mineral_processing_plant
+	clothes_texture_index = 3
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+	
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			minerals = 40
+		}
+		upkeep = {
+			acot_sr_stellarite = 8
+		}
+	}
+	
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no	
+			NOT = { has_trait = trait_mechanical }	
+		}		
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = aot_stellarite_mineralman
+		}		
+		modifier = {
+			factor = 1.2
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}	
+	}
+}
+
+aot_stellarite_mineraldrone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_stellarite_mineral_processing_plant
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible = {
+		drone_job_check_trigger = yes
+	}
+	
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			minerals = 40
+		}
+		upkeep = {
+			acot_sr_stellarite = 8
+		}
+	}
+	
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no	
+			NOT = { has_trait = trait_mechanical }	
+		}		
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = acot_stellarite_mineraldrone
+		}		
+	}
+}
+
+aot_stellarite_alloyman = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_stellarite_alloy_forge
+	clothes_texture_index = 3
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+	
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			alloys = 40
+		}
+		upkeep = {
+			acot_sr_stellarite = 16
+		}
+	}
+	
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no	
+			NOT = { has_trait = trait_mechanical }	
+		}		
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = acot_stellarite_alloyman
+		}		
+		modifier = {
+			factor = 1.2
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}	
+	}
+}
+
+aot_stellarite_alloydrone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_fe_albuilding_stellarite_alloy_forgeloy_forge
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible = {
+		drone_job_check_trigger = yes
+	}
+	
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			alloys = 40
+		}
+		upkeep = {
+			acot_sr_stellarite = 16
+		}
+	}
+	
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no	
+			NOT = { has_trait = trait_mechanical }	
+		}		
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = acot_stellarite_alloydrone
+		}		
 	}
 }
