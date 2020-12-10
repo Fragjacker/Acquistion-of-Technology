@@ -26,6 +26,9 @@ building_ae_ancient_palace = {
 	allow = {
 		num_pops >= 20
 	}
+	upgrades = {
+		building_stellarite_palace
+	}
 	prerequisites = {
 		"tech_ae_ancient_palace"
 	}
@@ -153,6 +156,9 @@ building_ae_ancient_control_center = {
 		building_ae_ancient_palace
 		building_ae_ancient_hive_cluster
 	}
+	upgrades = {
+		building_stellarite_control_center
+	}
 	allow = {
 		num_pops >= 20
 	}
@@ -258,6 +264,9 @@ building_ae_ancient_hive_cluster = {
 		building_ae_ancient_control_center
 		building_ae_ancient_palace
 	}
+	upgrades = {
+		building_stellarite_hive_cluster
+	}
 	allow = {
 		num_pops >= 25
 	}
@@ -354,6 +363,7 @@ building_ae_affluence_center = {
 		}
 	}
 	upgrades = {
+		building_stellarite_affluence_center
 	}
 	ai_weight = {
 		weight = 10
@@ -412,6 +422,7 @@ building_ae_nourishment_center = {
 		}
 	}
 	upgrades = {
+		building_stellarite_nourishment_center
 	}
 	ai_weight = {
 		weight = 10
@@ -472,6 +483,7 @@ building_ae_dimensional_fabricator = {
 		}
 	}
 	upgrades = {
+		building_stellarite_dimensional_fabricator
 	}
 	ai_weight = {
 		weight = 10
@@ -531,6 +543,7 @@ building_ae_class_4_singularity = {
 		}
 	}
 	upgrades = {
+		building_stellarite_class_7_singularity
 	}
 	ai_weight = {
 		weight = 10
@@ -585,6 +598,7 @@ building_ae_nano_forge = {
 		}
 	}
 	upgrades = {
+		building_stellarite_nano_forge
 	}
 	ai_weight = {
 		weight = 10
@@ -685,6 +699,7 @@ building_ae_master_archive = {
 		}
 	}
 	upgrades = {
+		building_stellarite_master_archive
 	}
 	ai_weight = {
 		weight = 100
@@ -763,6 +778,7 @@ building_ae_empyrean_shrine = {
 		}
 	}
 	upgrades = {
+		building_stellarite_empyrean_shrine
 	}
 	ai_weight = {
 		weight = 100
@@ -802,9 +818,111 @@ building_ae_sky_dome = {
 		}
 	}
 	upgrades = {
+		building_stellarite_sky_dome
 	}
 	ai_weight = {
 		weight = 5
+	}
+}
+
+building_ae_ancient_cryo_chamber = {
+	base_buildtime = 450
+	can_demolish = yes
+	can_build = no
+	category = amenity
+	potential = {
+		owner = {
+			is_machine_empire = yes
+			has_technology = tech_ae_ancient_cryo_chamber
+		}
+	}
+	convert_to = {
+		building_ae_mansion
+		building_ae_hive_depot
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
+	planet_modifier = {
+		planet_housing_add = 35
+		planet_amenities_add = 35
+		job_maintenance_drone_add = 5
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 550
+			sr_dark_matter = 50
+			acot_sr_dark_energy = 50
+		}
+		upkeep = {
+			energy = 2
+			sr_dark_matter = 2
+			acot_sr_dark_energy = 2
+		}
+	}
+	prerequisites = {
+		"tech_ae_ancient_cryo_chamber"
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 20000
+			free_housing < 0
+		}
+		modifier = {
+			factor = 30000
+			free_amenities < 2
+		}
+		modifier = {
+			factor = 0
+			free_housing > 1
+		}
+	}
+}
+
+#####################
+# Military
+#####################
+building_ae_dark_energy_psg = {
+	base_buildtime = 500
+	add_to_first_building_slot = yes
+	can_build = no
+	category = army
+	allow = {
+		has_ascended_capital = yes
+	}
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.95
+	}
+	upgrades = {
+		building_stellarite_psg
+	}
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_ae_dark_energy_psg
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			acot_sr_dark_energy = 150
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			acot_sr_dark_energy = 2
+		}
+	}
+	prerequisites = {
+		"tech_ae_dark_energy_psg"
+	}
+	ai_weight = {
+		weight = 15000
 	}
 }
 
@@ -825,6 +943,9 @@ building_ae_stronghold = {
 		owner = {
 			has_technology = tech_ae_stronghold
 		}
+	}
+	upgrades = {
+		building_stellarite_stronghold
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -899,97 +1020,256 @@ building_ae_stronghold = {
 	}
 }
 
-building_ae_dark_energy_psg = {
-	base_buildtime = 500
+building_giga_fortress_array = {
+	base_buildtime = 1200
 	add_to_first_building_slot = yes
+	can_be_ruined = no
+	can_be_disabled = no
+	can_demolish = no
 	can_build = no
+	planetary_ftl_inhibitor = yes
 	category = army
+	potential = {
+		owner = {
+			has_technology = tech_giga_fortress
+		}
+	}
+	upgrades = {
+		building_stellarite_giga_fortress_array
+	}
 	allow = {
 		has_ascended_capital = yes
 	}
 	planet_modifier = {
-		planet_orbital_bombardment_damage = -0.95
+		planet_amenities_add = 20
+		planet_housing_add = 20
+		planet_stability_add = 50
+		job_acot_giga_fortress_operator_mentat_add = 1
 	}
-	potential = {
-		exists = owner
-		owner = {
-			has_technology = tech_ae_dark_energy_psg
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_gestalt = no
+			}
 		}
+		job_acot_giga_fortress_operator_add = 3
+		job_acot_enforcer_add = 10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_acot_giga_fortress_operator_drone_add = 3
+		job_acot_enforcer_drone_add = 10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_fallen_empire = yes
+			}
+		}
+		job_acot_giga_fortress_operator_ancient_add = 3
+	}
+	army_modifier = {
+		army_defense_morale_mult = 1
+		army_defense_health_mult = 0.5
+		army_defense_damage_mult = 0.5
+	}
+	country_modifier = {
+		country_naval_cap_add = 200
+		starbase_shipyard_build_speed_mult = 0.1
 	}
 	resources = {
 		category = planet_buildings
-		cost = {
-			acot_sr_dark_energy = 150
+		produces = {
+			unity = 50
+			influence = 1
+			food = 50
 		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			acot_sr_dark_energy = 2
+		cost = {
+			minerals = 15000
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
 		}
 	}
 	prerequisites = {
-		"tech_ae_dark_energy_psg"
+		"tech_giga_fortress"
 	}
 	ai_weight = {
-		weight = 15000
+		weight = 150000
 	}
 }
 
-building_ae_ancient_cryo_chamber = {
-	base_buildtime = 450
-	can_demolish = yes
+building_giga_fortress_lab = {
+	base_buildtime = 1200
+	add_to_first_building_slot = yes
+	can_be_ruined = no
+	can_be_disabled = no
+	can_demolish = no
 	can_build = no
-	category = amenity
+	planetary_ftl_inhibitor = yes
+	category = army
 	potential = {
 		owner = {
-			is_machine_empire = yes
-			has_technology = tech_ae_ancient_cryo_chamber
+			has_technology = tech_giga_fortress
 		}
-	}
-	convert_to = {
-		building_ae_mansion
-		building_ae_hive_depot
 	}
 	allow = {
 		has_ascended_capital = yes
 	}
+	upgrades = {
+		building_stellarite_giga_fortress_lab
+	}
 	planet_modifier = {
-		planet_housing_add = 35
-		planet_amenities_add = 35
-		job_maintenance_drone_add = 5
+		planet_amenities_add = 100
+		planet_housing_add = 100
+		planet_stability_add = 50
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		job_acot_giga_fortress_operator_add = 3
+		job_acot_enforcer_add = 10
+		job_acot_overseer_add = 2
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		job_acot_giga_fortress_operator_drone_add = 3
+		job_acot_enforcer_drone_add = 10
+		job_acot_overseer_droid_add = 2
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		job_acot_giga_fortress_operator_drone_add = 3
+		job_acot_enforcer_drone_add = 10
+		job_acot_overseer_droid_add = 2
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_fallen_empire = yes
+			}
+		}
+		job_acot_giga_fortress_operator_ancient_add = 3
+	}
+	army_modifier = {
+		army_defense_morale_mult = 1
+		army_defense_health_mult = 0.5
+		army_defense_damage_mult = 0.5
+	}
+	country_modifier = {
+		country_admin_cap_add = 50
 	}
 	resources = {
 		category = planet_buildings
-		cost = {
-			minerals = 550
-			sr_dark_matter = 50
-			acot_sr_dark_energy = 50
+		produces = {
+			unity = 100
+			influence = 2
+			food = 50
 		}
-		upkeep = {
-			energy = 2
-			sr_dark_matter = 2
-			acot_sr_dark_energy = 2
+		cost = {
+			minerals = 15000
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
 		}
 	}
 	prerequisites = {
-		"tech_ae_ancient_cryo_chamber"
+		"tech_giga_fortress"
 	}
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
+		weight = 15
+	}
+}
+
+building_giga_fortress_obelisk = {
+	base_buildtime = 1200
+	add_to_first_building_slot = yes
+	can_be_ruined = no
+	can_be_disabled = no
+	can_demolish = no
+	can_build = no
+	planetary_ftl_inhibitor = yes
+	category = army
+	potential = {
+		owner = {
+			has_technology = tech_giga_fortress
 		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
+	upgrades = {
+		building_stellarite_giga_fortress_obelisk
+	}
+	planet_modifier = {
+		planet_amenities_add = 20
+		planet_housing_add = 20
+		planet_stability_add = 100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_gestalt = no
+			}
 		}
-		modifier = {
-			factor = 0
-			free_housing > 1
+		job_acot_giga_fortress_operator_add = 5
+		job_acot_enforcer_add = 15
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_gestalt = yes
+			}
 		}
+		job_acot_giga_fortress_operator_drone_add = 5
+		job_acot_enforcer_drone_add = 15
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_fallen_empire = yes
+			}
+		}
+		job_acot_giga_fortress_operator_ancient_add = 5
+	}
+	army_modifier = {
+		army_defense_morale_mult = 1.5
+		army_defense_health_mult = 1.5
+		army_defense_damage_mult = 1.5
+		army_starting_experience_add = 10000
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+			unity = 50
+			influence = 1
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+			food = 50
+		}
+		cost = {
+			minerals = 15000
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
+		}
+	}
+	prerequisites = {
+		"tech_giga_fortress"
+	}
+	ai_weight = {
+		weight = 150000
 	}
 }
