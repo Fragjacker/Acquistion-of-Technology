@@ -881,6 +881,150 @@ building_ae_ancient_cryo_chamber = {
 	}
 }
 
+building_ae_mansion = {
+	base_buildtime = 520
+	can_build = no
+	category = amenity
+	convert_to = {
+		building_ae_hive_depot
+		building_ae_ancient_cryo_chamber
+	}
+	potential = {
+		owner = {
+			is_regular_empire = yes
+			NOT = {
+				has_valid_civic = civic_shared_burden
+			}
+		}
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
+	upgrades = {
+		building_stellarite_mansion
+	}
+	planet_modifier = {
+		planet_housing_add = 30
+		planet_amenities_add = 30
+		job_acot_entertainer_add = 4
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			unity = 30
+		}
+		cost = {
+			minerals = 50
+			sr_dark_matter = 450
+		}
+		upkeep = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			acot_sr_dark_energy = 2
+			sr_dark_matter = 2
+		}
+	}
+	prerequisites = {
+		"tech_ae_dark_mansion"
+	}
+	show_tech_unlock_if = {
+		owner = {
+			is_regular_empire = yes
+			NOT = {
+				has_valid_civic = civic_shared_burden
+			}
+		}
+	}
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 300000
+			free_amenities < 0
+		}
+		modifier = {
+			factor = 500000
+			free_housing < 1
+		}
+		modifier = {
+			factor = 0
+			free_housing > 1
+		}
+	}
+}
+
+building_ae_hive_depot = {
+	base_buildtime = 520
+	can_build = no
+	category = amenity
+	potential = {
+		owner = {
+			is_hive_empire = yes
+		}
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
+	upgrades = {
+		building_stellarite_hive_depot
+	}
+	show_tech_unlock_if = {
+		owner = {
+			is_hive_empire = yes
+		}
+	}
+	convert_to = {
+		building_ae_mansion
+		building_ae_ancient_cryo_chamber
+	}
+	planet_modifier = {
+		planet_housing_add = 30
+		planet_amenities_add = 30
+		job_acot_entertainer_drone_add = 4
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			unity = 30
+		}
+		cost = {
+			minerals = 50
+			sr_dark_matter = 450
+		}
+		upkeep = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			acot_sr_dark_energy = 2
+			sr_dark_matter = 2
+		}
+	}
+	prerequisites = {
+		tech_ae_hive_depot
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 20000
+			free_housing < 0
+		}
+		modifier = {
+			factor = 30000
+			free_amenities < 2
+		}
+		modifier = {
+			factor = 0
+			free_housing > 1
+		}
+	}
+}
+
 #####################
 # Military
 #####################
