@@ -47,3 +47,351 @@ country_event = {
 		}
 	}
 }
+
+# Turn all planet pops into main species
+planet_event = {
+	id = aot_events.3
+	title = aot_mod_options.3.title
+	desc = aot_mod_options.3.desc
+	picture = GFX_evt_society_research
+	is_triggered_only = yes
+	option = {
+		name = acot_mod_options.3.1.name
+		custom_tooltip = acot_mod_options.3.1.explain
+		allow = {
+			fail_text = {
+				text = not_has_shitty_leaders
+			}
+			owner = {
+				any_owned_leader = {
+					is_organic_species = yes
+					OR = {
+						has_trait = leader_trait_arrested_development						#leader_trait_eager
+						has_trait = leader_trait_substance_abuser						#leader_trait_resilient
+						has_trait = leader_trait_stubborn						#leader_trait_adaptable
+						has_trait = leader_trait_paranoid						#leader_trait_carefree
+						has_trait = leader_trait_nervous						#leader_trait_unyielding
+						has_trait = leader_trait_lethargic						#leader_trait_gale_speed
+						has_trait = leader_trait_corrupt						#leader_trait_righteous
+						has_trait = leader_trait_armchair_commander						#leader_trait_glory_seeker
+					}
+				}
+				resource_stockpile_compare = {
+					resource = influence
+					value >= 150
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				influence = -150
+			}
+			every_owned_leader = {
+				limit = {
+					is_organic_species = yes
+				}
+				if = {
+					limit = {
+						has_trait = leader_trait_arrested_development
+					}
+					remove_trait = leader_trait_arrested_development
+					add_trait = leader_trait_eager
+				}
+				if = {
+					limit = {
+						has_trait = leader_trait_substance_abuser
+					}
+					remove_trait = leader_trait_substance_abuser
+					add_trait = leader_trait_resilient
+				}
+				if = {
+					limit = {
+						has_trait = leader_trait_stubborn
+					}
+					remove_trait = leader_trait_stubborn
+					add_trait = leader_trait_adaptable
+				}
+				if = {
+					limit = {
+						has_trait = leader_trait_nervous
+					}
+					remove_trait = leader_trait_nervous
+					add_trait = leader_trait_carefree
+				}
+				if = {
+					limit = {
+						has_trait = leader_trait_paranoid
+					}
+					remove_trait = leader_trait_paranoid
+					add_trait = leader_trait_unyielding
+				}
+				if = {
+					limit = {
+						has_trait = leader_trait_lethargic
+					}
+					remove_trait = leader_trait_lethargic
+					add_trait = leader_trait_gale_speed
+				}
+				if = {
+					limit = {
+						has_trait = leader_trait_corrupt
+					}
+					remove_trait = leader_trait_corrupt
+					add_trait = leader_trait_righteous
+				}
+				if = {
+					limit = {
+						has_trait = leader_trait_armchair_commander
+					}
+					remove_trait = leader_trait_armchair_commander
+					add_trait = leader_trait_glory_seeker
+				}
+			}
+			hidden_effect = {
+			}
+		}
+	}
+	option = {
+		name = acot_mod_options.3.2.name
+		custom_tooltip = acot_mod_options.3.2.explain
+		allow = {
+			fail_text = {
+				text = too_soon_to_do_that_nub
+			}
+			NOT = {
+				has_modifier = jumpstarted_exp_development
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = influence
+					value >= 250
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				influence = -250
+			}
+		}
+		add_modifier = {
+			modifier = jumpstarted_exp_development
+			days = 1800
+		}
+		hidden_effect = {
+			owner = {
+				every_owned_leader = {
+					limit = {
+						is_organic_species = yes
+					}
+					add_experience = 2500
+				}
+				every_owned_leader = {
+					limit = {
+						leader_class = scientist
+						has_level >= 6
+					}
+					add_trait = leader_trait_spark_of_genius
+				}
+			}
+		}
+	}
+	option = {
+		name = aot_mod_options.chrysalis.name
+		custom_tooltip = aot_mod_options.chrysalis.explain
+		allow = {
+			fail_text = {
+				text = too_soon_to_do_that_nub
+			}
+			NOT = {
+				has_modifier = chrysalis_protocol_activated
+			}
+			owner = {
+				any_owned_pop = {
+					is_organic_species = yes
+					NOT = {
+						is_same_species = owner_species
+					}
+				}
+				any_owned_pop = {
+					is_organic_species = yes
+					is_same_species = owner_species
+				}
+				custom_tooltip_fail = {
+					text = no_xenos_in_empire
+				}
+				resource_stockpile_compare = {
+					resource = influence
+					value >= 250
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				influence = -250
+			}
+		}
+		hidden_effect = {
+			add_modifier = {
+				modifier = chrysalis_protocol_activated
+				days = 1800
+			}
+			random_owned_pop = {
+				limit = {
+					is_organic_species = yes
+					is_same_species = owner_species
+				}
+				species = {
+					save_event_target_as = chrysalis_pop_species
+				}
+			}
+			every_owned_pop = {
+				root = {
+					if = {
+						limit = {
+							exists = event_target:chrysalis_pop_species
+						}
+						create_pop = {
+							species = event_target:chrysalis_pop_species
+						}
+					}
+					else = {
+						create_pop = {
+							species = owner_species
+						}
+					}
+					if = {
+						limit = {
+							last_created_pop = {
+								NOT = {
+									ideal_planet_class = root
+								}
+							}
+							NOR = {
+								uses_district_set = habitat
+								uses_district_set = ring_world
+								uses_district_set = city_world
+								uses_district_set = hive_world
+								uses_district_set = machine_world
+								is_planet_class = pc_gaia
+								is_planet_class = pc_relic
+							}
+							owner = {
+								has_technology = tech_glandular_acclimation
+								NOT = {
+									ideal_planet_class = root
+								}
+							}
+						}
+						last_created_pop = {
+							modify_species = {
+								ideal_planet_class = root
+							}
+						}
+					}
+				}
+				kill_pop = yes
+			}
+		}
+	}
+	option = {
+		name = acot_mod_options.exit
+		custom_tooltip = acot_mod_options.exit.tooltip
+	}
+}
+
+# On Bio Leader deth
+country_event = {
+	id = aot_events.4
+	is_triggered_only = yes
+	title = aot_mod_options.resurrect.title
+	desc = aot_mod_options.resurrect.desc
+	picture = GFX_evt_machine_sapience
+	trigger = {
+		ROOT = {
+			any_owned_planet = {
+				has_building = building_stellarite_clone_vats
+			}
+		}
+	}
+	immediate = {
+	}
+	option = {
+		name = aot_mod_options.resurrect.1.a
+		custom_tooltip = aot_mod_options.resurrect.1.a.explain
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 50000
+			}
+			resource_stockpile_compare = {
+				resource = acot_sr_stellarite
+				value >= 10000
+			}
+		}
+		add_resource = {
+			energy = -50000
+			acot_sr_stellarite = -10000
+		}
+		if = {
+			limit = {
+				FROM = {
+					leader_class = scientist
+				}
+			}
+			clone_leader = {
+				target = from
+				class = scientist
+			}
+		}
+		if = {
+			limit = {
+				FROM = {
+					leader_class = general
+				}
+			}
+			clone_leader = {
+				target = from
+				class = general
+			}
+		}
+		if = {
+			limit = {
+				FROM = {
+					leader_class = admiral
+				}
+			}
+			clone_leader = {
+				target = from
+				class = admiral
+			}
+		}
+		if = {
+			limit = {
+				FROM = {
+					leader_class = governor
+				}
+			}
+			clone_leader = {
+				target = from
+				class = governor
+			}
+		}
+		if = {
+			limit = {
+				FROM = {
+					leader_class = ruler
+				}
+			}
+			clone_leader = {
+				target = from
+				class = ruler
+			}
+		}
+		last_created_leader = {
+			add_trait = leader_trait_cell_activated
+		}
+	}
+	option = {
+		name = aot_mod_options.resurrect.1.b
+	}
+}
