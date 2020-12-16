@@ -221,13 +221,16 @@ planet_event = {
 				}
 				resource_stockpile_compare = {
 					resource = influence
-					value >= 250
+					value >= 200
 				}
-			}
-		}
-		owner = {
-			add_resource = {
-				influence = -250
+				resource_stockpile_compare = {
+					resource = acot_sr_stellarite
+					value >= 5000
+				}
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 10000
+				}
 			}
 		}
 		hidden_effect = {
@@ -292,6 +295,16 @@ planet_event = {
 				kill_pop = yes
 			}
 		}
+		owner = {
+			add_resource = {
+				influence = -200
+				acot_sr_stellarite = -5000
+				energy = -10000
+			}
+			country_event = {
+				id = aot_events.5
+			}
+		}
 	}
 	option = {
 		name = acot_mod_options.exit
@@ -305,7 +318,8 @@ country_event = {
 	is_triggered_only = yes
 	title = aot_mod_options.resurrect.title
 	desc = aot_mod_options.resurrect.desc
-	picture = GFX_evt_machine_sapience
+	picture = GFX_evt_space_funeral
+	show_sound = event_bad_omen
 	trigger = {
 		ROOT = {
 			any_owned_planet = {
@@ -332,66 +346,84 @@ country_event = {
 			energy = -50000
 			acot_sr_stellarite = -10000
 		}
-		if = {
-			limit = {
-				FROM = {
-					leader_class = scientist
+		hidden_effect = {
+			if = {
+				limit = {
+					FROM = {
+						leader_class = scientist
+					}
+				}
+				clone_leader = {
+					target = from
+					class = scientist
 				}
 			}
-			clone_leader = {
-				target = from
-				class = scientist
-			}
-		}
-		if = {
-			limit = {
-				FROM = {
-					leader_class = general
+			if = {
+				limit = {
+					FROM = {
+						leader_class = general
+					}
+				}
+				clone_leader = {
+					target = from
+					class = general
 				}
 			}
-			clone_leader = {
-				target = from
-				class = general
-			}
-		}
-		if = {
-			limit = {
-				FROM = {
-					leader_class = admiral
+			if = {
+				limit = {
+					FROM = {
+						leader_class = admiral
+					}
+				}
+				clone_leader = {
+					target = from
+					class = admiral
 				}
 			}
-			clone_leader = {
-				target = from
-				class = admiral
-			}
-		}
-		if = {
-			limit = {
-				FROM = {
-					leader_class = governor
+			if = {
+				limit = {
+					FROM = {
+						leader_class = governor
+					}
+				}
+				clone_leader = {
+					target = from
+					class = governor
 				}
 			}
-			clone_leader = {
-				target = from
-				class = governor
-			}
-		}
-		if = {
-			limit = {
-				FROM = {
-					leader_class = ruler
+			if = {
+				limit = {
+					FROM = {
+						leader_class = ruler
+					}
+				}
+				clone_leader = {
+					target = from
+					class = ruler
 				}
 			}
-			clone_leader = {
-				target = from
-				class = ruler
+			last_created_leader = {
+				add_trait = leader_trait_cell_activated
 			}
-		}
-		last_created_leader = {
-			add_trait = leader_trait_cell_activated
 		}
 	}
 	option = {
 		name = aot_mod_options.resurrect.1.b
+	}
+}
+
+#Chrysalis event window
+country_event = {
+	id = aot_events.5
+	is_triggered_only = yes
+	title = aot_mod_options.chrysalis_happened.title
+	desc = aot_mod_options.chrysalis_happened.desc
+	picture = GFX_evt_chrysalis_protocol
+	show_sound = event_energy_field
+	option = {
+		name = aot_mod_options.chrysalis_happened.1.b
+		name = aot_mod_options.chrysalis_happened.1.c
+		name = aot_mod_options.chrysalis_happened.1.d
+		name = aot_mod_options.chrysalis_happened.1.e
 	}
 }
