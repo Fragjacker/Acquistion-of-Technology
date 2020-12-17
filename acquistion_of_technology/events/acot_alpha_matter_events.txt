@@ -20,6 +20,9 @@ country_event = {
 	show_sound = event_mystery
 	trigger = {
 		AND = {
+			NOT = {
+				has_global_flag = acot_mysteries_ancients_forbidden
+			}
 			OR = {
 				is_country_type = default
 				is_country_type = ascended_empire
@@ -56,6 +59,7 @@ country_event = {
 					has_building = building_master_archive
 					has_building = building_ancient_cryo_chamber
 					has_building = building_dm_stronghold
+					has_building = building_fe_stronghold
 					has_building = building_giga_fortress_fe
 					# ACOT/AOT/ZOFE automated Buildings here
 					has_building = building_fe_class_4_singularity
@@ -309,6 +313,7 @@ country_event = {
 			is_ai = yes
 		}
 		add_research_option = tech_precursor_design
+		add_research_option = tech_dark_matter_power_core_ae
 		set_country_flag = learned_dm_alpha_existence
 	}
 }
@@ -1288,6 +1293,7 @@ country_event = {
 		# establish comms
 		every_country = {
 			limit = {
+				is_playable_country = yes
 				OR = {
 					has_communications = event_target:current_uprising_originator
 					intel_level = {
@@ -1676,6 +1682,8 @@ country_event = {
 							owner = root
 							type = fe_godmech
 						}
+					}
+					last_created_army = {
 						assign_leader = last_created_leader
 					}
 				}
