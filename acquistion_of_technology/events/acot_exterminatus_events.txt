@@ -10,6 +10,9 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
+		NOT = {
+			has_global_flag = acot_exterminatus_forbidden
+		}
 		OR = {
 			has_orbital_bombardment_stance = exterminatus
 			has_orbital_bombardment_stance = punishment
@@ -73,13 +76,6 @@ planet_event = {
 			}
 			change_pc = pc_dark_fractured_unstable
 			reset_planet = yes
-			add_modifier = {
-				modifier = acot_modifier_fractured_cooldown
-			}
-			planet_event = {
-				id = acot_exterminatus_event.1000
-				days = 3600
-			}
 		}
 		else_if = {
 			limit = {
@@ -105,13 +101,6 @@ planet_event = {
 				is_memeable_planet = yes
 			}
 			change_pc = pc_dark_fractured_ae_unstable
-			add_modifier = {
-				modifier = acot_modifier_fractured_cooldown
-			}
-			planet_event = {
-				id = acot_exterminatus_event.1000
-				days = 7200
-			}
 			reset_planet = yes
 		}
 		else_if = {
@@ -142,6 +131,9 @@ planet_event = {
 	trigger = {
 		planet_devastation >= 100
 		has_orbital_bombardment_stance = punishment
+		NOT = {
+			has_global_flag = acot_exterminatus_forbidden
+		}
 		FROM = {
 			NOT = {
 				has_technology = tech_bombardment_ae_final
@@ -206,6 +198,10 @@ planet_event = {
 					factor = 0
 					has_building = building_ae_dark_energy_psg
 				}
+				modifier = {
+					factor = 0
+					has_building = building_stellarite_psg
+				}
 				if = {
 					limit = {
 						NOT = {
@@ -256,13 +252,6 @@ planet_event = {
 					}
 					change_pc = pc_dark_fractured_unstable
 					reset_planet = yes
-					add_modifier = {
-						modifier = acot_modifier_fractured_cooldown
-					}
-					planet_event = {
-						id = acot_exterminatus_event.1000
-						days = 3600
-					}
 				}
 				else_if = {
 					limit = {
@@ -290,6 +279,9 @@ planet_event = {
 	trigger = {
 		planet_devastation >= 100
 		has_orbital_bombardment_stance = exterminatus
+		NOT = {
+			has_global_flag = acot_exterminatus_forbidden
+		}
 		FROM = {
 			NOT = {
 				has_technology = tech_bombardment_ae_final
@@ -311,6 +303,10 @@ planet_event = {
 		}
 		random_list = {
 			80 = {
+				modifier = {
+					factor = 0
+					num_pops <= 20
+				}
 				IF = {
 					limit = {
 						has_building = building_dark_energy_psg
@@ -338,6 +334,7 @@ planet_event = {
 						NOR = {
 							has_building = building_dark_energy_psg
 							has_building = building_ae_dark_energy_psg
+							has_building = building_stellarite_psg
 						}
 					}
 					while = {
@@ -356,6 +353,10 @@ planet_event = {
 				modifier = {
 					factor = 0.25
 					has_building = building_ae_dark_energy_psg
+				}
+				modifier = {
+					factor = 0.05
+					has_building = building_stellarite_psg
 				}
 				if = {
 					limit = {
@@ -406,13 +407,6 @@ planet_event = {
 						is_memeable_planet = yes
 					}
 					change_pc = pc_dark_fractured_ae_unstable
-					add_modifier = {
-						modifier = acot_modifier_fractured_cooldown
-					}
-					planet_event = {
-						id = acot_exterminatus_event.1000
-						days = 7200
-					}
 					reset_planet = yes
 				}
 				else_if = {
@@ -608,10 +602,14 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
+		NOT = {
+			has_global_flag = acot_exterminatus_forbidden
+		}
 		FROM = {
 			owner = {
 				OR = {
 					is_country_type = default
+					is_country_type = primitive
 					is_country_type = fallen_empire
 					is_country_type = awakened_fallen_empire
 					is_country_type = ascended_empire
@@ -728,6 +726,9 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
+		NOT = {
+			has_global_flag = acot_exterminatus_forbidden
+		}
 		OR = {
 			has_orbital_bombardment_stance = exterminatus
 			has_orbital_bombardment_stance = punishment
@@ -824,13 +825,6 @@ country_event = {
 						is_memeable_planet = yes
 					}
 					change_pc = pc_dark_fractured_unstable
-					add_modifier = {
-						modifier = acot_modifier_fractured_cooldown
-					}
-					planet_event = {
-						id = acot_exterminatus_event.1000
-						days = 3600
-					}
 				}
 				else = {
 					if = {
@@ -879,18 +873,17 @@ country_event = {
 				destroy_colony = yes
 				reset_planet = yes
 				clear_planet_modifiers = yes
+				remove_modifier = "natural_beauty"
+				remove_modifier = "acot_modifier_ascended_city"
+				remove_modifier = "atmospheric_aphrodisiac"
+				remove_modifier = "atmospheric_hallucinogen"
+				remove_modifier = "lush_planet"
+				remove_modifier = "dangerous_wildlife"
 				if = {
 					limit = {
 						is_memeable_planet = yes
 					}
 					change_pc = pc_dark_fractured_ae_unstable
-					add_modifier = {
-						modifier = acot_modifier_fractured_cooldown
-					}
-					planet_event = {
-						id = acot_exterminatus_event.1000
-						days = 7200
-					}
 				}
 				else = {
 					if = {
@@ -1065,6 +1058,11 @@ planet_event = {
 					}
 				}
 			}
+			every_playable_country = {
+				country_event = {
+					id = acot_exterminatus_event.1002
+				}
+			}
 		}
 	}
 }
@@ -1092,5 +1090,545 @@ planet_event = {
 	}
 	immediate = {
 		set_owner = attacker
+	}
+}
+
+# Planet is turned into tomb world by Annihilatus bombing stance (former owner)
+country_event = {
+	id = acot_exterminatus_event.1002
+	title = exterminatus_event.1002.name
+	picture = GFX_evt_planet_beam
+	desc = exterminatus_event.1002.desc
+	show_sound = event_mystery
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = EXCELLENT
+	}
+}
+
+####################################################
+# CAnnihilatust
+country_event = {
+	id = acot_exterminatus_event.1003
+	title = "exterminatus_event.1003.name"
+	picture = GFX_evt_planet_beam
+	desc = exterminatus_event.1003.desc
+	show_sound = event_super_explosion
+	location = event_target:showered_planet
+	is_triggered_only = yes
+	immediate = {
+		event_target:showered_planet = {
+			remove_planet_flag = final_word_underway
+		}
+	}
+	option = {
+		name = exterminatus_event.1003.a
+		custom_tooltip = exterminatus_event.1003.a.explain
+		hidden_effect = {
+			event_target:showered_planet = {
+				every_owned_pop = {
+					kill_pop = yes
+				}
+				remove_all_buildings = yes
+				reroll_deposits = yes
+				destroy_colony = yes
+				clear_planet_modifiers = yes
+				change_pc = pc_shattered
+			}
+		}
+	}
+	option = {
+		name = exterminatus_event.1003.b
+		custom_tooltip = exterminatus_event.1003.b.explain
+		allow = {
+			resource_stockpile_compare = {
+				resource = acot_sr_dark_energy
+				value >= 5000
+			}
+			resource_stockpile_compare = {
+				resource = sr_dark_matter
+				value >= 5000
+			}
+		}
+		trigger = {
+			event_target:showered_planet = {
+				NOT = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+		}
+		add_resource = {
+			sr_dark_matter = -1000
+			acot_sr_dark_energy = -1000
+		}
+		hidden_effect = {
+			event_target:showered_planet = {
+				every_owned_pop = {
+					kill_pop = yes
+				}
+				remove_all_buildings = yes
+				reroll_deposits = yes
+				destroy_colony = yes
+				clear_planet_modifiers = yes
+				change_pc = pc_dark_fractured_unstable
+			}
+		}
+	}
+	option = {
+		name = exterminatus_event.1003.c
+		custom_tooltip = exterminatus_event.1003.c.explain
+		allow = {
+			if = {
+				limit = {
+					event_target:showered_planet = {
+						NOT = {
+							is_planet_class = pc_dark_fractured
+						}
+					}
+				}
+				resource_stockpile_compare = {
+					resource = acot_sr_dark_energy
+					value >= 5000
+				}
+				resource_stockpile_compare = {
+					resource = sr_dark_matter
+					value >= 5000
+				}
+			}
+			if = {
+				limit = {
+					event_target:showered_planet = {
+						is_planet_class = pc_dark_fractured
+					}
+				}
+				resource_stockpile_compare = {
+					resource = acot_sr_dark_energy
+					value >= 500
+				}
+				resource_stockpile_compare = {
+					resource = sr_dark_matter
+					value >= 500
+				}
+			}
+		}
+		if = {
+			limit = {
+				event_target:showered_planet = {
+					NOT = {
+						is_planet_class = pc_dark_fractured
+					}
+				}
+			}
+			add_resource = {
+				sr_dark_matter = -5000
+				acot_sr_dark_energy = -5000
+			}
+		}
+		if = {
+			limit = {
+				event_target:showered_planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			add_resource = {
+				sr_dark_matter = -500
+				acot_sr_dark_energy = -500
+			}
+		}
+		hidden_effect = {
+			event_target:showered_planet = {
+				every_owned_pop = {
+					kill_pop = yes
+				}
+				remove_all_buildings = yes
+				reroll_deposits = yes
+				destroy_colony = yes
+				reset_planet = yes
+				clear_planet_modifiers = yes
+				remove_modifier = "natural_beauty"
+				remove_modifier = "acot_modifier_ascended_city"
+				remove_modifier = "atmospheric_aphrodisiac"
+				remove_modifier = "atmospheric_hallucinogen"
+				remove_modifier = "lush_planet"
+				remove_modifier = "dangerous_wildlife"
+				change_pc = pc_dark_fractured_ae_unstable
+			}
+		}
+	}
+	option = {
+		name = exterminatus_event.1003.c
+		custom_tooltip = exterminatus_event.1003.c.explain
+		hidden_effect = {
+			event_target:showered_planet = {
+				every_owned_pop = {
+					kill_pop = yes
+				}
+				remove_all_buildings = yes
+				reroll_deposits = yes
+				destroy_colony = yes
+				reset_planet = yes
+				clear_planet_modifiers = yes
+				remove_modifier = "natural_beauty"
+				remove_modifier = "acot_modifier_ascended_city"
+				remove_modifier = "atmospheric_aphrodisiac"
+				remove_modifier = "atmospheric_hallucinogen"
+				remove_modifier = "lush_planet"
+				remove_modifier = "dangerous_wildlife"
+				change_pc = pc_dark_fractured_ae_unstable
+			}
+		}
+	}
+	option = {
+		name = exterminatus_event.1003.c
+		custom_tooltip = exterminatus_event.1003.c.explain
+		hidden_effect = {
+			event_target:showered_planet = {
+				every_owned_pop = {
+					kill_pop = yes
+				}
+				remove_all_buildings = yes
+				reroll_deposits = yes
+				destroy_colony = yes
+				reset_planet = yes
+				clear_planet_modifiers = yes
+				remove_modifier = "natural_beauty"
+				remove_modifier = "acot_modifier_ascended_city"
+				remove_modifier = "atmospheric_aphrodisiac"
+				remove_modifier = "atmospheric_hallucinogen"
+				remove_modifier = "lush_planet"
+				remove_modifier = "dangerous_wildlife"
+				change_pc = pc_dark_fractured_ae_unstable
+			}
+		}
+	}
+	option = {
+		name = exterminatus_event.1003.d
+		custom_tooltip = exterminatus_event.1003.d.explain
+		add_resource = {
+			influence = 250
+		}
+		hidden_effect = {
+		}
+	}
+}
+
+# Planet turns into stable form and starts spawning shits
+planet_event = {
+	id = acot_exterminatus_event.1004
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		remove_planet_flag = destablize_underway
+		save_event_target_as = showered_planet
+		if = {
+			limit = {
+				is_planet_class = pc_dark_fractured_unstable
+			}
+			change_pc = pc_dark_fractured
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_dark_fractured_ae_unstable
+			}
+			change_pc = pc_dark_fractured_ae
+		}
+		IF = {
+			limit = {
+				NOT = {
+					exists = event_target:lifeform_country
+				}
+			}
+			create_country = {
+				type = void_lifeforms_1
+				flag = {
+					icon = {
+						category = "spherical"
+						file = "flag_spherical_23.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "v.dds"
+					}
+					colors = {
+						"black"
+						"teal"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					save_global_event_target_as = lifeform_country
+					every_playable_country = {
+						establish_communications_no_message = event_target:lifeform_country
+					}
+				}
+			}
+			create_species = {
+				name = "NAME_Titans"
+				class = random_non_machine
+				portrait = random
+				traits = random
+			}
+		}
+		while = {
+			count = 2
+			random_list = {
+				33 = {
+					modifier = {
+						factor = 0
+						has_deposit = d_acot_void_chasm
+					}
+					add_deposit = d_acot_void_chasm
+				}
+				33 = {
+					modifier = {
+						factor = 0
+						has_deposit = d_acot_void_rift
+					}
+					add_deposit = d_acot_void_rift
+				}
+				33 = {
+					modifier = {
+						factor = 0
+						has_deposit = d_acot_void_terrain
+					}
+					add_deposit = d_acot_void_terrain
+				}
+			}
+		}
+		while = {
+			count = 3
+			random_list = {
+				20 = {
+					if = {
+						limit = {
+							NOT = {
+								has_modifier = acot_modifier_fractured_mutants
+							}
+						}
+						add_modifier = {
+							modifier = acot_modifier_fractured_mutants
+							days = -1
+						}
+					}
+				}
+				20 = {
+					if = {
+						limit = {
+							NOT = {
+								has_modifier = acot_modifier_fractured_lifeforms
+							}
+						}
+						add_modifier = {
+							modifier = acot_modifier_fractured_lifeforms
+							days = -1
+						}
+					}
+				}
+				20 = {
+					if = {
+						limit = {
+							NOT = {
+								has_modifier = acot_modifier_fractured_sentient_crystal
+							}
+						}
+						add_modifier = {
+							modifier = acot_modifier_fractured_sentient_crystal
+							days = -1
+						}
+					}
+				}
+				20 = {
+					if = {
+						limit = {
+							NOT = {
+								has_modifier = acot_modifier_fractured_machines
+							}
+						}
+						add_modifier = {
+							modifier = acot_modifier_fractured_machines
+							days = -1
+						}
+					}
+				}
+				20 = {
+					if = {
+						limit = {
+							NOT = {
+								has_modifier = acot_modifier_fractured_plants
+							}
+						}
+						add_modifier = {
+							modifier = acot_modifier_fractured_plants
+							days = -1
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Planet turns into stable form and starts spawning shits
+planet_event = {
+	id = acot_exterminatus_event.1005
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		remove_planet_flag = destablize_underway
+		save_event_target_as = showered_planet
+		event_target:showered_planet = {
+			if = {
+				limit = {
+					is_planet_class = pc_dark_fractured_unstable
+				}
+				change_pc = pc_dark_fractured
+			}
+			if = {
+				limit = {
+					is_planet_class = pc_dark_fractured_ae_unstable
+				}
+				change_pc = pc_dark_fractured_ae
+			}
+			IF = {
+				limit = {
+					NOT = {
+						exists = event_target:lifeform_country
+					}
+				}
+				create_country = {
+					type = void_lifeforms_1
+					flag = {
+						icon = {
+							category = "spherical"
+							file = "flag_spherical_23.dds"
+						}
+						background = {
+							category = "backgrounds"
+							file = "v.dds"
+						}
+						colors = {
+							"black"
+							"teal"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						save_global_event_target_as = lifeform_country
+						every_playable_country = {
+							establish_communications_no_message = event_target:lifeform_country
+						}
+					}
+				}
+				create_species = {
+					name = "NAME_Titans"
+					class = random_non_machine
+					portrait = random
+					traits = random
+				}
+			}
+			while = {
+				count = 2
+				random_list = {
+					33 = {
+						modifier = {
+							factor = 0
+							has_deposit = d_acot_void_chasm
+						}
+						add_deposit = d_acot_void_chasm
+					}
+					33 = {
+						modifier = {
+							factor = 0
+							has_deposit = d_acot_void_rift
+						}
+						add_deposit = d_acot_void_rift
+					}
+					33 = {
+						modifier = {
+							factor = 0
+							has_deposit = d_acot_void_terrain
+						}
+						add_deposit = d_acot_void_terrain
+					}
+				}
+			}
+			while = {
+				count = 3
+				random_list = {
+					20 = {
+						if = {
+							limit = {
+								NOT = {
+									has_modifier = acot_modifier_fractured_mutants
+								}
+							}
+							add_modifier = {
+								modifier = acot_modifier_fractured_mutants
+								days = -1
+							}
+						}
+					}
+					20 = {
+						if = {
+							limit = {
+								NOT = {
+									has_modifier = acot_modifier_fractured_lifeforms
+								}
+							}
+							add_modifier = {
+								modifier = acot_modifier_fractured_lifeforms
+								days = -1
+							}
+						}
+					}
+					20 = {
+						if = {
+							limit = {
+								NOT = {
+									has_modifier = acot_modifier_fractured_sentient_crystal
+								}
+							}
+							add_modifier = {
+								modifier = acot_modifier_fractured_sentient_crystal
+								days = -1
+							}
+						}
+					}
+					20 = {
+						if = {
+							limit = {
+								NOT = {
+									has_modifier = acot_modifier_fractured_machines
+								}
+							}
+							add_modifier = {
+								modifier = acot_modifier_fractured_machines
+								days = -1
+							}
+						}
+					}
+					20 = {
+						if = {
+							limit = {
+								NOT = {
+									has_modifier = acot_modifier_fractured_plants
+								}
+							}
+							add_modifier = {
+								modifier = acot_modifier_fractured_plants
+								days = -1
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

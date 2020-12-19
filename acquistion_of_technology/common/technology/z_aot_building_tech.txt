@@ -628,30 +628,307 @@ tech_aot_ae_sky_dome = {
 }
 
 #####################
-# Stellarite
+# DM Habitat Tech
 #####################
-tech_stellarite_generator_ae = {
-	area = physics
+tech_dm_habitat = {
+	area = engineering
 	cost = @acot_tier8cost3
 	tier = 8
 	category = {
-		field_manipulation
+		voidcraft
 	}
 	weight = 5
-	ai_update_type = military
+	ai_update_type = all
 	is_rare = yes
+	gateway = habitation
 	prerequisites = {
-		tech_stellarite_reactor
-		tech_stellarite_reactor_booster
-		tech_stellarite_nexus
+		tech_dm_ancient_palace
+		tech_habitat_1
 	}
 	potential = {
-		NOT = {
-			has_global_flag = acot_shipcom_forbidden
+		is_country_type = ascended_empire
+		has_technology = tech_dark_matter_power_core
+		OR = {
+			has_technology = tech_dm_ancient_palace
+			has_technology = tech_dm_ancient_control_center
+			has_technology = tech_dm_ancient_hive_cluster
 		}
-		has_technology = tech_stellarite_reactor
 	}
 	ai_weight = {
-		factor = 200		#components are OP
+		factor = 100
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_habitat_2
+				has_technology = tech_habitat_3
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+tech_dm_habitat_upgrade_I = {
+	icon = tech_dm_habitat_upgrade
+	area = engineering
+	cost = @acot_tier8cost3
+	tier = 8
+	category = {
+		voidcraft
+	}
+	weight = 5
+	ai_update_type = all
+	is_rare = yes
+	prerequisites = {
+		tech_dm_habitat
+	}
+	potential = {
+		is_country_type = ascended_empire
+		has_technology = tech_dm_habitat
+	}
+	ai_weight = {
+		factor = 100
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_habitat_2
+				has_technology = tech_habitat_3
+				has_technology = tech_dm_habitat
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+tech_dm_habitat_upgrade_II = {
+	icon = tech_dm_habitat_upgrade
+	area = engineering
+	cost = @acot_tier8cost3
+	tier = 8
+	category = {
+		voidcraft
+	}
+	weight = 5
+	ai_update_type = all
+	is_rare = yes
+	prerequisites = {
+		tech_dm_habitat_upgrade_I
+	}
+	potential = {
+		is_country_type = ascended_empire
+		has_technology = tech_dm_habitat_upgrade_I
+	}
+	ai_weight = {
+		factor = 100
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_habitat_2
+				has_technology = tech_habitat_3
+				has_technology = tech_dm_habitat
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+#####################
+# Stellarite Habitat Tech
+#####################
+tech_stellarite_habitat = {
+	icon = tech_stellarite_habitat
+	area = engineering
+	cost = @acot_tier8cost3
+	tier = 9
+	category = {
+		voidcraft
+	}
+	weight = 5
+	ai_update_type = all
+	is_rare = yes
+	prerequisites = {
+		tech_dm_habitat_upgrade_II
+		tech_stellarite_generator_ae
+	}
+	potential = {
+		is_country_type = ascended_empire
+		has_technology = tech_dm_habitat_upgrade_II
+		has_technology = tech_stellarite_generator_ae
+	}
+	ai_weight = {
+		factor = 100
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_habitat_2
+				has_technology = tech_habitat_3
+				has_technology = tech_dm_habitat
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+tech_stellarite_habitat_upgrade_I = {
+	icon = tech_stellarite_habitat_upgrade
+	area = engineering
+	cost = @acot_tier8cost3
+	tier = 9
+	category = {
+		voidcraft
+	}
+	weight = 5
+	ai_update_type = all
+	is_rare = yes
+	prerequisites = {
+		tech_stellarite_habitat
+	}
+	potential = {
+		is_country_type = ascended_empire
+		has_technology = tech_stellarite_habitat
+		has_technology = tech_stellarite_generator_ae
+	}
+	ai_weight = {
+		factor = 100
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_stellarite_habitat
+				has_technology = tech_stellarite_generator_ae
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+tech_stellarite_habitat_upgrade_II = {
+	icon = tech_stellarite_habitat_upgrade
+	area = engineering
+	cost = @acot_tier8cost3
+	tier = 9
+	category = {
+		voidcraft
+	}
+	weight = 5
+	ai_update_type = all
+	is_rare = yes
+	prerequisites = {
+		tech_stellarite_habitat_upgrade_I
+	}
+	potential = {
+		is_country_type = ascended_empire
+		has_technology = tech_stellarite_habitat_upgrade_I
+	}
+	ai_weight = {
+		factor = 100
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_stellarite_habitat
+				has_technology = tech_stellarite_generator_ae
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
 	}
 }
