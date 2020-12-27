@@ -39,10 +39,11 @@ building_stellarite_palace = {
 		is_regular_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 50
-		planet_amenities_add = 40
-		trade_value_add = 10
-		trade_value_mult = 0.8
+		planet_housing_add = 100
+		planet_amenities_add = 100
+		planet_max_districts_add = 10
+		trade_value_add = 30
+		trade_value_mult = 2
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -53,8 +54,8 @@ building_stellarite_palace = {
 		}
 		modifier = {
 			job_stellarite_overlord_add = 1
-			job_stellarite_overseer_add = 4
-			job_stellarite_enforcer_add = 4
+			job_stellarite_overseer_add = 8
+			job_stellarite_enforcer_add = 8
 		}
 	}
 	triggered_planet_modifier = {
@@ -64,45 +65,72 @@ building_stellarite_palace = {
 				is_mechanical_empire = yes
 			}
 		}
-		job_stellarite_roboman_add = 1
+		job_stellarite_roboman_add = 2
 	}
 	resources = {
 		category = planet_buildings
 		produces = {
-			energy = 20
-			acot_sr_stellarite = 10
+			energy = 80
+			acot_sr_stellarite = 40
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured
 			}
-			energy = 10
+			energy = 40
 			sr_dark_matter = 5
 			acot_sr_dark_energy = 5
-			acot_sr_stellarite = 10
+			acot_sr_stellarite = 20
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured_ae
 			}
-			energy = 20
+			energy = 80
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
-			acot_sr_stellarite = 20
+			acot_sr_stellarite = 40
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_acot_enigmopolis
 			}
-			energy = 60
+			energy = 240
 			sr_dark_matter = 30
 			acot_sr_dark_energy = 30
-			acot_sr_stellarite = 50
+			acot_sr_stellarite = 120
 		}
 		cost = {
 			energy = 5000
 			minerals = 10000
-			acot_sr_stellarite = 2000
+			acot_sr_stellarite = 10000
+		}
+	}
+	##### FOR FE ###
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = no
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_overseer_add = 16
+			job_fe_protector_add = 16
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_sky_cardinal_add = 16
+			job_fe_protector_add = 16
 		}
 	}
 	ai_weight = {
@@ -144,8 +172,9 @@ building_stellarite_control_center = {
 		is_machine_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 30
-		planet_amenities_add = 30
+		planet_housing_add = 100
+		planet_amenities_add = 100
+		planet_max_districts_add = 5
 	}
 	##### FOR DEFEARTHH ###
 	triggered_planet_modifier = {
@@ -157,48 +186,60 @@ building_stellarite_control_center = {
 		}
 		modifier = {
 			job_stellarite_overlord_droid_add = 1
-			job_stellarite_overseer_droid_add = 4
-			job_stellarite_enforcer_drone_add = 4
-			job_stellarite_robodrone_add = 1
+			job_stellarite_overseer_droid_add = 8
+			job_stellarite_enforcer_drone_add = 8
+			job_stellarite_robodrone_add = 2
 		}
 	}
 	resources = {
 		category = planet_buildings
 		produces = {
-			energy = 20
-			acot_sr_stellarite = 10
+			energy = 80
+			acot_sr_stellarite = 40
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured
 			}
-			energy = 10
+			energy = 40
 			sr_dark_matter = 5
 			acot_sr_dark_energy = 5
-			acot_sr_stellarite = 10
+			acot_sr_stellarite = 20
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured_ae
 			}
-			energy = 20
+			energy = 80
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
-			acot_sr_stellarite = 20
+			acot_sr_stellarite = 40
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_acot_enigmopolis
 			}
-			energy = 60
+			energy = 240
 			sr_dark_matter = 30
 			acot_sr_dark_energy = 30
-			acot_sr_stellarite = 50
+			acot_sr_stellarite = 120
 		}
 		cost = {
 			energy = 5000
 			minerals = 10000
-			acot_sr_stellarite = 2000
+			acot_sr_stellarite = 10000
+		}
+	}
+	##### FOR FE ###
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_guardian_bot_add = 40
 		}
 	}
 	ai_weight = {
@@ -241,49 +282,50 @@ building_stellarite_hive_cluster = {
 		is_hive_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 30
-		planet_amenities_add = 30
+		planet_housing_add = 100
+		planet_amenities_add = 100
+		planet_max_districts_add = 5
 		job_stellarite_overlord_drone_add = 1
-		job_stellarite_overseer_drone_add = 4
-		job_stellarite_enforcer_drone_add = 4
+		job_stellarite_overseer_drone_add = 8
+		job_stellarite_enforcer_drone_add = 8
 	}
 	resources = {
 		category = planet_buildings
 		produces = {
-			energy = 20
-			acot_sr_stellarite = 10
+			energy = 80
+			acot_sr_stellarite = 40
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured
 			}
-			energy = 10
+			energy = 40
 			sr_dark_matter = 5
 			acot_sr_dark_energy = 5
-			acot_sr_stellarite = 10
+			acot_sr_stellarite = 20
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_dark_fractured_ae
 			}
-			energy = 20
+			energy = 80
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
-			acot_sr_stellarite = 20
+			acot_sr_stellarite = 40
 		}
 		produces = {
 			trigger = {
 				is_planet_class = pc_acot_enigmopolis
 			}
-			energy = 60
+			energy = 240
 			sr_dark_matter = 30
 			acot_sr_dark_energy = 30
-			acot_sr_stellarite = 50
+			acot_sr_stellarite = 120
 		}
 		cost = {
 			energy = 5000
 			minerals = 10000
-			acot_sr_stellarite = 2000
+			acot_sr_stellarite = 10000
 		}
 	}
 	ai_weight = {
