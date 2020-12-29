@@ -1,0 +1,61 @@
+###################
+# Hedonist override
+###################
+ae_hedonist = {
+	category = worker
+	is_capped_by_modifier = no
+	building_icon = building_hyper_entertainment_forum
+	clothes_texture_index = 2
+	possible = {
+		hidden_trigger = {
+			exists = owner
+		}
+		owner = {
+			OR = {
+				is_country_type = ascended_empire
+				is_country_type = lost_empire
+			}
+			is_gestalt = no
+		}
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		NOR = {
+			has_trait = trait_mechanical
+			has_trait = trait_machine_unit
+			has_pop_flag = free_energyzed_man
+			has_trait = trait_nerve_stapled
+			has_trait = trait_syncretic_proles
+		}
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			unity = 5
+		}
+		upkeep = {
+			energy = 1
+			food = 1
+			consumer_goods = 1
+		}
+	}
+	pop_modifier = {
+		pop_happiness = 0.25
+	}
+	weight = {
+		weight = 0.1
+		modifier = {
+			factor = 0
+			OR = {
+				NOT = {
+					has_pop_flag = decadent_pop
+				}
+				has_pop_flag = free_energyzed_man
+			}
+		}
+		modifier = {
+			factor = 10000
+			has_pop_flag = decadent_pop
+		}
+	}
+}
