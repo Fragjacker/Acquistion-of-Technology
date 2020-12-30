@@ -1,0 +1,596 @@
+# Omnimech
+fe_omnimech = {
+	damage = 2.5
+	health = 3.5
+	has_morale = no
+	morale_damage = 2
+	collateral_damage = 2.5
+	war_exhaustion = 1.5
+	time = 160
+	has_species = yes
+	resources = {
+		category = armies
+		cost = {
+			minerals = 350
+			sr_dark_matter = 3.5
+			acot_sr_dark_energy = 3.5
+		}
+		upkeep = {
+			energy = 3.5
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_fe_machine_dome
+			has_building = building_stellarite_machine_dome
+			has_district = district_acot_enigmapolis_fortress
+		}
+	}
+	icon_frame = 11
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		owner = {
+			has_authority = auth_machine_intelligence
+		}
+		from = {
+			has_trait = "trait_machine_unit"
+		}
+	}
+	show_tech_unlock_if = {
+		has_authority = auth_machine_intelligence
+	}
+	prerequisites = {
+		"tech_omni_warmech"
+	}
+}
+
+# Eradicator
+fe_godmech = {
+	damage = 33
+	health = 30
+	has_morale = no
+	morale_damage = 3.5
+	collateral_damage = 7.5
+	war_exhaustion = 20
+	time = 1100
+	has_species = yes
+	icon_frame = 11
+	resources = {
+		category = armies
+		produces = {
+			engineering_research = 100
+		}
+		cost = {
+			influence = 325
+		}
+	}
+	allow = {
+		has_building = building_ae_machine_dome
+		has_building = building_stellarite_machine_dome
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		owner = {
+			has_authority = auth_machine_intelligence
+		}
+		from = {
+			has_trait = "trait_machine_unit"
+		}
+		owner = {
+			check_variable = {
+				which = godmech_count
+				value >= 1
+			}
+		}
+	}
+	prerequisites = {
+		"tech_godmech"
+	}
+	on_queued = {
+		owner = {
+			subtract_variable = {
+				which = "godmech_count"
+				value = 1
+			}
+		}
+	}
+	on_unqueued = {
+		owner = {
+			change_variable = {
+				which = "godmech_count"
+				value = 1
+			}
+		}
+	}
+}
+
+############### HIVE
+# Hive-Mind Masterminds
+fe_mastermind = {
+	damage = 4
+	morale_damage = 3
+	collateral_damage = 4.5
+	war_exhaustion = 0.2
+	health = 1.75
+	has_morale = no
+	time = 85
+	icon_frame = 8
+	has_species = no
+	resources = {
+		category = armies
+		cost = {
+			minerals = 250
+			sr_dark_matter = 2.5
+			acot_sr_dark_energy = 2.5
+			influence = 5
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_fe_hive_evochamber
+			has_building = building_stellarite_hive_evochamber
+			has_district = district_acot_enigmapolis_fortress
+		}
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+	}
+	prerequisites = {
+		"tech_controller"
+	}
+}
+
+# FE Hive Mind Terror From Beyond
+fe_terror_beyond = {
+	damage = 33
+	health = 33
+	morale_damage = 3.5
+	collateral_damage = 10
+	has_morale = no
+	war_exhaustion = 18
+	time = 850
+	icon_frame = 11
+	resources = {
+		category = armies
+		produces = {
+			food = 200
+			energy = 200
+		}
+		cost = {
+			influence = 250
+		}
+	}
+	allow = {
+		has_building = building_ae_hive_evochamber
+		has_building = building_stellarite_hive_evochamber
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		owner = {
+			OR = {
+				NOT = {
+					has_authority = auth_machine_intelligence
+				}
+				has_valid_civic = civic_machine_assimilator
+			}
+		}
+		owner = {
+			check_variable = {
+				which = terror_count
+				value >= 1
+			}
+		}
+	}
+	prerequisites = {
+		"tech_terror_beyond"
+	}
+	on_queued = {
+		owner = {
+			subtract_variable = {
+				which = "terror_count"
+				value = 1
+			}
+		}
+	}
+	on_unqueued = {
+		owner = {
+			change_variable = {
+				which = "terror_count"
+				value = 1
+			}
+		}
+	}
+}
+
+############### SYNTH
+# Synthetic Omnic Armies
+fe_synthsoldier = {
+	damage = 3.25
+	health = 4.5
+	has_morale = no
+	morale_damage = 2.5
+	collateral_damage = 1.25
+	war_exhaustion = 2.5
+	time = 220
+	icon_frame = 11
+	has_species = yes
+	resources = {
+		category = armies
+		cost = {
+			minerals = 500
+			sr_dark_matter = 50
+			acot_sr_dark_energy = 50
+			influence = 50
+		}
+	}
+	prerequisites = {
+		"tech_synthtrooper"
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		from = {
+			has_trait = "trait_mechanical"
+		}
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_fe_synt_center
+			has_building = building_ae_synt_center
+			has_building = building_stellarite_synt_center
+			has_district = district_acot_enigmapolis_fortress
+		}
+	}
+}
+
+# Synthetic Super Commando
+fe_synthcommando_army = {
+	damage = 35
+	health = 35
+	has_morale = no
+	morale_damage = 2.5
+	collateral_damage = 1.5
+	war_exhaustion = 15
+	time = 1000
+	icon_frame = 11
+	has_species = yes
+	resources = {
+		category = armies
+		cost = {
+			influence = 500
+		}
+		produces = {
+			influence = 1
+			engineering_research = 100
+		}
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		from = {
+			has_trait = "trait_mechanical"
+		}
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		owner = {
+			check_variable = {
+				which = synthmando_count
+				value >= 1
+			}
+		}
+	}
+	prerequisites = {
+		"tech_omnisynth"
+	}
+	on_queued = {
+		owner = {
+			subtract_variable = {
+				which = "synthmando_count"
+				value = 1
+			}
+		}
+	}
+	on_unqueued = {
+		owner = {
+			change_variable = {
+				which = "synthmando_count"
+				value = 1
+			}
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_ae_synt_center
+			has_building = building_stellarite_synt_center
+			has_district = district_acot_enigmapolis_fortress
+		}
+	}
+}
+
+############### PSI
+# Dark Disciples
+fe_disciple_army = {
+	damage = 3
+	morale_damage = 3.5
+	health = 3.25
+	morale = 6
+	collateral_damage = 0.5
+	war_exhaustion = 2.5
+	time = 260
+	icon_frame = 9
+	resources = {
+		category = armies
+		cost = {
+			minerals = 500
+			sr_dark_matter = 50
+			acot_sr_dark_energy = 50
+			influence = 50
+		}
+	}
+	prerequisites = {
+		"tech_dark_templar"
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		from = {
+			OR = {
+				NOT = {
+					host_has_dlc = "Utopia"
+				}
+				has_trait = trait_psionic
+			}
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_fe_psi_altar
+			has_building = building_ae_psi_altar
+			has_building = building_stellarite_psi_altar
+			has_district = district_acot_enigmapolis_fortress
+		}
+	}
+}
+
+# Choosen Psion
+fe_hero_psion = {
+	damage = 40
+	morale_damage = 5
+	health = 30
+	has_morale = no
+	collateral_damage = 0.5
+	war_exhaustion = 15
+	time = 1000
+	icon_frame = 9
+	resources = {
+		category = armies
+		cost = {
+			influence = 500
+		}
+		produces = {
+			influence = 1
+			society_research = 100
+		}
+	}
+	prerequisites = {
+		"tech_dark_psion"
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		from = {
+			OR = {
+				NOT = {
+					host_has_dlc = "Utopia"
+				}
+				has_trait = trait_psionic
+			}
+			NOR = {
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		owner = {
+			check_variable = {
+				which = psion_count
+				value >= 1
+			}
+		}
+	}
+	on_queued = {
+		owner = {
+			subtract_variable = {
+				which = "psion_count"
+				value = 1
+			}
+		}
+	}
+	on_unqueued = {
+		owner = {
+			change_variable = {
+				which = "psion_count"
+				value = 1
+			}
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_ae_psi_altar
+			has_building = building_stellarite_psi_altar
+			has_district = district_acot_enigmapolis_fortress
+		}
+	}
+}
+
+############### GENE
+# Supra Gene Warrior Armies
+fe_gene_warrior = {
+	damage = 4
+	health = 3.5
+	morale = 30
+	morale_damage = 2.5
+	collateral_damage = 1.5
+	war_exhaustion = 2.5
+	time = 260
+	icon_frame = 6
+	resources = {
+		category = armies
+		cost = {
+			minerals = 500
+			sr_dark_matter = 50
+			acot_sr_dark_energy = 50
+			influence = 50
+		}
+	}
+	prerequisites = {
+		"tech_elite_genetrooper"
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_fe_clone_vats
+			has_building = building_ae_clone_vats
+			has_building = building_stellarite_clone_vats
+			has_building = building_fe_hive_evochamber
+			has_building = building_ae_hive_evochamber
+			has_building = building_stellarite_hive_evochamber
+			has_district = district_acot_enigmapolis_fortress
+		}
+	}
+}
+
+# DOOM GUY
+fe_doomguy = {
+	damage = 30
+	health = 40
+	has_morale = no
+	morale_damage = 2.5
+	collateral_damage = 3
+	war_exhaustion = 15
+	time = 1000
+	icon_frame = 6
+	resources = {
+		category = armies
+		cost = {
+			influence = 500
+		}
+		produces = {
+			influence = 1
+			physics_research = 100
+		}
+	}
+	prerequisites = {
+		"tech_doom_hero"
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		owner = {
+			check_variable = {
+				which = doomguy_count
+				value >= 1
+			}
+		}
+	}
+	on_queued = {
+		owner = {
+			subtract_variable = {
+				which = "doomguy_count"
+				value = 1
+			}
+		}
+	}
+	on_unqueued = {
+		owner = {
+			change_variable = {
+				which = "doomguy_count"
+				value = 1
+			}
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_ae_clone_vats
+			has_building = building_ae_hive_evochamber
+			has_building = building_stellarite_clone_vats
+			has_building = building_stellarite_hive_evochamber
+			has_district = district_acot_enigmapolis_fortress
+		}
+	}
+}
