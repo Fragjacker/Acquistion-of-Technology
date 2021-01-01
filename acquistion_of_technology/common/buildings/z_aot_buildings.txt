@@ -1335,3 +1335,90 @@ building_fe_empyrean_shrine = {
 		weight = 50
 	}
 }
+
+#####################
+# Misc
+#####################
+building_dm_commercial_megaplex = {
+	base_buildtime = 900
+	can_build = yes
+	category = trade
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_technology = tech_dm_commercial_megaplex
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				is_regular_empire = no
+			}
+			has_modifier = slave_colony
+		}
+	}
+	planet_modifier = {
+		job_merchant_add = 1
+		job_dm_clerk_add = 10
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			sr_dark_matter = 200
+		}
+		upkeep = {
+			energy = 10
+			sr_dark_matter = 2
+		}
+	}
+	prerequisites = {
+		"tech_dm_commercial_megaplex"
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	triggered_desc = {
+		text = job_dm_clerk_desc
+	}
+	triggered_desc = {
+		text = job_merchant_effect_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 1
+			owner = {
+				resource_income_compare = {
+					resource = sr_dark_matter
+					value >= 3
+				}
+				resource_income_compare = {
+					resource = energy
+					value >= 15
+				}
+			}
+		}
+		modifier = {
+			factor = 10
+			exists = owner
+			owner = {
+				is_megacorp = yes
+			}
+		}
+	}
+	ai_resource_production = {
+		energy = 1
+		trigger = {
+			always = yes
+		}
+	}
+}

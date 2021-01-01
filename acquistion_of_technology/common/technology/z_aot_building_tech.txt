@@ -938,3 +938,52 @@ tech_stellarite_habitat_upgrade_II = {
 		}
 	}
 }
+
+# Interstellar Economics
+tech_dm_commercial_megaplex = {
+	cost = @acot_tier6cost3
+	area = society
+	tier = 6
+	category = {
+		statecraft
+	}
+	prerequisites = {
+		"tech_interstellar_economics"
+	}
+	weight = @tier3weight1
+	potential = {
+		is_gestalt = no
+	}
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_mine_rare_crystals
+				has_technology = tech_rare_crystals
+				has_country_flag = has_market_access
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_prosperity_adopt
+		}
+	}
+	ai_weight = {
+		factor = 2
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
