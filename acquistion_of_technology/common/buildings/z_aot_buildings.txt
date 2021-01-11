@@ -1335,3 +1335,568 @@ building_fe_empyrean_shrine = {
 		weight = 50
 	}
 }
+
+#####################
+# Misc
+#####################
+building_dm_commercial_megaplex = {
+	base_buildtime = 900
+	can_build = yes
+	category = trade
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_technology = tech_dm_commercial_megaplex
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+	}
+	upgrades = {
+		"building_ae_commercial_megaplex"
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				is_regular_empire = no
+			}
+			has_modifier = slave_colony
+		}
+	}
+	planet_modifier = {
+		job_merchant_add = 1
+		job_dm_clerk_add = 10
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			sr_dark_matter = 200
+		}
+		upkeep = {
+			energy = 10
+			sr_dark_matter = 2
+		}
+	}
+	prerequisites = {
+		"tech_dm_commercial_megaplex"
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	triggered_desc = {
+		text = job_dm_clerk_effect_desc
+	}
+	triggered_desc = {
+		text = job_merchant_effect_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 1
+			owner = {
+				resource_income_compare = {
+					resource = sr_dark_matter
+					value >= 3
+				}
+				resource_income_compare = {
+					resource = energy
+					value >= 15
+				}
+			}
+		}
+		modifier = {
+			factor = 10
+			exists = owner
+			owner = {
+				is_megacorp = yes
+			}
+		}
+	}
+	ai_resource_production = {
+		energy = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_dm_bureaucratic = {
+	base_buildtime = 900
+	can_build = yes
+	category = government
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_technology = tech_dm_bureau
+		}
+	}
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	upgrades = {
+		"building_ae_bureaucratic"
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			buildings_no_crystals = yes
+			owner = {
+				is_regular_empire = no
+			}
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			sr_dark_matter = 200
+		}
+		upkeep = {
+			energy = 10
+			sr_dark_matter = 2
+		}
+	}
+	planet_modifier = {
+		job_dm_bureaucrat_add = 5
+	}
+	prerequisites = {
+		"tech_dm_bureau"
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	triggered_desc = {
+		text = job_dm_bureaucrat_effect_desc
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0
+			buildings_has_crystals = no
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				empire_sprawl_over_cap > 0
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				empire_sprawl_over_cap > 10
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				empire_sprawl_over_cap > 20
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				empire_sprawl_over_cap > 40
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_valid_civic = civic_byzantine_bureaucracy
+			}
+		}
+	}
+	on_queued = {
+		planet = {
+			set_timed_planet_flag = {
+				flag = recent_admin_building_built
+				days = 720
+			}
+		}
+	}
+}
+
+building_dm_embassy = {
+	base_buildtime = 1000
+	can_build = yes
+	category = government
+	base_cap_amount = 1
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_technology = tech_dm_embassy
+		}
+		planet = {
+			is_capital = yes
+		}
+		NOT = {
+			has_modifier = resort_colony
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+	}
+	allow = {
+		has_enigmatic_capital = yes
+		buildings_simple_allow = yes
+	}
+	upgrades = {
+		"building_ae_embassy"
+	}
+	destroy_trigger = {
+		OR = {
+			AND = {
+				exists = owner
+				owner = {
+					is_regular_empire = no
+				}
+			}
+			planet = {
+				is_capital = no
+			}
+		}
+	}
+	country_modifier = {
+		envoys_add = 3
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			influence = 50
+			energy = 400
+			minerals = 750
+			sr_dark_matter = 200
+		}
+		upkeep = {
+			energy = 15
+			sr_dark_matter = 3
+		}
+	}
+	prerequisites = {
+		"tech_dm_embassy"
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0
+			buildings_has_crystals = no
+		}
+		modifier = {
+			factor = 5
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+			}
+		}
+		modifier = {
+			factor = 5
+			exists = owner
+			owner = {
+				has_federation = yes
+			}
+		}
+		modifier = {
+			factor = 3
+			exists = owner
+			owner = {
+				is_part_of_galactic_council = yes
+			}
+		}
+	}
+}
+
+building_ae_commercial_megaplex = {
+	base_buildtime = 900
+	can_build = no
+	category = trade
+	allow = {
+		has_ascended_capital = yes
+	}
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_technology = tech_ae_commercial_megaplex
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+	}
+	upgrades = {
+		"building_stellarite_commercial_megaplex"
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				is_regular_empire = no
+			}
+			has_modifier = slave_colony
+		}
+	}
+	planet_modifier = {
+		job_merchant_add = 2
+		job_ae_clerk_add = 15
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1500
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+		}
+		upkeep = {
+			energy = 20
+			sr_dark_matter = 4
+			acot_sr_dark_energy = 4
+		}
+	}
+	prerequisites = {
+		"tech_ae_commercial_megaplex"
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	triggered_desc = {
+		text = job_ae_clerk_effect_desc
+	}
+	triggered_desc = {
+		text = job_merchant_effect_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 1
+			owner = {
+				resource_income_compare = {
+					resource = sr_dark_matter
+					value >= 3
+				}
+				resource_income_compare = {
+					resource = acot_sr_dark_energy
+					value >= 3
+				}
+				resource_income_compare = {
+					resource = energy
+					value >= 15
+				}
+			}
+		}
+		modifier = {
+			factor = 10
+			exists = owner
+			owner = {
+				is_megacorp = yes
+			}
+		}
+	}
+	ai_resource_production = {
+		energy = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_ae_bureaucratic = {
+	base_buildtime = 900
+	can_build = no
+	category = government
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_technology = tech_ae_bureau
+		}
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
+	upgrades = {
+		"building_stellarite_bureaucratic"
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			buildings_no_crystals = yes
+			owner = {
+				is_regular_empire = no
+			}
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1500
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+		}
+		upkeep = {
+			energy = 20
+			sr_dark_matter = 4
+			acot_sr_dark_energy = 4
+		}
+	}
+	planet_modifier = {
+		job_ae_bureaucrat_add = 8
+	}
+	prerequisites = {
+		"tech_ae_bureau"
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	triggered_desc = {
+		text = job_ae_bureaucrat_effect_desc
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0
+			buildings_has_crystals = no
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				empire_sprawl_over_cap > 0
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				empire_sprawl_over_cap > 10
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				empire_sprawl_over_cap > 20
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				empire_sprawl_over_cap > 40
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_valid_civic = civic_byzantine_bureaucracy
+			}
+		}
+	}
+	on_queued = {
+		planet = {
+			set_timed_planet_flag = {
+				flag = recent_admin_building_built
+				days = 720
+			}
+		}
+	}
+}
+
+building_ae_embassy = {
+	base_buildtime = 1000
+	can_build = no
+	category = government
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_technology = tech_ae_embassy
+		}
+		planet = {
+			is_capital = yes
+		}
+		NOT = {
+			has_modifier = resort_colony
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+	}
+	allow = {
+		has_ascended_capital = yes
+		buildings_simple_allow = yes
+	}
+	upgrades = {
+		"building_stellarite_embassy"
+	}
+	destroy_trigger = {
+		OR = {
+			AND = {
+				exists = owner
+				owner = {
+					is_regular_empire = no
+				}
+			}
+			planet = {
+				is_capital = no
+			}
+		}
+	}
+	country_modifier = {
+		envoys_add = 4
+		diplo_weight_mult = 0.5
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			influence = 100
+			energy = 1500
+			minerals = 1500
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+		}
+		upkeep = {
+			energy = 50
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+	}
+	prerequisites = {
+		"tech_ae_embassy"
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0
+			buildings_has_crystals = no
+		}
+		modifier = {
+			factor = 5
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+			}
+		}
+		modifier = {
+			factor = 5
+			exists = owner
+			owner = {
+				has_federation = yes
+			}
+		}
+		modifier = {
+			factor = 3
+			exists = owner
+			owner = {
+				is_part_of_galactic_council = yes
+			}
+		}
+	}
+}
