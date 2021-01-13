@@ -16,6 +16,10 @@ energize_society = {
 	prerequisites = {
 	}
 	effect = {
+		set_timed_country_flag = {
+			flag = no_decadence
+			days = 7200
+		}
 		every_owned_pop = {
 			limit = {
 				has_job = ae_hedonist
@@ -34,10 +38,6 @@ energize_society = {
 			country_event = {
 				id = aot_events.2
 			}
-		}
-		set_timed_country_flag = {
-			flag = no_decadence
-			days = 7200
 		}
 	}
 	ai_weight = {
@@ -81,5 +81,55 @@ rejuvenate_society = {
 	}
 	ai_weight = {
 		weight = 100
+	}
+}
+
+renounce_ascendancy = {
+	resources = {
+		category = edicts
+	}
+	length = 0
+	potential = {
+		is_country_type = ascended_empire
+		NOR = {
+			has_valid_civic = civic_fanatic_purifiers
+			has_valid_civic = civic_machine_terminator
+			has_valid_civic = civic_machine_servitor
+			has_valid_civic = civic_machine_assimilator
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = is_at_war
+			is_at_war = no
+		}
+		NOT = {
+			has_country_flag = lost_empire
+		}
+		# custom_tooltip = {
+		# 	fail_text = new_ascended_empire
+		# 	NOT = {
+		# 		has_country_flag = new_ascended_empire
+		# 	}
+		# }
+	}
+	effect = {
+		hidden_effect = {
+			country_event = {
+				id = aot_events.6
+			}
+		}
+	}
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+			num_owned_planets > 3
+		}
+		modifier = {
+			factor = 0
+			fleet_power > 70000
+		}
 	}
 }

@@ -1,0 +1,71 @@
+namespace = lost_empire
+#Ascended Empire gains Hedonist pops
+country_event = {
+	id = lost_empire.18
+	hide_window = yes
+	trigger = {
+		end_game_years_passed > 100
+		is_country_type = ascended_empire
+		is_gestalt = no
+		has_technology = tech_fallen_technologies_1
+		has_technology = tech_fallen_technologies_2
+		NOR = {
+			has_country_flag = new_ascended_empire
+			has_country_flag = no_decadence
+			has_country_flag = recent_hedonist
+		}
+	}
+	immediate = {
+		set_timed_country_flag = {
+			flag = recent_hedonist
+			days = 30
+		}
+		random_list = {
+			50 = {
+				random_owned_planet = {
+					random_pop = {
+						if = {
+							limit = {
+								worker_job_check_trigger = yes
+								is_pop_category = worker
+								is_enslaved = no
+								is_being_purged = no
+								is_robot_pop = no
+								is_being_assimilated = no
+								has_citizenship_rights = yes
+								NOR = {
+									has_pop_flag = decadent_pop
+									has_pop_flag = free_energyzed_man
+									has_job = ae_hedonist
+								}
+							}
+							set_pop_flag = decadent_pop
+						}
+					}
+				}
+			}
+			50 = {
+				random_owned_planet = {
+					random_pop = {
+						if = {
+							limit = {
+								is_unemployed = yes
+								is_enslaved = no
+								is_being_purged = no
+								is_robot_pop = no
+								is_being_assimilated = no
+								has_citizenship_rights = yes
+								NOR = {
+									has_pop_flag = decadent_pop
+									has_pop_flag = free_energyzed_man
+									has_job = ae_hedonist
+								}
+							}
+							set_pop_flag = decadent_pop
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -430,3 +430,41 @@ country_event = {
 		name = aot_mod_options.chrysalis_happened.1.e
 	}
 }
+
+country_event = {
+	id = aot_events.6
+	title = aot_events.6.name
+	desc = aot_events.6.desc
+	picture = GFX_evt_fallen_empire
+	is_triggered_only = yes
+	option = {
+		name = aot_events.6.a
+		custom_tooltip = renounce_ascendancy
+		allow = {
+			resource_stockpile_compare = {
+				resource = unity
+				value >= 200000
+			}
+			resource_stockpile_compare = {
+				resource = influence
+				value >= 500
+			}
+		}
+		add_resource = {
+			unity = -200000
+			influence = -500
+		}
+		hidden_effect = {
+			country_event = {
+				id = lost_empire.1001
+			}
+		}
+		ai_chance = {
+			# AI chance
+			factor = 1000
+		}
+	}
+	option = {
+		name = aot_events.6.b
+	}
+}
