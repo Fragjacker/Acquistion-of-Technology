@@ -1,0 +1,105 @@
+special_project = {
+	key = "RESEARCH_PRECURSOR_ATTEMPT_INSANE"
+	cost = 1000000
+	tech_department = physics_technology
+	picture = GFX_evt_physics_research
+	event_chain = acot_precursor_design_chain
+	event_scope = planet_event
+	location = no
+	abort_trigger = {
+	}
+	on_success = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = acot_precursor_design_chain
+				counter = attempts_remain
+				amount = -1
+			}
+			change_variable = {
+				which = acot_quota_attempts
+				value = -1
+			}
+			random_list = {
+				60 = {
+					add_event_chain_counter = {
+						event_chain = acot_precursor_design_chain
+						counter = progress_numbers
+						amount = 200
+					}
+					change_variable = {
+						which = acot_quota_required
+						value = -200
+					}
+				}
+				20 = {
+					add_event_chain_counter = {
+						event_chain = acot_precursor_design_chain
+						counter = progress_numbers
+						amount = 400
+					}
+					change_variable = {
+						which = acot_quota_required
+						value = -400
+					}
+				}
+				20 = {
+					add_event_chain_counter = {
+						event_chain = acot_precursor_design_chain
+						counter = progress_numbers
+						amount = 100
+					}
+					change_variable = {
+						which = acot_quota_required
+						value = -100
+					}
+				}
+			}
+			### SUCCESS !!?!?!?!
+			IF = {
+				limit = {
+					check_variable = {
+						which = acot_quota_required
+						value <= 0
+					}
+				}
+				country_event = {
+					id = acot_precursor_databank.904
+				}
+			}
+			### INCOMPLETED, BUT STILL HAS ATTEMPTS
+			ELSE_IF = {
+				limit = {
+					check_variable = {
+						which = acot_quota_attempts
+						value > 0
+					}
+					check_variable = {
+						which = acot_quota_required
+						value > 0
+					}
+				}
+				country_event = {
+					id = acot_precursor_databank.902
+				}
+			}
+			### INCOMPLETED, NO ATTEMPTS LEFT
+			ELSE_IF = {
+				limit = {
+					check_variable = {
+						which = acot_quota_attempts
+						value <= 0
+					}
+					check_variable = {
+						which = acot_quota_required
+						value > 0
+					}
+				}
+				country_event = {
+					id = acot_precursor_databank.903
+				}
+			}
+		}
+	}
+	on_fail = {
+	}
+}

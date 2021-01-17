@@ -1,0 +1,149 @@
+#########################################
+#
+# on_action_events
+#
+#########################################
+namespace = acot_precursor_databank
+#### PROJECT RESOURCE CALL
+country_event = {
+	id = acot_precursor_databank.901
+	title = acot_precursor_databank.3.name
+	desc = acot_precursor_databank.901.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = acot_databank_room
+	}
+	trigger = {
+	}
+	immediate = {
+		set_country_flag = acot_databank_diplomacy_engaged
+	}
+	after = {
+	}
+	### STANDARD ###
+	option = {
+		name = acot_precursor_databank.901.a
+		custom_tooltip = acot_precursor_databank.901.a.explain
+		allow = {
+		}
+		capital_scope = {
+			save_event_target_as = pc_home
+		}
+		enable_special_project = {
+			name = "RESEARCH_PRECURSOR_ATTEMPT"
+			location = event_target:pc_home
+			owner = ROOT
+		}
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+	### HIGH ###
+	option = {
+		name = acot_precursor_databank.901.b
+		custom_tooltip = acot_precursor_databank.901.b.explain
+		allow = {
+			resource_stockpile_compare = {
+				resource = acot_sr_dark_energy
+				value >= 500
+			}
+			resource_stockpile_compare = {
+				resource = sr_dark_matter
+				value >= 500
+			}
+			resource_stockpile_compare = {
+				resource = minor_artifacts
+				value >= 10
+			}
+		}
+		add_resource = {
+			acot_sr_dark_energy = -500
+			sr_dark_matter = -500
+			minor_artifacts = -10
+		}
+		capital_scope = {
+			save_event_target_as = pc_home
+		}
+		enable_special_project = {
+			name = "RESEARCH_PRECURSOR_ATTEMPT_HIGH"
+			location = event_target:pc_home
+			owner = ROOT
+		}
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+	### EXTREME ###
+	option = {
+		name = acot_precursor_databank.901.c
+		custom_tooltip = acot_precursor_databank.901.c.explain
+		allow = {
+			resource_stockpile_compare = {
+				resource = acot_sr_dark_energy
+				value >= 1500
+			}
+			resource_stockpile_compare = {
+				resource = sr_dark_matter
+				value >= 1500
+			}
+			resource_stockpile_compare = {
+				resource = minor_artifacts
+				value >= 35
+			}
+		}
+		add_resource = {
+			acot_sr_dark_energy = -1500
+			sr_dark_matter = -1500
+			minor_artifacts = -35
+		}
+		capital_scope = {
+			save_event_target_as = pc_home
+		}
+		enable_special_project = {
+			name = "RESEARCH_PRECURSOR_ATTEMPT_EXTREME"
+			location = event_target:pc_home
+			owner = ROOT
+		}
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+	### INSANE ###
+	option = {
+		name = aot_precursor_databank.901.d
+		custom_tooltip = aot_precursor_databank.901.d.explain
+		allow = {
+			resource_stockpile_compare = {
+				resource = acot_sr_dark_energy
+				value >= 5000
+			}
+			resource_stockpile_compare = {
+				resource = sr_dark_matter
+				value >= 5000
+			}
+			resource_stockpile_compare = {
+				resource = minor_artifacts
+				value >= 110
+			}
+		}
+		add_resource = {
+			acot_sr_dark_energy = -5000
+			sr_dark_matter = -5000
+			minor_artifacts = -110
+		}
+		capital_scope = {
+			save_event_target_as = pc_home
+		}
+		enable_special_project = {
+			name = "RESEARCH_PRECURSOR_ATTEMPT_INSANE"
+			location = event_target:pc_home
+			owner = ROOT
+		}
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+}
