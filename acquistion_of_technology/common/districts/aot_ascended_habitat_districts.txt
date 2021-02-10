@@ -4,16 +4,16 @@
 @hab_cost_stellarite = 500
 @hab_maintenance = 2
 #####################
-# Dark Matter and Dark Energy
+# Dark Matter Tier (Delta)
 #####################
 district_dm_hab_housing = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	show_on_uncolonized = {
-		uses_district_set = ascended_habitat
+		uses_district_set = dm_habitat
 	}
 	potential = {
-		uses_district_set = ascended_habitat
+		uses_district_set = dm_habitat
 	}
 	resources = {
 		category = planet_districts
@@ -80,11 +80,11 @@ district_dm_hab_energy = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	show_on_uncolonized = {
-		uses_district_set = ascended_habitat
+		uses_district_set = dm_habitat
 		has_planet_flag = energy_habitat
 	}
 	potential = {
-		uses_district_set = ascended_habitat
+		uses_district_set = dm_habitat
 		has_planet_flag = energy_habitat
 	}
 	planet_modifier = {
@@ -202,11 +202,11 @@ district_dm_hab_mining = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	show_on_uncolonized = {
-		uses_district_set = ascended_habitat
+		uses_district_set = dm_habitat
 		has_planet_flag = mining_habitat
 	}
 	potential = {
-		uses_district_set = ascended_habitat
+		uses_district_set = dm_habitat
 		has_planet_flag = mining_habitat
 	}
 	planet_modifier = {
@@ -325,13 +325,13 @@ district_dm_hab_arms_industry = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	show_on_uncolonized = {
-		uses_district_set = ascended_habitat
+		uses_district_set = dm_habitat
 		NOT = {
 			has_planet_flag = energy_habitat
 		}
 	}
 	potential = {
-		uses_district_set = ascended_habitat
+		uses_district_set = dm_habitat
 		NOT = {
 			has_planet_flag = energy_habitat
 		}
@@ -452,10 +452,10 @@ district_dm_hab_dark_matter_energy = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	show_on_uncolonized = {
-		uses_district_set = ascended_habitat
+		uses_district_set = dm_habitat
 	}
 	potential = {
-		uses_district_set = ascended_habitat
+		uses_district_set = dm_habitat
 	}
 	resources = {
 		category = planet_districts_hab_dm_gen
@@ -554,16 +554,566 @@ district_dm_hab_dark_matter_energy = {
 }
 
 #####################
-# Stellarite
+# Dark Energy Tier (Alpha)
+#####################
+district_ae_hab_housing = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+	show_on_uncolonized = {
+		uses_district_set = ae_habitat
+	}
+	potential = {
+		uses_district_set = ae_habitat
+	}
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @hab_cost
+			sr_dark_matter = @hab_cost_dm
+			acot_sr_dark_energy = @hab_cost_de
+		}
+		upkeep = {
+			energy = @hab_maintenance
+		}
+	}
+	planet_modifier = {
+		planet_housing_add = 15
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 2
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		text = job_maintenance_drone_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 250
+			planet = {
+				num_districts = {
+					type = district_hab_housing
+					value < 1
+				}
+			}
+		}
+		modifier = {
+			weight = 250
+			planet = {
+				owner = {
+					is_regular_empire = yes
+					has_ascension_perk = ap_master_builders
+				}
+				num_districts = {
+					type = district_hab_housing
+					value < 2
+				}
+			}
+		}
+	}
+}
+
+district_ae_hab_energy = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+	show_on_uncolonized = {
+		uses_district_set = ae_habitat
+		has_planet_flag = energy_habitat
+	}
+	potential = {
+		uses_district_set = ae_habitat
+		has_planet_flag = energy_habitat
+	}
+	planet_modifier = {
+		planet_housing_add = 3
+	}
+	resources = {
+		category = planet_districts_hab_energy
+		cost = {
+			minerals = @hab_cost
+			sr_dark_matter = @hab_cost_dm
+			acot_sr_dark_energy = @hab_cost_de
+		}
+		upkeep = {
+			energy = @hab_maintenance
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_ae_energyman_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_ae_energydrone_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_ae_energydrone_add = 4
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		text = job_acot_energydrone_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		text = job_acot_energyman_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		text = job_fe_acolyte_generator_effect_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 250
+			OR = {
+				owner = {
+					has_monthly_income = {
+						resource = energy
+						value < 200
+					}
+				}
+				planet = {
+					has_district = district_ae_hab_energy
+				}
+			}
+		}
+	}
+	ai_resource_production = {
+		energy = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+district_ae_hab_mining = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+	show_on_uncolonized = {
+		uses_district_set = ae_habitat
+		has_planet_flag = mining_habitat
+	}
+	potential = {
+		uses_district_set = ae_habitat
+		has_planet_flag = mining_habitat
+	}
+	planet_modifier = {
+		planet_housing_add = 3
+	}
+	resources = {
+		category = planet_districts_hab_mining
+		cost = {
+			minerals = @hab_cost
+			sr_dark_matter = @hab_cost_dm
+			acot_sr_dark_energy = @hab_cost_de
+		}
+		upkeep = {
+			energy = @hab_maintenance
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_ae_mineraldrone_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_ae_mineraldrone_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_ae_mineralman_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		modifier = {
+			job_fe_acolyte_mine_add = 3
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		text = job_acot_mineraldrone_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_acot_mineralman_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		text = job_fe_acolyte_mine_effect_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 400
+			OR = {
+				owner = {
+					has_monthly_income = {
+						resource = energy
+						value < 200
+					}
+				}
+				planet = {
+					has_district = district_ae_hab_energy
+				}
+			}
+		}
+	}
+	ai_resource_production = {
+		minerals = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+district_ae_hab_arms_industry = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+	show_on_uncolonized = {
+		uses_district_set = ae_habitat
+		NOT = {
+			has_planet_flag = energy_habitat
+		}
+	}
+	potential = {
+		uses_district_set = ae_habitat
+		NOT = {
+			has_planet_flag = energy_habitat
+		}
+	}
+	planet_modifier = {
+		planet_housing_add = 3
+	}
+	resources = {
+		category = planet_districts_hab_mining
+		cost = {
+			minerals = @hab_cost
+			sr_dark_matter = @hab_cost_dm
+			acot_sr_dark_energy = @hab_cost_de
+		}
+		upkeep = {
+			energy = @hab_maintenance
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_ae_alloydrone_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_ae_alloydrone_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_ae_alloyman_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		modifier = {
+			job_fe_acolyte_mine_add = 3
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		text = job_acot_alloydrone_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_acot_alloyman_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		text = job_fe_acolyte_mine_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 400
+			OR = {
+				owner = {
+					has_monthly_income = {
+						resource = energy
+						value < 200
+					}
+				}
+				planet = {
+					has_district = district_ae_hab_energy
+				}
+			}
+		}
+	}
+	ai_resource_production = {
+		minerals = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+district_ae_hab_dark_matter_energy = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+	show_on_uncolonized = {
+		uses_district_set = ae_habitat
+	}
+	potential = {
+		uses_district_set = ae_habitat
+	}
+	resources = {
+		category = planet_districts_hab_ae_gen
+		cost = {
+			minerals = @hab_cost
+			sr_dark_matter = @hab_cost_dm
+			acot_sr_dark_energy = @hab_cost_de
+		}
+		upkeep = {
+			energy = @hab_maintenance
+		}
+	}
+	planet_modifier = {
+		planet_housing_add = 3
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_ae_dark_energy_man_add = 1
+			job_ae_dark_matter_man_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_ae_dark_energy_drone_add = 1
+			job_ae_dark_matter_drone_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_ae_dark_energy_drone_add = 1
+			job_ae_dark_matter_drone_add = 2
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		text = job_acot_dark_energy_man_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		text = job_acot_dark_energy_drone_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		text = job_acot_dark_energy_drone_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 250
+			planet = {
+				NOT = {
+					has_district = district_ae_hab_dark_matter_energy
+				}
+			}
+			owner = {
+				has_monthly_income = {
+					resource = minerals
+					value > 80
+				}
+			}
+		}
+	}
+}
+
+#####################
+# Stellarite (Sigma)
 #####################
 district_hab_stellarite_housing = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	show_on_uncolonized = {
-		uses_district_set = ascended_stellarite_habitat
+		uses_district_set = sigma_habitat
 	}
 	potential = {
-		uses_district_set = ascended_stellarite_habitat
+		uses_district_set = sigma_habitat
 	}
 	resources = {
 		category = planet_districts
@@ -629,11 +1179,11 @@ district_hab_stellarite_energy = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	show_on_uncolonized = {
-		uses_district_set = ascended_stellarite_habitat
+		uses_district_set = sigma_habitat
 		has_planet_flag = energy_habitat
 	}
 	potential = {
-		uses_district_set = ascended_stellarite_habitat
+		uses_district_set = sigma_habitat
 		has_planet_flag = energy_habitat
 	}
 	planet_modifier = {
@@ -733,7 +1283,7 @@ district_hab_stellarite_energy = {
 					}
 				}
 				planet = {
-					has_district = district_dm_hab_energy
+					has_district = district_hab_stellarite_energy
 				}
 			}
 		}
@@ -750,11 +1300,11 @@ district_hab_stellarite_mining = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	show_on_uncolonized = {
-		uses_district_set = ascended_stellarite_habitat
+		uses_district_set = sigma_habitat
 		has_planet_flag = mining_habitat
 	}
 	potential = {
-		uses_district_set = ascended_stellarite_habitat
+		uses_district_set = sigma_habitat
 		has_planet_flag = mining_habitat
 	}
 	planet_modifier = {
@@ -872,13 +1422,13 @@ district_hab_stellarite_arms_industry = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	show_on_uncolonized = {
-		uses_district_set = ascended_stellarite_habitat
+		uses_district_set = sigma_habitat
 		NOT = {
 			has_planet_flag = energy_habitat
 		}
 	}
 	potential = {
-		uses_district_set = ascended_stellarite_habitat
+		uses_district_set = sigma_habitat
 		NOT = {
 			has_planet_flag = energy_habitat
 		}
@@ -998,14 +1548,14 @@ district_stellarite_hab_stellarite = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	show_on_uncolonized = {
-		uses_district_set = ascended_stellarite_habitat
+		uses_district_set = sigma_habitat
 		exists = owner
 		owner = {
 			has_technology = tech_stellarite_generator_ae
 		}
 	}
 	potential = {
-		uses_district_set = ascended_stellarite_habitat
+		uses_district_set = sigma_habitat
 		exists = owner
 		owner = {
 			has_technology = tech_stellarite_generator_ae

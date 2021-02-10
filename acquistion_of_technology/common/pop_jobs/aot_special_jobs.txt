@@ -648,7 +648,7 @@ ae_bureaucrat = {
 					has_valid_civic = civic_byzantine_bureaucracy
 				}
 			}
-			unity = 2.0
+			unity = 2
 		}
 		upkeep = {
 			consumer_goods = 3
@@ -662,7 +662,7 @@ ae_bureaucrat = {
 			}
 		}
 		modifier = {
-			planet_stability_add = 2.0
+			planet_stability_add = 2
 		}
 	}
 	country_modifier = {
@@ -773,7 +773,7 @@ stellarite_bureaucrat = {
 					has_valid_civic = civic_byzantine_bureaucracy
 				}
 			}
-			unity = 4.0
+			unity = 4
 		}
 		upkeep = {
 			consumer_goods = 6
@@ -787,7 +787,7 @@ stellarite_bureaucrat = {
 			}
 		}
 		modifier = {
-			planet_stability_add = 4.0
+			planet_stability_add = 4
 		}
 	}
 	country_modifier = {
@@ -877,7 +877,669 @@ stellarite_bureaucrat = {
 }
 
 ###################
-# Governing Jobs
+# AE Specialist Jobs
+###################
+ae_dark_energy_man = {
+	icon = acot_dark_energy_man
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_ae_dark_energy_pylon
+	clothes_texture_index = 3
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			acot_sr_dark_energy = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_acot_enigmopolis
+				}
+			}
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				planet = {
+					OR = {
+						is_planet_class = pc_dark_fractured
+						is_planet_class = pc_dark_fractured_ae
+					}
+				}
+			}
+			acot_sr_dark_energy = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					has_modifier = acot_modifier_supercharged_pylon
+				}
+			}
+			acot_sr_dark_energy = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					OR = {
+						is_planet_class = pc_dark_fractured
+						is_planet_class = pc_dark_fractured_ae
+					}
+					has_modifier = acot_modifier_supercharged_pylon
+				}
+			}
+			acot_sr_dark_energy = 4
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					has_modifier = acot_modifier_supercharged_pylon
+				}
+			}
+			energy = 16
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.5
+			has_job = ae_dark_energy_man
+		}
+		modifier = {
+			factor = 1.2
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_indentured
+			}
+		}
+	}
+}
+
+ae_dark_energy_drone = {
+	icon = acot_dark_energy_drone
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_ae_dark_energy_pylon
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		drone_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			acot_sr_dark_energy = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_acot_enigmopolis
+				}
+			}
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				planet = {
+					OR = {
+						is_planet_class = pc_dark_fractured
+						is_planet_class = pc_dark_fractured_ae
+					}
+				}
+			}
+			acot_sr_dark_energy = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					has_modifier = acot_modifier_supercharged_pylon
+				}
+			}
+			acot_sr_dark_energy = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					OR = {
+						is_planet_class = pc_dark_fractured
+						is_planet_class = pc_dark_fractured_ae
+					}
+					has_modifier = acot_modifier_supercharged_pylon
+				}
+			}
+			acot_sr_dark_energy = 4
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					has_modifier = acot_modifier_supercharged_pylon
+				}
+			}
+			energy = 16
+		}
+	}
+	weight = {
+		weight = @complex_drone_job_weight
+		modifier = {
+			factor = 1.5
+			has_job = ae_dark_energy_drone
+		}
+	}
+}
+
+ae_dark_matter_man = {
+	icon = acot_dark_matter_man
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_ae_dark_matter_generator
+	clothes_texture_index = 3
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			sr_dark_matter = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_acot_enigmopolis
+				}
+			}
+			sr_dark_matter = 20
+		}
+		produces = {
+			trigger = {
+				planet = {
+					OR = {
+						is_planet_class = pc_dark_fractured
+						is_planet_class = pc_dark_fractured_ae
+					}
+				}
+			}
+			sr_dark_matter = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					has_modifier = acot_modifier_supercharged_reactor
+				}
+			}
+			sr_dark_matter = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					OR = {
+						is_planet_class = pc_dark_fractured
+						is_planet_class = pc_dark_fractured_ae
+					}
+					has_modifier = acot_modifier_supercharged_reactor
+				}
+			}
+			sr_dark_matter = 4
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					has_modifier = acot_modifier_supercharged_reactor
+				}
+			}
+			minerals = 16
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.5
+			has_job = ae_dark_matter_man
+		}
+		modifier = {
+			factor = 1.2
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_indentured
+			}
+		}
+	}
+}
+
+ae_dark_matter_drone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_ae_dark_matter_generator
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		drone_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			sr_dark_matter = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_acot_enigmopolis
+				}
+			}
+			sr_dark_matter = 20
+		}
+		produces = {
+			trigger = {
+				planet = {
+					OR = {
+						is_planet_class = pc_dark_fractured
+						is_planet_class = pc_dark_fractured_ae
+					}
+				}
+			}
+			sr_dark_matter = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					has_modifier = acot_modifier_supercharged_reactor
+				}
+			}
+			sr_dark_matter = 4
+		}
+		produces = {
+			trigger = {
+				planet = {
+					OR = {
+						is_planet_class = pc_dark_fractured
+						is_planet_class = pc_dark_fractured_ae
+					}
+					has_modifier = acot_modifier_supercharged_reactor
+				}
+			}
+			sr_dark_matter = 4
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					has_modifier = acot_modifier_supercharged_reactor
+				}
+			}
+			minerals = 16
+		}
+	}
+	weight = {
+		weight = @complex_drone_job_weight
+		modifier = {
+			factor = 1.5
+			has_job = ae_dark_matter_drone
+		}
+	}
+}
+
+ae_mineralman = {
+	icon = acot_dimesiona_traveler
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_ae_mineral_processing_plant
+	clothes_texture_index = 3
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			minerals = 25
+		}
+		upkeep = {
+			sr_dark_matter = 1
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = ae_mineralman
+		}
+		modifier = {
+			factor = 1.2
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_indentured
+			}
+		}
+	}
+}
+
+ae_mineraldrone = {
+	icon = acot_dimesiona_traveler
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_ae_mineral_processing_plant
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		drone_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			minerals = 25
+		}
+		upkeep = {
+			sr_dark_matter = 1
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = ae_mineraldrone
+		}
+	}
+}
+
+ae_alloyman = {
+	icon = acot_alloyman
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_ae_alloy_forge
+	clothes_texture_index = 3
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			alloys = 25
+		}
+		upkeep = {
+			sr_dark_matter = 2
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = ae_alloyman
+		}
+		modifier = {
+			factor = 1.2
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_indentured
+			}
+		}
+	}
+}
+
+ae_alloydrone = {
+	icon = ae_alloydrone
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_ae_alloy_forge
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		drone_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			alloys = 25
+		}
+		upkeep = {
+			sr_dark_matter = 2
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = ae_alloydrone
+		}
+	}
+}
+
+ae_energyman = {
+	icon = acot_energyman
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_ae_power_hub
+	clothes_texture_index = 3
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			energy = 25
+		}
+		upkeep = {
+			acot_sr_dark_energy = 2
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = ae_energyman
+		}
+		modifier = {
+			factor = 1.2
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_indentured
+			}
+		}
+	}
+}
+
+ae_energydrone = {
+	icon = acot_energydrone
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_ae_power_hub
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		drone_job_check_trigger = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			energy = 25
+		}
+		upkeep = {
+			acot_sr_dark_energy = 2
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			species = {
+				has_species_flag = racket_species_flag
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_job = ae_energydrone
+		}
+	}
+}
+
+###################
+# Sigma Governing Jobs
 ###################
 stellarite_overlord = {
 	category = ruler
