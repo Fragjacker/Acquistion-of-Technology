@@ -646,13 +646,17 @@ tech_dm_habitat = {
 	}
 	potential = {
 		has_technology = tech_dark_matter_power_core
-		OR = {
-			has_technology = tech_dm_ancient_palace
-			has_technology = tech_dm_ancient_control_center
-			has_technology = tech_dm_ancient_hive_cluster
-		}
 	}
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				is_country_type = ascended_empire
+				any_owned_planet = {
+					is_planet_class = pc_dm_habitat
+				}
+			}
+		}
 		modifier = {
 			factor = 10
 			OR = {
