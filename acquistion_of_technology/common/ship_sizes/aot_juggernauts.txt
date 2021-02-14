@@ -1,10 +1,8 @@
 @ascended_juggernaut_collision_radius = 4
 @ascended_juggernaut_formation_priority = 4
-
 @ascended_juggernaut_hp = 250000
 @ascended_juggernaut_evasion = 2
 @ascended_juggernaut_build_time = 3600
-
 @ascended_juggernaut_upkeep_energy = 60
 @ascended_juggernaut_upkeep_alloys = 20
 
@@ -35,6 +33,74 @@ ascended_juggernaut = {
 	section_slots = {
 		"core" = {
 			locator = "part1"
+		}
+	}
+	possible_country = {
+		is_country_type = fallen_empire
+	}
+	is_designable = no
+	num_target_locators = 0
+	can_have_federation_design = no
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	can_disable = no
+	icon_frame = 7
+	ship_class_icon_frame = 35
+	default_behavior = artillery
+	prerequisites = {
+	}
+	class = shipclass_starbase
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "ship_aura_components"
+	min_upgrade_cost = {
+		alloys = 50
+	}
+}
+
+precursor_juggernaut = {
+	formation_priority = @ascended_juggernaut_formation_priority
+	max_speed = @speed_very_slow
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = @ascended_juggernaut_collision_radius
+	max_hitpoints = @ascended_juggernaut_hp
+	modifier = {
+		ship_evasion_add = @ascended_juggernaut_evasion
+		ship_shield_mult = 5
+		ship_armor_mult = 5
+		starbase_shipyard_capacity_add = 6
+	}
+	base_buildtime = @ascended_juggernaut_build_time
+	resources = {
+		category = ships
+		upkeep = {
+			energy = @ascended_juggernaut_upkeep_energy
+			alloys = @ascended_juggernaut_upkeep_alloys
+		}
+	}
+	combat_size_multiplier = 5
+	size_multiplier = 32
+	fleet_slot_size = 32
+	section_slots = {
+		"left" = {
+			locator = "part1"
+		}
+		"core" = {
+			locator = "part1"
+		}
+		"right" = {
+			locator = "part1"
+		}
+	}
+	possible_country = {
+		NOR = {
+			is_country_type = fallen_empire
+			is_country_type = awakened_fallen_empire
+			is_country_type = eternal_empire
 		}
 	}
 	potential_construction = {
@@ -91,16 +157,19 @@ ascended_juggernaut = {
 	}
 	empire_limit = {
 		base = 1
+		max = 20
+		naval_cap_div = 500
 	}
 	num_target_locators = 0
 	can_have_federation_design = yes
+	is_designable = yes
 	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
 	can_disable = no
 	icon_frame = 7
 	ship_class_icon_frame = 35
 	default_behavior = artillery
 	prerequisites = {
-		"tech_ascended_juggernaut"
+		"tech_precursor_juggernaut"
 	}
 	class = shipclass_starbase
 	construction_type = starbase_shipyard
