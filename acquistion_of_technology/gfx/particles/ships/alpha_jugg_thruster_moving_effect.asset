@@ -1,0 +1,311 @@
+particle={
+	name="alpha_juggernaut_exhaust_moving"
+	subsystem={
+		name="fire_backblast"
+		max_amount=20
+		slave_particles=0
+		sort="depth"
+		emitter_type="box"
+		box_emitter_x={ 0.000 0.000 }
+		box_emitter_y={ 0.000 0.000 }
+		box_emitter_z={ 0.000 0.100 }
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=yes
+		hide=no
+		texture={
+			file="gfx/particles/glow.dds"
+			x=1
+			y=1
+			shader="ParticleAdditive"
+		}
+		color={
+			x=100.000,R
+			y=150.000,G
+			z=255.000,B
+			alpha=80.000,backblast_alpha
+		}
+		position={
+			x=0.000
+			y=0.000
+			z=0.000
+		}
+		start=0.000
+		duration=-1.000
+		emitter_yaw={ 0.000 0.000 }
+		emitter_pitch={ 0.000 0.000 }
+		velocity_pitch={ 0.000 0.000 }
+		velocity_yaw={ 0.000 0.000 }
+		velocity={ 6.000 0.000 }
+		life={ 0.400 0.000 }
+		emission=30.000
+		size={ 4.000,backblast_size 0.000 }
+		rotation={ 0.000 180.000 }
+		rotation_speed={ 50.000 0.000 }
+	}
+	subsystem={
+		name="fire_blue"
+		max_amount=5
+		slave_particles=0
+		sort="depth"
+		emitter_type="sphere"
+		sphere_emitter_radius={ 0.000 0.000 }
+		sphere_emitter_yaw={ 0.000 0.000 }
+		sphere_emitter_pitch={ 0.000 180.000 }
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=yes
+		hide=no
+		texture={
+			file="gfx/particles/flare.dds"
+			x=1
+			y=1
+			shader="ParticleAlphaBlend"
+		}
+		color={
+			x=100.000
+			y=150.000
+			z=255.000
+			alpha=100.000,alpha_fade
+		}
+		position={
+			x=-0.150
+			y=0.000
+			z=0.000
+		}
+		start=0.000
+		duration=-1.000
+		emitter_yaw={ 0.000 0.000 }
+		emitter_pitch={ 0.000 0.000 }
+		velocity_pitch={ 0.000 0.000 }
+		velocity_yaw={ 0.000 0.000 }
+		velocity={ 0.000 0.000 }
+		life=1.500
+		emission=5.000
+		size=3.500,shrink
+		rotation={ 0.000 180.000 }
+		rotation_speed={ 50.000 0.000 }
+	}
+	subsystem={
+		name="fire_blue_add"
+		max_amount=5
+		slave_particles=0
+		sort="depth"
+		emitter_type="sphere"
+		sphere_emitter_radius={ 0.000 0.300 }
+		sphere_emitter_yaw={ 90.000 0.000 }
+		sphere_emitter_pitch={ 0.000 180.000 }
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=yes
+		hide=no
+		texture={
+			file="gfx/particles/flare.dds"
+			x=1
+			y=1
+			shader="ParticleAdditive"
+		}
+		color={
+			x=100.000
+			y=150.000
+			z=255.000
+			alpha=100.000,alpha_fade
+		}
+		position={
+			x=-0.300
+			y=0.000
+			z=0.000
+		}
+		start=0.000
+		duration=-1.000
+		emitter_yaw={ 0.000 0.000 }
+		emitter_pitch={ 0.000 0.000 }
+		velocity_pitch={ 0.000 0.000 }
+		velocity_yaw={ 0.000 0.000 }
+		velocity={ 0.000 0.000 }
+		life=1.500
+		emission=3.000
+		size=3.000
+		rotation={ 0.000 180.000 }
+		rotation_speed={ 50.000 0.000 }
+	}
+	subsystem={
+		name="fire_flare"
+		max_amount=35
+		slave_particles=0
+		sort="depth"
+		emitter_type="sphere"
+		sphere_emitter_radius={ 0.300 0.300 }
+		sphere_emitter_yaw={ 90.000 0.000 }
+		sphere_emitter_pitch={ 0.000 180.000 }
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=no
+		hide=no
+		texture={
+			file="gfx/particles/thin_muzzle_flash_blurred_2.dds"
+			x=1
+			y=1
+			shader="ParticleAdditive"
+		}
+		color={
+			x=100.000
+			y=150.000
+			z=255.000
+			alpha=120.000,flare_fade
+		}
+		position={
+			x=0.200
+			y=0.000
+			z=0.000
+		}
+		start=0.000
+		duration=-1.000
+		emitter_yaw={ 0.000 0.000 }
+		emitter_pitch={ 0.000 0.000 }
+		velocity_pitch={ 0.000 0.000 }
+		velocity_yaw={ 0.000 0.000 }
+		velocity={ 0.700 0.300 }
+		life={ 1.500 0.000 }
+		emission=20.000
+		size=7.000,grow
+		particle_yaw=-90.000
+		particle_pitch={ 0.000 90.000 }
+		rotation={ 0.000 0.000 }
+	}
+	animation={
+		name="alpha_fade"
+		start=0.000
+		duration=1.000
+		repeat=no
+		minValue=0.000
+		maxValue=1.000
+		curve={
+			0.000 0.000 0.200 1.000 0.700 1.000 1.000 0.000 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="shrink"
+		start=0.000
+		duration=1.000
+		repeat=no
+		minValue=0.000
+		maxValue=1.000
+		curve={
+			0.000 1.000 1.000 0.336 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="R"
+		start=0.000
+		duration=1.000
+		repeat=no
+		minValue=0.000
+		maxValue=1.000
+		curve={
+			0.000 0.391 0.591 0.430 1.000 0.289 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="G"
+		start=0.000
+		duration=1.000
+		repeat=no
+		minValue=0.000
+		maxValue=1.000
+		curve={
+			0.000 0.289 0.203 0.703 0.600 0.453 1.000 0.234 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="B"
+		start=0.000
+		duration=1.000
+		repeat=no
+		minValue=0.000
+		maxValue=2.000
+		curve={
+			0.000 1.000 0.118 1.000 0.224 0.914 0.456 0.727 0.694 0.289 1.000 0.063 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="backblast_alpha"
+		start=0.000
+		duration=1.000
+		repeat=no
+		minValue=0.000
+		maxValue=1.000
+		curve={
+			0.000 1.000 0.476 0.617 1.000 1.000 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="grow"
+		start=0.000
+		duration=1.000
+		repeat=no
+		minValue=0.000
+		maxValue=1.000
+		curve={
+			0.000 0.141 1.000 1.000 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="flare_fade"
+		start=0.000
+		duration=1.000
+		repeat=no
+		minValue=0.000
+		maxValue=1.000
+		curve={
+			0.000 0.000 0.176 1.000 0.688 0.789 0.853 0.266 1.000 0.000 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="backblast_size"
+		start=0.000
+		duration=1.000
+		repeat=no
+		minValue=0.000
+		maxValue=1.000
+		curve={
+			0.000 0.727 1.000 0.805 
+		}
+		op="MUL"
+		time="life"
+	}
+	force={
+		type="planar"
+		name="force0"
+		position={
+			0.000 0.000 0.000 
+		}
+		direction={
+			0.000 1.000 0.000 
+		}
+		local_force=yes
+		yaw=0.000
+		division=16
+		amount=5.000
+	}
+}
