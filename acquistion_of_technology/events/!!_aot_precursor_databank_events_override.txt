@@ -654,6 +654,64 @@ country_event = {
 			}
 		}
 	}
+	### DM Juggernaut ###
+	option = {
+		name = acot_precursor_databank.900.dm_jugg
+		custom_tooltip = acot_precursor_databank.900.dm_jugg.infodata
+		allow = {
+			resource_stockpile_compare = {
+				resource = acot_sr_dark_energy
+				value >= 500
+			}
+			resource_stockpile_compare = {
+				resource = sr_dark_matter
+				value >= 500
+			}
+		}
+		trigger = {
+			has_technology = tech_precursor_guardian
+			has_technology = tech_fe_tower_offense
+			NOR = {
+				has_tech_option = tech_precursor_juggernaut
+				has_technology = tech_precursor_juggernaut
+			}
+		}
+		response_text = acot_precursor_databank.900.dm_jugg.response
+		add_resource = {
+			acot_sr_dark_energy = -500
+			sr_dark_matter = -500
+		}
+		set_country_flag = project_dm_jugg_selected
+		hidden_effect = {
+			begin_event_chain = {
+				event_chain = acot_precursor_design_chain
+			}
+			add_event_chain_counter = {
+				event_chain = acot_precursor_design_chain
+				counter = quota_required
+				amount = 450
+			}
+			set_variable = {
+				which = acot_quota_required
+				value = 450
+			}
+			add_event_chain_counter = {
+				event_chain = acot_precursor_design_chain
+				counter = attempts_remain
+				amount = 5
+			}
+			set_variable = {
+				which = acot_quota_attempts
+				value = 5
+			}
+			set_country_flag = precuursor_design_project_active
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.901
+				days = 1
+			}
+		}
+	}
 	### Citadel ###
 	option = {
 		name = acot_precursor_databank.900.citadel
@@ -996,6 +1054,10 @@ country_event = {
 				has_country_flag = project_dm_hab_selected
 				last_increased_tech = tech_dm_habitat
 			}
+			AND = {
+				has_country_flag = project_dm_jugg_selected
+				last_increased_tech = tech_precursor_juggernaut
+			}
 		}
 	}
 	immediate = {
@@ -1076,6 +1138,12 @@ country_event = {
 				has_country_flag = project_dm_hab_selected
 			}
 			remove_country_flag = project_dm_hab_selected
+		}
+		if = {
+			limit = {
+				has_country_flag = project_dm_jugg_selected
+			}
+			remove_country_flag = project_dm_jugg_selected
 		}
 		if = {
 			limit = {
@@ -1221,6 +1289,12 @@ country_event = {
 			}
 			remove_country_flag = project_dm_hab_selected
 		}
+		if = {
+			limit = {
+				has_country_flag = project_dm_jugg_selected
+			}
+			remove_country_flag = project_dm_jugg_selected
+		}
 		end_event_chain = acot_precursor_design_chain
 		remove_country_flag = precuursor_design_project_active
 	}
@@ -1319,6 +1393,12 @@ country_event = {
 			}
 			remove_country_flag = project_dm_hab_selected
 		}
+		if = {
+			limit = {
+				has_country_flag = project_dm_jugg_selected
+			}
+			remove_country_flag = project_dm_jugg_selected
+		}
 		end_event_chain = acot_precursor_design_chain
 		remove_country_flag = precuursor_design_project_active
 	}
@@ -1405,6 +1485,12 @@ country_event = {
 			has_country_flag = project_dm_hab_selected
 		}
 		text = acot_precursor_databank.904.desc.dm_hab
+	}
+	desc = {
+		trigger = {
+			has_country_flag = project_dm_jugg_selected
+		}
+		text = acot_precursor_databank.904.desc.dm_jugg
 	}
 	picture = GFX_evt_physics_research
 	show_sound = event_completed
@@ -1575,6 +1661,21 @@ country_event = {
 		add_research_option = tech_dm_habitat
 		add_tech_progress = {
 			tech = tech_dm_habitat
+			progress = 0.2
+		}
+	}
+	###DM Juggernaut
+	option = {
+		trigger = {
+			has_country_flag = project_dm_jugg_selected
+		}
+		name = acot_precursor_databank.904.dm_jugg
+		remove_country_flag = project_dm_jugg_selected
+		end_event_chain = acot_precursor_design_chain
+		remove_country_flag = precuursor_design_project_active
+		add_research_option = tech_precursor_juggernaut
+		add_tech_progress = {
+			tech = tech_precursor_juggernaut
 			progress = 0.2
 		}
 	}
