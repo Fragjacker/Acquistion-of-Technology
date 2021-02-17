@@ -40,7 +40,7 @@ ascended_juggernaut = {
 	is_designable = no
 	num_target_locators = 0
 	can_have_federation_design = no
-	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	enable_default_design = no	#if yes, countries will have an auto-generated design at start
 	can_disable = no
 	icon_frame = 7
 	ship_class_icon_frame = 35
@@ -121,6 +121,7 @@ precursor_juggernaut = {
 				OR = {
 					is_megastructure_type = mega_shipyard_3
 					is_megastructure_type = mega_shipyard_restored
+					is_megastructure_type = sofe_omega_spy_orb_center
 				}
 			}
 		}
@@ -134,11 +135,19 @@ precursor_juggernaut = {
 					OR = {
 						is_megastructure_type = mega_shipyard_3
 						is_megastructure_type = mega_shipyard_restored
+						is_megastructure_type = sofe_omega_spy_orb_center
 					}
 				}
 				AND = {
 					is_scope_type = starbase
-					has_starbase_size >= starbase_citadel
+					OR = {
+						has_starbase_size >= starbase_citadel
+						has_starbase_size >= acot_precusor_starbase
+						has_starbase_size >= acot_precusor_sigma_starbase
+						has_starbase_size >= origin_citadel
+						has_starbase_size >= origin_super_citadel_playable
+						has_starbase_size >= acot_precusor_phanon_starcitadel
+					}
 				}
 			}
 		}
@@ -150,11 +159,18 @@ precursor_juggernaut = {
 					OR = {
 						is_megastructure_type = mega_shipyard_3
 						is_megastructure_type = mega_shipyard_restored
+						is_megastructure_type = sofe_omega_spy_orb_center
 					}
 				}
 				AND = {
 					is_scope_type = starbase
-					has_starbase_building = colossus_yards
+					OR = {
+						has_starbase_building = colossus_yards
+						has_starbase_module = acot_starbase_shipyard
+						has_starbase_module = acot_sigma_starbase_shipyard
+						has_starbase_module = acot_phanon_starbase_shipyard
+						has_starbase_module = sofe_omega_shipyard
+					}
 				}
 			}
 		}

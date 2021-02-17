@@ -53,6 +53,7 @@ aot_gatekeeper = {
 				OR = {
 					is_megastructure_type = mega_shipyard_3
 					is_megastructure_type = mega_shipyard_restored
+					is_megastructure_type = sofe_omega_spy_orb_center
 				}
 			}
 		}
@@ -66,11 +67,19 @@ aot_gatekeeper = {
 					OR = {
 						is_megastructure_type = mega_shipyard_3
 						is_megastructure_type = mega_shipyard_restored
+						is_megastructure_type = sofe_omega_spy_orb_center
 					}
 				}
 				AND = {
 					is_scope_type = starbase
-					has_starbase_size >= starbase_citadel
+					OR = {
+						has_starbase_size >= starbase_citadel
+						has_starbase_size >= acot_precusor_starbase
+						has_starbase_size >= acot_precusor_sigma_starbase
+						has_starbase_size >= origin_citadel
+						has_starbase_size >= origin_super_citadel_playable
+						has_starbase_size >= acot_precusor_phanon_starcitadel
+					}
 				}
 			}
 		}
@@ -82,17 +91,25 @@ aot_gatekeeper = {
 					OR = {
 						is_megastructure_type = mega_shipyard_3
 						is_megastructure_type = mega_shipyard_restored
+						is_megastructure_type = sofe_omega_spy_orb_center
 					}
 				}
 				AND = {
 					is_scope_type = starbase
-					has_starbase_building = titan_yards
+					OR = {
+						has_starbase_building = titan_yards
+						has_starbase_module = acot_starbase_shipyard
+						has_starbase_module = acot_sigma_starbase_shipyard
+						has_starbase_module = acot_phanon_starbase_shipyard
+						has_starbase_module = sofe_omega_shipyard
+					}
 				}
 			}
 		}
 	}
 	empire_limit = {
 		base = 1
+		max = 100
 		naval_cap_div = 250
 	}
 	num_target_locators = 0
@@ -102,7 +119,9 @@ aot_gatekeeper = {
 	can_have_federation_design = yes
 	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
 	combat_disengage_chance = 0.5
-	prerequisites = { tech_gatekeepers }
+	prerequisites = {
+		tech_gatekeepers
+	}
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
 	required_component_set = "ftl_components"
