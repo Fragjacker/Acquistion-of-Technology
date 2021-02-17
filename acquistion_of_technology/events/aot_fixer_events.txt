@@ -1,0 +1,75 @@
+namespace = aot_fixer_events
+event = {
+	id = aot_fixer_events.1
+	title = aot_fixer_events.1.name
+	desc = aot_fixer_events.1.desc
+	picture = GFX_evt_fallen_empire
+	fire_only_once = yes
+	immediate = {
+		every_planet = {
+			if = {
+				limit = {
+					has_modifier = dm_habitat_mod
+				}
+				change_pc = pc_dm_habitat
+				if = {
+					limit = {
+						has_planet_flag = is_base_dm_habitat
+					}
+					set_planet_entity = {
+						entity = "dm_habitat_phase_01_entity"
+					}
+					set_planet_size = 8
+				}
+				if = {
+					limit = {
+						has_planet_flag = advanced_ascended_habitat
+					}
+					set_planet_entity = {
+						entity = "dm_habitat_phase_02_entity"
+					}
+					set_planet_size = 12
+				}
+				if = {
+					limit = {
+						has_planet_flag = advanced_ascended_habitat_2
+					}
+					set_planet_entity = {
+						entity = "dm_habitat_phase_03_entity"
+					}
+					set_planet_size = 16
+				}
+			}
+			if = {
+				limit = {
+					has_modifier = stellarite_habitat_mod
+				}
+				change_pc = pc_sigma_habitat
+				if = {
+					limit = {
+						has_planet_flag = is_base_dm_habitat
+					}
+					set_planet_entity = {
+						entity = "sigma_habitat_phase_01_entity"
+					}
+				}
+				if = {
+					limit = {
+						has_planet_flag = advanced_ascended_habitat
+					}
+					set_planet_entity = {
+						entity = "sigma_habitat_phase_02_entity"
+					}
+				}
+				if = {
+					limit = {
+						has_planet_flag = advanced_ascended_habitat_2
+					}
+					set_planet_entity = {
+						entity = "sigma_habitat_phase_03_entity"
+					}
+				}
+			}
+		}
+	}
+}

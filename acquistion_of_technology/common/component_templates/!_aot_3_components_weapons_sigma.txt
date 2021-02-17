@@ -28,6 +28,7 @@ utility_component_template = {
 		ultradreadnought
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 	}
 	ai_weight = {
 		weight = 40
@@ -66,6 +67,7 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		movable_fortress
 		fe_goliath
 		Carrier
@@ -74,6 +76,7 @@ utility_component_template = {
 		ultradreadnought
 		supportship
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		fe_assault_carrier
 		progenitor_carrier
 	}
@@ -127,6 +130,7 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		movable_fortress
 		fe_goliath
 		Carrier
@@ -135,6 +139,7 @@ utility_component_template = {
 		ultradreadnought
 		supportship
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		fe_assault_carrier
 		progenitor_carrier
 	}
@@ -188,6 +193,7 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		movable_fortress
 		fe_goliath
 		Carrier
@@ -195,6 +201,7 @@ utility_component_template = {
 		Flagship
 		ultradreadnought
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		fe_assault_carrier
 		progenitor_carrier
 	}
@@ -213,6 +220,111 @@ utility_component_template = {
 	}
 	ai_weight = {
 		weight = 400
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "TITAN_SHIP_THRUSTER_SE"
+	size = small
+	icon = "GFX_ship_part_stellarite_thruste"
+	icon_frame = 1
+	power = -690
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 120
+			energy = 360
+			acot_sr_stellarite = 3.5
+		}
+	}
+	modifier = {
+		ship_base_speed_mult = 1.75
+		ship_evasion_add = 14
+	}
+	prerequisites = {
+		"tech_stellarite_thruster"
+	}
+	component_set = "thruster_components"
+	size_restriction = {
+		movable_fortress
+		titan
+		dcv
+		fe_titan
+		precursor_titan
+		Dreadnought
+		sofe_gatekeeper_warden
+		fe_assault_carrier
+		progenitor_carrier
+		SCX_Dreadnought
+		aot_gatekeeper
+	}
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "TITAN_DARK_MATTER_REACTOR_SE"
+	size = small
+	icon = "GFX_ship_part_stellarite_reactor"
+	icon_frame = 1
+	power = 19200
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 246
+			acot_sr_stellarite = 40
+		}
+		upkeep = {
+			energy = 11
+		}
+	}
+	prerequisites = {
+		"tech_stellarite_reactor"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		titan
+		Flagship
+		dcv
+		ultradreadnought
+		fe_assault_carrier
+		progenitor_carrier
+		Dreadnought
+		SCX_Dreadnought
+		fe_titan
+		precursor_titan
+		fe_goliath
+		ultradreadnought
+		sofe_gatekeeper_warden
+		fe_large_station
+		sentinel_sphere
+		aot_gatekeeper
+	}
+	ai_weight = {
+		weight = 40
 		modifier = {
 			factor = 0
 			has_resource = {

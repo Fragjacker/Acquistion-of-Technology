@@ -22,6 +22,7 @@ utility_component_template = {
 		colossus
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 	}
 	upgrades_to = "COLOSSUS_SHIP_THRUSTER_AE"
 	ai_weight = {
@@ -54,6 +55,7 @@ utility_component_template = {
 		movable_fortress
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		titan
 		Dreadnought
 		Flagship
@@ -64,7 +66,9 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_aegis_guard
-	}	#fe_goliath
+		aot_gatekeeper
+	}
+	#fe_goliath
 	component_set = "combat_computers"
 	ship_behavior = "artillery"
 	prerequisites = {
@@ -124,6 +128,7 @@ utility_component_template = {
 		movable_fortress
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		titan
 		Dreadnought
 		Flagship
@@ -134,7 +139,9 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_aegis_guard
-	}	#fe_goliath
+		aot_gatekeeper
+	}
+	#fe_goliath
 	component_set = "combat_computers"
 	ship_behavior = "acot_long_range"
 	prerequisites = {
@@ -194,6 +201,7 @@ utility_component_template = {
 		movable_fortress
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		titan
 		Dreadnought
 		Flagship
@@ -204,7 +212,9 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_aegis_guard
-	}	#fe_goliath
+		aot_gatekeeper
+	}
+	#fe_goliath
 	component_set = "combat_computers"
 	ship_behavior = "acot_max_range"
 	prerequisites = {
@@ -255,9 +265,106 @@ utility_component_template = {
 	size_restriction = {
 		colossus
 		ascended_juggernaut
+		precursor_juggernaut
 	}
 	upgrades_to = "COLOSSUS_DARK_MATTER_REACTOR_AE"
 	ai_weight = {
 		weight = 6
+	}
+}
+
+utility_component_template = {
+	key = "TITAN_SHIP_THRUSTER_5"
+	size = small
+	icon = "GFX_ship_part_thruster_5"
+	icon_frame = 1
+	power = @titan_power_5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @titan_cost5
+			sr_dark_matter = 16
+		}
+	}
+	modifier = {
+		ship_base_speed_mult = 1.25
+		ship_evasion_add = 4
+	}
+	prerequisites = {
+		"tech_dark_matter_propulsion"
+	}
+	component_set = "thruster_components"
+	size_restriction = {
+		titan
+		aot_gatekeeper
+	}
+	upgrades_to = "TITAN_SHIP_THRUSTER_AE"
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 5
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "TITAN_DARK_MATTER_REACTOR"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core"
+	icon_frame = 1
+	power = 6000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 592
+			sr_dark_matter = 16
+			acot_sr_dark_energy = 16
+		}
+		upkeep = {
+			energy = 5.93
+			alloys = 0.593
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		titan
+		aot_gatekeeper
+	}
+	upgrades_to = "TITAN_DARK_MATTER_REACTOR_AE"
+	ai_weight = {
+		weight = 6
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+		}
 	}
 }

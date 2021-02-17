@@ -20,6 +20,7 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		movable_fortress
 		fe_goliath
 		Carrier
@@ -29,6 +30,7 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		ultradreadnought
 		progenitor_avatar
 	}
@@ -95,6 +97,7 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		movable_fortress
 		fe_goliath
 		Carrier
@@ -104,6 +107,7 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		ultradreadnought
 		progenitor_avatar
 	}
@@ -170,6 +174,7 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		movable_fortress
 		fe_goliath
 		Carrier
@@ -179,6 +184,7 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		ultradreadnought
 		progenitor_avatar
 	}
@@ -245,6 +251,7 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		movable_fortress
 		fe_goliath
 		Carrier
@@ -254,6 +261,7 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		ultradreadnought
 		progenitor_avatar
 	}
@@ -296,6 +304,7 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		movable_fortress
 		fe_goliath
 		Carrier
@@ -305,6 +314,7 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		ultradreadnought
 		progenitor_avatar
 	}
@@ -347,12 +357,14 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		fe_goliath
 		Carrier
 		dcv
 		Flagship
 		ultradreadnought
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		fe_assault_carrier
 		progenitor_carrier
 	}
@@ -395,6 +407,7 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		fe_goliath
 		Carrier
 		dcv
@@ -402,6 +415,7 @@ utility_component_template = {
 		ultradreadnought
 		supportship
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		fe_assault_carrier
 		progenitor_carrier
 		movable_fortress
@@ -449,6 +463,7 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		fe_goliath
 		Carrier
 		dcv
@@ -456,6 +471,7 @@ utility_component_template = {
 		ultradreadnought
 		supportship
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		fe_assault_carrier
 		progenitor_carrier
 		movable_fortress
@@ -503,12 +519,14 @@ utility_component_template = {
 		giga_planet_behemoth
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		fe_goliath
 		Carrier
 		dcv
 		Flagship
 		ultradreadnought
 		sofe_gatekeeper_warden
+		aot_gatekeeper
 		fe_assault_carrier
 		progenitor_carrier
 		movable_fortress
@@ -562,6 +580,7 @@ utility_component_template = {
 		precursor_colossus
 		juggernaut
 		ascended_juggernaut
+		precursor_juggernaut
 		fe_goliath
 	}
 	ai_weight = {
@@ -579,4 +598,122 @@ utility_component_template = {
 		}
 	}
 	upgrades_to = "COLOSSUS_SHIP_THRUSTER_SE"
+}
+
+utility_component_template = {
+	key = "TITAN_SHIP_THRUSTER_AE"
+	size = small
+	icon = "GFX_ship_part_fe_thruster_2"
+	icon_frame = 1
+	power = -640
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 80
+			sr_dark_matter = 12
+			acot_sr_dark_energy = 12
+		}
+	}
+	modifier = {
+		ship_base_speed_mult = 1.5
+		ship_evasion_add = 8
+	}
+	prerequisites = {
+		"tech_fe_thruster_2"
+	}
+	component_set = "thruster_components"
+	size_restriction = {
+		movable_fortress
+		titan
+		SCX_Dreadnought
+		Flagship
+		dcv
+		ultradreadnought
+		SCX_Dreadnought
+		fe_titan
+		precursor_titan
+		sofe_gatekeeper_warden
+		fe_assault_carrier
+		progenitor_carrier
+		aot_gatekeeper
+	}
+	ai_weight = {
+		weight = 30
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 5
+			}
+		}
+	}
+	upgrades_to = "TITAN_SHIP_THRUSTER_SE"
+}
+
+utility_component_template = {
+	key = "TITAN_DARK_MATTER_REACTOR_AE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_ae_alpha"
+	icon_frame = 1
+	power = 12000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 296
+			sr_dark_matter = 21
+			acot_sr_dark_energy = 21
+		}
+		upkeep = {
+			energy = 5.93
+			alloys = 0.593
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_ae"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		Carrier
+		titan
+		sofe_gatekeeper_warden
+		SCX_Dreadnought
+		fe_titan
+		precursor_titan
+		fe_assault_carrier
+		progenitor_carrier
+		Dreadnought
+		fe_large_station
+		sentinel_sphere
+		aot_gatekeeper
+	}
+	ai_weight = {
+		weight = 30
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+		}
+	}
+	upgrades_to = "TITAN_DARK_MATTER_REACTOR_SE"
 }

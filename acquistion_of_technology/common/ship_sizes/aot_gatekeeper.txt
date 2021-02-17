@@ -1,0 +1,121 @@
+aot_gatekeeper = {
+	formation_priority = 15
+	is_space_object = yes
+	max_speed = @speed_default
+	acceleration = 0.2
+	rotation_speed = 0.2
+	collision_radius = 12
+	modifier = {
+		ships_upkeep_mult = -1
+		ship_evasion_add = 10
+		ship_hull_regen_add_static = 2500
+		ship_armor_regen_add_static = 1500
+		ship_shield_regen_add_static = 1500
+		ship_armor_add = 150000
+		ship_shield_add = 150000
+		ship_piracy_suppression_add = 100
+	}
+	max_hitpoints = 250000
+	size_multiplier = 40
+	fleet_slot_size = 40
+	section_slots = {
+		"spinal" = {
+			locator = "part1"
+		}
+		"shoto" = {
+			locator = "part2"
+		}
+		"mid" = {
+			locator = "part3"
+		}
+		"stern" = {
+			locator = "part4"
+		}
+	}
+	possible_country = {
+		NOR = {
+			is_country_type = fallen_empire
+			is_country_type = awakened_fallen_empire
+			is_country_type = eternal_empire
+		}
+	}
+	potential_construction = {
+		OR = {
+			AND = {
+				is_scope_type = starbase
+				NOR = {
+					has_starbase_size = juggernaut
+					has_starbase_size = ascended_juggernaut
+				}
+			}
+			AND = {
+				is_scope_type = megastructure
+				OR = {
+					is_megastructure_type = mega_shipyard_3
+					is_megastructure_type = mega_shipyard_restored
+				}
+			}
+		}
+	}
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = starbase_citadel_trigger
+			OR = {
+				AND = {
+					is_scope_type = megastructure
+					OR = {
+						is_megastructure_type = mega_shipyard_3
+						is_megastructure_type = mega_shipyard_restored
+					}
+				}
+				AND = {
+					is_scope_type = starbase
+					has_starbase_size >= starbase_citadel
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = starbase_titan_yards_trigger
+			OR = {
+				AND = {
+					is_scope_type = megastructure
+					OR = {
+						is_megastructure_type = mega_shipyard_3
+						is_megastructure_type = mega_shipyard_restored
+					}
+				}
+				AND = {
+					is_scope_type = starbase
+					has_starbase_building = titan_yards
+				}
+			}
+		}
+	}
+	empire_limit = {
+		base = 1
+		naval_cap_div = 250
+	}
+	num_target_locators = 0
+	icon_frame = 7
+	is_space_station = no
+	base_buildtime = 1800
+	can_have_federation_design = yes
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	combat_disengage_chance = 0.5
+	prerequisites = { tech_gatekeepers }
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	class = shipclass_military
+	is_designable = yes
+	resources = {
+		category = ships
+		upkeep = {
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 10
+		}
+	}
+}
