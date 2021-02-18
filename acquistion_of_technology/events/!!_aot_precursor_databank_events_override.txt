@@ -4,6 +4,237 @@
 #
 #########################################
 namespace = acot_precursor_databank
+# Databank MAIN MENU
+country_event = {
+	id = acot_precursor_databank.2
+	title = acot_precursor_databank.2.name
+	desc = acot_precursor_databank.2.desc.a
+	desc = acot_precursor_databank.2.desc.b
+	desc = acot_precursor_databank.2.desc.c
+	desc = acot_precursor_databank.2.desc.d
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = acot_databank_room
+	}
+	trigger = {
+		from = {
+			is_country_type = acot_databank
+		}
+		has_country_flag = acot_databank_installed
+		NOT = {
+			has_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+	immediate = {
+		set_country_flag = acot_databank_diplomacy_engaged
+	}
+	after = {
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+	###  ACCESS ALPHA TECH EVIDENCE
+	option = {
+		trigger = {
+			NOR = {
+				has_tech_option = tech_dark_matter_power_core_ae
+				has_technology = tech_dark_matter_power_core_ae
+				has_country_flag = learned_dm_alpha_existence
+			}
+		}
+		name = acot_precursor_databank.2.a
+		hidden_effect = {
+			country_event = {
+				id = acot_precursor_databank.3
+			}
+		}
+	}
+	### ACCESS PRECURSOR DESIGN ARCHIVE ###
+	option = {
+		name = acot_precursor_databank.2.b
+		hidden_effect = {
+			country_event = {
+				id = acot_precursor_databank.4
+			}
+		}
+	}
+	###  ACCESS OUTER GATE ARCHIVE
+	option = {
+		trigger = {
+			is_country_type = swarm
+		}
+		name = acot_precursor_databank.2.c
+	}
+	### ACCESS Tech Archive
+	option = {
+		name = acot_precursor_databank.2.d
+		hidden_effect = {
+			country_event = {
+				id = acot_precursor_databank.6
+			}
+		}
+	}
+	### ACCESS Character Dossier
+	option = {
+		name = acot_precursor_databank.2.e
+		hidden_effect = {
+			country_event = {
+				id = acot_precursor_databank.6
+			}
+		}
+	}
+	### ACCESS Project Reimagionation
+	option = {
+		name = acot_precursor_databank.2.g
+		trigger = {
+			has_ascension_perk = ap_precursor_dream
+			NAND = {
+				has_technology = tech_precursor_escort				#1
+				has_technology = tech_precursor_bc				#2
+				has_technology = tech_precursor_titan				#3
+				has_technology = tech_fe_assault_carrier				#4
+				has_technology = tech_fe_tower_offense				#5
+				has_technology = tech_precursor_guardian				#6
+				has_technology = tech_precursor_colossus				#7
+				has_technology = tech_precursor_construcor				#8
+				has_technology = tech_precursor_science				#9
+				has_technology = tech_precursor_colonizer				#10
+				has_technology = tech_precursor_citadel				#11
+				has_technology = tech_dm_habitat				#12
+				has_technology = tech_precursor_enigmalith				#13
+				has_technology = tech_gatekeepers				#14
+				has_technology = tech_precursor_juggernaut				#15
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = acot_precursor_databank.9
+			}
+		}
+	}
+	### EXIT
+	option = {
+		name = acot_precursor_databank.2.f
+		response_text = EXCELLENT
+		default_hide_option = yes
+	}
+}
+
+# Databank MAIN MENU CLONE
+country_event = {
+	id = acot_precursor_databank.200
+	title = acot_precursor_databank.2.name
+	desc = acot_precursor_databank.2.desc.a
+	desc = acot_precursor_databank.2.desc.b
+	desc = acot_precursor_databank.2.desc.c	
+	desc = acot_precursor_databank.2.desc.d
+	
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+
+	picture_event_data = {
+		room = acot_databank_room
+	}
+	
+	trigger = {
+	}
+
+	immediate = {
+		set_country_flag = acot_databank_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+
+	###  ACCESS ALPHA TECH EVIDENCE
+	option = {
+		trigger = {
+			NOR = {
+				has_tech_option = tech_dark_matter_power_core_ae
+				has_technology =tech_dark_matter_power_core_ae
+				has_country_flag = learned_dm_alpha_existence
+			}
+		}
+		name = acot_precursor_databank.2.a    
+		hidden_effect = {
+			country_event = { id = acot_precursor_databank.3 }
+		}
+	}
+
+	### PROCEED TO PRECURSOR DESIGN MENU ###
+	option = {
+        name = acot_precursor_databank.2.b
+		hidden_effect = {
+			country_event = { id = acot_precursor_databank.4 }
+		}
+	}
+
+	###  ACCESS OUTER GATE ARCHIVE
+	option = {
+		trigger = {
+			is_country_type = swarm
+		}
+		name = acot_precursor_databank.2.c  
+	}
+
+	### ACCESS Tech Archive
+	option = {
+		name =  acot_precursor_databank.2.d  
+		hidden_effect = {
+			country_event = { id = acot_precursor_databank.6 }
+		}
+	}
+
+	### ACCESS Character Dossier
+	option = {
+		name =  acot_precursor_databank.2.e  
+		hidden_effect = {
+			country_event = { id = acot_precursor_databank.7 }
+		}
+	}
+
+	### ACCESS Project Reimagionation
+	option = {
+		name =  acot_precursor_databank.2.g  
+		trigger = {
+			has_ascension_perk = ap_precursor_dream
+			NAND = {
+				has_technology = tech_precursor_escort #1
+				has_technology = tech_precursor_bc #2
+				has_technology = tech_precursor_titan #3
+				has_technology = tech_fe_assault_carrier #4
+				has_technology = tech_fe_tower_offense #5
+				has_technology = tech_precursor_guardian #6
+				has_technology = tech_precursor_colossus #7
+				has_technology = tech_precursor_construcor #8
+				has_technology = tech_precursor_science #9
+				has_technology = tech_precursor_colonizer #10
+				has_technology = tech_precursor_citadel #11
+				has_technology = tech_dm_habitat				#12
+				has_technology = tech_precursor_enigmalith				#13
+				has_technology = tech_gatekeepers				#14
+				has_technology = tech_precursor_juggernaut				#15
+			}
+		}
+		hidden_effect = {
+			country_event = { id = acot_precursor_databank.9 }
+		}
+	}
+
+	### EXIT
+	option = {
+		name =  acot_precursor_databank.2.f  
+		response_text = EXCELLENT
+		default_hide_option = yes
+	}
+}
+
 #### PROJECT
 country_event = {
 	id = acot_precursor_databank.900

@@ -8,10 +8,10 @@ acot_dark_matter_obelisk_core = {
 	prerequisites = {
 		"tech_precursor_enigmalith"
 	}
-	place_entity_on_planet_plane = yes
+	place_entity_on_planet_plane = no
 	entity_offset = {
-		x = -20
-		y = -20
+		x = 0
+		y = 0
 	}
 	# used from script only
 	#upgrade_desc = hide
@@ -37,18 +37,31 @@ acot_dark_matter_obelisk_core = {
 				fail_text = "requires_no_existing_megastructure"
 				#can_build_megastructure_on_planet = yes
 				NOR = {
-					has_planet_flag = megastructure
-					has_planet_flag = has_megastructure
-					solar_system = {
-						has_star_flag = ring_world_built
+					AND = {
+						OR = {
+							has_planet_flag = megastructure
+							has_planet_flag = has_megastructure
+						}
+						NOR = {
+							is_planet_class = pc_ringworld_habitable_damaged
+							is_memeable_ringworld = yes
+						}
 					}
-					is_planet_class = pc_ringworld_habitable
-					is_planet_class = pc_ringworld_habitable_damaged
+					# has_planet_flag = megastructure
+					# has_planet_flag = has_megastructure
+					# solar_system = {
+					# 	has_star_flag = ring_world_built
+					# }
+					# is_planet_class = pc_ringworld_habitable
+					# is_planet_class = pc_ringworld_habitable_damaged
 					is_planet_class = pc_ringworld_tech
 					is_planet_class = pc_ringworld_tech_damaged
 					is_planet_class = pc_ringworld_seam
 					is_planet_class = pc_ringworld_seam_damaged
 					is_planet_class = pc_habitat
+					is_planet_class = pc_dm_habitat
+					is_planet_class = pc_ae_habitat
+					is_planet_class = pc_sigma_habitat
 				}
 			}
 			# balance for habitats
@@ -174,10 +187,10 @@ acot_dark_matter_obelisk_core_ae = {
 	upgrade_from = {
 		acot_dark_matter_obelisk_core
 	}
-	place_entity_on_planet_plane = yes
+	place_entity_on_planet_plane = no
 	entity_offset = {
-		x = -20
-		y = -20
+		x = 0
+		y = 0
 	}
 	# used from script only
 	#upgrade_desc = hide
@@ -216,10 +229,10 @@ acot_dark_matter_obelisk_core_se = {
 	upgrade_from = {
 		acot_dark_matter_obelisk_core_ae
 	}
-	place_entity_on_planet_plane = yes
+	place_entity_on_planet_plane = no
 	entity_offset = {
-		x = -20
-		y = -20
+		x = 0
+		y = 0
 	}
 	# used from script only
 	#upgrade_desc = hide
@@ -255,10 +268,10 @@ acot_dark_matter_obelisk_core_oe = {
 	prerequisites = {
 		tech_precursor_enigmalith_oe
 	}
-	place_entity_on_planet_plane = yes
+	place_entity_on_planet_plane = no
 	entity_offset = {
-		x = -20
-		y = -20
+		x = 0
+		y = 0
 	}
 	upgrade_from = {
 		acot_dark_matter_obelisk_core_se
@@ -296,10 +309,10 @@ acot_dark_matter_obelisk_core_pe = {
 	entity = "precursor_dark_obelisk_pe_entity"
 	construction_entity = "precursor_dark_obelisk_pe_entity"
 	portrait = "GFX_acot_dark_obelisk_background"
-	place_entity_on_planet_plane = yes
+	place_entity_on_planet_plane = no
 	entity_offset = {
-		x = -20
-		y = -20
+		x = 0
+		y = 0
 	}
 	# used from script only
 	#upgrade_desc = hide
