@@ -1,0 +1,143 @@
+particle={
+	name="phanon_jugg_stellarite_sun_effect"
+	subsystem={
+		name="flare_big_base"
+		max_amount=30
+		slave_particles=0
+		emitter_type="point"
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=yes
+		hide=no
+		texture={
+			file="gfx/particles/glow.dds"
+			x=1
+			y=1
+			shader="ParticleAdditive"
+		}
+		color={
+			x=255
+			y=75
+			z=75
+			alpha=255,alpha_fade
+		}
+		position={
+		}
+		duration=-1
+		life={ 0.8 0.1 }
+		emission=10
+		size={ 80 1 }
+		rotation={ 0 180 }
+	}
+	subsystem={
+		name="flare_big_base"
+		max_amount=10
+		slave_particles=0
+		emitter_type="point"
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=yes
+		hide=no
+		texture={
+			file="gfx/particles/flare_wide.dds"
+			x=1
+			y=1
+			shader="ParticleAdditive"
+		}
+		color={
+			x=255
+			y=0
+			z=0
+			alpha=25,alpha_fade
+		}
+		position={
+			y=10
+		}
+		duration=-1
+		life={ 1 0.1 }
+		emission=5
+		size={ 200 1 }
+		rotation={ 0 0 }
+	}
+	subsystem={
+		name="chaos_01"
+		max_amount=400
+		slave_particles=0
+		emitter_type="sphere"
+		sphere_emitter_radius=40
+		sphere_emitter_yaw={ 0 180 }
+		sphere_emitter_pitch={ 0 180 }
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=yes
+		hide=no
+		texture={
+			file="gfx/particles/digital_pattern.dds"
+			x=2
+			y=2
+			shader="ParticleAdditive"
+		}
+		color={
+			x=255
+			y=0
+			z=0
+			alpha=255,alpha_fade
+		}
+		position={
+		}
+		duration=-1
+		velocity_pitch={ 0 180 }
+		velocity_yaw={ 0 180 }
+		velocity=20
+		life={ 2 0.5 }
+		emission=200
+		size={ 1 0.5 }
+		rotation={ 0 180 }
+		rotation_speed=200
+		force=point,chaos
+	}
+	animation={
+		name="alpha_fade"
+		start=0
+		duration=1
+		repeat=no
+		minValue=0
+		maxValue=1
+		curve={
+			0 0 0.303 0.266 0.535 1 0.741 0.266 1 0 
+		}
+		op="MUL"
+		time="life"
+	}
+	force={
+		type="turbulence"
+		name="chaos"
+		position={
+			0 0 0 
+		}
+		direction={
+			0 1 0 
+		}
+		local_force=yes
+		yaw=0
+		division=16
+		amount=15
+	}
+	force={
+		type="point"
+		name="point"
+		position={
+			0 0 0 
+		}
+		direction={
+			0 1 0 
+		}
+		local_force=yes
+		yaw=0
+		division=16
+		amount=-15
+	}
+}
