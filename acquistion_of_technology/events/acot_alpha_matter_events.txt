@@ -1166,7 +1166,7 @@ planet_event = {
 			create_country = {
 				name = random
 				type = default
-				species = last_created
+				species = last_created_species
 				ignore_initial_colony_error = yes
 				day_zero_contact = no
 				ethos = {
@@ -1481,7 +1481,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					count_owned_pops = {
+					count_owned_pop = {
 						count < 5
 						limit = {
 							is_exact_same_species = root
@@ -1490,7 +1490,7 @@ country_event = {
 				}
 				while = {
 					limit = {
-						count_owned_pops = {
+						count_owned_pop = {
 							count < 5
 							limit = {
 								is_exact_same_species = root
@@ -1518,6 +1518,7 @@ country_event = {
 				create_army = {
 					owner = root
 					type = fe_omnidroid_army
+					species = owner_main_species
 				}
 			}
 			owner = {
@@ -1533,6 +1534,7 @@ country_event = {
 				create_army = {
 					owner = root
 					type = fe_godmech
+					species = owner_main_species
 				}
 				assign_leader = last_created_leader
 			}
@@ -1662,7 +1664,7 @@ country_event = {
 					}
 					if = {
 						limit = {
-							count_owned_pops = {
+							count_owned_pop = {
 								count < 5
 								limit = {
 									is_exact_same_species = root
@@ -1671,7 +1673,7 @@ country_event = {
 						}
 						while = {
 							limit = {
-								count_owned_pops = {
+								count_owned_pop = {
 									count < 5
 									limit = {
 										is_exact_same_species = root
@@ -1699,6 +1701,7 @@ country_event = {
 						create_army = {
 							owner = root
 							type = fe_omnidroid_army
+							species = owner_main_species
 						}
 					}
 					owner = {
@@ -1714,6 +1717,7 @@ country_event = {
 						create_army = {
 							owner = root
 							type = fe_godmech
+							species = owner_main_species
 						}
 					}
 					last_created_army = {
@@ -1741,15 +1745,15 @@ country_event = {
 			}
 		}
 		# survey host's surveyed planets
-		every_planet = {
+		every_galaxy_planet = {
 			limit = {
 				is_surveyed = {
 					who = event_target:current_uprising_originator
 					status = yes
 				}
 			}
-			surveyed = {
-				set_surveyed = yes
+			set_surveyed = {
+				surveyed = yes
 				surveyor = root
 			}
 		}
@@ -2025,7 +2029,7 @@ country_event = {
 							}
 						}
 						set_location = {
-							target = prev
+							target = prevprev
 							distance = 45
 							angle = random
 						}
