@@ -1,3 +1,6 @@
+@size_lvl1 = 5
+@size_lvl2 = 8
+@size_lvl3 = 11
 # Dark Matter habitat Project
 decision_convert_dm_habitat = {
 	owned_planets_only = yes
@@ -29,7 +32,6 @@ decision_convert_dm_habitat = {
 	allow = {
 	}
 	effect = {
-		# Make city-planet
 		custom_tooltip = decision_convert_dm_habitat_effects
 		hidden_effect = {
 			clear_deposits = yes
@@ -38,7 +40,7 @@ decision_convert_dm_habitat = {
 			set_planet_entity = {
 				entity = "dm_habitat_phase_01_entity"
 			}
-			set_planet_size = 8
+			set_planet_size = @size_lvl1
 			set_planet_flag = is_base_dm_habitat
 			add_modifier = {
 				modifier = dm_habitat_mod
@@ -46,100 +48,129 @@ decision_convert_dm_habitat = {
 			}
 			if = {
 				limit = {
-					has_building = building_colony_shelter
+					has_enigmatic_capital = no
 				}
-				remove_building = building_colony_shelter
-			}
-			if = {
-				limit = {
-					has_building = building_capital
-				}
-				remove_building = building_capital
-			}
-			if = {
-				limit = {
-					has_building = building_major_capital
-				}
-				remove_building = building_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_system_capital
-				}
-				remove_building = building_system_capital
-			}
-			if = {
-				limit = {
-					has_building = building_hab_capital
-				}
-				remove_building = building_hab_capital
-			}
-			if = {
-				limit = {
-					has_building = building_hab_major_capital
-				}
-				remove_building = building_hab_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_resort_capital
-				}
-				remove_building = building_resort_capital
-			}
-			if = {
-				limit = {
-					has_building = building_resort_major_capital
-				}
-				remove_building = building_resort_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_slave_capital
-				}
-				remove_building = building_slave_capital
-			}
-			if = {
-				limit = {
-					has_building = building_slave_major_capital
-				}
-				remove_building = building_slave_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_ancient_palace
-				}
-				remove_building = building_ancient_palace
-			}
-			if = {
-				limit = {
-					has_building = building_ancient_control_center
-				}
-				remove_building = building_ancient_control_center
-			}
-			# Add the appropriate building now.
-			if = {
-				limit = {
-					owner = {
-						is_regular_empire = yes
+				if = {
+					limit = {
+						has_building = building_colony_shelter
 					}
+					remove_building = building_colony_shelter
 				}
-				add_building = building_dm_ancient_palace
-			}
-			if = {
-				limit = {
-					owner = {
-						is_machine_empire = yes
+				if = {
+					limit = {
+						has_building = building_capital
 					}
+					remove_building = building_capital
 				}
-				add_building = building_dm_ancient_control_center
-			}
-			if = {
-				limit = {
-					owner = {
-						is_hive_empire = yes
+				if = {
+					limit = {
+						has_building = building_major_capital
 					}
+					remove_building = building_major_capital
 				}
-				add_building = building_dm_ancient_hive_cluster
+				if = {
+					limit = {
+						has_building = building_system_capital
+					}
+					remove_building = building_system_capital
+				}
+				if = {
+					limit = {
+						has_building = building_hab_capital
+					}
+					remove_building = building_hab_capital
+				}
+				if = {
+					limit = {
+						has_building = building_hab_major_capital
+					}
+					remove_building = building_hab_major_capital
+				}
+				if = {
+					limit = {
+						has_building = building_resort_capital
+					}
+					remove_building = building_resort_capital
+				}
+				if = {
+					limit = {
+						has_building = building_resort_major_capital
+					}
+					remove_building = building_resort_major_capital
+				}
+				if = {
+					limit = {
+						has_building = building_slave_capital
+					}
+					remove_building = building_slave_capital
+				}
+				if = {
+					limit = {
+						has_building = building_slave_major_capital
+					}
+					remove_building = building_slave_major_capital
+				}
+				if = {
+					limit = {
+						has_building = building_ancient_palace
+					}
+					remove_building = building_ancient_palace
+				}
+				if = {
+					limit = {
+						has_building = building_ancient_control_center
+					}
+					remove_building = building_ancient_control_center
+				}
+				if = {
+					limit = {
+						has_building = building_hive_cluster
+					}
+					remove_building = building_hive_cluster
+				}
+				if = {
+					limit = {
+						has_building = building_imperial_capital
+					}
+					remove_building = building_imperial_capital
+				}
+				if = {
+					limit = {
+						has_building = building_imperial_machine_capital
+					}
+					remove_building = building_imperial_machine_capital
+				}
+				if = {
+					limit = {
+						has_building = building_imperial_hive_capital
+					}
+					remove_building = building_imperial_hive_capital
+				}
+				# Add the appropriate building now.
+				if = {
+					limit = {
+						owner = {
+							is_regular_empire = yes
+						}
+					}
+					add_building = building_dm_ancient_palace
+				}
+				if = {
+					limit = {
+						owner = {
+							is_machine_empire = yes
+						}
+					}
+					add_building = building_dm_ancient_control_center
+				}
+				if = {
+					limit = {
+						owner = {
+							is_hive_empire = yes
+						}
+					}
+					add_building = building_dm_ancient_hive_cluster
+				}
 			}
 		}
 	}
@@ -194,7 +225,7 @@ decision_retrofit_ae_habitat = {
 				set_planet_entity = {
 					entity = "alpha_habitat_phase_01_entity"
 				}
-				set_planet_size = 8
+				set_planet_size = @size_lvl1
 			}
 			if = {
 				limit = {
@@ -203,7 +234,7 @@ decision_retrofit_ae_habitat = {
 				set_planet_entity = {
 					entity = "alpha_habitat_phase_02_entity"
 				}
-				set_planet_size = 12
+				set_planet_size = @size_lvl2
 			}
 			if = {
 				limit = {
@@ -212,122 +243,145 @@ decision_retrofit_ae_habitat = {
 				set_planet_entity = {
 					entity = "alpha_habitat_phase_03_entity"
 				}
-				set_planet_size = 16
+				set_planet_size = @size_lvl3
 			}
 			if = {
 				limit = {
-					has_building = building_colony_shelter
+					has_ascended_capital = no
 				}
-				remove_building = building_colony_shelter
-			}
-			if = {
-				limit = {
-					has_building = building_capital
-				}
-				remove_building = building_capital
-			}
-			if = {
-				limit = {
-					has_building = building_major_capital
-				}
-				remove_building = building_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_system_capital
-				}
-				remove_building = building_system_capital
-			}
-			if = {
-				limit = {
-					has_building = building_hab_capital
-				}
-				remove_building = building_hab_capital
-			}
-			if = {
-				limit = {
-					has_building = building_hab_major_capital
-				}
-				remove_building = building_hab_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_resort_capital
-				}
-				remove_building = building_resort_capital
-			}
-			if = {
-				limit = {
-					has_building = building_resort_major_capital
-				}
-				remove_building = building_resort_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_slave_capital
-				}
-				remove_building = building_slave_capital
-			}
-			if = {
-				limit = {
-					has_building = building_slave_major_capital
-				}
-				remove_building = building_slave_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_ancient_palace
-				}
-				remove_building = building_ancient_palace
-			}
-			if = {
-				limit = {
-					has_building = building_ancient_control_center
-				}
-				remove_building = building_ancient_control_center
-			}
-			if = {
-				limit = {
-					has_building = building_dm_ancient_control_center
-				}
-				remove_building = building_dm_ancient_control_center
-			}
-			if = {
-				limit = {
-					has_building = building_dm_ancient_palace
-				}
-				remove_building = building_dm_ancient_palace
-			}
-			if = {
-				limit = {
-					has_building = building_dm_ancient_hive_cluster
-				}
-				remove_building = building_dm_ancient_hive_cluster
-			}
-			# Add the appropriate building now.
-			if = {
-				limit = {
-					owner = {
-						is_regular_empire = yes
+				if = {
+					limit = {
+						has_building = building_colony_shelter
 					}
+					remove_building = building_colony_shelter
 				}
-				add_building = building_ae_ancient_palace
-			}
-			if = {
-				limit = {
-					owner = {
-						is_machine_empire = yes
+				if = {
+					limit = {
+						has_building = building_capital
 					}
+					remove_building = building_capital
 				}
-				add_building = building_ae_ancient_control_center
-			}
-			if = {
-				limit = {
-					owner = {
-						is_hive_empire = yes
+				if = {
+					limit = {
+						has_building = building_major_capital
 					}
+					remove_building = building_major_capital
 				}
-				add_building = building_ae_ancient_hive_cluster
+				if = {
+					limit = {
+						has_building = building_system_capital
+					}
+					remove_building = building_system_capital
+				}
+				if = {
+					limit = {
+						has_building = building_hab_capital
+					}
+					remove_building = building_hab_capital
+				}
+				if = {
+					limit = {
+						has_building = building_hab_major_capital
+					}
+					remove_building = building_hab_major_capital
+				}
+				if = {
+					limit = {
+						has_building = building_resort_capital
+					}
+					remove_building = building_resort_capital
+				}
+				if = {
+					limit = {
+						has_building = building_resort_major_capital
+					}
+					remove_building = building_resort_major_capital
+				}
+				if = {
+					limit = {
+						has_building = building_slave_capital
+					}
+					remove_building = building_slave_capital
+				}
+				if = {
+					limit = {
+						has_building = building_slave_major_capital
+					}
+					remove_building = building_slave_major_capital
+				}
+				if = {
+					limit = {
+						has_building = building_ancient_palace
+					}
+					remove_building = building_ancient_palace
+				}
+				if = {
+					limit = {
+						has_building = building_ancient_control_center
+					}
+					remove_building = building_ancient_control_center
+				}
+				if = {
+					limit = {
+						has_building = building_imperial_capital
+					}
+					remove_building = building_imperial_capital
+				}
+				if = {
+					limit = {
+						has_building = building_imperial_machine_capital
+					}
+					remove_building = building_imperial_machine_capital
+				}
+				if = {
+					limit = {
+						has_building = building_imperial_hive_capital
+					}
+					remove_building = building_imperial_hive_capital
+				}
+				if = {
+					limit = {
+						has_building = building_dm_ancient_control_center
+					}
+					remove_building = building_dm_ancient_control_center
+				}
+				if = {
+					limit = {
+						has_building = building_dm_ancient_palace
+					}
+					remove_building = building_dm_ancient_palace
+				}
+				if = {
+					limit = {
+						has_building = building_dm_ancient_hive_cluster
+					}
+					remove_building = building_dm_ancient_hive_cluster
+				}
+				# Add the appropriate building now.
+				if = {
+					limit = {
+						owner = {
+							is_regular_empire = yes
+						}
+					}
+					add_building = building_ae_ancient_palace
+				}
+				if = {
+					limit = {
+						owner = {
+							is_machine_empire = yes
+						}
+					}
+					add_building = building_ae_ancient_control_center
+				}
+				if = {
+					limit = {
+						owner = {
+							is_hive_empire = yes
+						}
+					}
+					add_building = building_ae_ancient_hive_cluster
+				}
 			}
 		}
 	}
@@ -383,7 +437,7 @@ decision_retrofit_sigma_habitat = {
 				set_planet_entity = {
 					entity = "sigma_habitat_phase_01_entity"
 				}
-				set_planet_size = 8
+				set_planet_size = @size_lvl1
 			}
 			if = {
 				limit = {
@@ -392,7 +446,7 @@ decision_retrofit_sigma_habitat = {
 				set_planet_entity = {
 					entity = "sigma_habitat_phase_02_entity"
 				}
-				set_planet_size = 12
+				set_planet_size = @size_lvl2
 			}
 			if = {
 				limit = {
@@ -401,122 +455,145 @@ decision_retrofit_sigma_habitat = {
 				set_planet_entity = {
 					entity = "sigma_habitat_phase_03_entity"
 				}
-				set_planet_size = 16
+				set_planet_size = @size_lvl3
 			}
 			if = {
 				limit = {
-					has_building = building_colony_shelter
+					has_stellarite_capital = no
 				}
-				remove_building = building_colony_shelter
-			}
-			if = {
-				limit = {
-					has_building = building_capital
-				}
-				remove_building = building_capital
-			}
-			if = {
-				limit = {
-					has_building = building_major_capital
-				}
-				remove_building = building_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_system_capital
-				}
-				remove_building = building_system_capital
-			}
-			if = {
-				limit = {
-					has_building = building_hab_capital
-				}
-				remove_building = building_hab_capital
-			}
-			if = {
-				limit = {
-					has_building = building_hab_major_capital
-				}
-				remove_building = building_hab_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_resort_capital
-				}
-				remove_building = building_resort_capital
-			}
-			if = {
-				limit = {
-					has_building = building_resort_major_capital
-				}
-				remove_building = building_resort_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_slave_capital
-				}
-				remove_building = building_slave_capital
-			}
-			if = {
-				limit = {
-					has_building = building_slave_major_capital
-				}
-				remove_building = building_slave_major_capital
-			}
-			if = {
-				limit = {
-					has_building = building_ancient_palace
-				}
-				remove_building = building_ancient_palace
-			}
-			if = {
-				limit = {
-					has_building = building_ancient_control_center
-				}
-				remove_building = building_ancient_control_center
-			}
-			if = {
-				limit = {
-					has_building = building_ae_ancient_control_center
-				}
-				remove_building = building_ae_ancient_control_center
-			}
-			if = {
-				limit = {
-					has_building = building_ae_ancient_palace
-				}
-				remove_building = building_ae_ancient_palace
-			}
-			if = {
-				limit = {
-					has_building = building_ae_ancient_hive_cluster
-				}
-				remove_building = building_ae_ancient_hive_cluster
-			}
-			# Add the appropriate building now.
-			if = {
-				limit = {
-					owner = {
-						is_regular_empire = yes
+				if = {
+					limit = {
+						has_building = building_colony_shelter
 					}
+					remove_building = building_colony_shelter
 				}
-				add_building = building_stellarite_palace
-			}
-			if = {
-				limit = {
-					owner = {
-						is_machine_empire = yes
+				if = {
+					limit = {
+						has_building = building_capital
 					}
+					remove_building = building_capital
 				}
-				add_building = building_stellarite_control_center
-			}
-			if = {
-				limit = {
-					owner = {
-						is_hive_empire = yes
+				if = {
+					limit = {
+						has_building = building_major_capital
 					}
+					remove_building = building_major_capital
 				}
-				add_building = building_stellarite_hive_cluster
+				if = {
+					limit = {
+						has_building = building_system_capital
+					}
+					remove_building = building_system_capital
+				}
+				if = {
+					limit = {
+						has_building = building_hab_capital
+					}
+					remove_building = building_hab_capital
+				}
+				if = {
+					limit = {
+						has_building = building_hab_major_capital
+					}
+					remove_building = building_hab_major_capital
+				}
+				if = {
+					limit = {
+						has_building = building_resort_capital
+					}
+					remove_building = building_resort_capital
+				}
+				if = {
+					limit = {
+						has_building = building_resort_major_capital
+					}
+					remove_building = building_resort_major_capital
+				}
+				if = {
+					limit = {
+						has_building = building_slave_capital
+					}
+					remove_building = building_slave_capital
+				}
+				if = {
+					limit = {
+						has_building = building_slave_major_capital
+					}
+					remove_building = building_slave_major_capital
+				}
+				if = {
+					limit = {
+						has_building = building_imperial_capital
+					}
+					remove_building = building_imperial_capital
+				}
+				if = {
+					limit = {
+						has_building = building_imperial_machine_capital
+					}
+					remove_building = building_imperial_machine_capital
+				}
+				if = {
+					limit = {
+						has_building = building_imperial_hive_capital
+					}
+					remove_building = building_imperial_hive_capital
+				}
+				if = {
+					limit = {
+						has_building = building_ancient_palace
+					}
+					remove_building = building_ancient_palace
+				}
+				if = {
+					limit = {
+						has_building = building_ancient_control_center
+					}
+					remove_building = building_ancient_control_center
+				}
+				if = {
+					limit = {
+						has_building = building_ae_ancient_control_center
+					}
+					remove_building = building_ae_ancient_control_center
+				}
+				if = {
+					limit = {
+						has_building = building_ae_ancient_palace
+					}
+					remove_building = building_ae_ancient_palace
+				}
+				if = {
+					limit = {
+						has_building = building_ae_ancient_hive_cluster
+					}
+					remove_building = building_ae_ancient_hive_cluster
+				}
+				# Add the appropriate building now.
+				if = {
+					limit = {
+						owner = {
+							is_regular_empire = yes
+						}
+					}
+					add_building = building_stellarite_palace
+				}
+				if = {
+					limit = {
+						owner = {
+							is_machine_empire = yes
+						}
+					}
+					add_building = building_stellarite_control_center
+				}
+				if = {
+					limit = {
+						owner = {
+							is_hive_empire = yes
+						}
+					}
+					add_building = building_stellarite_hive_cluster
+				}
 			}
 		}
 	}
@@ -565,26 +642,32 @@ decision_upgrade_ascended_habitat = {
 		custom_tooltip = decision_upgrade_ascended_habitat_effects
 		hidden_effect = {
 			if = {
-				limit = { is_planet_class = pc_dm_habitat }
+				limit = {
+					is_planet_class = pc_dm_habitat
+				}
 				set_planet_entity = {
 					entity = "dm_habitat_phase_02_entity"
 				}
 			}
 			else_if = {
-				limit = {is_planet_class = pc_ae_habitat }
+				limit = {
+					is_planet_class = pc_ae_habitat
+				}
 				set_planet_entity = {
 					entity = "alpha_habitat_phase_02_entity"
 				}
 			}
 			else_if = {
-				limit = {is_planet_class = pc_sigma_habitat }
+				limit = {
+					is_planet_class = pc_sigma_habitat
+				}
 				set_planet_entity = {
 					entity = "sigma_habitat_phase_02_entity"
 				}
 			}
 			set_planet_flag = advanced_ascended_habitat
 		}
-		set_planet_size = 12
+		set_planet_size = @size_lvl2
 	}
 	ai_weight = {
 		weight = 1
@@ -631,26 +714,32 @@ decision_upgrade_ascended_habitat_2 = {
 		custom_tooltip = decision_upgrade_ascended_habitat_2_effects
 		hidden_effect = {
 			if = {
-				limit = { is_planet_class = pc_dm_habitat }
+				limit = {
+					is_planet_class = pc_dm_habitat
+				}
 				set_planet_entity = {
 					entity = "dm_habitat_phase_03_entity"
 				}
 			}
 			else_if = {
-				limit = {is_planet_class = pc_ae_habitat }
+				limit = {
+					is_planet_class = pc_ae_habitat
+				}
 				set_planet_entity = {
 					entity = "alpha_habitat_phase_03_entity"
 				}
 			}
 			else_if = {
-				limit = {is_planet_class = pc_sigma_habitat }
+				limit = {
+					is_planet_class = pc_sigma_habitat
+				}
 				set_planet_entity = {
 					entity = "sigma_habitat_phase_03_entity"
 				}
 			}
 			set_planet_flag = advanced_ascended_habitat_2
 		}
-		set_planet_size = 16
+		set_planet_size = @size_lvl3
 	}
 	ai_weight = {
 		weight = 1
