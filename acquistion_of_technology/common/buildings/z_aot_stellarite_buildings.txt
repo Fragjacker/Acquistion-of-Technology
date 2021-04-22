@@ -8,6 +8,7 @@ building_stellarite_palace = {
 	can_be_ruined = no
 	can_be_disabled = no
 	can_build = no
+	position_priority = 0
 	country_modifier = {
 		country_resource_max_add = 15000
 	}
@@ -41,9 +42,9 @@ building_stellarite_palace = {
 	planet_modifier = {
 		planet_housing_add = 40
 		planet_amenities_add = 100
-		planet_max_districts_add = 5
-		planet_max_buildings_add = 8
-		planet_max_branch_office_buildings_add = 3
+		planet_max_districts_add = 8
+		planet_max_buildings_add = 24
+		planet_max_branch_office_buildings_add = 10
 		trade_value_add = 30
 		trade_value_mult = 2
 	}
@@ -121,6 +122,7 @@ building_stellarite_control_center = {
 	can_demolish = no
 	can_be_ruined = no
 	can_be_disabled = no
+	position_priority = 0
 	country_modifier = {
 		country_resource_max_add = 15000
 	}
@@ -150,9 +152,9 @@ building_stellarite_control_center = {
 	planet_modifier = {
 		planet_housing_add = 40
 		planet_amenities_add = 100
-		planet_max_districts_add = 5
-		planet_max_buildings_add = 8
-		planet_max_branch_office_buildings_add = 3
+		planet_max_districts_add = 8
+		planet_max_buildings_add = 24
+		planet_max_branch_office_buildings_add = 10
 	}
 	##### FOR DEFEARTHH ###
 	triggered_planet_modifier = {
@@ -207,6 +209,7 @@ building_stellarite_hive_cluster = {
 	can_demolish = no
 	can_be_ruined = no
 	can_be_disabled = no
+	position_priority = 0
 	country_modifier = {
 		country_resource_max_add = 15000
 	}
@@ -236,9 +239,8 @@ building_stellarite_hive_cluster = {
 	planet_modifier = {
 		planet_housing_add = 40
 		planet_amenities_add = 100
-		planet_max_districts_add = 5
-		planet_max_buildings_add = 8
-		planet_max_branch_office_buildings_add = 3
+		planet_max_districts_add = 8
+		planet_max_buildings_add = 24
 		job_stellarite_overlord_drone_add = 1
 		job_stellarite_overseer_drone_add = 4
 		job_stellarite_enforcer_drone_add = 4
@@ -726,48 +728,6 @@ building_stellarite_sky_dome = {
 	}
 	ai_weight = {
 		weight = 5
-	}
-}
-
-building_stellarite_psg = {
-	base_buildtime = 900
-	add_to_first_building_slot = yes
-	can_build = no
-	category = army
-	allow = {
-		has_stellarite_capital = yes
-	}
-	planet_modifier = {
-		planet_orbital_bombardment_damage = -0.99
-	}
-	potential = {
-		exists = owner
-		owner = {
-			has_technology = tech_stellarite_psg
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			energy = 5000
-			minerals = 5000
-			acot_sr_stellarite = 1000
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			energy = 1000
-			acot_sr_stellarite = 100
-		}
-	}
-	prerequisites = {
-		"tech_stellarite_psg"
-	}
-	ai_weight = {
-		weight = 15000
 	}
 }
 
@@ -2107,6 +2067,49 @@ building_stellarite_hive_evochamber = {
 #####################
 # Military
 #####################
+building_stellarite_psg = {
+	base_buildtime = 900
+	add_to_first_building_slot = yes
+	can_build = no
+	category = army
+	position_priority = 100
+	allow = {
+		has_stellarite_capital = yes
+	}
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.99
+	}
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_stellarite_psg
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 5000
+			minerals = 5000
+			acot_sr_stellarite = 1000
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			energy = 1000
+			acot_sr_stellarite = 100
+		}
+	}
+	prerequisites = {
+		"tech_stellarite_psg"
+	}
+	ai_weight = {
+		weight = 15000
+	}
+}
+
 building_stellarite_giga_fortress_array = {
 	base_buildtime = 1200
 	add_to_first_building_slot = yes
@@ -2116,6 +2119,7 @@ building_stellarite_giga_fortress_array = {
 	can_build = no
 	planetary_ftl_inhibitor = yes
 	category = army
+	position_priority = 100
 	potential = {
 	}
 	allow = {
@@ -2130,8 +2134,8 @@ building_stellarite_giga_fortress_array = {
 	}
 	army_modifier = {
 		army_defense_damage_mult = 20
-		army_defense_health_mult = 10
-		army_defense_morale_mult = 10
+		army_defense_health_mult = 20
+		army_defense_morale_mult = 20
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2185,6 +2189,7 @@ building_stellarite_giga_fortress_lab = {
 	can_build = no
 	planetary_ftl_inhibitor = yes
 	category = army
+	position_priority = 100
 	potential = {
 	}
 	allow = {
@@ -2198,8 +2203,8 @@ building_stellarite_giga_fortress_lab = {
 	}
 	army_modifier = {
 		army_defense_damage_mult = 20
-		army_defense_health_mult = 10
-		army_defense_morale_mult = 10
+		army_defense_health_mult = 20
+		army_defense_morale_mult = 20
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2264,6 +2269,7 @@ building_stellarite_giga_fortress_obelisk = {
 	can_build = no
 	planetary_ftl_inhibitor = yes
 	category = army
+	position_priority = 100
 	potential = {
 	}
 	allow = {
@@ -2276,10 +2282,10 @@ building_stellarite_giga_fortress_obelisk = {
 		planet_crime_add = -200
 	}
 	army_modifier = {
-		army_defense_morale_mult = 40
-		army_defense_health_mult = 20
-		army_defense_damage_mult = 20
-		army_starting_experience_add = 20000
+		army_defense_morale_mult = 50
+		army_defense_health_mult = 50
+		army_defense_damage_mult = 50
+		army_starting_experience_add = 50000
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2327,6 +2333,7 @@ building_stellarite_stronghold = {
 	add_to_first_building_slot = yes
 	can_build = no
 	category = army
+	position_priority = 100
 	allow = {
 		has_stellarite_capital = yes
 	}
@@ -2337,9 +2344,9 @@ building_stellarite_stronghold = {
 		planet_stability_add = 5
 	}
 	army_modifier = {
-		army_defense_damage_mult = +0.25
-		army_defense_health_mult = +0.25
-		army_defense_morale_mult = +0.25
+		army_defense_damage_mult = 1
+		army_defense_health_mult = 1
+		army_defense_morale_mult = 1
 	}
 	potential = {
 		exists = owner
