@@ -1,0 +1,160 @@
+namespace = aot_dm_production_core_events
+@required_energy = 2500
+country_event = {
+	id = aot_dm_production_core_events.1
+	title = "aot_dm_production_core.1.name"
+	desc = "aot_dm_production_core.1.desc"
+	picture = GFX_evt_fallen_empire
+	show_sound = event_mystery
+	trigger = {
+		has_technology = tech_dark_matter_power_core
+		NOR = {
+			has_country_flag = hear_dm_production_core_rumor
+			has_country_flag = block_dm_production_core_rumor
+			has_event_chain = aot_dm_production_core_chain
+		}
+	}
+	mean_time_to_happen = {
+		years = 5
+	}
+	option = {
+		name = aot_dm_production_core_events.1.a
+		custom_tooltip = aot_dm_production_core_events.1.a_desc
+		set_country_flag = hear_dm_production_core_rumor
+		default_hide_option = yes
+		trigger = {
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_event_chain = aot_dm_production_core_chain
+					}
+				}
+				begin_event_chain = {
+					event_chain = aot_dm_production_core_chain
+				}
+				add_event_chain_counter = {
+					event_chain = aot_dm_production_core_chain
+					counter = dm_production_core_energy_required
+					amount = @required_energy
+				}
+				set_variable = {
+					which = current_dm_production_core_energy_required
+					value = @required_energy
+				}
+				set_variable = {
+					which = current_dm_production_core_energy_level
+					value = 0
+				}
+				country_event = {
+					id = aot_dm_production_core_events.2
+				}
+			}
+		}
+	}
+	option = {
+		name = aot_dm_production_core_postpone
+		custom_tooltip = acot_alpha_diy_postpone_desc
+		trigger = {
+			is_country_type = default
+			is_ai = no
+		}
+		set_timed_country_flag = {
+			flag = block_dm_production_core_rumor
+			days = 720
+		}
+	}
+}
+
+country_event = {
+	id = aot_dm_production_core_events.2
+	title = "aot_dm_production_core.2.name"
+	desc = "aot_dm_production_core.2.desc"
+	diplomatic = yes
+	custom_gui = "dm_production_core_gui"
+	is_triggered_only = yes
+	trigger = {
+	}
+	option = {
+		name = EXIT
+	}
+}
+
+# Power Level not yet reached!
+country_event = {
+	id = aot_dm_production_core_events.3
+	title = aot_dm_production_core_events.3.name
+	desc = aot_dm_production_core_events.3.desc
+	picture = GFX_evt_matter_decompressor
+	show_sound = event_completed
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		remove_country_flag = has_ongoing_production_core_study
+	}
+	option = {
+		name = aot_dm_production_core_events.3.a
+		custom_tooltip = aot_dm_production_core_events.3.a.explain
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_dm_production_core_events.2
+			}
+		}
+	}
+	option = {
+		name = aot_dm_production_core_events.3.b
+		custom_tooltip = aot_dm_production_core_events.3.b.explain
+		end_event_chain = aot_dm_production_core_chain
+	}
+}
+
+# SUCCESSS
+country_event = {
+	id = aot_dm_production_core_events.4
+	title = aot_dm_production_core_events.4.name
+	desc = aot_dm_production_core_events.4.desc
+	picture = GFX_evt_physics_research
+	show_sound = event_completed
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	###AUTOMATONS REIGN SUPREME
+	option = {
+		trigger = {
+			has_country_flag = project_escort_selected
+		}
+		name = aot_dm_production_core_events.4.a
+		remove_country_flag = has_ongoing_production_core_study
+		end_event_chain = aot_dm_production_core_chain
+		remove_country_flag = precuursor_design_project_active
+		add_research_option = tech_precursor_escort
+		add_tech_progress = {
+			tech = tech_precursor_escort
+			progress = 0.2
+		}
+	}
+}
+
+#POWER CORE PROJECT FAILED SUCCESSFULLY
+country_event = {
+	id = aot_dm_production_core_events.5
+	title = aot_dm_production_core_events.5.name
+	desc = aot_dm_production_core_events.5.desc
+	picture = GFX_alert
+	show_sound = event_bad_omen
+	is_triggered_only = yes
+	immediate = {
+		end_event_chain = aot_dm_production_core_chain
+		remove_country_flag = hear_dm_production_core_rumor^
+		remove_country_flag = has_ongoing_production_core_study
+		set_timed_country_flag = {
+			flag = block_dm_production_core_rumor
+			days = 1800
+		}
+	}
+}
