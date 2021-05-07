@@ -2,7 +2,7 @@
 special_project = {
 	key = "RESEARCH_DM_PRODUCTION_CORE_100_SUCCESS"
 	cost = @research_cost
-	tech_department = physics_technology
+	tech_department = engineering_technology
 	picture = GFX_evt_physics_research
 	event_chain = aot_dm_production_core_chain
 	event_scope = planet_event
@@ -64,16 +64,44 @@ special_project = {
 				limit = {
 					check_variable = {
 						which = var_dm_production_core_energy
-						value <= 2500 
+						value <= 2500
 					}
 					check_variable = {
 						which = var_dm_production_core_energy
 						value > 0
 					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value < previous_power_level_value
+					}
 				}
 				country_event = {
 					id = aot_dm_production_core_events.3
 				}
+			}
+			### INCOMPLETED, WE HAVE DISCHARGED!?
+			ELSE_IF = {
+				limit = {
+					check_variable = {
+						which = var_dm_production_core_energy
+						value <= 2500
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > 0
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > previous_power_level_value
+					}
+				}
+				country_event = {
+					id = aot_dm_production_core_events.6
+				}
+			}
+			set_variable = {
+				which = previous_power_level_value
+				value = var_dm_production_core_energy
 			}
 		}
 	}
@@ -82,9 +110,9 @@ special_project = {
 }
 
 special_project = {
-	key = "RESEARCH_DM_PRODUCTION_CORE_90_SUCCESS"
+	key = "RESEARCH_DM_PRODUCTION_CORE_95_SUCCESS"
 	cost = @research_cost
-	tech_department = physics_technology
+	tech_department = engineering_technology
 	picture = GFX_evt_physics_research
 	event_chain = aot_dm_production_core_chain
 	event_scope = planet_event
@@ -94,7 +122,7 @@ special_project = {
 	on_success = {
 		owner = {
 			random_list = {
-				90 = {
+				95 = {
 					add_event_chain_counter = {
 						event_chain = aot_dm_production_core_chain
 						counter = dm_production_core_current_energy_amount
@@ -105,7 +133,7 @@ special_project = {
 						value = -100
 					}
 				}
-				10 = {
+				5 = {
 					add_event_chain_counter = {
 						event_chain = aot_dm_production_core_chain
 						counter = dm_production_core_current_energy_amount
@@ -146,16 +174,44 @@ special_project = {
 				limit = {
 					check_variable = {
 						which = var_dm_production_core_energy
-						value <= 2500 
+						value <= 2500
 					}
 					check_variable = {
 						which = var_dm_production_core_energy
 						value > 0
 					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value < previous_power_level_value
+					}
 				}
 				country_event = {
 					id = aot_dm_production_core_events.3
 				}
+			}
+			### INCOMPLETED, WE HAVE DISCHARGED!?
+			ELSE_IF = {
+				limit = {
+					check_variable = {
+						which = var_dm_production_core_energy
+						value <= 2500
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > 0
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > previous_power_level_value
+					}
+				}
+				country_event = {
+					id = aot_dm_production_core_events.6
+				}
+			}
+			set_variable = {
+				which = previous_power_level_value
+				value = var_dm_production_core_energy
 			}
 		}
 	}
@@ -164,9 +220,9 @@ special_project = {
 }
 
 special_project = {
-	key = "RESEARCH_DM_PRODUCTION_CORE_80_SUCCESS"
+	key = "RESEARCH_DM_PRODUCTION_CORE_90_SUCCESS"
 	cost = @research_cost
-	tech_department = physics_technology
+	tech_department = engineering_technology
 	picture = GFX_evt_physics_research
 	event_chain = aot_dm_production_core_chain
 	event_scope = planet_event
@@ -176,7 +232,7 @@ special_project = {
 	on_success = {
 		owner = {
 			random_list = {
-				80 = {
+				90 = {
 					add_event_chain_counter = {
 						event_chain = aot_dm_production_core_chain
 						counter = dm_production_core_current_energy_amount
@@ -187,7 +243,7 @@ special_project = {
 						value = -200
 					}
 				}
-				20 = {
+				10 = {
 					add_event_chain_counter = {
 						event_chain = aot_dm_production_core_chain
 						counter = dm_production_core_current_energy_amount
@@ -228,16 +284,44 @@ special_project = {
 				limit = {
 					check_variable = {
 						which = var_dm_production_core_energy
-						value <= 2500 
+						value <= 2500
 					}
 					check_variable = {
 						which = var_dm_production_core_energy
 						value > 0
 					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value < previous_power_level_value
+					}
 				}
 				country_event = {
 					id = aot_dm_production_core_events.3
 				}
+			}
+			### INCOMPLETED, WE HAVE DISCHARGED!?
+			ELSE_IF = {
+				limit = {
+					check_variable = {
+						which = var_dm_production_core_energy
+						value <= 2500
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > 0
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > previous_power_level_value
+					}
+				}
+				country_event = {
+					id = aot_dm_production_core_events.6
+				}
+			}
+			set_variable = {
+				which = previous_power_level_value
+				value = var_dm_production_core_energy
 			}
 		}
 	}
@@ -246,9 +330,9 @@ special_project = {
 }
 
 special_project = {
-	key = "RESEARCH_DM_PRODUCTION_CORE_70_SUCCESS"
+	key = "RESEARCH_DM_PRODUCTION_CORE_85_SUCCESS"
 	cost = @research_cost
-	tech_department = physics_technology
+	tech_department = engineering_technology
 	picture = GFX_evt_physics_research
 	event_chain = aot_dm_production_core_chain
 	event_scope = planet_event
@@ -258,7 +342,7 @@ special_project = {
 	on_success = {
 		owner = {
 			random_list = {
-				70 = {
+				85 = {
 					add_event_chain_counter = {
 						event_chain = aot_dm_production_core_chain
 						counter = dm_production_core_current_energy_amount
@@ -269,7 +353,7 @@ special_project = {
 						value = -300
 					}
 				}
-				30 = {
+				15 = {
 					add_event_chain_counter = {
 						event_chain = aot_dm_production_core_chain
 						counter = dm_production_core_current_energy_amount
@@ -310,16 +394,44 @@ special_project = {
 				limit = {
 					check_variable = {
 						which = var_dm_production_core_energy
-						value <= 2500 
+						value <= 2500
 					}
 					check_variable = {
 						which = var_dm_production_core_energy
 						value > 0
 					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value < previous_power_level_value
+					}
 				}
 				country_event = {
 					id = aot_dm_production_core_events.3
 				}
+			}
+			### INCOMPLETED, WE HAVE DISCHARGED!?
+			ELSE_IF = {
+				limit = {
+					check_variable = {
+						which = var_dm_production_core_energy
+						value <= 2500
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > 0
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > previous_power_level_value
+					}
+				}
+				country_event = {
+					id = aot_dm_production_core_events.6
+				}
+			}
+			set_variable = {
+				which = previous_power_level_value
+				value = var_dm_production_core_energy
 			}
 		}
 	}
@@ -328,9 +440,9 @@ special_project = {
 }
 
 special_project = {
-	key = "RESEARCH_DM_PRODUCTION_CORE_60_SUCCESS"
+	key = "RESEARCH_DM_PRODUCTION_CORE_80_SUCCESS"
 	cost = @research_cost
-	tech_department = physics_technology
+	tech_department = engineering_technology
 	picture = GFX_evt_physics_research
 	event_chain = aot_dm_production_core_chain
 	event_scope = planet_event
@@ -340,7 +452,7 @@ special_project = {
 	on_success = {
 		owner = {
 			random_list = {
-				60 = {
+				80 = {
 					add_event_chain_counter = {
 						event_chain = aot_dm_production_core_chain
 						counter = dm_production_core_current_energy_amount
@@ -351,7 +463,7 @@ special_project = {
 						value = -400
 					}
 				}
-				40 = {
+				20 = {
 					add_event_chain_counter = {
 						event_chain = aot_dm_production_core_chain
 						counter = dm_production_core_current_energy_amount
@@ -392,16 +504,44 @@ special_project = {
 				limit = {
 					check_variable = {
 						which = var_dm_production_core_energy
-						value <= 2500 
+						value <= 2500
 					}
 					check_variable = {
 						which = var_dm_production_core_energy
 						value > 0
 					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value < previous_power_level_value
+					}
 				}
 				country_event = {
 					id = aot_dm_production_core_events.3
 				}
+			}
+			### INCOMPLETED, WE HAVE DISCHARGED!?
+			ELSE_IF = {
+				limit = {
+					check_variable = {
+						which = var_dm_production_core_energy
+						value <= 2500
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > 0
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > previous_power_level_value
+					}
+				}
+				country_event = {
+					id = aot_dm_production_core_events.6
+				}
+			}
+			set_variable = {
+				which = previous_power_level_value
+				value = var_dm_production_core_energy
 			}
 		}
 	}
@@ -410,9 +550,9 @@ special_project = {
 }
 
 special_project = {
-	key = "RESEARCH_DM_PRODUCTION_CORE_50_SUCCESS"
+	key = "RESEARCH_DM_PRODUCTION_CORE_75_SUCCESS"
 	cost = @research_cost
-	tech_department = physics_technology
+	tech_department = engineering_technology
 	picture = GFX_evt_physics_research
 	event_chain = aot_dm_production_core_chain
 	event_scope = planet_event
@@ -422,7 +562,7 @@ special_project = {
 	on_success = {
 		owner = {
 			random_list = {
-				50 = {
+				75 = {
 					add_event_chain_counter = {
 						event_chain = aot_dm_production_core_chain
 						counter = dm_production_core_current_energy_amount
@@ -433,7 +573,7 @@ special_project = {
 						value = -500
 					}
 				}
-				50 = {
+				25 = {
 					add_event_chain_counter = {
 						event_chain = aot_dm_production_core_chain
 						counter = dm_production_core_current_energy_amount
@@ -474,16 +614,44 @@ special_project = {
 				limit = {
 					check_variable = {
 						which = var_dm_production_core_energy
-						value <= 2500 
+						value <= 2500
 					}
 					check_variable = {
 						which = var_dm_production_core_energy
 						value > 0
 					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value < previous_power_level_value
+					}
 				}
 				country_event = {
 					id = aot_dm_production_core_events.3
 				}
+			}
+			### INCOMPLETED, WE HAVE DISCHARGED!?
+			ELSE_IF = {
+				limit = {
+					check_variable = {
+						which = var_dm_production_core_energy
+						value <= 2500
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > 0
+					}
+					check_variable = {
+						which = var_dm_production_core_energy
+						value > previous_power_level_value
+					}
+				}
+				country_event = {
+					id = aot_dm_production_core_events.6
+				}
+			}
+			set_variable = {
+				which = previous_power_level_value
+				value = var_dm_production_core_energy
 			}
 		}
 	}

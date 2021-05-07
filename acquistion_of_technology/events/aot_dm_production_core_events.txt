@@ -47,6 +47,10 @@ country_event = {
 					which = current_dm_production_core_energy_level
 					value = 0
 				}
+				set_variable = {
+					which = previous_power_level_value
+					value = var_dm_production_core_energy
+				}
 				country_event = {
 					id = aot_dm_production_core_events.2
 				}
@@ -55,7 +59,7 @@ country_event = {
 	}
 	option = {
 		name = aot_dm_production_core_postpone
-		custom_tooltip = acot_alpha_diy_postpone_desc
+		custom_tooltip = aot_dm_production_core_postpone_desc
 		trigger = {
 			is_country_type = default
 			is_ai = no
@@ -80,17 +84,19 @@ country_event = {
 		allow = {
 			has_country_flag = has_ongoing_production_core_study
 		}
-		name = EXIT
+		name = aot_dm_production_core_events.2.a
+		custom_tooltip = aot_dm_production_core_events.2.a.explain
+		default_hide_option = yes
 	}
 }
 
-# Power Level not yet reached!
+# Success but power Level not yet reached!
 country_event = {
 	id = aot_dm_production_core_events.3
 	title = aot_dm_production_core_events.3.name
 	desc = aot_dm_production_core_events.3.desc
-	picture = GFX_evt_matter_decompressor
-	show_sound = event_completed
+	picture = GFX_evt_sapient_AI
+	show_sound = event_energy_field
 	is_triggered_only = yes
 	trigger = {
 	}
@@ -120,25 +126,22 @@ country_event = {
 	title = aot_dm_production_core_events.4.name
 	desc = aot_dm_production_core_events.4.desc
 	picture = GFX_evt_physics_research
-	show_sound = event_completed
+	show_sound = event_celebration
 	is_triggered_only = yes
 	trigger = {
 	}
 	immediate = {
+		end_event_chain = aot_dm_production_core_chain
+		remove_country_flag = has_ongoing_production_core_study
+		remove_country_flag = precuursor_design_project_active
 	}
 	###AUTOMATONS REIGN SUPREME
 	option = {
-		trigger = {
-			has_country_flag = project_escort_selected
-		}
 		name = aot_dm_production_core_events.4.a
-		remove_country_flag = has_ongoing_production_core_study
-		end_event_chain = aot_dm_production_core_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_escort
+		add_research_option = tech_dm_production_core
 		add_tech_progress = {
-			tech = tech_precursor_escort
-			progress = 0.2
+			tech = tech_dm_production_core
+			progress = 0.8
 		}
 	}
 }
@@ -148,16 +151,53 @@ country_event = {
 	id = aot_dm_production_core_events.5
 	title = aot_dm_production_core_events.5.name
 	desc = aot_dm_production_core_events.5.desc
-	picture = GFX_alert
-	show_sound = event_bad_omen
+	picture = GFX_evt_black_hole
+	show_sound = event_comms_cutoff
 	is_triggered_only = yes
 	immediate = {
-		end_event_chain = aot_dm_production_core_chain
-		remove_country_flag = hear_dm_production_core_rumor^
-		remove_country_flag = has_ongoing_production_core_study
-		set_timed_country_flag = {
-			flag = block_dm_production_core_rumor
-			days = 1800
+	}
+	option = {
+		name = aot_dm_production_core_events.5.a
+		custom_tooltip = aot_dm_production_core_events.5.a.explain
+		default_hide_option = yes
+		hidden_effect = {
+			end_event_chain = aot_dm_production_core_chain
+			remove_country_flag = hear_dm_production_core_rumor
+			remove_country_flag = has_ongoing_production_core_study
+			set_timed_country_flag = {
+				flag = block_dm_production_core_rumor
+				days = 1800
+			}
 		}
+	}
+}
+
+# Failure with power level decrease and final level not yet reached!
+country_event = {
+	id = aot_dm_production_core_events.6
+	title = aot_dm_production_core_events.6.name
+	desc = aot_dm_production_core_events.6.desc
+	picture = GFX_evt_laser_grid
+	show_sound = event_power_down
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		remove_country_flag = has_ongoing_production_core_study
+	}
+	option = {
+		name = aot_dm_production_core_events.6.a
+		custom_tooltip = aot_dm_production_core_events.6.a.explain
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_dm_production_core_events.2
+			}
+		}
+	}
+	option = {
+		name = aot_dm_production_core_events.6.b
+		custom_tooltip = aot_dm_production_core_events.6.b.explain
+		end_event_chain = aot_dm_production_core_chain
 	}
 }
