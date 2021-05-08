@@ -226,49 +226,6 @@ tech_synthetic_dark_matter = {
 	}
 }
 
-tech_aot_fe_empyrean_shrine = {
-	cost = @acot_tier8cost3
-	area = society
-	tier = 6
-	icon = tech_fe_empyrean_shrine
-	category = {
-		psionics
-	}
-	potential = {
-		NOT = {
-			has_global_flag = acot_building_forbidden
-		}
-		has_global_flag = zofe_activated
-		has_ethic = ethic_fanatic_spiritualist
-	}
-	prerequisites = {
-		"tech_dark_matter_power_core"
-		"tech_psionic_theory"
-	}
-	weight = @tier5weight1
-	is_rare = yes
-	weight_modifier = {
-		factor = 0.8
-		modifier = {
-			factor = 1.75
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_psionics"
-			}
-		}
-	}
-	ai_weight = {
-		factor = 0.8
-		modifier = {
-			factor = 1.75
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_psionics"
-			}
-		}
-	}
-}
-
 tech_aot_ae_affluence_center = {
 	cost = @acot_tier7cost3
 	area = engineering
@@ -287,7 +244,6 @@ tech_aot_ae_affluence_center = {
 		NOT = {
 			has_global_flag = acot_building_forbidden
 		}
-		has_global_flag = zofe_activated
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	weight_modifier = {
@@ -329,7 +285,6 @@ tech_aot_ae_nourishment_center = {
 		NOT = {
 			has_global_flag = acot_building_forbidden
 		}
-		has_global_flag = zofe_activated
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	weight_modifier = {
@@ -385,7 +340,6 @@ tech_aot_ae_dimensional_fabricator = {
 		NOT = {
 			has_global_flag = acot_building_forbidden
 		}
-		has_global_flag = zofe_activated
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	weight_modifier = {
@@ -427,7 +381,6 @@ tech_aot_ae_class_4_singularity = {
 		NOT = {
 			has_global_flag = acot_building_forbidden
 		}
-		has_global_flag = zofe_activated
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	weight_modifier = {
@@ -479,7 +432,6 @@ tech_aot_ae_nano_forge = {
 		NOT = {
 			has_global_flag = acot_building_forbidden
 		}
-		has_global_flag = zofe_activated
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	weight_modifier = {
@@ -521,7 +473,6 @@ tech_aot_ae_master_archive = {
 		NOT = {
 			has_global_flag = acot_building_forbidden
 		}
-		has_global_flag = zofe_activated
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	weight_modifier = {
@@ -604,7 +555,6 @@ tech_aot_ae_sky_dome = {
 		NOT = {
 			has_global_flag = acot_building_forbidden
 		}
-		has_global_flag = zofe_activated
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	weight_modifier = {
@@ -1224,6 +1174,382 @@ tech_ae_bureau = {
 			research_leader = {
 				area = society
 				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+
+# Fallen Empire automated buildings.
+tech_dm_production_core = {
+	cost = @acot_tier6cost2
+	area = engineering
+	tier = 6
+	weight = 0
+	ai_update_type = all
+	is_rare = yes
+	gateway = autoproduction
+	category = {
+		materials
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core"
+	}
+	weight = @tier1weight1
+	potential = {
+		is_regular_empire = yes
+		has_technology = tech_dark_matter_power_core
+		is_gestalt = no
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_AUTOMATED_BUILDINGS"
+			desc = "TECH_UNLOCK_AUTOMATED_BUILDINGS_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 20
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+}
+
+tech_fe_class_4_singularity = {
+	cost = @acot_tier6cost2
+	area = physics
+	tier = 6
+	category = {
+		field_manipulation
+	}
+	prerequisites = {
+		tech_dm_production_core
+	}
+	weight = @tier3weight1
+	potential = {
+		is_regular_empire = yes
+		has_technology = tech_dm_production_core
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_mine_exotic_gases
+				has_technology = tech_exotic_gases
+			}
+		}
+		modifier = {
+			factor = 2
+			has_tradition = tr_prosperity_adopt
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+	}
+}
+
+tech_fe_dimensional_fabricator = {
+	cost = @acot_tier6cost2
+	area = engineering
+	tier = 6
+	category = {
+		industry
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier3weight1
+	potential = {
+		is_regular_empire = yes
+		has_technology = tech_dm_production_core
+	}
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+
+tech_fe_nourishment_center = {
+	cost = @acot_tier6cost2
+	area = society
+	tier = 6
+	category = {
+		biology
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier3weight1
+	potential = {
+		is_regular_empire = yes
+		has_technology = tech_dm_production_core
+	}
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 0.01
+			is_machine_empire = yes
+			NOR = {
+				has_valid_civic = civic_machine_servitor
+				has_valid_civic = civic_machine_assimilator
+				any_owned_planet = {
+					num_districts = {
+						type = district_farming
+						value > 0
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_biology"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_biology"
+			}
+		}
+	}
+}
+
+tech_fe_affluence_center = {
+	cost = @acot_tier6cost2
+	area = engineering
+	tier = 6
+	category = {
+		materials
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier4weight1
+	potential = {
+		is_regular_empire = yes
+		has_technology = tech_dm_production_core
+		OR = {
+			is_gestalt = no
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+}
+
+tech_fe_nano_forge = {
+	cost = @acot_tier6cost2
+	area = engineering
+	tier = 6
+	category = {
+		materials
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier4weight1
+	potential = {
+		is_regular_empire = yes
+		has_technology = tech_dm_production_core
+	}
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+}
+
+tech_fe_master_archive = {
+	cost = @acot_tier6cost2
+	area = physics
+	tier = 6
+	category = {
+		computing
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier4weight1
+	potential = {
+		is_regular_empire = yes
+		has_technology = tech_dm_production_core
+	}
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_computing"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_computing"
+			}
+		}
+	}
+}
+
+tech_fe_sky_dome = {
+	cost = @acot_tier6cost2
+	area = society
+	tier = 6
+	category = {
+		statecraft
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier1weight1
+	potential = {
+		is_regular_empire = yes
+		has_technology = tech_dm_production_core
+		is_gestalt = no
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_mine_rare_crystals
+				has_technology = tech_rare_crystals
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 20
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+
+tech_aot_fe_empyrean_shrine = {
+	cost = @acot_tier8cost3
+	area = society
+	tier = 6
+	icon = tech_fe_empyrean_shrine
+	category = {
+		psionics
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_building_forbidden
+		}
+		has_global_flag = zofe_activated
+		has_ethic = ethic_fanatic_spiritualist
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core"
+		"tech_psionic_theory"
+	}
+	weight = @tier5weight1
+	is_rare = yes
+	weight_modifier = {
+		factor = 0.8
+		modifier = {
+			factor = 1.75
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_psionics"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 0.8
+		modifier = {
+			factor = 1.75
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_psionics"
 			}
 		}
 	}

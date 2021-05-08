@@ -1,0 +1,203 @@
+namespace = aot_dm_production_core_events
+@required_energy = 2500
+country_event = {
+	id = aot_dm_production_core_events.1
+	title = "aot_dm_production_core.1.name"
+	desc = "aot_dm_production_core.1.desc"
+	picture = GFX_evt_fallen_empire
+	show_sound = event_mystery
+	trigger = {
+		has_technology = tech_dark_matter_power_core
+		NOR = {
+			has_country_flag = dm_production_core_project_offer
+			has_country_flag = block_dm_production_core_project
+			has_event_chain = aot_dm_production_core_chain
+		}
+	}
+	mean_time_to_happen = {
+		years = 5
+	}
+	option = {
+		name = aot_dm_production_core_events.1.a
+		custom_tooltip = aot_dm_production_core_events.1.a_desc
+		set_country_flag = dm_production_core_project_offer
+		default_hide_option = yes
+		trigger = {
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_event_chain = aot_dm_production_core_chain
+					}
+				}
+				begin_event_chain = {
+					event_chain = aot_dm_production_core_chain
+				}
+				add_event_chain_counter = {
+					event_chain = aot_dm_production_core_chain
+					counter = dm_production_core_energy_required
+					amount = @required_energy
+				}
+				set_variable = {
+					which = var_dm_production_core_energy
+					value = @required_energy
+				}
+				set_variable = {
+					which = current_dm_production_core_energy_level
+					value = 0
+				}
+				set_variable = {
+					which = previous_power_level_value
+					value = var_dm_production_core_energy
+				}
+				country_event = {
+					id = aot_dm_production_core_events.2
+				}
+			}
+		}
+	}
+	option = {
+		name = aot_dm_production_core_postpone
+		custom_tooltip = aot_dm_production_core_postpone_desc
+		trigger = {
+			is_country_type = default
+			is_ai = no
+		}
+		set_timed_country_flag = {
+			flag = block_dm_production_core_project
+			days = 1800
+		}
+	}
+}
+
+country_event = {
+	id = aot_dm_production_core_events.2
+	title = "aot_dm_production_core.2.name"
+	desc = "aot_dm_production_core.2.desc"
+	diplomatic = yes
+	custom_gui = "dm_production_core_gui"
+	is_triggered_only = yes
+	trigger = {
+	}
+	option = {
+		allow = {
+			has_country_flag = has_ongoing_production_core_study
+		}
+		name = aot_dm_production_core_events.2.a
+		custom_tooltip = aot_dm_production_core_events.2.a.explain
+		default_hide_option = yes
+	}
+}
+
+# Success but power Level not yet reached!
+country_event = {
+	id = aot_dm_production_core_events.3
+	title = aot_dm_production_core_events.3.name
+	desc = aot_dm_production_core_events.3.desc
+	picture = GFX_evt_sapient_AI
+	show_sound = event_energy_field
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		remove_country_flag = has_ongoing_production_core_study
+	}
+	option = {
+		name = aot_dm_production_core_events.3.a
+		custom_tooltip = aot_dm_production_core_events.3.a.explain
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_dm_production_core_events.2
+			}
+		}
+	}
+	option = {
+		name = aot_dm_production_core_events.3.b
+		custom_tooltip = aot_dm_production_core_events.3.b.explain
+		end_event_chain = aot_dm_production_core_chain
+	}
+}
+
+# SUCCESSS
+country_event = {
+	id = aot_dm_production_core_events.4
+	title = aot_dm_production_core_events.4.name
+	desc = aot_dm_production_core_events.4.desc
+	picture = GFX_evt_physics_research
+	show_sound = event_celebration
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		end_event_chain = aot_dm_production_core_chain
+		remove_country_flag = has_ongoing_production_core_study
+		remove_country_flag = precuursor_design_project_active
+	}
+	###AUTOMATONS REIGN SUPREME
+	option = {
+		name = aot_dm_production_core_events.4.a
+		add_research_option = tech_dm_production_core
+		add_tech_progress = {
+			tech = tech_dm_production_core
+			progress = 0.8
+		}
+	}
+}
+
+#POWER CORE PROJECT FAILED SUCCESSFULLY
+country_event = {
+	id = aot_dm_production_core_events.5
+	title = aot_dm_production_core_events.5.name
+	desc = aot_dm_production_core_events.5.desc
+	picture = GFX_evt_black_hole
+	show_sound = event_comms_cutoff
+	is_triggered_only = yes
+	immediate = {
+	}
+	option = {
+		name = aot_dm_production_core_events.5.a
+		custom_tooltip = aot_dm_production_core_events.5.a.explain
+		default_hide_option = yes
+		hidden_effect = {
+			end_event_chain = aot_dm_production_core_chain
+			remove_country_flag = dm_production_core_project_offer
+			remove_country_flag = has_ongoing_production_core_study
+			set_timed_country_flag = {
+				flag = block_dm_production_core_project
+				days = 360
+			}
+		}
+	}
+}
+
+# Failure with power level decrease and final level not yet reached!
+country_event = {
+	id = aot_dm_production_core_events.6
+	title = aot_dm_production_core_events.6.name
+	desc = aot_dm_production_core_events.6.desc
+	picture = GFX_evt_laser_grid
+	show_sound = event_power_down
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		remove_country_flag = has_ongoing_production_core_study
+	}
+	option = {
+		name = aot_dm_production_core_events.6.a
+		custom_tooltip = aot_dm_production_core_events.6.a.explain
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_dm_production_core_events.2
+			}
+		}
+	}
+	option = {
+		name = aot_dm_production_core_events.6.b
+		custom_tooltip = aot_dm_production_core_events.6.b.explain
+		end_event_chain = aot_dm_production_core_chain
+	}
+}
