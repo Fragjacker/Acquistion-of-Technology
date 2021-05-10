@@ -245,6 +245,8 @@ tech_aot_ae_affluence_center = {
 			has_global_flag = acot_building_forbidden
 		}
 		has_technology = tech_dark_matter_power_core_ae
+		has_technology = tech_fe_affluence_center
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
 		factor = 2
@@ -286,6 +288,8 @@ tech_aot_ae_nourishment_center = {
 			has_global_flag = acot_building_forbidden
 		}
 		has_technology = tech_dark_matter_power_core_ae
+		has_technology = tech_fe_nourishment_center
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
 		factor = 2
@@ -341,6 +345,8 @@ tech_aot_ae_dimensional_fabricator = {
 			has_global_flag = acot_building_forbidden
 		}
 		has_technology = tech_dark_matter_power_core_ae
+		has_technology = tech_fe_dimensional_fabricator
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
 		factor = 2
@@ -382,6 +388,8 @@ tech_aot_ae_class_4_singularity = {
 			has_global_flag = acot_building_forbidden
 		}
 		has_technology = tech_dark_matter_power_core_ae
+		has_technology = tech_fe_class_4_singularity
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
 		modifier = {
@@ -433,6 +441,8 @@ tech_aot_ae_nano_forge = {
 			has_global_flag = acot_building_forbidden
 		}
 		has_technology = tech_dark_matter_power_core_ae
+		has_technology = tech_fe_nano_forge
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
 		factor = 2
@@ -474,6 +484,8 @@ tech_aot_ae_master_archive = {
 			has_global_flag = acot_building_forbidden
 		}
 		has_technology = tech_dark_matter_power_core_ae
+		has_technology = tech_fe_master_archive
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
 		factor = 2
@@ -515,8 +527,9 @@ tech_aot_ae_empyrean_shrine = {
 		NOT = {
 			has_global_flag = acot_building_forbidden
 		}
-		has_global_flag = zofe_activated
 		has_technology = tech_dark_matter_power_core_ae
+		has_technology = tech_fe_empyrean_shrine
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
 		modifier = {
@@ -556,6 +569,8 @@ tech_aot_ae_sky_dome = {
 			has_global_flag = acot_building_forbidden
 		}
 		has_technology = tech_dark_matter_power_core_ae
+		has_technology = tech_fe_sky_dome
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
 		modifier = {
@@ -1194,11 +1209,10 @@ tech_dm_production_core = {
 	prerequisites = {
 		"tech_dark_matter_power_core"
 	}
-	weight = @tier1weight1
 	potential = {
 		is_regular_empire = yes
 		has_technology = tech_dark_matter_power_core
-		is_gestalt = no
+		has_country_flag = finished_dm_production_core_chain
 	}
 	prereqfor_desc = {
 		hide_prereq_for_desc = component
@@ -1233,8 +1247,16 @@ tech_fe_class_4_singularity = {
 	potential = {
 		is_regular_empire = yes
 		has_technology = tech_dm_production_core
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_dm_production_core
+				has_country_flag = finished_dm_production_core_chain
+			}
+		}
 		modifier = {
 			factor = 10
 			OR = {
@@ -1280,8 +1302,16 @@ tech_fe_dimensional_fabricator = {
 	potential = {
 		is_regular_empire = yes
 		has_technology = tech_dm_production_core
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_dm_production_core
+				has_country_flag = finished_dm_production_core_chain
+			}
+		}
 		factor = 2
 		modifier = {
 			factor = 1.25
@@ -1317,8 +1347,16 @@ tech_fe_nourishment_center = {
 	potential = {
 		is_regular_empire = yes
 		has_technology = tech_dm_production_core
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_dm_production_core
+				has_country_flag = finished_dm_production_core_chain
+			}
+		}
 		factor = 2
 		modifier = {
 			factor = 0.01
@@ -1368,12 +1406,20 @@ tech_fe_affluence_center = {
 	potential = {
 		is_regular_empire = yes
 		has_technology = tech_dm_production_core
+		has_country_flag = finished_dm_production_core_chain
 		OR = {
 			is_gestalt = no
 			has_valid_civic = civic_machine_servitor
 		}
 	}
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_dm_production_core
+				has_country_flag = finished_dm_production_core_chain
+			}
+		}
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -1408,8 +1454,16 @@ tech_fe_nano_forge = {
 	potential = {
 		is_regular_empire = yes
 		has_technology = tech_dm_production_core
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_dm_production_core
+				has_country_flag = finished_dm_production_core_chain
+			}
+		}
 		factor = 2
 		modifier = {
 			factor = 1.25
@@ -1445,8 +1499,16 @@ tech_fe_master_archive = {
 	potential = {
 		is_regular_empire = yes
 		has_technology = tech_dm_production_core
+		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_dm_production_core
+				has_country_flag = finished_dm_production_core_chain
+			}
+		}
 		factor = 2
 		modifier = {
 			factor = 1.25
@@ -1482,9 +1544,17 @@ tech_fe_sky_dome = {
 	potential = {
 		is_regular_empire = yes
 		has_technology = tech_dm_production_core
+		has_country_flag = finished_dm_production_core_chain
 		is_gestalt = no
 	}
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_dm_production_core
+				has_country_flag = finished_dm_production_core_chain
+			}
+		}
 		modifier = {
 			factor = 10
 			OR = {
@@ -1524,7 +1594,8 @@ tech_aot_fe_empyrean_shrine = {
 		NOT = {
 			has_global_flag = acot_building_forbidden
 		}
-		has_global_flag = zofe_activated
+		has_country_flag = finished_dm_production_core_chain
+		has_technology = tech_dm_production_core
 		has_ethic = ethic_fanatic_spiritualist
 	}
 	prerequisites = {
@@ -1534,7 +1605,13 @@ tech_aot_fe_empyrean_shrine = {
 	weight = @tier5weight1
 	is_rare = yes
 	weight_modifier = {
-		factor = 0.8
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_dm_production_core
+				has_country_flag = finished_dm_production_core_chain
+			}
+		}
 		modifier = {
 			factor = 1.75
 			research_leader = {
