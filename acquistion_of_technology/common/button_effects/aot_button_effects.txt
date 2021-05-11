@@ -442,13 +442,17 @@ aot_production_core_reactor_intensity_up = {
 		exists = from
 	}
 	allow = {
-		hidden_trigger = {
-			NOT = {
-				has_country_flag = has_ongoing_production_core_study
-			}
-			check_variable = {
-				which = current_dm_production_core_energy_level
-				value < 5
+		has_enough_dark_matter_to_increase_reactor_intensity = yes
+		custom_tooltip = {
+			fail_text = is_at_max_dm_amount
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = has_ongoing_production_core_study
+				}
+				check_variable = {
+					which = current_dm_production_core_energy_level
+					value < 5
+				}
 			}
 		}
 	}
@@ -476,13 +480,16 @@ aot_production_core_reactor_intensity_down = {
 		exists = from
 	}
 	allow = {
-		hidden_trigger = {
-			NOT = {
-				has_country_flag = has_ongoing_production_core_study
-			}
-			check_variable = {
-				which = current_dm_production_core_energy_level
-				value > 0
+		custom_tooltip = {
+			fail_text = is_at_min_dm_amount
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = has_ongoing_production_core_study
+				}
+				check_variable = {
+					which = current_dm_production_core_energy_level
+					value > 0
+				}
 			}
 		}
 	}
@@ -510,69 +517,7 @@ aot_dm_production_core_proceed = {
 		exists = from
 	}
 	allow = {
-		NOT = {
-			has_country_flag = has_ongoing_production_core_study
-		}
-		if = {
-			limit = {
-				check_variable = {
-					which = aot_production_core_project_cost
-					value = 2500
-				}
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value > 2500
-			}
-		}
-		else_if = {
-			limit = {
-				check_variable = {
-					which = aot_production_core_project_cost
-					value = 5000
-				}
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value > 5000
-			}
-		}
-		else_if = {
-			limit = {
-				check_variable = {
-					which = aot_production_core_project_cost
-					value = 7500
-				}
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value > 7500
-			}
-		}
-		else_if = {
-			limit = {
-				check_variable = {
-					which = aot_production_core_project_cost
-					value = 10000
-				}
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value > 10000
-			}
-		}
-		else_if = {
-			limit = {
-				check_variable = {
-					which = aot_production_core_project_cost
-					value = 12500
-				}
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value > 12500
-			}
-		}
+		has_enough_dark_matter_for_project = yes
 	}
 	effect = {
 		set_country_flag = has_ongoing_production_core_study

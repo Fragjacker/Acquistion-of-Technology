@@ -19,6 +19,11 @@ country_event = {
 		years = 5
 	}
 	option = {
+		allow = {
+			NOT = {
+				has_event_chain = aot_dm_production_core_chain
+			}
+		}
 		name = aot_dm_production_core_events.1.a
 		custom_tooltip = aot_dm_production_core_events.1.a_desc
 		set_country_flag = dm_production_core_project_offer
@@ -27,36 +32,32 @@ country_event = {
 			is_ai = no
 		}
 		hidden_effect = {
-			if = {
-				limit = {
-					NOT = {
-						has_event_chain = aot_dm_production_core_chain
-					}
-				}
-				begin_event_chain = {
-					event_chain = aot_dm_production_core_chain
-				}
-				add_event_chain_counter = {
-					event_chain = aot_dm_production_core_chain
-					counter = dm_production_core_energy_required
-					amount = @required_energy
-				}
-				set_variable = {
-					which = var_dm_production_core_energy
-					value = @required_energy
-				}
-				set_variable = {
-					which = current_dm_production_core_energy_level
-					value = 0
-				}
-				set_variable = {
-					which = previous_power_level_value
-					value = var_dm_production_core_energy
-				}
-				country_event = {
-					id = aot_dm_production_core_events.2
-				}
+			begin_event_chain = {
+				event_chain = aot_dm_production_core_chain
 			}
+			add_event_chain_counter = {
+				event_chain = aot_dm_production_core_chain
+				counter = dm_production_core_energy_required
+				amount = @required_energy
+			}
+			set_variable = {
+				which = var_dm_production_core_energy
+				value = @required_energy
+			}
+			set_variable = {
+				which = current_dm_production_core_energy_level
+				value = 0
+			}
+			set_variable = {
+				which = previous_power_level_value
+				value = var_dm_production_core_energy
+			}
+			country_event = {
+				id = aot_dm_production_core_events.2
+			}
+		}
+		ai_chance = {
+			factor = 0
 		}
 	}
 	option = {
@@ -68,6 +69,9 @@ country_event = {
 		set_timed_country_flag = {
 			flag = block_dm_production_core_project
 			days = 1800
+		}
+		ai_chance = {
+			factor = 0
 		}
 	}
 	# The AI is too dumb for this, so give the option right away but without any progress.
@@ -102,6 +106,21 @@ country_event = {
 		name = aot_dm_production_core_events.2.a
 		custom_tooltip = aot_dm_production_core_events.2.a.explain
 		default_hide_option = yes
+		hidden_effect = {
+			# Reset everything back to 0 for each attempt
+			set_variable = {
+				which = current_dm_production_core_energy_level
+				value = 0
+			}
+			set_variable = {
+				which = aot_production_core_project_cost
+				value = 0
+			}
+			set_variable = {
+				which = aot_production_core_failure_chance
+				value = 0
+			}
+		}
 	}
 }
 
