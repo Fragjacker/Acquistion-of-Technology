@@ -11,6 +11,7 @@ country_event = {
 		NOR = {
 			has_country_flag = dm_production_core_project_offer
 			has_country_flag = block_dm_production_core_project
+			has_country_flag = finished_dm_production_core_chain
 			has_event_chain = aot_dm_production_core_chain
 		}
 	}
@@ -69,6 +70,17 @@ country_event = {
 			flag = block_dm_production_core_project
 			days = 1800
 		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = {
+		name = aot_dm_production_core_skip
+		custom_tooltip = aot_dm_production_core_skip_desc
+		trigger = {
+			is_ai = no
+		}
+		set_country_flag = block_dm_production_core_project
 		ai_chance = {
 			factor = 0
 		}
@@ -149,7 +161,14 @@ country_event = {
 	option = {
 		name = aot_dm_production_core_events.3.b
 		custom_tooltip = aot_dm_production_core_events.3.b.explain
-		end_event_chain = aot_dm_production_core_chain
+		hidden_effect = {
+			end_event_chain = aot_dm_production_core_chain
+			remove_country_flag = dm_production_core_project_offer
+			set_timed_country_flag = {
+				flag = block_dm_production_core_project
+				days = 360
+			}
+		}
 	}
 }
 
@@ -166,7 +185,6 @@ country_event = {
 	immediate = {
 		end_event_chain = aot_dm_production_core_chain
 		remove_country_flag = has_ongoing_production_core_study
-		remove_country_flag = precuursor_design_project_active
 		set_country_flag = finished_dm_production_core_chain
 	}
 	###AUTOMATONS REIGN SUPREME
@@ -233,5 +251,12 @@ country_event = {
 		name = aot_dm_production_core_events.6.b
 		custom_tooltip = aot_dm_production_core_events.6.b.explain
 		end_event_chain = aot_dm_production_core_chain
+		hidden_effect = {
+			remove_country_flag = dm_production_core_project_offer
+			set_timed_country_flag = {
+				flag = block_dm_production_core_project
+				days = 360
+			}
+		}
 	}
 }
