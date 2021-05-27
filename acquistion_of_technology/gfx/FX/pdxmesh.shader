@@ -937,7 +937,11 @@ PixelShader =
 			float3 vPos = In.vPos.xyz / In.vPos.w;
 
 			float3 vInNormal = normalize( In.vNormal );
+			#ifndef ANIMATE_SPECULAR
 			float4 vProperties = tex2D( SpecularMap, In.vUV0 );
+			#else
+				float4 vProperties = tex2D( SpecularMap, In.vUV0 + vUVAnimationDir * vUVAnimationTime );
+			#endif
 
 		#ifdef IS_PLANET
 			PointLight systemPointlight = GetPointLight(SystemLightPosRadius, SystemLightColorFalloff);
@@ -959,7 +963,11 @@ PixelShader =
 		#endif
 
 		#ifndef PDX_LEGACY_BLINN_PHONG
+			#ifndef ANIMATE_NORMAL
 			float4 vNormalMap = tex2D( NormalMap, In.vUV0 );
+			#else
+				float4 vNormalMap = tex2D( NormalMap, In.vUV0 + vUVAnimationDir * vUVAnimationTime );
+			#endif
 
 			#ifdef EMISSIVE
 				float vEmissive = vNormalMap.b;
@@ -2659,6 +2667,21 @@ Effect PdxMeshAlphaAdditiveAnimateUVErosion
 	Defines = { "ANIMATE_UV" "DISSOLVE" "DISSOLVE_USE_EROSION" }
 }
 
+Effect PdxMeshAlphaAdditiveAnimateUVErosionSkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelPdxMeshAdditive"
+	BlendState = "BlendStateAdditiveBlend"
+	DepthStencilState = "DepthStencilNoZWrite"
+	Defines = { "ANIMATE_UV" "DISSOLVE" "DISSOLVE_USE_EROSION" }
+}
+
+Effect PdxMeshAlphaAdditiveAnimateUVErosionSkinnedShadow
+{
+VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+	PixelShader = "PixelPdxMeshNoShadow"
+	Defines = { "IS_SHADOW" }
+}
 Effect PdxMeshColorAlphaAdditiveAnimateUV
 {
     VertexShader = "VertexPdxMeshStandard"
@@ -2666,6 +2689,22 @@ Effect PdxMeshColorAlphaAdditiveAnimateUV
     BlendState = "BlendStateAdditiveBlend"
     DepthStencilState = "DepthStencilNoZWrite"
     Defines = { "ADD_COLOR" "ANIMATE_UV" "DISSOLVE" }
+}
+
+Effect PdxMeshColorAlphaAdditiveAnimateUVSkinned
+{
+    VertexShader = "VertexPdxMeshStandardSkinned"
+    PixelShader = "PixelPdxMeshAdditive"
+    BlendState = "BlendStateAdditiveBlend"
+    DepthStencilState = "DepthStencilNoZWrite"
+    Defines = { "ADD_COLOR" "ANIMATE_UV" "DISSOLVE" }
+}
+
+Effect PdxMeshColorAlphaAdditiveAnimateUVSkinnedShadow
+{
+    VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+    PixelShader = "PixelPdxMeshNoShadow"
+	Defines = { "IS_SHADOW" }
 }
 
 Effect PdxMeshAlphaAdditiveAnimateUVAlphaOverride
@@ -2983,6 +3022,33 @@ Effect PdxMeshTerraSkinned
 	Defines = { "ADD_COLOR" "EMISSIVE"  }
 }
 
+Effect PdxMeshTerraAnimateUV
+{
+	VertexShader = "VertexPdxMeshStandard"
+	PixelShader = "PixelPdxMeshStandard"
+	Defines = { "ADD_COLOR" "EMISSIVE" "ANIMATE_NORMAL" "ANIMATE_SPECULAR"  }
+}
+
+Effect PdxMeshTerraAnimateUVSkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelPdxMeshStandard"
+	Defines = { "ADD_COLOR" "EMISSIVE" "ANIMATE_NORMAL" "ANIMATE_SPECULAR"  }
+}
+
+Effect PdxMeshTerraAnimateUVShadow
+{
+	VertexShader = "VertexPdxMeshStandardShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
+
+Effect PdxMeshTerraAnimateUVSkinnedShadow
+{
+	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
 Effect PdxMeshTerraAlphaBlend
 {
 	VertexShader = "VertexPdxMeshStandard"
@@ -3560,7 +3626,7 @@ Effect PdxMeshAtmosphereSkinnedShadow
 	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
 	PixelShader = "PixelPdxMeshStandardShadow"
 	RasterizerState = "RasterizerStateBack"
-	Defines = { "IS_SHADOW" "IS_PLANET" "" }
+	Defines = { "IS_SHADOW" "IS_PLANET" }
 }
 
 Effect PdxMeshAtmosphereStarShadow

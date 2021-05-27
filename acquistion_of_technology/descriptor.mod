@@ -1,8 +1,11 @@
-version="1.7.0"
+version="1.7.1"
 tags={
 	"Technologies"
 	"Gameplay"
 	"Overhaul"
+}
+dependencies={
+	"Ancient Cache of Technologies (Temp Fix)"
 }
 name="~Acquisition of Technology"
 picture="thumbnail.png"
