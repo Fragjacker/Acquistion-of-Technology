@@ -40,7 +40,7 @@ building_ae_ancient_palace = {
 		planet_housing_add = 20
 		planet_amenities_add = 50
 		trade_value_add = 15
-		trade_value_mult = 1.00
+		trade_value_mult = 1
 		planet_max_districts_add = 4
 		planet_max_buildings_add = 12
 		planet_max_branch_office_buildings_add = 5
@@ -1186,7 +1186,6 @@ building_giga_fortress_array = {
 		planet_amenities_add = 20
 		planet_housing_add = 20
 		planet_stability_add = 50
-		job_acot_giga_fortress_operator_mentat_add = 1
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1195,6 +1194,7 @@ building_giga_fortress_array = {
 			}
 		}
 		job_acot_giga_fortress_operator_add = 3
+		job_acot_giga_fortress_operator_mentat_add = 1
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1203,6 +1203,7 @@ building_giga_fortress_array = {
 			}
 		}
 		job_acot_giga_fortress_operator_drone_add = 3
+		job_aot_ae_giga_fortress_operator_mentat_drone_add = 1
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2885,41 +2886,38 @@ building_ae_institute = {
 #####################
 # DM and Dark Energy Resources
 #####################
-
 building_ae_dark_energy_pylon = {
 	base_buildtime = 600
 	can_demolish = yes
 	can_build = no
-
 	category = manufacturing
-	
 	potential = {
 	}
-	
 	allow = {
 		has_ascended_capital = yes
 	}
-	
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = no }					
+			owner = {
+				is_gestalt = no
+			}
 		}
 		modifier = {
 			job_ae_dark_energy_man_add = 4
 		}
 	}
-	
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = yes }					
+			owner = {
+				is_gestalt = yes
+			}
 		}
 		modifier = {
 			job_ae_dark_energy_drone_add = 4
 		}
 	}
-
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -2937,21 +2935,19 @@ building_ae_dark_energy_pylon = {
 			energy = 2
 		}
 	}
-	
 	prerequisites = {
 		"tech_ae_dark_energy_pylon"
 	}
-	
 	ai_weight = {
 		weight = 15
 		modifier = {
-            factor = 10000
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_dark_energy
-                    value < 3
-                }
-            }
+			factor = 10000
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_dark_energy
+					value < 3
+				}
+			}
 		}
 		modifier = {
 			factor = 0
@@ -2969,36 +2965,34 @@ building_ae_dark_matter_generator = {
 	base_buildtime = 600
 	can_demolish = yes
 	can_build = no
-
 	category = manufacturing
-	
 	potential = {
 	}
-	
 	allow = {
 		has_ascended_capital = yes
 	}
-	
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = no }					
+			owner = {
+				is_gestalt = no
+			}
 		}
 		modifier = {
 			job_ae_dark_matter_man_add = 4
 		}
 	}
-	
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = yes }					
+			owner = {
+				is_gestalt = yes
+			}
 		}
 		modifier = {
 			job_ae_dark_matter_drone_add = 4
 		}
 	}
-
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -3016,21 +3010,19 @@ building_ae_dark_matter_generator = {
 			energy = 2
 		}
 	}
-	
 	prerequisites = {
 		"tech_ae_dark_matter_generator"
 	}
-	
 	ai_weight = {
 		weight = 15
 		modifier = {
-            factor = 100000
-            owner = {
-                has_monthly_income = {
-                    resource = sr_dark_matter
-                    value < 10
-                }
-            }
+			factor = 100000
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value < 10
+				}
+			}
 		}
 		modifier = {
 			factor = 0

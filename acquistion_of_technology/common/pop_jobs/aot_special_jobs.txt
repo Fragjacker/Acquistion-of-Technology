@@ -513,7 +513,6 @@ aot_dm_giga_fortress_operator_drone = {
 	}
 }
 
-
 dm_bureaucrat = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1314,7 +1313,7 @@ ae_mineraldrone = {
 		}
 	}
 	weight = {
-		weight = @specialist_job_weight
+		weight = @complex_drone_job_weight
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1420,7 +1419,7 @@ ae_alloydrone = {
 		}
 	}
 	weight = {
-		weight = @specialist_job_weight
+		weight = @complex_drone_job_weight
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1526,7 +1525,7 @@ ae_energydrone = {
 		}
 	}
 	weight = {
-		weight = @specialist_job_weight
+		weight = @complex_drone_job_weight
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1547,6 +1546,69 @@ ae_energydrone = {
 		modifier = {
 			factor = 1.5
 			has_job = ae_energydrone
+		}
+	}
+}
+
+# Missing alpha mentat drone job fix from acot
+aot_ae_giga_fortress_operator_mentat_drone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_giga_fortress_array
+	clothes_texture_index = 5
+	icon = acot_giga_fortress_operator_mentat
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible = {
+		drone_job_check_trigger = yes
+	}
+	country_modifier = {
+		country_naval_cap_mult = 0.2
+		country_command_limit_add = 200
+	}
+	weight = {
+		weight = @complex_drone_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_military
+			}
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.5
+			has_job = acot_giga_fortress_operator
 		}
 	}
 }
@@ -1694,7 +1756,9 @@ stellarite_overseer = {
 		modifier = {
 			factor = 0.1
 			has_citizenship_rights = no
-			NOT = { has_trait = trait_mechanical }
+			NOT = {
+				has_trait = trait_mechanical
+			}
 		}
 		modifier = {
 			factor = 1.5
@@ -3702,6 +3766,70 @@ stellarite_giga_fortress_operator = {
 	}
 }
 
+stellarite_giga_fortress_operator_drone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_stellarite_giga_fortress
+	clothes_texture_index = 5
+	icon = acot_giga_fortress_operator
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	country_modifier = {
+		country_naval_cap_add = 1200
+	}
+	pop_modifier = {
+		pop_defense_armies_add = 8
+	}
+	planet_modifier = {
+		planet_crime_no_happiness_add = -1200
+		planet_stability_add = 1200
+	}
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				OR = {
+					has_modifier = compliance_protocols
+					has_modifier = hunter_killer_drones
+				}
+			}
+		}
+		modifier = {
+			planet_stability_add = 80
+		}
+	}
+	weight = {
+		weight = 100
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 100
+			has_job = acot_giga_fortress_operator_drone
+		}
+	}
+}
+
 stellarite_giga_fortress_operator_mentat = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -3764,43 +3892,34 @@ stellarite_giga_fortress_operator_mentat = {
 	}
 }
 
-stellarite_giga_fortress_operator_drone = {
+stellarite_giga_fortress_operator_mentat_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_giga_fortress
+	building_icon = building_stellarite_giga_fortress_array
 	clothes_texture_index = 5
-	icon = acot_giga_fortress_operator
+	icon = acot_giga_fortress_operator_mentat
 	possible_pre_triggers = {
 		has_owner = yes
 		is_enslaved = no
 		is_being_purged = no
 		is_being_assimilated = no
 	}
+	possible = {
+		drone_job_check_trigger = yes
+	}
 	country_modifier = {
-		country_naval_cap_add = 1200
-	}
-	pop_modifier = {
-		pop_defense_armies_add = 8
-	}
-	planet_modifier = {
-		planet_crime_no_happiness_add = -1200
-		planet_stability_add = 1200
-	}
-	triggered_planet_modifier = {
-		potential = {
-			planet = {
-				OR = {
-					has_modifier = compliance_protocols
-					has_modifier = hunter_killer_drones
-				}
-			}
-		}
-		modifier = {
-			planet_stability_add = 80
-		}
+		country_naval_cap_mult = 0.8
+		country_command_limit_add = 600
 	}
 	weight = {
-		weight = 100
+		weight = @complex_drone_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
 		modifier = {
 			factor = 2
 			has_trait = trait_resilient
@@ -3814,6 +3933,13 @@ stellarite_giga_fortress_operator_drone = {
 			has_trait = trait_strong
 		}
 		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_military
+			}
+		}
+		modifier = {
 			factor = 0.5
 			has_trait = trait_weak
 		}
@@ -3822,8 +3948,8 @@ stellarite_giga_fortress_operator_drone = {
 			can_take_servant_job = yes
 		}
 		modifier = {
-			factor = 100
-			has_job = acot_giga_fortress_operator_drone
+			factor = 1.5
+			has_job = acot_giga_fortress_operator
 		}
 	}
 }
