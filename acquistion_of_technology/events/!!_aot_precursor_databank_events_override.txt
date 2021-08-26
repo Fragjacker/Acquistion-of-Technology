@@ -482,16 +482,19 @@ country_event = {
 		trigger = {
 			OR = {
 				has_technology = tech_precursor_escort				#1
-				has_technology = tech_precursor_bc				#2
+				has_technology = tech_precursor_bc					#2
 				has_technology = tech_precursor_titan				#3
-				has_technology = tech_fe_assault_carrier				#4
+				has_technology = tech_fe_assault_carrier			#4
 				has_technology = tech_fe_tower_offense				#5
-				has_technology = tech_precursor_guardian				#6
-				has_technology = tech_precursor_colossus				#7
-				has_technology = tech_precursor_construcor				#8
+				has_technology = tech_precursor_guardian			#6
+				has_technology = tech_precursor_colossus			#7
+				has_technology = tech_precursor_construcor			#8
 				has_technology = tech_precursor_science				#9
-				has_technology = tech_precursor_colonizer				#10
+				has_technology = tech_precursor_colonizer			#10
 				has_technology = tech_precursor_citadel				#11
+				has_technology = tech_precursor_juggernaut			#12
+				has_technology = tech_precursor_enigmalith			#13
+				has_technology = tech_gatekeepers					#14
 			}
 		}
 		text = acot_precursor_databank.4.desc.a
@@ -500,16 +503,19 @@ country_event = {
 		trigger = {
 			NOR = {
 				has_technology = tech_precursor_escort				#1
-				has_technology = tech_precursor_bc				#2
+				has_technology = tech_precursor_bc					#2
 				has_technology = tech_precursor_titan				#3
-				has_technology = tech_fe_assault_carrier				#4
+				has_technology = tech_fe_assault_carrier			#4
 				has_technology = tech_fe_tower_offense				#5
-				has_technology = tech_precursor_guardian				#6
-				has_technology = tech_precursor_colossus				#7
-				has_technology = tech_precursor_construcor				#8
+				has_technology = tech_precursor_guardian			#6
+				has_technology = tech_precursor_colossus			#7
+				has_technology = tech_precursor_construcor			#8
 				has_technology = tech_precursor_science				#9
-				has_technology = tech_precursor_colonizer				#10
+				has_technology = tech_precursor_colonizer			#10
 				has_technology = tech_precursor_citadel				#11
+				has_technology = tech_precursor_juggernaut			#12
+				has_technology = tech_precursor_enigmalith			#13
+				has_technology = tech_gatekeepers					#14
 			}
 		}
 		text = acot_precursor_databank.4.desc.b
@@ -798,6 +804,78 @@ country_event = {
 			remove_country_flag = acot_databank_diplomacy_engaged
 			country_event = {
 				id = acot_precursor_databank.411
+			}
+		}
+	}
+	### 13 WARBARGE NO DATA ###
+	option = {
+		name = acot_precursor_databank.4.nodata
+		response_text = acot_precursor_databank.4.nodata.warbarge
+		is_dialog_only = yes
+		trigger = {
+			NOT = {
+				has_technology = tech_precursor_juggernaut
+			}
+		}
+	}
+	### 13 WARBARGE ###
+	option = {
+		name = acot_precursor_databank.4.warbarge
+		trigger = {
+			has_technology = tech_precursor_juggernaut
+		}
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.413
+			}
+		}
+	}
+	### 14 ENIGMALITH NO DATA ###
+	option = {
+		name = acot_precursor_databank.4.nodata
+		response_text = acot_precursor_databank.4.nodata.enigmalith
+		is_dialog_only = yes
+		trigger = {
+			NOT = {
+				has_technology = tech_precursor_enigmalith
+			}
+		}
+	}
+	### 14 ENIGMALITH ###
+	option = {
+		name = acot_precursor_databank.4.enigmalith
+		trigger = {
+			has_technology = tech_precursor_enigmalith
+		}
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.414
+			}
+		}
+	}
+	### 15 GATEKEEPERS NO DATA ###
+	option = {
+		name = acot_precursor_databank.4.nodata
+		response_text = acot_precursor_databank.4.nodata.gatekeepers
+		is_dialog_only = yes
+		trigger = {
+			NOT = {
+				has_technology = tech_gatekeepers
+			}
+		}
+	}
+	### 15 GATEKEEPERS ###
+	option = {
+		name = acot_precursor_databank.4.gatekeepers
+		trigger = {
+			has_technology = tech_gatekeepers
+		}
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.415
 			}
 		}
 	}
@@ -1477,6 +1555,159 @@ country_event = {
 	option = {
 		name = acot_precursor_databank.400.tacdata
 		response_text = acot_precursor_databank.400.a.colos.data
+		is_dialog_only = yes
+	}
+	###  BACK ###
+	option = {
+		name = acot_precursor_databank.400.b
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.4
+			}
+		}
+	}
+	### EXIT
+	option = {
+		name = acot_precursor_databank.2.f
+		response_text = EXCELLENT
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+}
+
+# Databank Warbarge
+country_event = {
+	id = acot_precursor_databank.413
+	title = acot_precursor_databank.3.name
+	desc = acot_precursor_databank.412.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = aot_warbarge_room
+	}
+	trigger = {
+	}
+	immediate = {
+		set_country_flag = acot_databank_diplomacy_engaged
+	}
+	after = {
+	}
+	### GENERAL LORE ###
+	option = {
+		name = acot_precursor_databank.400.lore
+		response_text = acot_precursor_databank.400.a.warbarge.lore
+		is_dialog_only = yes
+	}
+	### TACTICAL LORE ###
+	option = {
+		name = acot_precursor_databank.400.tacdata
+		response_text = acot_precursor_databank.400.a.warbarge.data
+		is_dialog_only = yes
+	}
+	###  BACK ###
+	option = {
+		name = acot_precursor_databank.400.b
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.4
+			}
+		}
+	}
+	### EXIT
+	option = {
+		name = acot_precursor_databank.2.f
+		response_text = EXCELLENT
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+}
+
+# Databank Enigmalith
+country_event = {
+	id = acot_precursor_databank.414
+	title = acot_precursor_databank.3.name
+	desc = acot_precursor_databank.413.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = aot_enigmalith_room
+	}
+	trigger = {
+	}
+	immediate = {
+		set_country_flag = acot_databank_diplomacy_engaged
+	}
+	after = {
+	}
+	### GENERAL LORE ###
+	option = {
+		name = acot_precursor_databank.400.lore
+		response_text = acot_precursor_databank.400.a.enigmalith.lore
+		is_dialog_only = yes
+	}
+	### TACTICAL LORE ###
+	option = {
+		name = acot_precursor_databank.400.tacdata
+		response_text = acot_precursor_databank.400.a.enigmalith.data
+		is_dialog_only = yes
+	}
+	###  BACK ###
+	option = {
+		name = acot_precursor_databank.400.b
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.4
+			}
+		}
+	}
+	### EXIT
+	option = {
+		name = acot_precursor_databank.2.f
+		response_text = EXCELLENT
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+}
+
+# Databank Gatekeepers
+country_event = {
+	id = acot_precursor_databank.415
+	title = acot_precursor_databank.3.name
+	desc = acot_precursor_databank.414.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = aot_gatekeepers_room
+	}
+	trigger = {
+	}
+	immediate = {
+		set_country_flag = acot_databank_diplomacy_engaged
+	}
+	after = {
+	}
+	### GENERAL LORE ###
+	option = {
+		name = acot_precursor_databank.400.lore
+		response_text = acot_precursor_databank.400.a.gatekeepers.lore
+		is_dialog_only = yes
+	}
+	### TACTICAL LORE ###
+	option = {
+		name = acot_precursor_databank.400.tacdata
+		response_text = acot_precursor_databank.400.a.gatekeepers.data
 		is_dialog_only = yes
 	}
 	###  BACK ###
