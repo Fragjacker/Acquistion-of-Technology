@@ -1136,11 +1136,7 @@ planet_event = {
 						}
 						solar_system = {
 							exists = starbase
-							starbase = {
-								owner = {
-									is_same_value = root.owner
-								}
-							}
+							starbase = { is_owned_by = root.owner }
 						}
 					}
 					solar_system = {
@@ -1549,22 +1545,14 @@ country_event = {
 					any_system = {
 						has_star_flag = machup_system_flip
 						exists = starbase
-						starbase = {
-							owner = {
-								is_same_value = event_target:current_uprising_originator
-							}
-						}
+						starbase = { is_owned_by = event_target:current_uprising_originator }
 					}
 				}
 				random_system = {
 					limit = {
 						has_star_flag = machup_system_flip
 						exists = starbase
-						starbase = {
-							owner = {
-								is_same_value = event_target:current_uprising_originator
-							}
-						}
+						starbase = { is_owned_by = event_target:current_uprising_originator }
 					}
 					starbase = {
 						set_owner = root
@@ -2156,10 +2144,8 @@ country_event = {
 		}
 		every_playable_country = {
 			limit = {
-				NOT = {
-					has_technology = tech_precursor_design
-				}
 				NOR = {
+					has_technology = tech_precursor_design
 					is_same_value = root
 					is_same_value = event_target:current_uprising_originator
 				}
