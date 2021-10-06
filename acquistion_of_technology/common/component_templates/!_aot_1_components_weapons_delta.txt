@@ -368,3 +368,56 @@ utility_component_template = {
 		}
 	}
 }
+
+utility_component_template = {
+	key = "ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core"
+	icon_frame = 1
+	power = 30000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 1000
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+		}
+		upkeep = {
+			energy = 10
+			alloys = 1
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		enigmatic_fortress_platform
+	}
+	upgrades_to = "ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR_AE"
+	ai_weight = {
+		weight = 6
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 100
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 15000
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 15000
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 100
+			}
+		}
+	}
+}

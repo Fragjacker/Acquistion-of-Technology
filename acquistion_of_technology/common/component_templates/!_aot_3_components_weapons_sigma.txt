@@ -321,8 +321,47 @@ utility_component_template = {
 		sofe_gatekeeper_warden
 		fe_large_station
 		sentinel_sphere
-		enigmatic_fortress_platform
 		aot_gatekeeper
+	}
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR_SE"
+	size = small
+	icon = "GFX_ship_part_stellarite_reactor"
+	icon_frame = 1
+	power = 120000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 4000
+			acot_sr_stellarite = 10000
+		}
+		upkeep = {
+			energy = 100
+			alloys = 10
+		}
+	}
+	prerequisites = {
+		"tech_stellarite_reactor"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		enigmatic_fortress_platform
 	}
 	ai_weight = {
 		weight = 40
