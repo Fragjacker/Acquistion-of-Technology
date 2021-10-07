@@ -165,3 +165,41 @@ utility_component_template = {
 		}
 	}
 }
+
+utility_component_template = {
+	key = "ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR_OE"
+	size = small
+	icon = "GFX_ship_part_lightmatter_reactor"
+	icon_frame = 1
+	power = 6000000
+	resources = {
+		category = sbtg_light_reactor
+		cost = {
+			acot_sr_light_matter = 150
+		}
+		upkeep = {
+			energy = 10		
+		}
+	}
+	prerequisites = {
+		"tech_lightmatter_reactor"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		enigmatic_fortress_platform
+	}
+	ai_weight = {
+		weight = 185
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_light_matter
+				amount <= 150 		
+			}	
+			has_monthly_income = {
+				resource = acot_sr_light_matter
+				value <= 3
+			}
+		}
+	}
+}
