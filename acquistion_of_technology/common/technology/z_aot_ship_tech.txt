@@ -104,7 +104,7 @@ tech_alpha_juggernaut = {
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	modifier = {
-		shipsize_precursor_juggernaut_build_speed_mult = 0.10
+		shipsize_precursor_juggernaut_build_speed_mult = 0.1
 		shipsize_precursor_juggernaut_hull_add = 25000
 	}
 	weight_modifier = {
@@ -274,7 +274,7 @@ tech_omega_juggernaut = {
 		has_technology = tech_lightmatter_reactor
 	}
 	modifier = {
-		shipsize_precursor_juggernaut_build_speed_mult = 0.20
+		shipsize_precursor_juggernaut_build_speed_mult = 0.2
 		shipsize_precursor_juggernaut_hull_add = 100000
 	}
 	weight_modifier = {
@@ -587,7 +587,6 @@ tech_gatekeepers_omega = {
 }
 
 # Defense Platforms
-
 tech_dm_enigmatic_fortress_platform = {
 	cost = @acot_tier6cost3
 	area = engineering
@@ -609,8 +608,17 @@ tech_dm_enigmatic_fortress_platform = {
 		factor = 0.25
 		modifier = {
 			factor = 0
-			NOT = {
+			NOR = {
 				is_country_type = ascended_empire
+				# Did the player encounter the enigmatic fortress yet?
+				any_country = {
+					is_country_type = guardian_fortress
+					has_communications = root
+				}
+				any_neighbor_country = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
 			}
 		}
 		modifier = {
@@ -682,7 +690,7 @@ tech_ae_enigmatic_fortress_platform = {
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	modifier = {
-		shipsize_enigmatic_fortress_platform_build_speed_mult = 0.10
+		shipsize_enigmatic_fortress_platform_build_speed_mult = 0.1
 		shipsize_enigmatic_fortress_platform_damage_mult = 0.5
 		shipsize_enigmatic_fortress_platform_hull_add = 1000000
 	}
@@ -831,7 +839,7 @@ tech_phanon_enigmatic_fortress_platform = {
 		has_technology = tech_precursor_phanon_design
 	}
 	modifier = {
-		shipsize_enigmatic_fortress_platform_build_speed_mult = 0.20
+		shipsize_enigmatic_fortress_platform_build_speed_mult = 0.2
 		shipsize_enigmatic_fortress_platform_hull_add = 2000000
 	}
 	weight_modifier = {
