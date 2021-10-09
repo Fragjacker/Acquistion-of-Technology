@@ -1,4 +1,4 @@
-@build_block_radius_enigmatic = 400
+@build_block_radius_enigmatic = 200
 @enigmatic_fortress_platform_max_hp = 1000000
 @enigmatic_fortress_platform_armor_add = 1000000
 @enigmatic_fortress_platform_shield_add = 1000000
@@ -22,7 +22,7 @@ enigmatic_fortress_platform = {
 		ship_fire_rate_mult = 5
 		ship_weapon_damage = 5
 	}
-	combat_size_multiplier = 8
+	combat_size_multiplier = 10
 	size_multiplier = 12
 	fleet_slot_size = 12
 	section_slots = {
@@ -73,6 +73,82 @@ enigmatic_fortress_platform = {
 			is_country_type = awakened_fallen_empire
 			is_country_type = eternal_empire
 		}
+	}
+	ship_class_icon_frame = 28
+	construction_type = starbase_defenses
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+}
+
+# Fallen Empire version
+fe_enigmatic_fortress_platform = {
+	max_speed = 2
+	rotation_speed = 2
+	acceleration = 2
+	max_hitpoints = @enigmatic_fortress_platform_max_hp
+	modifier = {
+		ship_evasion_mult = -1
+		ship_hull_regen_add_perc = 0.35
+		ship_armor_regen_add_perc = 0.25
+		ship_shield_regen_add_static = 0.25
+		ships_upkeep_mult = -0.25
+		ship_armor_add = @enigmatic_fortress_platform_armor_add
+		ship_shield_add = @enigmatic_fortress_platform_shield_add
+		ship_piracy_suppression_add = 800
+	}
+	ship_modifier = {
+		ship_weapon_range_mult = 2
+		ship_fire_rate_mult = 5
+		ship_weapon_damage = 5
+	}
+	combat_size_multiplier = 8
+	size_multiplier = 12
+	fleet_slot_size = 12
+	section_slots = {
+		"core" = {
+			locator = "part1"
+		}
+		"large" = {
+			locator = "part1"
+		}
+		"medium" = {
+			locator = "part1"
+		}
+		"small" = {
+			locator = "part1"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = yes
+	build_block_radius = @build_block_radius_enigmatic
+	uses_name_prefix = no
+	takes_name_from_ship_design = yes
+	is_space_object = yes
+	auto_upgrade = no
+	can_disable = yes
+	flip_control_on_disable = yes
+	can_be_inspected = no
+	resources = {
+		category = ships
+		cost = {
+			alloys = 40000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
+		}
+		upkeep = {
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
+		}
+	}
+	base_buildtime = 1800
+	prerequisites = {
+		"tech_dm_enigmatic_fortress_platform"
+	}
+	class = shipclass_military_station
+	possible_country = {
+		is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
 	}
 	ship_class_icon_frame = 28
 	construction_type = starbase_defenses

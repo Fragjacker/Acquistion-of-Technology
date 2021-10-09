@@ -338,6 +338,9 @@ country_event = {
 	picture = GFX_evt_space_funeral
 	show_sound = event_bad_omen
 	trigger = {
+		from = {
+			has_leader_flag = is_resurrection_candidate
+		}
 		root = {
 			any_owned_planet = {
 				has_building = building_stellarite_clone_vats
@@ -421,6 +424,7 @@ country_event = {
 			}
 			last_created_leader = {
 				add_trait = leader_trait_cell_activated
+				set_leader_flag = is_resurrection_candidate
 			}
 		}
 	}
@@ -480,5 +484,17 @@ country_event = {
 	}
 	option = {
 		name = aot_events.6.b
+	}
+}
+
+#Assign the resurrection candidate flag to valuable, leaders that have just levelled up.
+country_event = {
+	id = aot_events.7
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		from = {
+			set_leader_flag = is_resurrection_candidate
+		}
 	}
 }

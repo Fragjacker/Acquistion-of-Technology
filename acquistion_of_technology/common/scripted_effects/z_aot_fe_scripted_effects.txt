@@ -1,3 +1,29 @@
+create_enigmatic_fortress_platform = {
+	create_ship = {
+		name = random
+		design = "NAME_Xenophile_Enigmatic_Fortress_Platform"
+	}
+}
+
+create_citadel_with_enigmatic_fortress_platform = {
+	create_starbase = {
+		size = "starbase_citadel"
+		module = "shipyard"
+		module = "anchorage"
+		module = "anchorage"
+		module = "hangar_bay"
+		module = "gun_battery"
+		module = "gun_battery"
+		building = "crew_quarters"
+		building = "command_center"
+		building = "target_uplink_computer"
+		building = "listening_post"
+		effect = {
+			create_enigmatic_fortress_platform = yes
+		}
+	}
+}
+
 create_fallen_empire_starting_navy = {
 	create_fallen_empire_fleet = yes
 	create_fallen_empire_fleet = yes
@@ -165,7 +191,9 @@ create_fallen_empire_reinforcements = {
 create_fallen_empire_warbarge = {
 	if = {
 		limit = {
-			owner = { has_authority = auth_machine_intelligence }
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
 		}
 		create_ship = {
 			name = random

@@ -20,8 +20,13 @@ tech_precursor_juggernaut = {
 		factor = 0.25
 		modifier = {
 			factor = 0
-			NOT = {
+			NOR = {
 				is_country_type = ascended_empire
+				any_neighbor_country = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+					graphical_culture = fallen_empire_03
+				}
 			}
 		}
 		modifier = {
@@ -102,6 +107,9 @@ tech_alpha_juggernaut = {
 	potential = {
 		host_has_dlc = "Federations"
 		has_technology = tech_dark_matter_power_core_ae
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
 	}
 	modifier = {
 		shipsize_precursor_juggernaut_build_speed_mult = 0.1
@@ -187,6 +195,9 @@ tech_sigma_juggernaut = {
 	potential = {
 		host_has_dlc = "Federations"
 		has_technology = tech_stellarite_reactor
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
 	}
 	modifier = {
 		shipsize_precursor_juggernaut_build_speed_mult = 0.15
@@ -272,6 +283,9 @@ tech_omega_juggernaut = {
 	potential = {
 		host_has_dlc = "Federations"
 		has_technology = tech_lightmatter_reactor
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
 	}
 	modifier = {
 		shipsize_precursor_juggernaut_build_speed_mult = 0.2
@@ -390,6 +404,9 @@ tech_gatekeepers_alpha = {
 	is_rare = yes
 	potential = {
 		has_technology = tech_dark_matter_power_core_ae
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
 	}
 	# unlocks Juggernaut
 	weight_modifier = {
@@ -461,6 +478,9 @@ tech_gatekeepers_sigma = {
 	is_rare = yes
 	potential = {
 		has_technology = tech_stellarite_reactor
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
 	}
 	weight_modifier = {
 		factor = 0.25
@@ -531,6 +551,9 @@ tech_gatekeepers_omega = {
 	is_rare = yes
 	potential = {
 		has_technology = tech_lightmatter_reactor
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
 	}
 	weight_modifier = {
 		factor = 0.25
@@ -610,14 +633,16 @@ tech_dm_enigmatic_fortress_platform = {
 			factor = 0
 			NOR = {
 				is_country_type = ascended_empire
-				# Did the player encounter the enigmatic fortress yet?
+				# Did the player encounter a enigmatic fortress leviathan?
 				any_country = {
 					is_country_type = guardian_fortress
 					has_communications = root
 				}
+				#Does the player border a xenophile fallen empire?
 				any_neighbor_country = {
 					is_country_type = fallen_empire
 					is_country_type = awakened_fallen_empire
+					graphical_culture = fallen_empire_03
 				}
 			}
 		}
@@ -687,11 +712,13 @@ tech_ae_enigmatic_fortress_platform = {
 	weight = @tier5weight3
 	is_rare = yes
 	potential = {
-		has_technology = tech_dark_matter_power_core_ae
+		has_technology = tech_dark_matter_power_core_ae^
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
 	}
 	modifier = {
 		shipsize_enigmatic_fortress_platform_build_speed_mult = 0.1
-		shipsize_enigmatic_fortress_platform_damage_mult = 0.5
 		shipsize_enigmatic_fortress_platform_hull_add = 1000000
 	}
 	weight_modifier = {
@@ -763,6 +790,9 @@ tech_sigma_enigmatic_fortress_platform = {
 	is_rare = yes
 	potential = {
 		has_technology = tech_stellarite_reactor
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
 	}
 	modifier = {
 		shipsize_enigmatic_fortress_platform_build_speed_mult = 0.15
@@ -831,12 +861,15 @@ tech_phanon_enigmatic_fortress_platform = {
 	tier = 10
 	prerequisites = {
 		"tech_precursor_phanon_design"
-		"tech_ae_enigmatic_fortress_platform"
+		"tech_sigma_enigmatic_fortress_platform"
 	}
 	weight = @tier5weight3
 	is_rare = yes
 	potential = {
 		has_technology = tech_precursor_phanon_design
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
 	}
 	modifier = {
 		shipsize_enigmatic_fortress_platform_build_speed_mult = 0.2
@@ -905,7 +938,7 @@ tech_omega_enigmatic_fortress_platform = {
 	tier = 9
 	prerequisites = {
 		"tech_lightmatter_reactor"
-		"tech_ae_enigmatic_fortress_platform"
+		"tech_sigma_enigmatic_fortress_platform"
 	}
 	weight = @tier5weight3
 	is_rare = yes
