@@ -298,6 +298,7 @@ country_event = {
 				has_technology = tech_precursor_enigmalith				#13
 				has_technology = tech_gatekeepers				#14
 				has_technology = tech_precursor_juggernaut				#15
+				has_technology = tech_dm_enigmatic_fortress_platform				#16
 			}
 		}
 		hidden_effect = {
@@ -409,6 +410,7 @@ country_event = {
 				has_technology = tech_precursor_enigmalith				#13
 				has_technology = tech_gatekeepers				#14
 				has_technology = tech_precursor_juggernaut				#15
+				has_technology = tech_dm_enigmatic_fortress_platform				#16
 			}
 		}
 		hidden_effect = {
@@ -482,19 +484,20 @@ country_event = {
 		trigger = {
 			OR = {
 				has_technology = tech_precursor_escort				#1
-				has_technology = tech_precursor_bc					#2
+				has_technology = tech_precursor_bc				#2
 				has_technology = tech_precursor_titan				#3
-				has_technology = tech_fe_assault_carrier			#4
+				has_technology = tech_fe_assault_carrier				#4
 				has_technology = tech_fe_tower_offense				#5
-				has_technology = tech_precursor_guardian			#6
-				has_technology = tech_precursor_colossus			#7
-				has_technology = tech_precursor_construcor			#8
+				has_technology = tech_precursor_guardian				#6
+				has_technology = tech_precursor_colossus				#7
+				has_technology = tech_precursor_construcor				#8
 				has_technology = tech_precursor_science				#9
-				has_technology = tech_precursor_colonizer			#10
+				has_technology = tech_precursor_colonizer				#10
 				has_technology = tech_precursor_citadel				#11
-				has_technology = tech_precursor_juggernaut			#12
-				has_technology = tech_precursor_enigmalith			#13
-				has_technology = tech_gatekeepers					#14
+				has_technology = tech_precursor_juggernaut				#12
+				has_technology = tech_precursor_enigmalith				#13
+				has_technology = tech_gatekeepers				#14
+				has_technology = tech_dm_enigmatic_fortress_platform				#15
 			}
 		}
 		text = acot_precursor_databank.4.desc.a
@@ -503,19 +506,20 @@ country_event = {
 		trigger = {
 			NOR = {
 				has_technology = tech_precursor_escort				#1
-				has_technology = tech_precursor_bc					#2
+				has_technology = tech_precursor_bc				#2
 				has_technology = tech_precursor_titan				#3
-				has_technology = tech_fe_assault_carrier			#4
+				has_technology = tech_fe_assault_carrier				#4
 				has_technology = tech_fe_tower_offense				#5
-				has_technology = tech_precursor_guardian			#6
-				has_technology = tech_precursor_colossus			#7
-				has_technology = tech_precursor_construcor			#8
+				has_technology = tech_precursor_guardian				#6
+				has_technology = tech_precursor_colossus				#7
+				has_technology = tech_precursor_construcor				#8
 				has_technology = tech_precursor_science				#9
-				has_technology = tech_precursor_colonizer			#10
+				has_technology = tech_precursor_colonizer				#10
 				has_technology = tech_precursor_citadel				#11
-				has_technology = tech_precursor_juggernaut			#12
-				has_technology = tech_precursor_enigmalith			#13
-				has_technology = tech_gatekeepers					#14
+				has_technology = tech_precursor_juggernaut				#12
+				has_technology = tech_precursor_enigmalith				#13
+				has_technology = tech_gatekeepers				#14
+				has_technology = tech_dm_enigmatic_fortress_platform				#15
 			}
 		}
 		text = acot_precursor_databank.4.desc.b
@@ -876,6 +880,30 @@ country_event = {
 			remove_country_flag = acot_databank_diplomacy_engaged
 			country_event = {
 				id = acot_precursor_databank.415
+			}
+		}
+	}
+	### 16 GATEKEEPERS NO DATA ###
+	option = {
+		name = acot_precursor_databank.4.nodata
+		response_text = acot_precursor_databank.4.nodata.enigmatic_fortress_platform
+		is_dialog_only = yes
+		trigger = {
+			NOT = {
+				has_technology = tech_dm_enigmatic_fortress_platform
+			}
+		}
+	}
+	### 16 ENIGMATIC FORTRESS ###
+	option = {
+		name = acot_precursor_databank.4.enigmatic_fortress
+		trigger = {
+			has_technology = tech_dm_enigmatic_fortress_platform
+		}
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.416
 			}
 		}
 	}
@@ -1708,6 +1736,57 @@ country_event = {
 	option = {
 		name = acot_precursor_databank.400.tacdata
 		response_text = acot_precursor_databank.400.a.gatekeepers.data
+		is_dialog_only = yes
+	}
+	###  BACK ###
+	option = {
+		name = acot_precursor_databank.400.b
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.4
+			}
+		}
+	}
+	### EXIT
+	option = {
+		name = acot_precursor_databank.2.f
+		response_text = EXCELLENT
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+}
+
+# Databank Enigmatic Fortress
+country_event = {
+	id = acot_precursor_databank.416
+	title = acot_precursor_databank.3.name
+	desc = acot_precursor_databank.415.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = enigmatic_fortress_room
+	}
+	trigger = {
+	}
+	immediate = {
+		set_country_flag = acot_databank_diplomacy_engaged
+	}
+	after = {
+	}
+	### GENERAL LORE ###
+	option = {
+		name = acot_precursor_databank.400.lore
+		response_text = acot_precursor_databank.400.a.enigmatic_fortress_platform.lore
+		is_dialog_only = yes
+	}
+	### TACTICAL LORE ###
+	option = {
+		name = acot_precursor_databank.400.tacdata
+		response_text = acot_precursor_databank.400.a.enigmatic_fortress_platform.data
 		is_dialog_only = yes
 	}
 	###  BACK ###
@@ -3253,6 +3332,65 @@ country_event = {
 			}
 		}
 	}
+	### Enigmatic Fortress Platform ###
+	option = {
+		name = acot_precursor_databank.900.enigmatic_fortress
+		custom_tooltip = acot_precursor_databank.900.enigmatic_fortress.infodata
+		allow = {
+			resource_stockpile_compare = {
+				resource = acot_sr_dark_energy
+				value >= 1500
+			}
+			resource_stockpile_compare = {
+				resource = sr_dark_matter
+				value >= 1500
+			}
+		}
+		trigger = {
+			has_technology = tech_precursor_guardian
+			has_technology = tech_fe_tower_offense
+			has_technology = tech_precursor_titan
+			NOR = {
+				has_tech_option = tech_dm_enigmatic_fortress_platform
+				has_technology = tech_dm_enigmatic_fortress_platform
+			}
+		}
+		response_text = acot_precursor_databank.900.enigmatic_fortress.response
+		add_resource = {
+			acot_sr_dark_energy = -1500
+			sr_dark_matter = -1500
+		}
+		set_country_flag = project_enigmatic_fortress_selected
+		hidden_effect = {
+			begin_event_chain = {
+				event_chain = acot_precursor_design_chain
+			}
+			add_event_chain_counter = {
+				event_chain = acot_precursor_design_chain
+				counter = quota_required
+				amount = 500
+			}
+			set_variable = {
+				which = acot_quota_required
+				value = 500
+			}
+			add_event_chain_counter = {
+				event_chain = acot_precursor_design_chain
+				counter = attempts_remain
+				amount = 5
+			}
+			set_variable = {
+				which = acot_quota_attempts
+				value = 5
+			}
+			set_country_flag = precuursor_design_project_active
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.901
+				days = 1
+			}
+		}
+	}
 	###  BACK ###
 	option = {
 		name = acot_precursor_databank.9.c
@@ -3487,6 +3625,10 @@ country_event = {
 				has_country_flag = project_aot_gatekeeper_selected
 				last_increased_tech = tech_gatekeepers
 			}
+			AND = {
+				has_country_flag = project_enigmatic_fortress_selected
+				last_increased_tech = tech_dm_enigmatic_fortress_platform
+			}
 		}
 	}
 	immediate = {
@@ -3579,6 +3721,12 @@ country_event = {
 				has_country_flag = project_aot_gatekeeper_selected
 			}
 			remove_country_flag = project_aot_gatekeeper_selected
+		}
+		if = {
+			limit = {
+				has_country_flag = project_enigmatic_fortress_selected
+			}
+			remove_country_flag = project_enigmatic_fortress_selected
 		}
 		if = {
 			limit = {
@@ -3736,6 +3884,12 @@ country_event = {
 			}
 			remove_country_flag = project_aot_gatekeeper_selected
 		}
+		if = {
+			limit = {
+				has_country_flag = project_enigmatic_fortress_selected
+			}
+			remove_country_flag = project_enigmatic_fortress_selected
+		}
 		end_event_chain = acot_precursor_design_chain
 		remove_country_flag = precuursor_design_project_active
 	}
@@ -3846,6 +4000,12 @@ country_event = {
 			}
 			remove_country_flag = project_aot_gatekeeper_selected
 		}
+		if = {
+			limit = {
+				has_country_flag = project_enigmatic_fortress_selected
+			}
+			remove_country_flag = project_enigmatic_fortress_selected
+		}
 		end_event_chain = acot_precursor_design_chain
 		remove_country_flag = precuursor_design_project_active
 	}
@@ -3944,6 +4104,12 @@ country_event = {
 			has_country_flag = project_aot_gatekeeper_selected
 		}
 		text = acot_precursor_databank.904.desc.aot_gatekeeper
+	}
+	desc = {
+		trigger = {
+			has_country_flag = project_enigmatic_fortress_selected
+		}
+		text = acot_precursor_databank.904.desc.aot_enigmatic_fortress
 	}
 	picture = GFX_evt_physics_research
 	show_sound = event_completed
@@ -4174,6 +4340,21 @@ country_event = {
 		add_research_option = tech_precursor_colossus
 		add_tech_progress = {
 			tech = tech_precursor_colossus
+			progress = 0.2
+		}
+	}
+	###DM Juggernaut
+	option = {
+		trigger = {
+			has_country_flag = project_enigmatic_fortress_selected
+		}
+		name = acot_precursor_databank.904.enigmatic_fortress
+		remove_country_flag = project_enigmatic_fortress_selected
+		end_event_chain = acot_precursor_design_chain
+		remove_country_flag = precuursor_design_project_active
+		add_research_option = tech_dm_enigmatic_fortress_platform
+		add_tech_progress = {
+			tech = tech_dm_enigmatic_fortress_platform
 			progress = 0.2
 		}
 	}
