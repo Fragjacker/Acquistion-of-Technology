@@ -267,6 +267,94 @@ tech_sigma_juggernaut = {
 	}
 }
 
+tech_phanon_juggernaut = {
+	cost = @acot_tier10cost3
+	area = engineering
+	category = {
+		voidcraft
+	}
+	tier = 10
+	prerequisites = {
+		"tech_precursor_phanon_design"
+		"tech_sigma_juggernaut"
+	}
+	weight = @tier5weight3
+	is_rare = yes
+	potential = {
+		host_has_dlc = "Federations"
+		has_technology = tech_precursor_phanon_design
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
+	}
+	modifier = {
+		shipsize_precursor_juggernaut_build_speed_mult = 0.15
+		shipsize_precursor_juggernaut_hull_add = 100000
+	}
+	weight_modifier = {
+		factor = 0.25
+		modifier = {
+			factor = 1.5
+			OR = {
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_expertise_voidcraft"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_maniacal"
+				}
+			}
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = {
+					has_technology = tech_juggernaut
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_technology = "tech_titans"
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_PHANON_JUGGERNAUT_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_PHANON_JUGGERNAUT_CONSTRUCTION_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 200		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
 tech_omega_juggernaut = {
 	cost = @acot_tier9cost2
 	area = engineering
@@ -522,6 +610,79 @@ tech_gatekeepers_sigma = {
 		ship = {
 			title = "TECH_UNLOCK_PRECURSOR_GATEKEEPER_SIGMA_CONSTRUCTION_TITLE"
 			desc = "TECH_UNLOCK_PRECURSOR_GATEKEEPER_SIGMA_CONSTRUCTION_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 100		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+tech_gatekeepers_phanon = {
+	cost = @acot_tier10cost3
+	area = engineering
+	category = {
+		voidcraft
+	}
+	tier = 10
+	prerequisites = {
+		"tech_precursor_phanon_design"
+		"tech_gatekeepers_sigma"
+	}
+	weight = @tier5weight3
+	is_rare = yes
+	potential = {
+		has_technology = tech_precursor_phanon_design
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
+	}
+	weight_modifier = {
+		factor = 0.25
+		modifier = {
+			factor = 1.5
+			OR = {
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_expertise_voidcraft"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_maniacal"
+				}
+			}
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = 1.25
+			has_technology = "tech_titans"
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_PRECURSOR_GATEKEEPER_PHANON_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_PRECURSOR_GATEKEEPER_PHANON_CONSTRUCTION_DESC"
 		}
 	}
 	ai_weight = {
