@@ -1,0 +1,270 @@
+namespace = aot_phanon_events
+country_event = {
+	id = aot_phanon_events.1
+	title = "aot_phanon_events.1.name"
+	desc = "aot_phanon_events.1.desc"
+	picture = GFX_evt_dimensional_mirror
+	show_sound = event_mystery
+	trigger = {
+		has_technology = tech_stellarite_generator_lvl3
+		NOR = {
+			has_country_flag = offer_phanon_dimensional_mirror_chain
+			has_country_flag = block_phanon_dimensional_mirror_chain
+			has_country_flag = finished_phanon_dimensional_mirror_chain
+			has_event_chain = phanon_dimensional_mirror_chain
+		}
+	}
+	mean_time_to_happen = {
+		years = 5
+	}
+	option = {
+		allow = {
+			NOT = {
+				has_event_chain = phanon_dimensional_mirror_chain
+			}
+		}
+		name = aot_phanon_events.1.a
+		custom_tooltip = aot_phanon_events.1.a_desc
+		set_country_flag = offer_phanon_dimensional_mirror_chain
+		default_hide_option = yes
+		trigger = {
+			is_ai = no
+		}
+		hidden_effect = {
+			begin_event_chain = {
+				event_chain = phanon_dimensional_mirror_chain
+			}
+			capital_scope = {
+				save_event_target_as = pc_home
+			}
+			enable_special_project = {
+				name = "RESEARCH_PHANON_DIMENSIONAL_MIRROR"
+				location = event_target:pc_home
+				owner = root
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = {
+		name = aot_phanon_dimensional_mirror_postpone
+		custom_tooltip = aot_phanon_dimensional_mirror_postpone_desc
+		trigger = {
+			is_ai = no
+		}
+		set_timed_country_flag = {
+			flag = block_phanon_dimensional_mirror_chain
+			days = 1800
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = {
+		name = aot_dm_production_core_skip
+		custom_tooltip = aot_dm_production_core_skip_desc
+		trigger = {
+			is_ai = no
+		}
+		set_country_flag = block_phanon_dimensional_mirror_chain
+		ai_chance = {
+			factor = 0
+		}
+	}
+	# The AI is too dumb for this, so give the option right away but without any progress.
+	option = {
+		name = aot_phanon_events.1.a
+		custom_tooltip = aot_phanon_events.1.a_desc
+		trigger = {
+			is_ai = yes
+		}
+		hidden_effect = {
+			add_research_option = tech_dm_production_core
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+}
+
+# SUCCESSS
+country_event = {
+	id = aot_phanon_events.2
+	title = aot_phanon_events.2.name
+	desc = aot_phanon_events.2.desc
+	picture = GFX_evt_dimensional_mirror
+	show_sound = event_celebration
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		end_event_chain = phanon_dimensional_mirror_chain
+		set_country_flag = finished_phanon_dimensional_mirror_chain
+	}
+	### PHANONTASTIC MIRROR
+	option = {
+		name = aot_phanon_events.2.a
+		add_research_option = tech_phanon_dimensional_mirror
+		add_tech_progress = {
+			tech = tech_phanon_dimensional_mirror
+			progress = 0.1
+		}
+	}
+}
+
+# MIRROR BUILD BUT NEEDS ACTIVATION
+country_event = {
+	id = aot_phanon_events.3
+	title = aot_phanon_events.3.name
+	desc = aot_phanon_events.3.desc
+	picture = GFX_evt_dimensional_mirror
+	show_sound = event_celebration
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+}
+
+# MIRROR IS FULLY OPERATIONAL
+country_event = {
+	id = aot_phanon_events.4
+	title = aot_phanon_events.4.name
+	desc = aot_phanon_events.4.desc
+	picture = GFX_evt_dimensional_mirror
+	show_sound = event_celebration
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		create_protecc_country = yes
+		# SPAWN ENEMIES AT THE GATES
+		every_megastructure = {
+			limit = {
+				is_megastructure_type = dimensional_mirror_final
+			}
+			create_phanon_protecc_wave_1 = yes
+			# Move fleets to middle of system
+			solar_system = {
+				system_star = {
+					last_created_fleet = {
+						auto_move_to_planet = {
+							target = prev
+							clear_auto_move_on_arrival = yes
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# GATE GETS POWERED DOWN
+country_event = {
+	id = aot_phanon_events.5
+	title = aot_phanon_events.5.name
+	desc = aot_phanon_events.5.desc
+	picture = GFX_evt_dimensional_mirror
+	show_sound = event_celebration
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		every_megastructure = {
+			limit = {
+				is_megastructure_type = dimensional_mirror_final
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = dimensional_mirror_0
+					owner = root
+					coords_from = prev
+				}
+			}
+			remove_megastructure = this
+		}
+	}
+}
+
+# FAKE MEME MESSAGE SUCCEEDED, SENDING NEW PHANON VAULT.
+country_event = {
+	id = aot_phanon_events.6
+	title = aot_phanon_events.6.name
+	desc = aot_phanon_events.6.desc
+	picture = GFX_evt_dimensional_mirror
+	show_sound = event_celebration
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		#Spawn the vault plus some Phanon bois to defend.
+		every_megastructure = {
+			limit = {
+				is_megastructure_type = dimensional_mirror_final
+			}
+			create_phanon_protecc_wave_1 = yes
+			create_phanon_protecc_wave_2 = yes
+			create_phanon_protecc_wave_3 = yes
+			create_phanon_protecc_wave_4 = yes
+			solar_system = {
+				spawn_planet = {
+					name = "V-N1C3V"
+					class = pc_acot_pmc_vault
+					orbit_distance = 25
+					size = 3
+					orbit_angle = 20
+					init_effect = {
+						save_global_event_target_as = aot_bootleg_phanon_vault
+						set_owner = event_target:phanon_protecc_base_country
+						set_controller = event_target:phanon_protecc_base_country
+						add_district = district_acot_phanon_command
+						add_district = district_acot_phanon_data
+						add_district = district_acot_phanon_vault
+						add_building = building_phanon_tower
+						add_building = building_phanon_lab
+						add_building = building_phanon_vault
+						add_building = building_phanon_vault
+						add_building = building_phanon_plant
+						add_building = building_phanon_plant
+						add_building = building_phanon_plant
+						while = {
+							count = 5
+							create_pop = {
+								species = event_target:phanon_species
+							}
+						}
+						create_fleet = {
+							effect = {
+								set_owner = event_target:phanon_protecc_base_country
+								create_ship = {
+									name = random
+									design = "NAME_ACOT_STAR_OVERWATCH"
+									graphical_culture = "acot_pmc"
+								}
+								set_location = {
+									target = prev
+									distance = 20
+									angle = 20
+								}
+							}
+							settings = {
+								is_boss = no
+								garrison = yes
+							}
+						}
+					}
+				}
+			}
+			# Move fleets to middle of system
+			last_created_fleet = {
+				auto_move_to_planet = {
+					target = event_target:aot_bootleg_phanon_vault
+					clear_auto_move_on_arrival = yes
+				}
+			}
+			spawn_habitat_cracker_effect = yes
+			remove_megastructure = this
+		}
+	}
+}

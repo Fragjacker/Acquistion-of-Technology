@@ -1,0 +1,570 @@
+# PHANON PROTECC STUFFS
+create_protecc_country = {
+	create_species = {
+		name = "Phanon GLA Workers"
+		class = HUM
+		portrait = human
+		traits = random
+		extra_trait_points = 6
+		allow_negative_traits = no
+		effect = {
+			save_global_event_target_as = phanon_species
+		}
+	}
+	create_species = {
+		name = "Phanon Operatives"
+		class = PHANON
+		portrait = acot_pmc
+		traits = random
+		extra_trait_points = 10
+		allow_negative_traits = no
+		effect = {
+			save_global_event_target_as = phanon_operative_species
+		}
+	}
+	create_country = {
+		name = "Phanon P.R.O.T.E.C.C."
+		name_list = Phanon
+		species = event_target:phanon_operative_species
+		type = acot_phanon_retaliator
+		civics = {
+			civic = civic_acot_phanon_fleet
+			civic = civic_acot_phanon_corps
+		}
+		origin = "origin_default"
+		flag = {
+			background = {
+				category = "backgrounds"
+				file = "v.dds"
+			}
+			icon = {
+				category = phanon
+				file = flag_phanon.dds
+			}
+			colors = {
+				"red"
+				"black"
+				"null"
+				"null"
+			}
+		}
+		ethos = {
+			ethic = ethic_fanatic_authoritarian
+			ethic = ethic_militarist
+		}
+		ignore_initial_colony_error = yes
+	}
+	last_created_country = {
+		set_graphical_culture = acot_pmc
+		save_global_event_target_as = phanon_protecc_base_country
+		set_country_flag = phanon_protecc_base_country
+		create_ship_design = {
+			design = "NAME_ACOT_STAR_COMMANDER"
+		}
+		add_ship_design = last_created_design
+		create_ship_design = {
+			design = "NAME_ACOT_STARBENDER"
+		}
+		add_ship_design = last_created_design
+		### ESTABLISHU CONTACTSU
+		establish_communications = root
+		every_country = {
+			limit = {
+				OR = {
+					is_country_type = enclave
+					is_country_type = dormant_marauders
+					is_fallen_empire = yes
+					is_fallen_machine_empire = yes
+					has_origin = origin_playable_oe_singular
+					has_origin = origin_playable_oe
+				}
+			}
+			establish_communications_no_message = event_target:phanon_protecc_base_country
+		}
+	}
+	#Make Protecc bois mad against everybody.
+	every_country = {
+		limit = {
+			NOR = {
+				is_country_type = enclave
+				is_country_type = dormant_marauders
+				is_fallen_empire = yes
+				is_fallen_machine_empire = yes
+				has_origin = origin_playable_oe_singular
+				has_origin = origin_playable_oe
+			}
+		}
+		set_faction_hostility = {
+			target = event_target:phanon_protecc_base_country
+			set_hostile = yes
+			set_neutral = no
+			set_friendly = no
+		}
+	}
+}
+
+create_phanon_protecc_wave_1 = {
+	owner = {
+		create_leader = {
+			class = admiral
+			species = event_target:phanon_operative_species
+			name = "Phanon Operative Type A"
+			skill = 10
+			immortal = yes
+			leader_age_min = 1000
+			leader_age_max = 100000
+			traits = {
+				trait = leader_trait_acot_phanon_admiral
+				trait = leader_trait_admiral_cyborg
+				trait = leader_trait_admiral_psionic
+				trait = leader_trait_admiral_erudite
+			}
+			event_leader = yes			# prevents this leader from leading factions and winning elections
+			effect = {
+				random_list = {
+					5 = {
+						set_name = "A11-C"
+					}
+					5 = {
+						set_name = "A35-C"
+					}
+					5 = {
+						set_name = "A24-A"
+					}
+					5 = {
+						set_name = "A07-B"
+					}
+					5 = {
+						set_name = "A65-A"
+					}
+					5 = {
+						set_name = "A28-B"
+					}
+					5 = {
+						set_name = "A41-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+					5 = {
+						set_name = "A62-A"
+					}
+					5 = {
+						set_name = "A67-C"
+					}
+					5 = {
+						set_name = "A42-B"
+					}
+					5 = {
+						set_name = "A91-B"
+					}
+					5 = {
+						set_name = "A85-C"
+					}
+					5 = {
+						set_name = "A53-C"
+					}
+					5 = {
+						set_name = "A10-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+				}
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:phanon_protecc_base_country
+			while = {
+				count = 20
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DESTROYER"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			assign_leader = last_created_leader
+			while = {
+				count = 30
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_STARFIGHTERS"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			set_formation_scale = 2
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 275
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 15
+			}
+		}
+		settings = {
+			is_boss = no
+			garrison = yes
+		}
+	}
+}
+
+create_phanon_protecc_wave_2 = {
+	owner = {
+		create_leader = {
+			class = admiral
+			species = event_target:phanon_operative_species
+			name = "Phanon Operative Type A"
+			skill = 10
+			immortal = yes
+			leader_age_min = 1000
+			leader_age_max = 100000
+			traits = {
+				trait = leader_trait_acot_phanon_admiral
+				trait = leader_trait_admiral_cyborg
+				trait = leader_trait_admiral_psionic
+				trait = leader_trait_admiral_erudite
+			}
+			event_leader = yes			# prevents this leader from leading factions and winning elections
+			effect = {
+				random_list = {
+					5 = {
+						set_name = "A11-C"
+					}
+					5 = {
+						set_name = "A35-C"
+					}
+					5 = {
+						set_name = "A24-A"
+					}
+					5 = {
+						set_name = "A07-B"
+					}
+					5 = {
+						set_name = "A65-A"
+					}
+					5 = {
+						set_name = "A28-B"
+					}
+					5 = {
+						set_name = "A41-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+					5 = {
+						set_name = "A62-A"
+					}
+					5 = {
+						set_name = "A67-C"
+					}
+					5 = {
+						set_name = "A42-B"
+					}
+					5 = {
+						set_name = "A91-B"
+					}
+					5 = {
+						set_name = "A85-C"
+					}
+					5 = {
+						set_name = "A53-C"
+					}
+					5 = {
+						set_name = "A10-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+				}
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:phanon_protecc_base_country
+			while = {
+				count = 2
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DEVASTATOR"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			assign_leader = last_created_leader
+			while = {
+				count = 15
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DESTROYER"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			while = {
+				count = 20
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_STARFIGHTERS"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			set_formation_scale = 2
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 275
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 15
+			}
+		}
+		settings = {
+			is_boss = no
+			garrison = yes
+		}
+	}
+}
+
+create_phanon_protecc_wave_3 = {
+	owner = {
+		create_leader = {
+			class = admiral
+			species = event_target:phanon_operative_species
+			name = "Phanon Operative Type A"
+			skill = 10
+			immortal = yes
+			leader_age_min = 1000
+			leader_age_max = 100000
+			traits = {
+				trait = leader_trait_acot_phanon_admiral
+				trait = leader_trait_admiral_cyborg
+				trait = leader_trait_admiral_psionic
+				trait = leader_trait_admiral_erudite
+			}
+			event_leader = yes			# prevents this leader from leading factions and winning elections
+			effect = {
+				random_list = {
+					5 = {
+						set_name = "A11-C"
+					}
+					5 = {
+						set_name = "A35-C"
+					}
+					5 = {
+						set_name = "A24-A"
+					}
+					5 = {
+						set_name = "A07-B"
+					}
+					5 = {
+						set_name = "A65-A"
+					}
+					5 = {
+						set_name = "A28-B"
+					}
+					5 = {
+						set_name = "A41-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+					5 = {
+						set_name = "A62-A"
+					}
+					5 = {
+						set_name = "A67-C"
+					}
+					5 = {
+						set_name = "A42-B"
+					}
+					5 = {
+						set_name = "A91-B"
+					}
+					5 = {
+						set_name = "A85-C"
+					}
+					5 = {
+						set_name = "A53-C"
+					}
+					5 = {
+						set_name = "A10-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+				}
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:phanon_protecc_base_country
+			create_ship = {
+				name = random
+				design = "NAME_ACOT_ANNIHILATOR"
+				graphical_culture = "acot_pmc"
+			}
+			assign_leader = last_created_leader
+			while = {
+				count = 8
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DEVASTATOR"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			while = {
+				count = 12
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DESTROYER"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			while = {
+				count = 15
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_STARFIGHTERS"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			set_formation_scale = 2
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 275
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 15
+			}
+		}
+		settings = {
+			is_boss = no
+			garrison = yes
+		}
+	}
+}
+
+create_phanon_protecc_wave_4 = {
+	owner = {
+		create_leader = {
+			class = admiral
+			species = event_target:phanon_operative_species
+			name = "Phanon Operative Type A"
+			skill = 10
+			immortal = yes
+			leader_age_min = 1000
+			leader_age_max = 100000
+			traits = {
+				trait = leader_trait_acot_phanon_admiral
+				trait = leader_trait_admiral_cyborg
+				trait = leader_trait_admiral_psionic
+				trait = leader_trait_admiral_erudite
+			}
+			event_leader = yes			# prevents this leader from leading factions and winning elections
+			effect = {
+				random_list = {
+					5 = {
+						set_name = "A11-C"
+					}
+					5 = {
+						set_name = "A35-C"
+					}
+					5 = {
+						set_name = "A24-A"
+					}
+					5 = {
+						set_name = "A07-B"
+					}
+					5 = {
+						set_name = "A65-A"
+					}
+					5 = {
+						set_name = "A28-B"
+					}
+					5 = {
+						set_name = "A41-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+					5 = {
+						set_name = "A62-A"
+					}
+					5 = {
+						set_name = "A67-C"
+					}
+					5 = {
+						set_name = "A42-B"
+					}
+					5 = {
+						set_name = "A91-B"
+					}
+					5 = {
+						set_name = "A85-C"
+					}
+					5 = {
+						set_name = "A53-C"
+					}
+					5 = {
+						set_name = "A10-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+				}
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:phanon_protecc_base_country
+			create_ship = {
+				name = random
+				design = "NAME_ACOT_ANNIHILATOR"
+				graphical_culture = "acot_pmc"
+			}
+			assign_leader = last_created_leader
+			while = {
+				count = 8
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DEVASTATOR"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			while = {
+				count = 12
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DESTROYER"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			while = {
+				count = 12
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_STARFIGHTERS"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			set_formation_scale = 2
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 275
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 15
+			}
+		}
+		settings = {
+			is_boss = no
+			garrison = yes
+		}
+	}
+}
