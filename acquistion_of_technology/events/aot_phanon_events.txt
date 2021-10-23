@@ -122,8 +122,22 @@ country_event = {
 	show_sound = event_celebration
 	is_triggered_only = yes
 	trigger = {
+		NOR = {
+			has_country_flag = defeated_wave_1
+			has_country_flag = defeated_wave_2
+			has_country_flag = defeated_wave_3
+			has_country_flag = defeated_wave_4
+		}
 	}
 	immediate = {
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = completed_dimensional_mirror
+				}
+			}
+		}
+		set_country_flag = completed_dimensional_mirror
 	}
 }
 
@@ -131,21 +145,108 @@ country_event = {
 country_event = {
 	id = aot_phanon_events.4
 	title = aot_phanon_events.4.name
-	desc = aot_phanon_events.4.desc
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				NOT = {
+					has_country_flag = defeated_wave_2
+				}
+			}
+		}
+		text = aot_phanon_events.4.wave1.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				NOT = {
+					has_country_flag = defeated_wave_3
+				}
+			}
+		}
+		text = aot_phanon_events.4.wave2.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				has_country_flag = defeated_wave_3
+				NOT = {
+					has_country_flag = defeated_wave_4
+				}
+			}
+		}
+		text = aot_phanon_events.4.wave3.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				has_country_flag = defeated_wave_3
+				has_country_flag = defeated_wave_4
+			}
+		}
+		text = aot_phanon_events.4.wave4.desc
+	}
 	picture = GFX_evt_dimensional_mirror
 	show_sound = event_celebration
 	is_triggered_only = yes
 	trigger = {
 	}
 	immediate = {
+		# every_megastructure = {
+		# 	limit = {
+		# 		is_megastructure_type = dimensional_mirror_final
+		# 	}
+		# 	save_event_target_as = dimensional_mirror_obj
+		# }
 		create_protecc_country = yes
 		# SPAWN ENEMIES AT THE GATES
-		every_megastructure = {
-			limit = {
-				is_megastructure_type = dimensional_mirror_final
+		switch = {
+			trigger = has_country_flag
+			defeated_wave_3 = {
+				set_country_flag = defeated_wave_4
+				country_event = {
+					id = aot_phanon_events.6
+				}
 			}
-			create_phanon_protecc_wave_1 = yes
-			# Move fleets to middle of system
+			defeated_wave_2 = {
+				event_target:dimensional_mirror_obj = {
+					create_phanon_protecc_wave_1 = yes
+					create_phanon_protecc_wave_2 = yes
+					create_phanon_protecc_wave_3 = yes
+				}
+				set_country_flag = defeated_wave_3
+				country_event = {
+					id = aot_phanon_events.5
+				}
+			}
+			defeated_wave_1 = {
+				event_target:dimensional_mirror_obj = {
+					create_phanon_protecc_wave_1 = yes
+					create_phanon_protecc_wave_2 = yes
+				}
+				set_country_flag = defeated_wave_2
+				country_event = {
+					id = aot_phanon_events.5
+				}
+			}
+			default = {
+				event_target:dimensional_mirror_obj = {
+					create_phanon_protecc_wave_1 = yes
+				}
+				set_country_flag = defeated_wave_1
+				country_event = {
+					id = aot_phanon_events.5
+				}
+			}
+		}
+		# Move fleets to middle of system
+		event_target:dimensional_mirror_obj = {
 			solar_system = {
 				system_star = {
 					last_created_fleet = {
@@ -163,11 +264,8 @@ country_event = {
 # GATE GETS POWERED DOWN
 country_event = {
 	id = aot_phanon_events.5
-	title = aot_phanon_events.5.name
-	desc = aot_phanon_events.5.desc
-	picture = GFX_evt_dimensional_mirror
-	show_sound = event_celebration
 	is_triggered_only = yes
+	hide_window = yes
 	trigger = {
 	}
 	immediate = {
@@ -190,19 +288,13 @@ country_event = {
 # FAKE MEME MESSAGE SUCCEEDED, SENDING NEW PHANON VAULT.
 country_event = {
 	id = aot_phanon_events.6
-	title = aot_phanon_events.6.name
-	desc = aot_phanon_events.6.desc
-	picture = GFX_evt_dimensional_mirror
-	show_sound = event_celebration
+	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
 	}
 	immediate = {
 		#Spawn the vault plus some Phanon bois to defend.
-		every_megastructure = {
-			limit = {
-				is_megastructure_type = dimensional_mirror_final
-			}
+		event_target:dimensional_mirror_obj = {
 			create_phanon_protecc_wave_1 = yes
 			create_phanon_protecc_wave_2 = yes
 			create_phanon_protecc_wave_3 = yes
