@@ -12,6 +12,7 @@ country_event = {
 			has_country_flag = block_phanon_dimensional_mirror_chain
 			has_country_flag = finished_phanon_dimensional_mirror_chain
 			has_event_chain = phanon_dimensional_mirror_chain
+			has_country_flag = attacked_phanon_property
 		}
 	}
 	mean_time_to_happen = {
@@ -88,7 +89,7 @@ country_event = {
 	}
 }
 
-# SUCCESSS
+# SUCCESSS, MIRROR MIRRON IN ZE SPACE!
 country_event = {
 	id = aot_phanon_events.2
 	title = aot_phanon_events.2.name
@@ -193,69 +194,19 @@ country_event = {
 		text = aot_phanon_events.4.wave4.desc
 	}
 	picture = GFX_evt_dimensional_mirror
-	show_sound = event_celebration
+	show_sound = event_power_dm
 	is_triggered_only = yes
 	trigger = {
 	}
 	immediate = {
-		# every_megastructure = {
-		# 	limit = {
-		# 		is_megastructure_type = dimensional_mirror_final
-		# 	}
-		# 	save_event_target_as = dimensional_mirror_obj
-		# }
-		create_protecc_country = yes
-		# SPAWN ENEMIES AT THE GATES
-		switch = {
-			trigger = has_country_flag
-			defeated_wave_3 = {
-				set_country_flag = defeated_wave_4
-				country_event = {
-					id = aot_phanon_events.6
-				}
-			}
-			defeated_wave_2 = {
-				event_target:dimensional_mirror_obj = {
-					create_phanon_protecc_wave_1 = yes
-					create_phanon_protecc_wave_2 = yes
-					create_phanon_protecc_wave_3 = yes
-				}
-				set_country_flag = defeated_wave_3
-				country_event = {
-					id = aot_phanon_events.5
-				}
-			}
-			defeated_wave_1 = {
-				event_target:dimensional_mirror_obj = {
-					create_phanon_protecc_wave_1 = yes
-					create_phanon_protecc_wave_2 = yes
-				}
-				set_country_flag = defeated_wave_2
-				country_event = {
-					id = aot_phanon_events.5
-				}
-			}
-			default = {
-				event_target:dimensional_mirror_obj = {
-					create_phanon_protecc_wave_1 = yes
-				}
-				set_country_flag = defeated_wave_1
-				country_event = {
-					id = aot_phanon_events.5
-				}
-			}
-		}
-		# Move fleets to middle of system
-		event_target:dimensional_mirror_obj = {
-			solar_system = {
-				system_star = {
-					last_created_fleet = {
-						auto_move_to_planet = {
-							target = prev
-							clear_auto_move_on_arrival = yes
-						}
-					}
-				}
+	}
+	option = {
+		name = aot_phanon_events.4.a
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.7
+				days = 5
+				random = 3
 			}
 		}
 	}
@@ -299,6 +250,7 @@ country_event = {
 			create_phanon_protecc_wave_2 = yes
 			create_phanon_protecc_wave_3 = yes
 			create_phanon_protecc_wave_4 = yes
+			move_fleet_to_system_star = yes
 			solar_system = {
 				spawn_planet = {
 					name = "V-N1C3V"
@@ -348,15 +300,218 @@ country_event = {
 					}
 				}
 			}
-			# Move fleets to middle of system
-			last_created_fleet = {
-				auto_move_to_planet = {
-					target = event_target:aot_bootleg_phanon_vault
-					clear_auto_move_on_arrival = yes
-				}
-			}
 			spawn_habitat_cracker_effect = yes
 			remove_megastructure = this
 		}
+	}
+}
+
+# SENDING MESSAGE TO EMEZON
+country_event = {
+	id = aot_phanon_events.7
+	title = aot_phanon_events.7.diplo_title
+	desc = aot_phanon_events.7.diplo.desc
+	trigger = {
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_ai_started
+	picture_event_data = {
+		room = acot_phanon_bridge_hostile_room
+	}
+	immediate = {
+	}
+	after = {
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_country_flag = defeated_wave_1
+			}
+		}
+		name = aot_phanon_events.7.a
+		response_text = aot_phanon_events.7.a.response
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.8
+				days = 10
+				random = 5
+			}
+		}
+	}
+	option = {
+		trigger = {
+			has_country_flag = defeated_wave_1
+			NOT = {
+				has_country_flag = defeated_wave_2
+			}
+		}
+		name = aot_phanon_events.7.b
+		response_text = aot_phanon_events.7.b.response
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.8
+				days = 10
+				random = 5
+			}
+		}
+	}
+	option = {
+		trigger = {
+			has_country_flag = defeated_wave_1
+			has_country_flag = defeated_wave_2
+			NOT = {
+				has_country_flag = defeated_wave_3
+			}
+		}
+		name = aot_phanon_events.7.b
+		response_text = aot_phanon_events.7.c.response
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.8
+				days = 10
+				random = 5
+			}
+		}
+	}
+	option = {
+		trigger = {
+			has_country_flag = defeated_wave_1
+			has_country_flag = defeated_wave_2
+			has_country_flag = defeated_wave_3
+			NOT = {
+				has_country_flag = defeated_wave_4
+			}
+		}
+		name = aot_phanon_events.7.b
+		response_text = aot_phanon_events.7.d.response
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.8
+				days = 10
+				random = 5
+			}
+		}
+	}
+}
+
+# SPAWN ATTACKING P.R.O.T.E.C.C. FLEETS
+country_event = {
+	id = aot_phanon_events.8
+	title = aot_phanon_events.8.name
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				NOT = {
+					has_country_flag = defeated_wave_2
+				}
+			}
+		}
+		text = aot_phanon_events.8.wave1.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				NOT = {
+					has_country_flag = defeated_wave_3
+				}
+			}
+		}
+		text = aot_phanon_events.8.wave2.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				has_country_flag = defeated_wave_3
+				NOT = {
+					has_country_flag = defeated_wave_4
+				}
+			}
+		}
+		text = aot_phanon_events.8.wave3.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				has_country_flag = defeated_wave_3
+				has_country_flag = defeated_wave_4
+			}
+		}
+		text = aot_phanon_events.8.wave4.desc
+	}
+	picture = GFX_evt_dimensional_mirror
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		create_protecc_country = yes
+		# SPAWN ENEMIES AT THE GATES
+		switch = {
+			trigger = has_country_flag
+			defeated_wave_3 = {
+				set_country_flag = defeated_wave_4
+				country_event = {
+					id = aot_phanon_events.6
+				}
+			}
+			defeated_wave_2 = {
+				event_target:dimensional_mirror_obj = {
+					create_phanon_protecc_wave_1 = yes
+					create_phanon_protecc_wave_2 = yes
+					create_phanon_protecc_wave_3 = yes
+					move_fleet_to_system_star = yes
+				}
+				set_country_flag = defeated_wave_3
+				country_event = {
+					id = aot_phanon_events.5
+				}
+			}
+			defeated_wave_1 = {
+				event_target:dimensional_mirror_obj = {
+					create_phanon_protecc_wave_1 = yes
+					create_phanon_protecc_wave_2 = yes
+					move_fleet_to_system_star = yes
+				}
+				set_country_flag = defeated_wave_2
+				country_event = {
+					id = aot_phanon_events.5
+				}
+			}
+			default = {
+				event_target:dimensional_mirror_obj = {
+					create_phanon_protecc_wave_1 = yes
+					move_fleet_to_system_star = yes
+				}
+				set_country_flag = defeated_wave_1
+				country_event = {
+					id = aot_phanon_events.5
+				}
+			}
+		}
+		# # Move fleets to middle of system
+		# event_target:dimensional_mirror_obj = {
+		# 	solar_system = {
+		# 		system_star = {
+		# 			last_created_fleet = {
+		# 				auto_move_to_planet = {
+		# 					target = prev
+		# 					clear_auto_move_on_arrival = yes
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# }
 	}
 }
