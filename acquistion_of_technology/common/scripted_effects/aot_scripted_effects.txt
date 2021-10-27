@@ -584,3 +584,53 @@ move_fleet_to_system_star = {
 		}
 	}
 }
+
+destroy_solar_system = {
+	every_system_planet = {
+		limit = {
+			is_star = yes
+		}
+		save_event_target_as = last_created_phanon_pylon
+		create_ambient_object = {
+			type = "star_explosion"
+			play_animation_once = yes
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		change_pc = pc_phanon_pylon_star
+	}
+	every_system_planet = {
+		limit = {
+			is_star = no
+		}
+		remove_planet = yes
+	}
+	set_asteroid_belt = {
+		radius = 0
+	}
+	every_system_planet = {
+		clear_deposits = yes
+		clear_planet_modifiers = yes
+		prevent_anomaly = yes
+	}
+	every_system_planet = {
+		limit = {
+			is_asteroid = yes
+		}
+		clear_deposits = yes
+	}
+	every_system_planet = {
+		limit = {
+			exists = orbital_station
+		}
+		orbital_station = {
+			dismantle = yes
+		}
+	}
+}

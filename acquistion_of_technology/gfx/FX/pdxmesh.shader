@@ -1523,7 +1523,7 @@ PixelShader =
 	[[
 		float4 main( VS_OUTPUT_PDXMESHSTANDARD In ) : PDX_COLOR
 		{
-			float3 RimColor = HSVtoRGB( float3( 1.3, 1.0f, 1.0f ) );
+			float3 RimColor = HSVtoRGB( float3( 0.0f, 1.0f, 1.0f ) );
 			const float RimAlpha = 0.35f;
 			const float vRimStart = 1.0f;
 			const float vRimStop = 0.5f;
@@ -4199,6 +4199,29 @@ Effect AotPlanetShieldPE
 	BlendState = "BlendStateAlphaBlend"
 	RasterizerState = "RasterizerStateNoCulling"
 	DepthStencilState = "DepthStencilNoZWrite"
+}
+
+Effect AotPlanetShieldPESkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelAotPlanetShieldPE"
+	BlendState = "BlendStateAlphaBlend"
+	RasterizerState = "RasterizerStateNoCulling"
+	DepthStencilState = "DepthStencilNoZWrite"
+}
+
+Effect AotPlanetShieldPEShadow
+{
+	VertexShader = "VertexPdxMeshStandardShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
+
+Effect AotPlanetShieldPESkinnedShadow
+{
+	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
 }
 
 Effect PdxMeshStandardConstruction
