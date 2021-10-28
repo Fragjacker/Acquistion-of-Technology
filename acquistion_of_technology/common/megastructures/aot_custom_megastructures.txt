@@ -546,6 +546,12 @@ star_imploder_0 = {
 			#NOT = { has_any_megastructure = yes }
 			has_no_non_gate_megastructure = yes
 		}
+		custom_tooltip = {
+			fail_text = "requires_no_phanon_pylon"
+			NOT = {
+				is_star_class = sc_phanon_pylon
+			}
+		}
 	}
 	placement_rules = {
 		planet_possible = {
@@ -636,10 +642,6 @@ star_imploder_1 = {
 		"tech_dark_matter_power_core_pe"
 	}
 	on_build_complete = {
-		# Disable ship colors to make it Phanon red
-		fromfrom = {
-			set_graphical_culture = aot_pmc_no_ship_color
-		}
 		every_system_planet = {
 			limit = {
 				has_modifier = terraforming_candidate
@@ -711,5 +713,239 @@ star_imploder_3 = {
 			set_country_flag = has_built_or_repaired_megastructure
 		}
 		destroy_solar_system = yes
+	}
+}
+
+#Phanon MacR.I.P.P.
+# Phanon Star Imploder Pylon creator.
+#Dyson Sphere Site
+macripp_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -30
+		y = -30
+	}
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			influence = 300
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					AND = {
+						colonizable_planet = yes
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_phanon_pylon"
+			is_star_class = sc_phanon_pylon
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			#NOT = { has_any_megastructure = yes }
+			has_no_non_gate_megastructure = yes
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_built_around_phanon_pylon"
+				is_star_class = sc_phanon_pylon
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0.1
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = {
+						is_same_value = from
+					}
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		set_star_flag = star_imploder_built
+		from = {
+			set_country_flag = built_star_imploder
+		}
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+		fromfrom.planet = {
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+}
+
+#Dyson Sphere Frame
+macripp_1 = {
+	entity = "phanon_macRIPP_stage_1_entity"
+	construction_entity = "phanon_macRIPP_stage_1_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+			acot_sr_stellarite = 10000
+		}
+		upkeep = {
+			energy = 2000
+		}
+	}
+	upgrade_from = {
+		macripp_0
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+	}
+}
+
+#Partial Dyson Sphere
+macripp_2 = {
+	entity = "phanon_macRIPP_stage_2_entity"
+	construction_entity = "phanon_macRIPP_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+			acot_sr_stellarite = 10000
+		}
+		upkeep = {
+			energy = 4000
+		}
+	}
+	upgrade_from = {
+		macripp_1
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+	}
+}
+
+#Partial Dyson Sphere
+macripp_3 = {
+	entity = "phanon_macRIPP_stage_2_entity"
+	construction_entity = "phanon_macRIPP_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+			acot_sr_stellarite = 10000
+		}
+		upkeep = {
+			energy = 6000
+		}
+		produces = {
+			aot_sr_runic_power = 100
+		}
+	}
+	upgrade_from = {
+		macripp_2
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		spawn_planet = {
+			class = "pc_phanon_macripp"
+			location = fromfrom
+			has_ring = no
+			init_effect = {
+				set_name = "BASTION"
+				change_pc = pc_phanon_macripp
+				set_planet_entity = {
+					entity = "phanon_macRIPP_stage_3_entity"
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				set_planet_flag = megastructure
+				set_planet_flag = macRIPP_planet
+			}
+		}
+		remove_megastructure = fromfrom
 	}
 }
