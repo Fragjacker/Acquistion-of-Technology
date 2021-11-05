@@ -1,4 +1,8 @@
+@megacannon_design = ion_cannon
+@inner_mega_cannon_distance = 100
+#######################
 # PHANON PROTECC STUFFS
+#######################
 create_protecc_country = {
 	create_species = {
 		name = "Phanon GLA Workers"
@@ -572,19 +576,25 @@ create_phanon_protecc_wave_4 = {
 	}
 }
 
-move_fleet_to_system_star = {
+#Move the spawned fleet to system sun if spawned too far outside.
+move_protecc_fleet_to_system_star = {
 	solar_system = {
 		system_star = {
-			last_created_fleet = {
-				auto_move_to_planet = {
-					target = prev
-					clear_auto_move_on_arrival = yes
-				}
+			save_event_target_as = this_system_star
+		}
+		every_fleet_in_system = {
+			limit = {
+				is_owned_by = event_target:phanon_protecc_base_country
+			}
+			auto_move_to_planet = {
+				target = event_target:this_system_star
+				clear_auto_move_on_arrival = yes
 			}
 		}
 	}
 }
 
+# Phanon Pylon blasts system to bits
 destroy_solar_system = {
 	solar_system = {
 		set_star_class = sc_phanon_pylon
@@ -634,6 +644,135 @@ destroy_solar_system = {
 		}
 		orbital_station = {
 			dismantle = yes
+		}
+	}
+}
+
+#######################
+# PHANON INFRASTRUCTURE
+#######################
+
+spawn_phanon_mega_turrets = {
+	system_star = { save_event_target_as = this_system_star }
+	# Spawn them big boi cannons
+	create_fleet = {
+		name = "BIG MAN TURRET1"
+		settings = { spawn_debris = no }
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = "BIG MAN TURRET1"
+				random_existing_design = @megacannon_design
+				effect = {
+				}
+			}
+			set_formation_scale = 2
+			set_location = {
+				target = event_target:this_system_star
+				distance = @inner_mega_cannon_distance
+				angle = 60
+				direction = in_system
+			}
+		}
+	}
+	create_fleet = {
+		name = "BIG MAN TURRET2"
+		settings = { spawn_debris = no }
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = "BIG MAN TURRET2"
+				random_existing_design = @megacannon_design
+				effect = {
+				}
+			}
+			set_formation_scale = 2
+			set_location = {
+				target = event_target:this_system_star
+				distance = @inner_mega_cannon_distance
+				angle = 120
+				direction = in_system
+			}
+		}
+	}
+	create_fleet = {
+		name = "BIG MAN TURRET3"
+		settings = { spawn_debris = no }
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = "BIG MAN TURRET3"
+				random_existing_design = @megacannon_design
+				effect = {
+				}
+			}
+			set_formation_scale = 2
+			set_location = {
+				target = event_target:this_system_star
+				distance = @inner_mega_cannon_distance
+				angle = 180
+				direction = in_system
+			}
+		}
+	}
+	create_fleet = {
+		name = "BIG MAN TURRET4"
+		settings = { spawn_debris = no }
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = "BIG MAN TURRET4"
+				random_existing_design = @megacannon_design
+				effect = {
+				}
+			}
+			set_formation_scale = 2
+			set_location = {
+				target = event_target:this_system_star
+				distance = @inner_mega_cannon_distance
+				angle = 240
+				direction = in_system
+			}
+		}
+	}
+	create_fleet = {
+		name = "BIG MAN TURRET5"
+		settings = { spawn_debris = no }
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = "BIG MAN TURRET5"
+				random_existing_design = @megacannon_design
+				effect = {
+				}
+			}
+			set_formation_scale = 2
+			set_location = {
+				target = event_target:this_system_star
+				distance = @inner_mega_cannon_distance
+				angle = 300
+				direction = in_system
+			}
+		}
+	}
+	create_fleet = {
+		name = "BIG MAN TURRET6"
+		settings = { spawn_debris = no }
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = "BIG MAN TURRET6"
+				random_existing_design = @megacannon_design
+				effect = {
+				}
+			}
+			set_formation_scale = 2
+			set_location = {
+				target = event_target:this_system_star
+				distance = @inner_mega_cannon_distance
+				angle = 360
+				direction = in_system
+			}
 		}
 	}
 }
