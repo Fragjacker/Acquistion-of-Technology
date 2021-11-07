@@ -465,7 +465,6 @@ dimensional_mirror_final = {
 }
 
 # Phanon Star Imploder Pylon creator.
-#Dyson Sphere Site
 star_imploder_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -621,7 +620,6 @@ star_imploder_0 = {
 	}
 }
 
-#Dyson Sphere Frame
 star_imploder_1 = {
 	entity = "star_imploder_stage_1_entity"
 	construction_entity = "star_imploder_stage_1_construction_entity"
@@ -653,7 +651,6 @@ star_imploder_1 = {
 	}
 }
 
-#Partial Dyson Sphere
 star_imploder_2 = {
 	entity = "star_imploder_stage_2_entity"
 	construction_entity = "star_imploder_stage_2_construction_entity"
@@ -685,7 +682,6 @@ star_imploder_2 = {
 	}
 }
 
-#Partial Dyson Sphere
 star_imploder_3 = {
 	entity = "star_imploder_stage_3_entity"
 	construction_entity = "star_imploder_stage_3_construction_entity"
@@ -719,9 +715,221 @@ star_imploder_3 = {
 }
 
 #Phanon MacR.I.P.P.
-# Phanon Star Imploder Pylon creator.
-#Dyson Sphere Site
 macripp_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -14
+		y = -14
+	}
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			influence = 300
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_phanon_pylon"
+			is_star_class = sc_phanon_pylon
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_built_around_phanon_pylon"
+				is_star_class = sc_phanon_pylon
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0.1
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = {
+						is_same_value = from
+					}
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		set_star_flag = star_imploder_built
+		from = {
+			set_country_flag = built_star_imploder
+		}
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+		fromfrom.planet = {
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+}
+
+macripp_1 = {
+	entity = "phanon_macRIPP_stage_1_entity"
+	construction_entity = "phanon_macRIPP_stage_1_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			acot_sr_stellarite = 10000
+		}
+		upkeep = {
+			energy = 2000
+		}
+	}
+	upgrade_from = {
+		macripp_0
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+	}
+}
+
+macripp_2 = {
+	entity = "phanon_macRIPP_stage_2_entity"
+	construction_entity = "phanon_macRIPP_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			acot_sr_stellarite = 10000
+		}
+		upkeep = {
+			energy = 4000
+		}
+	}
+	upgrade_from = {
+		macripp_1
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+	}
+}
+
+macripp_3 = {
+	entity = "phanon_macRIPP_stage_2_entity"
+	construction_entity = "phanon_macRIPP_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			acot_sr_stellarite = 10000
+		}
+		upkeep = {
+			energy = 6000
+		}
+		produces = {
+			aot_sr_runic_power = 100
+		}
+	}
+	upgrade_from = {
+		macripp_2
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		spawn_planet = {
+			class = "pc_phanon_macripp"
+			location = fromfrom
+			has_ring = no
+			init_effect = {
+				set_name = "BASTION"
+				change_pc = pc_phanon_macripp
+				set_planet_entity = {
+					entity = "phanon_macRIPP_stage_3_entity"
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				set_planet_flag = megastructure
+				set_planet_flag = macRIPP_planet
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+}
+
+# Phanon Great WAll.
+phanon_great_wall_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
 	portrait = "GFX_megastructure_construction_background"
@@ -824,92 +1032,75 @@ macripp_0 = {
 	on_build_cancel = {
 	}
 	on_build_complete = {
-		set_star_flag = star_imploder_built
+		set_star_flag = great_wall_built
 		from = {
-			set_country_flag = built_star_imploder
-		}
-		every_system_planet = {
-			limit = {
-				has_modifier = terraforming_candidate
-			}
-			remove_modifier = terraforming_candidate
-		}
-		fromfrom.planet = {
-			if = {
-				limit = {
-					has_orbital_station = yes
-				}
-				orbital_station = {
-					dismantle = yes
-				}
-			}
+			set_country_flag = built_great_wall
 		}
 	}
 }
 
-#Dyson Sphere Frame
-macripp_1 = {
-	entity = "phanon_macRIPP_stage_1_entity"
-	construction_entity = "phanon_macRIPP_stage_1_construction_entity"
+phanon_great_wall_1 = {
+	entity = "phanon_great_wall_stage_1_entity"
+	construction_entity = "phanon_great_wall_stage_1_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
 	resources = {
 		category = megastructures
 		cost = {
 			alloys = 40000
-			acot_sr_stellarite = 10000
+			aot_sr_runic_power = 1000
 		}
 		upkeep = {
 			energy = 2000
 		}
 	}
 	upgrade_from = {
-		macripp_0
+		phanon_great_wall_0
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_pe"
 	}
 	on_build_complete = {
+		spawn_inner_phanon_mega_turrets = yes
 	}
 }
 
-#Partial Dyson Sphere
-macripp_2 = {
-	entity = "phanon_macRIPP_stage_2_entity"
-	construction_entity = "phanon_macRIPP_stage_2_construction_entity"
+phanon_great_wall_2 = {
+	entity = "phanon_great_wall_stage_2_entity"
+	construction_entity = "phanon_great_wall_stage_2_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
 	resources = {
 		category = megastructures
 		cost = {
 			alloys = 40000
-			acot_sr_stellarite = 10000
+			aot_sr_runic_power = 1000
 		}
 		upkeep = {
 			energy = 4000
 		}
 	}
 	upgrade_from = {
-		macripp_1
+		phanon_great_wall_1
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_pe"
 	}
 	on_build_complete = {
+		spawn_great_wall_voidspheres = yes
 	}
 }
 
-#Partial Dyson Sphere
-macripp_3 = {
-	entity = "phanon_macRIPP_stage_2_entity"
-	construction_entity = "phanon_macRIPP_stage_2_construction_entity"
+phanon_great_wall_3 = {
+	entity = "phanon_great_wall_stage_3_entity"
+	construction_entity = "phanon_great_wall_stage_3_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
 	resources = {
 		category = megastructures
 		cost = {
 			alloys = 40000
-			acot_sr_stellarite = 10000
+			aot_sr_runic_power = 1000
 		}
 		upkeep = {
 			energy = 6000
@@ -919,7 +1110,35 @@ macripp_3 = {
 		}
 	}
 	upgrade_from = {
-		macripp_2
+		phanon_great_wall_2
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+	}
+}
+
+phanon_great_wall_4 = {
+	entity = "phanon_great_wall_stage_4_entity"
+	construction_entity = "phanon_great_wall_stage_4_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+			energy = 8000
+		}
+		produces = {
+			aot_sr_runic_power = 100
+		}
+	}
+	upgrade_from = {
+		phanon_great_wall_3
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_pe"
@@ -928,27 +1147,113 @@ macripp_3 = {
 		from = {
 			set_country_flag = has_built_or_repaired_megastructure
 		}
-		spawn_phanon_mega_turrets = yes
-		spawn_planet = {
-			class = "pc_phanon_macripp"
-			location = fromfrom
-			has_ring = no
-			init_effect = {
-				set_name = "BASTION"
-				change_pc = pc_phanon_macripp
-				set_planet_entity = {
-					entity = "phanon_macRIPP_stage_3_entity"
+		spawn_outer_phanon_mega_turrets = yes
+	}
+}
+
+phanon_megaturret_intermediate_1 = {
+	entity = ""
+	construction_entity = "phanon_great_wall_megaturret_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+			energy = 8000
+		}
+		produces = {
+			aot_sr_runic_power = 100
+		}
+	}
+	upgrade_desc = hide
+	potential = { always = no }
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+	}
+}
+
+phanon_megaturret_1 = {
+	entity = "phanon_great_wall_megaturret_stage_1_entity"
+	construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+			energy = 8000
+		}
+		produces = {
+			aot_sr_runic_power = 100
+		}
+	}
+	upgrade_from = {
+		phanon_megaturret_intermediate_1
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+	}
+}
+
+phanon_megaturret_2 = {
+	entity = "phanon_great_wall_megaturret_stage_1_entity"
+	construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+			energy = 8000
+		}
+		produces = {
+			aot_sr_runic_power = 100
+		}
+	}
+	upgrade_from = {
+		phanon_megaturret_1
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+		# Spawn them big boi cannons
+		create_fleet = {
+			name = "PHANON MEGATURRET"
+			settings = {
+				spawn_debris = no
+			}
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = "PHANON MEGATURRET"
+					random_existing_design = phanon_megaturret
+					effect = {
+					}
 				}
-				set_surveyed = {
-					surveyed = yes
-					surveyor = FROM
+				set_formation_scale = 2
+				#set_location = fromfrom
+				set_location = {
+					target = fromfrom
+					distance = 0
+					angle = 90
+					direction = out_system
 				}
-				set_all_comms_surveyed = yes
-				clear_blockers = yes
-				set_planet_flag = megastructure
-				set_planet_flag = macRIPP_planet
 			}
 		}
-		remove_megastructure = fromfrom
 	}
 }
