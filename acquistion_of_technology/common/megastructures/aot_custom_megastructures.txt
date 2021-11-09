@@ -1163,10 +1163,9 @@ phanon_megaturret_intermediate_1 = {
 			aot_sr_runic_power = 1000
 		}
 		upkeep = {
-			energy = 8000
+			energy = 0
 		}
 		produces = {
-			aot_sr_runic_power = 100
 		}
 	}
 	upgrade_desc = hide
@@ -1190,10 +1189,9 @@ phanon_megaturret_1 = {
 			aot_sr_runic_power = 1000
 		}
 		upkeep = {
-			energy = 8000
+			energy = 500
 		}
 		produces = {
-			aot_sr_runic_power = 100
 		}
 	}
 	upgrade_from = {
@@ -1218,10 +1216,9 @@ phanon_megaturret_2 = {
 			aot_sr_runic_power = 1000
 		}
 		upkeep = {
-			energy = 8000
+			energy = 500
 		}
 		produces = {
-			aot_sr_runic_power = 100
 		}
 	}
 	upgrade_from = {
@@ -1231,29 +1228,62 @@ phanon_megaturret_2 = {
 		"tech_dark_matter_power_core_pe"
 	}
 	on_build_complete = {
-		# Spawn them big boi cannons
-		create_fleet = {
-			name = "PHANON MEGATURRET"
-			settings = {
-				spawn_debris = no
-			}
-			effect = {
-				set_owner = root
-				create_ship = {
-					name = "PHANON MEGATURRET"
-					random_existing_design = phanon_megaturret
-					effect = {
-					}
-				}
-				set_formation_scale = 2
-				#set_location = fromfrom
-				set_location = {
-					target = fromfrom
-					distance = 0
-					angle = 90
-					direction = out_system
-				}
-			}
+		spawn_functional_megaturret = yes
+	}
+}
+
+phanon_megaturret_destroyed_0 = {
+	entity = "destroyed_phanon_megaturret_entity"
+	construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
 		}
+		upkeep = {
+		}
+		produces = {
+		}
+	}
+	# Can't build this ever.
+	potential = {
+		always = no
+	}
+	upgrade_from = {
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+	}
+}
+
+phanon_megaturret_destroyed_1 = {
+	entity = "phanon_great_wall_megaturret_stage_1_entity"
+	construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+			energy = 500
+		}
+		produces = {
+		}
+	}
+	upgrade_from = {
+		phanon_megaturret_destroyed_0
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	on_build_complete = {
+		remove_megastructure = fromfrom
+		spawn_functional_megaturret = yes
 	}
 }
