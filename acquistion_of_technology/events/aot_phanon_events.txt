@@ -503,6 +503,7 @@ country_event = {
 	}
 }
 
+# Spawn destroyed megaturrets
 country_event = {
 	id = aot_phanon_events.9
 	is_triggered_only = yes
@@ -514,12 +515,13 @@ country_event = {
 	}
 	immediate = {
 		fromfrom = {
+			save_event_target_as = destroyed_megaturret
 			spawn_habitat_cracker_effect = yes
 			solar_system = {
 				spawn_megastructure = {
 					type = phanon_megaturret_destroyed_0
 					owner = from
-					coords_from = fromfrom
+					coords_from = event_target:destroyed_megaturret
 					orbit_angle = 180
 				}
 			}

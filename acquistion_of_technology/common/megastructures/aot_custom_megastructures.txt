@@ -628,8 +628,8 @@ star_imploder_1 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 10000
-			acot_sr_stellarite = 10000
+			alloys = 40000
+			acot_sr_stellarite = 20000
 		}
 		upkeep = {
 			energy = 2000
@@ -659,8 +659,8 @@ star_imploder_2 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 10000
-			acot_sr_stellarite = 10000
+			alloys = 40000
+			acot_sr_stellarite = 20000
 		}
 		upkeep = {
 			energy = 4000
@@ -690,14 +690,14 @@ star_imploder_3 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 10000
-			acot_sr_stellarite = 10000
+			alloys = 40000
+			acot_sr_stellarite = 20000
 		}
 		upkeep = {
 			energy = 6000
 		}
 		produces = {
-			aot_sr_runic_power = 100
+			aot_sr_runic_power = 1000
 		}
 	}
 	upgrade_from = {
@@ -834,7 +834,7 @@ macripp_1 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 40000
+			alloys = 80000
 			acot_sr_stellarite = 10000
 		}
 		upkeep = {
@@ -859,7 +859,7 @@ macripp_2 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 40000
+			alloys = 80000
 			acot_sr_stellarite = 10000
 		}
 		upkeep = {
@@ -884,14 +884,8 @@ macripp_3 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 40000
+			alloys = 80000
 			acot_sr_stellarite = 10000
-		}
-		upkeep = {
-			energy = 6000
-		}
-		produces = {
-			aot_sr_runic_power = 100
 		}
 	}
 	upgrade_from = {
@@ -970,18 +964,10 @@ phanon_great_wall_0 = {
 			}
 		}
 		custom_tooltip = {
-			fail_text = "requires_no_habitable_planets"
+			fail_text = "requires_phanon_macripp"
 			NOT = {
-				any_system_planet = {
-					AND = {
-						colonizable_planet = yes
-					}
-				}
+				is_planet_class = pc_phanon_macripp
 			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_phanon_pylon"
-			is_star_class = sc_phanon_pylon
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_existing_megastructure"
@@ -992,8 +978,8 @@ phanon_great_wall_0 = {
 	placement_rules = {
 		planet_possible = {
 			custom_tooltip = {
-				fail_text = "must_built_around_phanon_pylon"
-				is_star_class = sc_phanon_pylon
+				fail_text = "must_built_around_phanon_macripp"
+				is_planet_class = pc_phanon_macripp
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_anomaly"
@@ -1152,8 +1138,8 @@ phanon_great_wall_4 = {
 }
 
 phanon_megaturret_intermediate_1 = {
-	entity = ""
-	construction_entity = "phanon_great_wall_megaturret_construction_entity"
+	entity = "phanon_megaturret_frame_entity"
+	construction_entity = ""
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
 	resources = {
@@ -1179,7 +1165,7 @@ phanon_megaturret_intermediate_1 = {
 
 phanon_megaturret_1 = {
 	entity = "phanon_great_wall_megaturret_stage_1_entity"
-	construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
+	construction_entity = "phanon_great_wall_megaturret_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
 	resources = {
@@ -1271,7 +1257,6 @@ phanon_megaturret_destroyed_1 = {
 			aot_sr_runic_power = 1000
 		}
 		upkeep = {
-			energy = 500
 		}
 		produces = {
 		}
