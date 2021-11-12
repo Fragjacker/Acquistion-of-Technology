@@ -1,17 +1,56 @@
-#####################
-# Delta Government
-#####################
-#Galactic Administration
-tech_stellarite_palace = {
-	cost = @acot_tier7cost3
+tech_civil_phanon_application = {
+	cost = @acot_tier10cost3
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		statecraft
 	}
 	prerequisites = {
-		"tech_stellarite_reactor"
-		"tech_ae_ancient_palace"
+		tech_phanon_stellar_converter
+	}
+	weight = 0
+	potential = {
+		is_regular_empire = yes
+		NOR = {
+			has_global_flag = acot_building_forbidden
+			is_country_type = fallen_empire
+		}
+	}
+	weight_modifier = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+#####################
+# Delta Government
+#####################
+#Galactic Administration
+tech_phanon_palace = {
+	cost = @acot_tier10cost3
+	area = society
+	tier = 9
+	category = {
+		statecraft
+	}
+	prerequisites = {
+		tech_civil_phanon_application
+		tech_stellarite_palace
 	}
 	weight = 100000
 	gateway = capital	# unlocks Empire Capital-Complex
@@ -21,7 +60,7 @@ tech_stellarite_palace = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 4
@@ -45,16 +84,16 @@ tech_stellarite_palace = {
 	}
 }
 
-tech_stellarite_control_center = {
-	cost = @acot_tier8cost3
+tech_phanon_control_center = {
+	cost = @acot_tier10cost3
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		statecraft
 	}
 	prerequisites = {
-		"tech_stellarite_reactor"
-		"tech_ae_ancient_control_center"
+		tech_civil_phanon_application
+		tech_stellarite_control_center
 	}
 	weight = 100000
 	gateway = capital	# unlocks Empire Capital-Complex
@@ -64,7 +103,7 @@ tech_stellarite_control_center = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 4
@@ -88,16 +127,16 @@ tech_stellarite_control_center = {
 	}
 }
 
-tech_stellarite_hive_cluster = {
-	cost = @acot_tier8cost3
+tech_phanon_hive_cluster = {
+	cost = @acot_tier10cost3
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		statecraft
 	}
 	prerequisites = {
-		"tech_stellarite_reactor"
-		"tech_ae_ancient_hive_cluster"
+		tech_civil_phanon_application
+		tech_stellarite_hive_cluster
 	}
 	weight = 100000
 	gateway = capital	# unlocks Empire Capital-Complex
@@ -107,7 +146,7 @@ tech_stellarite_hive_cluster = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 4
@@ -132,17 +171,18 @@ tech_stellarite_hive_cluster = {
 }
 
 # ##################
-# Stellarite Unit Ready Tech
+# phanon Unit Ready Tech
 # ##################
-tech_stellarite_hospital = {
-	cost = @acot_tier8cost1
+tech_phanon_hospital = {
+	cost = @acot_tier10cost1
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		biology
 	}
 	prerequisites = {
-		"tech_ae_hospital"
+		tech_stellarite_hospital
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -151,7 +191,7 @@ tech_stellarite_hospital = {
 			is_country_type = fallen_empire
 		}
 		is_gestalt = no
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		modifier = {
@@ -177,15 +217,16 @@ tech_stellarite_hospital = {
 }
 
 #Droids
-tech_stellarite_super_assembly = {
-	cost = @acot_tier8cost2
+tech_phanon_super_assembly = {
+	cost = @acot_tier10cost2
 	area = engineering
-	tier = 8
+	tier = 9
 	category = {
 		industry
 	}
 	prerequisites = {
-		"tech_super_assembly_ae"
+		tech_super_assembly_ae
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -193,7 +234,7 @@ tech_stellarite_super_assembly = {
 			is_hive_empire = yes
 			has_global_flag = acot_building_forbidden
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	feature_flags = {
 		add_advanced_traits
@@ -243,15 +284,16 @@ tech_stellarite_super_assembly = {
 	}
 }
 
-tech_stellarite_hive_depot = {
-	cost = @acot_tier8cost1
+tech_phanon_hive_depot = {
+	cost = @acot_tier10cost1
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		biology
 	}
 	prerequisites = {
-		"tech_ae_hive_depot"
+		tech_stellarite_hive_depot
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight3
 	potential = {
@@ -260,7 +302,7 @@ tech_stellarite_hive_depot = {
 			is_country_type = fallen_empire
 		}
 		is_hive_empire = yes
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 1.5
@@ -283,15 +325,16 @@ tech_stellarite_hive_depot = {
 	}
 }
 
-tech_stellarite_hive_pool = {
-	cost = @acot_tier8cost1
+tech_phanon_hive_pool = {
+	cost = @acot_tier10cost1
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		biology
 	}
 	prerequisites = {
-		"tech_ae_hive_depot"
+		tech_stellarite_hive_depot
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight3
 	potential = {
@@ -300,7 +343,7 @@ tech_stellarite_hive_pool = {
 			is_country_type = fallen_empire
 		}
 		is_hive_empire = yes
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 1.5
@@ -324,15 +367,16 @@ tech_stellarite_hive_pool = {
 }
 
 #Mansion
-tech_stellarite_mansion = {
-	cost = @acot_tier8cost1
+tech_phanon_mansion = {
+	cost = @acot_tier10cost1
 	area = society
 	category = {
 		statecraft
 	}
-	tier = 8
+	tier = 9
 	prerequisites = {
-		"tech_ae_dark_mansion"
+		tech_stellarite_mansion
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -344,7 +388,7 @@ tech_stellarite_mansion = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		modifier = {
@@ -374,24 +418,25 @@ tech_stellarite_mansion = {
 }
 
 #Cloning
-tech_stellarite_clone_vats = {
-	cost = @acot_tier8cost2
+tech_phanon_clone_vats = {
+	cost = @acot_tier10cost2
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		biology
 	}
 	prerequisites = {
-		tech_ae_clone_vats
-		tech_stellarite_hospital
+		tech_stellarite_clone_vats
+		tech_phanon_hospital
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight3
 	modifier = {
-		pop_growth_speed = 0.4
+		pop_growth_speed = 0.8
 	}
 	potential = {
 		has_ascension_perk = ap_evolutionary_mastery
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 1.5		# genetech needs to be a bit more common
@@ -429,20 +474,21 @@ tech_stellarite_clone_vats = {
 }
 
 #### PSIONICUS
-tech_stellarite_psi_altar = {
-	cost = @acot_tier8cost2
+tech_phanon_psi_altar = {
+	cost = @acot_tier10cost2
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		psionics
 	}
 	prerequisites = {
-		tech_ae_psi_altar
-		tech_stellarite_hospital
+		tech_stellarite_psi_altar
+		tech_phanon_hospital
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight3
 	modifier = {
-		pop_growth_speed = 0.4
+		pop_growth_speed = 0.8
 	}
 	potential = {
 		has_ascension_perk = ap_transcendence
@@ -450,7 +496,7 @@ tech_stellarite_psi_altar = {
 			is_country_type = shroud
 			has_established_contact = root
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 1.5		# genetech needs to be a bit more common
@@ -478,15 +524,16 @@ tech_stellarite_psi_altar = {
 }
 
 #### SYNTHETOS
-tech_stellarite_synt_center = {
-	cost = @acot_tier8cost2
+tech_phanon_synt_center = {
+	cost = @acot_tier10cost2
 	area = engineering
-	tier = 8
+	tier = 9
 	category = {
 		industry
 	}
 	prerequisites = {
-		"tech_ae_synt_center"
+		tech_stellarite_synt_center
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -495,7 +542,7 @@ tech_stellarite_synt_center = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		modifier = {
@@ -565,15 +612,16 @@ tech_stellarite_synt_center = {
 }
 
 #### HIVATOS
-tech_stellarite_hive_evochamber = {
-	cost = @acot_tier8cost2
+tech_phanon_hive_evochamber = {
+	cost = @acot_tier10cost2
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		biology
 	}
 	prerequisites = {
-		"tech_ae_hive_evochamber"
+		tech_stellarite_hive_evochamber
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight3
 	potential = {
@@ -582,7 +630,7 @@ tech_stellarite_hive_evochamber = {
 			is_country_type = fallen_empire
 		}
 		is_hive_empire = yes
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 1.5
@@ -606,15 +654,16 @@ tech_stellarite_hive_evochamber = {
 }
 
 #### MACHINUS
-tech_stellarite_machine_dome = {
-	cost = @acot_tier8cost2
+tech_phanon_machine_dome = {
+	cost = @acot_tier10cost2
 	area = engineering
-	tier = 8
+	tier = 9
 	category = {
 		industry
 	}
 	prerequisites = {
-		"tech_ae_machine_dome"
+		tech_stellarite_machine_dome
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -623,7 +672,7 @@ tech_stellarite_machine_dome = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		modifier = {
@@ -648,18 +697,19 @@ tech_stellarite_machine_dome = {
 }
 
 # ##################
-#  Stellarite Production Tech
+#  phanon Production Tech
 # ##################
 #Very Advanced Food Processing
-tech_stellarite_food_processing = {
-	cost = @acot_tier8cost1
+tech_phanon_food_processing = {
+	cost = @acot_tier10cost1
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		biology
 	}
 	prerequisites = {
-		"tech_ae_food_processing"
+		tech_stellarite_food_processing
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -667,7 +717,7 @@ tech_stellarite_food_processing = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 2
@@ -711,15 +761,16 @@ tech_stellarite_food_processing = {
 }
 
 #Alloys 2
-tech_stellarite_alloy_foundry = {
-	cost = @acot_tier8cost1
+tech_phanon_alloy_foundry = {
+	cost = @acot_tier10cost1
 	area = engineering
-	tier = 8
+	tier = 9
 	category = {
 		materials
 	}
 	prerequisites = {
-		"tech_ae_alloy_foundry"
+		tech_stellarite_alloy_foundry
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	# Unlock better alloy buildings
@@ -728,7 +779,7 @@ tech_stellarite_alloy_foundry = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 2
@@ -752,15 +803,16 @@ tech_stellarite_alloy_foundry = {
 }
 
 #Volatile Material Plants
-tech_stellarite_transmutor = {
-	cost = @acot_tier8cost1
+tech_phanon_transmutor = {
+	cost = @acot_tier10cost1
 	area = physics
-	tier = 8
+	tier = 9
 	category = {
 		particles
 	}
 	prerequisites = {
-		"tech_ae_transmutor"
+		tech_stellarite_transmutor
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -768,7 +820,7 @@ tech_stellarite_transmutor = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 2
@@ -793,15 +845,16 @@ tech_stellarite_transmutor = {
 }
 
 #Advanced Mineral Purification
-tech_stellarite_mineral_processing_plant = {
-	cost = @acot_tier8cost1
+tech_phanon_mineral_processing_plant = {
+	cost = @acot_tier10cost1
 	area = engineering
-	tier = 8
+	tier = 9
 	category = {
 		industry
 	}
 	prerequisites = {
-		"tech_ae_mineral_processing_plant"
+		tech_stellarite_mineral_processing_plant
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -809,7 +862,7 @@ tech_stellarite_mineral_processing_plant = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 2
@@ -833,15 +886,16 @@ tech_stellarite_mineral_processing_plant = {
 }
 
 #Planetary Power Grid
-tech_stellarite_power_hub = {
-	cost = @acot_tier8cost1
+tech_phanon_power_hub = {
+	cost = @acot_tier10cost1
 	area = physics
-	tier = 8
+	tier = 9
 	category = {
 		field_manipulation
 	}
 	prerequisites = {
-		"tech_ae_power_hub"
+		tech_stellarite_power_hub
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -849,7 +903,7 @@ tech_stellarite_power_hub = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		modifier = {
@@ -884,15 +938,16 @@ tech_stellarite_power_hub = {
 }
 
 #Luxuries 2
-tech_stellarite_civilian_factory = {
-	cost = @acot_tier8cost1
+tech_phanon_civilian_factory = {
+	cost = @acot_tier10cost1
 	area = engineering
-	tier = 8
+	tier = 9
 	category = {
 		materials
 	}
 	prerequisites = {
-		"tech_ae_factory"
+		tech_stellarite_civilian_factory
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	# Unlocks better luxury goods buildings
@@ -905,7 +960,7 @@ tech_stellarite_civilian_factory = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 2
@@ -931,15 +986,16 @@ tech_stellarite_civilian_factory = {
 # ##################
 # FE  Science Building Tech
 # ##################
-tech_stellarite_enigmatic_lab = {
+tech_phanon_enigmatic_lab = {
 	area = physics
 	category = {
 		computing
 	}
-	tier = 8
-	cost = @acot_tier8cost2
+	tier = 9
+	cost = @acot_tier10cost2
 	prerequisites = {
-		"tech_ae_enigmatic_lab"
+		tech_stellarite_enigmatic_lab
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -947,7 +1003,7 @@ tech_stellarite_enigmatic_lab = {
 			is_country_type = fallen_empire
 			has_global_flag = acot_building_forbidden
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 2
@@ -961,9 +1017,9 @@ tech_stellarite_enigmatic_lab = {
 		modifier = {
 			factor = 0
 			NOR = {
-				has_technology = tech_stellarite_control_center
-				has_technology = tech_stellarite_palace
-				has_technology = tech_stellarite_hive_cluster
+				has_technology = tech_phanon_control_center
+				has_technology = tech_phanon_palace
+				has_technology = tech_phanon_hive_cluster
 			}
 		}
 	}
@@ -978,15 +1034,16 @@ tech_stellarite_enigmatic_lab = {
 	}
 }
 
-tech_stellarite_institute = {
+tech_phanon_institute = {
 	area = physics
-	tier = 8
-	cost = @acot_tier8cost3
+	tier = 9
+	cost = @acot_tier10cost3
 	category = {
 		computing
 	}
 	prerequisites = {
-		"tech_ae_institute"
+		tech_stellarite_institute
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -994,7 +1051,7 @@ tech_stellarite_institute = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 1.5
@@ -1031,18 +1088,18 @@ tech_stellarite_institute = {
 }
 
 #####################
-# Stellarite Military
+# phanon Military
 #####################
-tech_stellarite_giga_fortress = {
-	icon = tech_stellarite_giga_fortress_obelisk
-	cost = @acot_tier8cost3
+tech_phanon_giga_fortress = {
+	cost = @acot_tier10cost3
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		military_theory
 	}
 	prerequisites = {
-		"tech_stellarite_stronghold"
+		tech_phanon_stronghold
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight3
 	potential = {
@@ -1050,7 +1107,7 @@ tech_stellarite_giga_fortress = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	is_rare = yes
 	# unlocks fortress
@@ -1092,15 +1149,16 @@ tech_stellarite_giga_fortress = {
 	}
 }
 
-tech_stellarite_stronghold = {
-	cost = @acot_tier8cost3
+tech_phanon_stronghold = {
+	cost = @acot_tier10cost3
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		military_theory
 	}
 	prerequisites = {
-		"tech_ae_stronghold"
+		tech_stellarite_stronghold
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight3
 	potential = {
@@ -1108,7 +1166,7 @@ tech_stellarite_stronghold = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	is_rare = yes
 	# unlocks fortress
@@ -1150,16 +1208,17 @@ tech_stellarite_stronghold = {
 	}
 }
 
-tech_stellarite_psg = {
-	cost = @acot_tier8cost3
+tech_phanon_psg = {
+	cost = @acot_tier10cost3
 	area = society
-	tier = 8
+	tier = 9
 	is_rare = yes
 	category = {
 		military_theory
 	}
 	prerequisites = {
-		"tech_ae_dark_energy_psg"
+		tech_stellarite_psg
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight3
 	potential = {
@@ -1167,7 +1226,7 @@ tech_stellarite_psg = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	is_rare = yes
 	# unlocks fortress
@@ -1210,17 +1269,18 @@ tech_stellarite_psg = {
 }
 
 #####################
-# Stellarite Automated Buildings
+# phanon Automated Buildings
 #####################
-tech_stellarite_affluence_center = {
-	cost = @acot_tier8cost3
+tech_phanon_affluence_center = {
+	cost = @acot_tier10cost3
 	area = engineering
-	tier = 8
+	tier = 9
 	category = {
 		materials
 	}
 	prerequisites = {
-		"tech_aot_ae_affluence_center"
+		tech_stellarite_affluence_center
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	is_rare = yes
@@ -1229,8 +1289,8 @@ tech_stellarite_affluence_center = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
-		has_technology = tech_aot_ae_affluence_center
+		has_technology = tech_civil_phanon_application
+		has_technology = tech_stellarite_affluence_center
 		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
@@ -1254,15 +1314,16 @@ tech_stellarite_affluence_center = {
 	}
 }
 
-tech_stellarite_nourishment_center = {
-	cost = @acot_tier8cost3
+tech_phanon_nourishment_center = {
+	cost = @acot_tier10cost3
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		biology
 	}
 	prerequisites = {
-		"tech_aot_ae_nourishment_center"
+		tech_stellarite_nourishment_center
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	is_rare = yes
@@ -1271,8 +1332,8 @@ tech_stellarite_nourishment_center = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
-		has_technology = tech_aot_ae_nourishment_center
+		has_technology = tech_civil_phanon_application
+		has_technology = tech_stellarite_nourishment_center
 		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
@@ -1310,15 +1371,16 @@ tech_stellarite_nourishment_center = {
 	}
 }
 
-tech_stellarite_dimensional_fabricator = {
-	cost = @acot_tier8cost3
+tech_phanon_dimensional_fabricator = {
+	cost = @acot_tier10cost3
 	area = engineering
-	tier = 8
+	tier = 9
 	category = {
 		industry
 	}
 	prerequisites = {
-		"tech_aot_ae_dimensional_fabricator"
+		tech_stellarite_dimensional_fabricator
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	is_rare = yes
@@ -1327,8 +1389,8 @@ tech_stellarite_dimensional_fabricator = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
-		has_technology = tech_aot_ae_dimensional_fabricator
+		has_technology = tech_civil_phanon_application
+		has_technology = tech_stellarite_dimensional_fabricator
 		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
@@ -1352,15 +1414,16 @@ tech_stellarite_dimensional_fabricator = {
 	}
 }
 
-tech_stellarite_class_7_singularity = {
-	cost = @acot_tier8cost3
+tech_phanon_class_7_singularity = {
+	cost = @acot_tier10cost3
 	area = physics
-	tier = 8
+	tier = 9
 	category = {
 		field_manipulation
 	}
 	prerequisites = {
-		"tech_aot_ae_class_4_singularity"
+		tech_stellarite_class_7_singularity
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	is_rare = yes
@@ -1369,8 +1432,8 @@ tech_stellarite_class_7_singularity = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
-		has_technology = tech_aot_ae_class_4_singularity
+		has_technology = tech_civil_phanon_application
+		has_technology = tech_stellarite_class_7_singularity
 		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
@@ -1404,15 +1467,16 @@ tech_stellarite_class_7_singularity = {
 	}
 }
 
-tech_stellarite_nano_forge = {
-	cost = @acot_tier8cost3
+tech_phanon_nano_forge = {
+	cost = @acot_tier10cost3
 	area = engineering
-	tier = 8
+	tier = 9
 	category = {
 		materials
 	}
 	prerequisites = {
-		"tech_aot_ae_nano_forge"
+		tech_stellarite_nano_forge
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	is_rare = yes
@@ -1421,8 +1485,8 @@ tech_stellarite_nano_forge = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
-		has_technology = tech_aot_ae_nano_forge
+		has_technology = tech_civil_phanon_application
+		has_technology = tech_stellarite_nano_forge
 		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
@@ -1446,15 +1510,16 @@ tech_stellarite_nano_forge = {
 	}
 }
 
-tech_stellarite_master_archive = {
-	cost = @acot_tier8cost3
+tech_phanon_master_archive = {
+	cost = @acot_tier10cost3
 	area = physics
-	tier = 8
+	tier = 9
 	category = {
 		computing
 	}
 	prerequisites = {
-		"tech_aot_ae_master_archive"
+		tech_stellarite_master_archive
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	is_rare = yes
@@ -1463,8 +1528,8 @@ tech_stellarite_master_archive = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
-		has_technology = tech_aot_ae_master_archive
+		has_technology = tech_civil_phanon_application
+		has_technology = tech_stellarite_master_archive
 		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
@@ -1488,15 +1553,16 @@ tech_stellarite_master_archive = {
 	}
 }
 
-tech_stellarite_shrine = {
-	cost = @acot_tier8cost3
+tech_phanon_shrine = {
+	cost = @acot_tier10cost3
 	area = society
-	tier = 7
+	tier = 9
 	category = {
 		statecraft
 	}
 	prerequisites = {
-		"tech_aot_ae_empyrean_shrine"
+		tech_stellarite_shrine
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	is_rare = yes
@@ -1506,8 +1572,8 @@ tech_stellarite_shrine = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
-		has_technology = tech_aot_ae_empyrean_shrine
+		has_technology = tech_civil_phanon_application
+		has_technology = tech_stellarite_shrine
 		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
@@ -1530,16 +1596,17 @@ tech_stellarite_shrine = {
 	}
 }
 
-tech_stellarite_sky_dome = {
-	cost = @acot_tier8cost3
+tech_phanon_sky_dome = {
+	cost = @acot_tier10cost3
 	area = society
-	tier = 8
+	tier = 9
 	is_rare = yes
 	category = {
 		statecraft
 	}
 	prerequisites = {
-		"tech_aot_ae_sky_dome"
+		tech_stellarite_sky_dome
+		tech_civil_phanon_application
 	}
 	weight = @tier5weight1
 	potential = {
@@ -1547,8 +1614,8 @@ tech_stellarite_sky_dome = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
-		has_technology = tech_aot_ae_sky_dome
+		has_technology = tech_civil_phanon_application
+		has_technology = tech_stellarite_sky_dome
 		has_country_flag = finished_dm_production_core_chain
 	}
 	weight_modifier = {
@@ -1578,10 +1645,10 @@ tech_stellarite_sky_dome = {
 	}
 }
 
-tech_stellarite_generator_ae = {
+tech_phanon_runic_generator = {
 	area = physics
-	cost = @acot_tier8cost3
-	tier = 8
+	cost = @acot_tier10cost3
+	tier = 9
 	category = {
 		field_manipulation
 	}
@@ -1589,61 +1656,36 @@ tech_stellarite_generator_ae = {
 	ai_update_type = military
 	is_rare = yes
 	prerequisites = {
-		"tech_stellarite_reactor"
-		"tech_stellarite_reactor_booster"
-		"tech_stellarite_nexus"
+		tech_stellarite_generator_lvl3
+		tech_civil_phanon_application
 	}
 	potential = {
 		NOR = {
 			has_global_flag = acot_building_forbidden
 			is_country_type = fallen_empire
 		}
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	ai_weight = {
 		factor = 200		#components are OP
 	}
 }
 
-tech_stellarite_generator_lvl3 = {
-	area = physics
-	cost = @acot_tier8cost3
-	tier = 8
-	category = {
-		field_manipulation
-	}
-	weight = 5
-	ai_update_type = military
-	is_rare = yes
-	prerequisites = {
-		tech_stellarite_generator_ae
-	}
-	potential = {
-		NOR = {
-			has_global_flag = acot_building_forbidden
-			is_country_type = fallen_empire
-		}
-		has_technology = tech_stellarite_reactor
-	}
-	ai_weight = {
-		factor = 200		#components are OP
-	}
-}
-
-tech_stellarite_commercial_megaplex = {
-	cost = @acot_tier8cost2
+tech_phanon_commercial_megaplex = {
+	cost = @acot_tier10cost2
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		statecraft
 	}
 	prerequisites = {
-		"tech_ae_commercial_megaplex"
+		tech_stellarite_commercial_megaplex
+		tech_civil_phanon_application
 	}
 	weight = @tier3weight1
 	potential = {
 		is_gestalt = no
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight_modifier = {
 		factor = 2
@@ -1679,20 +1721,21 @@ tech_stellarite_commercial_megaplex = {
 	}
 }
 
-tech_stellarite_embassy = {
-	cost = @acot_tier8cost2
+tech_phanon_embassy = {
+	cost = @acot_tier10cost2
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		statecraft
 	}
 	prerequisites = {
-		"tech_ae_embassy"
+		tech_stellarite_embassy
+		tech_civil_phanon_application
 	}
 	weight = @tier3weight1
 	potential = {
 		is_regular_empire = yes
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	modifier = {
 		diplo_weight_mult = 0.2
@@ -1748,19 +1791,20 @@ tech_stellarite_embassy = {
 	}
 }
 
-tech_stellarite_bureau = {
-	cost = @acot_tier8cost2
+tech_phanon_bureau = {
+	cost = @acot_tier10cost2
 	area = society
-	tier = 8
+	tier = 9
 	category = {
 		statecraft
 	}
 	prerequisites = {
-		"tech_ae_bureau"
+		tech_stellarite_bureau
+		tech_civil_phanon_application
 	}
 	potential = {
 		is_regular_empire = yes
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_civil_phanon_application
 	}
 	weight = @tier2weight1
 	modifier = {
