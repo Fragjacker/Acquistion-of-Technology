@@ -1,0 +1,134 @@
+#########################################
+#
+# on_action_events
+#
+#########################################
+namespace = aot_phanon_digitizer_events
+
+# Planet is turned into meme after Final Destination
+planet_event = {
+	id = aot_phanon_digitizer_events.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_global_flag = acot_exterminatus_forbidden
+		}
+		from = {
+			owner = {
+				OR = {
+					is_country_type = default
+					is_country_type = primitive
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+					is_country_type = ascended_empire
+					is_country_type = lost_empire
+					is_country_type = eternal_empire
+				}
+			}
+		}
+		has_orbital_bombardment_stance = phanon_digitalization
+		planet_devastation >= 100
+		OR = {
+			is_memeable_planet = yes
+			is_memeable_space_habitat = yes
+			is_memeable_ringworld = yes
+		}
+		planet_owner = {
+			or = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+				is_country_type = awakened_marauders
+				is_country_type = ascended_empire
+				is_country_type = lost_empire
+			}
+		}
+	}
+	immediate = {
+		save_event_target_as = showered_planet
+		add_threat = {
+			who = from
+			amount = 10
+		}
+		every_owned_pop = {
+			kill_pop = yes
+		}
+		planet_owner = {
+			add_static_war_exhaustion = {
+				attacker = from
+				location = root
+				value_for_planet_destruction = 1
+			}
+			country_event = {
+				id = aot_phanon_digitizer_events.3
+			}
+		}
+		from = {
+			country_event = {
+				id = aot_phanon_digitizer_events.2
+			}
+		}
+		remove_all_buildings = yes
+		reroll_deposits = yes
+		destroy_colony = yes
+		reset_planet = yes
+		clear_planet_modifiers = yes
+		if = {
+			limit = {
+				is_memeable_planet = yes
+			}
+			change_pc = pc_acot_pmc_data_planet
+		}
+		else = {
+			if = {
+				limit = {
+					is_memeable_ringworld = yes
+				}
+				change_pc = pc_ringworld_habitable_damaged
+				spawn_ringworld_cracker_effect = yes
+			}
+			if = {
+				limit = {
+					is_memeable_space_habitat = yes
+				}
+				spawn_habitat_cracker_effect = yes
+				remove_planet = yes
+			}
+		}
+	}
+}
+
+# Planet is turned into tomb world by Annihilatus bombing stance (boomboomer)
+country_event = {
+	id = aot_phanon_digitizer_events.2
+	title = "digitizer_event.2.name"
+	picture = GFX_evt_planet_beam
+	desc = digitizer_event.2.desc
+	show_sound = event_super_explosion
+	location = event_target:showered_planet
+	is_triggered_only = yes
+	option = {
+		name = digitizer_event.2.a
+		name = digitizer_event.2.b
+		name = digitizer_event.2.c
+		custom_tooltip = bombed_to_data_world
+	}
+}
+
+# Planet is turned into tomb world by Annihilatus bombing stance (former owner)
+country_event = {
+	id = aot_phanon_digitizer_events.3
+	title = "digitizer_event.2.name"
+	picture = GFX_evt_planet_beam
+	desc = digitizer_event.3.desc
+	show_sound = event_super_explosion
+	location = from
+	is_triggered_only = yes
+	option = {
+		name = digitizer_event.3.a
+		name = digitizer_event.3.b
+		name = digitizer_event.3.c
+		custom_tooltip = bombed_to_data_world
+	}
+}

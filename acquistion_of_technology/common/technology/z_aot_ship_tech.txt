@@ -1164,3 +1164,71 @@ tech_omega_enigmatic_fortress_platform = {
 		}
 	}
 }
+
+tech_bombardment_pe = {
+	cost = @acot_tier10cost2
+	area = physics
+	category = {
+		voidcraft
+	}
+	tier = 9
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	weight = @tier5weight3
+	is_rare = yes
+	potential = {
+		has_technology = tech_phanon_stellar_converter
+		NOT = {
+			is_country_type = fallen_empire 			
+		}
+	}
+	weight_modifier = {
+		factor = 0.25
+		modifier = {
+			factor = 1.5
+			OR = {
+				research_leader = {
+					area = physics
+					has_trait = leader_trait_expertise_field_manipulation
+				}
+				research_leader = {
+					area = physics
+					has_trait = leader_trait_curator
+				}
+				research_leader = {
+					area = physics
+					has_trait = leader_trait_maniacal
+				}
+			}
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = leader_trait_expertise_particles
+			}
+		}
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_PHANON_BOMBARDMENT_TITLE"
+			desc = "TECH_UNLOCK_PHANON_BOMBARDMENT_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 200		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = leader_trait_expertise_particles
+			}
+		}
+	}
+}

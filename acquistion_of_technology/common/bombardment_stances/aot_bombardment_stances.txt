@@ -1,0 +1,75 @@
+#example = {
+#	# root = fleet
+#	trigger = {		
+#		always = yes
+#	}
+#	
+#	icon_frame = 1	# This is the frame for the shared icon file, will also need a GFX_fleet_order_button_ground_support_NAME entry
+#	default = yes	# Is this the default stance that new fleets will use?
+#	
+#	stop_when_armies_dead = yes	# Will this stance continue to bombard planets where all defensive armies are dead? default = no
+#	abduct_pops = no	# Will this stance attempt to abduct pops to your own planets instead of killing them? default = no
+#
+#	planet_damage = 0.5		# General scale of damage to planet, default = 1.0
+#	army_damage = 1.0		# General scale of damage to armies, default = 1.0
+#	
+#	kill_pop_chance = 0.2		# Chance that a pop is killed when planetary damage reaches 100%, default = 0
+#	min_pops_to_kill_pop = 8	# Will not kill/abduct pops if pops < this number already, default = 0
+#	add_blocker_chance = 0.2	# Chance that blocker is added to tile hen planetary damage reaches 100%, default = 0
+#	max_blockers = 3			# Will not add bombardment blockers if bombardment blockers >= this number already, default = 0 (if set to -1, unrestricted number)
+#	
+#	# root = fleet
+#	# from = planet
+#	ai_weight = {
+#		weight = 1
+#	}
+#}
+
+
+########################
+
+phanon_digitalization = {
+	trigger = {
+		OR = {
+				owner = { is_country_type = acot_phanon_base }	
+				owner = { is_country_type = acot_phanon_retaliator }		
+				owner = { has_technology = tech_bombardment_pe }
+			}
+		}
+	icon_frame = 3
+	default = no
+	
+	stop_when_armies_dead = no
+	abduct_pops = no
+
+	planet_damage = 25.00
+	army_damage = 50.00
+	
+	kill_pop_chance = {
+		base = 40.0
+	}
+	min_pops_to_kill_pop = 0
+	
+	# root = fleet
+	# from = planet
+	ai_weight = {
+		weight = 1000
+		modifier = {
+			factor = 0.01
+			exists = from
+			from = { 
+				owner = { NOT = { is_hostile = root.owner } }
+			}
+		}
+		modifier = {
+			factor = 10000
+			owner = { is_country_type = acot_phanon_base }
+		}
+		modifier = {
+			factor = 10000
+			OR = {
+				owner = { is_country_type = acot_phanon_retaliator }	
+			}
+		}
+	}
+}
