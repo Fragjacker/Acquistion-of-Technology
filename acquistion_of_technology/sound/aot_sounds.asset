@@ -3,6 +3,8 @@ category = {
 	soundeffects = {
 		pc_dm_habitat
 		pc_sigma_habitat
+		pc_phanon_macripp
+		pc_phanon_pylon_star
 	}
 }
 
@@ -10,6 +12,7 @@ category = {
 	name = "Weapon"
 	soundeffects = {
 		bombardment_se
+		bombardment_pe
 	}
 }
 
@@ -50,6 +53,55 @@ sound = {
 	file = "weapons/bombardment_se_7.wav"
 }
 
+sound = {
+	name = "bombardment_pe_1"
+	file = "weapons/phanon_bombardment1.wav"
+}
+
+sound = {
+	name = "bombardment_pe_2"
+	file = "weapons/phanon_bombardment2.wav"
+}
+
+sound = {
+	name = "bombardment_pe_3"
+	file = "weapons/phanon_bombardment3.wav"
+}
+
+sound = {
+	name = "bombardment_pe_4"
+	file = "weapons/phanon_bombardment4.wav"
+}
+
+sound = {
+	name = "bombardment_pe_5"
+	file = "weapons/phanon_bombardment5.wav"
+}
+
+sound = {
+	name = "select_pc_dm_habitat_1"
+	file = "events/planet_selection/select_dm_hab.wav"
+	volume = 0.5
+}
+
+sound = {
+	name = "select_pc_sigma_habitat_1"
+	file = "events/planet_selection/select_stellarite_hab.wav"
+	volume = 0.5
+}
+
+sound = {
+	name = "select_pc_phanon_macripp"
+	file = "events/planet_selection/macripp_selection_sound.wav"
+	volume = 0.8
+}
+
+sound = {
+	name = "select_pc_phanon_pylon_star"
+	file = "events/planet_selection/phanon_pylon.wav"
+	volume = 0.8
+}
+
 soundeffect = {
 	name = bombardment_se
 	falloff = "falloff_bombardment"
@@ -75,16 +127,27 @@ soundeffect = {
 	}
 }
 
-sound = {
-	name = "select_pc_dm_habitat_1"
-	file = "events/planet_selection/select_dm_hab.wav"
-	volume = 0.5
-}
-
-sound = {
-	name = "select_pc_sigma_habitat_1"
-	file = "events/planet_selection/select_stellarite_hab.wav"
-	volume = 0.5
+soundeffect = {
+	name = bombardment_pe
+	falloff = "falloff_bombardment"
+	sounds = {
+		sound = bombardment_pe_1
+		sound = bombardment_pe_2
+		sound = bombardment_pe_3
+		sound = bombardment_pe_4
+		sound = bombardment_pe_5
+	}
+	is3d = yes
+	max_audible = 16
+	max_audible_behaviour = fail
+	delay_random_offset = {
+		0
+		0.15
+	}
+	volume_random_offset = {
+		-0.25
+		0.05
+	}
 }
 
 soundeffect = {
@@ -113,6 +176,28 @@ soundeffect = {
 	name = pc_sigma_habitat
 	sounds = {
 		sound = select_pc_sigma_habitat_1
+	}
+	max_audible = 1
+	max_audible_behaviour = fail
+	playbackrate_random_offset = { -10.0 10.0 }
+	fade_out = 0.5
+}
+
+soundeffect = {
+	name = pc_phanon_macripp
+	sounds = {
+		sound = select_pc_phanon_macripp
+	}
+	max_audible = 1
+	max_audible_behaviour = fail
+	playbackrate_random_offset = { -10.0 10.0 }
+	fade_out = 0.5
+}
+
+soundeffect = {
+	name = pc_phanon_pylon_star
+	sounds = {
+		sound = select_pc_phanon_pylon_star
 	}
 	max_audible = 1
 	max_audible_behaviour = fail
