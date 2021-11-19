@@ -349,9 +349,11 @@ country_event = {
 		trigger = {
 			is_ai = yes
 		}
-		add_research_option = tech_precursor_design
-		add_research_option = tech_dark_matter_power_core_ae
-		set_country_flag = learned_dm_alpha_existence
+		country_event = {
+			id = acot_alpha_matter_events.10
+			days = 7200
+			random = 1800
+		}
 	}
 }
 
@@ -2542,5 +2544,17 @@ country_event = {
 				owner = root
 			}
 		}
+	}
+}
+
+# Grant the AI alpha tier after 20-25 years.
+country_event = {
+	id = acot_alpha_matter_events.10
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		add_research_option = tech_precursor_design
+		add_research_option = tech_dark_matter_power_core_ae
+		set_country_flag = learned_dm_alpha_existence
 	}
 }
