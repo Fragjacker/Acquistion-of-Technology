@@ -371,7 +371,8 @@ weapon_component_template = {
 	damage = {
 		min = 450
 		max = 900
-	}	# DO NOT  TRUST SHEPHERD
+	}
+	# DO NOT  TRUST SHEPHERD
 	windup = {
 		min = 2
 		max = 20
@@ -799,7 +800,7 @@ weapon_component_template = {
 	}
 	total_fire_time = 50
 	range = 180
-	accuracy = 0.80
+	accuracy = 0.8
 	power = -325
 	hull_damage = 1.5
 	armor_penetration = 0
@@ -921,7 +922,7 @@ weapon_component_template = {
 	armor_penetration = 0
 	shield_damage = 1
 	shield_penetration = 0
-	tracking = 0.50
+	tracking = 0.5
 	resources = {
 		category = ship_components
 		cost = {
@@ -959,7 +960,8 @@ weapon_component_template = {
 	damage = {
 		min = 1350
 		max = 5400
-	}	#increased by 15% per tier
+	}
+	#increased by 15% per tier
 	windup = {
 		min = 1
 		max = 10
@@ -1328,7 +1330,7 @@ weapon_component_template = {
 	armor_penetration = 0
 	armor_damage = 2
 	shield_penetration = 0
-	shield_damage = 1.0
+	shield_damage = 1
 	tracking = 0.5
 	resources = {
 		category = ship_components
@@ -1434,11 +1436,11 @@ weapon_component_template = {
 	}
 	total_fire_time = 110
 	range = 230
-	accuracy = 0.80
+	accuracy = 0.8
 	power = -1350
 	hull_damage = 2
 	armor_penetration = 0.1
-	armor_damage = 1.10
+	armor_damage = 1.1
 	shield_penetration = 0.1
 	shield_damage = 1.5
 	tracking = 0.75
@@ -1745,6 +1747,9 @@ weapon_component_template = {
 	}
 }
 
+#####################################################
+####  COMPUTERS
+#####################################################
 utility_component_template = {
 	key = "PE_OFFENSIVE_COMBAT_COMPUTER_GOLIATH"
 	size = small
@@ -1754,7 +1759,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @cost2
+			alloys = @s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
 		}
 	}
 	class_restriction = {
@@ -1804,7 +1810,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @cost2
+			alloys = @s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
 		}
 	}
 	class_restriction = {
@@ -1854,7 +1861,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @cost2
+			alloys = @s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
 		}
 	}
 	class_restriction = {
@@ -1895,6 +1903,136 @@ utility_component_template = {
 	}
 }
 
+#####################################################
+####  REACTORS
+#####################################################
+utility_component_template = {
+	key = "CORVETTE_DARK_MATTER_REACTOR_PE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_pe"
+	icon_frame = 1
+	power = 4800
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_s_pe_upkeep_alloy
+			alloys = @armor_s_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		corvette
+		colonizer
+		constructor
+		science
+		transport
+	}
+	ai_weight = {
+		weight = 45
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_DARK_MATTER_REACTOR_PE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_pe"
+	icon_frame = 1
+	power = 9600
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_s_pe_upkeep_alloy
+			alloys = @armor_s_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		destroyer
+	}
+	ai_weight = {
+		weight = 45
+	}
+}
+
+utility_component_template = {
+	key = "CRUISER_DARK_MATTER_REACTOR_PE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_pe"
+	icon_frame = 1
+	power = 19200
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_m_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_m_pe_upkeep_alloy
+			alloys = @armor_m_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		cruiser
+		precursor_escort
+		precursor_platform_m
+		precursor_science
+		precursor_constructor
+		precursor_colonizer
+	}
+	ai_weight = {
+		weight = 45
+	}
+}
+
+utility_component_template = {
+	key = "BATTLESHIP_DARK_MATTER_REACTOR_PE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_pe"
+	icon_frame = 1
+	power = 38400
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_m_pe_cost
+			aot_sr_runic_power = @l_pleb_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_m_pe_upkeep_alloy
+			alloys = @armor_m_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		precursor_platform_l
+		precursor_battlecruiser
+		battleship
+	}
+	ai_weight = {
+		weight = 45
+	}
+}
+
 utility_component_template = {
 	key = "TITAN_DARK_MATTER_REACTOR_PE"
 	size = small
@@ -1904,7 +2042,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_l_pe_cost
+			alloys = @l_true_pe_cost
+			aot_sr_runic_power = @l_true_pe_runic_cost
 		}
 		upkeep = {
 			energy = @armor_l_pe_upkeep_alloy
@@ -1942,7 +2081,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_l_pe_cost
+			alloys = @l_true_pe_cost
+			aot_sr_runic_power = @l_true_pe_runic_cost
 		}
 		upkeep = {
 			energy = @armor_l_pe_upkeep_alloy
@@ -1965,6 +2105,99 @@ utility_component_template = {
 		fe_large_station
 		sentinel_sphere
 		aot_gatekeeper
+	}
+	ai_weight = {
+		weight = 45
+	}
+}
+
+utility_component_template = {
+	key = "COLOSSUS_DARK_MATTER_REACTOR_PE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_pe"
+	icon_frame = 1
+	power = 120000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_l_pe_cost
+			aot_sr_runic_power = @l_true_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_l_pe_upkeep_alloy
+			alloys = @armor_l_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		colossus
+	}
+	ai_weight = {
+		weight = 45
+	}
+}
+
+utility_component_template = {
+	key = "PLATFORM_DARK_MATTER_REACTOR_PE"
+	size = large
+	icon = "GFX_ship_part_dark_matter_power_core_pe"
+	icon_frame = 1
+	power = 8000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_s_pe_upkeep_alloy
+			alloys = @armor_s_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	component_set = "power_core"
+	class_restriction = {
+		shipclass_military_station
+	}
+	size_restriction = {
+		military_station_small
+		military_station_medium
+		military_station_large
+	}
+	ai_weight = {
+		weight = 45
+	}
+}
+
+utility_component_template = {
+	key = "ION_CANNON_DARK_MATTER_REACTOR_PE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_pe"
+	icon_frame = 1
+	power = 40000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_l_pe_cost
+			aot_sr_runic_power = @l_true_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_l_pe_upkeep_alloy
+			alloys = @armor_l_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		ion_cannon
+		precursor_guardian
 	}
 	ai_weight = {
 		weight = 45
@@ -1980,7 +2213,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = 10000
+			alloys = 5000
+			aot_sr_runic_power = 2500
 		}
 		upkeep = {
 			energy = @armor_l_pe_upkeep_alloy
@@ -2009,7 +2243,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = 10000
+			alloys = 5000
+			aot_sr_runic_power = 2500
 		}
 		upkeep = {
 			energy = @armor_l_pe_upkeep_alloy
@@ -2047,7 +2282,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_pe_cost
+			alloys = @s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
 		}
 	}
 	ai_weight = {
@@ -2066,4 +2302,789 @@ utility_component_template = {
 		"tech_enigmatic_drive_pe"
 	}
 	component_set = "ftl_components"
+}
+
+#####################################################
+####  DEFENSES
+#####################################################
+#####################################################
+####  HULL
+#####################################################
+### components that are shown in the ship designer :: armor     
+utility_component_template = {
+	key = "SMALL_ACOT_ARMOR_HULL_PE"
+	size = small
+	icon = "GFX_ship_part_armor_aegis_pe"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_hull_add = 3000
+		ship_hull_regen_add_static = 30
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+		upkeep = {
+			alloys = @armor_s_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_armor_hull_pe"
+	}
+	component_set = "ACOT_ARMOR_HULL_PE"
+	ai_weight = {
+		weight = 3.5
+	}
+}
+
+utility_component_template = {
+	key = "MEDIUM_ACOT_ARMOR_HULL_PE"
+	size = medium
+	icon = "GFX_ship_part_armor_aegis_pe"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_hull_add = 9000
+		ship_hull_regen_add_static = 90
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_m_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+		upkeep = {
+			alloys = @armor_m_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_armor_hull_pe"
+	}
+	component_set = "ACOT_ARMOR_HULL_PE"
+	ai_weight = {
+		weight = 3.5
+	}
+}
+
+utility_component_template = {
+	key = "LARGE_ACOT_ARMOR_HULL_PE"
+	size = large
+	icon = "GFX_ship_part_armor_aegis_pe"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_hull_add = 27000
+		ship_hull_regen_add_static = 270
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_l_pe_cost
+			aot_sr_runic_power = @l_pleb_pe_runic_cost
+		}
+		upkeep = {
+			alloys = @armor_l_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_armor_hull_pe"
+	}
+	component_set = "ACOT_ARMOR_HULL_PE"
+	ai_weight = {
+		weight = 3.5
+	}
+}
+
+### components that are shown in the ship designer :: armor     
+utility_component_template = {
+	key = "SMALL_ACOT_ARMOR_PE"
+	size = small
+	icon = "GFX_ship_part_armor_pe"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_armor_add = 3000
+		ship_armor_regen_add_static = 300
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+		upkeep = {
+			alloys = @armor_s_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_armor_pe"
+	}
+	component_set = "ACOT_ARMOR_PE"
+	ai_weight = {
+		weight = 3.5
+	}
+}
+
+utility_component_template = {
+	key = "MEDIUM_ACOT_ARMOR_PE"
+	size = medium
+	icon = "GFX_ship_part_armor_pe"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_armor_add = 9000
+		ship_armor_regen_add_static = 900
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_m_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+		upkeep = {
+			alloys = @armor_m_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_armor_pe"
+	}
+	component_set = "ACOT_ARMOR_PE"
+	ai_weight = {
+		weight = 3.5
+	}
+}
+
+utility_component_template = {
+	key = "LARGE_ACOT_ARMOR_PE"
+	size = large
+	icon = "GFX_ship_part_armor_pe"
+	icon_frame = 1
+	power = 0
+	modifier = {
+		ship_armor_add = 27000
+		ship_armor_regen_add_static = 2700
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_l_pe_cost
+			aot_sr_runic_power = @l_pleb_pe_runic_cost
+		}
+		upkeep = {
+			alloys = @armor_l_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_armor_pe"
+	}
+	component_set = "ACOT_ARMOR_PE"
+	ai_weight = {
+		weight = 3.5
+	}
+}
+
+########################################
+###   AE Shield    ###
+########################################
+utility_component_template = {
+	key = "SMALL_ACOT_ENIGMATIC_SHIELD_PE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_shield_pe"
+	icon_frame = 1
+	power = -120
+	resources = {
+		category = ship_components
+		cost = {
+			energy = @shield_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+		upkeep = {
+			energy = @shield_s_pe_upkeep_energy
+		}
+	}
+	modifier = {
+		ship_shield_add = 3000
+		ship_shield_regen_add_static = 800
+	}
+	prerequisites = {
+		"tech_dark_matter_shield_pe"
+	}
+	component_set = "ACOT_ENIGMATIC_SHIELD_PE"
+	ai_weight = {
+		weight = 3.5
+	}
+}
+
+utility_component_template = {
+	key = "MEDIUM_ACOT_ENIGMATIC_SHIELD_PE"
+	size = medium
+	icon = "GFX_ship_part_dark_matter_shield_pe"
+	icon_frame = 1
+	power = -320
+	modifier = {
+		ship_shield_add = 9000
+		ship_shield_regen_add_static = 900
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			energy = @shield_m_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+		upkeep = {
+			energy = @shield_m_pe_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_shield_pe"
+	}
+	component_set = "ACOT_ENIGMATIC_SHIELD_PE"
+	ai_weight = {
+		weight = 3.5
+	}
+}
+
+utility_component_template = {
+	key = "LARGE_ACOT_ENIGMATIC_SHIELD_PE"
+	size = large
+	icon = "GFX_ship_part_dark_matter_shield_pe"
+	icon_frame = 1
+	power = -750
+	modifier = {
+		ship_shield_add = 27000
+		ship_shield_regen_add_static = 2700
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			energy = @shield_l_pe_cost
+			aot_sr_runic_power = @l_pleb_pe_runic_cost
+		}
+		upkeep = {
+			energy = @shield_l_pe_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_shield_pe"
+	}
+	component_set = "ACOT_ENIGMATIC_SHIELD_PE"
+	ai_weight = {
+		weight = 3.5
+	}
+}
+
+#############################
+# Weapons Coire    #
+#############################
+utility_component_template = {
+	key = "WEAPON_EXPLOSIVE_CORE_PE"
+	size = aux
+	icon = "GFX_ship_part_missile_core_pe"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_m_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_m_pe_upkeep_alloy
+			alloys = @armor_m_pe_upkeep_alloy
+		}
+	}
+	ship_modifier = {
+		weapon_type_explosive_weapon_fire_rate_mult = 0.5
+		weapon_type_explosive_weapon_damage_mult = 0.5
+		weapon_type_explosive_speed_mult = 0.5
+	}
+	prerequisites = {
+		"tech_missile_core_pe"
+	}
+	component_set = "WEAPON_EXPLOSIVE_CORE_PE"
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_explosive
+		}
+	}
+}
+
+utility_component_template = {
+	key = "WEAPON_KINETIC_CORE_PE"
+	size = aux
+	icon = "GFX_ship_part_kinetic_core_pe"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_m_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_m_pe_upkeep_alloy
+			alloys = @armor_m_pe_upkeep_alloy
+		}
+	}
+	ship_modifier = {
+		weapon_type_kinetic_weapon_fire_rate_mult = 0.5
+		weapon_type_kinetic_weapon_damage_mult = 0.5
+	}
+	prerequisites = {
+		"tech_kinetic_core_pe"
+	}
+	component_set = "WEAPON_KINETIC_CORE_PE"
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_kinetic
+		}
+	}
+}
+
+utility_component_template = {
+	key = "WEAPON_ENERGY_CORE_PE"
+	size = aux
+	icon = "GFX_ship_part_energy_core_pe"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_m_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_m_pe_upkeep_alloy
+			alloys = @armor_m_pe_upkeep_alloy
+		}
+	}
+	ship_modifier = {
+		weapon_type_energy_weapon_fire_rate_mult = 0.5
+		weapon_type_energy_weapon_damage_mult = 0.5
+	}
+	prerequisites = {
+		"tech_energy_core_pe"
+	}
+	component_set = "WEAPON_ENERGY_CORE_PE"
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_energy
+		}
+	}
+}
+
+utility_component_template = {
+	key = "WEAPON_FIGHTER_CORE_PE"
+	size = aux
+	icon = "GFX_ship_part_fighter_core_pe"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_m_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+		upkeep = {
+			energy = @armor_m_pe_upkeep_alloy
+			alloys = @armor_m_pe_upkeep_alloy
+		}
+	}
+	ship_modifier = {
+		weapon_type_strike_craft_weapon_fire_rate_mult = 0.5
+		weapon_type_strike_craft_weapon_damage_mult = 0.5
+		weapon_type_strike_craft_speed_mult = 0.5
+	}
+	modifier = {
+		ship_hull_mult = 0.1
+	}
+	prerequisites = {
+		"tech_fighter_core_pe"
+	}
+	component_set = "WEAPON_FIGHTER_CORE_PE"
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_strike_craft
+		}
+	}
+}
+
+####Thrusters to Maximum
+####Upgrades
+utility_component_template = {
+	key = "SHIP_THRUSTER_PE"
+	size = small
+	icon = "GFX_ship_part_pe_thruster"
+	icon_frame = 1
+	power = -80
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_m_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+	}
+	modifier = {
+		ship_hull_mult = 0.1
+		ship_base_speed_mult = 2
+		ship_evasion_add = 5
+	}
+	prerequisites = {
+		"tech_pe_thruster"
+	}
+	component_set = "thruster_components"
+	ai_weight = {
+		weight = 40
+	}
+}
+
+###########SENSORS COMMANDER
+utility_component_template = {
+	key = "PE_SENSOR_SHIP"
+	size = medium
+	icon = "GFX_ship_part_sensor_pe"
+	icon_frame = 1
+	power = -60
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+	}
+	sensor_range = 12
+	hyperlane_range = 24
+	ship_modifier = {
+		ship_tracking_add = 50
+	}
+	prerequisites = {
+		"tech_sensor_pe"
+	}
+	component_set = "sensor_components"
+	ai_weight = {
+		weight = 800
+	}
+}
+
+####################
+# New Aux!!!!!!!   #
+####################
+utility_component_template = {
+	key = "ACOT_AFTERBURNERS_PE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_afterburners_pe"
+	icon_frame = 1
+	power = -60
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+	}
+	prerequisites = {
+		"tech_darkmatter_afterburners_pe"
+	}
+	component_set = "ACOT_AFTERBURNERS_PE"
+	modifier = {
+		ship_evasion_add = 25
+	}
+	ai_weight = {
+		weight = 45
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_HYPERCHARGED_JUMPER_PE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_hyper_jump_drive_pe"
+	icon_frame = 1
+	power = -80
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+	}
+	ship_modifier = {
+		ship_ftl_jumpdrive_range_mult = 1
+	}
+	prerequisites = {
+		"tech_darkmatter_hyper_jump_drive_pe"
+	}
+	component_set = "ACOT_HYPERCHARGED_JUMPER_PE"
+	ai_weight = {
+		weight = 45
+		modifier = {
+			factor = 2
+			is_preferred_weapons = weapon_type_explosive
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_REPAIR_COUNTERMEASURES_PE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_reactive_drone_pe"
+	icon_frame = 1
+	power = -80
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+	}
+	modifier = {
+		ship_armor_mult = 1
+	}
+	prerequisites = {
+		"tech_darkmatter_reactive_drone_pe"
+	}
+	component_set = "ACOT_REPAIR_COUNTERMEASURES_PE"
+	ai_weight = {
+		weight = 45
+		modifier = {
+			factor = 2
+			is_preferred_weapons = weapon_type_explosive
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_REACTOR_BOOSTER_PE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_reactor_booster_pe"
+	icon_frame = 1
+	power = 2000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+	}
+	ship_modifier = {
+		ship_hull_mult = 0.1
+		ships_upkeep_mult = -1
+	}
+	prerequisites = {
+		"tech_darkmatter_reactor_booster_pe"
+	}
+	component_set = "ACOT_REACTOR_BOOSTER_PE"
+	ai_weight = {
+		weight = 10
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_SHIELD_BOOSTER_PE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_shield_supercharger_pe"
+	icon_frame = 1
+	power = -160
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+	}
+	prerequisites = {
+		"tech_darkmatter_shield_supercharger_pe"
+	}
+	component_set = "ACOT_SHIELD_BOOSTER_PE"
+	modifier = {
+		ship_shield_mult = 1
+	}
+	ai_weight = {
+		weight = 55
+		modifier = {
+			factor = 2
+			is_preferred_weapons = weapon_type_energy
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_STARCHARTER_PE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_star_charter_pe"
+	icon_frame = 1
+	power = -60
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @s_pe_runic_cost
+		}
+	}
+	hyperlane_range = 60
+	ship_modifier = {
+		ship_sensor_range_add = 40
+		ship_tracking_add = 15
+		ship_accuracy_mult = 0.15
+	}
+	prerequisites = {
+		"tech_darkmatter_star_charter_pe"
+	}
+	component_set = "ACOT_STARCHARTER_PE"
+	ai_weight = {
+		weight = 15
+	}
+}
+
+# #################
+#  Special Ship Auras
+# #################
+#Supercharger
+utility_component_template = {
+	key = "ACOT_AURA_TECH_INHIBITOR_PE"
+	size = medium
+	icon = "GFX_ship_part_darkmatter_aura_energy_drainer_pe"
+	icon_frame = 1
+	power = 0
+	class_restriction = {
+		shipclass_military
+		shipclass_starbase
+	}
+	component_set = "ship_aura_components"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+	}
+	hostile_aura = {
+		name = "hostile_tech_inhibitor_aura"
+		radius = 100
+		apply_on = ships
+		stack_info = {
+			#A ship can only be affected by one aura of a certain id. If multiple auras have the same ID the one with the highest priority will be applied.
+			id = hostile_tech_inhibitor
+			priority = 1
+		}
+		modifier = {
+			ship_shield_mult = -0.2
+			ship_speed_reduction = 0.2
+			ship_armor_penetration_mult = -1
+			ship_shield_penetration_mult = -1
+		}
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = yes
+			}
+			ship_effect = {
+				entity = "ship_aura_negative_entity"
+				dynamic_scale = no
+			}
+		}
+	}
+	friendly_aura = {
+		name = "friendly_tech_inhibitor_aura"
+		radius = 100
+		apply_on = ships
+		stack_info = {
+			#A ship can only be affected by one aura of a certain id. If multiple auras have the same ID the one with the highest priority will be applied.
+			id = friendly_tech_inhibitor
+			priority = 1
+		}
+		modifier = {
+			ship_shield_mult = 0.2
+			ship_speed_mult = 0.2
+		}
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = yes
+			}
+			ship_effect = {
+				entity = "ship_aura_positive_entity"
+				dynamic_scale = no
+			}
+		}
+	}
+	prerequisites = {
+		"tech_darkmatter_aura_energy_drainer_pe"
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 5
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_AURA_HYPERJUMPDRIVE_PE"
+	size = medium
+	icon = "GFX_ship_part_darkmatter_hyper_jump_drive_pe"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_m_pe_cost
+			aot_sr_runic_power = @m_pe_runic_cost
+		}
+	}
+	ftl = yes
+	jumpdrive = yes
+	friendly_aura = {
+		name = "friendly_jumpdrive_aura"
+		radius = 100
+		apply_on = ships
+		stack_info = {
+			#A ship can only be affected by one aura of a certain id. If multiple auras have the same ID the one with the highest priority will be applied.
+			id = friendly_jumpdrive_aura
+			priority = 1
+		}
+		modifier = {
+			ship_ftl_jumpdrive_range_mult = 0.3
+			ship_jumpdrive_cooldown_mult = -0.15
+		}
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = yes
+			}
+			ship_effect = {
+				entity = "ship_aura_positive_entity"
+				dynamic_scale = no
+			}
+		}
+	}
+	class_restriction = {
+		shipclass_military
+		shipclass_starbase
+	}
+	prerequisites = {
+		"tech_darkmatter_hyper_jump_drive_pe"
+	}
+	component_set = "ship_aura_components"
+	ai_weight = {
+		weight = 50
+	}
 }

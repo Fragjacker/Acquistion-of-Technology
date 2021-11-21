@@ -2901,3 +2901,74 @@ building_phanon_embassy = {
 		}
 	}
 }
+
+building_phanon_stellarite_nexus = {
+	base_buildtime = 900
+	category = manufacturing
+	can_build = no
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_phanon_stellarite_nexus
+		}
+	}
+	allow = {
+		has_stellarite_capital = yes
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 5000
+			acot_sr_stellarite = 5000
+			aot_sr_runic_power = 1000
+		}
+		produces = {
+			acot_sr_stellarite = 100
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_ai = no
+				}
+			}
+			aot_sr_runic_power = 10
+		}
+	}
+	planet_modifier = {
+		planet_jobs_acot_sr_stellarite_produces_mult = 1
+	}
+	prerequisites = {
+		"tech_phanon_stellarite_nexus"
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0
+			owner = {
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			factor = 10000
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value <= 1
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			num_buildings = {
+				type = building_stellarite_nexus
+				value >= 2
+			}
+		}
+	}
+	ai_resource_production = {
+		acot_sr_stellarite = 500
+		trigger = {
+			always = yes
+		}
+	}
+}
