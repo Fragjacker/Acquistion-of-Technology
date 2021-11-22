@@ -937,11 +937,7 @@ PixelShader =
 			float3 vPos = In.vPos.xyz / In.vPos.w;
 
 			float3 vInNormal = normalize( In.vNormal );
-			#ifndef ANIMATE_SPECULAR
 			float4 vProperties = tex2D( SpecularMap, In.vUV0 );
-			#else
-				float4 vProperties = tex2D( SpecularMap, In.vUV0 + vUVAnimationDir * vUVAnimationTime );
-			#endif
 
 		#ifdef IS_PLANET
 			PointLight systemPointlight = GetPointLight(SystemLightPosRadius, SystemLightColorFalloff);
@@ -963,11 +959,7 @@ PixelShader =
 		#endif
 
 		#ifndef PDX_LEGACY_BLINN_PHONG
-			#ifndef ANIMATE_NORMAL
 			float4 vNormalMap = tex2D( NormalMap, In.vUV0 );
-			#else
-				float4 vNormalMap = tex2D( NormalMap, In.vUV0 + vUVAnimationDir * vUVAnimationTime );
-			#endif
 
 			#ifdef EMISSIVE
 				float vEmissive = vNormalMap.b;
@@ -1222,9 +1214,7 @@ PixelShader =
 			#ifndef RECOLOR_EMISSIVE
 				if( PrimaryColor.a > 0.0f )
 				{
-			#endif
 					vDiffuse.rgb = lerp( vDiffuse.rgb, vec3( max( vDiffuse.r, max( vDiffuse.g, vDiffuse.b ) ) ) * PrimaryColor.rgb, saturate( vEmissive * vEmissiveRecolorCrunch ) );
-			#ifndef RECOLOR_EMISSIVE
 				}
 			#endif		
 			
@@ -1315,7 +1305,7 @@ PixelShader =
 			float3 Color = texCUBElod( EnvironmentMap, float4(reflection, 0) ).rgb;
 
 			float vDot = dot( -vEyeDir, In.vNormal );
-			Color = saturate( Color * pow( 1.05f - vDot, 7.f ) );
+			Color = saturate( Color * pow( abs(1.05f - vDot), 7.f ) );
 			Color += StarAtmosphereColor.rgb * smoothstep( 0.25f, 0.01f, vDot ) * 0.25f * StarAtmosphereColor.a;
 
 			return float4( Color * vBloomFactor, 1.0f );
@@ -1759,7 +1749,7 @@ PixelShader =
 			#endif
 
 			#ifdef BLACK_HOLE
-				vDiffuse.rgb *= pow( 1.f - abs( dot( vCamLookAtDir, float3( 0.f, 1.f, 0.f ) ) ), 1.5f );
+				vDiffuse.rgb *= pow( abs(1.f - abs( dot( vCamLookAtDir, float3( 0.f, 1.f, 0.f ) ) ) ), 1.5f );
 			#endif
 
 			#ifdef DISSOLVE
@@ -1970,8 +1960,8 @@ PixelShader =
 		//	float2 v = In.vUV0.xy - float2( 0.5f, 0.5f );
 		//return abs( sin( sqrt( dot( v, v ) ) * 30.f ) );
 
-			const int nColumns = 4;
-			const int nRows = 4;
+			const uintIfSupported nColumns = 4;
+			const uintIfSupported nRows = 4;
 			const float vTimePerFrame = 1.0f / ( nColumns * nRows );
 			float2 vFrameUV  = float2( 1.0f / nColumns, 1.0f / nRows );
 
@@ -1980,8 +1970,8 @@ PixelShader =
 			float vTime = vObjectTime;
 
 			float vFrame = min( nColumns * nRows - 1, vTime / vTimePerFrame );
-			int nBaseFrame = int( floor( vFrame ) );
-			int nNextFrame = int( ceil( vFrame ) );
+			uintIfSupported nBaseFrame = uintIfSupported( abs( floor( vFrame ) ) );
+			uintIfSupported nNextFrame = uintIfSupported( abs( ceil( vFrame ) ) );
 
 			float2 vUV1 = float2( vFrameUV.x * mod( nBaseFrame, nColumns ), vFrameUV.y * ( nBaseFrame / nColumns ) );
 			float2 vUV2 = float2( vFrameUV.x * mod( nNextFrame, nColumns ), vFrameUV.y * ( nNextFrame / nColumns ) );
@@ -2009,6 +1999,10 @@ PixelShader =
 			float4 vColor = float4( 0.f, 0.f, 0.f, 0.f );
 
 			int nNumLoops = int( min( vNumLoops + 1.0f, 16.0f ) );
+#ifdef PDX_DIRECTX_9
+// Silences warning due the tex2D() call forcing an unroll
+			[unroll]
+#endif
 			for( int i = 0; i <nNumLoops; ++i )
 			{
 				float vTime = vObjectTime;//mod( HdrRange_Time_ClipHeight.y * 1.0f, 0.5f );//
@@ -4063,7 +4057,81 @@ Effect PdxMeshShipSkinnedShadow
 	PixelShader = "PixelPdxMeshStandardShadow"
 	Defines = { "IS_SHADOW" }
 }
+Effect PdxMeshShipDiffuseEmissive
+{
+	VertexShader = "VertexPdxMeshStandard"
+	PixelShader = "PixelPdxMeshShip"
+	Defines = {
+		"PDX_IMPROVED_BLINN_PHONG"
+		"RIM_LIGHT"
+		"RECOLOR_EMISSIVE"
+	}
+}
 
+Effect PdxMeshShipDiffuseEmissiveSkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelPdxMeshShip"
+	Defines = {
+		"PDX_IMPROVED_BLINN_PHONG"
+		"RIM_LIGHT"
+		"RECOLOR_EMISSIVE"
+	}
+}
+
+Effect PdxMeshShipDiffuseEmissiveShadow
+{
+	VertexShader = "VertexPdxMeshStandardShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
+
+Effect PdxMeshShipDiffuseEmissiveSkinnedShadow
+{
+	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
+
+Effect PdxMeshShipDiffuseEmissiveAlpha
+{
+	VertexShader = "VertexPdxMeshStandard"
+	PixelShader = "PixelPdxMeshShip"
+	BlendState = "BlendStateAlphaBlend";
+	Defines = {
+		"PDX_IMPROVED_BLINN_PHONG"
+		"RIM_LIGHT"
+		"RECOLOR_EMISSIVE"
+		"NO_ALPHA_MULTIPLIED_EMISSIVE"
+	}
+}
+
+Effect PdxMeshShipDiffuseEmissiveAlphaSkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelPdxMeshShip"
+	BlendState = "BlendStateAlphaBlend";
+	Defines = {
+		"PDX_IMPROVED_BLINN_PHONG"
+		"RIM_LIGHT"
+		"RECOLOR_EMISSIVE"
+		"NO_ALPHA_MULTIPLIED_EMISSIVE"
+	}
+}
+
+Effect PdxMeshShipDiffuseEmissiveAlphaShadow
+{
+	VertexShader = "VertexPdxMeshStandardShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
+
+Effect PdxMeshShipDiffuseEmissiveAlphaSkinnedShadow
+{
+	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
 Effect PdxMeshExtraDimensionalShip
 {
 	VertexShader = "VertexPdxMeshStandard"
