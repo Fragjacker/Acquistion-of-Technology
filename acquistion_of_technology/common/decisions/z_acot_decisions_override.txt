@@ -782,7 +782,9 @@ decision_fractured_self_detonation = {
 		}
 		cost = {
 			trigger = {
-				NOT = { is_owned_by = root.owner }
+				NOT = {
+					is_owned_by = root.owner
+				}
 			}
 			influence = 250
 		}
@@ -830,7 +832,6 @@ decision_fractured_self_detonation = {
 		weight = 0
 	}
 }
-
 
 # Blow Up to Fractured World
 decision_stellarite_reactor_detonation = {
@@ -1099,6 +1100,219 @@ decision_stellarite_reactor_detonation = {
 					habitable_planet = yes
 				}
 				change_pc = pc_shattered
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+################## PHANON VAULT SHADOW RAID LEGENDS ################
+decision_acot_infiltrate_phanon_grid = {
+	owned_planets_only = yes
+	sound = event_ground_battle
+	resources = {
+		category = decisions
+		cost = {
+		}
+	}
+	allow = {
+		any_planet_army = {
+			owner = {
+				is_same_value = root.owner
+			}
+		}
+		NOT = {
+			has_modifier = acot_modifier_vault_delay
+		}
+		num_free_districts = {
+			type = district_acot_phanon_vault
+			value = 0
+		}
+		num_free_districts = {
+			type = district_acot_phanon_command
+			value = 0
+		}
+		num_free_districts = {
+			type = district_acot_phanon_data
+			value = 0
+		}
+	}
+	potential = {
+		owner = {
+			is_ai = no
+		}
+		OR = {
+			is_planet_class = pc_acot_pmc_vault
+			is_same_value = event_target:acot_phanon_vault
+		}
+		has_ground_combat = no
+	}
+	effect = {
+		hidden_effect = {
+			set_planet_flag = ongoing_vault_infiltration
+			add_modifier = {
+				modifier = acot_modifier_vault_delay
+				days = 180
+			}
+			if = {
+				limit = {
+					NOT = {
+						is_variable_set = number_of_vault_raids
+					}
+				}
+				set_variable = {
+					which = number_of_vault_raids
+					value = 0
+				}
+			}
+			# Increment number of vault raids
+			change_variable = {
+				which = number_of_vault_raids
+				value = 1
+			}
+			random_list = {
+				50 = {
+					while = {
+						count = 60
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_soldier
+							species = event_target:phanon_operative_species
+						}
+					}
+					while = {
+						count = 30
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_elite
+							species = event_target:phanon_operative_species
+						}
+					}
+					while = {
+						count = 20
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_psi
+							species = event_target:phanon_operative_species
+						}
+					}
+					while = {
+						count = 1
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_commander
+							species = event_target:phanon_operative_species
+						}
+					}
+				}
+				50 = {
+					while = {
+						count = 60
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_droid
+							species = event_target:phanon_operative_species
+						}
+					}
+					while = {
+						count = 30
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_droid_commando
+							species = event_target:phanon_operative_species
+						}
+					}
+					while = {
+						count = 20
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_droid_shielder
+							species = event_target:phanon_operative_species
+						}
+					}
+					while = {
+						count = 1
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_droid_commander
+							species = event_target:phanon_operative_species
+						}
+					}
+				}
+			}
+			random_list = {
+				50 = {
+					while = {
+						count = 20
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_attack_dog
+							species = event_target:phanon_operative_species
+						}
+					}
+				}
+				50 = {
+				}
+			}
+			random_list = {
+				50 = {
+					while = {
+						count = 30
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_turret
+							species = event_target:phanon_operative_species
+						}
+					}
+				}
+				50 = {
+				}
+			}
+			random_list = {
+				50 = {
+					while = {
+						count = 20
+						create_army = {
+							owner = event_target:phanon_security
+							type = acot_phanon_defense_trap
+							species = event_target:phanon_operative_species
+						}
+					}
+				}
+				50 = {
+				}
+			}
+			# Spawn Protecc Drones
+			if = {
+				limit = {
+					check_variable = {
+						which = number_of_vault_raids
+						value <= 3
+					}
+				}
+				if = {
+					limit = { NOT = { exists = event_target:phanon_protecc_base_country } }
+					create_protecc_country = yes
+				}
+				event_target:aot_bootleg_phanon_vault = {
+					create_phanon_vault_raid_protecc_fleet = yes
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						which = number_of_vault_raids
+						value = 4
+					}
+				}
+				set_planet_flag = has_phanon_operative
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_operative
+					species = event_target:phanon_operative_species
+				}
 			}
 		}
 	}

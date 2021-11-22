@@ -1,0 +1,95 @@
+#########################################
+#
+# on_action_events
+#
+#########################################
+namespace = acot_planets
+# Empire Defeats Phanon Vault
+country_event = {
+	id = acot_planets.6
+	title = acot_planets.6.name
+	desc = acot_planets.6.desc
+	picture = GFX_evt_laser_grid
+	show_sound = event_door_opening
+	is_triggered_only = yes
+	trigger = {
+		FROMFROM = {
+			has_planet_flag = ongoing_vault_infiltration
+		}
+	}
+	immediate = {
+		FROMFROM = {
+			remove_planet_flag = ongoing_vault_infiltration
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_country_flag = acot_phanon_tech_enabled
+				}
+			}
+			set_country_flag = acot_phanon_tech_enabled
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_technology = tech_dark_matter_power_core_pe
+				}
+			}
+			give_technology = {
+				tech = tech_dark_matter_power_core_pe
+			}
+		}
+	}
+	#### GIVE A CATEGORIZE TECH BASED ON VAULT"S ALIGNMENT
+	option = {
+		name = acot_planets.6.a
+		############## TYPE A ##############
+		IF = {
+			limit = {
+				FROMFROM = {
+					num_districts = {
+						type = district_acot_phanon_command
+						value >= 1
+					}
+				}
+			}
+			phanon_type_a_tech_gift = yes
+		}
+		############## TYPE B ##############
+		IF = {
+			limit = {
+				FROMFROM = {
+					num_districts = {
+						type = district_acot_phanon_data
+						value >= 1
+					}
+				}
+			}
+			phanon_type_b_tech_gift = yes
+		}
+		############## TYPE C ##############
+		IF = {
+			limit = {
+				FROMFROM = {
+					num_districts = {
+						type = district_acot_phanon_vault
+						value >= 1
+					}
+				}
+			}
+			phanon_type_c_tech_gift = yes
+		}
+		############## TYPE D ##############	
+		IF = {
+			limit = {
+				FROMFROM = {
+					has_planet_flag = has_phanon_operative
+				}
+			}
+			phanon_type_d_tech_gift = yes
+			FROMFROM = {
+				remove_planet_flag = has_phanon_operative
+			}
+		}
+	}
+}
