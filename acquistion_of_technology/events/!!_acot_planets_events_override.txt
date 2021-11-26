@@ -39,6 +39,23 @@ country_event = {
 				tech = tech_dark_matter_power_core_pe
 			}
 		}
+		# Set up variable to count raiding attempts
+		IF = {
+			limit = {
+				NOT = {
+					is_variable_set = number_of_vault_raids
+				}
+			}
+			set_variable = {
+				which = number_of_vault_raids
+				value = 0
+			}
+		}
+		# Increment number of successfull vault raids
+		change_variable = {
+			which = number_of_vault_raids
+			value = 1
+		}
 	}
 	#### GIVE A CATEGORIZE TECH BASED ON VAULT"S ALIGNMENT
 	option = {
@@ -46,11 +63,9 @@ country_event = {
 		############## TYPE A ##############
 		IF = {
 			limit = {
-				FROMFROM = {
-					num_districts = {
-						type = district_acot_phanon_command
-						value >= 1
-					}
+				check_variable = {
+					which = number_of_vault_raids
+					value = 1
 				}
 			}
 			phanon_type_a_tech_gift = yes
@@ -58,11 +73,9 @@ country_event = {
 		############## TYPE B ##############
 		IF = {
 			limit = {
-				FROMFROM = {
-					num_districts = {
-						type = district_acot_phanon_data
-						value >= 1
-					}
+				check_variable = {
+					which = number_of_vault_raids
+					value = 2
 				}
 			}
 			phanon_type_b_tech_gift = yes
@@ -70,11 +83,9 @@ country_event = {
 		############## TYPE C ##############
 		IF = {
 			limit = {
-				FROMFROM = {
-					num_districts = {
-						type = district_acot_phanon_vault
-						value >= 1
-					}
+				check_variable = {
+					which = number_of_vault_raids
+					value = 3
 				}
 			}
 			phanon_type_c_tech_gift = yes
@@ -82,14 +93,12 @@ country_event = {
 		############## TYPE D ##############	
 		IF = {
 			limit = {
-				FROMFROM = {
-					has_planet_flag = has_phanon_operative
+				check_variable = {
+					which = number_of_vault_raids
+					value >= 4
 				}
 			}
 			phanon_type_d_tech_gift = yes
-			FROMFROM = {
-				remove_planet_flag = has_phanon_operative
-			}
 		}
 	}
 }

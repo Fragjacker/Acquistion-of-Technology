@@ -681,6 +681,16 @@ create_phanon_vault_raid_protecc_fleet = {
 	}
 }
 
+create_vault_defense_drones = {
+	if = {
+		limit = { NOT = { exists = event_target:phanon_protecc_base_country } }
+		create_protecc_country = yes
+	}
+	event_target:aot_bootleg_phanon_vault = {
+		create_phanon_vault_raid_protecc_fleet = yes
+	}
+}
+
 #Move the spawned fleet to system sun if spawned too far outside.
 move_protecc_fleet_to_system_star = {
 	solar_system = {
@@ -1134,13 +1144,11 @@ phanon_type_a_tech_gift = {
 	if = {
 		limit = {
 			NAND = {
-				has_tech_option = tech_arc_emitter_pe
 				has_tech_option = tech_disruptor_pe
 				has_tech_option = tech_energy_core_pe
 				has_tech_option = tech_energy_lance_pe
 				has_tech_option = tech_fighter_core_pe
 				has_tech_option = tech_laser_pe
-				has_tech_option = tech_perdition_beam_pe
 				has_tech_option = tech_phanon_attack_dog
 				has_tech_option = tech_plasma_pe
 				has_tech_option = tech_point_defense_pe
@@ -1148,16 +1156,13 @@ phanon_type_a_tech_gift = {
 				has_tech_option = tech_strike_craft_fighter_pe
 				has_tech_option = tech_strike_craft_gunship_pe
 				has_tech_option = tech_super_detablizer_pe
-				has_tech_option = tech_titan_emitter_pe
 			}
 		}
-		add_research_option = tech_arc_emitter_pe
 		add_research_option = tech_disruptor_pe
 		add_research_option = tech_energy_core_pe
-		add_research_option = tech_energy_lance_pe
+		
 		add_research_option = tech_fighter_core_pe
 		add_research_option = tech_laser_pe
-		add_research_option = tech_perdition_beam_pe
 		add_research_option = tech_phanon_attack_dog
 		add_research_option = tech_plasma_pe
 		add_research_option = tech_point_defense_pe
@@ -1165,49 +1170,6 @@ phanon_type_a_tech_gift = {
 		add_research_option = tech_strike_craft_fighter_pe
 		add_research_option = tech_strike_craft_gunship_pe
 		add_research_option = tech_super_detablizer_pe
-		add_research_option = tech_titan_emitter_pe
-	}
-	random_list = {
-		### IN CASE NO MORE  THINGS TO GET
-		0 = {
-			modifier = {
-				add = 10
-				has_tech_option = tech_arc_emitter_pe
-				has_tech_option = tech_disruptor_pe
-				has_tech_option = tech_energy_core_pe
-				has_tech_option = tech_energy_lance_pe
-				has_tech_option = tech_fighter_core_pe
-				has_tech_option = tech_laser_pe
-				has_tech_option = tech_perdition_beam_pe
-				has_tech_option = tech_phanon_attack_dog
-				has_tech_option = tech_plasma_pe
-				has_tech_option = tech_point_defense_pe
-				has_tech_option = tech_strike_craft_bomber_pe
-				has_tech_option = tech_strike_craft_fighter_pe
-				has_tech_option = tech_strike_craft_gunship_pe
-				has_tech_option = tech_super_detablizer_pe
-				has_tech_option = tech_titan_emitter_pe
-			}
-			random_list = {
-				50 = {
-					add_resource = {
-						energy = 500000
-						minerals = 500000
-						alloys = 500000
-					}
-				}
-				50 = {
-					add_resource = {
-						food = 500000
-						consumer_goods = 500000
-						unity = 500000
-						society_research = 500000
-						engineering_research = 500000
-						physics_research = 500000
-					}
-				}
-			}
-		}
 	}
 }
 
@@ -1215,6 +1177,7 @@ phanon_type_b_tech_gift = {
 	if = {
 		limit = {
 			NAND = {
+				has_tech_option = tech_arc_emitter_pe
 				has_tech_option = tech_autocannon_pe
 				has_tech_option = tech_barrage_missile_pe
 				has_tech_option = tech_dakka_autocannon_pe
@@ -1227,10 +1190,12 @@ phanon_type_b_tech_gift = {
 				has_tech_option = tech_missile_nuke_pe
 				has_tech_option = tech_missile_pe
 				has_tech_option = tech_phanon_army
-				has_tech_option = tech_titan_accelerator_pe
 				has_tech_option = tech_xl_missile_pe
+				has_tech_option = tech_energy_lance_pe
+
 			}
 		}
+		add_research_option = tech_arc_emitter_pe
 		add_research_option = tech_autocannon_pe
 		add_research_option = tech_barrage_missile_pe
 		add_research_option = tech_dakka_autocannon_pe
@@ -1243,49 +1208,8 @@ phanon_type_b_tech_gift = {
 		add_research_option = tech_missile_nuke_pe
 		add_research_option = tech_missile_pe
 		add_research_option = tech_phanon_army
-		add_research_option = tech_titan_accelerator_pe
 		add_research_option = tech_xl_missile_pe
-	}
-	random_list = {
-		### IN CASE NO MORE  THINGS TO GET
-		0 = {
-			modifier = {
-				add = 10
-				has_tech_option = tech_autocannon_pe
-				has_tech_option = tech_barrage_missile_pe
-				has_tech_option = tech_dakka_autocannon_pe
-				has_tech_option = tech_flak_batteries_pe
-				has_tech_option = tech_kinetic_artillery_pe
-				has_tech_option = tech_kinetic_core_pe
-				has_tech_option = tech_mass_accelerator_pe
-				has_tech_option = tech_mass_driver_pe
-				has_tech_option = tech_missile_core_pe
-				has_tech_option = tech_missile_nuke_pe
-				has_tech_option = tech_missile_pe
-				has_tech_option = tech_phanon_army
-				has_tech_option = tech_titan_accelerator_pe
-				has_tech_option = tech_xl_missile_pe
-			}
-			random_list = {
-				50 = {
-					add_resource = {
-						energy = 500000
-						minerals = 500000
-						alloys = 500000
-					}
-				}
-				50 = {
-					add_resource = {
-						food = 500000
-						consumer_goods = 500000
-						unity = 500000
-						society_research = 500000
-						engineering_research = 500000
-						physics_research = 500000
-					}
-				}
-			}
-		}
+		add_research_option = tech_energy_lance_pe
 	}
 }
 
@@ -1302,6 +1226,9 @@ phanon_type_c_tech_gift = {
 				has_tech_option = tech_darkmatter_star_charter_pe
 				has_tech_option = tech_enigmatic_drive_pe
 				has_tech_option = tech_sensor_pe
+				has_tech_option = tech_perdition_beam_pe
+				has_tech_option = tech_titan_emitter_pe
+				has_tech_option = tech_titan_accelerator_pe
 			}
 		}
 		add_research_option = tech_darkmatter_afterburners_pe
@@ -1313,42 +1240,9 @@ phanon_type_c_tech_gift = {
 		add_research_option = tech_darkmatter_star_charter_pe
 		add_research_option = tech_enigmatic_drive_pe
 		add_research_option = tech_sensor_pe
-	}
-	random_list = {
-		### IN CASE NO MORE  THINGS TO GET
-		0 = {
-			modifier = {
-				add = 10
-				has_tech_option = tech_darkmatter_afterburners_pe
-				has_tech_option = tech_darkmatter_aura_energy_drainer_pe
-				has_tech_option = tech_darkmatter_hyper_jump_drive_pe
-				has_tech_option = tech_darkmatter_reactive_drone_pe
-				has_tech_option = tech_darkmatter_reactor_booster_pe
-				has_tech_option = tech_pe_thruster
-				has_tech_option = tech_darkmatter_star_charter_pe
-				has_tech_option = tech_enigmatic_drive_pe
-				has_tech_option = tech_sensor_pe
-			}
-			random_list = {
-				50 = {
-					add_resource = {
-						energy = 500000
-						minerals = 500000
-						alloys = 500000
-					}
-				}
-				50 = {
-					add_resource = {
-						food = 500000
-						consumer_goods = 500000
-						unity = 500000
-						society_research = 500000
-						engineering_research = 500000
-						physics_research = 500000
-					}
-				}
-			}
-		}
+		add_research_option = tech_titan_accelerator_pe
+		add_research_option = tech_titan_emitter_pe
+		add_research_option = tech_perdition_beam_pe
 	}
 }
 

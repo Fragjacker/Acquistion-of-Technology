@@ -774,7 +774,7 @@ decision_fractured_self_detonation = {
 			trigger = {
 				exists = owner
 				owner = {
-					is_same_value = root.owner
+					is_same_empire = root.owner
 				}
 			}
 			influence = 500
@@ -850,7 +850,7 @@ decision_stellarite_reactor_detonation = {
 	potential = {
 		exists = owner
 		owner = {
-			is_same_value = root.owner
+			is_same_empire = root.owner
 		}
 		from = {
 			has_technology = tech_bombardment_se
@@ -1118,11 +1118,7 @@ decision_acot_infiltrate_phanon_grid = {
 		}
 	}
 	allow = {
-		any_planet_army = {
-			owner = {
-				is_same_value = root.owner
-			}
-		}
+		any_planet_army = { is_owned_by = root.owner }
 		NOT = {
 			has_modifier = acot_modifier_vault_delay
 		}
@@ -1155,22 +1151,6 @@ decision_acot_infiltrate_phanon_grid = {
 			add_modifier = {
 				modifier = acot_modifier_vault_delay
 				days = 180
-			}
-			if = {
-				limit = {
-					NOT = {
-						is_variable_set = number_of_vault_raids
-					}
-				}
-				set_variable = {
-					which = number_of_vault_raids
-					value = 0
-				}
-			}
-			# Increment number of vault raids
-			change_variable = {
-				which = number_of_vault_raids
-				value = 1
 			}
 			random_list = {
 				50 = {
@@ -1292,13 +1272,7 @@ decision_acot_infiltrate_phanon_grid = {
 						value <= 3
 					}
 				}
-				if = {
-					limit = { NOT = { exists = event_target:phanon_protecc_base_country } }
-					create_protecc_country = yes
-				}
-				event_target:aot_bootleg_phanon_vault = {
-					create_phanon_vault_raid_protecc_fleet = yes
-				}
+				create_vault_defense_drones = yes
 			}
 			else_if = {
 				limit = {
@@ -1307,12 +1281,12 @@ decision_acot_infiltrate_phanon_grid = {
 						value = 4
 					}
 				}
-				set_planet_flag = has_phanon_operative
 				create_army = {
 					owner = event_target:phanon_security
 					type = acot_phanon_defense_operative
 					species = event_target:phanon_operative_species
 				}
+				create_vault_defense_drones = yes
 			}
 		}
 	}
