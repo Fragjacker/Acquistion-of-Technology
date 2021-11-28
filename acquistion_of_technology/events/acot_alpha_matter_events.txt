@@ -19,110 +19,7 @@ country_event = {
 	picture = GFX_evt_ancient_records
 	show_sound = event_mystery
 	trigger = {
-		AND = {
-			NOT = {
-				has_global_flag = acot_mysteries_ancients_forbidden
-			}
-			OR = {
-				is_country_type = default
-				AND = {
-					is_country_type = ascended_empire
-					resource_stockpile_compare = {
-						resource = influence
-						value >= 1000
-					}
-				}
-			}
-			has_technology = "tech_dark_matter_power_core"
-			has_technology = "tech_mine_dark_energy"
-			has_technology = "tech_mine_dark_matter"
-		}
-		NOR = {
-			has_country_flag = hear_precursor_rumor
-			has_country_flag = block_precursor_rumor
-			has_technology = "tech_precursor_design"
-			has_tech_option = "tech_precursor_design"
-			has_technology = "tech_dark_matter_power_core_ae"
-			has_tech_option = "tech_dark_matter_power_core_ae"
-		}
-		OR = {
-			any_owned_planet = {
-				OR = {
-					has_building = building_ancient_palace
-					has_building = building_ancient_control_center
-					has_building = building_dm_ancient_palace
-					has_building = building_dm_ancient_control_center
-					has_building = building_dm_ancient_hive_cluster
-					has_building = building_fe_dome
-					has_building = building_super_assembly
-					has_building = building_super_assembly_machine
-					has_building = building_fe_clone_vats
-					has_building = building_fe_synt_center
-					has_building = building_fe_psi_altar
-					has_building = building_fe_machine_dome
-					has_building = building_fe_hive_evochamber
-					has_building = building_dark_matter_synthersizer
-					has_building = building_dark_energy_pylon
-					has_building = building_dark_matter_generator
-					has_building = building_fe_alloy_forge
-					has_building = building_fe_transmutor
-					has_building = building_fe_mineral_processing_plant
-					has_building = building_fe_power_hub
-					has_building = building_fe_food_processing_complex
-					has_building = building_fe_factory
-					has_building = building_fe_mansion
-					has_building = building_fe_hive_depot
-					has_building = building_dm_ancient_cryo_chamber
-					has_building = building_enigmatic_lab
-					has_building = building_fe_institute
-					has_building = building_giga_fortress_fe
-					has_building = building_giga_fortress_dm
-					has_building = building_dark_energy_psg
-					# ACOT/AOT/ZOFE automated Buildings here
-					has_building = building_empyrean_shrine
-					has_building = building_fe_stronghold
-					has_building = building_dimensional_fabricator
-					has_building = building_fe_xeno_zoo
-					has_building = building_affluence_center
-					has_building = building_nourishment_center
-					has_building = building_class_4_singularity
-					has_building = building_nano_forge
-					has_building = building_master_archive
-					has_building = building_ancient_cryo_chamber
-					has_building = building_fe_class_4_singularity
-					has_building = building_fe_nano_forge
-					has_building = building_fe_dimensional_fabricator
-					has_building = building_fe_nourishment_center
-					has_building = building_fe_affluence_center
-					has_building = building_fe_sky_dome
-					has_building = building_dm_stronghold
-				}
-			}
-			any_owned_ship = {
-				OR = {
-					is_ship_size = small_ship_fallen_empire
-					is_ship_size = large_ship_fallen_empire
-					is_ship_size = massive_ship_fallen_empire
-					is_ship_size = military_station_small_fallen_empire
-					is_ship_size = fe_escort
-					is_ship_size = fe_battlecruiser
-					is_ship_size = fe_titan
-					is_ship_size = fe_small_station
-					is_ship_size = fe_large_station
-				}
-			}
-			any_neighbor_country = {
-				is_fallen_empire = yes
-			}
-			any_owned_planet = {
-				OR = {
-					has_planet_flag = fallen_empire_world
-					is_planet_class = pc_dark_fractured
-					is_planet_class = pc_dark_fractured_ae
-				}
-			}
-			has_precursaor_tech = yes
-		}
+		is_valid_alpha_research_candidate = yes
 	}
 	mean_time_to_happen = {
 		years = 2
@@ -351,7 +248,7 @@ country_event = {
 		}
 		country_event = {
 			id = acot_alpha_matter_events.10
-			days = 7200
+			days = 1800
 			random = 1800
 		}
 	}
@@ -1138,7 +1035,9 @@ planet_event = {
 						}
 						solar_system = {
 							exists = starbase
-							starbase = { is_owned_by = root.owner }
+							starbase = {
+								is_owned_by = root.owner
+							}
 						}
 					}
 					solar_system = {
@@ -1547,14 +1446,18 @@ country_event = {
 					any_system = {
 						has_star_flag = machup_system_flip
 						exists = starbase
-						starbase = { is_owned_by = event_target:current_uprising_originator }
+						starbase = {
+							is_owned_by = event_target:current_uprising_originator
+						}
 					}
 				}
 				random_system = {
 					limit = {
 						has_star_flag = machup_system_flip
 						exists = starbase
-						starbase = { is_owned_by = event_target:current_uprising_originator }
+						starbase = {
+							is_owned_by = event_target:current_uprising_originator
+						}
 					}
 					starbase = {
 						set_owner = root
@@ -2547,14 +2450,14 @@ country_event = {
 	}
 }
 
-# Grant the AI alpha tier after 20-25 years.
+# Grant the AI alpha tier after 5-10 years.
 country_event = {
 	id = acot_alpha_matter_events.10
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		add_research_option = tech_precursor_design
-		add_research_option = tech_dark_matter_power_core_ae
-		set_country_flag = learned_dm_alpha_existence
+			add_research_option = tech_precursor_design
+			add_research_option = tech_dark_matter_power_core_ae
+			set_country_flag = learned_dm_alpha_existence
 	}
 }
