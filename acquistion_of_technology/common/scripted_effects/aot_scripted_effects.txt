@@ -1,7 +1,8 @@
 @inner_mega_cannon_distance = 208
 @outer_mega_cannon_distance = 438
-@void_sphere_distance = 245
-@void_sphere_planet_size = 25
+@sigma_habitat_distance = 245
+@sigma_habitat_size = 11
+@enigmalith_orbit_distance = 30
 ##############################
 # PHANON VAULT PROTECC FLEETS
 ##############################
@@ -1081,17 +1082,18 @@ spawn_great_wall_voidspheres = {
 		save_event_target_as = this_system_star
 	}
 	spawn_planet = {
-		class = "pc_acot_enigmopolis"
+		class = pc_sigma_deepspace_habitat
 		location = fromfrom
 		has_ring = no
-		orbit_distance_offset = @void_sphere_distance
+		orbit_distance_offset = @sigma_habitat_distance
 		orbit_angle_offset = 0
-		size = @void_sphere_planet_size
+		size = @sigma_habitat_size
 		init_effect = {
-			set_name = "Bulwark Planet 1"
-			change_pc = pc_acot_enigmopolis
+			save_event_target_as = last_spawned_sigma_habitat
+			set_name = "Sigma Habitat 1"
+			change_pc = pc_sigma_deepspace_habitat
 			set_planet_entity = {
-				entity = "pc_acot_enigmopolis_01_entity"
+				entity = "sigma_habitat_phase_03_entity"
 			}
 			set_surveyed = {
 				surveyed = yes
@@ -1100,21 +1102,47 @@ spawn_great_wall_voidspheres = {
 			set_all_comms_surveyed = yes
 			clear_blockers = yes
 			trigger_megastructure_icon = yes
-			set_planet_flag = is_void_sphere
+			set_planet_flag = advanced_ascended_habitat
+			set_planet_flag = advanced_ascended_habitat_2
+			set_planet_flag = retrofitted_ae_habitat
+			set_planet_flag = retrofitted_sigma_habitat
+			set_planet_flag = is_base_dm_habitat
 		}
 	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 0
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 120
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 240
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
 	spawn_planet = {
-		class = "pc_acot_enigmopolis"
+		class = pc_sigma_deepspace_habitat
 		location = fromfrom
 		has_ring = no
-		orbit_distance_offset = @void_sphere_distance
+		orbit_distance_offset = @sigma_habitat_distance
 		orbit_angle_offset = 120
-		size = @void_sphere_planet_size
+		size = @sigma_habitat_size
 		init_effect = {
-			set_name = "Bulwark Planet 2"
-			change_pc = pc_acot_enigmopolis
+			save_event_target_as = last_spawned_sigma_habitat
+			set_name = "Sigma Habitat 2"
+			change_pc = pc_sigma_deepspace_habitat
 			set_planet_entity = {
-				entity = "pc_acot_enigmopolis_01_entity"
+				entity = "sigma_habitat_phase_03_entity"
 			}
 			set_surveyed = {
 				surveyed = yes
@@ -1123,21 +1151,47 @@ spawn_great_wall_voidspheres = {
 			set_all_comms_surveyed = yes
 			clear_blockers = yes
 			trigger_megastructure_icon = yes
-			set_planet_flag = is_void_sphere
+			set_planet_flag = advanced_ascended_habitat
+			set_planet_flag = advanced_ascended_habitat_2
+			set_planet_flag = retrofitted_ae_habitat
+			set_planet_flag = retrofitted_sigma_habitat
+			set_planet_flag = is_base_dm_habitat
 		}
 	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 0
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 120
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 240
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
 	spawn_planet = {
-		class = "pc_acot_enigmopolis"
+		class = pc_sigma_deepspace_habitat
 		location = fromfrom
 		has_ring = no
-		orbit_distance_offset = @void_sphere_distance
+		orbit_distance_offset = @sigma_habitat_distance
 		orbit_angle_offset = 240
-		size = @void_sphere_planet_size
+		size = @sigma_habitat_size
 		init_effect = {
-			set_name = "Bulwark Planet 3"
-			change_pc = pc_acot_enigmopolis
+			save_event_target_as = last_spawned_sigma_habitat
+			set_name = "Sigma Habitat 3"
+			change_pc = pc_sigma_deepspace_habitat
 			set_planet_entity = {
-				entity = "pc_acot_enigmopolis_01_entity"
+				entity = "sigma_habitat_phase_03_entity"
 			}
 			set_surveyed = {
 				surveyed = yes
@@ -1146,8 +1200,33 @@ spawn_great_wall_voidspheres = {
 			set_all_comms_surveyed = yes
 			clear_blockers = yes
 			trigger_megastructure_icon = yes
-			set_planet_flag = is_void_sphere
+			set_planet_flag = advanced_ascended_habitat
+			set_planet_flag = advanced_ascended_habitat_2
+			set_planet_flag = retrofitted_ae_habitat
+			set_planet_flag = retrofitted_sigma_habitat
+			set_planet_flag = is_base_dm_habitat
 		}
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 0
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 120
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 240
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
 	}
 }
 
