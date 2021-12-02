@@ -3088,3 +3088,42 @@ utility_component_template = {
 		weight = 50
 	}
 }
+
+utility_component_template = {
+	key = "EMISSARY_PHANON_COMPUTER"
+	size = small
+	icon = "GFX_ship_part_precursor_colony_phanon_comp"
+	icon_frame = 1
+	power = -600
+	size_restriction = {
+		precursor_colonizer
+	}	#fe_goliath
+	component_set = "combat_computers"
+	ship_behavior = "colossus"
+	prerequisites = {
+		"tech_precursor_colonizer_sigma"
+	}
+	upgrades_to = "EMISSARY_OMEGA_COMPUTER"
+	resources = {
+		category = ship_components
+		cost = {
+			aot_sr_runic_power = 100
+		}
+	}
+	ship_modifier = {
+	}
+	ai_weight = {
+		weight = 20
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 100
+			}
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 100
+			}
+		}
+	}
+}
