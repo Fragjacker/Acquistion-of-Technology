@@ -4,7 +4,7 @@ country_event = {
 	title = "aot_phanon_events.1.name"
 	desc = "aot_phanon_events.1.desc"
 	picture = GFX_evt_dimensional_mirror
-	show_sound = event_mystery
+	show_sound = event_phanon_discovery
 	trigger = {
 		has_technology = tech_stellarite_generator_lvl3
 		NOR = {
@@ -16,7 +16,7 @@ country_event = {
 		}
 	}
 	mean_time_to_happen = {
-		years = 5
+		years = 20
 	}
 	option = {
 		allow = {
@@ -80,8 +80,14 @@ country_event = {
 		trigger = {
 			is_ai = yes
 		}
-		hidden_effect = {
-			add_research_option = tech_dm_production_core
+		random_list = {
+			90 = {
+			}
+			10 = {
+				hidden_effect = {
+					add_research_option = tech_dm_production_core
+				}
+			}
 		}
 		ai_chance = {
 			factor = 1000
@@ -89,7 +95,7 @@ country_event = {
 	}
 }
 
-# SUCCESSS, MIRROR MIRRON IN ZE SPACE!
+# SUCCESSS, MIRROR MIRROR IN ZE SPACE!
 country_event = {
 	id = aot_phanon_events.2
 	title = aot_phanon_events.2.name
@@ -137,8 +143,8 @@ country_event = {
 					has_country_flag = completed_dimensional_mirror
 				}
 			}
+			set_country_flag = completed_dimensional_mirror
 		}
-		set_country_flag = completed_dimensional_mirror
 	}
 }
 
@@ -451,7 +457,7 @@ country_event = {
 		text = aot_phanon_events.8.wave4.desc
 	}
 	picture = GFX_evt_dimensional_mirror
-	show_sound = event_red_alert
+	show_sound = event_phanon_vault_summon
 	is_triggered_only = yes
 	trigger = {
 	}
@@ -529,39 +535,320 @@ country_event = {
 	}
 }
 
-# Intermediate event to progress phanon tech once the reactor has been gained.
+##########################
+# Megastructure Events
+##########################
+# Initial Ring World Built
 country_event = {
-	id = aot_phanon_events.10
+	id = aot_phanon_events.1000
+	title = "aot_phanon_events.1000.name"
+	desc = "aot_phanon_events.1000.desc"
+	picture = GFX_evt_unknown_ships
+	show_sound = event_ringworld_build_start
+	location = FROMFROM
 	is_triggered_only = yes
-	hide_window = yes
 	trigger = {
-		last_increased_tech = tech_dark_matter_power_core_pe
+		FROM = {
+			is_megastructure_type = star_imploder_0
+		}
+	}
+	option = {
+		name = "aot_phanon_events.1000.a"
+	}
+}
+
+# Building Star Imploder Notification (HIDDEN)
+country_event = {
+	id = aot_phanon_events.1001
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = star_imploder_1
+		}
 	}
 	immediate = {
-		country_event = {
-			id = aot_phanon_events.11
-			days = 600
-			random = 300
+		FROMFROM = {
+			save_event_target_as = star_imploder_system
+		}
+		every_country = {
+			limit = {
+				is_ai = no
+				NOT = {
+					is_same_value = ROOT
+				}
+				OR = {
+					has_intel_level = {
+						who = root
+						category = economy
+						level >= 1
+					}
+					has_intel_level = {
+						who = root
+						category = technology
+						level >= 1
+					}
+				}
+			}
+			country_event = {
+				id = aot_phanon_events.1002
+			}
+		}
+	}
+	after = {
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = started_first_stellar_imploder
+				}
+			}
+			set_country_flag = started_first_stellar_imploder
+		}
+		else_if = {
+			limit = {
+				has_country_flag = started_first_stellar_imploder
+			}
+			set_country_flag = started_first_stellar_imploder_2
 		}
 	}
 }
 
-# Grant gateway technology to progress on phanon infrastructe.
+# Building Star Imploder Notification
 country_event = {
-	id = aot_phanon_events.11
-	title = "aot_phanon_events.11.name"
-	desc = "aot_phanon_events.11.desc"
-	picture = GFX_evt_dimensional_mirror
-	show_sound = event_mystery
+	id = aot_phanon_events.1002
+	title = "aot_phanon_events.1002.name"
+	desc = {
+		text = aot_phanon_events.1002.desc.a
+		trigger = {
+			FROM = {
+				has_country_flag = started_first_stellar_imploder
+				NOT = {
+					has_country_flag = started_first_stellar_imploder_2
+				}
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.1002.desc.b
+		trigger = {
+			FROM = {
+				has_country_flag = started_first_stellar_imploder_2
+			}
+		}
+	}
+	picture = GFX_evt_stellar_imploder_construction
+	show_sound = event_mega_structure_other_empire_build_start
+	location = event_target:star_imploder_system
 	is_triggered_only = yes
-	immediate = {
+	option = {
+		# has built own Star Imploder
+		trigger = {
+			OR = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = star_imploder_1
+						is_megastructure_type = star_imploder_2
+						is_megastructure_type = star_imploder_3
+					}
+				}
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+		name = "aot_phanon_events.1002.a"
 	}
 	option = {
-		name = phanon_kickstart_economy.11.a
-		name = phanon_kickstart_economy.11.b
-		name = phanon_kickstart_economy.11.c
-		custom_tooltip = phanon_kickstart_economy_desc
-		add_research_option = tech_phanon_stellar_converter
-		add_research_option = tech_civil_phanon_application
+		# has no Star Imploder
+		trigger = {
+			NOT = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = star_imploder_1
+						is_megastructure_type = star_imploder_2
+						is_megastructure_type = star_imploder_3
+					}
+				}
+			}
+			NOT = {
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+		name = "aot_phanon_events.1002.b"
+	}
+}
+
+# Star Imploder Built
+country_event = {
+	id = aot_phanon_events.1003
+	title = "aot_phanon_events.1003.name"
+	picture = GFX_evt_stellar_imploder_construction
+	show_sound = event_dyson_sphere_build_complete
+	location = FROMFROM
+	is_triggered_only = yes
+	desc = {
+		trigger = {
+			FROM = {
+				is_megastructure_type = star_imploder_1
+			}
+		}
+		text = aot_phanon_events.1003.a.desc
+	}
+	desc = {
+		trigger = {
+			FROM = {
+				is_megastructure_type = star_imploder_2
+			}
+		}
+		text = aot_phanon_events.1003.b.desc
+	}
+	trigger = {
+		FROM = {
+			OR = {
+				is_megastructure_type = star_imploder_1
+				is_megastructure_type = star_imploder_2
+			}
+		}
+	}
+	option = {
+		name = "aot_phanon_events.1003.a"
+	}
+}
+
+# Star Imploder Completed
+country_event = {
+	id = aot_phanon_events.1004
+	title = "aot_phanon_events.1004.name"
+	desc = {
+		text = aot_phanon_events.1004.desc.a
+		trigger = {
+			NOT = {
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.1004.desc.b
+		trigger = {
+			has_country_flag = finished_stellar_imploder
+		}
+	}
+	picture = GFX_evt_phanon_pylon_supernova
+	show_sound = event_ringworld_build_complete
+	location = FROMFROM
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = star_imploder_3
+		}
+		FROMFROM = {
+			NOT = {
+				any_system_megastructure = {
+					is_megastructure_type = star_imploder_2
+				}
+			}
+		}
+	}
+	immediate = {
+		set_country_flag = finished_stellar_imploder
+		FROMFROM = {
+			save_event_target_as = completed_star_imploder_system
+		}
+		every_country = {
+			limit = {
+				is_ai = no
+				NOT = {
+					is_same_value = ROOT
+				}
+				OR = {
+					has_intel_level = {
+						who = root
+						category = economy
+						level >= 1
+					}
+					has_intel_level = {
+						who = root
+						category = technology
+						level >= 1
+					}
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = aot_phanon_events.1005
+				}
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = utopia.2006
+				days = 5
+			}
+		}
+	}
+	option = {
+		name = "aot_phanon_events.1004.a"
+	}
+}
+
+# Star Imploder Completed (Others)
+country_event = {
+	id = aot_phanon_events.1005
+	title = "aot_phanon_events.1005.name"
+	desc = {
+		text = aot_phanon_events.1005.desc.a
+		trigger = {
+			NOT = {
+				FROM = {
+					has_country_flag = finished_stellar_imploder
+				}
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.1005.desc.b
+		trigger = {
+			FROM = {
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+	}
+	picture = GFX_evt_phanon_pylon_supernova
+	show_sound = event_mega_structure_other_empire_build_complete
+	location = event_target:completed_star_imploder_system
+	is_triggered_only = yes
+	option = {
+		# has built own Star Imploder
+		trigger = {
+			OR = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = star_imploder_1
+						is_megastructure_type = star_imploder_2
+						is_megastructure_type = star_imploder_3
+					}
+				}
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+		name = "aot_phanon_events.1005.a"
+	}
+	option = {
+		# has no Star Imploder
+		trigger = {
+			any_owned_megastructure = {
+				NOT = {
+					OR = {
+						is_megastructure_type = star_imploder_1
+						is_megastructure_type = star_imploder_2
+						is_megastructure_type = star_imploder_3
+					}
+				}
+			}
+			NOT = {
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+		name = "aot_phanon_events.1005.b"
 	}
 }
