@@ -6,7 +6,7 @@ dimensional_mirror_0 = {
 	place_entity_on_planet_plane = no
 	build_outside_gravity_well = yes	# indicates this will use "free" placement between the system's inner and outer ring
 	# if this option is active, the placement_rules will be completely ignored
-	show_galactic_map_icon = no
+	show_galactic_map_icon = yes
 	build_time = 1800
 	resources = {
 		category = megastructures
@@ -98,7 +98,7 @@ dimensional_mirror_final = {
 	place_entity_on_planet_plane = no
 	# build_outside_gravity_well = yes 						# indicates this will use "free" placement between the system's inner and outer ring
 	# if this option is active, the placement_rules will be completely ignored
-	show_galactic_map_icon = no
+	show_galactic_map_icon = yes
 	potential = {
 		has_technology = tech_phanon_dimensional_mirror
 	}
@@ -224,6 +224,12 @@ star_imploder_0 = {
 				is_star_class = sc_phanon_pylon
 			}
 		}
+		custom_tooltip = {
+			fail_text = "requires_no_star_imploder"
+			NOT = {
+				has_star_flag = star_imploder_built
+			}
+		}
 	}
 	placement_rules = {
 		planet_possible = {
@@ -255,7 +261,9 @@ star_imploder_0 = {
 			factor = 0.1
 			any_neighbor_system = {
 				exists = owner
-				NOT = { is_owned_by = from }
+				NOT = {
+					is_owned_by = from
+				}
 			}
 		}
 	}
@@ -424,7 +432,15 @@ macripp_0 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_phanon_pylon"
-			is_star_class = sc_phanon_pylon
+			any_system_planet = {
+				is_star_class = sc_phanon_pylon
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_macripp"
+			NOT = {
+				has_star_flag = macripp_built
+			}
 		}
 	}
 	placement_rules = {
@@ -432,6 +448,7 @@ macripp_0 = {
 			custom_tooltip = {
 				fail_text = "must_built_around_phanon_pylon"
 				is_star_class = sc_phanon_pylon
+				colonizable_planet = no
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_anomaly"
@@ -457,7 +474,9 @@ macripp_0 = {
 			factor = 0.1
 			any_neighbor_system = {
 				exists = owner
-				NOT = { is_owned_by = from }
+				NOT = {
+					is_owned_by = from
+				}
 			}
 		}
 	}
@@ -466,9 +485,9 @@ macripp_0 = {
 	on_build_cancel = {
 	}
 	on_build_complete = {
-		set_star_flag = star_imploder_built
+		set_star_flag = macripp_built
 		from = {
-			set_country_flag = built_star_imploder
+			set_country_flag = built_macripp
 		}
 		every_system_planet = {
 			limit = {
@@ -633,7 +652,7 @@ phanon_great_wall_0 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_phanon_macripp"
-			NOT = {
+			any_system_planet = {
 				is_planet_class = pc_phanon_macripp
 			}
 		}
@@ -641,6 +660,12 @@ phanon_great_wall_0 = {
 			fail_text = "requires_no_existing_megastructure"
 			#NOT = { has_any_megastructure = yes }
 			has_no_non_gate_megastructure = yes
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_great_wall"
+			NOT = {
+				has_star_flag = great_wall_built
+			}
 		}
 	}
 	placement_rules = {
@@ -673,7 +698,9 @@ phanon_great_wall_0 = {
 			factor = 0.1
 			any_neighbor_system = {
 				exists = owner
-				NOT = { is_owned_by = from }
+				NOT = {
+					is_owned_by = from
+				}
 			}
 		}
 	}
@@ -819,7 +846,9 @@ phanon_megaturret_intermediate_1 = {
 		}
 	}
 	upgrade_desc = hide
-	potential = { always = no }
+	potential = {
+		always = no
+	}
 	on_build_complete = {
 		from = {
 			set_country_flag = has_built_or_repaired_megastructure

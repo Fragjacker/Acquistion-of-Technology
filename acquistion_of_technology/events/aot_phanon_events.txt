@@ -128,6 +128,7 @@ country_event = {
 	picture = GFX_evt_dimensional_mirror
 	show_sound = phanon_megastructure_upgrade_2
 	is_triggered_only = yes
+	location = FROM
 	trigger = {
 		NOR = {
 			has_country_flag = defeated_wave_1
@@ -152,6 +153,7 @@ country_event = {
 country_event = {
 	id = aot_phanon_events.4
 	title = aot_phanon_events.4.name
+	location = FROM
 	desc = {
 		trigger = {
 			root = {
@@ -223,6 +225,7 @@ country_event = {
 	id = aot_phanon_events.5
 	is_triggered_only = yes
 	hide_window = yes
+	location = FROM
 	trigger = {
 	}
 	immediate = {
@@ -247,6 +250,7 @@ country_event = {
 	id = aot_phanon_events.6
 	hide_window = yes
 	is_triggered_only = yes
+	location = FROM
 	trigger = {
 	}
 	immediate = {
@@ -317,6 +321,7 @@ country_event = {
 	id = aot_phanon_events.7
 	title = aot_phanon_events.7.diplo_title
 	desc = aot_phanon_events.7.diplo.desc
+	location = FROM
 	trigger = {
 	}
 	is_triggered_only = yes
@@ -409,6 +414,7 @@ country_event = {
 country_event = {
 	id = aot_phanon_events.8
 	title = aot_phanon_events.8.name
+	location = FROM
 	desc = {
 		trigger = {
 			root = {
@@ -457,25 +463,7 @@ country_event = {
 		text = aot_phanon_events.8.wave4.desc
 	}
 	picture = GFX_evt_dimensional_mirror
-	show_sound = {
-		trigger = {
-			root = {
-				NOT = {
-					has_country_flag = defeated_wave_4
-				}
-			}
-		}
-		sound = event_power_dm
-	}
-	show_sound = {
-		trigger = {
-			root = {
-				has_country_flag = defeated_wave_4
-			}
-		}
-		sound = event_phanon_vault_summon
-	}
-	#show_sound = event_phanon_vault_summon
+	show_sound = event_phanon_vault_summon
 	is_triggered_only = yes
 	trigger = {
 	}
@@ -664,6 +652,7 @@ country_event = {
 			OR = {
 				any_owned_megastructure = {
 					OR = {
+						is_megastructure_type = star_imploder_0
 						is_megastructure_type = star_imploder_1
 						is_megastructure_type = star_imploder_2
 						is_megastructure_type = star_imploder_3
@@ -680,6 +669,7 @@ country_event = {
 			NOT = {
 				any_owned_megastructure = {
 					OR = {
+						is_megastructure_type = star_imploder_0
 						is_megastructure_type = star_imploder_1
 						is_megastructure_type = star_imploder_2
 						is_megastructure_type = star_imploder_3
@@ -766,7 +756,6 @@ country_event = {
 		}
 	}
 	immediate = {
-		set_country_flag = finished_stellar_imploder
 		FROMFROM = {
 			save_event_target_as = completed_star_imploder_system
 		}
@@ -841,6 +830,7 @@ country_event = {
 			OR = {
 				any_owned_megastructure = {
 					OR = {
+						is_megastructure_type = star_imploder_0
 						is_megastructure_type = star_imploder_1
 						is_megastructure_type = star_imploder_2
 						is_megastructure_type = star_imploder_3
@@ -857,6 +847,7 @@ country_event = {
 			any_owned_megastructure = {
 				NOT = {
 					OR = {
+						is_megastructure_type = star_imploder_0
 						is_megastructure_type = star_imploder_1
 						is_megastructure_type = star_imploder_2
 						is_megastructure_type = star_imploder_3
@@ -995,6 +986,7 @@ country_event = {
 						is_megastructure_type = macripp_0
 						is_megastructure_type = macripp_1
 						is_megastructure_type = macripp_2
+						is_megastructure_type = macripp_3
 					}
 				}
 				has_country_flag = finished_macripp
@@ -1011,6 +1003,7 @@ country_event = {
 						is_megastructure_type = macripp_0
 						is_megastructure_type = macripp_1
 						is_megastructure_type = macripp_2
+						is_megastructure_type = macripp_3
 					}
 				}
 			}
@@ -1094,7 +1087,6 @@ country_event = {
 		}
 	}
 	immediate = {
-		set_country_flag = finished_macripp
 		FROMFROM = {
 			save_event_target_as = completed_macripp_system
 		}
@@ -1172,6 +1164,7 @@ country_event = {
 						is_megastructure_type = macripp_0
 						is_megastructure_type = macripp_1
 						is_megastructure_type = macripp_2
+						is_megastructure_type = macripp_3
 					}
 				}
 				has_country_flag = finished_macripp
@@ -1188,6 +1181,7 @@ country_event = {
 						is_megastructure_type = macripp_0
 						is_megastructure_type = macripp_1
 						is_megastructure_type = macripp_2
+						is_megastructure_type = macripp_3
 					}
 				}
 			}
@@ -1359,7 +1353,7 @@ country_event = {
 	id = aot_phanon_events.3003
 	title = "aot_phanon_events.3003.name"
 	picture = GFX_evt_great_wall_construction
-	show_sound = phanon_megastructure_upgrade_1
+	show_sound = phanon_megastructure_upgrade_2
 	location = FROMFROM
 	is_triggered_only = yes
 	desc = {
@@ -1426,16 +1420,8 @@ country_event = {
 		FROM = {
 			is_megastructure_type = phanon_great_wall_4
 		}
-		FROMFROM = {
-			NOT = {
-				any_system_megastructure = {
-					is_megastructure_type = phanon_great_wall_4
-				}
-			}
-		}
 	}
 	immediate = {
-		set_country_flag = finished_great_wall
 		FROMFROM = {
 			save_event_target_as = completed_great_wall_system
 		}
