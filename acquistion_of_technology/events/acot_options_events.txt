@@ -6,40 +6,14 @@ country_event = {
 	picture = GFX_evt_acot_greetings
 	is_triggered_only = yes
 	show_sound = event_acot_greetings
-	### enable or disable AOT planetary shields FX
+	### AoT Option Selection
 	option = {
-		name = acot_mod_options.0.a
-		custom_tooltip = acot_mod_options.0.a.tooltip
-		trigger = {
-			NOT = {
-				has_global_flag = aot_planetary_shields_OFF
-			}
-		}
+		name = aot_mod_options.10
+		custom_tooltip = acot_mod_options_desc
 		hidden_effect = {
 			country_event = {
-				id = acot_mod_options.1
+				id = acot_mod_options.10
 				days = 0
-			}
-			country_event = {
-				id = aot_planetary_shields_event.5
-			}
-			set_global_flag = aot_planetary_shields_OFF
-		}
-	}
-	option = {
-		name = acot_mod_options.0.b
-		custom_tooltip = acot_mod_options.0.b.tooltip
-		trigger = {
-			has_global_flag = aot_planetary_shields_OFF
-		}
-		hidden_effect = {
-			remove_global_flag = aot_planetary_shields_OFF
-			country_event = {
-				id = acot_mod_options.1
-				days = 0
-			}
-			country_event = {
-				id = aot_planetary_shields_event.4
 			}
 		}
 	}
@@ -114,6 +88,96 @@ country_event = {
 	}
 	option = {
 		name = acot_mod_options.exit
+	}
+}
+
+##################################################### AoT Options #####################################################
+
+country_event = {
+	id = acot_mod_options.10
+	title = aot_mod_options.10.name
+	desc = aot_mod_options.10.desc
+	is_triggered_only = yes
+	picture = GFX_evt_acot_greetings
+	### enable or disable AOT planetary shields FX
+	option = {
+		name = aot_mod_options.0.a
+		custom_tooltip = aot_mod_options.0.a.tooltip
+		trigger = {
+			NOT = {
+				has_global_flag = aot_planetary_shields_OFF
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = acot_mod_options.10
+				days = 0
+			}
+			country_event = {
+				id = aot_planetary_shields_event.5
+			}
+			set_global_flag = aot_planetary_shields_OFF
+		}
+	}
+	option = {
+		name = aot_mod_options.0.b
+		custom_tooltip = aot_mod_options.0.b.tooltip
+		trigger = {
+			has_global_flag = aot_planetary_shields_OFF
+		}
+		hidden_effect = {
+			remove_global_flag = aot_planetary_shields_OFF
+			country_event = {
+				id = acot_mod_options.10
+				days = 0
+			}
+			country_event = {
+				id = aot_planetary_shields_event.4
+			}
+		}
+	}
+	### enable or disable Phanon Content
+	option = {
+		name = aot_mod_options.1.a
+		custom_tooltip = aot_mod_options.1.a.tooltip
+		trigger = {
+			NOT = {
+				has_global_flag = aot_phanon_content_OFF
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = acot_mod_options.10
+				days = 0
+			}
+			set_global_flag = aot_phanon_content_OFF
+		}
+	}
+	option = {
+		name = aot_mod_options.1.b
+		custom_tooltip = aot_mod_options.1.b.tooltip
+		trigger = {
+			has_global_flag = aot_phanon_content_OFF
+		}
+		hidden_effect = {
+			remove_global_flag = aot_phanon_content_OFF
+			country_event = {
+				id = acot_mod_options.10
+				days = 0
+			}
+		}
+	}
+	option = {
+		name = return_to_menu
+		hidden_effect = {
+			country_event = {
+				id = acot_mod_options.1
+				days = 0
+			}
+		}
+	}
+	option = {
+		name = EXCELLENT
 	}
 }
 
