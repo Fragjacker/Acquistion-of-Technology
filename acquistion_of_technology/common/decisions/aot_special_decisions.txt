@@ -773,3 +773,31 @@ decision_open_resurrection_chambers_menu = {
 		}
 	}
 }
+
+decision_open_kool_aid_vats_menu = {
+	owned_planets_only = yes
+	icon = decision_access_resurrection_chambers
+	potential = {
+		has_building = building_phanon_clone_vats
+	}
+	allow = {
+		has_building = building_phanon_clone_vats
+	}
+	effect = {
+		planet_event = {
+			id = aot_events.8
+		}
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0
+			owner = {
+				resource_stockpile_compare = {
+					resource = influence
+					value <= 250
+				}
+			}
+		}
+	}
+}
