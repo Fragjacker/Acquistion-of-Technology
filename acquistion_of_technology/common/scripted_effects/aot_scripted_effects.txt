@@ -684,7 +684,11 @@ create_phanon_vault_raid_protecc_fleet = {
 
 create_vault_defense_drones = {
 	if = {
-		limit = { NOT = { exists = event_target:phanon_protecc_base_country } }
+		limit = {
+			NOT = {
+				exists = event_target:phanon_protecc_base_country
+			}
+		}
 		create_protecc_country = yes
 	}
 	event_target:aot_bootleg_phanon_vault = {
@@ -1302,7 +1306,6 @@ phanon_type_b_tech_gift = {
 				has_tech_option = tech_phanon_army
 				has_tech_option = tech_xl_missile_pe
 				has_tech_option = tech_energy_lance_pe
-
 			}
 		}
 		add_research_option = tech_arc_emitter_pe
@@ -1353,6 +1356,19 @@ phanon_type_c_tech_gift = {
 		add_research_option = tech_titan_accelerator_pe
 		add_research_option = tech_titan_emitter_pe
 		add_research_option = tech_perdition_beam_pe
+	}
+}
+
+phanon_species_traits_tech_gift_card = {
+	if = {
+		limit = {
+			NOR = {
+				has_tech_option = tech_phanon_genetics
+				has_tech_option = tech_phanon_augmentations
+			}
+		}
+		add_research_option = tech_phanon_genetics
+		add_research_option = tech_phanon_augmentations
 	}
 }
 
