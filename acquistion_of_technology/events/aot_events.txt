@@ -797,12 +797,7 @@ planet_event = {
 					text = no_normal_leaders
 				}
 				any_owned_leader = {
-					NOR = {
-						has_trait = leader_trait_phanon_big_brain
-						has_trait = leader_trait_phanon_big_leader
-						has_trait = leader_trait_phanon_six_stars_general
-						has_trait = leader_trait_acot_phanon_admiral
-					}
+					has_phanon_traits = no
 				}
 			}
 		}
@@ -819,14 +814,6 @@ planet_event = {
 			}
 			owner = {
 				every_owned_leader = {
-					if = {
-						limit = {
-							NOT = {
-								has_trait = leader_trait_cell_activated
-							}
-						}
-						add_trait = leader_trait_cell_activated
-					}
 					if = {
 						limit = {
 							NOT = {
@@ -902,5 +889,63 @@ country_event = {
 		name = aot_mod_options.koolaid_consoomed.1.c
 		name = aot_mod_options.koolaid_consoomed.1.d
 		name = aot_mod_options.koolaid_consoomed.1.e
+	}
+}
+
+# New Leaders Get Phanon Traits Trait
+country_event = {
+	id = aot_events.10
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		from = {
+			species = {
+				OR = {
+					has_trait = trait_phanon_people_mans
+					has_trait = trait_phanon_suporbot
+				}
+				has_phanon_traits = no
+			}
+		}
+	}
+	immediate = {
+		from = {
+			if = {
+				limit = {
+					leader_class = admiral
+				}
+				add_trait = leader_trait_acot_phanon_admiral
+				add_ruler_trait = leader_trait_ruler_phanon_mans
+				break = yes
+			}
+			else_if = {
+				limit = {
+					leader_class = general
+				}
+				add_trait = leader_trait_phanon_six_stars_general
+				add_ruler_trait = leader_trait_ruler_phanon_mans
+			}
+			else_if = {
+				limit = {
+					leader_class = governor
+				}
+				add_trait = leader_trait_phanon_big_leader
+				add_ruler_trait = leader_trait_ruler_phanon_mans
+			}
+			else_if = {
+				limit = {
+					leader_class = scientist
+				}
+				add_trait = leader_trait_phanon_big_brain
+				add_ruler_trait = leader_trait_ruler_phanon_mans
+			}
+			else_if = {
+				limit = {
+					leader_class = ruler
+				}
+				add_trait = leader_trait_ruler_phanon_mans
+				add_ruler_trait = leader_trait_ruler_phanon_mans
+			}
+		}
 	}
 }
