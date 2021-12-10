@@ -22,7 +22,9 @@ fe_omnimech = {
 	allow = {
 		OR = {
 			has_building = building_fe_machine_dome
+			has_building = building_ae_machine_dome
 			has_building = building_stellarite_machine_dome
+			has_building = building_phanon_machine_dome
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
@@ -71,6 +73,7 @@ fe_godmech = {
 			has_building = building_fe_machine_dome
 			has_building = building_ae_machine_dome
 			has_building = building_stellarite_machine_dome
+			has_building = building_phanon_machine_dome
 		}
 	}
 	potential = {
@@ -135,7 +138,9 @@ fe_mastermind = {
 	allow = {
 		OR = {
 			has_building = building_fe_hive_evochamber
+			has_building = building_ae_hive_evochamber
 			has_building = building_stellarite_hive_evochamber
+			has_building = building_phanon_hive_evochamber
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
@@ -179,6 +184,7 @@ fe_terror_beyond = {
 			has_building = building_fe_hive_evochamber
 			has_building = building_ae_hive_evochamber
 			has_building = building_stellarite_hive_evochamber
+			has_building = building_phanon_hive_evochamber
 		}
 	}
 	potential = {
@@ -270,6 +276,7 @@ fe_synthsoldier = {
 			has_building = building_fe_synt_center
 			has_building = building_ae_synt_center
 			has_building = building_stellarite_synt_center
+			has_building = building_phanon_synt_center
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
@@ -336,8 +343,10 @@ fe_synthcommando_army = {
 	}
 	allow = {
 		OR = {
+			has_building = building_fe_synt_center
 			has_building = building_ae_synt_center
 			has_building = building_stellarite_synt_center
+			has_building = building_phanon_synt_center
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
@@ -394,6 +403,7 @@ fe_disciple_army = {
 			has_building = building_fe_psi_altar
 			has_building = building_ae_psi_altar
 			has_building = building_stellarite_psi_altar
+			has_building = building_phanon_psi_altar
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
@@ -470,6 +480,7 @@ fe_hero_psion = {
 		OR = {
 			has_building = building_ae_psi_altar
 			has_building = building_stellarite_psi_altar
+			has_building = building_phanon_psi_altar
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
@@ -520,9 +531,11 @@ fe_gene_warrior = {
 			has_building = building_fe_clone_vats
 			has_building = building_ae_clone_vats
 			has_building = building_stellarite_clone_vats
+			has_building = building_phanon_clone_vats
 			has_building = building_fe_hive_evochamber
 			has_building = building_ae_hive_evochamber
 			has_building = building_stellarite_hive_evochamber
+			has_building = building_phanon_hive_evochamber
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
@@ -595,8 +608,111 @@ fe_doomguy = {
 			has_building = building_ae_clone_vats
 			has_building = building_ae_hive_evochamber
 			has_building = building_stellarite_clone_vats
+			has_building = building_phanon_clone_vats
 			has_building = building_stellarite_hive_evochamber
+			has_building = building_phanon_hive_evochamber
 			has_district = district_acot_enigmapolis_fortress
 		}
+	}
+}
+
+############################## PHANON ##############################
+
+# Phanon Army
+acot_phanon_army = {
+	damage = 7
+	health = 16.00
+	morale = 30.00
+	morale_damage = 1.0
+	collateral_damage = 1.00
+	war_exhaustion = 2.00
+	time = 150
+	icon = GFX_army_type_primitive
+	prerequisites = { "tech_phanon_army" }
+	resources = {
+		category = armies
+		cost = {
+			energy = 1000
+			influence = 10
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+	potential = {
+		OR = {
+			is_planet_class = pc_acot_pmc_vault
+			is_planet_class = pc_phanon_macripp
+			owner = {
+				is_country_type = acot_phanon_base
+			}
+		}
+		NOT = { has_global_flag = acot_army_forbidden }
+	}
+}
+
+# Phanon Army
+acot_phanon_attack_dog = {
+	damage = 16.00
+	health = 3
+	morale = 6.00
+	morale_damage = 2.0
+	collateral_damage = 0.00
+	war_exhaustion = 1.00
+	has_species = no
+	time = 150
+	icon = GFX_army_type_xenomorph
+	prerequisites = { "tech_phanon_attack_dog" }
+	resources = {
+		category = armies
+		cost = {
+			energy = 850
+		}
+		upkeep = {
+			energy = 8
+		}
+	}
+	potential = {
+		OR = {
+			is_planet_class = pc_acot_pmc_vault
+			is_planet_class = pc_phanon_macripp
+			owner = {
+				is_country_type = acot_phanon_base
+			}
+		}
+		NOT = { has_global_flag = acot_army_forbidden }
+	}
+}
+
+# Phanon Army
+acot_phanon_operative = {
+	damage = 70.00
+	health = 100.00
+	has_morale = no
+	morale_damage = 4.0
+	collateral_damage = 0.10
+	war_exhaustion = 0.00
+	time = 800
+	icon = GFX_army_type_psionic
+	has_species = no
+	prerequisites = { tech_phanon_operative }
+	resources = {
+		category = armies
+		cost = {
+			energy = 500000
+			influence = 1000
+		}
+		upkeep = {
+		}
+	}
+	potential = {
+		OR = {
+			is_planet_class = pc_acot_pmc_vault
+			is_planet_class = pc_phanon_macripp
+			owner = {
+				is_country_type = acot_phanon_base
+			}
+		}
+		NOT = { has_global_flag = acot_army_forbidden }
 	}
 }

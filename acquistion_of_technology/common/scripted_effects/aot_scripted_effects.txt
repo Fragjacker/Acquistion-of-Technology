@@ -1,0 +1,1472 @@
+@inner_mega_cannon_distance = 208
+@outer_mega_cannon_distance = 438
+@sigma_habitat_distance = 245
+@sigma_habitat_size = 11
+@enigmalith_orbit_distance = 30
+##############################
+# PHANON VAULT PROTECC FLEETS
+##############################
+create_protecc_country = {
+	create_species = {
+		name = "Phanon GLA Workers"
+		class = HUM
+		portrait = human
+		traits = random
+		extra_trait_points = 6
+		allow_negative_traits = no
+		effect = {
+			save_global_event_target_as = phanon_species
+		}
+	}
+	create_species = {
+		name = "Phanon Operatives"
+		class = PHANON
+		portrait = acot_pmc
+		traits = random
+		extra_trait_points = 10
+		allow_negative_traits = no
+		effect = {
+			save_global_event_target_as = phanon_operative_species
+		}
+	}
+	create_country = {
+		name = "Phanon P.R.O.T.E.C.C."
+		name_list = Phanon
+		species = event_target:phanon_operative_species
+		type = acot_phanon_retaliator
+		civics = {
+			civic = civic_acot_phanon_fleet
+			civic = civic_acot_phanon_corps
+		}
+		origin = "origin_default"
+		flag = {
+			background = {
+				category = "backgrounds"
+				file = "v.dds"
+			}
+			icon = {
+				category = phanon
+				file = flag_phanon.dds
+			}
+			colors = {
+				"red"
+				"black"
+				"null"
+				"null"
+			}
+		}
+		ethos = {
+			ethic = ethic_fanatic_authoritarian
+			ethic = ethic_militarist
+		}
+		ignore_initial_colony_error = yes
+		effect = {
+			save_global_event_target_as = phanon_protecc_base_country
+		}
+	}
+	last_created_country = {
+		set_graphical_culture = acot_pmc
+		set_country_flag = phanon_protecc_base_country
+		create_ship_design = {
+			design = "NAME_ACOT_STAR_COMMANDER"
+		}
+		add_ship_design = last_created_design
+		create_ship_design = {
+			design = "NAME_ACOT_STARBENDER"
+		}
+		add_ship_design = last_created_design
+		### ESTABLISHU CONTACTSU
+		establish_communications = root
+		every_country = {
+			limit = {
+				OR = {
+					is_country_type = enclave
+					is_country_type = dormant_marauders
+					is_fallen_empire = yes
+					is_fallen_machine_empire = yes
+					has_origin = origin_playable_oe_singular
+					has_origin = origin_playable_oe
+				}
+			}
+			establish_communications_no_message = event_target:phanon_protecc_base_country
+		}
+	}
+	#Make Protecc bois mad against everybody.
+	every_country = {
+		limit = {
+			NOR = {
+				is_country_type = enclave
+				is_country_type = dormant_marauders
+				is_country_type = acot_phanon_base
+				is_country_type = acot_phanon_retaliator
+				is_country_type = acot_hero_ship_phanon
+				is_fallen_empire = yes
+				is_fallen_machine_empire = yes
+				has_origin = origin_playable_oe_singular
+				has_origin = origin_playable_oe
+			}
+		}
+		set_faction_hostility = {
+			target = event_target:phanon_protecc_base_country
+			set_hostile = yes
+			set_neutral = no
+			set_friendly = no
+		}
+	}
+}
+
+create_phanon_protecc_wave_1 = {
+	owner = {
+		create_leader = {
+			class = admiral
+			species = event_target:phanon_operative_species
+			name = "Phanon Operative Type A"
+			skill = 10
+			immortal = yes
+			leader_age_min = 1000
+			leader_age_max = 100000
+			traits = {
+				trait = leader_trait_acot_phanon_admiral
+				trait = leader_trait_admiral_cyborg
+				trait = leader_trait_admiral_psionic
+				trait = leader_trait_admiral_erudite
+			}
+			event_leader = yes			# prevents this leader from leading factions and winning elections
+			effect = {
+				random_list = {
+					5 = {
+						set_name = "A11-C"
+					}
+					5 = {
+						set_name = "A35-C"
+					}
+					5 = {
+						set_name = "A24-A"
+					}
+					5 = {
+						set_name = "A07-B"
+					}
+					5 = {
+						set_name = "A65-A"
+					}
+					5 = {
+						set_name = "A28-B"
+					}
+					5 = {
+						set_name = "A41-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+					5 = {
+						set_name = "A62-A"
+					}
+					5 = {
+						set_name = "A67-C"
+					}
+					5 = {
+						set_name = "A42-B"
+					}
+					5 = {
+						set_name = "A91-B"
+					}
+					5 = {
+						set_name = "A85-C"
+					}
+					5 = {
+						set_name = "A53-C"
+					}
+					5 = {
+						set_name = "A10-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+				}
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:phanon_protecc_base_country
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DESTROYER"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			assign_leader = last_created_leader
+			while = {
+				count = 15
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_STARFIGHTERS"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			set_formation_scale = 2
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 275
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 15
+			}
+		}
+		settings = {
+			is_boss = no
+			garrison = yes
+		}
+	}
+}
+
+create_phanon_protecc_wave_2 = {
+	owner = {
+		create_leader = {
+			class = admiral
+			species = event_target:phanon_operative_species
+			name = "Phanon Operative Type A"
+			skill = 10
+			immortal = yes
+			leader_age_min = 1000
+			leader_age_max = 100000
+			traits = {
+				trait = leader_trait_acot_phanon_admiral
+				trait = leader_trait_admiral_cyborg
+				trait = leader_trait_admiral_psionic
+				trait = leader_trait_admiral_erudite
+			}
+			event_leader = yes			# prevents this leader from leading factions and winning elections
+			effect = {
+				random_list = {
+					5 = {
+						set_name = "A11-C"
+					}
+					5 = {
+						set_name = "A35-C"
+					}
+					5 = {
+						set_name = "A24-A"
+					}
+					5 = {
+						set_name = "A07-B"
+					}
+					5 = {
+						set_name = "A65-A"
+					}
+					5 = {
+						set_name = "A28-B"
+					}
+					5 = {
+						set_name = "A41-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+					5 = {
+						set_name = "A62-A"
+					}
+					5 = {
+						set_name = "A67-C"
+					}
+					5 = {
+						set_name = "A42-B"
+					}
+					5 = {
+						set_name = "A91-B"
+					}
+					5 = {
+						set_name = "A85-C"
+					}
+					5 = {
+						set_name = "A53-C"
+					}
+					5 = {
+						set_name = "A10-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+				}
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:phanon_protecc_base_country
+			while = {
+				count = 2
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DEVASTATOR"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			assign_leader = last_created_leader
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DESTROYER"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			while = {
+				count = 15
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_STARFIGHTERS"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			set_formation_scale = 2
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 275
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 15
+			}
+		}
+		settings = {
+			is_boss = no
+			garrison = yes
+		}
+	}
+}
+
+create_phanon_protecc_wave_3 = {
+	owner = {
+		create_leader = {
+			class = admiral
+			species = event_target:phanon_operative_species
+			name = "Phanon Operative Type A"
+			skill = 10
+			immortal = yes
+			leader_age_min = 1000
+			leader_age_max = 100000
+			traits = {
+				trait = leader_trait_acot_phanon_admiral
+				trait = leader_trait_admiral_cyborg
+				trait = leader_trait_admiral_psionic
+				trait = leader_trait_admiral_erudite
+			}
+			event_leader = yes			# prevents this leader from leading factions and winning elections
+			effect = {
+				random_list = {
+					5 = {
+						set_name = "A11-C"
+					}
+					5 = {
+						set_name = "A35-C"
+					}
+					5 = {
+						set_name = "A24-A"
+					}
+					5 = {
+						set_name = "A07-B"
+					}
+					5 = {
+						set_name = "A65-A"
+					}
+					5 = {
+						set_name = "A28-B"
+					}
+					5 = {
+						set_name = "A41-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+					5 = {
+						set_name = "A62-A"
+					}
+					5 = {
+						set_name = "A67-C"
+					}
+					5 = {
+						set_name = "A42-B"
+					}
+					5 = {
+						set_name = "A91-B"
+					}
+					5 = {
+						set_name = "A85-C"
+					}
+					5 = {
+						set_name = "A53-C"
+					}
+					5 = {
+						set_name = "A10-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+				}
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:phanon_protecc_base_country
+			create_ship = {
+				name = random
+				design = "NAME_ACOT_ANNIHILATOR"
+				graphical_culture = "acot_pmc"
+			}
+			assign_leader = last_created_leader
+			while = {
+				count = 8
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DEVASTATOR"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			while = {
+				count = 12
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DESTROYER"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			while = {
+				count = 15
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_STARFIGHTERS"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			set_formation_scale = 2
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 275
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 15
+			}
+		}
+		settings = {
+			is_boss = no
+			garrison = yes
+		}
+	}
+}
+
+create_phanon_protecc_wave_4 = {
+	owner = {
+		create_leader = {
+			class = admiral
+			species = event_target:phanon_operative_species
+			name = "Phanon Operative Type A"
+			skill = 10
+			immortal = yes
+			leader_age_min = 1000
+			leader_age_max = 100000
+			traits = {
+				trait = leader_trait_acot_phanon_admiral
+				trait = leader_trait_admiral_cyborg
+				trait = leader_trait_admiral_psionic
+				trait = leader_trait_admiral_erudite
+			}
+			event_leader = yes			# prevents this leader from leading factions and winning elections
+			effect = {
+				random_list = {
+					5 = {
+						set_name = "A11-C"
+					}
+					5 = {
+						set_name = "A35-C"
+					}
+					5 = {
+						set_name = "A24-A"
+					}
+					5 = {
+						set_name = "A07-B"
+					}
+					5 = {
+						set_name = "A65-A"
+					}
+					5 = {
+						set_name = "A28-B"
+					}
+					5 = {
+						set_name = "A41-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+					5 = {
+						set_name = "A62-A"
+					}
+					5 = {
+						set_name = "A67-C"
+					}
+					5 = {
+						set_name = "A42-B"
+					}
+					5 = {
+						set_name = "A91-B"
+					}
+					5 = {
+						set_name = "A85-C"
+					}
+					5 = {
+						set_name = "A53-C"
+					}
+					5 = {
+						set_name = "A10-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+				}
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:phanon_protecc_base_country
+			create_ship = {
+				name = random
+				design = "NAME_ACOT_ANNIHILATOR"
+				graphical_culture = "acot_pmc"
+			}
+			assign_leader = last_created_leader
+			while = {
+				count = 8
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DEVASTATOR"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			while = {
+				count = 12
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_DESTROYER"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			while = {
+				count = 15
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_STARFIGHTERS"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			set_formation_scale = 2
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 275
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 15
+			}
+		}
+		settings = {
+			is_boss = no
+			garrison = yes
+		}
+	}
+}
+
+create_phanon_vault_raid_protecc_fleet = {
+	event_target:phanon_protecc_base_country = {
+		create_leader = {
+			class = admiral
+			species = event_target:phanon_operative_species
+			name = "Phanon Operative Type A"
+			skill = 10
+			immortal = yes
+			leader_age_min = 1000
+			leader_age_max = 100000
+			traits = {
+				trait = leader_trait_acot_phanon_admiral
+				trait = leader_trait_admiral_cyborg
+				trait = leader_trait_admiral_psionic
+				trait = leader_trait_admiral_erudite
+			}
+			event_leader = yes			# prevents this leader from leading factions and winning elections
+			effect = {
+				random_list = {
+					5 = {
+						set_name = "A11-C"
+					}
+					5 = {
+						set_name = "A35-C"
+					}
+					5 = {
+						set_name = "A24-A"
+					}
+					5 = {
+						set_name = "A07-B"
+					}
+					5 = {
+						set_name = "A65-A"
+					}
+					5 = {
+						set_name = "A28-B"
+					}
+					5 = {
+						set_name = "A41-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+					5 = {
+						set_name = "A62-A"
+					}
+					5 = {
+						set_name = "A67-C"
+					}
+					5 = {
+						set_name = "A42-B"
+					}
+					5 = {
+						set_name = "A91-B"
+					}
+					5 = {
+						set_name = "A85-C"
+					}
+					5 = {
+						set_name = "A53-C"
+					}
+					5 = {
+						set_name = "A10-B"
+					}
+					5 = {
+						set_name = "A17-A"
+					}
+				}
+			}
+		}
+	}
+	create_fleet = {
+		name = "Phanon Vault Defenders"
+		effect = {
+			set_owner = event_target:phanon_protecc_base_country
+			while = {
+				count = 15
+				create_ship = {
+					name = random
+					design = "NAME_ACOT_STARFIGHTERS"
+					graphical_culture = "acot_pmc"
+				}
+			}
+			assign_leader = last_created_leader
+			set_formation_scale = 2
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 275
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 15
+			}
+		}
+		settings = {
+			is_boss = no
+			garrison = yes
+		}
+	}
+}
+
+create_vault_defense_drones = {
+	if = {
+		limit = {
+			NOT = {
+				exists = event_target:phanon_protecc_base_country
+			}
+		}
+		create_protecc_country = yes
+	}
+	event_target:aot_bootleg_phanon_vault = {
+		create_phanon_vault_raid_protecc_fleet = yes
+	}
+}
+
+#Move the spawned fleet to system sun if spawned too far outside.
+move_protecc_fleet_to_system_star = {
+	solar_system = {
+		system_star = {
+			save_event_target_as = this_system_star
+		}
+		every_fleet_in_system = {
+			limit = {
+				is_owned_by = event_target:phanon_protecc_base_country
+			}
+			auto_move_to_planet = {
+				target = event_target:this_system_star
+				clear_auto_move_on_arrival = yes
+			}
+		}
+	}
+}
+
+# Phanon Pylon blasts system to bits
+phanon_destroy_solar_system = {
+	solar_system = {
+		set_star_class = sc_phanon_pylon
+	}
+	every_system_planet = {
+		limit = {
+			is_star = yes
+		}
+		save_event_target_as = last_created_phanon_pylon
+		create_ambient_object = {
+			type = "star_explosion"
+			play_animation_once = yes
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		change_pc = pc_phanon_pylon_star
+		remove_modifier = giga_o_star_modifier
+		clear_planet_modifiers = yes
+	}
+	every_system_planet = {
+		limit = {
+			is_star = no
+		}
+		remove_planet = yes
+	}
+	set_asteroid_belt = {
+		radius = 0
+	}
+	every_system_planet = {
+		clear_deposits = yes
+		clear_planet_modifiers = yes
+		prevent_anomaly = yes
+	}
+	every_system_planet = {
+		limit = {
+			is_asteroid = yes
+		}
+		clear_deposits = yes
+	}
+	every_system_planet = {
+		limit = {
+			exists = orbital_station
+		}
+		orbital_station = {
+			dismantle = yes
+		}
+	}
+	event_target:last_created_phanon_pylon = {
+		create_ambient_object = {
+			type = "phanon_dimensional_rift_portal"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = phanon_dimensional_rift_system_effect
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+#######################
+# PHANON INFRASTRUCTURE
+#######################
+spawn_inner_phanon_mega_turrets = {
+	spawn_megastructure = {
+		name = "Mega Turret 1"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 0
+		orbit_distance = @inner_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 2"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 30
+		orbit_distance = @inner_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 3"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 60
+		orbit_distance = @inner_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 4"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 120
+		orbit_distance = @inner_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 5"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 150
+		orbit_distance = @inner_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 6"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 180
+		orbit_distance = @inner_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 7"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 240
+		orbit_distance = @inner_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 8"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 270
+		orbit_distance = @inner_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 9"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 300
+		orbit_distance = @inner_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+}
+
+spawn_outer_phanon_mega_turrets = {
+	spawn_megastructure = {
+		name = "Mega Turret 1"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 0
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 2"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 15
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 3"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 30
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 4"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 45
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 5"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 60
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 6"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 75
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 7"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 90
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 8"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 105
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 9"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 120
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 10"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 135
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 11"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 150
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 12"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 165
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 13"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 180
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 14"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 195
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 15"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 210
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 16"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 225
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 17"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 240
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 18"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 255
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 19"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 270
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 20"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 285
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 21"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 300
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 22"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 315
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 23"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 330
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+	spawn_megastructure = {
+		name = "Mega Turret 24"
+		type = "phanon_megaturret_intermediate_1"
+		orbit_angle = 345
+		orbit_distance = @outer_mega_cannon_distance
+		owner = from
+		planet = star
+	}
+}
+
+spawn_functional_megaturret = {
+	# Spawn them big boi cannons
+	create_fleet = {
+		name = "PHANON MEGATURRET"
+		settings = {
+			spawn_debris = no
+		}
+		effect = {
+			set_owner = root
+			create_ship = {
+				name = "PHANON MEGATURRET"
+				random_existing_design = phanon_megaturret
+				effect = {
+				}
+			}
+			set_formation_scale = 2
+			set_location = {
+				target = fromfrom
+				distance = 0
+				angle = 90
+				direction = out_system
+			}
+		}
+	}
+}
+
+spawn_great_wall_sigma_habitats = {
+	system_star = {
+		save_event_target_as = this_system_star
+	}
+	spawn_planet = {
+		class = pc_sigma_deepspace_habitat
+		location = fromfrom
+		has_ring = no
+		orbit_distance_offset = @sigma_habitat_distance
+		orbit_angle_offset = 0
+		size = @sigma_habitat_size
+		init_effect = {
+			save_event_target_as = last_spawned_sigma_habitat
+			set_name = "Sigma Habitat 1"
+			change_pc = pc_sigma_deepspace_habitat
+			add_modifier = {
+				modifier = stellarite_habitat_mod
+				days = -1
+			}
+			set_planet_entity = {
+				entity = "sigma_habitat_phase_03_entity"
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = FROM
+			}
+			set_all_comms_surveyed = yes
+			clear_blockers = yes
+			trigger_megastructure_icon = yes
+			set_planet_flag = advanced_ascended_habitat
+			set_planet_flag = advanced_ascended_habitat_2
+			set_planet_flag = retrofitted_ae_habitat
+			set_planet_flag = retrofitted_sigma_habitat
+			set_planet_flag = is_base_dm_habitat
+		}
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 0
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 120
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 240
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_planet = {
+		class = pc_sigma_deepspace_habitat
+		location = fromfrom
+		has_ring = no
+		orbit_distance_offset = @sigma_habitat_distance
+		orbit_angle_offset = 120
+		size = @sigma_habitat_size
+		init_effect = {
+			save_event_target_as = last_spawned_sigma_habitat
+			set_name = "Sigma Habitat 2"
+			change_pc = pc_sigma_deepspace_habitat
+			add_modifier = {
+				modifier = stellarite_habitat_mod
+				days = -1
+			}
+			set_planet_entity = {
+				entity = "sigma_habitat_phase_03_entity"
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = FROM
+			}
+			set_all_comms_surveyed = yes
+			clear_blockers = yes
+			trigger_megastructure_icon = yes
+			set_planet_flag = advanced_ascended_habitat
+			set_planet_flag = advanced_ascended_habitat_2
+			set_planet_flag = retrofitted_ae_habitat
+			set_planet_flag = retrofitted_sigma_habitat
+			set_planet_flag = is_base_dm_habitat
+		}
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 0
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 120
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 240
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_planet = {
+		class = pc_sigma_deepspace_habitat
+		location = fromfrom
+		has_ring = no
+		orbit_distance_offset = @sigma_habitat_distance
+		orbit_angle_offset = 240
+		size = @sigma_habitat_size
+		init_effect = {
+			save_event_target_as = last_spawned_sigma_habitat
+			set_name = "Sigma Habitat 3"
+			change_pc = pc_sigma_deepspace_habitat
+			add_modifier = {
+				modifier = stellarite_habitat_mod
+				days = -1
+			}
+			set_planet_entity = {
+				entity = "sigma_habitat_phase_03_entity"
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = FROM
+			}
+			set_all_comms_surveyed = yes
+			clear_blockers = yes
+			trigger_megastructure_icon = yes
+			set_planet_flag = advanced_ascended_habitat
+			set_planet_flag = advanced_ascended_habitat_2
+			set_planet_flag = retrofitted_ae_habitat
+			set_planet_flag = retrofitted_sigma_habitat
+			set_planet_flag = is_base_dm_habitat
+		}
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 0
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 120
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+	spawn_megastructure = {
+		type = "aot_macripp_dark_matter_obelisk_core_se"
+		orbit_angle = 240
+		orbit_distance = @enigmalith_orbit_distance
+		owner = from
+		planet = event_target:last_spawned_sigma_habitat
+	}
+}
+
+######################### PHANON VAULT EFFECT ###########################################
+### CAN CHECK LIST AT TEST EVENT
+#########################################################################################
+phanon_type_a_tech_gift = {
+	if = {
+		limit = {
+			NAND = {
+				has_tech_option = tech_disruptor_pe
+				has_tech_option = tech_energy_core_pe
+				has_tech_option = tech_energy_lance_pe
+				has_tech_option = tech_fighter_core_pe
+				has_tech_option = tech_laser_pe
+				has_tech_option = tech_phanon_attack_dog
+				has_tech_option = tech_plasma_pe
+				has_tech_option = tech_point_defense_pe
+				has_tech_option = tech_strike_craft_bomber_pe
+				has_tech_option = tech_strike_craft_fighter_pe
+				has_tech_option = tech_strike_craft_gunship_pe
+				has_tech_option = tech_super_detablizer_pe
+				has_tech_option = tech_phanon_stellar_converter
+				has_tech_option = tech_civil_phanon_application
+			}
+		}
+		add_research_option = tech_disruptor_pe
+		add_research_option = tech_energy_core_pe
+		add_research_option = tech_fighter_core_pe
+		add_research_option = tech_laser_pe
+		add_research_option = tech_phanon_attack_dog
+		add_research_option = tech_plasma_pe
+		add_research_option = tech_point_defense_pe
+		add_research_option = tech_strike_craft_bomber_pe
+		add_research_option = tech_strike_craft_fighter_pe
+		add_research_option = tech_strike_craft_gunship_pe
+		add_research_option = tech_super_detablizer_pe
+		add_research_option = tech_phanon_stellar_converter
+		add_research_option = tech_civil_phanon_application
+	}
+}
+
+phanon_type_b_tech_gift = {
+	if = {
+		limit = {
+			NAND = {
+				has_tech_option = tech_arc_emitter_pe
+				has_tech_option = tech_autocannon_pe
+				has_tech_option = tech_barrage_missile_pe
+				has_tech_option = tech_dakka_autocannon_pe
+				has_tech_option = tech_flak_batteries_pe
+				has_tech_option = tech_kinetic_artillery_pe
+				has_tech_option = tech_kinetic_core_pe
+				has_tech_option = tech_mass_accelerator_pe
+				has_tech_option = tech_mass_driver_pe
+				has_tech_option = tech_missile_core_pe
+				has_tech_option = tech_missile_nuke_pe
+				has_tech_option = tech_missile_pe
+				has_tech_option = tech_phanon_army
+				has_tech_option = tech_xl_missile_pe
+				has_tech_option = tech_energy_lance_pe
+				has_tech_option = tech_phanon_macripp
+			}
+		}
+		add_research_option = tech_arc_emitter_pe
+		add_research_option = tech_autocannon_pe
+		add_research_option = tech_barrage_missile_pe
+		add_research_option = tech_dakka_autocannon_pe
+		add_research_option = tech_flak_batteries_pe
+		add_research_option = tech_kinetic_artillery_pe
+		add_research_option = tech_kinetic_core_pe
+		add_research_option = tech_mass_accelerator_pe
+		add_research_option = tech_mass_driver_pe
+		add_research_option = tech_missile_core_pe
+		add_research_option = tech_missile_nuke_pe
+		add_research_option = tech_missile_pe
+		add_research_option = tech_phanon_army
+		add_research_option = tech_xl_missile_pe
+		add_research_option = tech_energy_lance_pe
+		add_research_option = tech_phanon_macripp
+	}
+}
+
+phanon_type_c_tech_gift = {
+	if = {
+		limit = {
+			NAND = {
+				has_tech_option = tech_darkmatter_afterburners_pe
+				has_tech_option = tech_darkmatter_aura_energy_drainer_pe
+				has_tech_option = tech_darkmatter_hyper_jump_drive_pe
+				has_tech_option = tech_darkmatter_reactive_drone_pe
+				has_tech_option = tech_darkmatter_reactor_booster_pe
+				has_tech_option = tech_pe_thruster
+				has_tech_option = tech_darkmatter_star_charter_pe
+				has_tech_option = tech_enigmatic_drive_pe
+				has_tech_option = tech_sensor_pe
+				has_tech_option = tech_perdition_beam_pe
+				has_tech_option = tech_titan_emitter_pe
+				has_tech_option = tech_titan_accelerator_pe
+			}
+		}
+		add_research_option = tech_darkmatter_afterburners_pe
+		add_research_option = tech_darkmatter_aura_energy_drainer_pe
+		add_research_option = tech_darkmatter_hyper_jump_drive_pe
+		add_research_option = tech_darkmatter_reactive_drone_pe
+		add_research_option = tech_darkmatter_reactor_booster_pe
+		add_research_option = tech_pe_thruster
+		add_research_option = tech_darkmatter_star_charter_pe
+		add_research_option = tech_enigmatic_drive_pe
+		add_research_option = tech_sensor_pe
+		add_research_option = tech_titan_accelerator_pe
+		add_research_option = tech_titan_emitter_pe
+		add_research_option = tech_perdition_beam_pe
+	}
+}
+
+phanon_species_traits_tech_gift_card = {
+	if = {
+		limit = {
+			NOR = {
+				has_tech_option = tech_phanon_genetics
+				has_tech_option = tech_phanon_augmentations
+			}
+		}
+		add_research_option = tech_phanon_genetics
+		add_research_option = tech_phanon_augmentations
+	}
+}
+
+phanon_type_d_tech_gift = {
+	if = {
+		limit = {
+			NAND = {
+				has_tech_option = tech_precursor_phanon_design
+				has_tech_option = tech_pmc_yamato_cannon
+				has_tech_option = tech_pmc_decimator_beam
+				has_tech_option = tech_phanon_operative
+				has_tech_option = tech_phanon_fighter
+				has_tech_option = tech_phanon_cruiser
+				has_tech_option = tech_phanon_bb
+				has_tech_option = tech_phanon_titan
+				has_tech_option = tech_phanon_mothership
+				has_tech_option = tech_phanon_plat_m
+				has_tech_option = tech_phanon_plat_l
+				has_tech_option = tech_phanon_great_wall
+			}
+		}
+		add_research_option = tech_phanon_operative
+		add_research_option = tech_pmc_decimator_beam
+		add_research_option = tech_pmc_yamato_cannon
+		add_research_option = tech_precursor_phanon_design
+		add_research_option = tech_phanon_fighter
+		add_research_option = tech_phanon_cruiser
+		add_research_option = tech_phanon_bb
+		add_research_option = tech_phanon_titan
+		add_research_option = tech_phanon_mothership
+		add_research_option = tech_phanon_plat_m
+		add_research_option = tech_phanon_plat_l
+		add_research_option = tech_phanon_great_wall
+	}
+	random_list = {
+		### IN CASE NO MORE  THINGS TO GET
+		0 = {
+			modifier = {
+				add = 10
+				has_tech_option = tech_precursor_phanon_design
+				has_tech_option = tech_pmc_yamato_cannon
+				has_tech_option = tech_pmc_decimator_beam
+				has_tech_option = tech_phanon_operative
+				has_tech_option = tech_phanon_fighter
+				has_tech_option = tech_phanon_cruiser
+				has_tech_option = tech_phanon_bb
+				has_tech_option = tech_phanon_titan
+				has_tech_option = tech_phanon_mothership
+				has_tech_option = tech_phanon_plat_m
+				has_tech_option = tech_phanon_plat_l
+				has_tech_option = tech_phanon_great_wall
+			}
+			add_resource = {
+				energy = 500000
+				minerals = 500000
+				alloys = 500000
+				food = 500000
+				consumer_goods = 500000
+				unity = 500000
+				society_research = 500000
+				engineering_research = 500000
+				physics_research = 500000
+			}
+			IF = {
+				limit = {
+					has_technology = tech_dark_matter_power_core
+				}
+				add_resource = {
+					sr_dark_matter = 50000
+					acot_sr_dark_energy = 50000
+				}
+			}
+			IF = {
+				limit = {
+					has_technology = tech_stellarite_reactor
+				}
+				add_resource = {
+					acot_sr_stellarite = 50000
+				}
+			}
+			IF = {
+				limit = {
+					has_technology = tech_dark_matter_power_core_pe
+				}
+				add_resource = {
+					aot_sr_runic_power = 50000
+				}
+			}
+			IF = {
+				limit = {
+					has_technology = tech_lightmatter_reactor
+				}
+				add_resource = {
+					acot_sr_light_matter = 5000
+				}
+			}
+		}
+	}
+}

@@ -1,7 +1,10 @@
 @build_block_radius_enigmatic = 200
 @enigmatic_fortress_platform_max_hp = 1000000
-@enigmatic_fortress_platform_armor_add = 1000000
-@enigmatic_fortress_platform_shield_add = 1000000
+@enigmatic_fortress_platform_armor_add = 2000000
+@enigmatic_fortress_platform_shield_add = 2000000
+@megaturret_max_hp = 50000000
+@megaturret_armor_add = 50000000
+@megaturret_shield_add = 50000000
 enigmatic_fortress_platform = {
 	max_speed = 2
 	rotation_speed = 2
@@ -19,8 +22,8 @@ enigmatic_fortress_platform = {
 	}
 	ship_modifier = {
 		ship_weapon_range_mult = 2
-		ship_fire_rate_mult = 5
-		ship_weapon_damage = 5
+		ship_fire_rate_mult = 1
+		ship_weapon_damage = 1
 	}
 	combat_size_multiplier = 10
 	size_multiplier = 12
@@ -98,8 +101,8 @@ fe_enigmatic_fortress_platform = {
 	}
 	ship_modifier = {
 		ship_weapon_range_mult = 2
-		ship_fire_rate_mult = 5
-		ship_weapon_damage = 5
+		ship_fire_rate_mult = 1
+		ship_weapon_damage = 1
 	}
 	combat_size_multiplier = 8
 	size_multiplier = 12
@@ -146,12 +149,85 @@ fe_enigmatic_fortress_platform = {
 	}
 	class = shipclass_military_station
 	possible_country = {
-		is_country_type = fallen_empire
-		is_country_type = awakened_fallen_empire
+		is_fallen_empire = yes
 	}
 	ship_class_icon_frame = 28
 	construction_type = starbase_defenses
 	required_component_set = "power_core"
 	required_component_set = "sensor_components"
 	required_component_set = "combat_computers"
+}
+
+# Phanon Mega Turret
+phanon_megaturret = {
+	max_speed = 0
+	rotation_speed = 1
+	acceleration = 1
+	max_hitpoints = @megaturret_max_hp
+	modifier = {
+		ship_evasion_mult = -1
+		ship_hull_regen_add_perc = 0.35
+		ship_armor_regen_add_perc = 0.25
+		ship_shield_regen_add_static = 0.25
+		ships_upkeep_mult = -0.25
+		ship_armor_add = @megaturret_armor_add
+		ship_shield_add = @megaturret_shield_add
+		ship_piracy_suppression_add = 800
+		ship_armor_penetration_mult = -1
+		ship_shield_penetration_mult = -1
+	}
+	ship_modifier = {
+		ship_weapon_range_mult = 5
+		ship_fire_rate_mult = 2
+		ship_weapon_damage = 2
+	}
+	section_slots = {
+		"core" = {
+			locator = "part1"
+		}
+		"large" = {
+			locator = "part1"
+		}
+	}
+	size_multiplier = 15
+	fleet_slot_size = 15
+	combat_size_multiplier = 8
+	is_designable = yes
+	components_add_to_cost = no
+	uses_name_prefix = no
+	takes_name_from_ship_design = yes
+	num_target_locators = 0
+	is_space_station = yes
+	base_buildtime = 1080
+	auto_upgrade = no
+	can_disable = yes
+	flip_control_on_disable = yes
+	can_be_inspected = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	class = shipclass_military_station
+	ship_class_icon_frame = 26
+	icon = ship_size_military_station
+	construction_type = starbase_defenses
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	potential_construction = {
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 2000
+		}
+	}
 }

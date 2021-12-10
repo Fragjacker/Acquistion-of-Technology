@@ -101,3 +101,78 @@ on_leader_level_up = {
 		aot_events.7
 	}
 }
+
+# This = owner of ship 1 (destroyed)
+# From = owner of ship 2 (combatant)
+# FromFrom = ship 1
+# FromFromFrom = ship 2
+on_ship_destroyed_victim = {
+	events = {
+		aot_phanon_events.9
+	}
+}
+
+# A country has increased the level of a tech, use last_increased_tech trigger to check tech and level.
+# This = Country
+on_tech_increased = {
+	events = {
+		aot_phanon_events.21
+	}
+}
+
+# Planet has taken damage from orbital bombardment - Damage is applied daily
+# This = Planet
+# From = Bombarder
+on_planet_bombarded = {
+	events = {
+		aot_phanon_digitizer_events.1
+	}
+}
+
+# A Megastructure has been built
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+# FromFromFrom = Fleet
+on_megastructure_built = {
+	events = {
+		aot_phanon_events.1000
+		aot_phanon_events.2000
+		aot_phanon_events.3000
+	}
+}
+
+# A Megastructure has begun to be upgraded
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+on_megastructure_upgrade_begin = {
+	events = {
+		aot_phanon_events.1001
+		aot_phanon_events.2001
+		aot_phanon_events.3001
+	}
+}
+
+# A Megastructure has been upgraded
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+on_megastructure_upgraded = {
+	events = {
+		aot_phanon_events.1003
+		aot_phanon_events.1004
+		aot_phanon_events.2003
+		aot_phanon_events.2004
+		aot_phanon_events.3003
+		aot_phanon_events.3004
+	}
+}
+
+# a new leader is generated for an empire, to be available for recruitment
+# scope: country, from: leader
+on_leader_spawned = {
+	events = {
+		aot_events.10 # New Leaders Get Phanon Trait
+	}
+}

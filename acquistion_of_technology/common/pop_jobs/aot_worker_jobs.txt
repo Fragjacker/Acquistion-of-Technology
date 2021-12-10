@@ -306,3 +306,106 @@ stellarite_clerk = {
 		}
 	}
 }
+
+phanon_clerk = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_phanon_commercial_megaplex
+	clothes_texture_index = 2
+	icon = stellarite_clerk
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_worker_job
+	planet_modifier = {
+		planet_amenities_add = 50
+		trade_value_add = 50
+	}
+	triggered_planet_modifier = {
+		potential = {
+			OR = {
+				has_trait = trait_robot_domestic_protocols
+				has_trait = trait_charismatic
+			}
+		}
+		modifier = {
+			planet_amenities_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_trait = trait_repugnant
+		}
+		modifier = {
+			planet_amenities_add = -4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_trait = trait_thrifty
+		}
+		modifier = {
+			trade_value_add = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_trait = trait_nuumismatic_administration
+		}
+		modifier = {
+			trade_value_add = 3
+		}
+	}
+	weight = {
+		weight = @clerk_job_weight
+		modifier = {
+			factor = 0.25
+			is_enslaved = yes
+			can_take_servant_job = no
+			NOR = {
+				has_trait = trait_nuumismatic_administration
+				has_trait = trait_thrifty
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
+			}
+			can_take_servant_job = no
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_trait = trait_thrifty
+				has_trait = trait_nuumismatic_administration
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_trait = trait_robot_domestic_protocols
+				has_trait = trait_charismatic
+			}
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_repugnant
+		}
+		modifier = {
+			factor = 0.5
+			exists = owner
+			owner = {
+				is_fallen_empire = yes
+			}
+		}
+	}
+}

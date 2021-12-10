@@ -11,7 +11,7 @@ tech_precursor_enigmalith = {
 	weight = 10
 	potential = {
 		NOT = {
-			is_country_type = fallen_empire
+			is_fallen_empire = yes
 		}
 	}
 	prerequisites = {
@@ -33,8 +33,6 @@ tech_precursor_enigmalith = {
 				}
 			}
 		}
-	}
-	weight_modifier = {
 		modifier = {
 			factor = 1.25
 			any_owned_megastructure = {
@@ -66,7 +64,7 @@ tech_precursor_enigmalith_ae = {
 	weight = 10
 	potential = {
 		NOT = {
-			is_country_type = fallen_empire
+			is_fallen_empire = yes
 		}
 	}
 	prereqfor_desc = {
@@ -104,7 +102,7 @@ tech_precursor_enigmalith_se = {
 	weight = 10
 	potential = {
 		NOT = {
-			is_country_type = fallen_empire
+			is_fallen_empire = yes
 		}
 	}
 	prereqfor_desc = {
@@ -130,6 +128,44 @@ tech_precursor_enigmalith_se = {
 	}
 }
 
+tech_precursor_enigmalith_pe = {
+	area = physics
+	cost = @acot_tier10cost3
+	tier = 9
+	is_rare = yes
+	category = {
+		field_manipulation
+	}
+	ai_update_type = military
+	weight = 10
+	potential = {
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			is_fallen_empire = yes
+		}
+	}
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_UNLOCK_ENIGMALITH_PE_TITLE"
+			desc = "TECH_UNLOCK_ENIGMALITH_PE_DESC"
+		}
+	}
+	prerequisites = {
+		tech_precursor_enigmalith_se
+		tech_civil_phanon_application
+	}
+	ai_weight = {
+		factor = 100
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+	}
+}
+
 tech_precursor_enigmalith_oe = {
 	area = physics
 	cost = @acot_tier10cost3
@@ -142,7 +178,7 @@ tech_precursor_enigmalith_oe = {
 	weight = 10
 	potential = {
 		NOT = {
-			is_country_type = fallen_empire
+			is_fallen_empire = yes
 		}
 	}
 	prereqfor_desc = {
@@ -163,6 +199,153 @@ tech_precursor_enigmalith_oe = {
 			research_leader = {
 				area = physics
 				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+	}
+}
+
+tech_phanon_dimensional_mirror = {
+	cost = @acot_tier10cost3
+	area = engineering
+	category = {
+		voidcraft
+	}
+	tier = 10
+	prerequisites = {
+	}
+	weight = 0
+	is_rare = yes
+	potential = {
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			is_fallen_empire = yes
+		}
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_PHANON_DIMENSIONAL_MIRROR_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_PHANON_DIMENSIONAL_MIRROR_CONSTRUCTION_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 100		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+tech_phanon_stellar_converter = {
+	cost = @acot_tier10cost3
+	area = engineering
+	category = {
+		voidcraft
+	}
+	tier = 10
+	prerequisites = {
+	}
+	weight = 0
+	is_rare = yes
+	potential = {
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			is_fallen_empire = yes
+		}
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_PHANON_STELLAR_CONVERTER_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_PHANON_STELLAR_CONVERTER_CONSTRUCTION_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 100		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+tech_phanon_macripp = {
+	cost = @acot_tier10cost3
+	area = engineering
+	category = {
+		voidcraft
+	}
+	tier = 10
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	weight = 0
+	is_rare = yes
+	potential = {
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			is_fallen_empire = yes
+		}
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_PHANON_MACRIPP_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_PHANON_MACRIPP_CONSTRUCTION_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 100		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+tech_phanon_great_wall = {
+	cost = @acot_tier10cost3
+	area = engineering
+	category = {
+		voidcraft
+	}
+	tier = 10
+	prerequisites = {
+		tech_phanon_stellar_converter
+		tech_phanon_macripp
+	}
+	weight = 0
+	is_rare = yes
+	potential = {
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			is_fallen_empire = yes
+		}
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_PHANON_GREAT_WALL_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_PHANON_GREAT_WALL_CONSTRUCTION_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 100		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
 			}
 		}
 	}

@@ -1,13 +1,10 @@
-
 # All leaders will have a common trait-point value set in defines, which they use to grab traits
-
 # leader_trait = yes - this tags the trait as a leader-trait and not a species-trait
 # initial = no - if set to no, this trait can not be granted to leaders when they are generated
 # leader_class = { admiral scientist }  -- OR  - if not set, it can be given to all leader-types except Rulers
 # requires_traits = { trait_psionic } -- AND - leader-trait can only be randomly given on generation if the leaders species has this trait
 # requires_governments = { despotic_hegemony ai_overlordship } -- OR - leader-trait can only be randomly given on generation if the Empire has this type of government form
 # prerequisites = { tech_psionic_theory } - AND - leader-trait can only be given if the technology specified has been researched by the Empire
-
 ##################
 # General Traits #
 ##################
@@ -16,8 +13,168 @@ leader_trait_cell_activated = {
 	modification = no
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_cell_activated.dds"
 	immortal_leaders = yes
-	leader_trait = { general }
-	leader_class = { general }
+	leader_trait = {
+		general
+	}
+	leader_class = {
+		general
+	}
 	initial = no
 	randomized = no
+}
+
+##################
+# Ruler Traits #
+##################
+leader_trait_phanon_big_brain = {
+	cost = 1
+	modification = no
+	icon = "gfx/interface/icons/traits/leader_traits/trait_leader_phanon_big_brain.dds"
+	immortal_leaders = yes
+	modifier = {
+		all_technology_research_speed = 2
+		science_ship_survey_speed = 2
+		ship_archeaological_site_clues_add = 4
+		ship_anomaly_generation_chance_mult = 1
+	}
+	leader_trait = {
+		scientist
+	}
+	leader_class = {
+		scientist
+	}
+}
+
+leader_trait_phanon_big_leader = {
+	cost = 1
+	modification = no
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_phanon_big_leader.dds"
+	immortal_leaders = yes
+	modifier = {
+		deposit_blockers_cost_mult = -0.9
+		planet_clear_blocker_speed_mult = 1
+		planet_jobs_energy_produces_mult = 0.5
+		planet_jobs_minerals_produces_mult = 0.1
+		planet_stability_add = 50
+		trade_value_mult = 0.25
+		planet_jobs_engineering_research_produces_mult = 0.5
+		planet_jobs_physics_research_produces_mult = 0.5
+		planet_jobs_society_research_produces_mult = 0.5
+	}
+	leader_trait = {
+		governor
+	}
+	leader_class = {
+		governor
+	}
+}
+
+leader_trait_phanon_six_stars_general = {
+	cost = 1
+	modification = no
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_phanon_six_stars_general.dds"
+	immortal_leaders = yes
+	modifier = {
+		army_disengage_chance_mult = 0.75
+		army_collateral_damage_mult = -0.66
+		army_damage_mult = 0.5
+		army_morale = 1
+		armies_upkeep_mult = -0.6
+	}
+	leader_trait = {
+		general
+	}
+	leader_class = {
+		general
+	}
+}
+
+leader_trait_ruler_phanon_mans = {
+	cost = 0
+	modification = no
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_phanon_big_leader.dds"
+	modifier = {
+		deposit_blockers_cost_mult = -0.9
+		planet_clear_blocker_speed_mult = 1
+		planet_jobs_energy_produces_mult = 0.5
+		planet_jobs_minerals_produces_mult = 0.1
+		planet_stability_add = 50
+		trade_value_mult = 0.25
+		planet_jobs_engineering_research_produces_mult = 0.5
+		planet_jobs_physics_research_produces_mult = 0.5
+		planet_jobs_society_research_produces_mult = 0.5
+	}
+	leader_trait = {
+		ruler
+	}
+	leader_class = {
+		ruler
+	}
+	initial = no
+	randomized = no
+}
+
+trait_phanon_people_mans = {
+	cost = -4
+	potential_crossbreeding_chance = 0
+	initial = no
+	randomized = no
+	icon = "gfx/interface/icons/traits/leader_traits/trait_leader_phanon_big_brain.dds"
+	improves_leaders = yes
+	prerequisites = {
+		tech_phanon_genetics
+	}
+	allowed_archetypes = {
+		BIOLOGICAL
+		LITHOID
+	}
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.5
+		planet_jobs_minerals_produces_mult = 0.5
+		planet_jobs_alloys_produces_mult = 0.5
+		planet_jobs_consumer_goods_produces_mult = 0.5
+		planet_jobs_exotic_gases_produces_mult = 1
+		planet_jobs_rare_crystals_produces_mult = 1
+		planet_jobs_volatile_motes_produces_mult = 1
+		planet_jobs_sr_living_metal_produces_mult = 1
+		planet_jobs_sr_zro_produces_mult = 1
+		planet_jobs_acot_sr_stellarite_produces_mult = 0.2
+		planet_jobs_aot_sr_runic_power_produces_mult = 0.2
+		trade_value_mult = 0.25
+	}
+	slave_cost = {
+		energy = 500
+	}
+}
+
+trait_phanon_suporbot = {
+	cost = -4
+	initial = no
+	randomized = no
+	icon = "gfx/interface/icons/traits/leader_traits/trait_leader_phanon_big_brain.dds"
+	improves_leaders = yes
+	prerequisites = {
+		tech_phanon_augmentations
+	}
+	allowed_archetypes = {
+		ROBOT
+		MACHINE
+	}
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.5
+		planet_jobs_minerals_produces_mult = 0.5
+		planet_jobs_alloys_produces_mult = 0.5
+		planet_jobs_consumer_goods_produces_mult = 0.5
+		planet_jobs_exotic_gases_produces_mult = 1
+		planet_jobs_rare_crystals_produces_mult = 1
+		planet_jobs_volatile_motes_produces_mult = 1
+		planet_jobs_sr_living_metal_produces_mult = 1
+		planet_jobs_sr_zro_produces_mult = 1
+		planet_jobs_acot_sr_stellarite_produces_mult = 0.2
+		planet_jobs_aot_sr_runic_power_produces_mult = 0.2
+		trade_value_mult = 0.25
+	}
+	slave_cost = {
+		energy = 500
+	}
 }

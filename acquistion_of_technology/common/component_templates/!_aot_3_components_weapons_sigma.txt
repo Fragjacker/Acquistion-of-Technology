@@ -379,3 +379,43 @@ utility_component_template = {
 		}
 	}
 }
+
+utility_component_template = {
+	key = "EMISSARY_SIGMA_COMPUTER"
+	size = small
+	icon = "GFX_ship_part_precursor_colony_sigma_comp"
+	icon_frame = 1
+	power = -400
+	size_restriction = {
+		precursor_colonizer
+	}
+	#fe_goliath
+	component_set = "combat_computers"
+	ship_behavior = "colossus"
+	prerequisites = {
+		"tech_precursor_colonizer_sigma"
+	}
+	upgrades_to = "EMISSARY_PHANON_COMPUTER"
+	resources = {
+		category = ship_components
+		cost = {
+			acot_sr_stellarite = 10
+		}
+	}
+	ship_modifier = {
+	}
+	ai_weight = {
+		weight = 20
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 2
+			}
+		}
+	}
+}

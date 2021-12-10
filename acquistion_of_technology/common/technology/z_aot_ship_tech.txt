@@ -107,7 +107,7 @@ tech_alpha_juggernaut = {
 		host_has_dlc = "Federations"
 		has_technology = tech_dark_matter_power_core_ae
 		NOT = {
-			is_country_type = fallen_empire 			
+			is_country_type = fallen_empire
 		}
 	}
 	modifier = {
@@ -195,7 +195,7 @@ tech_sigma_juggernaut = {
 		host_has_dlc = "Federations"
 		has_technology = tech_stellarite_reactor
 		NOT = {
-			is_country_type = fallen_empire 			
+			is_fallen_empire = yes
 		}
 	}
 	modifier = {
@@ -272,7 +272,7 @@ tech_phanon_juggernaut = {
 	category = {
 		voidcraft
 	}
-	tier = 10
+	tier = 9
 	prerequisites = {
 		"tech_precursor_phanon_design"
 		"tech_sigma_juggernaut"
@@ -283,7 +283,7 @@ tech_phanon_juggernaut = {
 		host_has_dlc = "Federations"
 		has_technology = tech_precursor_phanon_design
 		NOT = {
-			is_country_type = fallen_empire 			
+			is_fallen_empire = yes
 		}
 	}
 	modifier = {
@@ -371,7 +371,7 @@ tech_omega_juggernaut = {
 		host_has_dlc = "Federations"
 		has_technology = tech_lightmatter_reactor
 		NOT = {
-			is_country_type = fallen_empire 			
+			is_fallen_empire = yes
 		}
 	}
 	modifier = {
@@ -492,7 +492,7 @@ tech_gatekeepers_alpha = {
 	potential = {
 		has_technology = tech_dark_matter_power_core_ae
 		NOT = {
-			is_country_type = fallen_empire 			
+			is_fallen_empire = yes
 		}
 	}
 	# unlocks Juggernaut
@@ -566,7 +566,7 @@ tech_gatekeepers_sigma = {
 	potential = {
 		has_technology = tech_stellarite_reactor
 		NOT = {
-			is_country_type = fallen_empire 			
+			is_fallen_empire = yes
 		}
 	}
 	weight_modifier = {
@@ -629,7 +629,7 @@ tech_gatekeepers_phanon = {
 	category = {
 		voidcraft
 	}
-	tier = 10
+	tier = 9
 	prerequisites = {
 		"tech_precursor_phanon_design"
 		"tech_gatekeepers_sigma"
@@ -639,7 +639,7 @@ tech_gatekeepers_phanon = {
 	potential = {
 		has_technology = tech_precursor_phanon_design
 		NOT = {
-			is_country_type = fallen_empire 			
+			is_fallen_empire = yes
 		}
 	}
 	weight_modifier = {
@@ -712,7 +712,7 @@ tech_gatekeepers_omega = {
 	potential = {
 		has_technology = tech_lightmatter_reactor
 		NOT = {
-			is_country_type = fallen_empire 			
+			is_fallen_empire = yes
 		}
 	}
 	weight_modifier = {
@@ -769,6 +769,55 @@ tech_gatekeepers_omega = {
 	}
 }
 
+tech_precursor_colonizer_phanon = {
+	area = engineering
+	cost = @acot_tier10cost2
+	tier = 9
+	is_rare = yes
+	category = {
+		voidcraft
+	}
+	ai_update_type = military
+	weight = 10
+	prereqfor_desc = {
+		custom = {
+			title = "TECH_UNLOCK_PHANON_COLONIZER_TITLE"
+			desc = "TECH_UNLOCK_PHANON_COLONIZER_DESC"
+		}
+	}
+	potential = {
+		NOT = {
+			is_fallen_empire = yes
+		}
+	}
+	modifier = {
+		shipsize_precursor_colonizer_hull_add = 4000
+	}
+	prerequisites = {
+		tech_precursor_colonizer_sigma
+		tech_precursor_phanon_design
+		tech_dark_matter_power_core_pe
+	}
+	ai_weight = {
+		factor = 5		#weapons are good
+		modifier = {
+			factor = 1.25
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
 # Defense Platforms
 tech_dm_enigmatic_fortress_platform = {
 	cost = @acot_tier6cost3
@@ -802,6 +851,10 @@ tech_dm_enigmatic_fortress_platform = {
 				any_neighbor_country = {
 					is_fallen_empire = yes
 					graphical_culture = fallen_empire_03
+				}
+				#Has the player conquered a fallen xenophile enigmatic fortress?
+				any_owned_ship = {
+					is_ship_size = fe_enigmatic_fortress_platform
 				}
 			}
 		}
@@ -947,7 +1000,7 @@ tech_sigma_enigmatic_fortress_platform = {
 	potential = {
 		has_technology = tech_stellarite_reactor
 		NOT = {
-			is_country_type = fallen_empire 			
+			is_fallen_empire = yes
 		}
 	}
 	modifier = {
@@ -1024,7 +1077,7 @@ tech_phanon_enigmatic_fortress_platform = {
 	potential = {
 		has_technology = tech_precursor_phanon_design
 		NOT = {
-			is_country_type = fallen_empire 			
+			is_fallen_empire = yes
 		}
 	}
 	modifier = {
@@ -1154,6 +1207,74 @@ tech_omega_enigmatic_fortress_platform = {
 			research_leader = {
 				area = engineering
 				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+tech_bombardment_pe = {
+	cost = @acot_tier10cost2
+	area = physics
+	category = {
+		voidcraft
+	}
+	tier = 9
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	weight = @tier5weight3
+	is_rare = yes
+	potential = {
+		has_technology = tech_phanon_stellar_converter
+		NOT = {
+			is_fallen_empire = yes
+		}
+	}
+	weight_modifier = {
+		factor = 0.25
+		modifier = {
+			factor = 1.5
+			OR = {
+				research_leader = {
+					area = physics
+					has_trait = leader_trait_expertise_field_manipulation
+				}
+				research_leader = {
+					area = physics
+					has_trait = leader_trait_curator
+				}
+				research_leader = {
+					area = physics
+					has_trait = leader_trait_maniacal
+				}
+			}
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = leader_trait_expertise_particles
+			}
+		}
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_PHANON_BOMBARDMENT_TITLE"
+			desc = "TECH_UNLOCK_PHANON_BOMBARDMENT_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 200		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = leader_trait_expertise_particles
 			}
 		}
 	}

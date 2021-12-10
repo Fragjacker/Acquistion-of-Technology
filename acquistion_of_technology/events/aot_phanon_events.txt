@@ -1,0 +1,1558 @@
+namespace = aot_phanon_events
+country_event = {
+	id = aot_phanon_events.1
+	title = "aot_phanon_events.1.name"
+	desc = "aot_phanon_events.1.desc"
+	picture = GFX_evt_dimensional_mirror
+	show_sound = event_phanon_discovery
+	trigger = {
+		is_normal_empire = yes
+		has_technology = tech_stellarite_generator_lvl3
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			has_country_flag = offer_phanon_dimensional_mirror_chain
+			has_country_flag = block_phanon_dimensional_mirror_chain
+			has_country_flag = finished_phanon_dimensional_mirror_chain
+			has_event_chain = phanon_dimensional_mirror_chain
+			has_country_flag = attacked_phanon_property
+		}
+	}
+	mean_time_to_happen = {
+		years = 20
+	}
+	option = {
+		allow = {
+			NOT = {
+				has_event_chain = phanon_dimensional_mirror_chain
+			}
+		}
+		name = aot_phanon_events.1.a
+		custom_tooltip = aot_phanon_events.1.a_desc
+		set_country_flag = offer_phanon_dimensional_mirror_chain
+		default_hide_option = yes
+		trigger = {
+			is_ai = no
+		}
+		hidden_effect = {
+			begin_event_chain = {
+				event_chain = phanon_dimensional_mirror_chain
+			}
+			capital_scope = {
+				save_event_target_as = pc_home
+			}
+			enable_special_project = {
+				name = "RESEARCH_PHANON_DIMENSIONAL_MIRROR"
+				location = event_target:pc_home
+				owner = root
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = {
+		name = aot_phanon_dimensional_mirror_postpone
+		custom_tooltip = aot_phanon_dimensional_mirror_postpone_desc
+		trigger = {
+			is_ai = no
+		}
+		set_timed_country_flag = {
+			flag = block_phanon_dimensional_mirror_chain
+			days = 1800
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = {
+		name = aot_dm_production_core_skip
+		custom_tooltip = aot_dm_production_core_skip_desc
+		trigger = {
+			is_ai = no
+		}
+		set_country_flag = block_phanon_dimensional_mirror_chain
+		ai_chance = {
+			factor = 0
+		}
+	}
+	# The AI is too dumb for this, so give the option right away but without any progress.
+	option = {
+		name = aot_phanon_events.1.a
+		custom_tooltip = aot_phanon_events.1.a_desc
+		trigger = {
+			is_ai = yes
+		}
+		random_list = {
+			90 = {
+			}
+			10 = {
+				hidden_effect = {
+					phanon_type_a_tech_gift = yes
+					phanon_type_b_tech_gift = yes
+					phanon_type_c_tech_gift = yes
+					phanon_type_d_tech_gift = yes
+					phanon_species_traits_tech_gift_card = yes
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1000
+		}
+	}
+}
+
+# SUCCESSS, MIRROR MIRROR IN ZE SPACE!
+country_event = {
+	id = aot_phanon_events.2
+	title = aot_phanon_events.2.name
+	desc = aot_phanon_events.2.desc
+	picture = GFX_evt_dimensional_mirror
+	show_sound = phanon_megastructure_upgrade_1
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		end_event_chain = phanon_dimensional_mirror_chain
+		set_country_flag = finished_phanon_dimensional_mirror_chain
+	}
+	### PHANONTASTIC MIRROR
+	option = {
+		name = aot_phanon_events.2.a
+		add_research_option = tech_phanon_dimensional_mirror
+		add_tech_progress = {
+			tech = tech_phanon_dimensional_mirror
+			progress = 0.1
+		}
+	}
+}
+
+# Finished Dimensional Mirror research, now built it Senpai!
+country_event = {
+	id = aot_phanon_events.21
+	title = aot_phanon_events.21.name
+	desc = aot_phanon_events.21.desc
+	picture = GFX_evt_dimensional_mirror
+	show_sound = phanon_megastructure_upgrade_2
+	is_triggered_only = yes
+	trigger = {
+		last_increased_tech = tech_phanon_dimensional_mirror
+	}
+	immediate = {
+	}
+	### PHANONTASTIC MIRROR
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# MIRROR BUILD BUT NEEDS ACTIVATION
+country_event = {
+	id = aot_phanon_events.3
+	title = aot_phanon_events.3.name
+	desc = aot_phanon_events.3.desc
+	picture = GFX_evt_dimensional_mirror
+	show_sound = phanon_megastructure_upgrade_2
+	is_triggered_only = yes
+	location = FROM
+	trigger = {
+		NOR = {
+			has_country_flag = completed_dimensional_mirror
+			has_country_flag = defeated_wave_1
+			has_country_flag = defeated_wave_2
+			has_country_flag = defeated_wave_3
+			has_country_flag = defeated_wave_4
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = completed_dimensional_mirror
+				}
+			}
+			set_country_flag = completed_dimensional_mirror
+		}
+	}
+}
+
+# MIRROR IS FULLY OPERATIONAL
+country_event = {
+	id = aot_phanon_events.4
+	title = aot_phanon_events.4.name
+	location = FROM
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				NOT = {
+					has_country_flag = defeated_wave_2
+				}
+			}
+		}
+		text = aot_phanon_events.4.wave1.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				NOT = {
+					has_country_flag = defeated_wave_3
+				}
+			}
+		}
+		text = aot_phanon_events.4.wave2.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				has_country_flag = defeated_wave_3
+				NOT = {
+					has_country_flag = defeated_wave_4
+				}
+			}
+		}
+		text = aot_phanon_events.4.wave3.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				has_country_flag = defeated_wave_3
+				has_country_flag = defeated_wave_4
+			}
+		}
+		text = aot_phanon_events.4.wave4.desc
+	}
+	picture = GFX_evt_dimensional_mirror
+	show_sound = phanon_megastructure_build_completed
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		name = aot_phanon_events.4.a
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.7
+				days = 5
+				random = 3
+			}
+		}
+	}
+}
+
+# GATE GETS POWERED DOWN
+country_event = {
+	id = aot_phanon_events.5
+	is_triggered_only = yes
+	hide_window = yes
+	location = FROM
+	trigger = {
+	}
+	immediate = {
+		every_megastructure = {
+			limit = {
+				is_megastructure_type = dimensional_mirror_final
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = dimensional_mirror_0
+					owner = root
+					coords_from = prev
+				}
+			}
+			remove_megastructure = this
+		}
+	}
+}
+
+# FAKE MEME MESSAGE SUCCEEDED, SENDING NEW PHANON VAULT.
+country_event = {
+	id = aot_phanon_events.6
+	hide_window = yes
+	is_triggered_only = yes
+	location = FROM
+	trigger = {
+	}
+	immediate = {
+		#Spawn the vault plus some Phanon bois to defend.
+		event_target:dimensional_mirror_obj = {
+			create_phanon_protecc_wave_1 = yes
+			create_phanon_protecc_wave_2 = yes
+			create_phanon_protecc_wave_3 = yes
+			create_phanon_protecc_wave_4 = yes
+			move_protecc_fleet_to_system_star = yes
+			solar_system = {
+				spawn_planet = {
+					name = "V-N1C3V"
+					class = pc_acot_pmc_vault
+					orbit_distance = 25
+					size = 3
+					orbit_angle = 20
+					init_effect = {
+						save_global_event_target_as = aot_bootleg_phanon_vault
+						set_owner = event_target:phanon_protecc_base_country
+						set_controller = event_target:phanon_protecc_base_country
+						add_building = building_phanon_tower
+						add_building = building_phanon_lab
+						add_building = building_phanon_vault
+						add_building = building_phanon_vault
+						add_building = building_phanon_plant
+						add_building = building_phanon_plant
+						add_building = building_phanon_plant
+						while = {
+							count = 5
+							create_pop = {
+								species = event_target:phanon_species
+							}
+						}
+						create_fleet = {
+							effect = {
+								set_owner = event_target:phanon_protecc_base_country
+								create_ship = {
+									name = random
+									design = "NAME_ACOT_STAR_OVERWATCH"
+									graphical_culture = "acot_pmc"
+								}
+								set_location = {
+									target = prev
+									distance = 20
+									angle = 20
+								}
+							}
+							settings = {
+								is_boss = no
+								garrison = yes
+							}
+						}
+					}
+				}
+			}
+			spawn_habitat_cracker_effect = yes
+			remove_megastructure = this
+		}
+	}
+}
+
+# SENDING MESSAGE TO EMEZON
+country_event = {
+	id = aot_phanon_events.7
+	title = aot_phanon_events.7.diplo_title
+	desc = aot_phanon_events.7.diplo.desc
+	location = FROM
+	trigger = {
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	show_sound = event_ai_started
+	picture_event_data = {
+		room = acot_phanon_bridge_hostile_room
+	}
+	immediate = {
+	}
+	after = {
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_country_flag = defeated_wave_1
+			}
+		}
+		name = aot_phanon_events.7.a
+		response_text = aot_phanon_events.7.a.response
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.8
+				days = 10
+				random = 5
+			}
+		}
+	}
+	option = {
+		trigger = {
+			has_country_flag = defeated_wave_1
+			NOT = {
+				has_country_flag = defeated_wave_2
+			}
+		}
+		name = aot_phanon_events.7.b
+		response_text = aot_phanon_events.7.b.response
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.8
+				days = 10
+				random = 5
+			}
+		}
+	}
+	option = {
+		trigger = {
+			has_country_flag = defeated_wave_1
+			has_country_flag = defeated_wave_2
+			NOT = {
+				has_country_flag = defeated_wave_3
+			}
+		}
+		name = aot_phanon_events.7.b
+		response_text = aot_phanon_events.7.c.response
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.8
+				days = 10
+				random = 5
+			}
+		}
+	}
+	option = {
+		trigger = {
+			has_country_flag = defeated_wave_1
+			has_country_flag = defeated_wave_2
+			has_country_flag = defeated_wave_3
+			NOT = {
+				has_country_flag = defeated_wave_4
+			}
+		}
+		name = aot_phanon_events.7.b
+		response_text = aot_phanon_events.7.d.response
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.8
+				days = 10
+				random = 5
+			}
+		}
+	}
+}
+
+# SPAWN ATTACKING P.R.O.T.E.C.C. FLEETS
+country_event = {
+	id = aot_phanon_events.8
+	title = aot_phanon_events.8.name
+	location = FROM
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				NOT = {
+					has_country_flag = defeated_wave_2
+				}
+			}
+		}
+		text = aot_phanon_events.8.wave1.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				NOT = {
+					has_country_flag = defeated_wave_3
+				}
+			}
+		}
+		text = aot_phanon_events.8.wave2.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				has_country_flag = defeated_wave_3
+				NOT = {
+					has_country_flag = defeated_wave_4
+				}
+			}
+		}
+		text = aot_phanon_events.8.wave3.desc
+	}
+	desc = {
+		trigger = {
+			root = {
+				has_country_flag = defeated_wave_1
+				has_country_flag = defeated_wave_2
+				has_country_flag = defeated_wave_3
+				has_country_flag = defeated_wave_4
+			}
+		}
+		text = aot_phanon_events.8.wave4.desc
+	}
+	picture = GFX_evt_dimensional_mirror
+	show_sound = event_phanon_vault_summon
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+		create_protecc_country = yes
+		# SPAWN ENEMIES AT THE GATES
+		switch = {
+			trigger = has_country_flag
+			defeated_wave_3 = {
+				set_country_flag = defeated_wave_4
+				country_event = {
+					id = aot_phanon_events.6
+				}
+			}
+			defeated_wave_2 = {
+				event_target:dimensional_mirror_obj = {
+					create_phanon_protecc_wave_1 = yes
+					create_phanon_protecc_wave_2 = yes
+					create_phanon_protecc_wave_3 = yes
+					move_protecc_fleet_to_system_star = yes
+				}
+				set_country_flag = defeated_wave_3
+				country_event = {
+					id = aot_phanon_events.5
+				}
+			}
+			defeated_wave_1 = {
+				event_target:dimensional_mirror_obj = {
+					create_phanon_protecc_wave_1 = yes
+					create_phanon_protecc_wave_2 = yes
+					move_protecc_fleet_to_system_star = yes
+				}
+				set_country_flag = defeated_wave_2
+				country_event = {
+					id = aot_phanon_events.5
+				}
+			}
+			default = {
+				event_target:dimensional_mirror_obj = {
+					create_phanon_protecc_wave_1 = yes
+					move_protecc_fleet_to_system_star = yes
+				}
+				set_country_flag = defeated_wave_1
+				country_event = {
+					id = aot_phanon_events.5
+				}
+			}
+		}
+	}
+}
+
+# Spawn destroyed megaturrets
+country_event = {
+	id = aot_phanon_events.9
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		fromfrom = {
+			is_ship_size = phanon_megaturret
+		}
+	}
+	immediate = {
+		fromfrom = {
+			save_event_target_as = destroyed_megaturret
+			spawn_habitat_cracker_effect = yes
+			solar_system = {
+				spawn_megastructure = {
+					type = phanon_megaturret_destroyed_0
+					owner = from
+					coords_from = event_target:destroyed_megaturret
+					orbit_angle = 180
+				}
+			}
+		}
+	}
+}
+
+##########################
+# Megastructure Events
+##########################
+# Initial Star Imploder Built
+country_event = {
+	id = aot_phanon_events.1000
+	title = "aot_phanon_events.1000.name"
+	desc = "aot_phanon_events.1000.desc"
+	picture = GFX_evt_unknown_ships
+	show_sound = phanon_megastructure_start_build
+	location = FROMFROM
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = star_imploder_0
+		}
+	}
+	option = {
+		name = "aot_phanon_events.1000.a"
+	}
+}
+
+# Building Star Imploder Notification (HIDDEN)
+country_event = {
+	id = aot_phanon_events.1001
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = star_imploder_1
+		}
+	}
+	immediate = {
+		FROMFROM = {
+			save_event_target_as = star_imploder_system
+		}
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = {
+					is_same_value = ROOT
+				}
+				OR = {
+					has_intel_level = {
+						who = root
+						category = economy
+						level >= 1
+					}
+					has_intel_level = {
+						who = root
+						category = technology
+						level >= 1
+					}
+				}
+			}
+			country_event = {
+				id = aot_phanon_events.1002
+			}
+		}
+	}
+	after = {
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = started_first_stellar_imploder
+				}
+			}
+			set_country_flag = started_first_stellar_imploder
+		}
+		else_if = {
+			limit = {
+				has_country_flag = started_first_stellar_imploder
+			}
+			set_country_flag = started_first_stellar_imploder_2
+		}
+	}
+}
+
+# Building Star Imploder Notification
+country_event = {
+	id = aot_phanon_events.1002
+	title = "aot_phanon_events.1002.name"
+	desc = {
+		text = aot_phanon_events.1002.desc.a
+		trigger = {
+			FROM = {
+				has_country_flag = started_first_stellar_imploder
+				NOT = {
+					has_country_flag = started_first_stellar_imploder_2
+				}
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.1002.desc.b
+		trigger = {
+			FROM = {
+				has_country_flag = started_first_stellar_imploder_2
+			}
+		}
+	}
+	picture = GFX_evt_stellar_imploder_construction
+	show_sound = event_mega_structure_other_empire_build_start
+	location = event_target:star_imploder_system
+	is_triggered_only = yes
+	option = {
+		# has built own Star Imploder
+		trigger = {
+			OR = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = star_imploder_0
+						is_megastructure_type = star_imploder_1
+						is_megastructure_type = star_imploder_2
+						is_megastructure_type = star_imploder_3
+					}
+				}
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+		name = "aot_phanon_events.1002.a"
+	}
+	option = {
+		# has no Star Imploder
+		trigger = {
+			NOT = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = star_imploder_0
+						is_megastructure_type = star_imploder_1
+						is_megastructure_type = star_imploder_2
+						is_megastructure_type = star_imploder_3
+					}
+				}
+			}
+			NOT = {
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+		name = "aot_phanon_events.1002.b"
+	}
+}
+
+# Star Imploder Built
+country_event = {
+	id = aot_phanon_events.1003
+	title = "aot_phanon_events.1003.name"
+	picture = GFX_evt_stellar_imploder_construction
+	show_sound = phanon_megastructure_upgrade_1
+	location = FROMFROM
+	is_triggered_only = yes
+	desc = {
+		trigger = {
+			FROM = {
+				is_megastructure_type = star_imploder_1
+			}
+		}
+		text = aot_phanon_events.1003.a.desc
+	}
+	desc = {
+		trigger = {
+			FROM = {
+				is_megastructure_type = star_imploder_2
+			}
+		}
+		text = aot_phanon_events.1003.b.desc
+	}
+	trigger = {
+		FROM = {
+			OR = {
+				is_megastructure_type = star_imploder_1
+				is_megastructure_type = star_imploder_2
+			}
+		}
+	}
+	option = {
+		name = "aot_phanon_events.1003.a"
+	}
+}
+
+# Star Imploder Completed
+country_event = {
+	id = aot_phanon_events.1004
+	title = "aot_phanon_events.1004.name"
+	desc = {
+		text = aot_phanon_events.1004.desc.a
+		trigger = {
+			NOT = {
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.1004.desc.b
+		trigger = {
+			has_country_flag = finished_stellar_imploder
+		}
+	}
+	picture = GFX_evt_phanon_pylon_supernova
+	show_sound = phanon_megastructure_build_completed
+	location = FROMFROM
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = star_imploder_3
+		}
+		FROMFROM = {
+			NOT = {
+				any_system_megastructure = {
+					is_megastructure_type = star_imploder_2
+				}
+			}
+		}
+	}
+	immediate = {
+		FROMFROM = {
+			save_event_target_as = completed_star_imploder_system
+		}
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = {
+					is_same_value = ROOT
+				}
+				OR = {
+					has_intel_level = {
+						who = root
+						category = economy
+						level >= 1
+					}
+					has_intel_level = {
+						who = root
+						category = technology
+						level >= 1
+					}
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = aot_phanon_events.1005
+				}
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.1006
+				days = 5
+			}
+		}
+	}
+	option = {
+		name = "aot_phanon_events.1004.a"
+	}
+}
+
+# Star Imploder Completed (Others)
+country_event = {
+	id = aot_phanon_events.1005
+	title = "aot_phanon_events.1005.name"
+	desc = {
+		text = aot_phanon_events.1005.desc.a
+		trigger = {
+			NOT = {
+				FROM = {
+					has_country_flag = finished_stellar_imploder
+				}
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.1005.desc.b
+		trigger = {
+			FROM = {
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+	}
+	picture = GFX_evt_phanon_pylon_supernova
+	show_sound = event_mega_structure_other_empire_build_complete
+	location = event_target:completed_star_imploder_system
+	is_triggered_only = yes
+	option = {
+		# has built own Star Imploder
+		trigger = {
+			OR = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = star_imploder_0
+						is_megastructure_type = star_imploder_1
+						is_megastructure_type = star_imploder_2
+						is_megastructure_type = star_imploder_3
+					}
+				}
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+		name = "aot_phanon_events.1005.a"
+	}
+	option = {
+		# has no Star Imploder
+		trigger = {
+			any_owned_megastructure = {
+				NOR = {
+						is_megastructure_type = star_imploder_0
+						is_megastructure_type = star_imploder_1
+						is_megastructure_type = star_imploder_2
+						is_megastructure_type = star_imploder_3
+}
+			}
+			NOT = {
+				has_country_flag = finished_stellar_imploder
+			}
+		}
+		name = "aot_phanon_events.1005.b"
+	}
+}
+
+# Star Imploder Flag Event (HIDDEN)
+country_event = {
+	id = aot_phanon_events.1006
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = finished_stellar_imploder
+	}
+}
+
+#############################################
+# Mac RIPP
+#############################################
+# Initial Mac RIPP Built
+country_event = {
+	id = aot_phanon_events.2000
+	title = "aot_phanon_events.2000.name"
+	desc = "aot_phanon_events.2000.desc"
+	picture = GFX_evt_unknown_ships
+	show_sound = phanon_megastructure_start_build
+	location = FROMFROM
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = macripp_0
+		}
+	}
+	option = {
+		name = "aot_phanon_events.2000.a"
+	}
+}
+
+# Building Mac RIPP Notification (HIDDEN)
+country_event = {
+	id = aot_phanon_events.2001
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = macripp_0
+		}
+	}
+	immediate = {
+		FROMFROM = {
+			save_event_target_as = macripp_system
+		}
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = {
+					is_same_value = ROOT
+				}
+				OR = {
+					has_intel_level = {
+						who = root
+						category = economy
+						level >= 1
+					}
+					has_intel_level = {
+						who = root
+						category = technology
+						level >= 1
+					}
+				}
+			}
+			country_event = {
+				id = aot_phanon_events.2002
+			}
+		}
+	}
+	after = {
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = started_first_macripp
+				}
+			}
+			set_country_flag = started_first_macripp
+		}
+		else_if = {
+			limit = {
+				has_country_flag = started_first_macripp
+			}
+			set_country_flag = started_first_macripp_2
+		}
+	}
+}
+
+# Building Mac RIPP Notification
+country_event = {
+	id = aot_phanon_events.2002
+	title = "aot_phanon_events.2002.name"
+	desc = {
+		text = aot_phanon_events.2002.desc.a
+		trigger = {
+			FROM = {
+				has_country_flag = started_first_macripp
+				NOT = {
+					has_country_flag = started_first_macripp_2
+				}
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.2002.desc.b
+		trigger = {
+			FROM = {
+				has_country_flag = started_first_macripp_2
+			}
+		}
+	}
+	picture = GFX_evt_phanon_macripp_construction
+	show_sound = event_mega_structure_other_empire_build_start
+	location = event_target:macripp_system
+	is_triggered_only = yes
+	option = {
+		# has built own Mac RIPP
+		trigger = {
+			OR = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = macripp_0
+						is_megastructure_type = macripp_1
+						is_megastructure_type = macripp_2
+						is_megastructure_type = macripp_3
+					}
+				}
+				has_country_flag = finished_macripp
+			}
+		}
+		name = "aot_phanon_events.2002.a"
+	}
+	option = {
+		# has no Mac RIPP
+		trigger = {
+			NOT = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = macripp_0
+						is_megastructure_type = macripp_1
+						is_megastructure_type = macripp_2
+						is_megastructure_type = macripp_3
+					}
+				}
+			}
+			NOT = {
+				has_country_flag = finished_macripp
+			}
+		}
+		name = "aot_phanon_events.2002.b"
+	}
+}
+
+# Mac RIPP Built
+country_event = {
+	id = aot_phanon_events.2003
+	title = "aot_phanon_events.2003.name"
+	picture = GFX_evt_phanon_macripp_construction
+	show_sound = phanon_megastructure_upgrade_1
+	location = FROMFROM
+	is_triggered_only = yes
+	desc = {
+		trigger = {
+			FROM = {
+				is_megastructure_type = macripp_1
+			}
+		}
+		text = aot_phanon_events.2003.a.desc
+	}
+	desc = {
+		trigger = {
+			FROM = {
+				is_megastructure_type = macripp_2
+			}
+		}
+		text = aot_phanon_events.2003.b.desc
+	}
+	trigger = {
+		FROM = {
+			OR = {
+				is_megastructure_type = macripp_1
+				is_megastructure_type = macripp_2
+			}
+		}
+	}
+	option = {
+		name = "aot_phanon_events.2003.a"
+	}
+}
+
+# Mac RIPP Completed
+country_event = {
+	id = aot_phanon_events.2004
+	title = "aot_phanon_events.2004.name"
+	desc = {
+		text = aot_phanon_events.2004.desc.a
+		trigger = {
+			NOT = {
+				has_country_flag = finished_macripp
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.2004.desc.b
+		trigger = {
+			has_country_flag = finished_macripp
+		}
+	}
+	picture = GFX_evt_phanon_macripp_construction
+	show_sound = phanon_megastructure_build_completed
+	location = FROMFROM
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = macripp_3
+		}
+		FROMFROM = {
+			NOT = {
+				any_system_megastructure = {
+					is_megastructure_type = macripp_3
+				}
+			}
+		}
+	}
+	immediate = {
+		FROMFROM = {
+			save_event_target_as = completed_macripp_system
+		}
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = {
+					is_same_value = ROOT
+				}
+				OR = {
+					has_intel_level = {
+						who = root
+						category = economy
+						level >= 1
+					}
+					has_intel_level = {
+						who = root
+						category = technology
+						level >= 1
+					}
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = aot_phanon_events.2005
+				}
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.2006
+				days = 5
+			}
+		}
+	}
+	option = {
+		name = "aot_phanon_events.2004.a"
+	}
+}
+
+# Mac RIPP Completed (Others)
+country_event = {
+	id = aot_phanon_events.2005
+	title = "aot_phanon_events.2005.name"
+	desc = {
+		text = aot_phanon_events.2005.desc.a
+		trigger = {
+			NOT = {
+				FROM = {
+					has_country_flag = finished_macripp
+				}
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.2005.desc.b
+		trigger = {
+			FROM = {
+				has_country_flag = finished_macripp
+			}
+		}
+	}
+	picture = GFX_evt_phanon_macripp_construction
+	show_sound = event_mega_structure_other_empire_build_complete
+	location = event_target:completed_macripp_system
+	is_triggered_only = yes
+	option = {
+		# has built own Mac RIPP
+		trigger = {
+			OR = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = macripp_0
+						is_megastructure_type = macripp_1
+						is_megastructure_type = macripp_2
+						is_megastructure_type = macripp_3
+					}
+				}
+				has_country_flag = finished_macripp
+			}
+		}
+		name = "aot_phanon_events.2005.a"
+	}
+	option = {
+		# has no Mac RIPP
+		trigger = {
+			any_owned_megastructure = {
+				NOR = {
+						is_megastructure_type = macripp_0
+						is_megastructure_type = macripp_1
+						is_megastructure_type = macripp_2
+						is_megastructure_type = macripp_3
+}
+			}
+			NOT = {
+				has_country_flag = finished_macripp
+			}
+		}
+		name = "aot_phanon_events.2005.b"
+	}
+}
+
+# Star Imploder Flag Event (HIDDEN)
+country_event = {
+	id = aot_phanon_events.2006
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = finished_macripp
+	}
+}
+
+#############################################
+# Great Wall
+#############################################
+# Initial Great Wall Built
+country_event = {
+	id = aot_phanon_events.3000
+	title = "aot_phanon_events.3000.name"
+	desc = "aot_phanon_events.3000.desc"
+	picture = GFX_evt_unknown_ships
+	show_sound = phanon_megastructure_start_build
+	location = FROMFROM
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = phanon_great_wall_0
+		}
+	}
+	option = {
+		name = "aot_phanon_events.3000.a"
+	}
+}
+
+# Building Great Wall Notification (HIDDEN)
+country_event = {
+	id = aot_phanon_events.3001
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = phanon_great_wall_0
+		}
+	}
+	immediate = {
+		FROMFROM = {
+			save_event_target_as = great_wall_system
+		}
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = {
+					is_same_value = ROOT
+				}
+				OR = {
+					has_intel_level = {
+						who = root
+						category = economy
+						level >= 1
+					}
+					has_intel_level = {
+						who = root
+						category = technology
+						level >= 1
+					}
+				}
+			}
+			country_event = {
+				id = aot_phanon_events.3002
+			}
+		}
+	}
+	after = {
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = started_first_great_wall
+				}
+			}
+			set_country_flag = started_first_great_wall
+		}
+		else_if = {
+			limit = {
+				has_country_flag = started_first_great_wall
+			}
+			set_country_flag = started_first_great_wall_2
+		}
+	}
+}
+
+# Building Great Wall Notification
+country_event = {
+	id = aot_phanon_events.3002
+	title = "aot_phanon_events.3002.name"
+	desc = {
+		text = aot_phanon_events.3002.desc.a
+		trigger = {
+			FROM = {
+				has_country_flag = started_first_great_wall
+				NOT = {
+					has_country_flag = started_first_great_wall_2
+				}
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.3002.desc.b
+		trigger = {
+			FROM = {
+				has_country_flag = started_first_great_wall_2
+			}
+		}
+	}
+	picture = GFX_evt_great_wall_construction
+	show_sound = event_mega_structure_other_empire_build_start
+	location = event_target:great_wall_system
+	is_triggered_only = yes
+	option = {
+		# has built own Great Wall
+		trigger = {
+			OR = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = phanon_great_wall_0
+						is_megastructure_type = phanon_great_wall_1
+						is_megastructure_type = phanon_great_wall_2
+						is_megastructure_type = phanon_great_wall_3
+						is_megastructure_type = phanon_great_wall_4
+					}
+				}
+				has_country_flag = finished_great_wall
+			}
+		}
+		name = "aot_phanon_events.3002.a"
+	}
+	option = {
+		# has no Great Wall
+		trigger = {
+			NOT = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = phanon_great_wall_0
+						is_megastructure_type = phanon_great_wall_1
+						is_megastructure_type = phanon_great_wall_2
+						is_megastructure_type = phanon_great_wall_3
+						is_megastructure_type = phanon_great_wall_4
+					}
+				}
+			}
+			NOT = {
+				has_country_flag = finished_great_wall
+			}
+		}
+		name = "aot_phanon_events.3002.b"
+	}
+}
+
+# Great Wall Built
+country_event = {
+	id = aot_phanon_events.3003
+	title = "aot_phanon_events.3003.name"
+	picture = GFX_evt_great_wall_construction
+	show_sound = phanon_megastructure_upgrade_2
+	location = FROMFROM
+	is_triggered_only = yes
+	desc = {
+		trigger = {
+			FROM = {
+				is_megastructure_type = phanon_great_wall_1
+			}
+		}
+		text = aot_phanon_events.3003.a.desc
+	}
+	desc = {
+		trigger = {
+			FROM = {
+				is_megastructure_type = phanon_great_wall_2
+			}
+		}
+		text = aot_phanon_events.3003.b.desc
+	}
+	desc = {
+		trigger = {
+			FROM = {
+				is_megastructure_type = phanon_great_wall_3
+			}
+		}
+		text = aot_phanon_events.3003.c.desc
+	}
+	trigger = {
+		FROM = {
+			OR = {
+				is_megastructure_type = phanon_great_wall_1
+				is_megastructure_type = phanon_great_wall_2
+				is_megastructure_type = phanon_great_wall_3
+			}
+		}
+	}
+	option = {
+		name = "aot_phanon_events.3003.a"
+	}
+}
+
+# Great Wall Completed
+country_event = {
+	id = aot_phanon_events.3004
+	title = "aot_phanon_events.3004.name"
+	desc = {
+		text = aot_phanon_events.3004.desc.a
+		trigger = {
+			NOT = {
+				has_country_flag = finished_great_wall
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.3004.desc.b
+		trigger = {
+			has_country_flag = finished_great_wall
+		}
+	}
+	picture = GFX_evt_great_wall_construction
+	show_sound = phanon_megastructure_build_completed
+	location = FROMFROM
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = phanon_great_wall_4
+		}
+	}
+	immediate = {
+		FROMFROM = {
+			save_event_target_as = completed_great_wall_system
+		}
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				NOT = {
+					is_same_value = ROOT
+				}
+				OR = {
+					has_intel_level = {
+						who = root
+						category = economy
+						level >= 1
+					}
+					has_intel_level = {
+						who = root
+						category = technology
+						level >= 1
+					}
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = aot_phanon_events.3005
+				}
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = aot_phanon_events.3006
+				days = 5
+			}
+		}
+	}
+	option = {
+		name = "aot_phanon_events.3004.a"
+	}
+}
+
+# Great Wall Completed (Others)
+country_event = {
+	id = aot_phanon_events.3005
+	title = "aot_phanon_events.3005.name"
+	desc = {
+		text = aot_phanon_events.3005.desc.a
+		trigger = {
+			NOT = {
+				FROM = {
+					has_country_flag = finished_great_wall
+				}
+			}
+		}
+	}
+	desc = {
+		text = aot_phanon_events.3005.desc.b
+		trigger = {
+			FROM = {
+				has_country_flag = finished_great_wall
+			}
+		}
+	}
+	picture = GFX_evt_great_wall_construction
+	show_sound = event_mega_structure_other_empire_build_complete
+	location = event_target:completed_great_wall_system
+	is_triggered_only = yes
+	option = {
+		# has built own Great Wall
+		trigger = {
+			OR = {
+				any_owned_megastructure = {
+					OR = {
+						is_megastructure_type = phanon_great_wall_0
+						is_megastructure_type = phanon_great_wall_1
+						is_megastructure_type = phanon_great_wall_2
+						is_megastructure_type = phanon_great_wall_3
+						is_megastructure_type = phanon_great_wall_4
+					}
+				}
+				has_country_flag = finished_great_wall
+			}
+		}
+		name = "aot_phanon_events.3005.a"
+	}
+	option = {
+		# has no Great Wall
+		trigger = {
+			any_owned_megastructure = {
+				NOR = {
+						is_megastructure_type = phanon_great_wall_0
+						is_megastructure_type = phanon_great_wall_1
+						is_megastructure_type = phanon_great_wall_2
+						is_megastructure_type = phanon_great_wall_3
+						is_megastructure_type = phanon_great_wall_4
+}
+			}
+			NOT = {
+				has_country_flag = finished_great_wall
+			}
+		}
+		name = "aot_phanon_events.3005.b"
+	}
+}
+
+# Star Imploder Flag Event (HIDDEN)
+country_event = {
+	id = aot_phanon_events.3006
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = finished_great_wall
+	}
+}

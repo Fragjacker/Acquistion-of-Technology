@@ -1,0 +1,90 @@
+@megaturret_size = 250
+@emissive_value = 25.0
+entity = {
+	name = "phanon_great_wall_megaturret_construction_entity"
+	pdxmesh = "phanon_great_wall_megaturret_construction"
+	default_state = "idle"
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = @emissive_value
+	}
+}
+
+entity = {
+	name = "phanon_great_wall_megaturret_stage_1_entity"
+	pdxmesh = "phanon_great_wall_megaturret_stage_1"
+	default_state = "idle"
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = @emissive_value
+	}
+}
+
+entity = {
+	name = "phanon_great_wall_megaturret_stage_2_construction_entity"
+	pdxmesh = "phanon_great_wall_megaturret_stage_2_construction"
+	default_state = "idle"
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = @emissive_value
+	}
+}
+
+# Megaturret Ship
+
+entity = {
+	name = "phanon_megaturret_frame_entity"
+	pdxmesh = "phanon_great_wall_megaturret_frame"
+	default_state = "idle"
+	game_data = {
+		size = @megaturret_size
+		shader_type = ship
+		emissive_recolor_crunch = @emissive_value
+	}
+}
+
+entity = {
+	name = "phanon_megaturret_entity"
+	pdxmesh = "phanon_great_wall_megaturret"
+	default_state = "idle"
+	game_data = {
+		size = @megaturret_size
+		shader_type = ship
+		emissive_recolor_crunch = @emissive_value
+	}
+}
+
+entity = {
+	name = "destroyed_phanon_megaturret_entity"
+	pdxmesh = "phanon_great_wall_megaturret_destroyed"
+	default_state = "idle"
+	game_data = {
+		size = @megaturret_size
+		shader_type = ship
+		emissive_recolor_crunch = 0
+	}
+	attach = { mkr_debris01 = "phanon_ruined_megaturret_debris" }
+	attach = { mkr_debris02 = "phanon_ruined_megaturret_debris" }
+	attach = { mkr_debris03 = "phanon_ruined_megaturret_debris" }
+	attach = { mkr_debris04 = "phanon_ruined_megaturret_debris" }
+	attach = { mkr_debris05 = "phanon_ruined_megaturret_debris" }
+	attach = { mkr_debris06 = "phanon_ruined_megaturret_debris" }
+	attach = { mkr_debris07 = "phanon_ruined_megaturret_debris" }
+	attach = { mkr_debris08 = "phanon_ruined_megaturret_debris" }
+}
+
+entity = {
+	name = "phanon_ruined_megaturret_debris"
+	cull_radius = 1000
+
+	pdxmesh = "phanon_great_wall_megaturret_frame"
+
+	locator = { name = "loc404" position = { 0 0 0 } rotation = { 0 0 0 } }
+
+	default_state = "idle"
+	state = { name = "idle" }
+
+	attach = { loc404 = "debris_large_01_entity" }
+
+	scale = 1
+}

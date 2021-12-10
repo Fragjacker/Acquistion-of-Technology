@@ -1,0 +1,463 @@
+@hab_cost = 10000
+@hab_cost_phanon = 500
+@hab_maintenance = 100
+@planet_housing_generic = 20
+@planet_jobs_gestalt = 30
+@planet_jobs_generic = 20
+@planet_housing_runic = 8
+@planet_runic_maker_jobs = 8
+#####################
+# Phanon (Phi)
+#####################
+district_macripp_housing = {
+	base_buildtime = 300
+	is_capped_by_modifier = no
+	show_on_uncolonized = {
+		uses_district_set = phanon_macripp
+	}
+	potential = {
+		uses_district_set = phanon_macripp
+	}
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @hab_cost
+			alloys = @hab_cost
+			aot_sr_runic_power = @hab_cost_phanon
+		}
+		upkeep = {
+			energy = @hab_maintenance
+		}
+	}
+	planet_modifier = {
+		planet_housing_add = @planet_housing_generic
+		job_merchant_add = 1
+		job_phanon_clerk_add = 10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 4
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		text = job_maintenance_drone_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 250
+			planet = {
+				num_districts = {
+					type = district_hab_housing
+					value < 1
+				}
+			}
+		}
+		modifier = {
+			weight = 250
+			planet = {
+				owner = {
+					is_regular_empire = yes
+					has_ascension_perk = ap_master_builders
+				}
+				num_districts = {
+					type = district_hab_housing
+					value < 2
+				}
+			}
+		}
+	}
+}
+
+district_macripp_arms_industry = {
+	base_buildtime = 300
+	is_capped_by_modifier = no
+	show_on_uncolonized = {
+		uses_district_set = phanon_macripp
+	}
+	potential = {
+		uses_district_set = phanon_macripp
+	}
+	planet_modifier = {
+		planet_housing_add = @planet_housing_generic
+	}
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @hab_cost
+			alloys = @hab_cost
+			aot_sr_runic_power = @hab_cost_phanon
+		}
+		upkeep = {
+			energy = @hab_maintenance
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_phanon_alloydrone_add = @planet_jobs_gestalt
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_phanon_alloydrone_add = @planet_jobs_gestalt
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_phanon_alloyman_add = @planet_jobs_generic
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		modifier = {
+			job_fe_acolyte_mine_add = @planet_jobs_generic
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		text = job_acot_alloydrone_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_acot_alloyman_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		text = job_fe_acolyte_mine_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 400
+			OR = {
+				owner = {
+					has_monthly_income = {
+						resource = energy
+						value < 200
+					}
+				}
+				planet = {
+					has_district = district_macripp_energy
+				}
+			}
+		}
+	}
+	ai_resource_production = {
+		minerals = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+district_macripp_energy = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+	show_on_uncolonized = {
+		uses_district_set = phanon_macripp
+	}
+	potential = {
+		uses_district_set = phanon_macripp
+	}
+	planet_modifier = {
+		planet_housing_add = @planet_housing_generic
+	}
+	resources = {
+		category = planet_districts_hab_energy
+		cost = {
+			minerals = @hab_cost
+			aot_sr_runic_power = @hab_cost_phanon
+		}
+		upkeep = {
+			energy = @hab_maintenance
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_phanon_energyman_add = @planet_jobs_generic
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = @planet_jobs_generic
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_phanon_energydrone_add = @planet_jobs_gestalt
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_phanon_energydrone_add = @planet_jobs_gestalt
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		text = job_stellarite_energydrone_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		text = job_stellarite_energyman_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		text = job_fe_acolyte_generator_effect_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 250
+			OR = {
+				owner = {
+					has_monthly_income = {
+						resource = energy
+						value < 200
+					}
+				}
+				planet = {
+					has_district = district_hab_stellarite_energy
+				}
+			}
+		}
+	}
+	ai_resource_production = {
+		energy = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+district_macripp_runic_power_generator = {
+	base_buildtime = 300
+	is_capped_by_modifier = no
+	show_on_uncolonized = {
+		uses_district_set = phanon_macripp
+		exists = owner
+		owner = {
+			has_technology = tech_phanon_runic_generator
+		}
+	}
+	potential = {
+		uses_district_set = phanon_macripp
+		exists = owner
+		owner = {
+			has_technology = tech_phanon_runic_generator
+		}
+	}
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @hab_cost
+			alloys = @hab_cost
+			acot_sr_stellarite = 5000
+		}
+		upkeep = {
+			energy = @hab_maintenance
+		}
+	}
+	planet_modifier = {
+		planet_housing_add = @planet_housing_runic
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_phanon_dimension_folder_add = @planet_runic_maker_jobs
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_phanon_dimension_folderdrone_add = @planet_runic_maker_jobs
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_phanon_dimension_folderdrone_add = @planet_runic_maker_jobs
+		}
+	}
+	# Extra jobs from phanon generator buildings
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			has_active_building = building_phanon_runic_generator
+		}
+		modifier = {
+			job_phanon_dimension_folder_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			has_active_building = building_phanon_runic_generator
+		}
+		modifier = {
+			job_phanon_dimension_folderdrone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			has_active_building = building_phanon_runic_generator
+		}
+		modifier = {
+			job_phanon_dimension_folderdrone_add = 2
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		text = job_phanon_dimension_folder_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				OR = {
+					is_machine_empire = yes
+					is_hive_empire = yes
+				}
+			}
+		}
+		text = job_phanon_dimension_folderdrone_desc
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 200
+			owner = {
+				has_valid_civic = civic_machine_servitor
+			}
+			NOT = {
+				planet = {
+					has_district = district_hab_cultural
+				}
+			}
+		}
+	}
+	ai_resource_production = {
+		unity = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
