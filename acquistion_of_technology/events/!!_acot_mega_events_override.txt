@@ -1,0 +1,96 @@
+namespace = acot_mega
+#### PHANON
+country_event = {
+	id = acot_mega.200
+	title = acot_mega.2new.name
+	desc = acot_mega.2new.desc
+	picture = GFX_acot_precursor_sigma_station_plans
+	show_sound = event_ringworld_build_upgrade
+	location = FROMFROM
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = acot_precursor_phanon_citadel_site
+		}
+	}
+	immediate = {
+		IF = {
+			limit = {
+				NOT = {
+					has_country_flag = precursor_phanon_citadel_built
+				}
+			}
+			create_ship_design = {
+				design = "NAME_ACOT_PHANON_CITADEL_3"
+			}
+			add_ship_design = last_created_design
+		}
+		FROMFROMFROM = {
+			if = {
+				limit = {
+					NOT = {
+						is_ship_size = precursor_constructor
+					}
+				}
+				delete_fleet = this
+			}
+		}
+	}
+	option = {
+		name = "acot_mega.2.a"
+		set_country_flag = precursor_phanon_citadel_built
+	}
+}
+
+country_event = {
+	id = acot_mega.300
+	title = acot_mega.3new.name
+	desc = acot_mega.3new.desc
+	picture = GFX_acot_precursor_sigma_station
+	show_sound = event_citadel_ready
+	location = FROMFROM
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = acot_precursor_phanon_citadel_base
+		}
+	}
+	immediate = {
+		FROM = {
+			remove_megastructure = this
+		}
+		FROMFROM = {
+			if = {
+				limit = {
+					any_ship_in_system = {
+						is_ship_class = shipclass_starbase
+						NOT = {
+							is_ship_size = precursor_colossus
+						}
+					}
+				}
+				random_fleet_in_system = {
+					limit = {
+						any_owned_ship = {
+							is_ship_class = shipclass_starbase
+							NOR = {
+								is_ship_size = precursor_colossus
+								is_ship_size = juggernaut
+							}
+						}
+					}
+					destroy_fleet = this
+				}
+			}
+			create_starbase = {
+				size = "acot_precusor_phanon_starcitadel"
+				owner = root
+				effect = {
+				}
+			}
+		}
+	}
+	option = {
+		name = "acot_mega.3.a"
+	}
+}
