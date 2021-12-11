@@ -1,0 +1,831 @@
+#reloadable with 'reload stats'
+# This file is where you start when you want to configure something new, then go to sections
+@corvette_collision_radius = 2
+@corvette_formation_priority = 4
+@destroyer_collision_radius = 2.5
+@destroyer_formation_priority = 2
+@cruiser_collision_radius = 3.5
+@cruiser_formation_priority = 3
+@battleship_collision_radius = 6
+@battleship_formation_priority = 5
+@titan_collision_radius = 12
+@titan_formation_priority = 1
+@build_block_radius_none = 0
+@build_block_radius_civilian = 20
+@build_block_radius_military = 200
+@speed_very_slow = 80
+@speed_slow = 100
+@speed_default = 120
+@speed_fast = 140
+@speed_very_fast = 160
+#################
+# STUFFS HERE EMPIRE #
+#################
+# Star Chaser
+acot_star_fighters = {
+	formation_priority = 1
+	is_space_object = yes
+	max_speed = 350
+	acceleration = 0.8
+	rotation_speed = 0.1
+	collision_radius = 2
+	modifier = {
+		ship_evasion_add = 99
+		ship_shield_add = 5000
+		ship_armor_add = 5000
+		ships_upkeep_mult = -0.5
+	}
+	max_hitpoints = 10000
+	combat_size_multiplier = 4
+	size_multiplier = 4
+	fleet_slot_size = 4
+	section_slots = {
+		"bow" = {
+			locator = "part1"
+		}
+		"mid" = {
+			locator = "part2"
+		}
+		"stern" = {
+			locator = "part3"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = no
+	icon_frame = 1
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 2000
+			energy = 2000
+		}
+		upkeep = {
+		}
+	}
+	base_buildtime = 400
+	class = shipclass_military
+	is_designable = yes
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	prerequisites = {
+		tech_phanon_fighter
+	}
+	potential_construction = {
+		can_build_phanon_ship = yes
+	}
+	construction_type = starbase_shipyard
+}
+
+# Star Destroyer - Skirmisher
+acot_star_destroyer = {
+	formation_priority = 10
+	is_space_object = yes
+	max_speed = 85
+	acceleration = 0.15
+	rotation_speed = 0.1
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 65
+		ship_shield_add = 10000
+		ship_armor_add = 10000
+		ships_upkeep_mult = -0.5
+	}
+	max_hitpoints = 200000
+	combat_size_multiplier = 150
+	size_multiplier = 8
+	fleet_slot_size = 8
+	section_slots = {
+		"spinal_1" = {
+			locator = "part1"
+		}
+		"spinal_2" = {
+			locator = "part1down"
+		}
+		"mid_1" = {
+			locator = "part2"
+		}
+		"mid_2" = {
+			locator = "part2down"
+		}
+		"core" = {
+			locator = "part3"
+		}
+		"stern_down" = {
+			locator = "part3down"
+		}
+		"stern" = {
+			locator = "part4"
+		}
+		"left_wing" = {
+			locator = "left_wing"
+		}
+		"right_wing" = {
+			locator = "right_wing"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = no
+	icon_frame = 2
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 10000
+			energy = 10000
+		}
+		upkeep = {
+		}
+	}
+	base_buildtime = 2000
+	class = shipclass_military
+	is_designable = yes
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	prerequisites = {
+		tech_phanon_cruiser
+	}
+	potential_construction = {
+		can_build_phanon_ship = yes
+	}
+	construction_type = starbase_shipyard
+}
+
+# Star Devastator - Main Battleship
+acot_star_devastator = {
+	formation_priority = 20
+	is_space_object = yes
+	max_speed = 65
+	acceleration = 0.15
+	rotation_speed = 0.1
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 15
+		ship_shield_add = 300000
+		ship_armor_add = 300000
+		ships_upkeep_mult = -0.5
+	}
+	max_hitpoints = 600000
+	combat_size_multiplier = 150
+	size_multiplier = 20
+	fleet_slot_size = 20
+	section_slots = {
+		"spinal_1" = {
+			locator = "part1"
+		}
+		"spinal_2" = {
+			locator = "part1down"
+		}
+		"mid_1" = {
+			locator = "part2"
+		}
+		"mid_2" = {
+			locator = "part2down"
+		}
+		"core_1" = {
+			locator = "part3"
+		}
+		"core_2" = {
+			locator = "part3down"
+		}
+		"hub" = {
+			locator = "hub"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = no
+	icon_frame = 3
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 20000
+			energy = 20000
+		}
+		upkeep = {
+		}
+	}
+	base_buildtime = 2000
+	class = shipclass_military
+	is_designable = no
+	prerequisites = {
+		tech_phanon_bb
+	}
+	potential_construction = {
+		can_build_phanon_ship = yes
+	}
+	construction_type = starbase_shipyard
+}
+
+# Star Decimator - Carrier
+acot_star_decimator = {
+	formation_priority = 45
+	is_space_object = yes
+	max_speed = 45
+	acceleration = 0.15
+	rotation_speed = 0.1
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 25
+		ship_shield_add = 1000000
+		ship_armor_add = 1000000
+		ships_upkeep_mult = -0.5
+	}
+	max_hitpoints = 2000000
+	combat_size_multiplier = 150
+	size_multiplier = 40
+	fleet_slot_size = 40
+	section_slots = {
+		"core" = {
+			locator = "core"
+		}
+		"part1" = {
+			locator = "part1"
+		}
+		"part2" = {
+			locator = "part2"
+		}
+		"part3" = {
+			locator = "part3"
+		}
+		"part4" = {
+			locator = "part4"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = no
+	icon_frame = 4
+	prerequisites = {
+		tech_phanon_titan
+	}
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 40000
+			energy = 40000
+		}
+		upkeep = {
+		}
+	}
+	base_buildtime = 4000
+	class = shipclass_military
+	is_designable = yes
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	potential_construction = {
+		can_build_phanon_ship = yes
+	}
+	construction_type = starbase_shipyard
+}
+
+# Star Dominator I - Capital Ship
+acot_star_dominator = {
+	formation_priority = 40
+	is_space_object = yes
+	max_speed = 65
+	acceleration = 0.15
+	rotation_speed = 0.1
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 15
+		ship_shield_add = 1250000
+		ship_armor_add = 1250000
+		ships_upkeep_mult = -0.5
+	}
+	max_hitpoints = 2500000
+	combat_size_multiplier = 150
+	size_multiplier = 80
+	fleet_slot_size = 80
+	section_slots = {
+		"spinal_1" = {
+			locator = "spinal"
+		}
+		"spinal_2" = {
+			locator = "spinaldown"
+		}
+		"tube_a1" = {
+			locator = "part2"
+		}
+		"tube_a2" = {
+			locator = "part2down"
+		}
+		"tube_b1" = {
+			locator = "part3"
+		}
+		"tube_b2" = {
+			locator = "part3down"
+		}
+		"tube_c1" = {
+			locator = "part4"
+		}
+		"tube_c2" = {
+			locator = "part4down"
+		}
+		"tube_d1" = {
+			locator = "part5"
+		}
+		"tube_d2" = {
+			locator = "part5down"
+		}
+		"stern1" = {
+			locator = "part6"
+		}
+		"stern2" = {
+			locator = "part7"
+		}
+		"hammer1" = {
+			locator = "hammer"
+		}
+		"hammer2" = {
+			locator = "hammerdown"
+		}
+		"left" = {
+			locator = "left"
+		}
+		"right" = {
+			locator = "right"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = no
+	icon_frame = 4
+	prerequisites = {
+		tech_phanon_titan
+	}
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 40000
+			energy = 40000
+		}
+		upkeep = {
+		}
+	}
+	base_buildtime = 4000
+	class = shipclass_military
+	is_designable = yes
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	potential_construction = {
+		can_build_phanon_ship = yes
+	}
+	construction_type = starbase_shipyard
+}
+
+# Star Dominator II - Capital Ship
+acot_megadreadnought = {
+	formation_priority = 40
+	is_space_object = yes
+	max_speed = 90
+	acceleration = 0.15
+	rotation_speed = 0.1
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 15
+		ship_weapon_damage = 2.5
+		ship_shield_add = 1500000
+		ship_armor_add = 1500000
+		ships_upkeep_mult = -0.5
+	}
+	max_hitpoints = 3000000
+	combat_size_multiplier = 150
+	size_multiplier = 80
+	fleet_slot_size = 80
+	section_slots = {
+		"mid" = {
+			locator = "part1"
+		}
+		"tube_a1" = {
+			locator = "part2"
+		}
+		"tube_a2" = {
+			locator = "part2down"
+		}
+		"tube_b1" = {
+			locator = "part3"
+		}
+		"tube_b2" = {
+			locator = "part3down"
+		}
+		"tube_c1" = {
+			locator = "part4"
+		}
+		"tube_c2" = {
+			locator = "part4down"
+		}
+		"tube_d1" = {
+			locator = "part5"
+		}
+		"tube_d2" = {
+			locator = "part5down"
+		}
+		"stern1" = {
+			locator = "part6"
+		}
+		"stern2" = {
+			locator = "part7"
+		}
+		"hammer1" = {
+			locator = "hammer"
+		}
+		"hammer2" = {
+			locator = "hammerdown"
+		}
+		"bottom" = {
+			locator = "bottom"
+		}
+		"left" = {
+			locator = "left"
+		}
+		"right" = {
+			locator = "right"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = no
+	icon_frame = 5
+	prerequisites = {
+		tech_phanon_mothership
+	}
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 100000
+			energy = 100000
+		}
+		upkeep = {
+		}
+	}
+	base_buildtime = 10000
+	class = shipclass_military
+	is_designable = yes
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	potential_construction = {
+		can_build_phanon_ship = yes
+	}
+	construction_type = starbase_shipyard
+}
+
+# Star Annihilator - Flagship
+acot_star_annihilator = {
+	formation_priority = 60
+	is_space_object = yes
+	max_speed = 45
+	acceleration = 0.1
+	rotation_speed = 0.1
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 15
+		ship_shield_add = 10000000
+		ship_armor_add = 10000000
+		ships_upkeep_mult = -0.5
+	}
+	max_hitpoints = 20000000
+	combat_size_multiplier = 150
+	size_multiplier = 160
+	fleet_slot_size = 160
+	section_slots = {
+		"hub" = {
+			locator = "hub"
+		}
+		"hammer" = {
+			locator = "hammer"
+		}
+		"hammerdown" = {
+			locator = "hammerdown"
+		}
+		"spinal" = {
+			locator = "part1"
+		}
+		"spinal2" = {
+			locator = "part1down"
+		}
+		"fpart1" = {
+			locator = "fpart1"
+		}
+		"fpart1down" = {
+			locator = "fpart1down"
+		}
+		"fpart2" = {
+			locator = "fpart2"
+		}
+		"fpart2down" = {
+			locator = "fpart2down"
+		}
+		"bow" = {
+			locator = "part2"
+		}
+		"mid" = {
+			locator = "part3"
+		}
+		"core" = {
+			locator = "part4"
+		}
+		"stern" = {
+			locator = "part6"
+		}
+		"bow2" = {
+			locator = "part2down"
+		}
+		"mid2" = {
+			locator = "part3down"
+		}
+		"core2" = {
+			locator = "part4down"
+		}
+		"stern2" = {
+			locator = "part6rerverse"
+		}
+		"back" = {
+			locator = "part5"
+		}
+		"side1" = {
+			locator = "side1"
+			locator = "armor1"
+		}
+		"side2" = {
+			locator = "side2"
+			locator = "armor2"
+		}
+		"fside1" = {
+			locator = "fside1"
+		}
+		"fside2" = {
+			locator = "fside2"
+		}
+		"armor1" = {
+			locator = "armor1"
+		}
+		"armor2" = {
+			locator = "armor2"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = no
+	icon_frame = 5
+	prerequisites = {
+		tech_phanon_mothership
+	}
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 200000
+			energy = 200000
+		}
+		upkeep = {
+		}
+	}
+	base_buildtime = 15000
+	class = shipclass_military
+	is_designable = yes
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	potential_construction = {
+		can_build_phanon_ship = yes
+	}
+	construction_type = starbase_shipyard
+}
+
+acot_star_overwatcher = {
+	max_speed = 10
+	acceleration = 0
+	rotation_speed = 0
+	collision_radius = 17
+	modifier = {
+		ship_evasion_add = 5
+		ship_shield_add = 5000000
+		ship_armor_add = 5000000
+		ships_upkeep_mult = -0.5
+	}
+	max_hitpoints = 10000000
+	combat_size_multiplier = 20
+	size_multiplier = 20
+	fleet_slot_size = 20
+	section_slots = {
+		"hub" = {
+			locator = "hub"
+		}
+		"front1" = {
+			locator = "front1"
+		}
+		"front1down" = {
+			locator = "front1down"
+		}
+		"front2" = {
+			locator = "front2"
+		}
+		"front2down" = {
+			locator = "front2down"
+		}
+		"front3" = {
+			locator = "front3"
+		}
+		"front3down" = {
+			locator = "front3down"
+		}
+		"front_jug" = {
+			locator = "front_jug"
+		}
+		"back1" = {
+			locator = "back1"
+		}
+		"back1down" = {
+			locator = "back1down"
+		}
+		"back2" = {
+			locator = "back2"
+		}
+		"back2down" = {
+			locator = "back2down"
+		}
+		"back3" = {
+			locator = "back3"
+		}
+		"back3down" = {
+			locator = "back3down"
+		}
+		"back_jug" = {
+			locator = "back_jug"
+		}
+		"left1" = {
+			locator = "left1"
+		}
+		"left1down" = {
+			locator = "left1down"
+		}
+		"left2" = {
+			locator = "left2"
+		}
+		"left2down" = {
+			locator = "left2down"
+		}
+		"left3" = {
+			locator = "left3"
+		}
+		"left3down" = {
+			locator = "left3down"
+		}
+		"left_jug" = {
+			locator = "left_jug"
+		}
+		"right1" = {
+			locator = "right1"
+		}
+		"right1down" = {
+			locator = "right1down"
+		}
+		"right2" = {
+			locator = "right2"
+		}
+		"right2down" = {
+			locator = "right2down"
+		}
+		"right3" = {
+			locator = "right3"
+		}
+		"right3down" = {
+			locator = "right3down"
+		}
+		"right_jug" = {
+			locator = "right_jug"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = yes
+	build_block_radius = @build_block_radius_civilian
+	class = shipclass_military_station
+	is_designable = yes
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	prerequisites = {
+		tech_phanon_plat_l
+	}
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 100000
+			energy = 100000
+		}
+		upkeep = {
+		}
+	}
+	base_buildtime = 7500
+	potential_construction = {
+		can_build_phanon_ship = yes
+	}
+	construction_type = starbase_defenses
+}
+
+acot_star_overseer = {
+	max_speed = 20
+	acceleration = 0
+	rotation_speed = 0
+	collision_radius = 17
+	modifier = {
+		ship_evasion_add = 5
+		ship_shield_add = 1500000
+		ship_armor_add = 1500000
+		ships_upkeep_mult = -0.5
+	}
+	max_hitpoints = 3000000
+	combat_size_multiplier = 20
+	size_multiplier = 20
+	fleet_slot_size = 20
+	section_slots = {
+		"hub" = {
+			locator = "part1"
+		}
+		"1" = {
+			locator = "part2"
+		}
+		"2" = {
+			locator = "part3"
+		}
+		"3" = {
+			locator = "part4"
+		}
+		"4" = {
+			locator = "part5"
+		}
+		"5" = {
+			locator = "part6"
+		}
+		"6" = {
+			locator = "part7"
+		}
+		"front1down" = {
+			locator = "front1down"
+		}
+		"front2down" = {
+			locator = "front2down"
+		}
+		"back1down" = {
+			locator = "back1down"
+		}
+		"back2down" = {
+			locator = "back2down"
+		}
+		"left1down" = {
+			locator = "left1down"
+		}
+		"left2down" = {
+			locator = "left2down"
+		}
+		"right1down" = {
+			locator = "right1down"
+		}
+		"right2down" = {
+			locator = "right2down"
+		}
+	}
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 50000
+			energy = 50000
+		}
+		upkeep = {
+		}
+	}
+	base_buildtime = 3500
+	num_target_locators = 0
+	is_space_station = yes
+	build_block_radius = @build_block_radius_civilian
+	class = shipclass_military_station
+	is_designable = yes
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	prerequisites = {
+		tech_phanon_plat_m
+	}
+	potential_construction = {
+		can_build_phanon_ship = yes
+	}
+	construction_type = starbase_defenses
+}
