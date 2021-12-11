@@ -33,7 +33,7 @@ create_protecc_country = {
 		name = "Phanon P.R.O.T.E.C.C."
 		name_list = Phanon
 		species = event_target:phanon_operative_species
-		type = acot_phanon_retaliator
+		type = aot_phanon_protecc
 		civics = {
 			civic = civic_acot_phanon_fleet
 			civic = civic_acot_phanon_corps
@@ -75,42 +75,22 @@ create_protecc_country = {
 			design = "NAME_ACOT_STARBENDER"
 		}
 		add_ship_design = last_created_design
-		### ESTABLISHU CONTACTSU
+		### ESTABLISHU CONTACTSU AND GO MAD
 		establish_communications = root
 		every_country = {
-			limit = {
-				OR = {
-					is_country_type = enclave
-					is_country_type = dormant_marauders
-					is_fallen_empire = yes
-					is_fallen_machine_empire = yes
-					has_origin = origin_playable_oe_singular
-					has_origin = origin_playable_oe
-				}
-			}
 			establish_communications_no_message = event_target:phanon_protecc_base_country
-		}
-	}
-	#Make Protecc bois mad against everybody.
-	every_country = {
-		limit = {
-			NOR = {
-				is_country_type = enclave
-				is_country_type = dormant_marauders
-				is_country_type = acot_phanon_base
-				is_country_type = acot_phanon_retaliator
-				is_country_type = acot_hero_ship_phanon
-				is_fallen_empire = yes
-				is_fallen_machine_empire = yes
-				has_origin = origin_playable_oe_singular
-				has_origin = origin_playable_oe
+			set_faction_hostility = {
+				target = event_target:phanon_protecc_base_country
+				set_hostile = yes
+				set_neutral = no
+				set_friendly = no
 			}
 		}
 		set_faction_hostility = {
-			target = event_target:phanon_protecc_base_country
-			set_hostile = yes
+			target = event_target:phanon_base_country
+			set_hostile = no
 			set_neutral = no
-			set_friendly = no
+			set_friendly = yes
 		}
 	}
 }
@@ -691,9 +671,7 @@ create_vault_defense_drones = {
 		}
 		create_protecc_country = yes
 	}
-	event_target:aot_bootleg_phanon_vault = {
-		create_phanon_vault_raid_protecc_fleet = yes
-	}
+	create_phanon_vault_raid_protecc_fleet = yes
 }
 
 #Move the spawned fleet to system sun if spawned too far outside.
@@ -1269,6 +1247,9 @@ phanon_type_a_tech_gift = {
 				has_tech_option = tech_super_detablizer_pe
 				has_tech_option = tech_phanon_stellar_converter
 				has_tech_option = tech_civil_phanon_application
+				has_tech_option = tech_dark_matter_shield_pe
+				has_tech_option = tech_armor_pe
+				has_tech_option = tech_computer_phi
 			}
 		}
 		add_research_option = tech_disruptor_pe
@@ -1282,6 +1263,9 @@ phanon_type_a_tech_gift = {
 		add_research_option = tech_strike_craft_fighter_pe
 		add_research_option = tech_strike_craft_gunship_pe
 		add_research_option = tech_super_detablizer_pe
+		add_research_option = tech_dark_matter_shield_pe
+		add_research_option = tech_armor_pe
+		add_research_option = tech_computer_phi
 		add_research_option = tech_phanon_stellar_converter
 		add_research_option = tech_civil_phanon_application
 	}
@@ -1344,6 +1328,8 @@ phanon_type_c_tech_gift = {
 				has_tech_option = tech_perdition_beam_pe
 				has_tech_option = tech_titan_emitter_pe
 				has_tech_option = tech_titan_accelerator_pe
+				has_tech_option = tech_darkmatter_shield_supercharger_pe
+				has_tech_option = tech_armor_hull_pe
 			}
 		}
 		add_research_option = tech_darkmatter_afterburners_pe
@@ -1356,6 +1342,8 @@ phanon_type_c_tech_gift = {
 		add_research_option = tech_enigmatic_drive_pe
 		add_research_option = tech_sensor_pe
 		add_research_option = tech_titan_accelerator_pe
+		add_research_option = tech_darkmatter_shield_supercharger_pe
+		add_research_option = tech_armor_hull_pe
 		add_research_option = tech_titan_emitter_pe
 		add_research_option = tech_perdition_beam_pe
 	}
