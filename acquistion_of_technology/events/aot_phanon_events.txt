@@ -1556,3 +1556,21 @@ country_event = {
 		set_country_flag = finished_great_wall
 	}
 }
+
+# Great Wall tech acquired, add a megaturret design now to be safe.
+country_event = {
+	id = aot_phanon_events.4000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			last_increased_tech = tech_phanon_great_wall
+		}
+	}
+	immediate = {
+		create_ship_design = {
+			design = NAME_AOT_MEGATURRET
+		}
+		add_ship_design = last_created_design
+	}
+}
