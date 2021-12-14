@@ -1,4 +1,54 @@
 namespace = acot_mega
+country_event = {
+	id = acot_mega.101
+	title = "acot_mega.0.name"
+	desc = "acot_mega.0.desc"
+	picture = GFX_acot_precursor_station_plans
+	show_sound = event_ringworld_build_upgrade
+	location = FROMFROM
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			is_megastructure_type = acot_precursor_citadel_site
+		}
+	}
+	immediate = {
+		IF = {
+			limit = {
+				NOT = {
+					has_country_flag = precursor_citadel_built
+				}
+			}
+			create_ship_design = {
+				design = "NAME_ACOT_CITADEL_2"
+			}
+			add_ship_design = last_created_design
+			create_ship_design = {
+				design = "NAME_ACOT_CITADEL_3"
+			}
+			add_ship_design = last_created_design
+			create_ship_design = {
+				design = "NAME_ACOT_CITADEL_1"
+			}
+			add_ship_design = last_created_design
+		}
+		FROMFROMFROM = {
+			if = {
+				limit = {
+					NOT = {
+						is_ship_size = precursor_constructor
+					}
+				}
+				delete_fleet = this
+			}
+		}
+	}
+	option = {
+		name = "acot_mega.0.a"
+		set_country_flag = precursor_citadel_built
+	}
+}
+
 #### PHANON
 country_event = {
 	id = acot_mega.200
