@@ -1,0 +1,114 @@
+namespace = phanon_star_list
+country_event = {
+	id = phanon_star_list.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+	}
+	immediate = {
+		if = {
+			limit = {
+				has_event_chain = phanon_pylon_list_entry
+			}
+			end_event_chain = phanon_pylon_list_entry
+		}
+	}
+	after = {
+		begin_event_chain = {
+			event_chain = phanon_pylon_list_entry
+			target = root
+		}
+		every_system = {
+			limit = {
+				is_star_class = sc_phanon_pylon
+				# NOT = {
+				# 	has_star_flag = marked_for_list_ignoring
+				# }
+			}
+			star = {
+				enable_special_project = {
+					name = PHANON_PYLON_LIST_ENTRY
+					location = this
+				}
+			}
+		}
+	}
+}
+
+#from = megastructure
+country_event = {
+	id = phanon_star_list.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+		from = {
+			is_megastructure_type = star_imploder_3
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				not = {
+					has_event_chain = phanon_pylon_list_entry
+				}
+			}
+			begin_event_chain = {
+				event_chain = phanon_pylon_list_entry
+				target = root
+			}
+		}
+		from = {
+			solar_system = {
+				star = {
+					enable_special_project = {
+						name = PHANON_PYLON_LIST_ENTRY
+						location = this
+					}
+				}
+			}
+		}
+	}
+}
+
+# country_event = {
+# 	id = phanon_star_list.3
+# 	hide_window = yes
+# 	is_triggered_only = yes
+# 	#from = megastructure
+# 	trigger = {
+# 		is_ai = no
+# 		from = {
+# 			is_megastructure_type = macripp_0
+# 		}
+# 	}
+# 	immediate = {
+# 		if = {
+# 			limit = {
+# 				not = {
+# 					has_event_chain = phanon_pylon_list_entry
+# 				}
+# 			}
+# 			begin_event_chain = {
+# 				event_chain = phanon_pylon_list_entry
+# 				target = root
+# 			}
+# 		}
+# 		from = {
+# 			solar_system = {
+# 				star = {
+# 					root = {
+# 						abort_special_project = {
+# 							type = ABANDONED_ARRAY_PROJECT
+# 							location = prev
+# 						}
+# 					}
+# 				}
+# 				# Set the flag so it won't appear in the list again.
+# 				set_star_flag = marked_for_list_ignoring
+# 			}
+# 		}
+# 	}
+# }
+
