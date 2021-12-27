@@ -92,7 +92,6 @@ country_event = {
 }
 
 ##################################################### AoT Options #####################################################
-
 country_event = {
 	id = acot_mod_options.10
 	title = aot_mod_options.10.name
@@ -694,12 +693,7 @@ country_event = {
 			every_country = {
 				limit = {
 					is_ai = yes
-					OR = {
-						is_country_type = default
-						is_country_type = ascended_empire
-						is_country_type = lost_empire
-						is_country_type = awakened_fallen_empire
-					}
+					is_playable_country = yes
 				}
 				remove_modifier = easy_acot
 				remove_modifier = medium_acot
@@ -724,12 +718,7 @@ country_event = {
 			every_country = {
 				limit = {
 					is_ai = yes
-					OR = {
-						is_country_type = default
-						is_country_type = ascended_empire
-						is_country_type = lost_empire
-						is_country_type = awakened_fallen_empire
-					}
+					is_playable_country = yes
 				}
 				remove_modifier = easy_acot
 				remove_modifier = medium_acot
@@ -754,12 +743,7 @@ country_event = {
 			every_country = {
 				limit = {
 					is_ai = yes
-					OR = {
-						is_country_type = default
-						is_country_type = ascended_empire
-						is_country_type = lost_empire
-						is_country_type = awakened_fallen_empire
-					}
+					is_playable_country = yes
 				}
 				remove_modifier = easy_acot
 				remove_modifier = medium_acot
@@ -907,12 +891,7 @@ country_event = {
 						}
 						AND = {
 							has_technology = tech_dark_matter_power_core_pe
-							OR = {
-								is_country_type = default
-								is_fallen_empire = yes
-								is_country_type = ascended_empire
-								is_country_type = lost_empire
-							}
+							is_playable_country = yes
 						}
 					}
 				}
@@ -921,23 +900,25 @@ country_event = {
 				}
 				destroy_country = yes
 			}
-			every_ship_in_system = {
-				limit = {
-					OR = {
-						is_ship_size = acot_star_annihilator
-						is_ship_size = acot_star_bender
-						is_ship_size = acot_star_commander
-						is_ship_size = acot_star_decimator
-						is_ship_size = acot_star_destroyer
-						is_ship_size = acot_star_devastator
-						is_ship_size = acot_star_dominator
-						is_ship_size = acot_star_fighters
-						is_ship_size = acot_star_overseer
-						is_ship_size = acot_star_overwatcher
-						is_ship_size = acot_starfighter_hero
+			solar_system = {
+				every_ship_in_system = {
+					limit = {
+						OR = {
+							is_ship_size = acot_star_annihilator
+							is_ship_size = acot_star_bender
+							is_ship_size = acot_star_commander
+							is_ship_size = acot_star_decimator
+							is_ship_size = acot_star_destroyer
+							is_ship_size = acot_star_devastator
+							is_ship_size = acot_star_dominator
+							is_ship_size = acot_star_fighters
+							is_ship_size = acot_star_overseer
+							is_ship_size = acot_star_overwatcher
+							is_ship_size = acot_starfighter_hero
+						}
 					}
+					delete_ship = this
 				}
-				delete_ship = this
 			}
 			country_event = {
 				id = acot_mod_options.500
