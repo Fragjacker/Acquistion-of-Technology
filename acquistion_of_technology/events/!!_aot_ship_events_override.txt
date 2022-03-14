@@ -16,6 +16,12 @@ ship_event = {
 	immediate = {
 		IF = {
 			limit = {
+				is_ship_size = precursor_colossus
+			}
+			set_disable_at_health = 0.02
+		}
+		IF = {
+			limit = {
 				is_ship_size = precursor_science
 			}
 			#set_ship_flag = precursor_science_eject
@@ -1063,31 +1069,17 @@ planet_event = {
 	id = acot_ships.8
 	hide_window = yes
 	is_triggered_only = yes
-	trigger = {
-		from = {
-			is_ship_size = precursor_colonizer
-		}
-		from = {
-			OR = {
-				has_fleet_flag = precursor_colonizer_delta
-				has_fleet_flag = precursor_colonizer_alpha
-				has_fleet_flag = precursor_colonizer_sigma
-				has_fleet_flag = precursor_colonizer_phanon
-				has_fleet_flag = precursor_colonizer_omega
-			}
-		}
-	}
 	immediate = {
 		IF = {
 			limit = {
 				has_owner = no
 			}
 			create_colony = {
-				owner = from.owner
+				owner = event_target:orbitting_emissary.owner
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_delta
 					}
 					owner = {
@@ -1099,7 +1091,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_alpha
 					}
 					owner = {
@@ -1111,7 +1103,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_sigma
 					}
 					owner = {
@@ -1123,7 +1115,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_phanon
 					}
 					owner = {
@@ -1135,7 +1127,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_delta
 					}
 					owner = {
@@ -1147,7 +1139,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_alpha
 					}
 					owner = {
@@ -1159,7 +1151,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_sigma
 					}
 					owner = {
@@ -1171,7 +1163,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_phanon
 					}
 					owner = {
@@ -1183,7 +1175,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_delta
 					}
 					owner = {
@@ -1195,7 +1187,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_alpha
 					}
 					owner = {
@@ -1207,7 +1199,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_sigma
 					}
 					owner = {
@@ -1219,7 +1211,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_phanon
 					}
 					owner = {
@@ -1232,70 +1224,70 @@ planet_event = {
 			#### DELTA	
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_delta
 					}
 				}
 				while = {
 					count = 5
 					create_pop = {
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
 			### ALPHA	
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_alpha
 					}
 				}
 				while = {
 					count = 10
 					create_pop = {
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
 			#### SUGNA	
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_sigma
 					}
 				}
 				while = {
 					count = 15
 					create_pop = {
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
 			#### PHANONEMINAL
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_phanon
 					}
 				}
 				while = {
 					count = 20
 					create_pop = {
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
 			#### INEGA
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_omega
 					}
 				}
 				while = {
 					count = 20
 					create_pop = {
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
@@ -1303,136 +1295,136 @@ planet_event = {
 		### EXTRA STUFFS
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_pop
 				}
 			}
 			while = {
 				count = 10
 				create_pop = {
-					species = from.owner.species
+					species = event_target:orbitting_emissary.owner.species
 				}
 			}
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_stellarite_pop
 				}
 			}
 			while = {
 				count = 20
 				create_pop = {
-					species = from.owner.species
+					species = event_target:orbitting_emissary.owner.species
 				}
 			}
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_phanon_pop
 				}
 			}
 			while = {
 				count = 30
 				create_pop = {
-					species = from.owner.species
+					species = event_target:orbitting_emissary.owner.species
 				}
 			}
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_troop
 				}
 			}
 			while = {
 				count = 10
 				create_army = {
-					owner = from.owner
+					owner = event_target:orbitting_emissary.owner
 					type = acot_garrison_army
-					species = from.owner.species
+					species = event_target:orbitting_emissary.owner.species
 				}
 			}
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_stellarite_troop
 				}
 			}
 			while = {
 				count = 20
 				create_army = {
-					owner = from.owner
+					owner = event_target:orbitting_emissary.owner
 					type = acot_garrison_army
-					species = from.owner.species
+					species = event_target:orbitting_emissary.owner.species
 				}
 			}
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_phanon_troop
 				}
 			}
 			while = {
 				count = 25
 				create_army = {
-					owner = from.owner
+					owner = event_target:orbitting_emissary.owner
 					type = acot_garrison_army
-					species = from.owner.species
+					species = event_target:orbitting_emissary.owner.species
 				}
 			}
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_droid
 				}
 			}
 			while = {
 				count = 10
 				create_army = {
-					owner = from.owner
+					owner = event_target:orbitting_emissary.owner
 					type = acot_garrison_army_droid
-					species = from.owner.species
+					species = event_target:orbitting_emissary.owner.species
 				}
 			}
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_stellarite_droid
 				}
 			}
 			while = {
 				count = 20
 				create_army = {
-					owner = from.owner
+					owner = event_target:orbitting_emissary.owner
 					type = acot_garrison_army_droid
-					species = from.owner.species
+					species = event_target:orbitting_emissary.owner.species
 				}
 			}
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_phanon_droid
 				}
 			}
 			while = {
 				count = 25
 				create_army = {
-					owner = from.owner
+					owner = event_target:orbitting_emissary.owner
 					type = acot_garrison_army_droid
-					species = from.owner.species
+					species = event_target:orbitting_emissary.owner.species
 				}
 			}
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_giga
 				}
 			}
@@ -1440,7 +1432,7 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_lab
 				}
 			}
@@ -1448,7 +1440,7 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_skyshield
 				}
 			}
@@ -1456,7 +1448,7 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_nexus
 				}
 			}
@@ -1464,13 +1456,13 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_assembly
 				}
 			}
 			if = {
 				limit = {
-					planet_owner = {
+					event_target:orbitting_emissary.owner = {
 						is_machine_empire = no
 					}
 				}
@@ -1478,7 +1470,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					planet_owner = {
+					event_target:orbitting_emissary.owner = {
 						is_machine_empire = yes
 					}
 				}
@@ -1488,7 +1480,7 @@ planet_event = {
 		#Stellarite Stuffs
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_stellarite_giga
 				}
 			}
@@ -1496,7 +1488,7 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_stellarite_lab
 				}
 			}
@@ -1504,7 +1496,7 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_stellarite_skyshield
 				}
 			}
@@ -1512,7 +1504,7 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_stellarite_nexus
 				}
 			}
@@ -1520,13 +1512,13 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_stellarite_assembly
 				}
 			}
 			if = {
 				limit = {
-					planet_owner = {
+					event_target:orbitting_emissary.owner = {
 						is_machine_empire = no
 					}
 				}
@@ -1534,7 +1526,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					planet_owner = {
+					event_target:orbitting_emissary.owner = {
 						is_machine_empire = yes
 					}
 				}
@@ -1544,7 +1536,7 @@ planet_event = {
 		# Phanon Stuffs
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_phanon_giga
 				}
 			}
@@ -1552,7 +1544,7 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_phanon_lab
 				}
 			}
@@ -1560,7 +1552,7 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_phanon_skyshield
 				}
 			}
@@ -1568,7 +1560,7 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_phanon_nexus
 				}
 			}
@@ -1576,13 +1568,13 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				from = {
+				event_target:orbitting_emissary = {
 					has_fleet_flag = precursor_colonizer_extra_phanon_assembly
 				}
 			}
 			if = {
 				limit = {
-					planet_owner = {
+					event_target:orbitting_emissary.owner = {
 						is_machine_empire = no
 					}
 				}
@@ -1590,7 +1582,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					planet_owner = {
+					event_target:orbitting_emissary.owner = {
 						is_machine_empire = yes
 					}
 				}
@@ -1606,7 +1598,7 @@ planet_event = {
 				days = 1
 			}
 		}
-		from = {
+		event_target:orbitting_emissary = {
 			delete_fleet = this
 		}
 		############## ATTACK #############################
@@ -1617,38 +1609,38 @@ planet_event = {
 			### DELTA ###
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_delta
 					}
 				}
 				set_planet_flag = will_have_delta_emis
 				if = {
 					limit = {
-						owner = {
+						event_target:orbitting_emissary.owner = {
 							is_machine_empire = no
 						}
 					}
 					while = {
 						count = 10
 						create_army = {
-							owner = from.owner
+							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army
-							species = from.owner.species
+							species = event_target:orbitting_emissary.owner.species
 						}
 					}
 				}
 				if = {
 					limit = {
-						owner = {
+						event_target:orbitting_emissary.owner = {
 							is_machine_empire = yes
 						}
 					}
 					while = {
 						count = 10
 						create_army = {
-							owner = from.owner
+							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army_droid
-							species = from.owner.species
+							species = event_target:orbitting_emissary.owner.species
 						}
 					}
 				}
@@ -1656,38 +1648,38 @@ planet_event = {
 			### ALPHA ###
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_alpha
 					}
 				}
 				set_planet_flag = will_have_alpha_emis
 				if = {
 					limit = {
-						owner = {
+						event_target:orbitting_emissary.owner = {
 							is_machine_empire = no
 						}
 					}
 					while = {
 						count = 15
 						create_army = {
-							owner = from.owner
+							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army
-							species = from.owner.species
+							species = event_target:orbitting_emissary.owner.species
 						}
 					}
 				}
 				if = {
 					limit = {
-						owner = {
+						event_target:orbitting_emissary.owner = {
 							is_machine_empire = yes
 						}
 					}
 					while = {
 						count = 15
 						create_army = {
-							owner = from.owner
+							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army_droid
-							species = from.owner.species
+							species = event_target:orbitting_emissary.owner.species
 						}
 					}
 				}
@@ -1695,38 +1687,38 @@ planet_event = {
 			### SIGMA ###
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_sigma
 					}
 				}
 				set_planet_flag = will_have_sigma_emis
 				if = {
 					limit = {
-						owner = {
+						event_target:orbitting_emissary.owner = {
 							is_machine_empire = no
 						}
 					}
 					while = {
 						count = 20
 						create_army = {
-							owner = from.owner
+							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army
-							species = from.owner.species
+							species = event_target:orbitting_emissary.owner.species
 						}
 					}
 				}
 				if = {
 					limit = {
-						owner = {
+						event_target:orbitting_emissary.owner = {
 							is_machine_empire = yes
 						}
 					}
 					while = {
 						count = 20
 						create_army = {
-							owner = from.owner
+							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army_droid
-							species = from.owner.species
+							species = event_target:orbitting_emissary.owner.species
 						}
 					}
 				}
@@ -1734,38 +1726,38 @@ planet_event = {
 			### PHANON ###
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_phanon
 					}
 				}
 				set_planet_flag = will_have_phanon_emis
 				if = {
 					limit = {
-						owner = {
+						event_target:orbitting_emissary.owner = {
 							is_machine_empire = no
 						}
 					}
 					while = {
 						count = 25
 						create_army = {
-							owner = from.owner
+							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army
-							species = from.owner.species
+							species = event_target:orbitting_emissary.owner.species
 						}
 					}
 				}
 				if = {
 					limit = {
-						owner = {
+						event_target:orbitting_emissary.owner = {
 							is_machine_empire = yes
 						}
 					}
 					while = {
 						count = 25
 						create_army = {
-							owner = from.owner
+							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army_droid
-							species = from.owner.species
+							species = event_target:orbitting_emissary.owner.species
 						}
 					}
 				}
@@ -1773,38 +1765,38 @@ planet_event = {
 			### OMEGA ###
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_omega
 					}
 				}
 				set_planet_flag = will_have_omega_emis
 				if = {
 					limit = {
-						owner = {
+						event_target:orbitting_emissary.owner = {
 							is_machine_empire = no
 						}
 					}
 					while = {
 						count = 25
 						create_army = {
-							owner = from.owner
+							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army
-							species = from.owner.species
+							species = event_target:orbitting_emissary.owner.species
 						}
 					}
 				}
 				if = {
 					limit = {
-						owner = {
+						event_target:orbitting_emissary.owner = {
 							is_machine_empire = yes
 						}
 					}
 					while = {
 						count = 25
 						create_army = {
-							owner = from.owner
+							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army_droid
-							species = from.owner.species
+							species = event_target:orbitting_emissary.owner.species
 						}
 					}
 				}
@@ -1812,7 +1804,7 @@ planet_event = {
 			### EXTRA STUFFS
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_pop
 					}
 				}
@@ -1820,7 +1812,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_stellarite_pop
 					}
 				}
@@ -1828,7 +1820,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_phanon_pop
 					}
 				}
@@ -1836,97 +1828,97 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_troop
 					}
 				}
 				while = {
 					count = 10
 					create_army = {
-						owner = from.owner
+						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_stellarite_troop
 					}
 				}
 				while = {
 					count = 20
 					create_army = {
-						owner = from.owner
+						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_phanon_troop
 					}
 				}
 				while = {
 					count = 30
 					create_army = {
-						owner = from.owner
+						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_droid
 					}
 				}
 				while = {
 					count = 10
 					create_army = {
-						owner = from.owner
+						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army_droid
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_stellarite_droid
 					}
 				}
 				while = {
 					count = 20
 					create_army = {
-						owner = from.owner
+						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army_droid
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_phanon_droid
 					}
 				}
 				while = {
 					count = 30
 					create_army = {
-						owner = from.owner
+						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army_droid
-						species = from.owner.species
+						species = event_target:orbitting_emissary.owner.species
 					}
 				}
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_giga
 					}
 				}
@@ -1934,14 +1926,14 @@ planet_event = {
 				while = {
 					count = 3
 					create_army = {
-						owner = from.owner
+						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army_giga
 					}
 				}
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_stellarite_giga
 					}
 				}
@@ -1949,14 +1941,14 @@ planet_event = {
 				while = {
 					count = 6
 					create_army = {
-						owner = from.owner
+						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army_giga
 					}
 				}
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_phanon_giga
 					}
 				}
@@ -1964,14 +1956,14 @@ planet_event = {
 				while = {
 					count = 10
 					create_army = {
-						owner = from.owner
+						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army_giga
 					}
 				}
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_lab
 					}
 				}
@@ -1979,7 +1971,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_stellarite_lab
 					}
 				}
@@ -1987,7 +1979,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_phanon_lab
 					}
 				}
@@ -1995,7 +1987,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_skyshield
 					}
 				}
@@ -2003,7 +1995,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_stellarite_skyshield
 					}
 				}
@@ -2011,7 +2003,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_phanon_skyshield
 					}
 				}
@@ -2019,7 +2011,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_nexus
 					}
 				}
@@ -2027,7 +2019,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_stellarite_nexus
 					}
 				}
@@ -2035,7 +2027,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_phanon_nexus
 					}
 				}
@@ -2043,7 +2035,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_assembly
 					}
 				}
@@ -2051,7 +2043,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_stellarite_assembly
 					}
 				}
@@ -2059,13 +2051,13 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_extra_phanon_assembly
 					}
 				}
 				set_planet_flag = will_have_phanon_assembly
 			}
-			from = {
+			event_target:orbitting_emissary = {
 				delete_fleet = this
 			}
 		}
@@ -2093,7 +2085,7 @@ country_event = {
 			remove_all_buildings = yes
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_alpha
 					}
 					owner = {
@@ -2105,7 +2097,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_sigma
 					}
 					owner = {
@@ -2117,7 +2109,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_phanon
 					}
 					owner = {
@@ -2129,7 +2121,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_alpha
 					}
 					owner = {
@@ -2141,7 +2133,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_sigma
 					}
 					owner = {
@@ -2153,7 +2145,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_phanon
 					}
 					owner = {
@@ -2165,7 +2157,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_alpha
 					}
 					owner = {
@@ -2177,7 +2169,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_sigma
 					}
 					owner = {
@@ -2189,7 +2181,7 @@ country_event = {
 			}
 			if = {
 				limit = {
-					from = {
+					event_target:orbitting_emissary = {
 						has_fleet_flag = precursor_colonizer_phanon
 					}
 					owner = {

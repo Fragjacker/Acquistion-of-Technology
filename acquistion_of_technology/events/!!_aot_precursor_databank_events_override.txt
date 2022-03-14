@@ -178,12 +178,11 @@ country_event = {
 	### AGREE TO TOS AND GO BACK TO INSTALLER ###
 	option = {
 		name = acot_precursor_databank.100.a
+		response_text = acot_precursor_databank.100.a.response
 		hidden_effect = {
 			remove_country_flag = acot_databank_diplomacy_engaged
 			set_country_flag = acot_databank_tos_agreed
-			country_event = {
-				id = acot_precursor_databank.101
-			}
+			set_country_flag = acot_databank_installed
 		}
 	}
 	###  DO NOT AGREE AND EXIT
@@ -281,7 +280,8 @@ country_event = {
 	option = {
 		name = acot_precursor_databank.2.g
 		trigger = {
-			has_ascension_perk = ap_precursor_dream
+			#has_ascension_perk = ap_precursor_dream
+			has_country_flag = enable_precursor_ap
 			NAND = {
 				has_technology = tech_precursor_escort				#1
 				has_technology = tech_precursor_bc				#2
@@ -289,7 +289,6 @@ country_event = {
 				has_technology = tech_fe_assault_carrier				#4
 				has_technology = tech_fe_tower_offense				#5
 				has_technology = tech_precursor_guardian				#6
-				has_technology = tech_precursor_colossus				#7
 				has_technology = tech_precursor_construcor				#8
 				has_technology = tech_precursor_science				#9
 				has_technology = tech_precursor_colonizer				#10
@@ -401,7 +400,6 @@ country_event = {
 				has_technology = tech_fe_assault_carrier				#4
 				has_technology = tech_fe_tower_offense				#5
 				has_technology = tech_precursor_guardian				#6
-				has_technology = tech_precursor_colossus				#7
 				has_technology = tech_precursor_construcor				#8
 				has_technology = tech_precursor_science				#9
 				has_technology = tech_precursor_colonizer				#10
@@ -489,7 +487,6 @@ country_event = {
 				has_technology = tech_fe_assault_carrier				#4
 				has_technology = tech_fe_tower_offense				#5
 				has_technology = tech_precursor_guardian				#6
-				has_technology = tech_precursor_colossus				#7
 				has_technology = tech_precursor_construcor				#8
 				has_technology = tech_precursor_science				#9
 				has_technology = tech_precursor_colonizer				#10
@@ -511,7 +508,6 @@ country_event = {
 				has_technology = tech_fe_assault_carrier				#4
 				has_technology = tech_fe_tower_offense				#5
 				has_technology = tech_precursor_guardian				#6
-				has_technology = tech_precursor_colossus				#7
 				has_technology = tech_precursor_construcor				#8
 				has_technology = tech_precursor_science				#9
 				has_technology = tech_precursor_colonizer				#10
@@ -543,14 +539,14 @@ country_event = {
 		hidden_effect = {
 			remove_country_flag = acot_databank_diplomacy_engaged
 			country_event = {
-				id = acot_precursor_databank.412
+				id = acot_precursor_databank.4000
 			}
 		}
 	}
 	### 1 ESCORT NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.escort
+		name = acot_precursor_databank.4.nodata.escort
+		response_text = acot_precursor_databank.4.nodata.escort.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -573,8 +569,8 @@ country_event = {
 	}
 	### 2 BC NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.bc
+		name = acot_precursor_databank.4.nodata.bc
+		response_text = acot_precursor_databank.4.nodata.bc.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -597,8 +593,8 @@ country_event = {
 	}
 	### 3 HYPERION NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.titan
+		name = acot_precursor_databank.4.nodata.titan
+		response_text = acot_precursor_databank.4.nodata.titan.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -621,8 +617,8 @@ country_event = {
 	}
 	### 4 PAC NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.pac
+		name = acot_precursor_databank.4.nodata.pac
+		response_text = acot_precursor_databank.4.nodata.pac.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -645,8 +641,8 @@ country_event = {
 	}
 	### 5 GUARDIAN NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.guardian
+		name = acot_precursor_databank.4.nodata.guardian
+		response_text = acot_precursor_databank.4.nodata.guardian.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -669,8 +665,8 @@ country_event = {
 	}
 	### 6 SENTINEL NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.sentinel
+		name = acot_precursor_databank.4.nodata.sentinel
+		response_text = acot_precursor_databank.4.nodata.sentinel.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -693,8 +689,8 @@ country_event = {
 	}
 	### 8 ORACLE NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.oracle
+		name = acot_precursor_databank.4.nodata.oracle
+		response_text = acot_precursor_databank.4.nodata.oracle.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -717,8 +713,8 @@ country_event = {
 	}
 	### 9 INITIALIZER NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.initer
+		name = acot_precursor_databank.4.nodata.initer
+		response_text = acot_precursor_databank.4.nodata.initer.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -741,8 +737,8 @@ country_event = {
 	}
 	### 10 EMISSARY NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.emiss
+		name = acot_precursor_databank.4.nodata.emiss
+		response_text = acot_precursor_databank.4.nodata.emiss.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -765,8 +761,8 @@ country_event = {
 	}
 	### 11 CITADEL NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.citadel
+		name = acot_precursor_databank.4.nodata.citadel
+		response_text = acot_precursor_databank.4.nodata.citadel.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -789,8 +785,8 @@ country_event = {
 	}
 	### 12 HERCULEAN NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.colos
+		name = acot_precursor_databank.4.nodata.colos
+		response_text = acot_precursor_databank.4.nodata.colos.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -807,7 +803,7 @@ country_event = {
 		hidden_effect = {
 			remove_country_flag = acot_databank_diplomacy_engaged
 			country_event = {
-				id = acot_precursor_databank.411
+				id = acot_precursor_databank.412
 			}
 		}
 	}
@@ -837,8 +833,8 @@ country_event = {
 	}
 	### 14 ENIGMALITH NO DATA ###
 	option = {
-		name = acot_precursor_databank.4.nodata
-		response_text = acot_precursor_databank.4.nodata.enigmalith
+		name = acot_precursor_databank.4.nodata.enigmalith
+		response_text = acot_precursor_databank.4.nodata.enigmalith.desc
 		is_dialog_only = yes
 		trigger = {
 			NOT = {
@@ -855,7 +851,7 @@ country_event = {
 		hidden_effect = {
 			remove_country_flag = acot_databank_diplomacy_engaged
 			country_event = {
-				id = acot_precursor_databank.414
+				id = acot_precursor_databank.411
 			}
 		}
 	}
@@ -930,9 +926,9 @@ country_event = {
 ############################################################ PRECURSOR STUFFS ############################################################
 # Ask About Getting Designs
 country_event = {
-	id = acot_precursor_databank.412
+	id = acot_precursor_databank.4000
 	title = acot_precursor_databank.3.name
-	desc = acot_precursor_databank.412.desc
+	desc = acot_precursor_databank.4000.desc
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_curator_window"
@@ -948,14 +944,14 @@ country_event = {
 	}
 	### ENABLE AP ###
 	option = {
-		name = acot_precursor_databank.412.a
-		custom_tooltip = acot_precursor_databank.412.a.explain
+		name = acot_precursor_databank.4000.a
+		custom_tooltip = acot_precursor_databank.4000.a.explain
 		trigger = {
 			NOT = {
 				has_country_flag = enable_precursor_ap
 			}
 		}
-		response_text = acot_precursor_databank.412.a.response
+		response_text = acot_precursor_databank.4000.a.response
 		is_dialog_only = yes
 		hidden_effect = {
 			set_country_flag = enable_precursor_ap
@@ -963,14 +959,14 @@ country_event = {
 	}
 	### ABOUT WAR IN HELL ###
 	option = {
-		name = acot_precursor_databank.412.b
-		response_text = acot_precursor_databank.412.b.response
+		name = acot_precursor_databank.4000.b
+		response_text = acot_precursor_databank.4000.b.response
 		is_dialog_only = yes
 	}
 	### ABOUT WORLDS ###
 	option = {
-		name = acot_precursor_databank.412.c
-		response_text = acot_precursor_databank.412.c.response
+		name = acot_precursor_databank.4000.c
+		response_text = acot_precursor_databank.4000.c.response
 		is_dialog_only = yes
 	}
 	###  BACK ###
@@ -1557,9 +1553,9 @@ country_event = {
 
 # Databank Herculean
 country_event = {
-	id = acot_precursor_databank.411
+	id = acot_precursor_databank.412
 	title = acot_precursor_databank.3.name
-	desc = acot_precursor_databank.411.desc
+	desc = acot_precursor_databank.412.desc
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_curator_window"
@@ -1610,7 +1606,7 @@ country_event = {
 country_event = {
 	id = acot_precursor_databank.413
 	title = acot_precursor_databank.3.name
-	desc = acot_precursor_databank.412.desc
+	desc = acot_precursor_databank.416.desc
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_curator_window"
@@ -1659,14 +1655,14 @@ country_event = {
 
 # Databank Enigmalith
 country_event = {
-	id = acot_precursor_databank.414
+	id = acot_precursor_databank.411
 	title = acot_precursor_databank.3.name
-	desc = acot_precursor_databank.413.desc
+	desc = acot_precursor_databank.411.desc
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_curator_window"
 	picture_event_data = {
-		room = aot_enigmalith_room
+		room = acot_enigmalith_room
 	}
 	trigger = {
 	}
@@ -2475,11 +2471,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 100
+				value >= 500
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 100
+				value >= 500
 			}
 		}
 		trigger = {
@@ -2490,8 +2486,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.escort.response
 		add_resource = {
-			acot_sr_dark_energy = -100
-			sr_dark_matter = -100
+			acot_sr_dark_energy = -500
+			sr_dark_matter = -500
 		}
 		set_country_flag = project_escort_selected
 		hidden_effect = {
@@ -2507,14 +2503,35 @@ country_event = {
 				which = acot_quota_required
 				value = 100
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -2531,11 +2548,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 250
+				value >= 1250
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 250
+				value >= 1250
 			}
 		}
 		trigger = {
@@ -2546,8 +2563,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.bc.response
 		add_resource = {
-			acot_sr_dark_energy = -250
-			sr_dark_matter = -250
+			acot_sr_dark_energy = -1250
+			sr_dark_matter = -1250
 		}
 		set_country_flag = project_bc_selected
 		hidden_effect = {
@@ -2563,14 +2580,35 @@ country_event = {
 				which = acot_quota_required
 				value = 150
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -2587,11 +2625,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 250
+				value >= 1250
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 250
+				value >= 1250
 			}
 		}
 		trigger = {
@@ -2602,8 +2640,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.guard.response
 		add_resource = {
-			acot_sr_dark_energy = -250
-			sr_dark_matter = -250
+			acot_sr_dark_energy = -1250
+			sr_dark_matter = -1250
 		}
 		set_country_flag = project_guard_selected
 		hidden_effect = {
@@ -2619,14 +2657,35 @@ country_event = {
 				which = acot_quota_required
 				value = 150
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -2643,11 +2702,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 200
+				value >= 1000
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 200
+				value >= 1000
 			}
 		}
 		trigger = {
@@ -2659,8 +2718,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.oracle.response
 		add_resource = {
-			acot_sr_dark_energy = -200
-			sr_dark_matter = -200
+			acot_sr_dark_energy = -1000
+			sr_dark_matter = -1000
 		}
 		set_country_flag = project_oracle_selected
 		hidden_effect = {
@@ -2676,14 +2735,35 @@ country_event = {
 				which = acot_quota_required
 				value = 150
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -2700,11 +2780,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 200
+				value >= 1000
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 200
+				value >= 1000
 			}
 		}
 		trigger = {
@@ -2716,8 +2796,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.emiss.response
 		add_resource = {
-			acot_sr_dark_energy = -200
-			sr_dark_matter = -200
+			acot_sr_dark_energy = -1000
+			sr_dark_matter = -1000
 		}
 		set_country_flag = project_emiss_selected
 		hidden_effect = {
@@ -2733,14 +2813,35 @@ country_event = {
 				which = acot_quota_required
 				value = 200
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -2757,11 +2858,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 200
+				value >= 1000
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 200
+				value >= 1000
 			}
 		}
 		trigger = {
@@ -2773,8 +2874,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.initi.response
 		add_resource = {
-			acot_sr_dark_energy = -200
-			sr_dark_matter = -200
+			acot_sr_dark_energy = -1000
+			sr_dark_matter = -1000
 		}
 		set_country_flag = project_initi_selected
 		hidden_effect = {
@@ -2790,14 +2891,35 @@ country_event = {
 				which = acot_quota_required
 				value = 200
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -2814,11 +2936,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 350
+				value >= 1750
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 350
+				value >= 1750
 			}
 		}
 		trigger = {
@@ -2830,8 +2952,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.titan.response
 		add_resource = {
-			acot_sr_dark_energy = -350
-			sr_dark_matter = -350
+			acot_sr_dark_energy = -1750
+			sr_dark_matter = -1750
 		}
 		set_country_flag = project_titan_selected
 		hidden_effect = {
@@ -2847,14 +2969,35 @@ country_event = {
 				which = acot_quota_required
 				value = 250
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -2871,11 +3014,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 350
+				value >= 1750
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 350
+				value >= 1750
 			}
 		}
 		trigger = {
@@ -2887,8 +3030,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.pac.response
 		add_resource = {
-			acot_sr_dark_energy = -350
-			sr_dark_matter = -350
+			acot_sr_dark_energy = -1750
+			sr_dark_matter = -1750
 		}
 		set_country_flag = project_pac_selected
 		hidden_effect = {
@@ -2904,14 +3047,35 @@ country_event = {
 				which = acot_quota_required
 				value = 250
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -2928,11 +3092,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 350
+				value >= 2000
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 350
+				value >= 2000
 			}
 		}
 		trigger = {
@@ -2944,8 +3108,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.sentinel.response
 		add_resource = {
-			acot_sr_dark_energy = -350
-			sr_dark_matter = -350
+			acot_sr_dark_energy = -2000
+			sr_dark_matter = -2000
 		}
 		set_country_flag = project_sentinel_selected
 		hidden_effect = {
@@ -2961,14 +3125,35 @@ country_event = {
 				which = acot_quota_required
 				value = 250
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -2985,11 +3170,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 500
+				value >= 1500
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 500
+				value >= 1500
 			}
 		}
 		trigger = {
@@ -3005,8 +3190,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.dm_hab.response
 		add_resource = {
-			acot_sr_dark_energy = -500
-			sr_dark_matter = -500
+			acot_sr_dark_energy = -1500
+			sr_dark_matter = -1500
 		}
 		set_country_flag = project_dm_hab_selected
 		hidden_effect = {
@@ -3022,14 +3207,35 @@ country_event = {
 				which = acot_quota_required
 				value = 350
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -3046,28 +3252,25 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 500
+				value >= 1800
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 500
+				value >= 1800
 			}
 		}
 		trigger = {
-			has_technology = tech_precursor_guardian
-			has_technology = tech_fe_tower_offense
+			has_technology = tech_dark_matter_generator
+			has_technology = tech_dark_energy_pylon
 			NOR = {
 				has_tech_option = tech_precursor_enigmalith
 				has_technology = tech_precursor_enigmalith
-				any_owned_megastructure = {
-					is_megastructure_type = acot_dark_matter_obelisk_core
-				}
 			}
 		}
 		response_text = acot_precursor_databank.900.enigmalith.response
 		add_resource = {
-			acot_sr_dark_energy = -500
-			sr_dark_matter = -500
+			acot_sr_dark_energy = -1800
+			sr_dark_matter = -1800
 		}
 		set_country_flag = project_enigmalith_selected
 		hidden_effect = {
@@ -3077,20 +3280,41 @@ country_event = {
 			add_event_chain_counter = {
 				event_chain = acot_precursor_design_chain
 				counter = quota_required
-				amount = 350
+				amount = 600
 			}
 			set_variable = {
 				which = acot_quota_required
-				value = 350
+				value = 600
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -3107,11 +3331,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 500
+				value >= 2500
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 500
+				value >= 25000
 			}
 		}
 		trigger = {
@@ -3125,8 +3349,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.aot_gatekeeper.response
 		add_resource = {
-			acot_sr_dark_energy = -500
-			sr_dark_matter = -500
+			acot_sr_dark_energy = -2500
+			sr_dark_matter = -2500
 		}
 		set_country_flag = project_aot_gatekeeper_selected
 		hidden_effect = {
@@ -3142,14 +3366,35 @@ country_event = {
 				which = acot_quota_required
 				value = 400
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 4
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 4
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -3166,11 +3411,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 500
+				value >= 5000
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 500
+				value >= 5000
 			}
 		}
 		trigger = {
@@ -3182,8 +3427,8 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.dm_jugg.response
 		add_resource = {
-			acot_sr_dark_energy = -500
-			sr_dark_matter = -500
+			acot_sr_dark_energy = -5000
+			sr_dark_matter = -5000
 		}
 		set_country_flag = project_dm_jugg_selected
 		hidden_effect = {
@@ -3199,14 +3444,35 @@ country_event = {
 				which = acot_quota_required
 				value = 450
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -3223,11 +3489,11 @@ country_event = {
 		allow = {
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
-				value >= 750
+				value >= 2500
 			}
 			resource_stockpile_compare = {
 				resource = sr_dark_matter
-				value >= 750
+				value >= 2500
 			}
 		}
 		trigger = {
@@ -3240,68 +3506,10 @@ country_event = {
 		}
 		response_text = acot_precursor_databank.900.citadel.response
 		add_resource = {
-			acot_sr_dark_energy = -750
-			sr_dark_matter = -750
+			acot_sr_dark_energy = -2500
+			sr_dark_matter = -2500
 		}
 		set_country_flag = project_citadel_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 400
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 400
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
-			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### Herculean ###
-	option = {
-		name = acot_precursor_databank.900.colos
-		custom_tooltip = acot_precursor_databank.900.colos.infodata
-		allow = {
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1500
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1500
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_citadel
-			has_technology = tech_precursor_titan
-			NOR = {
-				has_tech_option = tech_precursor_colossus
-				has_technology = tech_precursor_colossus
-			}
-		}
-		response_text = acot_precursor_databank.900.colos.response
-		add_resource = {
-			acot_sr_dark_energy = -1500
-			sr_dark_matter = -1500
-		}
-		set_country_flag = project_colos_selected
 		hidden_effect = {
 			begin_event_chain = {
 				event_chain = acot_precursor_design_chain
@@ -3315,14 +3523,35 @@ country_event = {
 				which = acot_quota_required
 				value = 600
 			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
 			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
 			}
 			set_country_flag = precuursor_design_project_active
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -3435,13 +3664,9 @@ country_event = {
 		custom_tooltip = acot_precursor_databank.901.a.explain
 		allow = {
 		}
-		capital_scope = {
-			save_event_target_as = pc_home
-		}
 		enable_special_project = {
 			name = "RESEARCH_PRECURSOR_ATTEMPT"
-			location = event_target:pc_home
-			owner = root
+			owner = ROOT
 		}
 		default_hide_option = yes
 		hidden_effect = {
@@ -3471,13 +3696,9 @@ country_event = {
 			sr_dark_matter = -500
 			minor_artifacts = -10
 		}
-		capital_scope = {
-			save_event_target_as = pc_home
-		}
 		enable_special_project = {
 			name = "RESEARCH_PRECURSOR_ATTEMPT_HIGH"
-			location = event_target:pc_home
-			owner = root
+			owner = ROOT
 		}
 		hidden_effect = {
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -3506,13 +3727,9 @@ country_event = {
 			sr_dark_matter = -1500
 			minor_artifacts = -35
 		}
-		capital_scope = {
-			save_event_target_as = pc_home
-		}
 		enable_special_project = {
 			name = "RESEARCH_PRECURSOR_ATTEMPT_EXTREME"
-			location = event_target:pc_home
-			owner = root
+			owner = ROOT
 		}
 		hidden_effect = {
 			remove_country_flag = acot_databank_diplomacy_engaged
@@ -3541,12 +3758,8 @@ country_event = {
 			sr_dark_matter = -5000
 			minor_artifacts = -110
 		}
-		capital_scope = {
-			save_event_target_as = pc_home
-		}
 		enable_special_project = {
 			name = "RESEARCH_PRECURSOR_ATTEMPT_INSANE"
-			location = event_target:pc_home
 			owner = root
 		}
 		hidden_effect = {
@@ -3600,10 +3813,6 @@ country_event = {
 			AND = {
 				has_country_flag = project_titan_selected
 				last_increased_tech = tech_precursor_titan
-			}
-			AND = {
-				has_country_flag = project_colos_selected
-				last_increased_tech = tech_precursor_colossus
 			}
 			AND = {
 				has_country_flag = project_citadel_selected
@@ -3667,12 +3876,6 @@ country_event = {
 				has_country_flag = project_pac_selected
 			}
 			remove_country_flag = project_pac_selected
-		}
-		if = {
-			limit = {
-				has_country_flag = project_colos_selected
-			}
-			remove_country_flag = project_colos_selected
 		}
 		if = {
 			limit = {
@@ -3832,12 +4035,6 @@ country_event = {
 		}
 		if = {
 			limit = {
-				has_country_flag = project_colos_selected
-			}
-			remove_country_flag = project_colos_selected
-		}
-		if = {
-			limit = {
 				has_country_flag = project_citadel_selected
 			}
 			remove_country_flag = project_citadel_selected
@@ -3945,12 +4142,6 @@ country_event = {
 				has_country_flag = project_pac_selected
 			}
 			remove_country_flag = project_pac_selected
-		}
-		if = {
-			limit = {
-				has_country_flag = project_colos_selected
-			}
-			remove_country_flag = project_colos_selected
 		}
 		if = {
 			limit = {
@@ -4074,12 +4265,6 @@ country_event = {
 			has_country_flag = project_citadel_selected
 		}
 		text = acot_precursor_databank.904.desc.citadel
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_colos_selected
-		}
-		text = acot_precursor_databank.904.desc.colos
 	}
 	desc = {
 		trigger = {
@@ -4325,21 +4510,6 @@ country_event = {
 		add_research_option = tech_precursor_citadel
 		add_tech_progress = {
 			tech = tech_precursor_citadel
-			progress = 0.2
-		}
-	}
-	###HERCUULEAN
-	option = {
-		trigger = {
-			has_country_flag = project_colos_selected
-		}
-		name = acot_precursor_databank.904.colos
-		remove_country_flag = project_colos_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_colossus
-		add_tech_progress = {
-			tech = tech_precursor_colossus
 			progress = 0.2
 		}
 	}
