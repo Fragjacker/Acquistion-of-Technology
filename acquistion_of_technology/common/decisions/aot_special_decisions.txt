@@ -795,7 +795,41 @@ decision_open_kool_aid_vats_menu = {
 			owner = {
 				resource_stockpile_compare = {
 					resource = unity
-					value <= 250
+					value <= 25000
+				}
+			}
+		}
+	}
+}
+
+decision_open_kool_aid_assembly_menu = {
+	owned_planets_only = yes
+	icon = decision_machine_sapience
+	potential = {
+		OR = {
+			has_building = building_phanon_synt_center
+			has_building = building_phanon_machine_dome
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_phanon_synt_center
+			has_building = building_phanon_machine_dome
+		}
+	}
+	effect = {
+		planet_event = {
+			id = aot_events.81
+		}
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 0
+			owner = {
+				resource_stockpile_compare = {
+					resource = unity
+					value <= 25000
 				}
 			}
 		}

@@ -80,13 +80,13 @@ planet_event = {
 				}
 				resource_stockpile_compare = {
 					resource = unity
-					value >= 150
+					value >= 15000
 				}
 			}
 		}
 		owner = {
 			add_resource = {
-				unity = -150
+				unity = -15000
 			}
 			every_owned_leader = {
 				limit = {
@@ -178,13 +178,13 @@ planet_event = {
 			owner = {
 				resource_stockpile_compare = {
 					resource = unity
-					value >= 250
+					value >= 25000
 				}
 			}
 		}
 		owner = {
 			add_resource = {
-				unity = -250
+				unity = -25000
 			}
 		}
 		add_modifier = {
@@ -235,7 +235,7 @@ planet_event = {
 				}
 				resource_stockpile_compare = {
 					resource = unity
-					value >= 200
+					value >= 20000
 				}
 				resource_stockpile_compare = {
 					resource = acot_sr_stellarite
@@ -311,7 +311,7 @@ planet_event = {
 		}
 		owner = {
 			add_resource = {
-				unity = -200
+				unity = -20000
 				acot_sr_stellarite = -5000
 				energy = -10000
 			}
@@ -468,6 +468,7 @@ country_event = {
 	}
 }
 
+#Zofe lost empire event
 country_event = {
 	id = aot_events.6
 	title = aot_events.6.name
@@ -550,85 +551,58 @@ planet_event = {
 				}
 				resource_stockpile_compare = {
 					resource = unity
-					value >= 150
+					value >= 15000
 				}
 			}
 		}
 		owner = {
 			add_resource = {
-				unity = -150
+				unity = -15000
 			}
 			every_owned_leader = {
 				limit = {
 					is_organic_species = yes
 				}
-				if = {
-					limit = {
-						has_trait = leader_trait_arrested_development
+				switch = {
+					trigger = has_trait
+					leader_trait_arrested_development = {
+						remove_trait = leader_trait_arrested_development
+						add_trait = leader_trait_eager
 					}
-					remove_trait = leader_trait_arrested_development
-					add_trait = leader_trait_eager
-				}
-				if = {
-					limit = {
-						has_trait = leader_trait_substance_abuser
+					leader_trait_substance_abuser = {
+						remove_trait = leader_trait_substance_abuser
+						add_trait = leader_trait_resilient
 					}
-					remove_trait = leader_trait_substance_abuser
-					add_trait = leader_trait_resilient
-				}
-				if = {
-					limit = {
-						has_trait = leader_trait_stubborn
+					leader_trait_stubborn = {
+						remove_trait = leader_trait_stubborn
+						add_trait = leader_trait_adaptable
 					}
-					remove_trait = leader_trait_stubborn
-					add_trait = leader_trait_adaptable
-				}
-				if = {
-					limit = {
-						has_trait = leader_trait_nervous
+					leader_trait_nervous = {
+						remove_trait = leader_trait_nervous
+						add_trait = leader_trait_carefree
 					}
-					remove_trait = leader_trait_nervous
-					add_trait = leader_trait_carefree
-				}
-				if = {
-					limit = {
-						has_trait = leader_trait_paranoid
+					leader_trait_paranoid = {
+						remove_trait = leader_trait_paranoid
+						add_trait = leader_trait_unyielding
 					}
-					remove_trait = leader_trait_paranoid
-					add_trait = leader_trait_unyielding
-				}
-				if = {
-					limit = {
-						has_trait = leader_trait_lethargic
+					leader_trait_lethargic = {
+						remove_trait = leader_trait_lethargic
+						add_trait = leader_trait_gale_speed
 					}
-					remove_trait = leader_trait_lethargic
-					add_trait = leader_trait_gale_speed
-				}
-				if = {
-					limit = {
-						has_trait = leader_trait_corrupt
+					leader_trait_corrupt = {
+						remove_trait = leader_trait_corrupt
+						add_trait = leader_trait_righteous
 					}
-					remove_trait = leader_trait_corrupt
-					add_trait = leader_trait_righteous
-				}
-				if = {
-					limit = {
-						has_trait = leader_trait_armchair_commander
+					leader_trait_armchair_commander = {
+						remove_trait = leader_trait_armchair_commander
+						add_trait = leader_trait_glory_seeker
 					}
-					remove_trait = leader_trait_armchair_commander
-					add_trait = leader_trait_glory_seeker
-				}
-				if = {
-					limit = {
-						has_trait = leader_trait_traumatized
+					leader_trait_traumatized = {
+						remove_trait = leader_trait_traumatized
 					}
-					remove_trait = leader_trait_traumatized
-				}
-				if = {
-					limit = {
-						has_trait = leader_trait_maimed
+					leader_trait_maimed = {
+						remove_trait = leader_trait_maimed
 					}
-					remove_trait = leader_trait_maimed
 				}
 			}
 			hidden_effect = {
@@ -648,13 +622,13 @@ planet_event = {
 			owner = {
 				resource_stockpile_compare = {
 					resource = unity
-					value >= 250
+					value >= 25000
 				}
 			}
 		}
 		owner = {
 			add_resource = {
-				unity = -250
+				unity = -25000
 			}
 		}
 		add_modifier = {
@@ -705,7 +679,7 @@ planet_event = {
 				}
 				resource_stockpile_compare = {
 					resource = unity
-					value >= 200
+					value >= 20000
 				}
 				resource_stockpile_compare = {
 					resource = acot_sr_stellarite
@@ -781,7 +755,7 @@ planet_event = {
 		}
 		owner = {
 			add_resource = {
-				unity = -200
+				unity = -20000
 				acot_sr_stellarite = -5000
 				energy = -10000
 			}
@@ -892,19 +866,487 @@ planet_event = {
 	}
 }
 
+# Phanon Kool Aid Assembly Menu
+planet_event = {
+	id = aot_events.81
+	title = acot_special_menu.4.title
+	desc = acot_special_menu.4.desc
+	picture = GFX_evt_machine_sapience
+	is_triggered_only = yes
+	option = {
+		name = acot_special_menu.3.1.name
+		custom_tooltip = acot_special_menu.3.1.explain
+		allow = {
+			fail_text = {
+				text = not_has_shitty_leaders
+			}
+			owner = {
+				any_owned_leader = {
+					species = {
+						OR = {
+							is_archetype = MACHINE
+							is_archetype = ROBOT
+						}
+					}
+					OR = {
+						has_trait = leader_trait_arrested_development						#leader_trait_eager
+						has_trait = leader_trait_substance_abuser						#leader_trait_resilient
+						has_trait = leader_trait_stubborn						#leader_trait_adaptable
+						has_trait = leader_trait_paranoid						#leader_trait_carefree
+						has_trait = leader_trait_nervous						#leader_trait_unyielding
+						has_trait = leader_trait_lethargic						#leader_trait_gale_speed
+						has_trait = leader_trait_corrupt						#leader_trait_righteous
+						has_trait = leader_trait_armchair_commander						#leader_trait_glory_seeker
+						has_trait = leader_trait_rigid_programming						#leader_trait_flexible_programming
+						has_trait = leader_trait_erratic_morality_core						#leader_trait_demoralizer
+						has_trait = leader_trait_unstable_code_base						#leader_trait_unyielding
+					}
+				}
+				resource_stockpile_compare = {
+					resource = unity
+					value >= 15000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = -15000
+			}
+			every_owned_leader = {
+				limit = {
+					species = {
+						OR = {
+							is_archetype = MACHINE
+							is_archetype = ROBOT
+						}
+					}
+				}
+				switch = {
+					trigger = has_trait
+					leader_trait_rigid_programming = {
+						remove_trait = leader_trait_rigid_programming
+						add_trait = leader_trait_flexible_programming
+					}
+					leader_trait_erratic_morality_core = {
+						remove_trait = leader_trait_erratic_morality_core
+						add_trait = leader_trait_demoralizer
+					}
+					leader_trait_unstable_code_base = {
+						remove_trait = leader_trait_unstable_code_base
+						add_trait = leader_trait_unyielding
+					}
+					leader_trait_arrested_development = {
+						remove_trait = leader_trait_arrested_development
+						add_trait = leader_trait_eager
+					}
+					leader_trait_substance_abuser = {
+						remove_trait = leader_trait_substance_abuser
+						add_trait = leader_trait_resilient
+					}
+					leader_trait_stubborn = {
+						remove_trait = leader_trait_stubborn
+						add_trait = leader_trait_adaptable
+					}
+					leader_trait_nervous = {
+						remove_trait = leader_trait_nervous
+						add_trait = leader_trait_carefree
+					}
+					leader_trait_paranoid = {
+						remove_trait = leader_trait_paranoid
+						add_trait = leader_trait_unyielding
+					}
+					leader_trait_lethargic = {
+						remove_trait = leader_trait_lethargic
+						add_trait = leader_trait_gale_speed
+					}
+					leader_trait_corrupt = {
+						remove_trait = leader_trait_corrupt
+						add_trait = leader_trait_righteous
+					}
+					leader_trait_armchair_commander = {
+						remove_trait = leader_trait_armchair_commander
+						add_trait = leader_trait_glory_seeker
+					}
+					leader_trait_traumatized = {
+						remove_trait = leader_trait_traumatized
+					}
+					leader_trait_maimed = {
+						remove_trait = leader_trait_maimed
+					}
+				}
+			}
+			hidden_effect = {
+			}
+		}
+	}
+	option = {
+		name = aot_special_menu.5.2.name
+		custom_tooltip = aot_special_menu.5.2.explain
+		allow = {
+			fail_text = {
+				text = too_soon_to_do_that_nub
+			}
+			NOT = {
+				has_modifier = jumpstarted_mecha_exp_development
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = unity
+					value >= 25000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = -25000
+			}
+		}
+		add_modifier = {
+			modifier = jumpstarted_mecha_exp_development
+			days = 1800
+		}
+		hidden_effect = {
+			owner = {
+				every_owned_leader = {
+					limit = {
+						species = {
+							OR = {
+								is_archetype = MACHINE
+								is_archetype = ROBOT
+							}
+						}
+					}
+					add_experience = 2500
+				}
+				every_owned_leader = {
+					limit = {
+						leader_class = scientist
+						has_level >= 6
+					}
+					add_trait = leader_trait_spark_of_genius
+				}
+			}
+		}
+	}
+	option = {
+		name = aot_mod_options.mecha_koolaid.name
+		custom_tooltip = aot_mod_options.mecha_koolaid.explain
+		allow = {
+			fail_text = {
+				text = too_soon_to_do_that_nub
+			}
+			NOT = {
+				has_modifier = kool_aid_enrichment_activated
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 50000
+				}
+				resource_stockpile_compare = {
+					resource = aot_sr_runic_power
+					value >= 10000
+				}
+				fail_text = {
+					text = no_normal_leaders
+				}
+				any_owned_leader = {
+					has_phanon_traits = no
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -100000
+				aot_sr_runic_power = -10000
+			}
+		}
+		hidden_effect = {
+			add_modifier = {
+				modifier = kool_aid_enrichment_activated
+				days = 1800
+			}
+			owner = {
+				every_owned_leader = {
+					if = {
+						limit = {
+							NOT = {
+								has_trait = leader_trait_phanon_big_brain
+							}
+							leader_class = scientist
+						}
+						add_trait = leader_trait_phanon_big_brain
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_trait = leader_trait_phanon_big_leader
+							}
+							OR = {
+								leader_class = governor
+							}
+						}
+						add_trait = leader_trait_phanon_big_leader
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_trait = leader_trait_phanon_six_stars_general
+							}
+							leader_class = general
+						}
+						add_trait = leader_trait_phanon_six_stars_general
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_trait = leader_trait_acot_phanon_admiral
+							}
+							leader_class = admiral
+						}
+						add_trait = leader_trait_acot_phanon_admiral
+					}
+					# if = {
+					# 	limit = {
+					# 		NOT = {
+					# 			has_leader_flag = is_resurrection_candidate
+					# 		}
+					# 	}
+					# 	set_leader_flag = is_resurrection_candidate
+					# }
+				}
+				country_event = {
+					id = aot_events.9
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_special_menu.exit.a
+		name = acot_special_menu.exit.b
+		name = acot_special_menu.exit.c
+		name = acot_special_menu.exit.d
+		custom_tooltip = acot_special_menu.exit.tooltip
+	}
+}
+
+# new AoT Assembly Menu
+planet_event = {
+	id = aot_events.82
+	title = acot_special_menu.4.title
+	desc = acot_special_menu.4.desc
+	picture = GFX_evt_machine_sapience
+	is_triggered_only = yes
+	option = {
+		name = acot_special_menu.4.1.name
+		custom_tooltip = acot_special_menu.4.1.explain
+		allow = {
+			fail_text = {
+				text = not_has_shitty_leaders
+			}
+			owner = {
+				any_owned_leader = {
+					species = {
+						OR = {
+							is_archetype = MACHINE
+							is_archetype = ROBOT
+						}
+					}
+					OR = {
+						has_trait = leader_trait_arrested_development						#leader_trait_eager
+						has_trait = leader_trait_substance_abuser						#leader_trait_resilient
+						has_trait = leader_trait_stubborn						#leader_trait_adaptable
+						has_trait = leader_trait_paranoid						#leader_trait_carefree
+						has_trait = leader_trait_nervous						#leader_trait_unyielding
+						has_trait = leader_trait_lethargic						#leader_trait_gale_speed
+						has_trait = leader_trait_corrupt						#leader_trait_righteous
+						has_trait = leader_trait_armchair_commander						#leader_trait_glory_seeker
+						has_trait = leader_trait_rigid_programming						#leader_trait_flexible_programming
+						has_trait = leader_trait_erratic_morality_core						#leader_trait_demoralizer
+						has_trait = leader_trait_unstable_code_base						#leader_trait_unyielding
+					}
+				}
+				resource_stockpile_compare = {
+					resource = unity
+					value >= 15000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = -15000
+			}
+			every_owned_leader = {
+				limit = {
+					species = {
+						OR = {
+							is_archetype = MACHINE
+							is_archetype = ROBOT
+						}
+					}
+				}
+				switch = {
+					trigger = has_trait
+					leader_trait_rigid_programming = {
+						remove_trait = leader_trait_rigid_programming
+						add_trait = leader_trait_flexible_programming
+					}
+					leader_trait_erratic_morality_core = {
+						remove_trait = leader_trait_erratic_morality_core
+						add_trait = leader_trait_demoralizer
+					}
+					leader_trait_unstable_code_base = {
+						remove_trait = leader_trait_unstable_code_base
+						add_trait = leader_trait_unyielding
+					}
+					leader_trait_arrested_development = {
+						remove_trait = leader_trait_arrested_development
+						add_trait = leader_trait_eager
+					}
+					leader_trait_substance_abuser = {
+						remove_trait = leader_trait_substance_abuser
+						add_trait = leader_trait_resilient
+					}
+					leader_trait_stubborn = {
+						remove_trait = leader_trait_stubborn
+						add_trait = leader_trait_adaptable
+					}
+					leader_trait_nervous = {
+						remove_trait = leader_trait_nervous
+						add_trait = leader_trait_carefree
+					}
+					leader_trait_paranoid = {
+						remove_trait = leader_trait_paranoid
+						add_trait = leader_trait_unyielding
+					}
+					leader_trait_lethargic = {
+						remove_trait = leader_trait_lethargic
+						add_trait = leader_trait_gale_speed
+					}
+					leader_trait_corrupt = {
+						remove_trait = leader_trait_corrupt
+						add_trait = leader_trait_righteous
+					}
+					leader_trait_armchair_commander = {
+						remove_trait = leader_trait_armchair_commander
+						add_trait = leader_trait_glory_seeker
+					}
+					leader_trait_traumatized = {
+						remove_trait = leader_trait_traumatized
+					}
+					leader_trait_maimed = {
+						remove_trait = leader_trait_maimed
+					}
+				}
+			}
+			hidden_effect = {
+			}
+		}
+	}
+	option = {
+		name = aot_special_menu.5.2.name
+		custom_tooltip = aot_special_menu.5.2.explain
+		allow = {
+			fail_text = {
+				text = too_soon_to_do_that_nub
+			}
+			NOT = {
+				has_modifier = jumpstarted_mecha_exp_development
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = unity
+					value >= 25000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = -25000
+			}
+		}
+		add_modifier = {
+			modifier = jumpstarted_mecha_exp_development
+			days = 1800
+		}
+		hidden_effect = {
+			owner = {
+				every_owned_leader = {
+					limit = {
+						species = {
+							OR = {
+								is_archetype = MACHINE
+								is_archetype = ROBOT
+							}
+						}
+					}
+					add_experience = 2500
+				}
+				every_owned_leader = {
+					limit = {
+						leader_class = scientist
+						has_level >= 6
+					}
+					add_trait = leader_trait_spark_of_genius
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_special_menu.exit.a
+		name = acot_special_menu.exit.b
+		name = acot_special_menu.exit.c
+		name = acot_special_menu.exit.d
+		custom_tooltip = acot_special_menu.exit.tooltip
+	}
+}
+
 #Kool Aid event window
 country_event = {
 	id = aot_events.9
 	is_triggered_only = yes
 	title = aot_mod_options.koolaid_consoomed.title
-	desc = aot_mod_options.koolaid_consoomed.desc
+	desc = {
+		trigger = {
+			is_organic_species = yes
+		}
+		text = aot_mod_options.koolaid_consoomed.desc
+	}
+	desc = {
+		trigger = {
+			species = {
+				OR = {
+					is_archetype = MACHINE
+					is_archetype = ROBOT
+				}
+			}
+		}
+		text = aot_mod_options.mecha_koolaid_consoomed.desc
+	}
 	picture = GFX_evt_kool_aid_protocol
 	show_sound = event_energy_field
 	option = {
+		trigger = {
+			is_organic_species = yes
+		}
 		name = aot_mod_options.koolaid_consoomed.1.b
 		name = aot_mod_options.koolaid_consoomed.1.c
 		name = aot_mod_options.koolaid_consoomed.1.d
 		name = aot_mod_options.koolaid_consoomed.1.e
+	}
+	option = {
+		trigger = {
+			species = {
+				OR = {
+					is_archetype = MACHINE
+					is_archetype = ROBOT
+				}
+			}
+		}
+		name = aot_mod_options.koolaid_consoomed.1.b
+		name = aot_mod_options.koolaid_consoomed.2.c
+		name = aot_mod_options.koolaid_consoomed.2.d
+		name = aot_mod_options.koolaid_consoomed.2.e
 	}
 }
 
