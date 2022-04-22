@@ -565,6 +565,7 @@ ship_event = {
 						has_component = EMISSARY_DELTA_COMPUTER
 						has_component = EMISSARY_ALPHA_COMPUTER
 						has_component = EMISSARY_SIGMA_COMPUTER
+						has_component = EMISSARY_PHANON_COMPUTER
 						has_component = EMISSARY_OMEGA_COMPUTER
 					}
 				}
@@ -572,6 +573,7 @@ ship_event = {
 					remove_fleet_flag = precursor_colonizer_delta
 					remove_fleet_flag = precursor_colonizer_alpha
 					remove_fleet_flag = precursor_colonizer_sigma
+					remove_fleet_flag = precursor_colonizer_phanon
 					remove_fleet_flag = precursor_colonizer_omega
 				}
 			}
@@ -583,6 +585,7 @@ ship_event = {
 					set_fleet_flag = precursor_colonizer_delta
 					remove_fleet_flag = precursor_colonizer_alpha
 					remove_fleet_flag = precursor_colonizer_sigma
+					remove_fleet_flag = precursor_colonizer_phanon
 					remove_fleet_flag = precursor_colonizer_omega
 				}
 			}
@@ -594,6 +597,7 @@ ship_event = {
 					set_fleet_flag = precursor_colonizer_alpha
 					remove_fleet_flag = precursor_colonizer_delta
 					remove_fleet_flag = precursor_colonizer_sigma
+					remove_fleet_flag = precursor_colonizer_phanon
 					remove_fleet_flag = precursor_colonizer_omega
 				}
 			}
@@ -605,6 +609,19 @@ ship_event = {
 					set_fleet_flag = precursor_colonizer_sigma
 					remove_fleet_flag = precursor_colonizer_alpha
 					remove_fleet_flag = precursor_colonizer_delta
+					remove_fleet_flag = precursor_colonizer_phanon
+					remove_fleet_flag = precursor_colonizer_omega
+				}
+			}
+			if = {
+				limit = {
+					has_component = EMISSARY_PHANON_COMPUTER
+				}
+				fleet = {
+					set_fleet_flag = precursor_colonizer_sigma
+					remove_fleet_flag = precursor_colonizer_alpha
+					remove_fleet_flag = precursor_colonizer_delta
+					remove_fleet_flag = precursor_colonizer_sigma
 					remove_fleet_flag = precursor_colonizer_omega
 				}
 			}
@@ -616,6 +633,7 @@ ship_event = {
 					set_fleet_flag = precursor_colonizer_omega
 					remove_fleet_flag = precursor_colonizer_alpha
 					remove_fleet_flag = precursor_colonizer_sigma
+					remove_fleet_flag = precursor_colonizer_phanon
 					remove_fleet_flag = precursor_colonizer_delta
 				}
 			}
@@ -1070,6 +1088,9 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
+		From = {
+			save_event_target_as = orbitting_emissary
+		}
 		IF = {
 			limit = {
 				has_owner = no
@@ -2410,29 +2431,75 @@ country_event = {
 		fromfrom = {
 			switch = {
 				trigger = has_planet_flag
-				will_have_delta_emis = { remove_planet_flag = will_have_delta_emis }
-				will_have_alpha_emis = { remove_planet_flag = will_have_delta_emis }
-				will_have_sigma_emis = { remove_planet_flag = will_have_sigma_emis }
-				will_have_phanon_emis = { remove_planet_flag = will_have_phanon_emis }
-				will_have_omega_emis = { remove_planet_flag = will_have_omega_emis }
-				will_have_nexus = { remove_planet_flag = will_have_nexus }
-				will_have_stellarite_nexus = { remove_planet_flag = will_have_stellarite_nexus }
-				will_have_phanon_nexus = { remove_planet_flag = will_have_phanon_nexus }
-				will_have_psg = { remove_planet_flag = will_have_psg }
-				will_have_stellarite_psg = { remove_planet_flag = will_have_stellarite_psg }
-				will_have_phanon_psg = { remove_planet_flag = will_have_phanon_psg }
-				will_have_lab = { remove_planet_flag = will_have_lab }
-				will_have_stellarite_lab = { remove_planet_flag = will_have_stellarite_lab }
-				will_have_phanon_lab = { remove_planet_flag = will_have_phanon_lab }
-				will_have_giga = { remove_planet_flag = will_have_giga }
-				will_have_stellarite_giga = { remove_planet_flag = will_have_stellarite_giga }
-				will_have_phanon_giga = { remove_planet_flag = will_have_phanon_giga }
-				will_have_additional_pop = { remove_planet_flag = will_have_additional_pop }
-				will_have_additional_stellarite_pop = { remove_planet_flag = will_have_additional_stellarite_pop }
-				will_have_additional_phanon_pop = { remove_planet_flag = will_have_additional_phanon_pop }
-				will_have_assembly = { remove_planet_flag = will_have_assembly }
-				will_have_stellarite_assembly = { remove_planet_flag = will_have_stellarite_assembly }
-				will_have_phanon_assembly = { remove_planet_flag = will_have_phanon_assembly }
+				will_have_delta_emis = {
+					remove_planet_flag = will_have_delta_emis
+				}
+				will_have_alpha_emis = {
+					remove_planet_flag = will_have_delta_emis
+				}
+				will_have_sigma_emis = {
+					remove_planet_flag = will_have_sigma_emis
+				}
+				will_have_phanon_emis = {
+					remove_planet_flag = will_have_phanon_emis
+				}
+				will_have_omega_emis = {
+					remove_planet_flag = will_have_omega_emis
+				}
+				will_have_nexus = {
+					remove_planet_flag = will_have_nexus
+				}
+				will_have_stellarite_nexus = {
+					remove_planet_flag = will_have_stellarite_nexus
+				}
+				will_have_phanon_nexus = {
+					remove_planet_flag = will_have_phanon_nexus
+				}
+				will_have_psg = {
+					remove_planet_flag = will_have_psg
+				}
+				will_have_stellarite_psg = {
+					remove_planet_flag = will_have_stellarite_psg
+				}
+				will_have_phanon_psg = {
+					remove_planet_flag = will_have_phanon_psg
+				}
+				will_have_lab = {
+					remove_planet_flag = will_have_lab
+				}
+				will_have_stellarite_lab = {
+					remove_planet_flag = will_have_stellarite_lab
+				}
+				will_have_phanon_lab = {
+					remove_planet_flag = will_have_phanon_lab
+				}
+				will_have_giga = {
+					remove_planet_flag = will_have_giga
+				}
+				will_have_stellarite_giga = {
+					remove_planet_flag = will_have_stellarite_giga
+				}
+				will_have_phanon_giga = {
+					remove_planet_flag = will_have_phanon_giga
+				}
+				will_have_additional_pop = {
+					remove_planet_flag = will_have_additional_pop
+				}
+				will_have_additional_stellarite_pop = {
+					remove_planet_flag = will_have_additional_stellarite_pop
+				}
+				will_have_additional_phanon_pop = {
+					remove_planet_flag = will_have_additional_phanon_pop
+				}
+				will_have_assembly = {
+					remove_planet_flag = will_have_assembly
+				}
+				will_have_stellarite_assembly = {
+					remove_planet_flag = will_have_stellarite_assembly
+				}
+				will_have_phanon_assembly = {
+					remove_planet_flag = will_have_phanon_assembly
+				}
 			}
 		}
 	}
