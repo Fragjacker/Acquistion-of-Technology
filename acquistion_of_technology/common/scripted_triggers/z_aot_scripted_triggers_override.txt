@@ -15,3 +15,36 @@ can_build_phanon_ship = {
 		}
 	}
 }
+
+can_build_precursor_ship = {
+	OR = {
+		AND = {
+			is_scope_type = megastructure
+			OR = {
+				is_megastructure_type = acot_precursor_colossus_base
+				is_megastructure_type = acot_precursor_colossus_stage_two
+				is_megastructure_type = acot_amerigo
+				is_megastructure_type = acot_amerigo_ae
+				is_megastructure_type = acot_amerigo_se
+				is_megastructure_type = acot_amerigo_oe
+				is_megastructure_type = acot_amerigo_pe
+				is_megastructure_type = acot_phanon_master_reactor_sphere
+			}
+		}
+		AND = {
+			is_scope_type = starbase
+			OR = {
+				has_starbase_size >= juggernaut ### Even if no one's gonna use it ever.
+				has_starbase_module = virtual_shipyard_uplink ### Gigaman X6
+				has_starbase_building = acot_precursor_database	
+				has_starbase_size >= acot_precusor_starbase
+				has_starbase_size >= acot_precusor_sigma_starbase		
+				has_starbase_size >= acot_precusor_phanon_starcitadel			
+				has_starbase_size >= precursor_colossus ### Actually is Herculean	
+				has_starbase_size >= origin_super_citadel_playable	
+				has_starbase_size >= acot_star_commander #### Phanonmercy
+				has_starbase_size >= precursor_juggernaut # AoT Warbarge
+			}
+		}
+	}
+}
