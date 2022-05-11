@@ -5,7 +5,7 @@ country_event = {
 	hide_window = yes
 	trigger = {
 		end_game_years_passed > 100
-		is_country_type = ascended_empire
+		is_zofe_country = yes
 		is_gestalt = no
 		has_technology = tech_fallen_technologies_1
 		has_technology = tech_fallen_technologies_2
@@ -14,55 +14,115 @@ country_event = {
 			has_country_flag = no_decadence
 			has_country_flag = recent_hedonist
 		}
+		OR = {
+			has_edict = rejuvenate_society
+			has_edict = energize_society
+		}
 	}
 	immediate = {
-		set_timed_country_flag = {
-			flag = recent_hedonist
-			days = 30
+		if = {
+			limit = {
+				has_modifier = promoted_hedonist
+			}
+			set_timed_country_flag = {
+				flag = recent_hedonist
+				days = 30
+			}
+		}
+		if = {
+			limit = {
+				has_modifier = suppressed_hedonist
+			}
+			set_timed_country_flag = {
+				flag = recent_hedonist
+				days = 90
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					has_modifier = promoted_hedonist
+					has_modifier = suppressed_hedonist
+				}
+			}
+			set_timed_country_flag = {
+				flag = recent_hedonist
+				days = 60
+			}
 		}
 		random_list = {
 			50 = {
 				random_owned_planet = {
-					random_owned_pop = {
-						if = {
-							limit = {
-								worker_job_check_trigger = yes
-								is_pop_category = worker
-								is_enslaved = no
-								is_being_purged = no
-								is_robot_pop = no
-								is_being_assimilated = no
-								has_citizenship_rights = yes
-								NOR = {
-									has_pop_flag = decadent_pop
-									has_pop_flag = free_energyzed_man
-									has_job = ae_hedonist
-								}
+					limit = {
+						any_owned_pop = {
+							is_sapient = yes
+							has_citizenship_rights = yes
+							is_pop_category = worker
+							is_enslaved = no
+							is_being_purged = no
+							is_robot_pop = no
+							is_being_assimilated = no
+							NOR = {
+								has_pop_flag = decadent_pop
+								has_pop_flag = free_energyzed_man
+								has_job = ae_hedonist
 							}
-							set_pop_flag = decadent_pop
 						}
+					}
+					random_owned_pop = {
+						limit = {
+							is_sapient = yes
+							has_citizenship_rights = yes
+							is_pop_category = worker
+							is_enslaved = no
+							is_being_purged = no
+							is_robot_pop = no
+							is_being_assimilated = no
+							NOR = {
+								has_pop_flag = decadent_pop
+								has_pop_flag = free_energyzed_man
+								has_job = ae_hedonist
+							}
+						}
+						set_pop_flag = decadent_pop
 					}
 				}
 			}
 			50 = {
 				random_owned_planet = {
-					random_owned_pop = {
-						if = {
-							limit = {
-								is_unemployed = yes
-								is_enslaved = no
-								is_being_purged = no
-								is_robot_pop = no
-								is_being_assimilated = no
-								has_citizenship_rights = yes
-								NOR = {
-									has_pop_flag = decadent_pop
-									has_pop_flag = free_energyzed_man
-									has_job = ae_hedonist
-								}
+					limit = {
+						any_owned_pop = {
+							is_sapient = yes
+							has_citizenship_rights = yes
+							is_unemployed = yes
+							is_enslaved = no
+							is_being_purged = no
+							is_robot_pop = no
+							is_being_assimilated = no
+							NOT = {
+								has_pop_flag = decadent_pop
 							}
-							set_pop_flag = decadent_pop
+							NOT = {
+								has_job = ae_hedonist
+							}
 						}
+					}
+					random_owned_pop = {
+						limit = {
+							is_sapient = yes
+							has_citizenship_rights = yes
+							is_unemployed = yes
+							is_enslaved = no
+							is_being_purged = no
+							is_robot_pop = no
+							is_being_assimilated = no
+							NOR = {
+								has_pop_flag = decadent_pop
+								has_pop_flag = free_energyzed_man
+								has_job = ae_hedonist
+							}
+						}
+						set_pop_flag = decadent_pop
 					}
 				}
 			}

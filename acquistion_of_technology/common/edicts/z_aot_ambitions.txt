@@ -1,14 +1,15 @@
 #Ascended Empire Ambitions
 @ambitionDuration = 3600
+@ambitionCost = 75
+@ambitionUpkeep = 75
 energize_society = {
-	length = @ambitionDuration
+	length = 7200
 	icon = "GFX_edict_type_time"
-	is_ambition = yes
 	resources = {
 		category = edicts
 	}
 	potential = {
-		is_country_type = ascended_empire
+		is_zofe_country = yes
 		has_country_flag = ae_decadence_edict_gained
 	}
 	allow = {
@@ -49,12 +50,11 @@ energize_society = {
 rejuvenate_society = {
 	length = @ambitionDuration
 	icon = "GFX_edict_type_time"
-	is_ambition = yes
 	resources = {
 		category = edicts
 	}
 	potential = {
-		is_country_type = ascended_empire
+		is_zofe_country = yes
 		has_country_flag = decadence_edict_gained
 		NOT = {
 			has_country_flag = ae_decadence_edict_gained
@@ -76,7 +76,7 @@ rejuvenate_society = {
 		}
 		set_timed_country_flag = {
 			flag = no_decadence
-			days = 7200
+			days = 3600
 		}
 	}
 	ai_weight = {
@@ -85,10 +85,19 @@ rejuvenate_society = {
 }
 
 renounce_ascendancy = {
+	length = 0
+	icon = "GFX_edict_type_time"
 	resources = {
 		category = edicts
+		cost = {
+			unity = @ambitionCost
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			unity = @ambitionUpkeep
+			multiplier = value:edict_size_effect
+		}
 	}
-	length = 0
 	potential = {
 		is_country_type = ascended_empire
 		NOR = {
@@ -107,14 +116,15 @@ renounce_ascendancy = {
 		NOT = {
 			has_country_flag = lost_empire
 		}
-		# custom_tooltip = {
-		# 	fail_text = new_ascended_empire
-		# 	NOT = {
-		# 		has_country_flag = new_ascended_empire
-		# 	}
-		# }
+		custom_tooltip = {
+			fail_text = new_ascended_empire
+			NOT = {
+				has_country_flag = new_ascended_empire
+			}
+		}
 	}
 	effect = {
+		custom_tooltip = renounce_ascendancy
 		hidden_effect = {
 			country_event = {
 				id = aot_events.6
