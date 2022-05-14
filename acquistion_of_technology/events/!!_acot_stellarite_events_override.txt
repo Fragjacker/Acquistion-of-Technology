@@ -10,11 +10,13 @@ country_event = {
 	trigger = {
 		is_playable_country = yes
 		has_technology = tech_dark_matter_power_core_ae
+		has_established_contact = event_target:acot_precursor_databank_country
 		NOR = {
-			has_global_flag = acot_stellar_powers_forbidden
+			has_global_flag = acot_sigma_forbidden
 			has_country_flag = hear_stellarite
 			has_technology = tech_stellarite_reactor
 			has_tech_option = tech_stellarite_reactor
+			is_fallen_empire = yes
 		}
 	}
 	mean_time_to_happen = {
@@ -28,45 +30,31 @@ country_event = {
 		default_hide_option = yes
 		trigger = {
 			is_ai = no
-			any_owned_leader = {
-				leader_class = scientist
-			}
 		}
 		hidden_effect = {
 			country_event = {
-				id = stellarite_events.3
-			}
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_event_chain = acot_stellarite_chain
-				}
-			}
-			begin_event_chain = {
-				event_chain = acot_stellarite_chain
-			}
-			capital_scope = {
-				create_point_of_interest = {
-					id = acot_stellarite_tech_poi.1
-					name = "acot_stellarite_experiment"
-					desc = "acot_stellarite_experiment_desc"
-					event_chain = acot_stellarite_chain
-					location = this
-				}
+				id = stellarite_events.100
 			}
 		}
 	}
 	# AI eats too much glue so they get a random chance to get Stellarite Tech right away or nah.
 	option = {
 		name = EXCELLENT
+		default_hide_option = yes
 		trigger = {
 			is_ai = yes
+			has_global_flag = acot_ai_simple_event_forbidden
 		}
 		random_list = {
 			60 = {
 			}
 			40 = {
+				add_resource = {
+					energy = -5000
+					minerals = -5000
+					sr_dark_matter = -500
+					acot_sr_dark_energy = -500
+				}
 				add_research_option = tech_stellarite_reactor
 				add_tech_progress = {
 					tech = tech_stellarite_reactor
@@ -75,7 +63,7 @@ country_event = {
 			}
 		}
 		ai_chance = {
-			factor = 1000
+			factor = 100
 		}
 	}
 	option = {

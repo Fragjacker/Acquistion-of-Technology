@@ -17,9 +17,9 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_0
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_pay_0
+						value = @dm_yield_0
 					}
 				}
 				0 = {
@@ -28,80 +28,13 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_pay_0
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_0
+						value = @dm_yield_pay_0
 					}
 				}
 			}
-			### SUCCESS !!?!?!?!
-			IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= 0
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.4
-				}
-			}
-			### INSUFFICIENT POWER, BASE DEFENSES OFFLINE!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > @required_dm_score
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.5
-				}
-			}
-			### INCOMPLETED, WE NEED MORE PYLONS!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value < previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.3
-				}
-			}
-			### INCOMPLETED, WE HAVE DISCHARGED!?
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.6
-				}
-			}
-			set_variable = {
-				which = previous_power_level_value
-				value = var_dm_production_core_energy
-			}
+			check_production_core_state = yes
 		}
 	}
 	on_fail = {
@@ -127,9 +60,9 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_1
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_pay_1
+						value = @dm_yield_1
 					}
 				}
 				5 = {
@@ -138,80 +71,13 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_pay_1
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_1
+						value = @dm_yield_pay_1
 					}
 				}
 			}
-			### SUCCESS !!?!?!?!
-			IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= 0
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.4
-				}
-			}
-			### INSUFFICIENT POWER, BASE DEFENSES OFFLINE!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > @required_dm_score
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.5
-				}
-			}
-			### INCOMPLETED, WE NEED MORE PYLONS!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value < previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.3
-				}
-			}
-			### INCOMPLETED, WE HAVE DISCHARGED!?
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.6
-				}
-			}
-			set_variable = {
-				which = previous_power_level_value
-				value = var_dm_production_core_energy
-			}
+			check_production_core_state = yes
 		}
 	}
 	on_fail = {
@@ -237,9 +103,9 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_2
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_pay_2
+						value = @dm_yield_2
 					}
 				}
 				10 = {
@@ -248,80 +114,13 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_pay_2
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_2
+						value = @dm_yield_pay_2
 					}
 				}
 			}
-			### SUCCESS !!?!?!?!
-			IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= 0
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.4
-				}
-			}
-			### INSUFFICIENT POWER, BASE DEFENSES OFFLINE!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > @required_dm_score
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.5
-				}
-			}
-			### INCOMPLETED, WE NEED MORE PYLONS!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value < previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.3
-				}
-			}
-			### INCOMPLETED, WE HAVE DISCHARGED!?
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.6
-				}
-			}
-			set_variable = {
-				which = previous_power_level_value
-				value = var_dm_production_core_energy
-			}
+			check_production_core_state = yes
 		}
 	}
 	on_fail = {
@@ -347,9 +146,9 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_3
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_pay_3
+						value = @dm_yield_3
 					}
 				}
 				15 = {
@@ -358,80 +157,13 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_pay_3
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_3
+						value = @dm_yield_pay_3
 					}
 				}
 			}
-			### SUCCESS !!?!?!?!
-			IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= 0
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.4
-				}
-			}
-			### INSUFFICIENT POWER, BASE DEFENSES OFFLINE!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > @required_dm_score
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.5
-				}
-			}
-			### INCOMPLETED, WE NEED MORE PYLONS!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value < previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.3
-				}
-			}
-			### INCOMPLETED, WE HAVE DISCHARGED!?
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.6
-				}
-			}
-			set_variable = {
-				which = previous_power_level_value
-				value = var_dm_production_core_energy
-			}
+			check_production_core_state = yes
 		}
 	}
 	on_fail = {
@@ -457,9 +189,9 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_4
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_pay_4
+						value = @dm_yield_4
 					}
 				}
 				20 = {
@@ -468,80 +200,13 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_pay_4
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_4
+						value = @dm_yield_pay_4
 					}
 				}
 			}
-			### SUCCESS !!?!?!?!
-			IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= 0
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.4
-				}
-			}
-			### INSUFFICIENT POWER, BASE DEFENSES OFFLINE!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > @required_dm_score
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.5
-				}
-			}
-			### INCOMPLETED, WE NEED MORE PYLONS!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value < previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.3
-				}
-			}
-			### INCOMPLETED, WE HAVE DISCHARGED!?
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.6
-				}
-			}
-			set_variable = {
-				which = previous_power_level_value
-				value = var_dm_production_core_energy
-			}
+			check_production_core_state = yes
 		}
 	}
 	on_fail = {
@@ -567,9 +232,9 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_5
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_pay_5
+						value = @dm_yield_5
 					}
 				}
 				25 = {
@@ -578,80 +243,13 @@ special_project = {
 						counter = dm_production_core_current_energy_amount
 						amount = @dm_yield_pay_5
 					}
-					change_variable = {
+					subtract_variable = {
 						which = var_dm_production_core_energy
-						value = @dm_yield_5
+						value = @dm_yield_pay_5
 					}
 				}
 			}
-			### SUCCESS !!?!?!?!
-			IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= 0
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.4
-				}
-			}
-			### INSUFFICIENT POWER, BASE DEFENSES OFFLINE!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > @required_dm_score
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.5
-				}
-			}
-			### INCOMPLETED, WE NEED MORE PYLONS!
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value < previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.3
-				}
-			}
-			### INCOMPLETED, WE HAVE DISCHARGED!?
-			ELSE_IF = {
-				limit = {
-					check_variable = {
-						which = var_dm_production_core_energy
-						value <= @required_dm_score
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > 0
-					}
-					check_variable = {
-						which = var_dm_production_core_energy
-						value > previous_power_level_value
-					}
-				}
-				country_event = {
-					id = aot_dm_production_core_events.6
-				}
-			}
-			set_variable = {
-				which = previous_power_level_value
-				value = var_dm_production_core_energy
-			}
+			check_production_core_state = yes
 		}
 	}
 	on_fail = {

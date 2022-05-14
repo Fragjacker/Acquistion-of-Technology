@@ -188,7 +188,7 @@ country_event = {
 		}
 		hidden_effect = {
 			country_event = {
-				id = acot_alpha_matter_events.6
+				id = acot_alpha_matter_events.11
 			}
 		}
 		if = {
@@ -229,7 +229,9 @@ country_event = {
 	option = {
 		name = acot_alpha_matter_events.1.c
 		trigger = {
-			is_zofe_country = yes
+			NOT = {
+				is_country_type = default
+			}
 			is_ai = no
 		}
 	}
@@ -238,18 +240,73 @@ country_event = {
 		name = EXCELLENT
 		trigger = {
 			is_ai = yes
+			NOT = {
+				has_global_flag = acot_ai_simple_event_forbidden
+			}
 		}
-		country_event = {
-			id = acot_alpha_matter_events.10
-			days = 1800
-			random = 1800
+		add_research_option = tech_precursor_design
+		add_research_option = tech_dark_matter_power_core_ae
+		set_country_flag = learned_dm_alpha_existence
+	}
+	### AI IS TOO STUPID TO RELIABLY UNDERSTAND COMPLEX SYSTEMS WITHOUT BUNCH OF  CODES
+	option = {
+		name = EXCELLENT
+		trigger = {
+			is_ai = yes
+			has_global_flag = acot_ai_simple_event_forbidden
+		}
+		set_country_flag = allow_databank_steal
+		begin_event_chain = {
+			event_chain = acot_alpha_tech_chain
+		}
+		random_list = {
+			60 = {
+				modifier = {
+					factor = 0
+					NOT = {
+						has_established_contact = event_target:curator_enclave_country
+					}
+				}
+				modifier = {
+					factor = 0
+					resource_stockpile_compare = {
+						resource = energy
+						value <= 100000
+					}
+					resource_stockpile_compare = {
+						resource = acot_sr_dark_energy
+						value <= 10000
+					}
+					resource_stockpile_compare = {
+						resource = sr_dark_matter
+						value <= 10000
+					}
+				}
+				add_resource = {
+					energy = -100000
+					sr_dark_matter = -10000
+					acot_sr_dark_energy = -10000
+				}
+				hidden_effect = {
+					country_event = {
+						id = acot_alpha_matter_events.1040
+						days = 30
+					}
+				}
+			}
+			40 = {
+				country_event = {
+					id = acot_alpha_matter_events.9000
+					days = 5
+				}
+			}
 		}
 	}
 }
 
 #SELECT LEADER FOR ALPHA DIY PROJECT
 country_event = {
-	id = acot_alpha_matter_events.6
+	id = acot_alpha_matter_events.11
 	title = alpha_diy_events.3.name
 	desc = alpha_diy_events.3.desc
 	picture = GFX_evt_physics_research
@@ -371,7 +428,7 @@ country_event = {
 			}
 		}
 		country_event = {
-			id = acot_alpha_matter_events.6
+			id = acot_alpha_matter_events.11
 		}
 	}
 	option = {
@@ -559,17 +616,5 @@ country_event = {
 				owner = root
 			}
 		}
-	}
-}
-
-# Grant the AI alpha tier after 5-10 years.
-country_event = {
-	id = acot_alpha_matter_events.10
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		add_research_option = tech_precursor_design
-		add_research_option = tech_dark_matter_power_core_ae
-		set_country_flag = learned_dm_alpha_existence
 	}
 }

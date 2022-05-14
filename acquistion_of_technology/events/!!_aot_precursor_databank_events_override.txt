@@ -245,6 +245,11 @@ country_event = {
 	### ACCESS PRECURSOR DESIGN ARCHIVE ###
 	option = {
 		name = acot_precursor_databank.2.b
+		trigger = {
+			NOT = {
+				has_global_flag = acot_mysteries_ancients_forbidden
+			}
+		}
 		hidden_effect = {
 			country_event = {
 				id = acot_precursor_databank.4
@@ -392,7 +397,7 @@ country_event = {
 	option = {
 		name = acot_precursor_databank.2.g
 		trigger = {
-			has_ascension_perk = ap_precursor_dream
+			#has_ascension_perk = ap_precursor_dream
 			NAND = {
 				has_technology = tech_precursor_escort				#1
 				has_technology = tech_precursor_bc				#2
@@ -1551,6 +1556,57 @@ country_event = {
 	}
 }
 
+# Databank Enigmalith
+country_event = {
+	id = acot_precursor_databank.411
+	title = acot_precursor_databank.3.name
+	desc = acot_precursor_databank.411.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	picture_event_data = {
+		room = acot_enigmalith_room
+	}
+	trigger = {
+	}
+	immediate = {
+		set_country_flag = acot_databank_diplomacy_engaged
+	}
+	after = {
+	}
+	### GENERAL LORE ###
+	option = {
+		name = acot_precursor_databank.400.lore
+		response_text = acot_precursor_databank.400.a.enigmalith.lore
+		is_dialog_only = yes
+	}
+	### TACTICAL LORE ###
+	option = {
+		name = acot_precursor_databank.400.tacdata
+		response_text = acot_precursor_databank.400.a.enigmalith.data
+		is_dialog_only = yes
+	}
+	###  BACK ###
+	option = {
+		name = acot_precursor_databank.400.b
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.4
+			}
+		}
+	}
+	### EXIT
+	option = {
+		name = acot_precursor_databank.2.f
+		response_text = EXCELLENT
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = acot_databank_diplomacy_engaged
+		}
+	}
+}
+
 # Databank Herculean
 country_event = {
 	id = acot_precursor_databank.412
@@ -1630,57 +1686,6 @@ country_event = {
 	option = {
 		name = acot_precursor_databank.400.tacdata
 		response_text = acot_precursor_databank.400.a.warbarge.data
-		is_dialog_only = yes
-	}
-	###  BACK ###
-	option = {
-		name = acot_precursor_databank.400.b
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.4
-			}
-		}
-	}
-	### EXIT
-	option = {
-		name = acot_precursor_databank.2.f
-		response_text = EXCELLENT
-		default_hide_option = yes
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
-}
-
-# Databank Enigmalith
-country_event = {
-	id = acot_precursor_databank.411
-	title = acot_precursor_databank.3.name
-	desc = acot_precursor_databank.411.desc
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_curator_window"
-	picture_event_data = {
-		room = acot_enigmalith_room
-	}
-	trigger = {
-	}
-	immediate = {
-		set_country_flag = acot_databank_diplomacy_engaged
-	}
-	after = {
-	}
-	### GENERAL LORE ###
-	option = {
-		name = acot_precursor_databank.400.lore
-		response_text = acot_precursor_databank.400.a.enigmalith.lore
-		is_dialog_only = yes
-	}
-	### TACTICAL LORE ###
-	option = {
-		name = acot_precursor_databank.400.tacdata
-		response_text = acot_precursor_databank.400.a.enigmalith.data
 		is_dialog_only = yes
 	}
 	###  BACK ###
@@ -2863,7 +2868,6 @@ country_event = {
 		name = acot_precursor_databank.900.titan
 		custom_tooltip = acot_precursor_databank.900.titan.infodata
 		allow = {
-
 			resource_stockpile_compare = {
 				resource = acot_sr_dark_energy
 				value >= 1750
