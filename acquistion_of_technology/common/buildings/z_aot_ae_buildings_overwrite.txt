@@ -1,6 +1,7 @@
 #####################
 # Government Building
 #####################
+
 building_ae_ancient_palace = {
 	base_buildtime = 900
 	capital = yes
@@ -54,8 +55,8 @@ building_ae_ancient_palace = {
 		}
 		modifier = {
 			job_acot_overlord_add = 1
-			job_acot_overseer_add = 4
-			job_acot_enforcer_add = 4
+			job_acot_overseer_add = 2
+			job_acot_enforcer_add = 2
 		}
 	}
 	##### FOR FE ###
@@ -178,8 +179,8 @@ building_ae_ancient_control_center = {
 		}
 		modifier = {
 			job_acot_overlord_droid_add = 1
-			job_acot_overseer_droid_add = 4
-			job_acot_enforcer_drone_add = 4
+			job_acot_overseer_droid_add = 2
+			job_acot_enforcer_drone_add = 2
 		}
 	}
 	##### FOR FE ###
@@ -277,8 +278,8 @@ building_ae_ancient_hive_cluster = {
 		planet_housing_add = 20
 		planet_amenities_add = 50
 		job_acot_overlord_drone_add = 1
-		job_acot_overseer_drone_add = 4
-		job_acot_enforcer_drone_add = 4
+		job_acot_overseer_drone_add = 2
+		job_acot_enforcer_drone_add = 2
 		planet_max_districts_add = 4
 		planet_max_buildings_add = 12
 	}
@@ -476,6 +477,7 @@ building_ae_dimensional_fabricator = {
 			sr_living_metal = @auto_sr_ae
 		}
 		upkeep = {
+			energy = 30 #Mod Pack: added
 			acot_sr_dark_energy = 30
 		}
 	}
@@ -620,6 +622,7 @@ building_ae_master_archive = {
 	can_demolish = yes
 	can_build = no
 	category = research
+#	base_cap_amount = 1 #Added Line
 	prerequisites = {
 		"tech_aot_ae_master_archive"
 	}
@@ -691,6 +694,7 @@ building_ae_master_archive = {
 		upkeep = {
 			acot_sr_dark_energy = 15
 			sr_dark_matter = 15
+			energy = 20 #Mod Pack: added
 		}
 	}
 	upgrades = {
@@ -1047,7 +1051,10 @@ building_ae_dark_energy_psg = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			acot_sr_dark_energy = 150
+			energy = 1000 #Mod Pack: added
+			minerals = 500 #Mod Pack: added
+			alloys = 500 #Mod Pack: added
+			acot_sr_dark_energy = 150			
 		}
 		upkeep = {
 			trigger = {
@@ -1055,7 +1062,8 @@ building_ae_dark_energy_psg = {
 					is_ai = no
 				}
 			}
-			acot_sr_dark_energy = 2
+			energy = 50 #Mod Pack: added
+			acot_sr_dark_energy = 10 #Mod Pack: added
 		}
 	}
 	prerequisites = {
@@ -1133,8 +1141,8 @@ building_ae_stronghold = {
 					is_ai = no
 				}
 			}
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
+			sr_dark_matter = 10 #Mod Pack: raised from 5
+			acot_sr_dark_energy = 10 #Mod Pack: raised from 5
 		}
 	}
 	prerequisites = {
@@ -1237,6 +1245,14 @@ building_giga_fortress_array = {
 			sr_dark_matter = 250
 			acot_sr_dark_energy = 250
 		}
+		upkeep = { #Mod Pack; added upkeep
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+		}
 	}
 	prerequisites = {
 		"tech_giga_fortress"
@@ -1305,7 +1321,7 @@ building_giga_fortress_lab = {
 			}
 		}
 		job_acot_giga_fortress_operator_drone_add = 3
-		job_acot_enforcer_drone_add = 10
+		job_acot_enforcer_drone_add = 2 #Mod Pack: reduced from 10
 		job_acot_overseer_droid_add = 2
 	}
 	triggered_planet_modifier = {
@@ -1330,6 +1346,14 @@ building_giga_fortress_lab = {
 			minerals = 15000
 			sr_dark_matter = 250
 			acot_sr_dark_energy = 250
+		}
+		upkeep = { #Mod Pack; added upkeep
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
 		}
 	}
 	prerequisites = {
@@ -1380,7 +1404,7 @@ building_giga_fortress_obelisk = {
 			}
 		}
 		job_acot_giga_fortress_operator_add = 5
-		job_acot_enforcer_add = 15
+		job_acot_enforcer_add = 5 #Mod Pack: reduced from 15
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1390,7 +1414,7 @@ building_giga_fortress_obelisk = {
 			}
 		}
 		job_acot_giga_fortress_operator_drone_add = 5
-		job_acot_enforcer_drone_add = 15
+		job_acot_enforcer_drone_add = 5 #Mod Pack: reduced from 15
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1414,6 +1438,14 @@ building_giga_fortress_obelisk = {
 			minerals = 15000
 			sr_dark_matter = 250
 			acot_sr_dark_energy = 250
+		}
+		upkeep = { #Mod Pack; added upkeep
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
 		}
 	}
 	prerequisites = {
@@ -2778,6 +2810,34 @@ building_ae_enigmatic_lab = {
 			job_acot_researcher_drone_add = 4
 		}
 	}
+	triggered_planet_modifier = { #Mod Pack; added modifier from Vanilla, missed detail by A.C.o.T.
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_galactic_community_member = yes
+			}
+			is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+			has_modifier = pm_extradimensional_experimentation
+		}
+		modifier = {
+			job_dimensional_portal_researcher_add = 1
+		}
+	}
+	triggered_planet_modifier = { #Mod Pack; added modifier from Vanilla, missed detail by A.C.o.T.
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_galactic_community_member = yes
+			}
+			is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+			has_modifier = pm_extradimensional_experimentation
+		}
+		modifier = {
+			job_dimensional_portal_researcher_gestalt_add = 1
+		}
+	}
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -2799,6 +2859,18 @@ building_ae_enigmatic_lab = {
 			}
 			sr_dark_matter = 4
 			acot_sr_dark_energy = 4
+		}
+		upkeep = { #Mod Pack; added upkeep from Vanilla, missed detail by A.C.o.T.
+			trigger = {
+				owner = {
+					is_galactic_community_member = yes
+				}
+				is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				planet = {
+					has_modifier = pm_extradimensional_experimentation
+				}
+			}
+			sr_zro = 1
 		}
 	}
 	prerequisites = {
