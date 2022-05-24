@@ -349,7 +349,7 @@ building_class_4_singularity = {
 			sr_dark_matter = 3
 		}
 		produces = {
-			energy = 250
+			energy = @auto_energy_dm
 		}
 		produces = {
 			trigger = {
@@ -469,7 +469,7 @@ building_aot_fe_empyrean_shrine = {
 		}
 		produces = {
 			society_research = 25
-			unity = 25
+			unity = @auto_unity_dm
 		}
 		upkeep = {
 			energy = 10
@@ -508,7 +508,7 @@ building_fe_nano_forge = {
 			sr_living_metal = 50
 		}
 		produces = {
-			alloys = 25
+			alloys = @auto_alloy_dm
 		}
 		upkeep = {
 			minerals = 40
@@ -563,12 +563,12 @@ building_fe_dimensional_fabricator = {
 			sr_living_metal = 75 #Mod Pack: added
 		}
 		produces = {
-			minerals = 100
-			rare_crystals = 2
-			exotic_gases = 2
-			volatile_motes = 2
-			sr_zro = 2
-			sr_living_metal = 2
+			minerals = @auto_minerals_dm
+			rare_crystals = @auto_sr_dm
+			exotic_gases = @auto_sr_dm
+			volatile_motes = @auto_sr_dm
+			sr_zro = @auto_sr_dm
+			sr_living_metal = @auto_sr_dm
 		}
 		upkeep = {
 			energy = 20
@@ -623,7 +623,7 @@ building_fe_nourishment_center = {
 			volatile_motes = 150
 		}
 		produces = {
-			food = 100
+			food = @auto_food_dm
 		}
 		upkeep = {
 			energy = 20
@@ -675,7 +675,7 @@ building_fe_affluence_center = {
 			rare_crystals = 150
 		}
 		produces = {
-			consumer_goods = 50
+			consumer_goods = @auto_cg_dm
 		}
 		upkeep = {
 			minerals = 25
@@ -730,8 +730,8 @@ building_fe_sky_dome = {
 		building_communal_housing_large
 	}
 	planet_modifier = {
-		planet_housing_add = 20
-		planet_amenities_add = 20
+		planet_housing_add = @auto_housing_dm
+		planet_amenities_add = @auto_amenities_dm
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -783,6 +783,11 @@ building_fe_master_archive = {
 	}
 	allow = {
 		has_enigmatic_capital = yes
+		NOR = {
+			has_building = building_ae_master_archive
+			has_building = building_stellarite_master_archive
+			has_building = building_phanon_master_archive
+		}
 	}
 	resources = {
 		category = planet_buildings
@@ -791,9 +796,9 @@ building_fe_master_archive = {
 			exotic_gases = 200
 		}
 		produces = {
-			physics_research = 100
-			society_research = 100
-			engineering_research = 100
+			physics_research = @auto_research_dm
+			society_research = @auto_research_dm
+			engineering_research = @auto_research_dm
 		}
 		upkeep = {
 			energy = 20
@@ -1351,18 +1356,12 @@ building_fe_empyrean_shrine = {
 	base_cap_amount = 1
 	category = unity
 	potential = {
+		NOT = {
+			has_global_flag = has_aot_mod
+		}
 		exists = owner
 		owner = {
-			OR = {
-				is_country_type = ascended_empire
-				is_country_type = default
-			}
-			NOR = {
-				has_tech_option = tech_enigmatic_power_core
-				has_technology = tech_enigmatic_power_core
-				has_tech_option = tech_dark_matter_power_core
-				has_technology = tech_dark_matter_power_core
-			}
+			is_playable_country = yes
 		}
 		NOR = {
 			is_planet_class = pc_habitat
@@ -1929,7 +1928,7 @@ building_ae_embassy = {
 	}
 	country_modifier = {
 		envoys_add = 4
-#		diplo_weight_mult = 0.5 #Mod Pack; I disagree with it
+		diplo_weight_mult = 0.1
 	}
 	resources = {
 		category = planet_buildings
