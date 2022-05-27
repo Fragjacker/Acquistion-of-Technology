@@ -630,6 +630,9 @@ dm_bureaucrat = {
 	}
 }
 
+###################
+# AE Specialist Jobs
+###################
 ae_bureaucrat = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -753,132 +756,6 @@ ae_bureaucrat = {
 	}
 }
 
-stellarite_bureaucrat = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_bureaucratic
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-	}
-	possible_precalc = can_fill_specialist_job
-	resources = {
-		category = planet_bureaucrats
-		produces = {
-			unity = 20
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_valid_civic = civic_byzantine_bureaucracy
-				}
-			}
-			unity = 20
-		}
-		upkeep = {
-			consumer_goods = 10
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_valid_civic = civic_byzantine_bureaucracy
-			}
-		}
-		modifier = {
-			planet_stability_add = 20
-		}
-	}
-	country_modifier = {
-	}
-	triggered_country_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				exists = sector
-				sector = {
-					exists = leader
-					leader = {
-						has_trait = leader_trait_bureaucrat
-					}
-				}
-			}
-		}
-		modifier = {
-		}
-	}
-	triggered_country_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				has_designation = col_bureau
-			}
-		}
-		modifier = {
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_robot_propaganda_machines
-			OR = {
-				is_non_sapient_robot = yes
-				is_shackled_robot = yes
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_quarrelsome
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = stellarite_bureaucrat
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_presapient_proles
-		}
-		modifier = {
-			factor = 1.1
-			has_trait = trait_latent_psionic
-		}
-		modifier = {
-			factor = 1.2
-			has_trait = trait_psionic
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_enigmatic_intelligence_failed
-		}
-	}
-}
-
-###################
-# AE Specialist Jobs
-###################
 ae_dark_energy_man = {
 	icon = acot_dark_energy_man
 	category = specialist
@@ -1514,6 +1391,162 @@ ae_energydrone = {
 		modifier = {
 			factor = 5
 			has_job = ae_energydrone
+		}
+	}
+}
+
+ae_researcher = {
+	icon = acot_researcher
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_ae_enigmatic_lab
+	clothes_texture_index = 3
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible_precalc = can_fill_specialist_job
+	resources = {
+		category = planet_researchers
+		produces = {
+			physics_research = 40
+			engineering_research = 40
+			society_research = 40
+		}
+		upkeep = {
+			sr_dark_matter = 4
+			acot_sr_dark_energy = 4
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = {
+				type = living_standard_academic_privilege
+			}
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_erudite
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_trait = trait_robot_logic_engines
+				has_trait = trait_intelligent
+				has_trait = trait_brainslug
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_trait = trait_natural_engineers
+				has_trait = trait_natural_physicists
+				has_trait = trait_natural_sociologists
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.5
+			has_job = stellarite_researcher
+		}
+		modifier = {
+			factor = 1.2
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_indentured
+			}
+		}
+	}
+}
+
+ae_researcher_drone = {
+	icon = acot_researcher
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_ae_enigmatic_lab
+	clothes_texture_index = 3
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible_precalc = can_fill_specialist_job
+	resources = {
+		category = planet_researchers
+		produces = {
+			physics_research = 40
+			engineering_research = 40
+			society_research = 40
+		}
+		upkeep = {
+			sr_dark_matter = 4
+			acot_sr_dark_energy = 4
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = {
+				type = living_standard_academic_privilege
+			}
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_erudite
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_trait = trait_robot_logic_engines
+				has_trait = trait_intelligent
+				has_trait = trait_brainslug
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_trait = trait_natural_engineers
+				has_trait = trait_natural_physicists
+				has_trait = trait_natural_sociologists
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.5
+			has_job = stellarite_researcher
+		}
+		modifier = {
+			factor = 1.2
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_indentured
+			}
 		}
 	}
 }
@@ -3247,6 +3280,129 @@ stellarite_entertainer_drone = {
 		modifier = {
 			factor = 5
 			has_job = stellarite_entertainer_drone
+		}
+	}
+}
+
+stellarite_bureaucrat = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_stellarite_bureaucratic
+	clothes_texture_index = 3
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	possible_precalc = can_fill_specialist_job
+	resources = {
+		category = planet_bureaucrats
+		produces = {
+			unity = 20
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_valid_civic = civic_byzantine_bureaucracy
+				}
+			}
+			unity = 20
+		}
+		upkeep = {
+			consumer_goods = 10
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_byzantine_bureaucracy
+			}
+		}
+		modifier = {
+			planet_stability_add = 20
+		}
+	}
+	country_modifier = {
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = sector
+				sector = {
+					exists = leader
+					leader = {
+						has_trait = leader_trait_bureaucrat
+					}
+				}
+			}
+		}
+		modifier = {
+		}
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				has_designation = col_bureau
+			}
+		}
+		modifier = {
+		}
+	}
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = {
+				has_trait = trait_mechanical
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_robot_propaganda_machines
+			OR = {
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_trait = trait_robot_propaganda_machines
+				has_trait = trait_traditional
+			}
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_quarrelsome
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 5
+			has_job = stellarite_bureaucrat
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_presapient_proles
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_latent_psionic
+		}
+		modifier = {
+			factor = 1.2
+			has_trait = trait_psionic
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_enigmatic_intelligence_failed
 		}
 	}
 }
