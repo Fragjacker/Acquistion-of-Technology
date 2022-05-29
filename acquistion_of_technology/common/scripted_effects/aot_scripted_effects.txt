@@ -1463,18 +1463,42 @@ phanon_type_d_tech_gift = {
 remove_capital_building = {
 	switch = {
 		trigger = has_building
-		building_colony_shelter = { remove_building = building_colony_shelter }
-		building_capital = { remove_building = building_capital }
-		building_major_capital = { remove_building = building_major_capital }
-		building_system_capital = { remove_building = building_system_capital }
-		building_hab_capital = { remove_building = building_hab_capital }
-		building_hab_major_capital = { remove_building = building_hab_major_capital }
-		building_resort_capital = { remove_building = building_resort_capital }
-		building_resort_major_capital = { remove_building = building_resort_major_capital }
-		building_slave_capital = { remove_building = building_slave_capital }
-		building_slave_major_capital = { remove_building = building_slave_major_capital }
-		building_ancient_palace = { remove_building = building_ancient_palace }
-		building_ancient_control_center = { remove_building = building_ancient_control_center }
+		building_colony_shelter = {
+			remove_building = building_colony_shelter
+		}
+		building_capital = {
+			remove_building = building_capital
+		}
+		building_major_capital = {
+			remove_building = building_major_capital
+		}
+		building_system_capital = {
+			remove_building = building_system_capital
+		}
+		building_hab_capital = {
+			remove_building = building_hab_capital
+		}
+		building_hab_major_capital = {
+			remove_building = building_hab_major_capital
+		}
+		building_resort_capital = {
+			remove_building = building_resort_capital
+		}
+		building_resort_major_capital = {
+			remove_building = building_resort_major_capital
+		}
+		building_slave_capital = {
+			remove_building = building_slave_capital
+		}
+		building_slave_major_capital = {
+			remove_building = building_slave_major_capital
+		}
+		building_ancient_palace = {
+			remove_building = building_ancient_palace
+		}
+		building_ancient_control_center = {
+			remove_building = building_ancient_control_center
+		}
 	}
 }
 
@@ -1597,5 +1621,670 @@ check_production_core_state = {
 	set_variable = {
 		which = previous_power_level_value
 		value = var_dm_production_core_energy
+	}
+}
+
+save_aot_habitat_districts = {
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = $HOUSING$
+		}
+		variable = num_houses
+	}
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = $ENERGY$
+		}
+		variable = num_energy
+	}
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = $MINING$
+		}
+		variable = num_mines
+	}
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = $INDUSTRY$
+		}
+		variable = num_industry
+	}
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = $SCIENCE$
+		}
+		variable = num_research
+	}
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = $SPECIAL$
+		}
+		variable = num_special
+	}
+}
+
+create_new_aot_habitat_districts = {
+	while = {
+		count = num_houses
+		add_district = $HOUSING$
+	}
+	while = {
+		count = num_energy
+		add_district = $ENERGY$
+	}
+	while = {
+		count = num_mines
+		add_district = $MINING$
+	}
+	while = {
+		count = num_industry
+		add_district = $INDUSTRY$
+	}
+	while = {
+		count = num_research
+		add_district = $SCIENCE$
+	}
+	while = {
+		count = num_special
+		add_district = $SPECIAL$
+	}
+	clear_variable = num_houses
+	clear_variable = num_energy
+	clear_variable = num_mines
+	clear_variable = num_industry
+	clear_variable = num_research
+	clear_variable = num_special
+}
+
+create_dm_habitat = {
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = district_hab_housing
+		}
+		variable = num_houses
+	}
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = district_hab_energy
+		}
+		variable = num_energy
+	}
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = district_hab_mining
+		}
+		variable = num_mines
+	}
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = district_hab_industrial
+		}
+		variable = num_industry
+	}
+	export_trigger_value_to_variable = {
+		trigger = num_districts
+		parameters = {
+			type = district_hab_science
+		}
+		variable = num_research
+	}
+	clear_deposits = yes
+	set_colony_type = col_habitat_dm
+	change_pc = pc_dm_habitat
+	set_planet_entity = {
+		entity = "dm_habitat_phase_01_entity"
+	}
+	set_planet_size = @size_lvl1
+	set_planet_flag = is_base_dm_habitat
+	add_modifier = {
+		modifier = dm_habitat_mod
+		days = -1
+	}
+	# Add housing districts if there's been built any previously.
+	while = {
+		count = num_houses
+		add_district = district_dm_hab_housing
+	}
+	while = {
+		count = num_industry
+		add_district = district_dm_hab_arms_industry
+	}
+	while = {
+		count = num_energy
+		add_district = district_dm_hab_energy
+	}
+	while = {
+		count = num_mines
+		add_district = district_dm_hab_mining
+	}
+	while = {
+		count = num_research
+		add_district = district_dm_hab_research
+	}
+	clear_variable = num_houses
+	clear_variable = num_industry
+	clear_variable = num_research
+	if = {
+		limit = {
+			has_enigmatic_capital = no
+		}
+		if = {
+			limit = {
+				has_building = building_colony_shelter
+			}
+			remove_building = building_colony_shelter
+		}
+		if = {
+			limit = {
+				has_building = building_capital
+			}
+			remove_building = building_capital
+		}
+		if = {
+			limit = {
+				has_building = building_major_capital
+			}
+			remove_building = building_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_system_capital
+			}
+			remove_building = building_system_capital
+		}
+		if = {
+			limit = {
+				has_building = building_hab_capital
+			}
+			remove_building = building_hab_capital
+		}
+		if = {
+			limit = {
+				has_building = building_hab_major_capital
+			}
+			remove_building = building_hab_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_resort_capital
+			}
+			remove_building = building_resort_capital
+		}
+		if = {
+			limit = {
+				has_building = building_resort_major_capital
+			}
+			remove_building = building_resort_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_slave_capital
+			}
+			remove_building = building_slave_capital
+		}
+		if = {
+			limit = {
+				has_building = building_slave_major_capital
+			}
+			remove_building = building_slave_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_ancient_palace
+			}
+			remove_building = building_ancient_palace
+		}
+		if = {
+			limit = {
+				has_building = building_ancient_control_center
+			}
+			remove_building = building_ancient_control_center
+		}
+		if = {
+			limit = {
+				has_building = building_hive_cluster
+			}
+			remove_building = building_hive_cluster
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_capital
+			}
+			remove_building = building_imperial_capital
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_machine_capital
+			}
+			remove_building = building_imperial_machine_capital
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_hive_capital
+			}
+			remove_building = building_imperial_hive_capital
+		}
+		# Add the appropriate building now.
+		if = {
+			limit = {
+				owner = {
+					is_regular_empire = yes
+				}
+			}
+			add_building = building_dm_ancient_palace
+		}
+		if = {
+			limit = {
+				owner = {
+					is_machine_empire = yes
+				}
+			}
+			add_building = building_dm_ancient_control_center
+		}
+		if = {
+			limit = {
+				owner = {
+					is_hive_empire = yes
+				}
+			}
+			add_building = building_dm_ancient_hive_cluster
+		}
+	}
+}
+
+create_ae_habitat = {
+	save_aot_habitat_districts = {
+		HOUSING = district_dm_hab_housing
+		ENERGY = district_dm_hab_energy
+		MINING = district_dm_hab_mining
+		INDUSTRY = district_dm_hab_arms_industry
+		SCIENCE = district_dm_hab_research
+		SPECIAL = district_dm_hab_dark_matter_energy
+	}
+	clear_deposits = yes
+	set_colony_type = col_habitat_dm
+	set_planet_flag = retrofitted_ae_habitat
+	remove_modifier = dm_habitat_mod
+	change_pc = pc_ae_habitat
+	add_modifier = {
+		modifier = ae_habitat_mod
+		days = -1
+	}
+	create_new_aot_habitat_districts = {
+		HOUSING = district_ae_hab_housing
+		ENERGY = district_ae_hab_energy
+		MINING = district_ae_hab_mining
+		INDUSTRY = district_ae_hab_arms_industry
+		SCIENCE = district_ae_hab_research
+		SPECIAL = district_ae_hab_dark_matter_energy
+	}
+	if = {
+		limit = {
+			has_planet_flag = is_base_dm_habitat
+		}
+		set_planet_entity = {
+			entity = "alpha_habitat_phase_01_entity"
+		}
+		set_planet_size = @size_lvl1
+	}
+	if = {
+		limit = {
+			has_planet_flag = advanced_ascended_habitat
+		}
+		set_planet_entity = {
+			entity = "alpha_habitat_phase_02_entity"
+		}
+		set_planet_size = @size_lvl2
+	}
+	if = {
+		limit = {
+			has_planet_flag = advanced_ascended_habitat_2
+		}
+		set_planet_entity = {
+			entity = "alpha_habitat_phase_03_entity"
+		}
+		set_planet_size = @size_lvl3
+	}
+	if = {
+		limit = {
+			has_ascended_capital = no
+		}
+		if = {
+			limit = {
+				has_building = building_colony_shelter
+			}
+			remove_building = building_colony_shelter
+		}
+		if = {
+			limit = {
+				has_building = building_capital
+			}
+			remove_building = building_capital
+		}
+		if = {
+			limit = {
+				has_building = building_major_capital
+			}
+			remove_building = building_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_system_capital
+			}
+			remove_building = building_system_capital
+		}
+		if = {
+			limit = {
+				has_building = building_hab_capital
+			}
+			remove_building = building_hab_capital
+		}
+		if = {
+			limit = {
+				has_building = building_hab_major_capital
+			}
+			remove_building = building_hab_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_resort_capital
+			}
+			remove_building = building_resort_capital
+		}
+		if = {
+			limit = {
+				has_building = building_resort_major_capital
+			}
+			remove_building = building_resort_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_slave_capital
+			}
+			remove_building = building_slave_capital
+		}
+		if = {
+			limit = {
+				has_building = building_slave_major_capital
+			}
+			remove_building = building_slave_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_ancient_palace
+			}
+			remove_building = building_ancient_palace
+		}
+		if = {
+			limit = {
+				has_building = building_ancient_control_center
+			}
+			remove_building = building_ancient_control_center
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_capital
+			}
+			remove_building = building_imperial_capital
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_machine_capital
+			}
+			remove_building = building_imperial_machine_capital
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_hive_capital
+			}
+			remove_building = building_imperial_hive_capital
+		}
+		if = {
+			limit = {
+				has_building = building_dm_ancient_control_center
+			}
+			remove_building = building_dm_ancient_control_center
+		}
+		if = {
+			limit = {
+				has_building = building_dm_ancient_palace
+			}
+			remove_building = building_dm_ancient_palace
+		}
+		if = {
+			limit = {
+				has_building = building_dm_ancient_hive_cluster
+			}
+			remove_building = building_dm_ancient_hive_cluster
+		}
+		# Add the appropriate building now.
+		if = {
+			limit = {
+				owner = {
+					is_regular_empire = yes
+				}
+			}
+			add_building = building_ae_ancient_palace
+		}
+		if = {
+			limit = {
+				owner = {
+					is_machine_empire = yes
+				}
+			}
+			add_building = building_ae_ancient_control_center
+		}
+		if = {
+			limit = {
+				owner = {
+					is_hive_empire = yes
+				}
+			}
+			add_building = building_ae_ancient_hive_cluster
+		}
+	}
+}
+
+create_sigma_habitat = {
+	save_aot_habitat_districts = {
+		HOUSING = district_ae_hab_housing
+		ENERGY = district_ae_hab_energy
+		MINING = district_ae_hab_mining
+		INDUSTRY = district_ae_hab_arms_industry
+		SCIENCE = district_ae_hab_research
+		SPECIAL = district_ae_hab_dark_matter_energy
+	}
+	clear_deposits = yes
+	set_colony_type = col_habitat_stellarite
+	set_planet_flag = retrofitted_sigma_habitat
+	remove_modifier = dm_habitat_mod
+	remove_modifier = ae_habitat_mod
+	change_pc = pc_sigma_habitat
+	add_modifier = {
+		modifier = stellarite_habitat_mod
+		days = -1
+	}
+	create_new_aot_habitat_districts = {
+		HOUSING = district_hab_stellarite_housing
+		ENERGY = district_hab_stellarite_energy
+		MINING = district_hab_stellarite_mining
+		INDUSTRY = district_hab_stellarite_arms_industry
+		SCIENCE = district_hab_stellarite_research
+		SPECIAL = district_hab_stellarite_generator
+	}
+	if = {
+		limit = {
+			has_planet_flag = is_base_dm_habitat
+		}
+		set_planet_entity = {
+			entity = "sigma_habitat_phase_01_entity"
+		}
+		set_planet_size = @size_lvl1
+	}
+	if = {
+		limit = {
+			has_planet_flag = advanced_ascended_habitat
+		}
+		set_planet_entity = {
+			entity = "sigma_habitat_phase_02_entity"
+		}
+		set_planet_size = @size_lvl2
+	}
+	if = {
+		limit = {
+			has_planet_flag = advanced_ascended_habitat_2
+		}
+		set_planet_entity = {
+			entity = "sigma_habitat_phase_03_entity"
+		}
+		set_planet_size = @size_lvl3
+	}
+	if = {
+		limit = {
+			has_stellarite_capital = no
+		}
+		if = {
+			limit = {
+				has_building = building_colony_shelter
+			}
+			remove_building = building_colony_shelter
+		}
+		if = {
+			limit = {
+				has_building = building_capital
+			}
+			remove_building = building_capital
+		}
+		if = {
+			limit = {
+				has_building = building_major_capital
+			}
+			remove_building = building_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_system_capital
+			}
+			remove_building = building_system_capital
+		}
+		if = {
+			limit = {
+				has_building = building_hab_capital
+			}
+			remove_building = building_hab_capital
+		}
+		if = {
+			limit = {
+				has_building = building_hab_major_capital
+			}
+			remove_building = building_hab_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_resort_capital
+			}
+			remove_building = building_resort_capital
+		}
+		if = {
+			limit = {
+				has_building = building_resort_major_capital
+			}
+			remove_building = building_resort_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_slave_capital
+			}
+			remove_building = building_slave_capital
+		}
+		if = {
+			limit = {
+				has_building = building_slave_major_capital
+			}
+			remove_building = building_slave_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_capital
+			}
+			remove_building = building_imperial_capital
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_machine_capital
+			}
+			remove_building = building_imperial_machine_capital
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_hive_capital
+			}
+			remove_building = building_imperial_hive_capital
+		}
+		if = {
+			limit = {
+				has_building = building_ancient_palace
+			}
+			remove_building = building_ancient_palace
+		}
+		if = {
+			limit = {
+				has_building = building_ancient_control_center
+			}
+			remove_building = building_ancient_control_center
+		}
+		if = {
+			limit = {
+				has_building = building_ae_ancient_control_center
+			}
+			remove_building = building_ae_ancient_control_center
+		}
+		if = {
+			limit = {
+				has_building = building_ae_ancient_palace
+			}
+			remove_building = building_ae_ancient_palace
+		}
+		if = {
+			limit = {
+				has_building = building_ae_ancient_hive_cluster
+			}
+			remove_building = building_ae_ancient_hive_cluster
+		}
+		# Add the appropriate building now.
+		if = {
+			limit = {
+				owner = {
+					is_regular_empire = yes
+				}
+			}
+			add_building = building_stellarite_palace
+		}
+		if = {
+			limit = {
+				owner = {
+					is_machine_empire = yes
+				}
+			}
+			add_building = building_stellarite_control_center
+		}
+		if = {
+			limit = {
+				owner = {
+					is_hive_empire = yes
+				}
+			}
+			add_building = building_stellarite_hive_cluster
+		}
 	}
 }
