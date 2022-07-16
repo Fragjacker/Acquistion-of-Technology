@@ -273,3 +273,31 @@ is_playable_country = {
 		is_country_type = original_empire_active
 	}
 }
+
+is_eligible_production_core_country = {
+	has_technology = tech_dark_matter_power_core
+	NOR = {
+		has_country_flag = dm_production_core_project_offer
+		has_country_flag = block_dm_production_core_project
+		has_country_flag = finished_dm_production_core_chain
+		has_event_chain = aot_dm_production_core_chain
+		has_special_project = ascended_technologies_4
+	}
+	OR = {
+		NAND = {
+			has_technology = tech_fe_class_4_singularity
+			has_technology = tech_fe_dimensional_fabricator
+			has_technology = tech_fe_nourishment_center
+			has_technology = tech_fe_affluence_center
+			has_technology = tech_fe_nano_forge
+			has_technology = tech_fe_master_archive
+			has_technology = tech_fe_sky_dome
+		}
+		AND = {
+			has_ethic = ethic_fanatic_spiritualist
+			NOT = {
+				has_technology = tech_aot_fe_empyrean_shrine
+			}
+		}
+	}
+}
