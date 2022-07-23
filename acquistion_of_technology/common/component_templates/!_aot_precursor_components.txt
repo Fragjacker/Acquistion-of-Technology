@@ -1,0 +1,54 @@
+utility_component_template = {
+	key = "ACOT_HERCULEAN_REACTOR"
+	size = large
+	icon = "GFX_ship_part_acot_precursor_reactor"
+	icon_frame = 1
+	power = 500000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 1200
+			acot_sr_dark_energy = 1200
+			acot_sr_dark_energy = 1200
+		}
+		upkeep = {
+			acot_sr_dark_energy = 12
+			acot_sr_dark_energy = 12
+		}
+	}
+	hostile_aura = {
+		name = "acot_aura_herculean_reactor_dot"
+		radius = 100
+		apply_on = ships
+		stack_info = {
+			#A ship can only be affected by one aura of a certain id. If multiple auras have the same ID the one with the highest priority will be applied.
+			id = acot_aura_herculean_reactor_dot
+			priority = 5
+		}
+		damage_per_day = {
+			accuracy = 1
+			damage = {
+				min = 100
+				max = 200
+			}
+			shield_penetration = 0
+			armor_penetration = 0
+			shield_damage = 1
+		}
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = yes
+			}
+			ship_effect = {
+				entity = "ship_aura_negative_entity"
+				dynamic_scale = no
+			}
+		}
+	}
+	component_set = "ACOT_HERCULEAN_REACTOR"
+	upgrades_to = ACOT_HERCULEAN_REACTOR_E7
+	ai_weight = {
+		weight = 1
+	}
+}
