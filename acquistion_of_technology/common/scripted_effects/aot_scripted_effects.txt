@@ -1554,7 +1554,6 @@ remove_databank_project_flag = {
 }
 
 check_production_core_state = {
-	### SUCCESS !!?!?!?!
 	IF = {
 		limit = {
 			check_variable = {
@@ -1566,7 +1565,6 @@ check_production_core_state = {
 			id = aot_dm_production_core_events.4
 		}
 	}
-	### INSUFFICIENT POWER, BASE DEFENSES OFFLINE!
 	ELSE_IF = {
 		limit = {
 			check_variable = {
@@ -1578,27 +1576,6 @@ check_production_core_state = {
 			id = aot_dm_production_core_events.5
 		}
 	}
-	### INCOMPLETED, WE NEED MORE PYLONS!
-	ELSE_IF = {
-		limit = {
-			check_variable = {
-				which = var_dm_production_core_energy
-				value <= @required_dm_score
-			}
-			check_variable = {
-				which = var_dm_production_core_energy
-				value > 0
-			}
-			check_variable = {
-				which = var_dm_production_core_energy
-				value < previous_power_level_value
-			}
-		}
-		country_event = {
-			id = aot_dm_production_core_events.3
-		}
-	}
-	### INCOMPLETED, WE HAVE DISCHARGED!?
 	ELSE_IF = {
 		limit = {
 			check_variable = {
@@ -1616,6 +1593,11 @@ check_production_core_state = {
 		}
 		country_event = {
 			id = aot_dm_production_core_events.6
+		}
+	}
+	ELSE = {
+		country_event = {
+			id = aot_dm_production_core_events.3
 		}
 	}
 	set_variable = {
