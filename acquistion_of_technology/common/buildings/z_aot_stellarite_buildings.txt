@@ -3168,6 +3168,139 @@ building_stellarite_generator_lvl3 = {
 	}
 }
 
+building_stellarite_synthersizer = {
+	base_buildtime = 900
+	can_build = no
+	category = manufacturing
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_stellarite_synthersizer
+		}
+	}
+	country_modifier = {
+		country_resource_max_acot_sr_dark_energy_add = 15000
+		country_resource_max_sr_dark_matter_add = 15000
+		country_resource_max_acot_sr_stellarite_add = 15000
+	}
+	allow = {
+		has_stellarite_capital = yes
+	}
+	prerequisites = {
+		"tech_stellarite_synthersizer"
+	}
+	upgrades = {
+		building_phanon_synthersizer
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			energy = 500
+			sr_dark_matter = 1500
+			acot_sr_dark_energy = 1500
+		}
+		produces = {
+			sr_dark_matter = 100
+			acot_sr_dark_energy = 100
+			acot_sr_stellarite = 500
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator
+					value = 2
+				}
+			}
+			acot_sr_stellarite = 30
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator
+					value = 3
+				}
+			}
+			acot_sr_stellarite = 60
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator
+					value >= 4
+				}
+			}
+			acot_sr_stellarite = 90
+		}
+		##### A DE
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_ae
+					value = 2
+				}
+			}
+			acot_sr_stellarite = 60
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_ae
+					value = 3
+				}
+			}
+			acot_sr_stellarite = 120
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_ae
+					value >= 4
+				}
+			}
+			acot_sr_stellarite = 180
+		}
+		##### DM
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_lvl3
+					value = 2
+				}
+			}
+			acot_sr_stellarite = 100
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_lvl3
+					value = 3
+				}
+			}
+			acot_sr_stellarite = 200
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_lvl3
+					value >= 4
+				}
+			}
+			acot_sr_stellarite = 300
+		}
+	}
+	ai_weight = {
+		weight = 25000
+	}
+	ai_resource_production = {
+		sr_dark_matter = 100
+		acot_sr_dark_energy = 100
+		trigger = {
+			always = yes
+		}
+	}
+}
+
 #####################
 # OTHER STUFFS
 #####################
@@ -3177,6 +3310,7 @@ building_stellarite_mansion = {
 	category = amenity
 	convert_to = {
 		building_stellarite_hive_depot
+		building_stellarite_ancient_cryo_chamber
 	}
 	upgrades = {
 		building_phanon_mansion
@@ -3268,10 +3402,11 @@ building_stellarite_hive_depot = {
 	}
 	convert_to = {
 		building_stellarite_mansion
+		building_stellarite_ancient_cryo_chamber
 	}
 	planet_modifier = {
-		planet_housing_add = 30
-		planet_amenities_add = 30
+		planet_housing_add = 60
+		planet_amenities_add = 60
 		job_stellarite_entertainer_drone_add = 4
 	}
 	resources = {
@@ -3295,6 +3430,65 @@ building_stellarite_hive_depot = {
 	}
 	prerequisites = {
 		tech_stellarite_hive_depot
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 20000
+			free_housing < 0
+		}
+		modifier = {
+			factor = 30000
+			free_amenities < 2
+		}
+		modifier = {
+			factor = 0
+			free_housing > 1
+		}
+	}
+}
+
+building_stellarite_ancient_cryo_chamber = {
+	base_buildtime = 900
+	can_demolish = yes
+	can_build = no
+	category = amenity
+	potential = {
+		owner = {
+			is_machine_empire = yes
+			has_technology = tech_stellarite_ancient_cryo_chamber
+		}
+	}
+	convert_to = {
+		building_stellarite_mansion
+		building_stellarite_hive_depot
+	}
+	allow = {
+		has_stellarite_capital = yes
+	}
+	upgrades = {
+		building_phanon_ancient_cryo_chamber
+	}
+	planet_modifier = {
+		planet_housing_add = 70
+		planet_amenities_add = 70
+		job_maintenance_drone_add = 5
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 2000
+			minerals = 2000
+			acot_sr_stellarite = 800
+		}
+		upkeep = {
+			acot_sr_stellarite = 10
+			sr_dark_matter = 2
+			acot_sr_dark_energy = 2
+		}
+	}
+	prerequisites = {
+		"tech_stellarite_ancient_cryo_chamber"
 	}
 	ai_weight = {
 		weight = 10

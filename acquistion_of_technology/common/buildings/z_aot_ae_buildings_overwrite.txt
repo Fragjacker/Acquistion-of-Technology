@@ -945,6 +945,9 @@ building_ae_ancient_cryo_chamber = {
 		building_ae_mansion
 		building_ae_hive_depot
 	}
+	upgrades = {
+		building_stellarite_ancient_cryo_chamber
+	}
 	allow = {
 		has_ascended_capital = yes
 	}
@@ -3093,6 +3096,164 @@ building_ae_institute = {
 #####################
 # DM and Dark Energy Resources
 #####################
+building_ae_dark_matter_synthersizer = {
+	base_buildtime = 400
+	can_build = no
+	category = manufacturing
+	potential = {
+	}
+	country_modifier = {
+		country_resource_max_acot_sr_dark_energy_add = 15000
+		country_resource_max_sr_dark_matter_add = 15000
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
+	upgrades = {
+		building_stellarite_synthersizer
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 250
+			energy = 250
+			sr_dark_matter = 750
+			acot_sr_dark_energy = 750
+		}
+		produces = {
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_dark_energy_pylon
+					value = 2
+				}
+			}
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_dark_energy_pylon
+					value = 3
+				}
+			}
+			acot_sr_dark_energy = 30
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_dark_energy_pylon
+					value >= 4
+				}
+			}
+			acot_sr_dark_energy = 40
+		}
+		##### A DE
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_ae_dark_energy_pylon
+					value = 2
+				}
+			}
+			acot_sr_dark_energy = 30
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_ae_dark_energy_pylon
+					value = 3
+				}
+			}
+			acot_sr_dark_energy = 40
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_ae_dark_energy_pylon
+					value >= 4
+				}
+			}
+			acot_sr_dark_energy = 50
+		}
+		##### DM
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_dark_matter_generator
+					value = 2
+				}
+			}
+			sr_dark_matter = 20
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_dark_matter_generator
+					value = 3
+				}
+			}
+			sr_dark_matter = 30
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_dark_matter_generator
+					value >= 4
+				}
+			}
+			sr_dark_matter = 40
+		}
+		##### A DM
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_ae_dark_matter_generator
+					value = 2
+				}
+			}
+			sr_dark_matter = 30
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_ae_dark_matter_generator
+					value = 3
+				}
+			}
+			sr_dark_matter = 40
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_ae_dark_matter_generator
+					value >= 4
+				}
+			}
+			sr_dark_matter = 50
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_synthersizer_ae"
+	}
+	ai_weight = {
+		weight = 25000
+	}
+	ai_resource_production = {
+		sr_dark_matter = 100
+		acot_sr_dark_energy = 100
+		trigger = {
+			always = yes
+		}
+	}
+}
+
 building_ae_dark_energy_pylon = {
 	base_buildtime = 600
 	can_demolish = yes

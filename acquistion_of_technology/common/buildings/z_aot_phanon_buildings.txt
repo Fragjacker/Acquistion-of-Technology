@@ -2815,6 +2815,167 @@ building_phanon_runic_generator = {
 	}
 }
 
+building_phanon_synthersizer = {
+	base_buildtime = 900
+	can_build = no
+	category = manufacturing
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_phanon_synthersizer
+		}
+	}
+	country_modifier = {
+		country_resource_max_acot_sr_dark_energy_add = 15000
+		country_resource_max_sr_dark_matter_add = 15000
+		country_resource_max_acot_sr_stellarite_add = 15000
+		country_resource_max_aot_sr_runic_power_add = 15000
+	}
+	allow = {
+		has_phanon_capital = yes
+	}
+	prerequisites = {
+		"tech_phanon_synthersizer"
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			energy = 500
+			sr_dark_matter = 1500
+			acot_sr_dark_energy = 1500
+		}
+		produces = {
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
+			acot_sr_stellarite = 2000
+			aot_sr_runic_power = 500
+		}
+		# Phanon
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_phanon_runic_generator
+					value = 1
+				}
+			}
+			aot_sr_runic_power = 100
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_phanon_runic_generator
+					value = 2
+				}
+			}
+			aot_sr_runic_power = 300
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_phanon_runic_generator
+					value >= 3
+				}
+			}
+			aot_sr_runic_power = 500
+		}
+		# Stellarite Tier 1
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator
+					value = 2
+				}
+			}
+			acot_sr_stellarite = 100
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator
+					value = 3
+				}
+			}
+			acot_sr_stellarite = 200
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator
+					value >= 4
+				}
+			}
+			acot_sr_stellarite = 300
+		}
+		##### A DE
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_ae
+					value = 2
+				}
+			}
+			acot_sr_stellarite = 200
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_ae
+					value = 3
+				}
+			}
+			acot_sr_stellarite = 400
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_ae
+					value >= 4
+				}
+			}
+			acot_sr_stellarite = 600
+		}
+		##### DM
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_lvl3
+					value = 2
+				}
+			}
+			acot_sr_stellarite = 1000
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_lvl3
+					value = 3
+				}
+			}
+			acot_sr_stellarite = 2000
+		}
+		produces = {
+			trigger = {
+				num_buildings = {
+					type = building_stellarite_generator_lvl3
+					value >= 4
+				}
+			}
+			acot_sr_stellarite = 3000
+		}
+	}
+	ai_weight = {
+		weight = 25000
+	}
+	ai_resource_production = {
+		sr_dark_matter = 100
+		acot_sr_dark_energy = 100
+		trigger = {
+			always = yes
+		}
+	}
+}
+
 #####################
 # OTHER STUFFS
 #####################
@@ -2915,11 +3076,11 @@ building_phanon_hive_depot = {
 	}
 	convert_to = {
 		building_phanon_mansion
-		building_ae_ancient_cryo_chamber
+		building_phanon_ancient_cryo_chamber
 	}
 	planet_modifier = {
-		planet_housing_add = 60
-		planet_amenities_add = 60
+		planet_housing_add = 120
+		planet_amenities_add = 120
 		job_phanon_entertainer_drone_add = 4
 	}
 	resources = {
@@ -2941,6 +3102,60 @@ building_phanon_hive_depot = {
 	}
 	prerequisites = {
 		tech_phanon_hive_depot
+	}
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 20000
+			free_housing < 0
+		}
+		modifier = {
+			factor = 30000
+			free_amenities < 2
+		}
+		modifier = {
+			factor = 0
+			free_housing > 1
+		}
+	}
+}
+
+building_phanon_ancient_cryo_chamber = {
+	base_buildtime = 900
+	can_demolish = yes
+	can_build = no
+	category = amenity
+	potential = {
+		owner = {
+			is_machine_empire = yes
+			has_technology = tech_phanon_ancient_cryo_chamber
+		}
+	}
+	convert_to = {
+		building_phanon_mansion
+		building_phanon_hive_depot
+	}
+	allow = {
+		has_phanon_capital = yes
+	}
+	planet_modifier = {
+		planet_housing_add = 140
+		planet_amenities_add = 140
+		job_maintenance_drone_add = 5
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 4000
+			minerals = 4000
+			aot_sr_runic_power = 800
+		}
+		upkeep = {
+			aot_sr_runic_power = 10
+		}
+	}
+	prerequisites = {
+		"tech_phanon_ancient_cryo_chamber"
 	}
 	ai_weight = {
 		weight = 10

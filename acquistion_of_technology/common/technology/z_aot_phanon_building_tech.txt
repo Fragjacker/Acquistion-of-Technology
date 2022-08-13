@@ -517,6 +517,54 @@ tech_phanon_mansion = {
 	}
 }
 
+#Mansion
+tech_phanon_ancient_cryo_chamber = {
+	cost = @acot_tier10cost1
+	area = society
+	category = {
+		statecraft
+	}
+	tier = 9
+	prerequisites = {
+		tech_stellarite_ancient_cryo_chamber
+		tech_civil_phanon_application
+	}
+	weight = @tier5weight1
+	potential = {
+		is_machine_empire = yes
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			is_fallen_empire = yes
+		}
+		has_technology = tech_civil_phanon_application
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_mine_dark_matter
+				has_country_flag = has_market_access
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+
 #Cloning
 tech_phanon_clone_vats = {
 	cost = @acot_tier10cost2
@@ -1966,6 +2014,54 @@ tech_phanon_bureau = {
 			research_leader = {
 				area = society
 				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+
+tech_phanon_synthersizer = {
+	cost = @acot_tier10cost2
+	area = physics
+	tier = 9
+	is_rare = yes
+	category = {
+		field_manipulation
+	}
+	prerequisites = {
+		"tech_stellarite_synthersizer"
+	}
+	weight = @tier5weight1
+	potential = {
+		has_technology = tech_stellarite_synthersizer
+		NOT = {
+			is_country_type = fallen_empire
+		}
+		NOT = {
+			has_global_flag = acot_building_forbidden
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 1.5
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+		modifier = {
+			factor = 0.5
+			NOT = {
+				is_country_type = default
+			}
+		}
+	}
+	ai_weight = {
+		factor = 5		#strategic resource
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
 			}
 		}
 	}

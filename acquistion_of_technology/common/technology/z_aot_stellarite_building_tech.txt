@@ -370,6 +370,53 @@ tech_stellarite_mansion = {
 	}
 }
 
+#Cryochambers
+tech_stellarite_ancient_cryo_chamber = {
+	cost = @acot_tier8cost1
+	area = society
+	category = {
+		statecraft
+	}
+	tier = 8
+	prerequisites = {
+		"tech_ae_ancient_cryo_chamber"
+	}
+	weight = @tier5weight1
+	potential = {
+		is_machine_empire = yes
+		NOR = {
+			has_global_flag = acot_building_forbidden
+			is_fallen_empire = yes
+		}
+		has_technology = tech_stellarite_reactor
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOR = {
+				has_technology = tech_mine_dark_matter
+				has_country_flag = has_market_access
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+
 #Cloning
 tech_stellarite_clone_vats = {
 	cost = @acot_tier8cost2
@@ -1791,6 +1838,56 @@ tech_stellarite_bureau = {
 			research_leader = {
 				area = society
 				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+
+#Stellarite synthing
+tech_stellarite_synthersizer = {
+	cost = @acot_tier8cost2
+	area = physics
+	tier = 8
+	is_rare = yes
+	category = {
+		field_manipulation
+	}
+	prerequisites = {
+		"tech_dark_matter_synthersizer_ae"
+	}
+	weight = @tier5weight1
+	## unlocks Dark Energy
+	potential = {
+		has_technology = tech_dark_matter_synthersizer_ae
+		NOT = {
+			is_country_type = fallen_empire
+		}
+		NOT = {
+			has_global_flag = acot_building_forbidden
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 1.5
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+		modifier = {
+			factor = 0.5
+			NOT = {
+				is_country_type = default
+			}
+		}
+	}
+	ai_weight = {
+		factor = 5		#strategic resource
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
 			}
 		}
 	}
