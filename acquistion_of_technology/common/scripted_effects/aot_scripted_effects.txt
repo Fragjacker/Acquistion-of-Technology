@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------------------------ #
-#										   Star creation										  #
+#                                           Star creation                                          #
 # ------------------------------------------------------------------------------------------------ #
 # Phanon Pylon blasts system to bits
 phanon_destroy_solar_system = {
@@ -163,6 +163,76 @@ create_sigma_Star = {
 	}
 }
 
+# Theta Pylon blasts system to bits
+theta_destroy_solar_system = {
+	optimize_memory
+	solar_system = {
+		set_star_class = sc_theta_pylon
+	}
+	every_system_planet = {
+		limit = {
+			is_star = yes
+		}
+		save_event_target_as = last_created_theta_pylon
+		create_ambient_object = {
+			type = "star_explosion"
+			play_animation_once = yes
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		change_pc = pc_theta_pylon_star
+		remove_modifier = giga_o_star_modifier
+		clear_planet_modifiers = yes
+	}
+	every_system_planet = {
+		limit = {
+			is_star = no
+		}
+		remove_planet = yes
+	}
+	set_asteroid_belt = {
+		radius = 0
+	}
+	every_system_planet = {
+		clear_deposits = yes
+		clear_planet_modifiers = yes
+		prevent_anomaly = yes
+	}
+	every_system_planet = {
+		limit = {
+			is_asteroid = yes
+		}
+		clear_deposits = yes
+	}
+	every_system_planet = {
+		limit = {
+			exists = orbital_station
+		}
+		orbital_station = {
+			dismantle = yes
+		}
+	}
+	event_target:last_created_theta_pylon = {
+		create_ambient_object = {
+			type = "theta_dimensional_rift_portal"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = theta_dimensional_rift_system_effect
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
 
 # ------------------------------------------------------------------------------------------------ #
 #                                     Habitat creation effects                                     #
@@ -391,9 +461,9 @@ create_fe_dm_habitat = {
 	}
 	add_deposit_if_missing = {
 		DEPOSIT = aot_habitat_system_resources
-	}
-	spawn_support_pylons_in_system = yes
 }
+	spawn_support_pylons_in_system = yes
+	}
 spawn_aot_habitat_effect = {
 	optimize_memory
 	spawn_planet = {
@@ -409,9 +479,9 @@ spawn_aot_habitat_effect = {
 				key = HABITAT_PLANET_NAME
 				variable_string = "\\[FROM.from.solar_system.GetName]"
 			}
-			set_planet_entity = {
+	set_planet_entity = {
 				entity = $ENTITY$
-			}
+	}
 			set_surveyed = {
 				surveyed = yes
 				surveyor = FROM
@@ -422,14 +492,14 @@ spawn_aot_habitat_effect = {
 			set_planet_flag = megastructure
 			set_planet_flag = habitat
 			set_planet_flag = habitat_level_1
-			add_modifier = {
+	add_modifier = {
 				modifier = $HAB_MODIFIER$
-				days = -1
-			}
+		days = -1
+	}
 			save_event_target_as = target_habitat
 			event_target:target_planet = {
 				set_planet_flag = habitat@PREV
-			}
+	}
 			add_deposit_if_missing = {
 				DEPOSIT = aot_habitat_system_resources
 			}
@@ -675,8 +745,8 @@ upgrade_ae_habitat = {
 	# Refresh and upgrade orbitals.
 	planet_event = {
 		id = aot_habitat_events.90
-	}
-}
+		}
+			}
 upgrade_phanon_habitat = {
 	optimize_memory
 	save_special_zones = yes
@@ -743,8 +813,8 @@ upgrade_phanon_habitat = {
 	# Refresh and upgrade orbitals.
 	planet_event = {
 		id = aot_habitat_events.90
-	}
-}
+		}
+			}
 upgrade_sigma_habitat = {
 	optimize_memory
 	save_special_zones = yes
@@ -812,8 +882,8 @@ upgrade_sigma_habitat = {
 	# Refresh and upgrade orbitals.
 	planet_event = {
 		id = aot_habitat_events.90
-	}
-}
+		}
+			}
 
 #--------------------<  Initial spawn of support pylons when building a habitat  >------------------
 spawn_support_pylons_in_system = {
@@ -825,29 +895,29 @@ spawn_support_pylons_in_system = {
 					merg_is_habitat = no
 					is_aot_habitat = no
 					is_artificial = no
-				}
 			}
-			spawn_support_pylons = yes
 		}
-	}
-}
+			spawn_support_pylons = yes
+			}
+		}
+			}
 
 #--------------------------<  Spawn support pylons around eligible planets  >-----------------------
 spawn_support_pylons = {
-	if = {
-		limit = {
+		if = {
+			limit = {
 			this = {
 				OR = {
 					merg_is_habitat = no
 					is_aot_habitat = no
 					is_artificial = no
-				}
 			}
+		}
 			solar_system = {
 				any_system_planet = {
 					is_aot_habitat = yes
-				}
 			}
+		}
 			not = {
 				has_planet_flag = has_support_pylons
 			}
@@ -863,8 +933,8 @@ spawn_support_pylons = {
 				default = { spawn_4_pylons = { TYPE = delta } }
 			}
 		}
-	}
-}
+			}
+		}
 
 # Gets the type of the aot habitat in the system and stores the scope as event_target:system_aot_habitat.
 get_aot_habitat_type = {
@@ -875,8 +945,8 @@ get_aot_habitat_type = {
 			}
 			save_event_target_as = system_aot_habitat
 		}
-	}
-}
+			}
+		}
 
 #-----------<  Spawns a new set of support pylons in the system, replacing existing ones.  >--------
 upgrade_all_support_pylons = {
@@ -888,30 +958,30 @@ upgrade_all_support_pylons = {
 				upgrade_all_system_support_pylons = {
 					TIER_FROM = delta
 					TIER_TO = alpha
-				}
 			}
+		}
 			pc_phanon_habitat = {
 				upgrade_all_system_support_pylons = {
 					TIER_FROM = alpha
 					TIER_TO = phanon
-				}
 			}
+		}
 			pc_sigma_habitat = {
 				upgrade_all_system_support_pylons = {
 					TIER_FROM = phanon
 					TIER_TO = sigma
-				}
 			}
+		}
 			default = {
 			}
 		}
-	}
+			}
 	# The support pylons respawn inactive, activate them now.
 	while = {
 		count = value:aot_count_special_resource_habitat_districts
 		activate_one_random_planet_support_pylon = yes
-	}
-}
+		}
+			}
 
 #---------------------------<  Spawns 4 pylons around an eligible planet.  >------------------------
 spawn_4_pylons = {
@@ -920,8 +990,8 @@ spawn_4_pylons = {
 		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 90 }
 		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 180 }
 		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 270 }
-	}
-}
+		}
+			}
 
 #---------------------------------<  Spawns a single support pylon.  >------------------------------
 spawn_one_support_pylon = {
@@ -934,8 +1004,8 @@ spawn_one_support_pylon = {
 		init_effect = {
 			set_megastructure_flag = support_pylon_planet_id_@prevprevprev
 		}
-	}
-}
+				}
+			}
 
 #----------------<  Turns one support pylon from a active to inactive or vice versa.  >-------------
 state_swap_one_support_pylon = {
@@ -945,8 +1015,8 @@ state_swap_one_support_pylon = {
 		aot_alpha_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_alpha_support_pylon_$TO$ }
 		aot_phanon_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_phanon_support_pylon_$TO$ }
 		aot_sigma_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_sigma_support_pylon_$TO$ }
-	}
-}
+		}
+				}
 
 #---------------------<  Upgrades one support pylon from one tier to the next.  >-------------------
 upgrade_one_support_pylon = {
@@ -954,8 +1024,8 @@ upgrade_one_support_pylon = {
 		trigger = is_megastructure_type
 		aot_$TIER_FROM$_support_pylon_inactive = { upgrade_megastructure_to = aot_$TIER_TO$_support_pylon_inactive }
 		aot_$TIER_FROM$_support_pylon_active = { upgrade_megastructure_to = aot_$TIER_TO$_support_pylon_active }
-	}
-}
+			}
+		}
 
 #------------<  Deactivates a single support pylon, this is used by the habitat district  >---------
 deactivate_one_random_planet_support_pylon = {
@@ -964,7 +1034,7 @@ deactivate_one_random_planet_support_pylon = {
 			limit = {
 				is_active_support_pylon = yes
 				is_upgrading = no
-			}
+				}
 			state_swap_one_support_pylon = {
 				FROM = active
 				TO = inactive
@@ -988,22 +1058,22 @@ activate_one_random_planet_support_pylon = {
 			limit = {
 				is_inactive_support_pylon = yes
 				is_upgrading = no
-			}
+	}
 			state_swap_one_support_pylon = {
 				FROM = inactive
 				TO = active
-			}
+	}
 			[[MESSAGE]
 				create_message = {
 					type = TOAST_SUPPORT_PYLON_ACTIVATED
 					localization = TOAST_SUPPORT_PYLONA_ACTIVATED_DESC
 					days = @toast_message_days
 					target = this
-				}
-			]
-		}
 	}
+			]
 }
+	}
+	}
 
 #----------<  Upgrades all support pylons int the system from target to destination tier.  >--------
 upgrade_all_system_support_pylons = {
@@ -1013,15 +1083,15 @@ upgrade_all_system_support_pylons = {
 				OR = {
 					is_active_support_pylon = yes
 					is_inactive_support_pylon = yes
+	}
 				}
-			}
 			upgrade_one_support_pylon = {
 				TIER_FROM = $TIER_FROM$
 				TIER_TO = $TIER_TO$
 			}
-		}
-	}
-}
+				}
+			}
+				}
 
 #----------------------------------<  Habitat destruction effect.  >--------------------------------
 spawn_aot_habitat_blast_effect = {
@@ -1036,7 +1106,7 @@ spawn_aot_habitat_blast_effect = {
 		entity_offset = {
 			min = 0
 			max = 0
-		}
+			}
 		entity_scale_to_size = yes
 		scale = 0.1
 	}
@@ -1058,9 +1128,9 @@ spawn_orbitals_depending_on_system_habitat_type = {
 						TIER = alpha
 						HABITAT_OWNER = event_target:system_aot_habitat.owner
 						TARGET_PLANET = event_target:target_planet
+						}
 					}
 				}
-			}
 			pc_phanon_habitat = {
 				solar_system = {
 					spawn_aot_orbital_effect = {
@@ -1078,9 +1148,9 @@ spawn_orbitals_depending_on_system_habitat_type = {
 						TIER = sigma
 						HABITAT_OWNER = event_target:system_aot_habitat.owner
 						TARGET_PLANET = event_target:target_planet
-					}
-				}
+		}
 			}
+		}
 			default = {
 				solar_system = {
 					spawn_aot_orbital_effect = {
@@ -1090,8 +1160,8 @@ spawn_orbitals_depending_on_system_habitat_type = {
 						TARGET_PLANET = event_target:target_planet
 					}
 				}
-			}
-		}
+					}
+				}
 	}
 }
 
@@ -1108,13 +1178,13 @@ spawn_aot_orbital_effect = {
 		orbit_angle = 50
 		init_effect = {
 			save_event_target_as = target_orbital
-		}
+	}
 	}
 	event_target:target_orbital = {
 		set_name = {
 			key = TARGET_AOT_ORBITAL_NAME
 			variable_string = "\\[target_planet.GetName]"
-		}
+	}
 	}
 }
 
@@ -1131,32 +1201,32 @@ spawn_orbital_on_eligible_planet_in_system = {
 				has_orbital_$TYPE$_deposit = yes
 				habitat_owner_has_tech_for_deposit = yes
 			}
-			save_event_target_as = target_planet
+				save_event_target_as = target_planet
 			if = {
 				limit = {
 					OR = {
 						is_moon = yes
 						is_asteroid = yes
-					}
-				}
+			}
+							}
 				spawn_orbitals_depending_on_system_habitat_type = {
 					TYPE = minor
-				}
-			}
+						}
+					}
 			else = {
 				spawn_orbitals_depending_on_system_habitat_type = {
 					TYPE = major
+						}
+					}
 				}
 			}
-		}
-	}
-}
+				}
 
 # Removes and respawns all orbitals in the system to the same tier as the system aot habitat.
 upgrade_all_system_orbitals = {
 	solar_system = {
 		every_system_megastructure = {
-			switch = {
+				switch = {
 				trigger = is_megastructure_type
 				habitat_major_orbital = { upgrade_megastructure_to = aot_delta_habitat_major_orbital }
 				habitat_minor_orbital = { upgrade_megastructure_to = aot_delta_habitat_minor_orbital }
@@ -1167,15 +1237,15 @@ upgrade_all_system_orbitals = {
 				aot_phanon_habitat_major_orbital = { upgrade_megastructure_to = aot_sigma_habitat_major_orbital }
 				aot_phanon_habitat_minor_orbital = { upgrade_megastructure_to = aot_sigma_habitat_minor_orbital }
 				default = {
-				}
-			}
+						}
+					}
 			upgrade_one_support_pylon = {
 				TIER_FROM = $TIER_FROM$
 				TIER_TO = $TIER_TO$
+						}
+					}
+				}
 			}
-		}
-	}
-}
 
 # Spawns the amount of orbitals equal to the amount of built energy/mining districts on the aot habitat.
 spawn_orbitals_according_to_district_count = {
@@ -1184,8 +1254,8 @@ spawn_orbitals_according_to_district_count = {
 		count = value:aot_get_num_built_energy_districts
 		spawn_orbital_on_eligible_planet_in_system = {
 			TYPE = energy
-		}
 	}
+}
 
 	# Respawn mining orbitals according to built mining districts on system habitat.
 	while = {
@@ -1196,7 +1266,7 @@ spawn_orbitals_according_to_district_count = {
 	}
 }
 # ------------------------------------------------------------------------------------------------ #
-#							   Select Leader for Alpha Project Code							       #
+#                               Select Leader for Alpha Project Code                               #
 # ------------------------------------------------------------------------------------------------ #
 get_eligible_alpha_research_leader = {
 	optimize_memory
