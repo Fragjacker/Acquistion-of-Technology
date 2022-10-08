@@ -90,44 +90,6 @@ tech_precursor_enigmalith_ae = {
 	}
 }
 
-tech_precursor_enigmalith_se = {
-	area = physics
-	cost = @acot_tier9cost3
-	tier = 9
-	is_rare = yes
-	category = {
-		field_manipulation
-	}
-	ai_update_type = military
-	weight = 10
-	potential = {
-		NOT = {
-			is_fallen_empire = yes
-		}
-	}
-	prereqfor_desc = {
-		ship = {
-			title = "TECH_UNLOCK_ENIGMALITH_SE_TITLE"
-			desc = "TECH_UNLOCK_ENIGMALITH_SE_DESC"
-		}
-	}
-	prerequisites = {
-		tech_precursor_design
-		tech_precursor_enigmalith_ae
-		tech_stellarite_reactor
-	}
-	ai_weight = {
-		factor = 100
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = physics
-				has_trait = "leader_trait_expertise_field_manipulation"
-			}
-		}
-	}
-}
-
 tech_precursor_enigmalith_pe = {
 	area = physics
 	cost = @acot_tier10cost3
@@ -151,8 +113,46 @@ tech_precursor_enigmalith_pe = {
 		}
 	}
 	prerequisites = {
-		tech_precursor_enigmalith_se
+		tech_precursor_enigmalith_ae
 		tech_civil_phanon_application
+	}
+	ai_weight = {
+		factor = 100
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+	}
+}
+
+tech_precursor_enigmalith_se = {
+	area = physics
+	cost = @acot_tier9cost3
+	tier = 9
+	is_rare = yes
+	category = {
+		field_manipulation
+	}
+	ai_update_type = military
+	weight = 10
+	potential = {
+		NOT = {
+			is_fallen_empire = yes
+		}
+	}
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_UNLOCK_ENIGMALITH_SE_TITLE"
+			desc = "TECH_UNLOCK_ENIGMALITH_SE_DESC"
+		}
+	}
+	prerequisites = {
+		tech_precursor_design
+		tech_precursor_enigmalith_pe
+		tech_stellarite_reactor
 	}
 	ai_weight = {
 		factor = 100
