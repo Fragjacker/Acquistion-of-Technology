@@ -1963,3 +1963,56 @@ tech_stellarite_synthersizer = {
 		}
 	}
 }
+
+tech_stellarite_nexus = {
+	cost = @acot_tier9cost2
+	area = physics
+	tier = 9
+	is_rare = yes
+	category = {
+		field_manipulation
+	}
+	prerequisites = {
+		tech_stellarite_reactor
+		tech_phanon_stellarite_nexus
+		tech_phanon_synthersizer
+	}
+	weight = @tier5weight1
+	## unlocks Dark Energy
+	potential = {
+		NOT = {
+			is_country_type = fallen_empire
+		}
+		NOT = {
+			has_global_flag = acot_building_forbidden
+		}
+		has_technology = tech_stellarite_reactor
+		has_technology = tech_phanon_stellarite_nexus
+		has_technology = tech_phanon_synthersizer
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 1.5
+			research_leader = {
+				area = physics
+				has_trait = leader_trait_expertise_field_manipulation
+			}
+		}
+		modifier = {
+			factor = 0.5
+			NOT = {
+				is_country_type = default
+			}
+		}
+	}
+	ai_weight = {
+		factor = 5		#strategic resource
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = leader_trait_expertise_field_manipulation
+			}
+		}
+	}
+}
