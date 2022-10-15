@@ -1,8 +1,8 @@
 @inner_mega_cannon_distance = 208
 @outer_mega_cannon_distance = 438
 @sigma_habitat_distance = 245
-@sigma_habitat_size = 11
-@enigmalith_orbit_distance = 30
+@sigma_habitat_size = 25
+@enigmalith_orbit_distance = 37.5
 ##############################
 # PHANON VAULT PROTECC FLEETS
 ##############################
@@ -762,6 +762,28 @@ phanon_destroy_solar_system = {
 	}
 }
 
+# Phanon Pylon blasts system to bits
+create_sigma_Star = {
+	solar_system = {
+		set_star_class = sc_sigma_star
+	}
+	every_system_planet = {
+		limit = {
+			is_star = yes
+		}
+		add_modifier = {
+			modifier = phanon_macripp_mod
+			days = -1
+		}
+		save_event_target_as = last_created_sigma_star
+		change_pc = pc_sigma_star
+	}
+	set_asteroid_belt = {
+		radius = 0
+	}
+}
+
+
 #######################
 # PHANON INFRASTRUCTURE
 #######################
@@ -1066,7 +1088,7 @@ spawn_great_wall_sigma_habitats = {
 		save_event_target_as = this_system_star
 	}
 	spawn_planet = {
-		class = pc_sigma_deepspace_habitat
+		class = pc_acot_pmc_data_planet
 		location = fromfrom
 		has_ring = no
 		orbit_distance_offset = @sigma_habitat_distance
@@ -1074,15 +1096,7 @@ spawn_great_wall_sigma_habitats = {
 		size = @sigma_habitat_size
 		init_effect = {
 			save_event_target_as = last_spawned_sigma_habitat
-			set_name = "Sigma Habitat 1"
-			change_pc = pc_sigma_deepspace_habitat
-			add_modifier = {
-				modifier = stellarite_habitat_mod
-				days = -1
-			}
-			set_planet_entity = {
-				entity = "sigma_habitat_phase_03_entity"
-			}
+			change_pc = pc_acot_pmc_data_planet
 			set_surveyed = {
 				surveyed = yes
 				surveyor = FROM
@@ -1090,36 +1104,58 @@ spawn_great_wall_sigma_habitats = {
 			set_all_comms_surveyed = yes
 			clear_blockers = yes
 			trigger_megastructure_icon = yes
-			set_planet_flag = advanced_ascended_habitat
-			set_planet_flag = advanced_ascended_habitat_2
-			set_planet_flag = retrofitted_ae_habitat
-			set_planet_flag = retrofitted_sigma_habitat
-			set_planet_flag = is_base_dm_habitat
 		}
 	}
+	spawn_planet = {
+			class = pc_phanon_macripp
+			location = fromfrom
+			has_ring = no
+			orbit_distance_offset = @sigma_habitat_distance
+			orbit_angle_offset = 0
+			init_effect = {
+				set_name = "MacR.I.P.P. Data Core 1"
+				change_pc = pc_phanon_macripp
+				set_colony_type = col_phanon_macripp
+				add_modifier = {
+					modifier = phanon_macripp_mod
+					days = -1
+				}
+				set_planet_entity = {
+					entity = "phanon_macRIPP_stage_3_entity"
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				set_planet_flag = megastructure
+				set_planet_flag = macRIPP_planet
+			}
+		}
 	spawn_megastructure = {
-		type = "aot_macripp_dark_matter_obelisk_core_se"
+		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 0
 		orbit_distance = @enigmalith_orbit_distance
 		owner = from
 		planet = event_target:last_spawned_sigma_habitat
 	}
 	spawn_megastructure = {
-		type = "aot_macripp_dark_matter_obelisk_core_se"
+		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 120
 		orbit_distance = @enigmalith_orbit_distance
 		owner = from
 		planet = event_target:last_spawned_sigma_habitat
 	}
 	spawn_megastructure = {
-		type = "aot_macripp_dark_matter_obelisk_core_se"
+		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 240
 		orbit_distance = @enigmalith_orbit_distance
 		owner = from
 		planet = event_target:last_spawned_sigma_habitat
 	}
 	spawn_planet = {
-		class = pc_sigma_deepspace_habitat
+		class = pc_acot_pmc_data_planet
 		location = fromfrom
 		has_ring = no
 		orbit_distance_offset = @sigma_habitat_distance
@@ -1127,15 +1163,7 @@ spawn_great_wall_sigma_habitats = {
 		size = @sigma_habitat_size
 		init_effect = {
 			save_event_target_as = last_spawned_sigma_habitat
-			set_name = "Sigma Habitat 2"
-			change_pc = pc_sigma_deepspace_habitat
-			add_modifier = {
-				modifier = stellarite_habitat_mod
-				days = -1
-			}
-			set_planet_entity = {
-				entity = "sigma_habitat_phase_03_entity"
-			}
+			change_pc = pc_acot_pmc_data_planet
 			set_surveyed = {
 				surveyed = yes
 				surveyor = FROM
@@ -1143,36 +1171,58 @@ spawn_great_wall_sigma_habitats = {
 			set_all_comms_surveyed = yes
 			clear_blockers = yes
 			trigger_megastructure_icon = yes
-			set_planet_flag = advanced_ascended_habitat
-			set_planet_flag = advanced_ascended_habitat_2
-			set_planet_flag = retrofitted_ae_habitat
-			set_planet_flag = retrofitted_sigma_habitat
-			set_planet_flag = is_base_dm_habitat
 		}
 	}
+	spawn_planet = {
+			class = pc_phanon_macripp
+			location = fromfrom
+			has_ring = no
+			orbit_distance_offset = @sigma_habitat_distance
+			orbit_angle_offset = 120
+			init_effect = {
+				set_name = "MacR.I.P.P. Data Core 2"
+				change_pc = pc_phanon_macripp
+				set_colony_type = col_phanon_macripp
+				add_modifier = {
+					modifier = phanon_macripp_mod
+					days = -1
+				}
+				set_planet_entity = {
+					entity = "phanon_macRIPP_stage_3_entity"
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				set_planet_flag = megastructure
+				set_planet_flag = macRIPP_planet
+			}
+		}
 	spawn_megastructure = {
-		type = "aot_macripp_dark_matter_obelisk_core_se"
+		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 0
 		orbit_distance = @enigmalith_orbit_distance
 		owner = from
 		planet = event_target:last_spawned_sigma_habitat
 	}
 	spawn_megastructure = {
-		type = "aot_macripp_dark_matter_obelisk_core_se"
+		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 120
 		orbit_distance = @enigmalith_orbit_distance
 		owner = from
 		planet = event_target:last_spawned_sigma_habitat
 	}
 	spawn_megastructure = {
-		type = "aot_macripp_dark_matter_obelisk_core_se"
+		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 240
 		orbit_distance = @enigmalith_orbit_distance
 		owner = from
 		planet = event_target:last_spawned_sigma_habitat
 	}
 	spawn_planet = {
-		class = pc_sigma_deepspace_habitat
+		class = pc_acot_pmc_data_planet
 		location = fromfrom
 		has_ring = no
 		orbit_distance_offset = @sigma_habitat_distance
@@ -1180,15 +1230,7 @@ spawn_great_wall_sigma_habitats = {
 		size = @sigma_habitat_size
 		init_effect = {
 			save_event_target_as = last_spawned_sigma_habitat
-			set_name = "Sigma Habitat 3"
-			change_pc = pc_sigma_deepspace_habitat
-			add_modifier = {
-				modifier = stellarite_habitat_mod
-				days = -1
-			}
-			set_planet_entity = {
-				entity = "sigma_habitat_phase_03_entity"
-			}
+			change_pc = pc_acot_pmc_data_planet
 			set_surveyed = {
 				surveyed = yes
 				surveyor = FROM
@@ -1196,29 +1238,51 @@ spawn_great_wall_sigma_habitats = {
 			set_all_comms_surveyed = yes
 			clear_blockers = yes
 			trigger_megastructure_icon = yes
-			set_planet_flag = advanced_ascended_habitat
-			set_planet_flag = advanced_ascended_habitat_2
-			set_planet_flag = retrofitted_ae_habitat
-			set_planet_flag = retrofitted_sigma_habitat
-			set_planet_flag = is_base_dm_habitat
 		}
 	}
+	spawn_planet = {
+			class = pc_phanon_macripp
+			location = fromfrom
+			has_ring = no
+			orbit_distance_offset = @sigma_habitat_distance
+			orbit_angle_offset = 240
+			init_effect = {
+				set_name = "Data Core 3"
+				change_pc = pc_phanon_macripp
+				set_colony_type = col_phanon_macripp
+				add_modifier = {
+					modifier = phanon_macripp_mod
+					days = -1
+				}
+				set_planet_entity = {
+					entity = "phanon_macRIPP_stage_3_entity"
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				set_planet_flag = megastructure
+				set_planet_flag = macRIPP_planet
+			}
+		}
 	spawn_megastructure = {
-		type = "aot_macripp_dark_matter_obelisk_core_se"
+		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 0
 		orbit_distance = @enigmalith_orbit_distance
 		owner = from
 		planet = event_target:last_spawned_sigma_habitat
 	}
 	spawn_megastructure = {
-		type = "aot_macripp_dark_matter_obelisk_core_se"
+		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 120
 		orbit_distance = @enigmalith_orbit_distance
 		owner = from
 		planet = event_target:last_spawned_sigma_habitat
 	}
 	spawn_megastructure = {
-		type = "aot_macripp_dark_matter_obelisk_core_se"
+		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 240
 		orbit_distance = @enigmalith_orbit_distance
 		owner = from

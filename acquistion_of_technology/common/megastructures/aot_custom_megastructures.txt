@@ -319,7 +319,8 @@ star_imploder_1 = {
 		category = megastructures
 		cost = {
 			alloys = 40000
-			acot_sr_stellarite = 20000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
 		}
 		upkeep = {
 			energy = 2000
@@ -350,7 +351,8 @@ star_imploder_2 = {
 		category = megastructures
 		cost = {
 			alloys = 40000
-			acot_sr_stellarite = 20000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
 		}
 		upkeep = {
 			energy = 4000
@@ -381,7 +383,8 @@ star_imploder_3 = {
 		category = megastructures
 		cost = {
 			alloys = 40000
-			acot_sr_stellarite = 20000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
 		}
 		upkeep = {
 			energy = 6000
@@ -401,6 +404,39 @@ star_imploder_3 = {
 			set_country_flag = has_built_or_repaired_megastructure
 		}
 		phanon_destroy_solar_system = yes
+		create_sigma_Star = yes
+	}
+}
+
+star_imploder_4 = {
+	entity = "star_imploder_stage_3_entity"
+	construction_entity = "star_imploder_stage_3_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			acot_sr_stellarite = 20000
+		}
+		upkeep = {
+			energy = 6000
+		}
+		produces = {
+			acot_sr_stellarite = 1000
+		}
+	}
+	upgrade_from = {
+		star_imploder_3
+	}
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		create_sigma_Star = yes
 	}
 }
 
@@ -455,13 +491,8 @@ macripp_0 = {
 		custom_tooltip = {
 			fail_text = "requires_phanon_pylon"
 			any_system_planet = {
-				is_star_class = sc_phanon_pylon
-			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_macripp"
-			NOT = {
-				has_star_flag = macripp_built
+				is_star_class = sc_sigma_star
+				colonizable_planet = no
 			}
 		}
 	}
@@ -469,7 +500,7 @@ macripp_0 = {
 		planet_possible = {
 			custom_tooltip = {
 				fail_text = "must_built_around_phanon_pylon"
-				is_star_class = sc_phanon_pylon
+				is_star_class = sc_sigma_star
 				colonizable_planet = no
 			}
 			custom_tooltip = {
@@ -511,12 +542,12 @@ macripp_0 = {
 		from = {
 			set_country_flag = built_macripp
 		}
-		every_system_planet = {
-			limit = {
-				has_modifier = terraforming_candidate
-			}
-			remove_modifier = terraforming_candidate
-		}
+		# every_system_planet = {
+		# 	limit = {
+		# 		has_modifier = terraforming_candidate
+		# 	}
+		# 	remove_modifier = terraforming_candidate
+		# }
 		fromfrom.planet = {
 			if = {
 				limit = {
@@ -531,15 +562,15 @@ macripp_0 = {
 }
 
 macripp_1 = {
-	entity = "phanon_macRIPP_stage_1_entity"
-	construction_entity = "phanon_macRIPP_stage_1_construction_entity"
+	entity = "sigma_solaRIPP_stage_1_entity"
+	construction_entity = "sigma_solaRIPP_stage_1_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
 	resources = {
 		category = megastructures
 		cost = {
 			alloys = 80000
-			acot_sr_stellarite = 10000
+			aot_sr_runic_power = 10000
 		}
 		upkeep = {
 			energy = 2000
@@ -556,15 +587,15 @@ macripp_1 = {
 }
 
 macripp_2 = {
-	entity = "phanon_macRIPP_stage_2_entity"
-	construction_entity = "phanon_macRIPP_stage_2_construction_entity"
+	entity = "sigma_solaRIPP_stage_2_entity"
+	construction_entity = "sigma_solaRIPP_stage_2_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
 	resources = {
 		category = megastructures
 		cost = {
 			alloys = 80000
-			acot_sr_stellarite = 10000
+			aot_sr_runic_power = 10000
 		}
 		upkeep = {
 			energy = 4000
@@ -581,15 +612,15 @@ macripp_2 = {
 }
 
 macripp_3 = {
-	entity = "phanon_macRIPP_stage_2_entity"
-	construction_entity = "phanon_macRIPP_stage_2_construction_entity"
+	entity = "sigma_solaRIPP_stage_2_entity"
+	construction_entity = "sigma_solaRIPP_stage_2_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
 	resources = {
 		category = megastructures
 		cost = {
 			alloys = 80000
-			acot_sr_stellarite = 10000
+			aot_sr_runic_power = 10000
 		}
 	}
 	upgrade_from = {
@@ -603,19 +634,19 @@ macripp_3 = {
 			set_country_flag = has_built_or_repaired_megastructure
 		}
 		spawn_planet = {
-			class = "pc_phanon_macripp"
+			class = pc_sigma_solaripp
 			location = fromfrom
 			has_ring = no
 			init_effect = {
-				set_name = "BASTION"
-				change_pc = pc_phanon_macripp
+				set_name = "STARLIGHT"
+				change_pc = pc_sigma_solaripp
 				set_colony_type = col_phanon_macripp
 				add_modifier = {
 					modifier = phanon_macripp_mod
 					days = -1
 				}
 				set_planet_entity = {
-					entity = "phanon_macRIPP_stage_3_entity"
+					entity = "sigma_solaRIPP_stage_3_entity"
 				}
 				set_surveyed = {
 					surveyed = yes
@@ -682,7 +713,7 @@ phanon_great_wall_0 = {
 		custom_tooltip = {
 			fail_text = "requires_phanon_macripp"
 			any_system_planet = {
-				is_planet_class = pc_phanon_macripp
+				is_star_class = sc_phanon_pylon
 			}
 		}
 		custom_tooltip = {
@@ -696,7 +727,7 @@ phanon_great_wall_0 = {
 		planet_possible = {
 			custom_tooltip = {
 				fail_text = "must_built_around_phanon_macripp"
-				is_planet_class = pc_phanon_macripp
+				is_star_class = sc_phanon_pylon
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_anomaly"
@@ -857,6 +888,7 @@ phanon_megaturret_intermediate_1 = {
 	construction_entity = ""
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
+	show_in_outliner = no
 	resources = {
 		category = megastructures
 		cost = {
@@ -885,6 +917,7 @@ phanon_megaturret_1 = {
 	construction_entity = "phanon_great_wall_megaturret_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
+	show_in_outliner = no
 	resources = {
 		category = megastructures
 		cost = {
@@ -918,6 +951,7 @@ phanon_megaturret_2 = {
 	construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
 	build_time = 3600
+	show_in_outliner = no
 	resources = {
 		category = megastructures
 		cost = {
@@ -1007,6 +1041,7 @@ aot_macripp_dark_matter_obelisk_core_se = {
 	entity = "precursor_dark_obelisk_se_entity"
 	construction_entity = "precursor_dark_obelisk_se_entity"
 	portrait = "GFX_acot_dark_obelisk_se_background"
+	show_in_outliner = no
 	prerequisites = {
 		"tech_precursor_enigmalith_se"
 	}
@@ -1049,6 +1084,7 @@ aot_macripp_dark_matter_obelisk_core_pe = {
 	construction_entity = "aot_precursor_dark_obelisk_pe_entity"
 	portrait = "GFX_acot_dark_obelisk_background"
 	place_entity_on_planet_plane = yes
+	show_in_outliner = no
 	entity_offset = {
 		x = 0
 		y = 0
@@ -1087,6 +1123,7 @@ aot_macripp_dark_matter_obelisk_core_oe = {
 	entity = "precursor_dark_obelisk_oe_entity"
 	construction_entity = "precursor_dark_obelisk_oe_entity"
 	portrait = "GFX_acot_dark_obelisk_oe_background"
+	show_in_outliner = no
 	prerequisites = {
 		tech_precursor_enigmalith_oe
 	}
