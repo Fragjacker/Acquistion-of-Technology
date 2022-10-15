@@ -2999,7 +2999,7 @@ weapon_component_template = {
 		weapon_role_anti_shield
 	}
 	ai_weight = {
-		weight = 10
+		weight = 1
 	}
 }
 
@@ -5868,6 +5868,77 @@ utility_component_template = {
 			has_monthly_income = {
 				resource = aot_sr_runic_power
 				value <= 100
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "PHANON_MEGATURRET_DARK_MATTER_REACTOR_PE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_pe"
+	icon_frame = 1
+	power = 250000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 5000
+			aot_sr_runic_power = 2500
+		}
+		upkeep = {
+			energy = @armor_l_pe_upkeep_alloy
+			alloys = @armor_l_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		phanon_megaturret
+	}
+	upgrades_to = "LIGHT_MATTER_REACTOR_OE"
+	ai_weight = {
+		weight = 100
+	}
+}
+
+utility_component_template = {
+	key = "ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR_PE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_pe"
+	icon_frame = 1
+	power = 500000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 4000
+			aot_sr_runic_power = 10000
+		}
+		upkeep = {
+			energy = 100
+			alloys = 10
+		}
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	component_set = "power_core"
+	upgrades_to = "ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR_SE"
+	size_restriction = {
+		enigmatic_fortress_platform
+	}
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
 			}
 		}
 	}

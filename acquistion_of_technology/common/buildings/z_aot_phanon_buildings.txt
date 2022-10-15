@@ -2939,7 +2939,7 @@ building_phanon_runic_generator = {
 		produces = {
 			trigger = {
 				owner = {
-					is_ai = yes
+					is_ai = no
 				}
 			}
 			aot_sr_runic_power = 100
@@ -2966,7 +2966,7 @@ building_phanon_runic_generator = {
 		}
 	}
 	prerequisites = {
-		tech_civil_phanon_application
+		tech_phanon_runic_generator
 	}
 	ai_weight = {
 		weight = 150000
@@ -3067,9 +3067,10 @@ building_phanon_synthersizer = {
 }
 
 building_phanon_stellarite_nexus = {
+	icon = building_phanon_nexus
 	base_buildtime = 900
 	category = manufacturing
-	can_build = no
+	base_cap_amount = 1
 	potential = {
 		NOT = {
 			has_global_flag = aot_phanon_content_OFF
@@ -3080,7 +3081,14 @@ building_phanon_stellarite_nexus = {
 		}
 	}
 	allow = {
-		has_stellarite_capital = yes
+		has_phanon_capital = yes
+		NOR = {
+			has_building = building_stellarite_nexus
+			has_building = building_phanon_stellarite_nexus
+		}
+	}
+	upgrades = {
+		building_stellarite_nexus
 	}
 	resources = {
 		category = planet_buildings
@@ -3090,7 +3098,7 @@ building_phanon_stellarite_nexus = {
 			aot_sr_runic_power = 1000
 		}
 		produces = {
-			acot_sr_stellarite = 100
+			aot_sr_runic_power = 200
 		}
 		upkeep = {
 			trigger = {
@@ -3098,11 +3106,13 @@ building_phanon_stellarite_nexus = {
 					is_ai = no
 				}
 			}
-			aot_sr_runic_power = 10
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+			energy = 1000
 		}
 	}
 	planet_modifier = {
-		planet_jobs_acot_sr_stellarite_produces_mult = 1
+		planet_jobs_aot_sr_runic_power_produces_mult = 1
 	}
 	prerequisites = {
 		"tech_phanon_stellarite_nexus"

@@ -3195,7 +3195,7 @@ utility_component_template = {
 	size = small
 	icon = "GFX_ship_part_stellarite_reactor"
 	icon_frame = 1
-	power = 120000
+	power = 500000
 	resources = {
 		category = ship_components
 		cost = {
@@ -3268,5 +3268,35 @@ utility_component_template = {
 				value <= 2
 			}
 		}
+	}
+}
+
+utility_component_template = {
+	key = "PHANON_MEGATURRET_DARK_MATTER_REACTOR_SE"
+	size = small
+	icon = "GFX_ship_part_stellarite_reactor"
+	icon_frame = 1
+	power = 1000000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 5000
+			acot_sr_stellarite = 250
+		}
+		upkeep = {
+			energy = @armor_l_pe_upkeep_alloy
+			alloys = @armor_l_pe_upkeep_alloy
+		}
+	}
+	prerequisites = {
+		"tech_stellarite_reactor"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		phanon_megaturret
+	}
+	upgrades_to = "LIGHT_MATTER_REACTOR_OE"
+	ai_weight = {
+		weight = 100
 	}
 }
