@@ -178,7 +178,7 @@ tech_alpha_juggernaut = {
 	}
 }
 
-tech_sigma_juggernaut = {
+tech_phanon_juggernaut = {
 	cost = @acot_tier8cost3
 	area = engineering
 	category = {
@@ -186,14 +186,14 @@ tech_sigma_juggernaut = {
 	}
 	tier = 8
 	prerequisites = {
-		"tech_stellarite_reactor"
+		"tech_precursor_phanon_design"
 		"tech_alpha_juggernaut"
 	}
 	weight = @tier5weight3
 	is_rare = yes
 	potential = {
 		host_has_dlc = "Federations"
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_precursor_phanon_design
 		NOT = {
 			is_fallen_empire = yes
 		}
@@ -250,8 +250,8 @@ tech_sigma_juggernaut = {
 	prereqfor_desc = {
 		hide_prereq_for_desc = component
 		ship = {
-			title = "TECH_UNLOCK_SIGMA_JUGGERNAUT_CONSTRUCTION_TITLE"
-			desc = "TECH_UNLOCK_SIGMA_JUGGERNAUT_CONSTRUCTION_DESC"
+			title = "TECH_UNLOCK_PHANON_JUGGERNAUT_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_PHANON_JUGGERNAUT_CONSTRUCTION_DESC"
 		}
 	}
 	ai_weight = {
@@ -266,22 +266,22 @@ tech_sigma_juggernaut = {
 	}
 }
 
-tech_phanon_juggernaut = {
-	cost = @acot_tier10cost3
+tech_sigma_juggernaut = {
+	cost = @acot_tier9cost3
 	area = engineering
 	category = {
 		voidcraft
 	}
 	tier = 9
 	prerequisites = {
-		"tech_precursor_phanon_design"
-		"tech_sigma_juggernaut"
+		"tech_stellarite_reactor"
+		"tech_phanon_juggernaut"
 	}
 	weight = @tier5weight3
 	is_rare = yes
 	potential = {
 		host_has_dlc = "Federations"
-		has_technology = tech_precursor_phanon_design
+		has_technology = tech_stellarite_reactor
 		NOT = {
 			is_fallen_empire = yes
 		}
@@ -338,8 +338,8 @@ tech_phanon_juggernaut = {
 	prereqfor_desc = {
 		hide_prereq_for_desc = component
 		ship = {
-			title = "TECH_UNLOCK_PHANON_JUGGERNAUT_CONSTRUCTION_TITLE"
-			desc = "TECH_UNLOCK_PHANON_JUGGERNAUT_CONSTRUCTION_DESC"
+			title = "TECH_UNLOCK_SIGMA_JUGGERNAUT_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_SIGMA_JUGGERNAUT_CONSTRUCTION_DESC"
 		}
 	}
 	ai_weight = {
@@ -548,7 +548,7 @@ tech_gatekeepers_alpha = {
 	}
 }
 
-tech_gatekeepers_sigma = {
+tech_gatekeepers_phanon = {
 	cost = @acot_tier8cost3
 	area = engineering
 	category = {
@@ -556,81 +556,8 @@ tech_gatekeepers_sigma = {
 	}
 	tier = 8
 	prerequisites = {
-		"tech_stellarite_reactor"
-		"tech_gatekeepers_alpha"
-	}
-	weight = @tier5weight3
-	is_rare = yes
-	potential = {
-		has_technology = tech_stellarite_reactor
-		NOT = {
-			is_fallen_empire = yes
-		}
-	}
-	weight_modifier = {
-		factor = 0.25
-		modifier = {
-			factor = 1.5
-			OR = {
-				research_leader = {
-					area = engineering
-					has_trait = "leader_trait_expertise_voidcraft"
-				}
-				research_leader = {
-					area = engineering
-					has_trait = "leader_trait_curator"
-				}
-				research_leader = {
-					area = engineering
-					has_trait = "leader_trait_maniacal"
-				}
-			}
-		}
-		modifier = {
-			factor = @ap_technological_ascendancy_rare_tech
-			has_ascension_perk = ap_technological_ascendancy
-		}
-		modifier = {
-			factor = 1.25
-			has_technology = "tech_titans"
-		}
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = engineering
-				has_trait = "leader_trait_expertise_voidcraft"
-			}
-		}
-	}
-	prereqfor_desc = {
-		hide_prereq_for_desc = component
-		ship = {
-			title = "TECH_UNLOCK_PRECURSOR_GATEKEEPER_SIGMA_CONSTRUCTION_TITLE"
-			desc = "TECH_UNLOCK_PRECURSOR_GATEKEEPER_SIGMA_CONSTRUCTION_DESC"
-		}
-	}
-	ai_weight = {
-		factor = 100		#higher factor due to really cool thing
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = engineering
-				has_trait = "leader_trait_expertise_voidcraft"
-			}
-		}
-	}
-}
-
-tech_gatekeepers_phanon = {
-	cost = @acot_tier10cost3
-	area = engineering
-	category = {
-		voidcraft
-	}
-	tier = 9
-	prerequisites = {
 		"tech_precursor_phanon_design"
-		"tech_gatekeepers_sigma"
+		"tech_gatekeepers_alpha"
 	}
 	weight = @tier5weight3
 	is_rare = yes
@@ -680,6 +607,79 @@ tech_gatekeepers_phanon = {
 		ship = {
 			title = "TECH_UNLOCK_PRECURSOR_GATEKEEPER_PHANON_CONSTRUCTION_TITLE"
 			desc = "TECH_UNLOCK_PRECURSOR_GATEKEEPER_PHANON_CONSTRUCTION_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 100		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+tech_gatekeepers_sigma = {
+	cost = @acot_tier9cost3
+	area = engineering
+	category = {
+		voidcraft
+	}
+	tier = 9
+	prerequisites = {
+		"tech_stellarite_reactor"
+		"tech_gatekeepers_phanon"
+	}
+	weight = @tier5weight3
+	is_rare = yes
+	potential = {
+		has_technology = tech_stellarite_reactor
+		NOT = {
+			is_fallen_empire = yes
+		}
+	}
+	weight_modifier = {
+		factor = 0.25
+		modifier = {
+			factor = 1.5
+			OR = {
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_expertise_voidcraft"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_maniacal"
+				}
+			}
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = 1.25
+			has_technology = "tech_titans"
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_PRECURSOR_GATEKEEPER_SIGMA_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_PRECURSOR_GATEKEEPER_SIGMA_CONSTRUCTION_DESC"
 		}
 	}
 	ai_weight = {
@@ -981,7 +981,7 @@ tech_ae_enigmatic_fortress_platform = {
 	}
 }
 
-tech_sigma_enigmatic_fortress_platform = {
+tech_phanon_enigmatic_fortress_platform = {
 	cost = @acot_tier8cost3
 	area = engineering
 	category = {
@@ -989,13 +989,13 @@ tech_sigma_enigmatic_fortress_platform = {
 	}
 	tier = 8
 	prerequisites = {
-		"tech_stellarite_reactor"
+		"tech_precursor_phanon_design"
 		"tech_ae_enigmatic_fortress_platform"
 	}
 	weight = @tier5weight3
 	is_rare = yes
 	potential = {
-		has_technology = tech_stellarite_reactor
+		has_technology = tech_precursor_phanon_design
 		NOT = {
 			is_fallen_empire = yes
 		}
@@ -1042,8 +1042,8 @@ tech_sigma_enigmatic_fortress_platform = {
 	prereqfor_desc = {
 		hide_prereq_for_desc = component
 		ship = {
-			title = "TECH_UNLOCK_SIGMA_ENIGMATIC_FORTRESS_PLATFORM_CONSTRUCTION_TITLE"
-			desc = "TECH_UNLOCK_SIGMA_ENIGMATIC_FORTRESS_PLATFORM_CONSTRUCTION_DESC"
+			title = "TECH_UNLOCK_PHANON_ENIGMATIC_FORTRESS_PLATFORM_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_PHANON_ENIGMATIC_FORTRESS_PLATFORM_CONSTRUCTION_DESC"
 		}
 	}
 	ai_weight = {
@@ -1058,27 +1058,27 @@ tech_sigma_enigmatic_fortress_platform = {
 	}
 }
 
-tech_phanon_enigmatic_fortress_platform = {
-	cost = @acot_tier10cost3
+tech_sigma_enigmatic_fortress_platform = {
+	cost = @acot_tier9cost3
 	area = engineering
 	category = {
 		voidcraft
 	}
-	tier = 10
+	tier = 9
 	prerequisites = {
-		"tech_precursor_phanon_design"
-		"tech_sigma_enigmatic_fortress_platform"
+		"tech_stellarite_reactor"
+		"tech_phanon_enigmatic_fortress_platform"
 	}
 	weight = @tier5weight3
 	is_rare = yes
 	potential = {
-		has_technology = tech_precursor_phanon_design
+		has_technology = tech_stellarite_reactor
 		NOT = {
 			is_fallen_empire = yes
 		}
 	}
 	modifier = {
-		shipsize_enigmatic_fortress_platform_build_speed_mult = 0.2
+		shipsize_enigmatic_fortress_platform_build_speed_mult = 0.25
 		shipsize_enigmatic_fortress_platform_hull_add = 2000000
 	}
 	weight_modifier = {
@@ -1119,8 +1119,8 @@ tech_phanon_enigmatic_fortress_platform = {
 	prereqfor_desc = {
 		hide_prereq_for_desc = component
 		ship = {
-			title = "TECH_UNLOCK_PHANON_ENIGMATIC_FORTRESS_PLATFORM_CONSTRUCTION_TITLE"
-			desc = "TECH_UNLOCK_PHANON_ENIGMATIC_FORTRESS_PLATFORM_CONSTRUCTION_DESC"
+			title = "TECH_UNLOCK_SIGMA_ENIGMATIC_FORTRESS_PLATFORM_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_SIGMA_ENIGMATIC_FORTRESS_PLATFORM_CONSTRUCTION_DESC"
 		}
 	}
 	ai_weight = {
@@ -1211,12 +1211,12 @@ tech_omega_enigmatic_fortress_platform = {
 }
 
 tech_bombardment_pe = {
-	cost = @acot_tier10cost2
+	cost = @acot_tier8cost2
 	area = physics
 	category = {
 		voidcraft
 	}
-	tier = 9
+	tier = 8
 	prerequisites = {
 		tech_phanon_stellar_converter
 	}
