@@ -275,6 +275,46 @@ tech_phanon_stellar_converter = {
 	}
 }
 
+tech_sigma_stellar_converter = {
+	cost = @acot_tier9cost3
+	area = engineering
+	category = {
+		voidcraft
+	}
+	tier = 9
+	prerequisites = {
+		tech_phanon_stellar_converter
+		tech_stellarite_reactor
+	}
+	weight = 5
+	is_rare = yes
+	potential = {
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			is_fallen_empire = yes
+		}
+		has_technology = tech_phanon_stellar_converter
+		has_technology = tech_stellarite_reactor
+	}
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_SIGMA_STELLAR_CONVERTER_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_SIGMA_STELLAR_CONVERTER_CONSTRUCTION_DESC"
+		}
+	}
+	ai_weight = {
+		factor = 100		#higher factor due to really cool thing
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
 tech_phanon_macripp = {
 	cost = @acot_tier8cost3
 	area = engineering

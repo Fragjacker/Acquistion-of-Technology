@@ -277,16 +277,6 @@ star_imploder_0 = {
 	on_build_cancel = {
 	}
 	on_build_complete = {
-		enable_special_project = {
-			name = PHANON_PYLON_LIST_ENTRY
-			location = fromfrom
-		}
-		from = {
-			abort_special_project = {
-				type = PHANON_PYLON_LIST_ENTRY
-				location = fromfrom
-			}
-		}
 		set_star_flag = star_imploder_built
 		from = {
 			set_country_flag = built_star_imploder
@@ -404,7 +394,6 @@ star_imploder_3 = {
 			set_country_flag = has_built_or_repaired_megastructure
 		}
 		phanon_destroy_solar_system = yes
-		create_sigma_Star = yes
 	}
 }
 
@@ -440,8 +429,269 @@ star_imploder_4 = {
 	}
 }
 
+# Phanon Star Imploder Pylon creator.
+sigma_star_imploder_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -7
+		y = -7
+	}
+	construction_blocks_and_blocked_by = none
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			influence = 300
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	prerequisites = {
+		tech_sigma_stellar_converter
+	}
+	potential = {
+		has_technology = tech_sigma_stellar_converter
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					AND = {
+						colonizable_planet = yes
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole_neutron_star_pulsar"
+			NOT = {
+				is_star_class = sc_black_hole
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_phanon_pylon"
+			NOT = {
+				is_star_class = sc_phanon_pylon
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_sigma_star_imploder"
+			NOT = {
+				has_star_flag = sigma_star_imploder_built
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0.1
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					is_owned_by = from
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		add_modifier = {
+			modifier = sigma_solaripp_mod
+			days = -1
+		}
+		set_star_flag = sigma_star_imploder_built
+		from = {
+			set_country_flag = built_sigma_star_imploder
+		}
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+		fromfrom.planet = {
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+}
+
+sigma_star_imploder_1 = {
+	entity = "star_imploder_stage_1_entity"
+	construction_entity = "star_imploder_stage_1_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 20000
+		}
+		upkeep = {
+			energy = 2000
+		}
+	}
+	upgrade_from = {
+		sigma_star_imploder_0
+	}
+	prerequisites = {
+		tech_sigma_stellar_converter
+	}
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+	}
+}
+
+sigma_star_imploder_2 = {
+	entity = "star_imploder_stage_2_entity"
+	construction_entity = "star_imploder_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 20000
+		}
+		upkeep = {
+			energy = 4000
+		}
+	}
+	upgrade_from = {
+		sigma_star_imploder_1
+	}
+	prerequisites = {
+		tech_sigma_stellar_converter
+	}
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+	}
+}
+
+sigma_star_imploder_3 = {
+	entity = "star_imploder_stage_3_entity"
+	construction_entity = "star_imploder_stage_3_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 20000
+		}
+		upkeep = {
+			energy = 6000
+		}
+		produces = {
+			acot_sr_stellarite = 1000
+		}
+	}
+	upgrade_from = {
+		sigma_star_imploder_2
+	}
+	prerequisites = {
+		tech_sigma_stellar_converter
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		sigma_destroy_solar_system = yes
+	}
+}
+
 #Phanon MacR.I.P.P.
-macripp_0 = {
+solaripp_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
 	portrait = "GFX_megastructure_construction_background"
@@ -466,9 +716,6 @@ macripp_0 = {
 		tech_phanon_macripp
 	}
 	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
 		has_technology = tech_phanon_stellar_converter
 	}
 	possible = {
@@ -489,7 +736,7 @@ macripp_0 = {
 			}
 		}
 		custom_tooltip = {
-			fail_text = "requires_phanon_pylon"
+			fail_text = "requires_sigma_star"
 			any_system_planet = {
 				is_star_class = sc_sigma_star
 				colonizable_planet = no
@@ -499,7 +746,7 @@ macripp_0 = {
 	placement_rules = {
 		planet_possible = {
 			custom_tooltip = {
-				fail_text = "must_built_around_phanon_pylon"
+				fail_text = "must_built_around_sigma_star"
 				is_star_class = sc_sigma_star
 				colonizable_planet = no
 			}
@@ -542,12 +789,12 @@ macripp_0 = {
 		from = {
 			set_country_flag = built_macripp
 		}
-		# every_system_planet = {
-		# 	limit = {
-		# 		has_modifier = terraforming_candidate
-		# 	}
-		# 	remove_modifier = terraforming_candidate
-		# }
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
 		fromfrom.planet = {
 			if = {
 				limit = {
@@ -561,7 +808,7 @@ macripp_0 = {
 	}
 }
 
-macripp_1 = {
+solaripp_1 = {
 	entity = "sigma_solaRIPP_stage_1_entity"
 	construction_entity = "sigma_solaRIPP_stage_1_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
@@ -577,7 +824,7 @@ macripp_1 = {
 		}
 	}
 	upgrade_from = {
-		macripp_0
+		solaripp_0
 	}
 	prerequisites = {
 		tech_phanon_macripp
@@ -586,7 +833,7 @@ macripp_1 = {
 	}
 }
 
-macripp_2 = {
+solaripp_2 = {
 	entity = "sigma_solaRIPP_stage_2_entity"
 	construction_entity = "sigma_solaRIPP_stage_2_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
@@ -602,7 +849,7 @@ macripp_2 = {
 		}
 	}
 	upgrade_from = {
-		macripp_1
+		solaripp_1
 	}
 	prerequisites = {
 		tech_phanon_macripp
@@ -611,7 +858,7 @@ macripp_2 = {
 	}
 }
 
-macripp_3 = {
+solaripp_3 = {
 	entity = "sigma_solaRIPP_stage_2_entity"
 	construction_entity = "sigma_solaRIPP_stage_2_construction_entity"
 	portrait = "GFX_megastructure_construction_background"
@@ -624,7 +871,7 @@ macripp_3 = {
 		}
 	}
 	upgrade_from = {
-		macripp_2
+		solaripp_2
 	}
 	prerequisites = {
 		tech_phanon_macripp
@@ -640,9 +887,9 @@ macripp_3 = {
 			init_effect = {
 				set_name = "STARLIGHT"
 				change_pc = pc_sigma_solaripp
-				set_colony_type = col_phanon_macripp
+				set_colony_type = col_sigma_solaripp
 				add_modifier = {
-					modifier = phanon_macripp_mod
+					modifier = sigma_solaripp_mod
 					days = -1
 				}
 				set_planet_entity = {
@@ -713,7 +960,10 @@ phanon_great_wall_0 = {
 		custom_tooltip = {
 			fail_text = "requires_phanon_macripp"
 			any_system_planet = {
-				is_star_class = sc_phanon_pylon
+				OR = {
+					is_star_class = sc_phanon_pylon
+					is_star_class = sc_sigma_star
+				}
 			}
 		}
 		custom_tooltip = {
@@ -727,7 +977,10 @@ phanon_great_wall_0 = {
 		planet_possible = {
 			custom_tooltip = {
 				fail_text = "must_built_around_phanon_macripp"
-				is_star_class = sc_phanon_pylon
+				OR = {
+					is_star_class = sc_phanon_pylon
+					is_star_class = sc_sigma_star
+				}
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_anomaly"

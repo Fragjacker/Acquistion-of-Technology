@@ -702,6 +702,10 @@ phanon_destroy_solar_system = {
 			is_star = yes
 		}
 		save_event_target_as = last_created_phanon_pylon
+		add_modifier = {
+			modifier = phanon_macripp_mod
+			days = -1
+		}
 		create_ambient_object = {
 			type = "star_explosion"
 			play_animation_once = yes
@@ -762,7 +766,82 @@ phanon_destroy_solar_system = {
 	}
 }
 
-# Phanon Pylon blasts system to bits
+# Sigma Star blasts system to bits
+sigma_destroy_solar_system = {
+	solar_system = {
+		set_star_class = sc_sigma_star
+	}
+	every_system_planet = {
+		limit = {
+			is_star = yes
+		}
+		save_event_target_as = last_created_sigma_star
+		remove_modifier = phanon_macripp_mod
+		add_modifier = {
+			modifier = sigma_solaripp_mod
+			days = -1
+		}
+		create_ambient_object = {
+			type = "star_explosion"
+			play_animation_once = yes
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		change_pc = pc_sigma_star
+		remove_modifier = giga_o_star_modifier
+		clear_planet_modifiers = yes
+	}
+	every_system_planet = {
+		limit = {
+			is_star = no
+		}
+		remove_planet = yes
+	}
+	set_asteroid_belt = {
+		radius = 0
+	}
+	every_system_planet = {
+		clear_deposits = yes
+		clear_planet_modifiers = yes
+		prevent_anomaly = yes
+	}
+	every_system_planet = {
+		limit = {
+			is_asteroid = yes
+		}
+		clear_deposits = yes
+	}
+	every_system_planet = {
+		limit = {
+			exists = orbital_station
+		}
+		orbital_station = {
+			dismantle = yes
+		}
+	}
+	event_target:last_created_sigma_star = {
+		create_ambient_object = {
+			type = "phanon_dimensional_rift_portal"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = phanon_dimensional_rift_system_effect
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+# Upgrade phanon pylon to sigma star without beeg boom.
 create_sigma_Star = {
 	solar_system = {
 		set_star_class = sc_sigma_star
@@ -771,8 +850,9 @@ create_sigma_Star = {
 		limit = {
 			is_star = yes
 		}
+		remove_modifier = phanon_macripp_mod
 		add_modifier = {
-			modifier = phanon_macripp_mod
+			modifier = sigma_solaripp_mod
 			days = -1
 		}
 		save_event_target_as = last_created_sigma_star
@@ -782,7 +862,6 @@ create_sigma_Star = {
 		radius = 0
 	}
 }
-
 
 #######################
 # PHANON INFRASTRUCTURE
@@ -1107,32 +1186,32 @@ spawn_great_wall_sigma_habitats = {
 		}
 	}
 	spawn_planet = {
-			class = pc_phanon_macripp
-			location = fromfrom
-			has_ring = no
-			orbit_distance_offset = @sigma_habitat_distance
-			orbit_angle_offset = 0
-			init_effect = {
-				set_name = "MacR.I.P.P. Data Core 1"
-				change_pc = pc_phanon_macripp
-				set_colony_type = col_phanon_macripp
-				add_modifier = {
-					modifier = phanon_macripp_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "phanon_macRIPP_stage_3_entity"
-				}
-				set_surveyed = {
-					surveyed = yes
-					surveyor = FROM
-				}
-				set_all_comms_surveyed = yes
-				clear_blockers = yes
-				set_planet_flag = megastructure
-				set_planet_flag = macRIPP_planet
+		class = pc_phanon_macripp
+		location = fromfrom
+		has_ring = no
+		orbit_distance_offset = @sigma_habitat_distance
+		orbit_angle_offset = 0
+		init_effect = {
+			set_name = "MacR.I.P.P. Data Core 1"
+			change_pc = pc_phanon_macripp
+			set_colony_type = col_phanon_macripp
+			add_modifier = {
+				modifier = phanon_macripp_mod
+				days = -1
 			}
+			set_planet_entity = {
+				entity = "phanon_macRIPP_stage_3_entity"
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = FROM
+			}
+			set_all_comms_surveyed = yes
+			clear_blockers = yes
+			set_planet_flag = megastructure
+			set_planet_flag = macRIPP_planet
 		}
+	}
 	spawn_megastructure = {
 		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 0
@@ -1174,32 +1253,32 @@ spawn_great_wall_sigma_habitats = {
 		}
 	}
 	spawn_planet = {
-			class = pc_phanon_macripp
-			location = fromfrom
-			has_ring = no
-			orbit_distance_offset = @sigma_habitat_distance
-			orbit_angle_offset = 120
-			init_effect = {
-				set_name = "MacR.I.P.P. Data Core 2"
-				change_pc = pc_phanon_macripp
-				set_colony_type = col_phanon_macripp
-				add_modifier = {
-					modifier = phanon_macripp_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "phanon_macRIPP_stage_3_entity"
-				}
-				set_surveyed = {
-					surveyed = yes
-					surveyor = FROM
-				}
-				set_all_comms_surveyed = yes
-				clear_blockers = yes
-				set_planet_flag = megastructure
-				set_planet_flag = macRIPP_planet
+		class = pc_phanon_macripp
+		location = fromfrom
+		has_ring = no
+		orbit_distance_offset = @sigma_habitat_distance
+		orbit_angle_offset = 120
+		init_effect = {
+			set_name = "MacR.I.P.P. Data Core 2"
+			change_pc = pc_phanon_macripp
+			set_colony_type = col_phanon_macripp
+			add_modifier = {
+				modifier = phanon_macripp_mod
+				days = -1
 			}
+			set_planet_entity = {
+				entity = "phanon_macRIPP_stage_3_entity"
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = FROM
+			}
+			set_all_comms_surveyed = yes
+			clear_blockers = yes
+			set_planet_flag = megastructure
+			set_planet_flag = macRIPP_planet
 		}
+	}
 	spawn_megastructure = {
 		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 0
@@ -1241,32 +1320,32 @@ spawn_great_wall_sigma_habitats = {
 		}
 	}
 	spawn_planet = {
-			class = pc_phanon_macripp
-			location = fromfrom
-			has_ring = no
-			orbit_distance_offset = @sigma_habitat_distance
-			orbit_angle_offset = 240
-			init_effect = {
-				set_name = "Data Core 3"
-				change_pc = pc_phanon_macripp
-				set_colony_type = col_phanon_macripp
-				add_modifier = {
-					modifier = phanon_macripp_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "phanon_macRIPP_stage_3_entity"
-				}
-				set_surveyed = {
-					surveyed = yes
-					surveyor = FROM
-				}
-				set_all_comms_surveyed = yes
-				clear_blockers = yes
-				set_planet_flag = megastructure
-				set_planet_flag = macRIPP_planet
+		class = pc_phanon_macripp
+		location = fromfrom
+		has_ring = no
+		orbit_distance_offset = @sigma_habitat_distance
+		orbit_angle_offset = 240
+		init_effect = {
+			set_name = "Data Core 3"
+			change_pc = pc_phanon_macripp
+			set_colony_type = col_phanon_macripp
+			add_modifier = {
+				modifier = phanon_macripp_mod
+				days = -1
 			}
+			set_planet_entity = {
+				entity = "phanon_macRIPP_stage_3_entity"
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = FROM
+			}
+			set_all_comms_surveyed = yes
+			clear_blockers = yes
+			set_planet_flag = megastructure
+			set_planet_flag = macRIPP_planet
 		}
+	}
 	spawn_megastructure = {
 		type = "aot_macripp_dark_matter_obelisk_core_pe"
 		orbit_angle = 0

@@ -1,5 +1,4 @@
 #root = planet
-
 @small_planet_threshold = 18
 @free_districts_verylow_threshold = 3
 @free_districts_low_threshold = 5
@@ -8,12 +7,9 @@
 @built_districts_low_threshold = 3
 @built_districts_medium_threshold = 4
 @built_districts_high_threshold = 8
-
-
 # Habitat Delta
 col_habitat_dm = {
 	icon = GFX_colony_type_dm_habitat
-
 	potential = {
 		OR = {
 			uses_district_set = dm_habitat
@@ -31,7 +27,10 @@ col_habitat_dm = {
 		base = 200
 		modifier = {
 			factor = 3
-			num_districts = { type = district_dm_hab_dark_matter_energy value >= 3 }
+			num_districts = {
+				type = district_dm_hab_dark_matter_energy
+				value >= 3
+			}
 		}
 	}
 }
@@ -39,7 +38,6 @@ col_habitat_dm = {
 # Habitat Sigma
 col_habitat_stellarite = {
 	icon = GFX_colony_type_stellarite_habitat
-
 	potential = {
 		uses_district_set = sigma_habitat
 		exists = owner
@@ -49,13 +47,16 @@ col_habitat_stellarite = {
 		planet_districts_hab_stellarite_energy_cost_mult = -0.2
 		planet_districts_hab_stellarite_acot_sr_stellarite_cost_mult = -0.25
 		planet_district_hab_stellarite_generator_build_speed_mult = 0.25
-		pop_happiness = 0.10
+		pop_happiness = 0.1
 	}
 	weight_modifier = {
 		base = 200
 		modifier = {
 			factor = 3
-			num_districts = { type = district_hab_stellarite_generator value >= 3 }
+			num_districts = {
+				type = district_hab_stellarite_generator
+				value >= 3
+			}
 		}
 	}
 }
@@ -63,7 +64,6 @@ col_habitat_stellarite = {
 # Phanon MacRIPP
 col_phanon_macripp = {
 	icon = GFX_colony_type_phanon_macripp
-
 	potential = {
 		uses_district_set = phanon_macripp
 		exists = owner
@@ -75,13 +75,48 @@ col_phanon_macripp = {
 		planet_buildings_aot_sr_runic_power_cost_mult = -0.25
 		planet_district_macripp_runic_power_generator_build_speed_mult = 0.25
 		planet_building_phanon_runic_generator_build_speed_mult = 0.25
-		pop_happiness = 0.10
+		pop_happiness = 0.1
 	}
 	weight_modifier = {
 		base = 200
 		modifier = {
 			factor = 3
-			num_districts = { type = district_macripp_runic_power_generator value >= 3 }
+			num_districts = {
+				type = district_macripp_runic_power_generator
+				value >= 3
+			}
+		}
+	}
+}
+
+# Sigma Solaripp
+col_sigma_solaripp = {
+	icon = GFX_colony_type_stellarite_habitat
+	potential = {
+		uses_district_set = sigma_solaripp
+		exists = owner
+	}
+	planet_modifier = {
+		planet_districts_sigma_solaripp_minerals_cost_mult = -0.2
+		planet_districts_sigma_solaripp_energy_cost_mult = -0.2
+		planet_districts_sigma_solaripp_acot_sr_stellarite_cost_mult = -0.25
+		planet_district_solaripp_stellarite_power_generator_build_speed_mult = 0.25
+		planet_buildings_acot_sr_stellarite_power_cost_mult = -0.25
+		planet_building_stellarite_generator_build_speed_mult = 0.25
+		planet_building_stellarite_generator_ae_build_speed_mult = 0.25
+		planet_building_stellarite_generator_lvl3_build_speed_mult = 0.25
+		planet_building_stellarite_synthersizer_build_speed_mult = 0.25
+		planet_building_stellarite_nexus_build_speed_mult = 0.25
+		pop_happiness = 0.15
+	}
+	weight_modifier = {
+		base = 200
+		modifier = {
+			factor = 3
+			num_districts = {
+				type = district_solaripp_stellarite_power_generator
+				value >= 3
+			}
 		}
 	}
 }
