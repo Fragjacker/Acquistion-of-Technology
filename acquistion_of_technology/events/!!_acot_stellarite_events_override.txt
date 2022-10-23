@@ -4,12 +4,25 @@ namespace = stellarite_events
 country_event = {
 	id = stellarite_events.1
 	title = stellarite_events.1.name
-	desc = stellarite_events.1.desc
+	desc = {
+		text = stellarite_events.1.desc.a
+		trigger = {
+			NOT = {
+				has_country_flag = hear_stellarite
+			}
+		}
+	}
+	desc = {
+		text = stellarite_events.1.desc.b
+		trigger = {
+			has_country_flag = hear_stellarite
+		}
+	}
 	picture = GFX_evt_physics_research
 	show_sound = event_mystic_reveal
 	trigger = {
 		is_playable_country = yes
-		has_technology = tech_dark_matter_power_core_ae
+		has_technology = tech_dark_matter_power_core_pe
 		has_established_contact = event_target:acot_precursor_databank_country
 		NOR = {
 			has_global_flag = acot_sigma_forbidden
@@ -46,9 +59,9 @@ country_event = {
 			has_global_flag = acot_ai_simple_event_forbidden
 		}
 		random_list = {
-			60 = {
+			90 = {
 			}
-			40 = {
+			10 = {
 				add_resource = {
 					energy = -5000
 					minerals = -5000

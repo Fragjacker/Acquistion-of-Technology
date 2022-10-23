@@ -150,6 +150,9 @@ has_enough_dark_matter_to_increase_reactor_intensity = {
 }
 
 is_valid_alpha_research_candidate = {
+	NOT = {
+		has_global_flag = acot_alpha_forbidden
+	}
 	OR = {
 		is_country_type = default
 		AND = {
@@ -160,11 +163,10 @@ is_valid_alpha_research_candidate = {
 			}
 		}
 	}
-	has_technology = "tech_dark_matter_power_core"
+	has_technology = "tech_dark_matter_power_core_dm"
 	has_technology = "tech_mine_dark_energy"
 	has_technology = "tech_mine_dark_matter"
 	NOR = {
-		has_global_flag = acot_mysteries_ancients_forbidden		#Forbid Alpha tier if disabled
 		has_country_flag = hear_precursor_rumor
 		has_country_flag = block_precursor_rumor
 		has_technology = "tech_precursor_design"
