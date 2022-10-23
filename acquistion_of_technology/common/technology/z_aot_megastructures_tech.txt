@@ -315,7 +315,7 @@ tech_sigma_stellar_converter = {
 	}
 }
 
-tech_phanon_macripp = {
+tech_sigma_solaripp = {
 	cost = @acot_tier8cost3
 	area = engineering
 	category = {
@@ -361,7 +361,7 @@ tech_phanon_great_wall = {
 	tier = 8
 	prerequisites = {
 		tech_phanon_stellar_converter
-		tech_phanon_macripp
+		tech_sigma_solaripp
 	}
 	weight = 0
 	is_rare = yes
@@ -593,13 +593,64 @@ tech_ae_habitat = {
 }
 
 #####################
+# Phanon Habitat Tech
+#####################
+tech_phanon_habitat = {
+	area = engineering
+	cost = @acot_tier8cost3
+	tier = 8
+	category = {
+		voidcraft
+	}
+	weight = 5
+	ai_update_type = all
+	is_rare = yes
+	prerequisites = {
+		tech_ae_habitat
+		tech_civil_phanon_application
+	}
+	potential = {
+		has_technology = tech_ae_habitat
+		has_technology = tech_civil_phanon_application
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_habitat_2
+				has_technology = tech_habitat_3
+				has_technology = tech_dm_habitat
+				has_technology = tech_ae_habitat
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 100
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+
+#####################
 # Stellarite Habitat Tech
 #####################
 tech_stellarite_habitat = {
 	icon = tech_stellarite_habitat
 	area = engineering
-	cost = @acot_tier8cost3
-	tier = 8
+	cost = @acot_tier9cost3
+	tier = 9
 	category = {
 		voidcraft
 	}

@@ -1147,7 +1147,7 @@ spawn_functional_megaturret = {
 			set_owner = root
 			create_ship = {
 				name = "PHANON MEGATURRET"
-				random_existing_design = phanon_megaturret
+				random_existing_design = aot_megaturret
 				effect = {
 				}
 			}
@@ -1433,7 +1433,7 @@ phanon_type_b_tech_gift = {
 				has_tech_option = tech_phanon_army
 				has_tech_option = tech_xl_missile_pe
 				has_tech_option = tech_energy_lance_pe
-				has_tech_option = tech_phanon_macripp
+				has_tech_option = tech_sigma_solaripp
 			}
 		}
 		add_research_option = tech_arc_emitter_pe
@@ -1451,7 +1451,7 @@ phanon_type_b_tech_gift = {
 		add_research_option = tech_phanon_army
 		add_research_option = tech_xl_missile_pe
 		add_research_option = tech_energy_lance_pe
-		add_research_option = tech_phanon_macripp
+		add_research_option = tech_sigma_solaripp
 	}
 }
 
@@ -2220,7 +2220,7 @@ create_ae_habitat = {
 	}
 }
 
-create_sigma_habitat = {
+create_phanon_habitat = {
 	save_aot_habitat_districts = {
 		HOUSING = district_ae_hab_housing
 		ENERGY = district_ae_hab_energy
@@ -2230,10 +2230,205 @@ create_sigma_habitat = {
 		SPECIAL = district_ae_hab_dark_matter_energy
 	}
 	clear_deposits = yes
+	set_colony_type = col_habitat_phanon
+	set_planet_flag = retrofitted_phanon_habitat
+	remove_modifier = dm_habitat_mod
+	remove_modifier = ae_habitat_mod
+	change_pc = pc_phanon_habitat
+	add_modifier = {
+		modifier = phanon_habitat_mod
+		days = -1
+	}
+	create_new_aot_habitat_districts = {
+		HOUSING = district_hab_phanon_housing
+		ENERGY = district_hab_phanon_energy
+		MINING = district_hab_phanon_mining
+		INDUSTRY = district_hab_phanon_arms_industry
+		SCIENCE = district_hab_phanon_research
+		SPECIAL = district_hab_phanon_generator
+	}
+	if = {
+		limit = {
+			has_planet_flag = is_base_dm_habitat
+		}
+		set_planet_entity = {
+			entity = "phanon_habitat_phase_01_entity"
+		}
+		set_planet_size = @size_lvl1
+	}
+	if = {
+		limit = {
+			has_planet_flag = advanced_ascended_habitat
+		}
+		set_planet_entity = {
+			entity = "phanon_habitat_phase_02_entity"
+		}
+		set_planet_size = @size_lvl2
+	}
+	if = {
+		limit = {
+			has_planet_flag = advanced_ascended_habitat_2
+		}
+		set_planet_entity = {
+			entity = "phanon_habitat_phase_03_entity"
+		}
+		set_planet_size = @size_lvl3
+	}
+	if = {
+		limit = {
+			has_phanon_capital = no
+		}
+		if = {
+			limit = {
+				has_building = building_colony_shelter
+			}
+			remove_building = building_colony_shelter
+		}
+		if = {
+			limit = {
+				has_building = building_capital
+			}
+			remove_building = building_capital
+		}
+		if = {
+			limit = {
+				has_building = building_major_capital
+			}
+			remove_building = building_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_system_capital
+			}
+			remove_building = building_system_capital
+		}
+		if = {
+			limit = {
+				has_building = building_hab_capital
+			}
+			remove_building = building_hab_capital
+		}
+		if = {
+			limit = {
+				has_building = building_hab_major_capital
+			}
+			remove_building = building_hab_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_resort_capital
+			}
+			remove_building = building_resort_capital
+		}
+		if = {
+			limit = {
+				has_building = building_resort_major_capital
+			}
+			remove_building = building_resort_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_slave_capital
+			}
+			remove_building = building_slave_capital
+		}
+		if = {
+			limit = {
+				has_building = building_slave_major_capital
+			}
+			remove_building = building_slave_major_capital
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_capital
+			}
+			remove_building = building_imperial_capital
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_machine_capital
+			}
+			remove_building = building_imperial_machine_capital
+		}
+		if = {
+			limit = {
+				has_building = building_imperial_hive_capital
+			}
+			remove_building = building_imperial_hive_capital
+		}
+		if = {
+			limit = {
+				has_building = building_ancient_palace
+			}
+			remove_building = building_ancient_palace
+		}
+		if = {
+			limit = {
+				has_building = building_ancient_control_center
+			}
+			remove_building = building_ancient_control_center
+		}
+		if = {
+			limit = {
+				has_building = building_ae_ancient_control_center
+			}
+			remove_building = building_ae_ancient_control_center
+		}
+		if = {
+			limit = {
+				has_building = building_ae_ancient_palace
+			}
+			remove_building = building_ae_ancient_palace
+		}
+		if = {
+			limit = {
+				has_building = building_ae_ancient_hive_cluster
+			}
+			remove_building = building_ae_ancient_hive_cluster
+		}
+		# Add the appropriate building now.
+		if = {
+			limit = {
+				owner = {
+					is_regular_empire = yes
+				}
+			}
+			add_building = building_phanon_palace
+		}
+		if = {
+			limit = {
+				owner = {
+					is_machine_empire = yes
+				}
+			}
+			add_building = building_phanon_control_center
+		}
+		if = {
+			limit = {
+				owner = {
+					is_hive_empire = yes
+				}
+			}
+			add_building = building_phanon_hive_cluster
+		}
+	}
+}
+
+create_sigma_habitat = {
+	save_aot_habitat_districts = {
+		HOUSING = district_hab_phanon_housing
+		ENERGY = district_hab_phanon_energy
+		MINING = district_hab_phanon_mining
+		INDUSTRY = district_hab_phanon_arms_industry
+		SCIENCE = district_hab_phanon_research
+		SPECIAL = district_hab_phanon_generator
+	}
+	clear_deposits = yes
 	set_colony_type = col_habitat_stellarite
 	set_planet_flag = retrofitted_sigma_habitat
 	remove_modifier = dm_habitat_mod
 	remove_modifier = ae_habitat_mod
+	remove_modifier = phanon_habitat_mod
 	change_pc = pc_sigma_habitat
 	add_modifier = {
 		modifier = stellarite_habitat_mod

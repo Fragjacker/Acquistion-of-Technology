@@ -876,6 +876,113 @@ building_fe_master_archive = {
 	}
 }
 
+#Biological path
+building_fe_clone_vats = {
+	base_buildtime = 360
+	base_cap_amount = 1
+	category = pop_assembly
+	prerequisites = {
+		tech_fe_clone_vats
+	}
+	planet_modifier = {
+		pop_growth_speed = 1
+	}
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+			food = 25
+		}
+		cost = {
+			minerals = 250
+			sr_dark_matter = 100
+			acot_sr_dark_energy = 100
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+		}
+	}
+	upgrades = {
+		building_ae_clone_vats
+	}
+	ai_weight = {
+		weight = 10000
+		modifier = {
+			factor = 0
+			OR = {
+				has_building = building_fe_clone_vats
+				has_building = building_ae_clone_vats
+			}
+		}
+	}
+}
+
+building_fe_hive_evochamber = {
+	base_buildtime = 360
+	base_cap_amount = 1
+	category = pop_assembly
+	show_tech_unlock_if = {
+		owner = {
+			has_ascension_perk = ap_engineered_evolution
+		}
+	}
+	planet_modifier = {
+		pop_growth_speed = 0.5
+	}
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+			society_research = 25
+			food = 50
+		}
+		cost = {
+			minerals = 250
+			sr_dark_matter = 100
+			acot_sr_dark_energy = 100
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+		}
+	}
+	upgrades = {
+		building_ae_hive_evochamber
+	}
+	prerequisites = {
+		tech_fe_hive_evochamber
+	}
+	ai_weight = {
+		weight = 10000
+		modifier = {
+			factor = 0
+			OR = {
+				has_building = building_fe_hive_evochamber
+				has_building = building_ae_hive_evochamber
+			}
+		}
+	}
+}
+
 #####################
 # Military
 #####################

@@ -1,0 +1,54 @@
+final_destionation = {
+	trigger = {
+		OR = {
+			owner = {
+				is_country_type = original_empire
+			}
+			owner = {
+				is_country_type = original_empire_active
+			}
+			owner = {
+				has_technology = tech_bombardment_se
+			}
+		}
+	}
+	default = no
+	stop_when_armies_dead = no
+	abduct_pops = no
+	planet_damage = 25
+	army_damage = 50
+	kill_pop_chance = {
+		base = 40
+	}
+	min_pops_to_kill_pop = 0
+	# root = fleet
+	# from = planet
+	ai_weight = {
+		weight = 1000
+		modifier = {
+			factor = 0.01
+			exists = from
+			from = {
+				owner = {
+					NOT = {
+						is_hostile = root.owner
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 10000
+			owner = {
+				is_country_type = original_empire
+			}
+		}
+		modifier = {
+			factor = 10000
+			OR = {
+				owner = {
+					is_country_type = original_empire_active
+				}
+			}
+		}
+	}
+}

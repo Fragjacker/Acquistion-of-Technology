@@ -336,6 +336,99 @@ planet_event = {
 		}
 	}
 	option = {
+		name = aot_mod_options.koolaid.name
+		custom_tooltip = aot_mod_options.koolaid.explain
+		allow = {
+			fail_text = {
+				text = too_soon_to_do_that_nub
+			}
+			NOT = {
+				has_modifier = kool_aid_enrichment_activated
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 50000
+				}
+				resource_stockpile_compare = {
+					resource = aot_sr_runic_power
+					value >= 10000
+				}
+				fail_text = {
+					text = no_normal_leaders
+				}
+				any_owned_leader = {
+					has_phanon_traits = no
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -100000
+				aot_sr_runic_power = -10000
+			}
+		}
+		hidden_effect = {
+			add_modifier = {
+				modifier = kool_aid_enrichment_activated
+				days = 1800
+			}
+			owner = {
+				every_owned_leader = {
+					if = {
+						limit = {
+							NOT = {
+								has_trait = leader_trait_phanon_big_brain
+							}
+							leader_class = scientist
+						}
+						add_trait = leader_trait_phanon_big_brain
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_trait = leader_trait_phanon_big_leader
+							}
+							OR = {
+								leader_class = governor
+							}
+						}
+						add_trait = leader_trait_phanon_big_leader
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_trait = leader_trait_phanon_six_stars_general
+							}
+							leader_class = general
+						}
+						add_trait = leader_trait_phanon_six_stars_general
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_trait = leader_trait_acot_phanon_admiral
+							}
+							leader_class = admiral
+						}
+						add_trait = leader_trait_acot_phanon_admiral
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_leader_flag = is_resurrection_candidate
+							}
+						}
+						set_leader_flag = is_resurrection_candidate
+					}
+				}
+				country_event = {
+					id = aot_events.9
+				}
+			}
+		}
+	}
+	option = {
 		name = acot_special_menu.exit.a
 		name = acot_special_menu.exit.b
 		name = acot_special_menu.exit.c

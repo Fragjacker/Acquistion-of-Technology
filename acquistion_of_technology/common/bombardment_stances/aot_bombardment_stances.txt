@@ -24,32 +24,33 @@
 #		weight = 1
 #	}
 #}
-
-
 ########################
-
 phanon_digitalization = {
 	trigger = {
 		OR = {
-				owner = { is_country_type = acot_phanon_base }	
-				owner = { is_country_type = acot_phanon_retaliator }		
-				owner = { is_country_type = aot_phanon_protecc }		
-				owner = { has_technology = tech_bombardment_pe }
+			owner = {
+				is_country_type = acot_phanon_base
+			}
+			owner = {
+				is_country_type = acot_phanon_retaliator
+			}
+			owner = {
+				is_country_type = aot_phanon_protecc
+			}
+			owner = {
+				has_technology = tech_bombardment_pe
 			}
 		}
+	}
 	default = no
-	
 	stop_when_armies_dead = no
 	abduct_pops = no
-
-	planet_damage = 25.00
-	army_damage = 50.00
-	
+	planet_damage = 15
+	army_damage = 30
 	kill_pop_chance = {
-		base = 40.0
+		base = 20
 	}
 	min_pops_to_kill_pop = 0
-	
 	# root = fleet
 	# from = planet
 	ai_weight = {
@@ -57,24 +58,34 @@ phanon_digitalization = {
 		modifier = {
 			factor = 0.01
 			exists = from
-			from = { 
-				owner = { NOT = { is_hostile = root.owner } }
+			from = {
+				owner = {
+					NOT = {
+						is_hostile = root.owner
+					}
+				}
 			}
 		}
 		modifier = {
 			factor = 10000
-			owner = { is_country_type = acot_phanon_base }
-		}
-		modifier = {
-			factor = 10000
-			OR = {
-				owner = { is_country_type = acot_phanon_retaliator }	
+			owner = {
+				is_country_type = acot_phanon_base
 			}
 		}
 		modifier = {
 			factor = 10000
 			OR = {
-				owner = { is_country_type = aot_phanon_protecc }	
+				owner = {
+					is_country_type = acot_phanon_retaliator
+				}
+			}
+		}
+		modifier = {
+			factor = 10000
+			OR = {
+				owner = {
+					is_country_type = aot_phanon_protecc
+				}
 			}
 		}
 	}

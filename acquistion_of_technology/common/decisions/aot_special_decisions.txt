@@ -77,6 +77,44 @@ decision_retrofit_ae_habitat = {
 	}
 }
 
+decision_retrofit_phanon_habitat = {
+	owned_planets_only = yes
+	icon = decision_convert_to_phanon_habitat
+	enactment_time = 1440
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 1000
+			sr_dark_matter = 2500
+			acot_sr_dark_energy = 2500
+		}
+	}
+	potential = {
+		is_planet_class = pc_ae_habitat
+		NOT = {
+			has_planet_flag = retrofitted_phanon_habitat
+		}
+		exists = owner
+		owner = {
+			has_technology = tech_phanon_habitat
+		}
+	}
+	prerequisites = {
+		tech_phanon_habitat
+	}
+	allow = {
+	}
+	effect = {
+		custom_tooltip = decision_retrofit_phanon_habitat_effects
+		hidden_effect = {
+			create_phanon_habitat = yes
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
 decision_retrofit_sigma_habitat = {
 	owned_planets_only = yes
 	icon = decision_convert_to_stellarite_habitat
@@ -85,13 +123,11 @@ decision_retrofit_sigma_habitat = {
 		category = decisions
 		cost = {
 			alloys = 1000
-			sr_dark_matter = 1000
-			acot_sr_dark_energy = 1000
-			acot_sr_stellarite = 5000
+			aot_sr_runic_power = 5000
 		}
 	}
 	potential = {
-		is_planet_class = pc_ae_habitat
+		is_planet_class = pc_phanon_habitat
 		NOT = {
 			has_planet_flag = retrofitted_sigma_habitat
 		}
@@ -133,6 +169,7 @@ decision_upgrade_ascended_habitat = {
 		OR = {
 			is_planet_class = pc_dm_habitat
 			is_planet_class = pc_ae_habitat
+			is_planet_class = pc_phanon_habitat
 			is_planet_class = pc_sigma_habitat
 		}
 		NOT = {
@@ -173,6 +210,14 @@ decision_upgrade_ascended_habitat = {
 			}
 			else_if = {
 				limit = {
+					is_planet_class = pc_phanon_habitat
+				}
+				set_planet_entity = {
+					entity = "phanon_habitat_phase_02_entity"
+				}
+			}
+			else_if = {
+				limit = {
 					is_planet_class = pc_sigma_habitat
 				}
 				set_planet_entity = {
@@ -204,6 +249,7 @@ decision_upgrade_ascended_habitat_2 = {
 		OR = {
 			is_planet_class = pc_dm_habitat
 			is_planet_class = pc_ae_habitat
+			is_planet_class = pc_phanon_habitat
 			is_planet_class = pc_sigma_habitat
 		}
 		has_planet_flag = advanced_ascended_habitat
@@ -241,6 +287,14 @@ decision_upgrade_ascended_habitat_2 = {
 				}
 				set_planet_entity = {
 					entity = "alpha_habitat_phase_03_entity"
+				}
+			}
+			else_if = {
+				limit = {
+					is_planet_class = pc_phanon_habitat
+				}
+				set_planet_entity = {
+					entity = "phanon_habitat_phase_03_entity"
 				}
 			}
 			else_if = {
