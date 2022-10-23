@@ -14,7 +14,7 @@ entity = {
 	default_state = "idle"
 	game_data = {
 		shader_type = ship
-		emissive_recolor_crunch = 25.0
+		emissive_recolor_crunch = 25
 	}
 	state = {
 		name = "idle"
@@ -41,7 +41,7 @@ entity = {
 	default_state = "idle"
 	game_data = {
 		shader_type = ship
-		emissive_recolor_crunch = 25.0
+		emissive_recolor_crunch = 25
 	}
 	state = {
 		name = "idle"
@@ -68,11 +68,18 @@ entity = {
 	default_state = "idle"
 	game_data = {
 		shader_type = ship
-		emissive_recolor_crunch = 25.0
+		emissive_recolor_crunch = 25
 	}
 	state = {
 		name = "idle"
 		animation = "idle"
+		event = {
+			time = 0
+			node = "root"
+			particle = "phanon_habitat_sun_effect"
+			keep_particle = yes
+			trigger_once = yes
+		}
 		animation_speed = 0.1
 		animation_blend_time = 0
 		looping = yes
@@ -82,4 +89,40 @@ entity = {
 			}
 		}
 	}
+	attach = {
+		root = "phanon_macripp_core"
+	}
+}
+
+entity = {
+	name = "phanon_macripp_core_layer1"
+	pdxmesh = "phanon_planet_shield_ambient_mesh"
+	scale = 7
+}
+
+entity = {
+	name = "phanon_macripp_core_layer2"
+	pdxmesh = "phanon_planet_shield_ambient_mesh"
+	scale = 13
+}
+
+entity = {
+	name = "phanon_macripp_core_layer3"
+	pdxmesh = "phanon_planet_shield_ambient_mesh"
+	scale = 18
+}
+
+entity = {
+	name = "phanon_macripp_core"
+	cull_radius = 500
+	attach = {
+		root = "phanon_macripp_core_layer1"
+	}
+	attach = {
+		root = "phanon_macripp_core_layer2"
+	}
+	attach = {
+		root = "phanon_macripp_core_layer3"
+	}
+	scale = 1
 }
