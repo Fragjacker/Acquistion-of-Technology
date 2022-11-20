@@ -1,5 +1,174 @@
 namespace = acot_mega
 
+country_event = {
+	id = acot_mega.1
+	title = "acot_mega.1.name"
+	desc = "acot_mega.1.desc"
+	picture = GFX_acot_precursor_station
+	show_sound = event_citadel_ready
+	location = FROMFROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = { is_megastructure_type = acot_precursor_citadel_base }
+	}
+
+	immediate = {
+		FROM = {
+			remove_megastructure = this
+		}
+		FROMFROM = {
+			if = {
+				limit = {
+					any_ship_in_system = {
+						is_ship_class = shipclass_starbase
+						NOT = {
+							is_ship_size = precursor_colossus
+						}
+					}
+				}
+				random_fleet_in_system = {
+					limit = {
+						any_owned_ship = {
+							is_ship_class = shipclass_starbase
+							NOR = {
+								is_ship_size = precursor_colossus
+								is_ship_size = juggernaut
+							}
+						}
+					}
+					destroy_fleet = this
+				}
+			}
+			create_starbase = {
+				size = "acot_precusor_starbase"
+				owner = root
+		
+				effect = {	
+				}
+			}				
+		}
+	}
+
+	option = {
+		name = "acot_mega.1.a"
+	}
+}
+
+country_event = {
+	id = acot_mega.3
+	title = "acot_mega.3.name"
+	desc = "acot_mega.3.desc"
+	picture = GFX_acot_precursor_sigma_station
+	show_sound = event_citadel_ready
+	location = FROMFROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = { is_megastructure_type = acot_precursor_sigma_citadel_base }
+	}
+
+	immediate = {
+		FROM = {
+			remove_megastructure = this
+		}
+		FROMFROM = {
+			if = {
+				limit = {
+					any_ship_in_system = {
+						OR = {
+							is_ship_size = starbase_outpost
+							is_ship_size = starbase_starport
+							is_ship_size = starbase_starhold
+							is_ship_size = starbase_starfortress
+							is_ship_size = starbase_citadel
+							is_ship_size = acot_precusor_starbase
+						}
+					}
+				}
+				random_fleet_in_system = {
+					limit = {
+						any_owned_ship = {
+							OR = {
+								is_ship_size = starbase_outpost
+								is_ship_size = starbase_starport
+								is_ship_size = starbase_starhold
+								is_ship_size = starbase_starfortress
+								is_ship_size = starbase_citadel
+								is_ship_size = acot_precusor_starbase
+							}
+						}
+					}
+					destroy_fleet = this
+				}
+				create_starbase = {
+					size = "acot_precusor_sigma_starbase"
+					owner = root
+			
+					effect = {	
+					}
+				}
+			}	
+			if = {
+				limit = {
+					any_ship_in_system = {
+						is_ship_size = acot_precusor_starfortress
+					}
+				}
+				random_fleet_in_system = {
+					limit = {
+						any_owned_ship = {
+							is_ship_size = acot_precusor_starfortress
+						}
+					}
+					destroy_fleet = this
+				}
+				create_starbase = {
+					size = "acot_precusor_sigma_starfortress"
+					owner = root
+			
+					effect = {	
+					}
+				}
+			}	
+			if = {
+				limit = {
+					any_ship_in_system = {
+						OR = {
+							is_ship_size = acot_precusor_starcitadel
+							is_ship_size = acot_precusor_phanon_starcitadel
+						}
+					}
+				}
+				random_fleet_in_system = {
+					limit = {
+						any_owned_ship = {
+								OR = {
+								is_ship_size = acot_precusor_starcitadel
+								is_ship_size = 	acot_precusor_phanon_starcitadel
+							}
+						}
+					}
+					destroy_fleet = this
+				}
+				create_starbase = {
+					size = "acot_precusor_sigma_starcitadel"
+					owner = root
+			
+					effect = {	
+					}
+				}
+			}				
+		}
+	}
+
+	option = {
+		name = "acot_mega.3.a"
+	}
+}
+
 #### PHANON
 country_event = {
 	id = acot_mega.200
