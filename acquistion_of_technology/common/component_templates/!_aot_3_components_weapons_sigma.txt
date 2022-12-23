@@ -1676,6 +1676,142 @@ weapon_component_template = {
 		max = 10
 	}
 	total_fire_time = 200
+	range = 30
+	accuracy = 1
+	missile_speed = 17	# 300 -- apparently, the game doesn't auto-convert speed for non-vanilla components
+	missile_evasion = 0
+	missile_health = 24
+	missile_armor = 24
+	missile_retarget_range = 100
+	power = @m_se_power_cost
+	hull_damage = 1.25
+	armor_damage = 1.5
+	armor_penetration = 0
+	shield_damage = 1
+	shield_penetration = 1
+	tracking = 0.1
+	size_damage_factor = 1.5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_se_cost
+			acot_sr_stellarite = @m_se_sr_cost
+		}
+		upkeep = {
+			alloys = @m_se_upkeep_alloys
+			energy = @m_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_torpedo_se"
+	}
+	component_set = "ACOT_TORPEDO_SE"
+	projectile_gfx = "acot_missile_se"
+	tags = {
+		weapon_type_explosive
+	}
+	ai_tags = {
+		weapon_role_anti_shield
+		explosive
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+### SE  Plasma Accelerator
+weapon_component_template = {
+	key = "ACOT_ENERGY_TORPEDO_SE"
+	size = torpedo
+	icon = "GFX_ship_part_energy_torpedo_se"
+	icon_frame = 1
+	type = instant
+	damage = {
+		min = 1000
+		max = 3525
+	}
+	windup = {
+		min = 25
+		max = 100
+	}
+	total_fire_time = 150
+	range = 130
+	min_range = 45
+	accuracy = 0.9
+	power = @m_se_power_cost
+	hull_damage = 1.75
+	armor_penetration = 0
+	armor_damage = 1.5
+	shield_penetration = 0
+	shield_damage = 0.75
+	tracking = 0.05
+	size_damage_factor = 1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_se_cost
+			acot_sr_stellarite = @m_se_sr_cost
+		}
+		upkeep = {
+			alloys = @m_se_upkeep_alloys
+			energy = @m_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_energy_torpedo_se"
+	}
+	component_set = "ACOT_ENERGY_TORPEDO_SE"
+	projectile_gfx = "acot_energy_cannon_se"
+	tags = {
+		weapon_type_energy
+	}
+	ai_tags = {
+		weapon_role_anti_shield
+		weapon_role_artillery
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+### AE PETODOR
+weapon_component_template = {
+	key = "ACOT_TORPEDO_SE"
+	size = torpedo
+	icon = "GFX_ship_part_torpedo_se"
+	icon_frame = 1
+	type = missile
+	damage = {
+		min = 800
+		max = 3325
+	}
+	windup = {
+		min = 5
+		max = 10
+	}
+	total_fire_time = 200
 	range = 40
 	accuracy = 1
 	missile_speed = 17	# 300 -- apparently, the game doesn't auto-convert speed for non-vanilla components
