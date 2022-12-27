@@ -2100,3 +2100,166 @@ decision_acot_emissary_landing = {
 		weight = 0
 	}
 }
+
+decision_acot_gigafortress_deploy = {
+	sound = choose_ascension_perk_01
+	owned_planets_only = yes
+	resources = {
+		category = decisions
+		cost = {
+		}
+	}
+	prerequisites = {
+		tech_giga_fortress
+	}
+	enactment_time = 30
+	allow = {
+	}
+	potential = {
+		OR = {
+			has_building = building_giga_fortress
+			has_building = building_giga_fortress_fe
+			has_building = building_giga_fortress_array
+			has_building = building_giga_fortress_lab
+			has_building = building_giga_fortress_obelisk
+			has_building = building_phanon_giga_fortress_array
+			has_building = building_phanon_giga_fortress_obelisk
+			has_building = building_phanon_giga_fortress_lab
+			has_building = building_stellarite_giga_fortress_array
+			has_building = building_stellarite_giga_fortress_obelisk
+			has_building = building_stellarite_giga_fortress_lab
+		}
+	}
+	effect = {
+		hidden_effect = {
+			create_fleet = {
+				effect = {
+					set_owner = from.owner
+					create_ship = {
+						name = random
+						random_existing_design = acot_giga_fortress
+						graphical_culture = from.owner
+					}	
+					set_location = {
+						target = prev
+						distance = 30
+						angle = random 
+					}
+				}
+			}
+			switch = {
+				trigger = has_building
+				building_giga_fortress = { remove_building = building_giga_fortress }
+				building_giga_fortress_fe = { remove_building = building_giga_fortress_fe }
+				building_giga_fortress_array = { remove_building = building_giga_fortress_array last_created_fleet = { set_fleet_flag = acot_gigafortress_array } }
+				building_giga_fortress_lab = { remove_building = building_giga_fortress_lab last_created_fleet = { set_fleet_flag = acot_gigafortress_lab } }
+				building_giga_fortress_obelisk = { remove_building = building_giga_fortress_obelisk last_created_fleet = { set_fleet_flag = acot_gigafortress_obelisk } }
+				building_phanon_giga_fortress_obelisk = { remove_building = building_phanon_giga_fortress_obelisk last_created_fleet = { set_fleet_flag = aot_phanon_gigafortress_obelisk } }
+				building_phanon_giga_fortress_lab = { remove_building = building_phanon_giga_fortress_lab last_created_fleet = { set_fleet_flag = aot_phanon_gigafortress_lab } }
+				building_phanon_giga_fortress_array = { remove_building = building_phanon_giga_fortress_array last_created_fleet = { set_fleet_flag = aot_phanon_gigafortress_array } }
+				building_stellarite_giga_fortress_obelisk = { remove_building = building_stellarite_giga_fortress_obelisk last_created_fleet = { set_fleet_flag = aot_stellarite_gigafortress_obelisk } }
+				building_stellarite_giga_fortress_lab = { remove_building = building_stellarite_giga_fortress_lab last_created_fleet = { set_fleet_flag = aot_stellarite_gigafortress_lab } }
+				building_stellarite_giga_fortress_array = { remove_building = building_stellarite_giga_fortress_array last_created_fleet = { set_fleet_flag = aot_stellarite_gigafortress_array } }
+			}
+		}
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_acot_gigafortress_land = {
+	sound = choose_ascension_perk_01
+
+	owned_planets_only = yes
+
+	resources = {
+		category = decisions
+		cost = {
+		}
+	}
+
+	prerequisites = {
+		tech_giga_fortress
+	}
+	
+	allow = {
+		custom_tooltip = {
+			text = acot_requires_emissary_orbit
+			any_fleet_in_orbit = {
+				is_ship_size = acot_giga_fortress	
+				owner = {
+					is_same_value = from
+				}
+			}
+		}
+	}
+
+	potential = {
+		exists = owner
+		is_a_habitable_planet_megastructure = yes
+		NOR = {
+			has_building = building_giga_fortress
+			has_building = building_giga_fortress_fe
+			has_building = building_giga_fortress_array
+			has_building = building_giga_fortress_lab
+			has_building = building_giga_fortress_obelisk
+			has_building = building_phanon_giga_fortress_array
+			has_building = building_phanon_giga_fortress_obelisk
+			has_building = building_phanon_giga_fortress_lab
+			has_building = building_stellarite_giga_fortress_array
+			has_building = building_stellarite_giga_fortress_obelisk
+			has_building = building_stellarite_giga_fortress_lab
+			has_building_construction = building_giga_fortress
+			has_building_construction = building_giga_fortress_fe
+			has_building_construction = building_giga_fortress_array
+			has_building_construction = building_giga_fortress_lab
+			has_building_construction = building_giga_fortress_obelisk
+			has_building_construction = building_phanon_giga_fortress_array
+			has_building_construction = building_phanon_giga_fortress_obelisk
+			has_building_construction = building_phanon_giga_fortress_lab
+			has_building_construction = building_stellarite_giga_fortress_array
+			has_building_construction = building_stellarite_giga_fortress_obelisk
+			has_building_construction = building_stellarite_giga_fortress_lab
+		}
+		solar_system = {
+			any_fleet_in_system = {
+				is_ship_size = acot_giga_fortress		
+				owner = {
+					is_same_value = from
+				}	
+			}
+		}
+	}
+	
+	effect = {
+		hidden_effect = {
+			random_fleet_in_orbit = {
+				limit = {
+					is_ship_size = acot_giga_fortress	
+				}
+				save_event_target_as = orbitting_giga
+				switch = {
+					trigger = has_fleet_flag
+					acot_gigafortress_array = { prev = { add_building = building_giga_fortress_array } }
+					acot_gigafortress_obelisk = { prev = { add_building = building_giga_fortress_obelisk } }
+					acot_gigafortress_lab = { prev = { add_building = building_giga_fortress_lab } }
+					aot_phanon_gigafortress_array = { prev = { add_building = building_phanon_giga_fortress_array } }
+					aot_phanon_gigafortress_obelisk = { prev = { add_building = building_phanon_giga_fortress_obelisk } }
+					aot_phanon_gigafortress_lab = { prev = { add_building = building_phanon_giga_fortress_lab } }
+					aot_stellarite_gigafortress_array = { prev = { add_building = building_stellarite_giga_fortress_array } }
+					aot_stellarite_gigafortress_obelisk = { prev = { add_building = building_stellarite_giga_fortress_obelisk } }
+					aot_stellarite_gigafortress_lab = { prev = { add_building = building_stellarite_giga_fortress_lab } }
+					default = { prev = { add_building = building_giga_fortress } }
+				}
+			}
+			event_target:orbitting_giga = {
+				delete_fleet = this					
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
