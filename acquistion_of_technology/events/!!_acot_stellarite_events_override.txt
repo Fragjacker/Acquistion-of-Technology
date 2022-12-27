@@ -9,6 +9,7 @@ country_event = {
 		trigger = {
 			NOT = {
 				has_country_flag = hear_stellarite
+				has_country_flag = learned_stellarite_from_outergate_ask
 			}
 		}
 	}
@@ -16,16 +17,26 @@ country_event = {
 		text = stellarite_events.1.desc.b
 		trigger = {
 			has_country_flag = hear_stellarite
+			NOT = {
+				has_country_flag = learned_stellarite_from_outergate_ask
+			}
+		}
+	}
+	desc = {
+		text = stellarite_events.1.desc.b
+		trigger = {
+			has_country_flag = learned_stellarite_from_outergate_ask
 		}
 	}
 	picture = GFX_evt_physics_research
 	show_sound = event_mystic_reveal
 	trigger = {
+		is_ai = no
 		is_playable_country = yes
 		has_technology = tech_dark_matter_power_core_re
 		has_established_contact = event_target:acot_precursor_databank_country
 		NOR = {
-			has_global_flag = acot_sigma_forbidden
+			has_global_flag = acot_stellarite_project_begin
 			has_country_flag = hear_stellarite
 			has_technology = tech_dark_matter_power_core_se
 			has_tech_option = tech_dark_matter_power_core_se
@@ -37,6 +48,7 @@ country_event = {
 	}
 	immediate = {
 		set_country_flag = hear_stellarite
+		set_country_flag = acot_stellarite_project_begin
 	}
 	option = {
 		name = stellarite_events.1.a
@@ -50,6 +62,17 @@ country_event = {
 			}
 		}
 	}
+	option = {
+		name = stellarite_events.1.b
+		trigger = {
+			NOT = {
+				has_global_flag = sofe_activated
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
 	# AI eats too much glue so they get a random chance to get Stellarite Tech right away or nah.
 	option = {
 		name = EXCELLENT
@@ -57,6 +80,18 @@ country_event = {
 		trigger = {
 			is_ai = yes
 			has_global_flag = acot_ai_simple_event_forbidden
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 5000
+			}
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= 5000
+			}
+			resource_stockpile_compare = {
+				resource = aot_sr_runic_power
+				value >= 1000
+			}
 		}
 		random_list = {
 			90 = {
@@ -65,8 +100,7 @@ country_event = {
 				add_resource = {
 					energy = -5000
 					minerals = -5000
-					sr_dark_matter = -500
-					acot_sr_dark_energy = -500
+					aot_sr_runic_power = -1000
 				}
 				add_research_option = tech_dark_matter_power_core_se
 				add_tech_progress = {
