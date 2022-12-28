@@ -1,172 +1,39 @@
-namespace = ascended_technologies
-# Becoming an Ascended Empire
+namespace = ascension_event
+#### fe buildings
 country_event = {
-	id = ascended_technologies.1
-	title = ascended_technologies.1.name
-	picture = GFX_evt_fallen_empire_awakes
-	show_sound = event_celebration
+	id = ascension_event.5
+	title = ascension_event.5.name
+	desc = ascension_event.5.desc
+	picture = GFX_evt_city_planet
+	show_sound = event_cityscape
 	location = from
-	desc = {
-		text = "ascended_technologies.1.desc"
-	}
 	is_triggered_only = yes
 	option = {
-		name = ascended_technologies.1.a
-		trigger = {
-			is_ai = no
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
-				has_ascension_perk = ap_become_the_crisis
-			}
-		}
-		set_country_flag = ascended_empire
-		begin_event_chain = {
-			event_chain = "ascended_technologies_chain"
-			target = ROOT
-		}
-		hidden_effect = {
-			enable_doa_ascension_projects = yes
-		}
-	}
-	option = {
-		name = ascended_technologies.1.b
-		trigger = {
-			is_ai = yes
-		}
-		set_country_flag = ascended_empire
-		country_event = {
-			id = ascended_technologies.101
-		}
-		country_event = {
-			id = ascended_technologies.102
-		}
-		country_event = {
-			id = ascended_technologies.103
-		}
-		country_event = {
-			id = ascended_technologies.104
-		}
-		country_event = {
-			id = ascended_technologies.105
-		}
-		country_event = {
-			id = ascended_technologies.106
-		}
-		country_event = {
-			id = ascended_technologies.107
-		}
+		name = ascension_event.5.a
 		if = {
 			limit = {
 				NOR = {
-					has_valid_civic = civic_inwards_perfection
-					has_valid_civic = civic_fanatic_purifiers
-					has_valid_civic = civic_barbaric_despoilers
-					has_valid_civic = civic_hive_devouring_swarm
-					has_valid_civic = civic_machine_servitor
-					has_valid_civic = civic_machine_terminator
-					has_valid_civic = civic_machine_assimilator
-					has_valid_civic = civic_criminal_heritage
+					has_country_flag = dm_production_core_project_offer
+					has_country_flag = block_dm_production_core_project
+					has_country_flag = finished_dm_production_core_chain
+					has_tech_option = tech_dm_production_core
+					has_technology = tech_dm_production_core
 				}
 			}
-			change_government = {
-				civics = random
+			add_research_option = tech_dm_production_core
+			add_tech_progress = {
+				tech = tech_dm_production_core
+				progress = 0.2
 			}
 		}
-		every_country = {
-			# Notify Players
+		if = {
 			limit = {
-				NOT = {
-					is_same_value = root
-				}
-				is_ai = no
+				host_has_dlc = "Megacorp"
+				has_ascension_perk = ap_arcology_project
 			}
-			country_event = {
-				id = ascended_technologies.2
+			give_technology = {
+				tech = tech_ascended_arcology
 			}
-		}
-	}
-	option = {
-		name = ascended_technologies.1.c
-		trigger = {
-			is_ai = no
-			has_valid_civic = civic_fanatic_purifiers
-		}
-		set_country_flag = ascended_empire
-		begin_event_chain = {
-			event_chain = "ascended_technologies_chain"
-			target = ROOT
-		}
-		hidden_effect = {
-			enable_doa_ascension_projects = yes
-		}
-	}
-	option = {
-		name = ascended_technologies.1.d
-		trigger = {
-			is_ai = no
-			has_valid_civic = civic_hive_devouring_swarm
-		}
-		set_country_flag = ascended_empire
-		begin_event_chain = {
-			event_chain = "ascended_technologies_chain"
-			target = ROOT
-		}
-		hidden_effect = {
-			enable_doa_ascension_projects = yes
-		}
-	}
-	option = {
-		name = ascended_technologies.1.e
-		trigger = {
-			is_ai = no
-			has_valid_civic = civic_machine_terminator
-		}
-		set_country_flag = ascended_empire
-		begin_event_chain = {
-			event_chain = "ascended_technologies_chain"
-			target = ROOT
-		}
-		hidden_effect = {
-			enable_doa_ascension_projects = yes
-		}
-	}
-	option = {
-		name = ascended_technologies.1.f
-		trigger = {
-			is_ai = no
-			has_ascension_perk = ap_become_the_crisis
-		}
-		set_country_flag = ascended_empire
-		begin_event_chain = {
-			event_chain = "ascended_technologies_chain"
-			target = ROOT
-		}
-		hidden_effect = {
-			enable_doa_ascension_projects = yes
-		}
-	}
-}
-
-# Ascended Technologies 4 (FE Buildings) Completed
-country_event = {
-	id = ascended_technologies.104
-	title = ascended_technologies.104.name
-	desc = ascended_technologies.104.desc
-	picture = GFX_evt_physics_research
-	show_sound = event_administrative_work
-	location = from
-	is_triggered_only = yes
-	immediate = {
-		set_country_flag = ascended_technologies_4_completed
-	}
-	option = {
-		name = ascended_technologies.104.a
-		add_research_option = tech_dm_production_core
-		add_tech_progress = {
-			tech = tech_dm_production_core
-			progress = 0.8
 		}
 	}
 }

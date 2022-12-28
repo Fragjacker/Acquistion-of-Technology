@@ -618,19 +618,17 @@ decision_stellarite_reactor_detonation = {
 		}
 	}
 	sound = event_red_alert
+	prerequisites = {
+		tech_dark_matter_power_core_se
+	}
 	owned_planets_only = yes
 	potential = {
 		exists = owner
 		owner = {
-			is_same_empire = root.owner
+			is_same_value = root.owner
 		}
-		from = {
-			has_technology = tech_bombardment_se
-		}
-		is_star = no
-		habitable_structure = no
-		NOR = {
-			is_planet_class = pc_acot_enigmopolis
+		NOT = {
+			has_planet_flag = acot_stellarite_discharge_authorized
 		}
 	}
 	allow = {
@@ -643,237 +641,12 @@ decision_stellarite_reactor_detonation = {
 	}
 	effect = {
 		custom_tooltip = decision_stellarite_reactor_detonation_effect
-		# determine quality tier, set variable
 		hidden_effect = {
-			######### STELLARITE NORMAL
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator
-						value = 1
-					}
-				}
-				solar_system = {
-					save_event_target_as = imminent_bombing
-					every_ship_in_system = {
-						limit = {
-							fleet = {
-								solar_system = {
-									is_same_value = event_target:imminent_bombing
-								}
-							}
-						}
-						reduce_hp = 10000
-					}
-				}
-			}
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator
-						value = 2
-					}
-				}
-				solar_system = {
-					save_event_target_as = imminent_bombing
-					every_ship_in_system = {
-						limit = {
-							fleet = {
-								solar_system = {
-									is_same_value = event_target:imminent_bombing
-								}
-							}
-						}
-						reduce_hp = 20000
-					}
-				}
-			}
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator
-						value >= 3
-					}
-				}
-				solar_system = {
-					save_event_target_as = imminent_bombing
-					every_ship_in_system = {
-						limit = {
-							fleet = {
-								solar_system = {
-									is_same_value = event_target:imminent_bombing
-								}
-							}
-						}
-						reduce_hp = 30000
-					}
-				}
-			}
-			######### STELLARITE UPGRADED
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator_ae
-						value = 1
-					}
-				}
-				solar_system = {
-					save_event_target_as = imminent_bombing
-					every_ship_in_system = {
-						limit = {
-							fleet = {
-								solar_system = {
-									is_same_value = event_target:imminent_bombing
-								}
-							}
-						}
-						reduce_hp = 20000
-					}
-				}
-			}
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator_ae
-						value = 2
-					}
-				}
-				solar_system = {
-					save_event_target_as = imminent_bombing
-					every_ship_in_system = {
-						limit = {
-							fleet = {
-								solar_system = {
-									is_same_value = event_target:imminent_bombing
-								}
-							}
-						}
-						reduce_hp = 40000
-					}
-				}
-			}
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator_ae
-						value >= 3
-					}
-				}
-				solar_system = {
-					save_event_target_as = imminent_bombing
-					every_ship_in_system = {
-						limit = {
-							fleet = {
-								solar_system = {
-									is_same_value = event_target:imminent_bombing
-								}
-							}
-						}
-						reduce_hp = 60000
-					}
-				}
-			}
-			######### STELLARITE LEVEL 3
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator_lvl3
-						value = 1
-					}
-				}
-				solar_system = {
-					save_event_target_as = imminent_bombing
-					every_ship_in_system = {
-						limit = {
-							fleet = {
-								solar_system = {
-									is_same_value = event_target:imminent_bombing
-								}
-							}
-						}
-						reduce_hp = 40000
-					}
-				}
-			}
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator_lvl3
-						value = 2
-					}
-				}
-				solar_system = {
-					save_event_target_as = imminent_bombing
-					every_ship_in_system = {
-						limit = {
-							fleet = {
-								solar_system = {
-									is_same_value = event_target:imminent_bombing
-								}
-							}
-						}
-						reduce_hp = 60000
-					}
-				}
-			}
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator_lvl3
-						value >= 3
-					}
-				}
-				solar_system = {
-					save_event_target_as = imminent_bombing
-					every_ship_in_system = {
-						limit = {
-							fleet = {
-								solar_system = {
-									is_same_value = event_target:imminent_bombing
-								}
-							}
-						}
-						reduce_hp = 90000
-					}
-				}
-			}
-			######### STELLARITE NEXUS
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_nexus
-						value >= 1
-					}
-				}
-				solar_system = {
-					save_event_target_as = imminent_bombing
-					every_ship_in_system = {
-						limit = {
-							fleet = {
-								solar_system = {
-									is_same_value = event_target:imminent_bombing
-								}
-							}
-						}
-						reduce_hp = 40000
-					}
-				}
-			}
-			every_owned_pop = {
-				kill_pop = yes
-			}
-			remove_all_buildings = yes
-			reroll_deposits = yes
-			destroy_colony = yes
-			reset_planet = yes
-			clear_planet_modifiers = yes
-			if = {
-				limit = {
-					habitable_planet = yes
-				}
-				change_pc = pc_shattered
+			planet_event = {
+				id = stellarite_events.15
 			}
 		}
+		# determine quality tier, set variable
 	}
 	ai_weight = {
 		weight = 0
@@ -883,7 +656,7 @@ decision_stellarite_reactor_detonation = {
 ################## PHANON VAULT SHADOW RAID LEGENDS ################
 decision_acot_infiltrate_phanon_grid = {
 	owned_planets_only = yes
-	sound = event_ground_battle
+	sound = event_sensor_ping
 	resources = {
 		category = decisions
 		cost = {
@@ -896,27 +669,22 @@ decision_acot_infiltrate_phanon_grid = {
 		NOR = {
 			has_modifier = acot_modifier_vault_delay
 			has_global_flag = aot_phanon_content_OFF
-		}
-		num_free_districts = {
-			type = district_acot_phanon_vault
-			value = 0
-		}
-		num_free_districts = {
-			type = district_acot_phanon_command
-			value = 0
-		}
-		num_free_districts = {
-			type = district_acot_phanon_data
-			value = 0
+			has_planet_flag = ongoing_vault_infiltration
 		}
 	}
 	potential = {
 		owner = {
 			is_ai = no
+			NOT = {
+				has_country_flag = acot_phanon_tech_stage_four_enabled
+			}
 		}
 		OR = {
 			is_planet_class = pc_acot_pmc_vault
 			is_same_value = event_target:acot_phanon_vault
+		}
+		NOT = {
+			has_planet_flag = acot_vault_floor_four_cleared
 		}
 		has_ground_combat = no
 	}
@@ -927,142 +695,58 @@ decision_acot_infiltrate_phanon_grid = {
 				modifier = acot_modifier_vault_delay
 				days = 180
 			}
-			random_list = {
-				50 = {
-					while = {
-						count = 60
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_soldier
-							species = event_target:phanon_operative_species
-						}
-					}
-					while = {
-						count = 30
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_elite
-							species = event_target:phanon_operative_species
-						}
-					}
-					while = {
-						count = 20
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_psi
-							species = event_target:phanon_operative_species
-						}
-					}
-					while = {
-						count = 1
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_commander
-							species = event_target:phanon_operative_species
-						}
-					}
-				}
-				50 = {
-					while = {
-						count = 60
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_droid
-							species = event_target:phanon_operative_species
-						}
-					}
-					while = {
-						count = 30
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_droid_commando
-							species = event_target:phanon_operative_species
-						}
-					}
-					while = {
-						count = 20
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_droid_shielder
-							species = event_target:phanon_operative_species
-						}
-					}
-					while = {
-						count = 1
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_droid_commander
-							species = event_target:phanon_operative_species
-						}
-					}
-				}
-			}
-			random_list = {
-				50 = {
-					while = {
-						count = 5
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_attack_dog
-							species = event_target:phanon_operative_species
-						}
-					}
-				}
-				50 = {
-				}
-			}
-			random_list = {
-				50 = {
-					while = {
-						count = 7
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_turret
-							species = event_target:phanon_operative_species
-						}
-					}
-				}
-				50 = {
-				}
-			}
-			random_list = {
-				50 = {
-					while = {
-						count = 5
-						create_army = {
-							owner = event_target:phanon_security
-							type = acot_phanon_defense_trap
-							species = event_target:phanon_operative_species
-						}
-					}
-				}
-				50 = {
-				}
-			}
-			# Spawn Protecc Drones
-			if = {
+			IF = {
 				limit = {
-					check_variable = {
-						which = number_of_vault_raids
-						value <= 3
+					owner = {
+						NOT = {
+							has_country_flag = acot_phanon_tech_stage_one_enabled
+						}
 					}
 				}
-				create_vault_defense_drones = yes
+				planet_event = {
+					id = acot_pmc.12
+				}
 			}
-			else_if = {
+			IF = {
 				limit = {
-					check_variable = {
-						which = number_of_vault_raids
-						value = 4
+					owner = {
+						has_country_flag = acot_phanon_tech_stage_one_enabled
+						NOT = {
+							has_country_flag = acot_phanon_tech_stage_two_enabled
+						}
 					}
 				}
-				create_army = {
-					owner = event_target:phanon_security
-					type = acot_phanon_defense_operative
-					species = event_target:phanon_operative_species
+				planet_event = {
+					id = acot_pmc.13
 				}
-				create_vault_defense_drones = yes
 			}
+			IF = {
+				limit = {
+					owner = {
+						has_country_flag = acot_phanon_tech_stage_two_enabled
+						NOT = {
+							has_country_flag = acot_phanon_tech_stage_three_enabled
+						}
+					}
+				}
+				planet_event = {
+					id = acot_pmc.14
+				}
+			}
+			IF = {
+				limit = {
+					owner = {
+						has_country_flag = acot_phanon_tech_stage_three_enabled
+						NOT = {
+							has_country_flag = acot_phanon_tech_stage_four_enabled
+						}
+					}
+				}
+				planet_event = {
+					id = acot_pmc.15
+				}
+			}
+			create_vault_defense_drones = yes
 		}
 	}
 	ai_weight = {
@@ -2139,11 +1823,11 @@ decision_acot_gigafortress_deploy = {
 						name = random
 						random_existing_design = acot_giga_fortress
 						graphical_culture = from.owner
-					}	
+					}
 					set_location = {
 						target = prev
 						distance = 30
-						angle = random 
+						angle = random
 					}
 				}
 			}
@@ -2170,31 +1854,26 @@ decision_acot_gigafortress_deploy = {
 
 decision_acot_gigafortress_land = {
 	sound = choose_ascension_perk_01
-
 	owned_planets_only = yes
-
 	resources = {
 		category = decisions
 		cost = {
 		}
 	}
-
 	prerequisites = {
 		tech_giga_fortress
 	}
-	
 	allow = {
 		custom_tooltip = {
 			text = acot_requires_emissary_orbit
 			any_fleet_in_orbit = {
-				is_ship_size = acot_giga_fortress	
+				is_ship_size = acot_giga_fortress
 				owner = {
 					is_same_value = from
 				}
 			}
 		}
 	}
-
 	potential = {
 		exists = owner
 		is_a_habitable_planet_megastructure = yes
@@ -2224,19 +1903,18 @@ decision_acot_gigafortress_land = {
 		}
 		solar_system = {
 			any_fleet_in_system = {
-				is_ship_size = acot_giga_fortress		
+				is_ship_size = acot_giga_fortress
 				owner = {
 					is_same_value = from
-				}	
+				}
 			}
 		}
 	}
-	
 	effect = {
 		hidden_effect = {
 			random_fleet_in_orbit = {
 				limit = {
-					is_ship_size = acot_giga_fortress	
+					is_ship_size = acot_giga_fortress
 				}
 				save_event_target_as = orbitting_giga
 				switch = {
@@ -2254,11 +1932,10 @@ decision_acot_gigafortress_land = {
 				}
 			}
 			event_target:orbitting_giga = {
-				delete_fleet = this					
+				delete_fleet = this
 			}
 		}
 	}
-	
 	ai_weight = {
 		weight = 0
 	}
