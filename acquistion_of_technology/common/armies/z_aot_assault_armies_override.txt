@@ -1,19 +1,22 @@
 # Omnimech
-fe_omnimech = {
-	damage = 2.5
-	health = 3.5
-	has_morale = no
-	morale_damage = 2
-	collateral_damage = 2.5
-	war_exhaustion = 1.5
-	time = 160
+acot_army_machine_special = {
+	use_armynames_from = machine_assault_2
+	damage = 3
+	health = 4.75
+	morale = 5
+	morale_damage = 1.25
+	collateral_damage = 1
+	war_exhaustion = 1
+	time = 145
 	has_species = yes
+	icon = GFX_army_type_machine_special
 	resources = {
 		category = armies
 		cost = {
 			minerals = 350
 			sr_dark_matter = 3.5
 			acot_sr_dark_energy = 3.5
+			unity = 3.5
 		}
 		upkeep = {
 			energy = 3.5
@@ -28,7 +31,6 @@ fe_omnimech = {
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
-	icon = GFX_army_type_machine_assault
 	potential = {
 		NOT = {
 			has_global_flag = acot_army_forbidden
@@ -44,28 +46,28 @@ fe_omnimech = {
 		has_authority = auth_machine_intelligence
 	}
 	prerequisites = {
-		"tech_omni_warmech"
+		"tech_acot_army_machine_special"
 	}
 }
 
 # Eradicator
-fe_godmech = {
-	damage = 33
-	health = 30
+acot_army_machine_hero = {
+	damage = 30
+	health = 47.5
 	has_morale = no
-	morale_damage = 3.5
-	collateral_damage = 7.5
-	war_exhaustion = 20
-	time = 1100
+	morale_damage = 1
+	collateral_damage = 1
+	war_exhaustion = 5
+	time = 1450
 	has_species = yes
-	icon = GFX_army_type_machine_assault
+	icon = GFX_army_type_hero
 	resources = {
 		category = armies
 		produces = {
 			engineering_research = 100
 		}
 		cost = {
-			unity = 32500
+			influence = 500
 		}
 	}
 	allow = {
@@ -74,6 +76,13 @@ fe_godmech = {
 			has_building = building_ae_machine_dome
 			has_building = building_stellarite_machine_dome
 			has_building = building_phanon_machine_dome
+		}
+		owner = {
+			NOT = {
+				any_owned_army = {
+					army_type = acot_army_machine_hero
+				}
+			}
 		}
 	}
 	potential = {
@@ -94,7 +103,7 @@ fe_godmech = {
 		}
 	}
 	prerequisites = {
-		"tech_godmech"
+		"tech_acot_army_machine_hero"
 	}
 	on_queued = {
 		owner = {
@@ -114,25 +123,24 @@ fe_godmech = {
 	}
 }
 
-############### HIVE
 # Hive-Mind Masterminds
-fe_mastermind = {
-	damage = 4
-	morale_damage = 3
-	collateral_damage = 4.5
-	war_exhaustion = 0.2
-	health = 1.75
-	has_morale = no
-	time = 85
-	icon = GFX_army_type_xenomorph
-	has_species = no
+acot_army_hive_control = {
+	damage = 2.75
+	health = 4.25
+	morale = 8
+	morale_damage = 4.5
+	collateral_damage = 1.25
+	war_exhaustion = 1.5
+	time = 90
+	has_species = yes
+	icon = GFX_acot_type_hive_controller
 	resources = {
 		category = armies
 		cost = {
-			minerals = 250
-			sr_dark_matter = 2.5
-			acot_sr_dark_energy = 2.5
-			unity = 500
+			minerals = 200
+			sr_dark_matter = 2
+			acot_sr_dark_energy = 2
+			unity = 20
 		}
 	}
 	allow = {
@@ -144,47 +152,55 @@ fe_mastermind = {
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
+	potential_country = {
+		is_hive_empire = yes
+	}
 	potential = {
 		NOT = {
 			has_global_flag = acot_army_forbidden
 		}
-		owner = {
-			NOT = {
-				has_authority = auth_machine_intelligence
-			}
+		from = {
+			has_trait = trait_hive_mind
 		}
 	}
 	prerequisites = {
-		"tech_controller"
+		"tech_acot_army_hive_control"
 	}
 }
 
-# FE Hive Mind Terror From Beyond
-fe_terror_beyond = {
-	damage = 33
-	health = 33
-	morale_damage = 3.5
-	collateral_damage = 10
-	has_morale = no
-	war_exhaustion = 18
-	time = 850
-	icon = GFX_army_type_machine_assault
+# FE Hive Mind Terror From Beyond - ALWAYS ONLY ONE POSSIBLE
+acot_army_hive_hero = {
+	damage = 27.5
+	health = 42.5
+	morale = 40
+	morale_damage = 4.5
+	collateral_damage = 2
+	war_exhaustion = 6
+	time = 900
+	icon = GFX_army_type_hero
 	resources = {
 		category = armies
 		produces = {
-			food = 200
+			minerals = 200
 			energy = 200
 		}
 		cost = {
-			unity = 25000
+			influence = 250
 		}
 	}
 	allow = {
 		OR = {
 			has_building = building_fe_hive_evochamber
 			has_building = building_ae_hive_evochamber
-			has_building = building_stellarite_hive_evochamber
 			has_building = building_phanon_hive_evochamber
+			has_building = building_stellarite_hive_evochamber
+		}
+		owner = {
+			NOT = {
+				any_owned_army = {
+					army_type = acot_army_hive_hero
+				}
+			}
 		}
 	}
 	potential = {
@@ -214,7 +230,7 @@ fe_terror_beyond = {
 		}
 	}
 	prerequisites = {
-		"tech_terror_beyond"
+		"tech_acot_army_hive_hero"
 	}
 	on_queued = {
 		owner = {
@@ -234,72 +250,24 @@ fe_terror_beyond = {
 	}
 }
 
-############### SYNTH
-# Synthetic Omnic Armies
-fe_synthsoldier = {
-	damage = 3.25
-	health = 4.5
-	has_morale = no
-	morale_damage = 2.5
-	collateral_damage = 1.25
-	war_exhaustion = 2.5
-	time = 220
-	icon = GFX_army_type_machine_assault
-	has_species = yes
-	resources = {
-		category = armies
-		cost = {
-			minerals = 500
-			sr_dark_matter = 50
-			acot_sr_dark_energy = 50
-			unity = 5000
-		}
-	}
-	prerequisites = {
-		"tech_synthtrooper"
-	}
-	potential = {
-		NOT = {
-			has_global_flag = acot_army_forbidden
-		}
-		from = {
-			has_trait = "trait_mechanical"
-		}
-		owner = {
-			NOT = {
-				has_authority = auth_machine_intelligence
-			}
-		}
-	}
-	allow = {
-		OR = {
-			has_building = building_fe_synt_center
-			has_building = building_ae_synt_center
-			has_building = building_stellarite_synt_center
-			has_building = building_phanon_synt_center
-			has_district = district_acot_enigmapolis_fortress
-		}
-	}
-}
-
 # Synthetic Super Commando
-fe_synthcommando_army = {
+acot_army_synth_hero = {
 	damage = 35
-	health = 35
-	has_morale = no
-	morale_damage = 2.5
-	collateral_damage = 1.5
-	war_exhaustion = 15
-	time = 1000
-	icon = GFX_army_type_machine_assault
+	health = 40
+	morale = 12
+	morale_damage = 0.5
+	collateral_damage = 1
+	war_exhaustion = 4.5
+	time = 1600
+	icon = GFX_army_type_hero
 	has_species = yes
 	resources = {
 		category = armies
 		cost = {
-			unity = 50000
+			influence = 500
 		}
 		produces = {
-			unity = 100
+			influence = 1
 			engineering_research = 100
 		}
 	}
@@ -323,7 +291,7 @@ fe_synthcommando_army = {
 		}
 	}
 	prerequisites = {
-		"tech_omnisynth"
+		"tech_acot_army_synth_hero"
 	}
 	on_queued = {
 		owner = {
@@ -349,88 +317,42 @@ fe_synthcommando_army = {
 			has_building = building_phanon_synt_center
 			has_district = district_acot_enigmapolis_fortress
 		}
-	}
-}
-
-############### PSI
-# Dark Disciples
-fe_disciple_army = {
-	damage = 3
-	morale_damage = 3.5
-	health = 3.25
-	morale = 6
-	collateral_damage = 0.5
-	war_exhaustion = 2.5
-	time = 260
-	icon = GFX_army_type_psionic
-	resources = {
-		category = armies
-		cost = {
-			minerals = 500
-			sr_dark_matter = 50
-			acot_sr_dark_energy = 50
-			unity = 5000
-		}
-	}
-	prerequisites = {
-		"tech_dark_templar"
-	}
-	potential = {
-		NOT = {
-			has_global_flag = acot_army_forbidden
-		}
-		from = {
-			OR = {
-				NOT = {
-					host_has_dlc = "Utopia"
-				}
-				has_trait = trait_psionic
-			}
-			NOR = {
-				has_trait = "trait_mechanical"
-				has_trait = "trait_machine_unit"
-				is_sapient = no
-			}
-		}
 		owner = {
 			NOT = {
-				has_authority = auth_machine_intelligence
+				any_owned_army = {
+					army_type = acot_army_synth_hero
+				}
 			}
-		}
-	}
-	allow = {
-		OR = {
-			has_building = building_fe_psi_altar
-			has_building = building_ae_psi_altar
-			has_building = building_stellarite_psi_altar
-			has_building = building_phanon_psi_altar
-			has_district = district_acot_enigmapolis_fortress
 		}
 	}
 }
 
 # Choosen Psion
-fe_hero_psion = {
+acot_army_psi_hero = {
+	use_armynames_from = psionic_army
 	damage = 40
-	morale_damage = 5
-	health = 30
-	has_morale = no
-	collateral_damage = 0.5
-	war_exhaustion = 15
-	time = 1000
-	icon = GFX_army_type_psionic
+	morale_damage = 2.5
+	health = 37.5
+	morale = 19
+	collateral_damage = 0.2
+	war_exhaustion = 9
+	time = 1200
+	icon = GFX_army_type_hero
 	resources = {
 		category = armies
 		cost = {
-			unity = 50000
+			influence = 500
 		}
 		produces = {
-			unity = 100
+			influence = 1
 			society_research = 100
 		}
 	}
 	prerequisites = {
-		"tech_dark_psion"
+		"tech_acot_army_psi_hero"
+	}
+	potential_country = {
+		is_regular_empire = yes
 	}
 	potential = {
 		NOT = {
@@ -446,11 +368,6 @@ fe_hero_psion = {
 			NOR = {
 				has_trait = "trait_machine_unit"
 				is_sapient = no
-			}
-		}
-		owner = {
-			NOT = {
-				has_authority = auth_machine_intelligence
 			}
 		}
 		owner = {
@@ -483,86 +400,44 @@ fe_hero_psion = {
 			has_building = building_phanon_psi_altar
 			has_district = district_acot_enigmapolis_fortress
 		}
-	}
-}
-
-############### GENE
-# Supra Gene Warrior Armies
-fe_gene_warrior = {
-	damage = 4
-	health = 3.5
-	morale = 30
-	morale_damage = 2.5
-	collateral_damage = 1.5
-	war_exhaustion = 2.5
-	time = 260
-	icon = GFX_army_type_gene_warrior
-	resources = {
-		category = armies
-		cost = {
-			minerals = 500
-			sr_dark_matter = 50
-			acot_sr_dark_energy = 50
-			unity = 5000
-		}
-	}
-	prerequisites = {
-		"tech_elite_genetrooper"
-	}
-	potential = {
-		NOT = {
-			has_global_flag = acot_army_forbidden
-		}
-		from = {
-			NOR = {
-				has_trait = "trait_mechanical"
-				has_trait = "trait_machine_unit"
-				is_sapient = no
-			}
-		}
 		owner = {
 			NOT = {
-				has_authority = auth_machine_intelligence
+				any_owned_army = {
+					army_type = acot_army_psi_hero
+				}
 			}
 		}
 	}
-	allow = {
-		OR = {
-			has_building = building_fe_clone_vats
-			has_building = building_ae_clone_vats
-			has_building = building_stellarite_clone_vats
-			has_building = building_phanon_clone_vats
-			has_building = building_fe_hive_evochamber
-			has_building = building_ae_hive_evochamber
-			has_building = building_stellarite_hive_evochamber
-			has_building = building_phanon_hive_evochamber
-			has_district = district_acot_enigmapolis_fortress
-		}
+	ai_weight = {
+		base = 1000
 	}
 }
 
 # DOOM GUY
-fe_doomguy = {
-	damage = 30
-	health = 40
-	has_morale = no
-	morale_damage = 2.5
-	collateral_damage = 3
-	war_exhaustion = 15
-	time = 1000
-	icon = GFX_army_type_gene_warrior
+acot_army_gene_hero = {
+	damage = 40
+	health = 45
+	morale = 10.5
+	morale_damage = 1
+	collateral_damage = 0.75
+	war_exhaustion = 6
+	time = 1500
+	icon = GFX_army_type_hero
 	resources = {
 		category = armies
 		cost = {
-			unity = 50000
+			influence = 500
 		}
 		produces = {
-			unity = 100
+			influence = 1
 			physics_research = 100
 		}
 	}
 	prerequisites = {
-		"tech_doom_hero"
+		"tech_acot_army_gene_hero"
+	}
+	potential_country = {
+		is_regular_empire = yes
 	}
 	potential = {
 		NOT = {
@@ -573,11 +448,6 @@ fe_doomguy = {
 				has_trait = "trait_mechanical"
 				has_trait = "trait_machine_unit"
 				is_sapient = no
-			}
-		}
-		owner = {
-			NOT = {
-				has_authority = auth_machine_intelligence
 			}
 		}
 		owner = {
@@ -613,6 +483,16 @@ fe_doomguy = {
 			has_building = building_phanon_hive_evochamber
 			has_district = district_acot_enigmapolis_fortress
 		}
+		owner = {
+			NOT = {
+				any_owned_army = {
+					army_type = acot_army_gene_hero
+				}
+			}
+		}
+	}
+	ai_weight = {
+		base = 1000
 	}
 }
 

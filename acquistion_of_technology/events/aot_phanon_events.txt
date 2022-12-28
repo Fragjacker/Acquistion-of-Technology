@@ -15,7 +15,7 @@ country_event = {
 			has_country_flag = finished_phanon_dimensional_mirror_chain
 			has_event_chain = phanon_dimensional_mirror_chain
 			has_country_flag = attacked_phanon_property
-			has_technology = tech_dark_matter_power_core_pe
+			has_technology = tech_dark_matter_power_core_re
 		}
 	}
 	mean_time_to_happen = {
@@ -294,7 +294,7 @@ country_event = {
 					name = "V-N1C3V"
 					class = pc_acot_pmc_vault
 					orbit_distance = 25
-					size = 3
+					size = 10
 					orbit_angle = 20
 					init_effect = {
 						save_global_event_target_as = aot_bootleg_phanon_vault
@@ -304,6 +304,11 @@ country_event = {
 							surveyed = yes
 							surveyor = ROOT
 						}
+						add_district = district_acot_phanon_command
+						add_district = district_acot_phanon_command
+						add_district = district_acot_phanon_command
+						add_district = district_acot_phanon_data
+						add_district = district_acot_phanon_vault
 						add_building = building_phanon_tower
 						add_building = building_phanon_lab
 						add_building = building_phanon_vault
@@ -315,6 +320,38 @@ country_event = {
 							count = 5
 							create_pop = {
 								species = event_target:phanon_species
+							}
+						}
+						while = {
+							count = 30
+							create_army = {
+								owner = event_target:phanon_base_country
+								species = event_target:phanon_species
+								type = "acot_phanon_defense_soldier"
+							}
+						}
+						while = {
+							count = 5
+							create_army = {
+								owner = event_target:phanon_base_country
+								species = event_target:phanon_species
+								type = "acot_phanon_defense_elite"
+							}
+						}
+						while = {
+							count = 1
+							create_army = {
+								owner = event_target:phanon_base_country
+								species = event_target:phanon_species
+								type = "acot_phanon_defense_commander"
+							}
+						}
+						while = {
+							count = 10
+							create_army = {
+								owner = event_target:phanon_base_country
+								species = event_target:phanon_species
+								type = "acot_phanon_defense_droid_shielder"
 							}
 						}
 						create_fleet = {

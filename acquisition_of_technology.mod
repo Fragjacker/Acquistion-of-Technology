@@ -1,13 +1,17 @@
-dependencies={
-	"Ancient Cache of Technologies"
-}
-path="D:/godly_000/Documents/Paradox Interactive/Stellaris/mod/acquisition_of_technology"
-name="~Acquisition of Technology"
-picture="thumbnail.png"
-remote_file_id="2178603631"
+version="4.0.1"
 tags={
 	"Technologies"
 	"Gameplay"
 	"Overhaul"
 }
-supported_version="3.2.*"
+dependencies={
+	"Ancient Cache of Technologies"
+	"!!!Universal Resource Patch [2.4+]"
+	"UI Overhaul Dynamic"
+	"! The Merger of Rules 3.6"
+}
+name="~Acquisition of Technology"
+picture="thumbnail.png"
+supported_version="3.6.*"
+path="C:/Users/godly/OneDrive/Documents/Paradox Interactive/Stellaris/mod/Acquisition_of_Technology"
+remote_file_id="2178603631"

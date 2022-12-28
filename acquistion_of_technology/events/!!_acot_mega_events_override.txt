@@ -1,5 +1,4 @@
 namespace = acot_mega
-
 country_event = {
 	id = acot_mega.1
 	title = "acot_mega.1.name"
@@ -7,13 +6,12 @@ country_event = {
 	picture = GFX_acot_precursor_station
 	show_sound = event_citadel_ready
 	location = FROMFROM
-
 	is_triggered_only = yes
-
 	trigger = {
-		FROM = { is_megastructure_type = acot_precursor_citadel_base }
+		FROM = {
+			is_megastructure_type = acot_precursor_citadel_base
+		}
 	}
-
 	immediate = {
 		FROM = {
 			remove_megastructure = this
@@ -23,8 +21,9 @@ country_event = {
 				limit = {
 					any_ship_in_system = {
 						is_ship_class = shipclass_starbase
-						NOT = {
+						NOR = {
 							is_ship_size = precursor_colossus
+							is_ship_size = juggernaut
 						}
 					}
 				}
@@ -32,9 +31,12 @@ country_event = {
 					limit = {
 						any_owned_ship = {
 							is_ship_class = shipclass_starbase
-							NOR = {
-								is_ship_size = precursor_colossus
-								is_ship_size = juggernaut
+							OR = {
+								is_ship_size = starbase_outpost
+								is_ship_size = starbase_starport
+								is_ship_size = starbase_starhold
+								is_ship_size = starbase_starfortress
+								is_ship_size = starbase_citadel
 							}
 						}
 					}
@@ -44,13 +46,11 @@ country_event = {
 			create_starbase = {
 				size = "acot_precusor_starbase"
 				owner = root
-		
-				effect = {	
+				effect = {
 				}
-			}				
+			}
 		}
 	}
-
 	option = {
 		name = "acot_mega.1.a"
 	}
@@ -63,13 +63,12 @@ country_event = {
 	picture = GFX_acot_precursor_sigma_station
 	show_sound = event_citadel_ready
 	location = FROMFROM
-
 	is_triggered_only = yes
-
 	trigger = {
-		FROM = { is_megastructure_type = acot_precursor_sigma_citadel_base }
+		FROM = {
+			is_megastructure_type = acot_precursor_sigma_citadel_base
+		}
 	}
-
 	immediate = {
 		FROM = {
 			remove_megastructure = this
@@ -106,11 +105,10 @@ country_event = {
 				create_starbase = {
 					size = "acot_precusor_sigma_starbase"
 					owner = root
-			
-					effect = {	
+					effect = {
 					}
 				}
-			}	
+			}
 			if = {
 				limit = {
 					any_ship_in_system = {
@@ -128,11 +126,10 @@ country_event = {
 				create_starbase = {
 					size = "acot_precusor_sigma_starfortress"
 					owner = root
-			
-					effect = {	
+					effect = {
 					}
 				}
-			}	
+			}
 			if = {
 				limit = {
 					any_ship_in_system = {
@@ -145,9 +142,9 @@ country_event = {
 				random_fleet_in_system = {
 					limit = {
 						any_owned_ship = {
-								OR = {
+							OR = {
 								is_ship_size = acot_precusor_starcitadel
-								is_ship_size = 	acot_precusor_phanon_starcitadel
+								is_ship_size = acot_precusor_phanon_starcitadel
 							}
 						}
 					}
@@ -156,14 +153,12 @@ country_event = {
 				create_starbase = {
 					size = "acot_precusor_sigma_starcitadel"
 					owner = root
-			
-					effect = {	
+					effect = {
 					}
 				}
-			}				
+			}
 		}
 	}
-
 	option = {
 		name = "acot_mega.3.a"
 	}

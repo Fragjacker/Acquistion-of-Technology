@@ -1,0 +1,1101 @@
+namespace = acot_pmc
+# On Taking the Vault
+country_event = {
+	id = acot_pmc.11
+	title = "acot_pmc.11.title"
+	desc = {
+		trigger = {
+			NOT = {
+				has_country_flag = acot_first_time_vault_capture
+			}
+		}
+		text = "acot_pmc.11.desc.a"
+	}
+	desc = {
+		trigger = {
+			has_country_flag = acot_first_time_vault_capture
+		}
+		text = "acot_pmc.11.desc.b"
+	}
+	show_sound = event_mystery
+	picture = GFX_evt_star_chart
+	is_triggered_only = yes
+	trigger = {
+		fromfrom = {
+			is_planet_class = pc_acot_pmc_vault
+		}
+	}
+	immediate = {
+		FROMFROM = {
+			every_owned_pop = {
+				limit = {
+					species = {
+						is_same_value = event_target:phanon_species
+					}
+				}
+				kill_pop = yes
+			}
+			set_owner = root
+			set_controller = root
+			while = {
+				count = 5
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_planet_flag = acot_vault_overtaken
+					}
+				}
+				set_planet_flag = acot_vault_overtaken
+				set_planet_size = 10
+			}
+		}
+	}
+	option = {
+		name = acot_pmc.11.a
+		trigger = {
+			NOT = {
+				has_country_flag = acot_first_time_vault_capture
+			}
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_technology = tech_precursor_phanon_design_pe_1
+				}
+			}
+			add_research_option = tech_precursor_phanon_design_pe_1
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_technology = tech_precursor_phanon_design_pe_2
+				}
+			}
+			add_research_option = tech_precursor_phanon_design_pe_2
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_technology = tech_precursor_phanon_design_pe_3
+				}
+			}
+			add_research_option = tech_precursor_phanon_design_pe_3
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_country_flag = acot_first_time_vault_capture
+				}
+			}
+			set_country_flag = acot_first_time_vault_capture
+		}
+	}
+	option = {
+		name = acot_pmc.11.b
+		trigger = {
+			has_country_flag = acot_first_time_vault_capture
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_technology = tech_precursor_phanon_design_pe_1
+				}
+			}
+			add_research_option = tech_precursor_phanon_design_pe_1
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_technology = tech_precursor_phanon_design_pe_2
+				}
+			}
+			add_research_option = tech_precursor_phanon_design_pe_2
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_technology = tech_precursor_phanon_design_pe_3
+				}
+			}
+			add_research_option = tech_precursor_phanon_design_pe_3
+		}
+	}
+}
+
+# Vault Invasion Commencing - Phase One
+planet_event = {
+	id = acot_pmc.12
+	title = "acot_pmc.12.title"
+	desc = "acot_pmc.12.desc"
+	show_sound = event_mystery
+	picture = GFX_evt_sentry_guns
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		name = acot_pmc.12.a
+		custom_tooltip = acot_pmc.12.a.tooltip
+		hidden_effect = {
+			add_modifier = {
+				modifier = acot_vault_good_cover_buff_25
+				days = 60
+			}
+			while = {
+				count = 80
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_soldier
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 20
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_elite
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 1
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_pmc.12.b
+		custom_tooltip = acot_pmc.12.b.tooltip
+		hidden_effect = {
+			event_target:phanon_security = {
+				add_modifier = {
+					modifier = acot_vault_exposed_debuff_25
+					days = 180
+				}
+			}
+			while = {
+				count = 80
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_soldier
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 20
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_elite
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 1
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 5
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_turret
+					species = event_target:phanon_operative_species
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_pmc.12.c
+		custom_tooltip = acot_pmc.12.c.tooltip
+		hidden_effect = {
+			add_modifier = {
+				modifier = acot_vault_psi_gas_debuff
+				days = 180
+			}
+			event_target:phanon_security = {
+				add_modifier = {
+					modifier = acot_vault_psi_gas_debuff
+					days = 180
+				}
+			}
+			while = {
+				count = 80
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_soldier
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 20
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_elite
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 1
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_pmc.12.d
+		hidden_effect = {
+			remove_modifier = acot_modifier_vault_delay
+		}
+	}
+}
+
+country_event = {
+	id = acot_pmc.1200
+	title = "acot_pmc.1200.title"
+	desc = {
+		text = acot_pmc.1200.desc.a
+	}
+	show_sound = event_ground_battle
+	picture = GFX_evt_sentry_guns
+	is_triggered_only = yes
+	trigger = {
+		is_playable_country = yes
+		fromfrom = {
+			is_planet_class = pc_acot_pmc_vault
+			has_planet_flag = ongoing_vault_infiltration
+		}
+		NOT = {
+			has_country_flag = acot_phanon_tech_stage_one_enabled
+		}
+	}
+	immediate = {
+		FROMFROM = {
+			remove_planet_flag = ongoing_vault_infiltration
+			add_planet_devastation = -100
+			add_modifier = {
+				modifier = acot_modifier_vault_delay
+				days = 360
+			}
+			IF = {
+				limit = {
+					has_modifier = acot_vault_good_cover_buff_25
+				}
+				remove_modifier = acot_vault_good_cover_buff_25
+			}
+			IF = {
+				limit = {
+					has_modifier = acot_vault_psi_gas_debuff
+				}
+				remove_modifier = acot_vault_psi_gas_debuff
+			}
+		}
+		event_target:phanon_security = {
+			IF = {
+				limit = {
+					has_modifier = acot_vault_exposed_debuff_25
+				}
+				remove_modifier = acot_vault_exposed_debuff_25
+			}
+			IF = {
+				limit = {
+					has_modifier = acot_vault_psi_gas_debuff
+				}
+				remove_modifier = acot_vault_psi_gas_debuff
+			}
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_country_flag = acot_phanon_tech_enabled
+				}
+			}
+			set_country_flag = acot_phanon_tech_enabled
+		}
+	}
+	option = {
+		name = acot_pmc.1200.a
+		FROMFROM = {
+			set_planet_size = 15
+			set_planet_flag = acot_vault_floor_one_cleared
+		}
+		phanon_type_a_tech_gift = yes
+		set_country_flag = acot_phanon_tech_stage_one_enabled
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = acot_phanon_event_chain
+				counter = phanon_vault_stage
+				amount = 1
+			}
+		}
+	}
+}
+
+# Vault Invasion Commencing - Phase Two
+planet_event = {
+	id = acot_pmc.13
+	title = "acot_pmc.13.title"
+	desc = "acot_pmc.13.desc"
+	show_sound = event_mystery
+	picture = GFX_evt_sentry_guns
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		name = acot_pmc.13.a
+		custom_tooltip = acot_pmc.13.a.tooltip
+		hidden_effect = {
+			while = {
+				count = 60
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 20
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_shielder
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 10
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commando
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 1
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+			#### AUTOMATED DEFENSES
+			while = {
+				count = 10
+				create_army = {
+					owner = root
+					type = acot_phanon_defense_turret
+					species = owner_main_species
+				}
+			}
+			while = {
+				count = 5
+				create_army = {
+					owner = root
+					type = acot_phanon_defense_trap
+					species = owner_main_species
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_pmc.13.b
+		custom_tooltip = acot_pmc.13.b.tooltip
+		hidden_effect = {
+			while = {
+				count = 60
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 20
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_shielder
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 10
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commando
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 1
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+			#### AUTOMATED DEFENSES
+			while = {
+				count = 10
+				create_army = {
+					owner = root
+					type = acot_phanon_defense_turret
+					species = owner_main_species
+				}
+			}
+			while = {
+				count = 5
+				create_army = {
+					owner = root
+					type = acot_phanon_defense_trap
+					species = owner_main_species
+				}
+			}
+			#### XENOMORPH ARMY
+			while = {
+				count = 80
+				create_army = {
+					owner = root
+					type = acot_phanon_defense_xenomorph
+					species = owner_main_species
+				}
+			}
+			owner = {
+				country_event = {
+					id = acot_pmc.1301
+					days = 360
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_pmc.13.c
+		hidden_effect = {
+			while = {
+				count = 80
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 30
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_shielder
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 10
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commando
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 1
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_pmc.13.d
+		hidden_effect = {
+			remove_modifier = acot_modifier_vault_delay
+		}
+	}
+}
+
+# Vault Invasion Victory - Phase Two
+country_event = {
+	id = acot_pmc.1300
+	title = "acot_pmc.1300.title"
+	desc = {
+		text = acot_pmc.1300.desc.a
+	}
+	show_sound = event_ground_battle
+	picture = GFX_evt_sentry_guns
+
+	is_triggered_only = yes
+
+	trigger = {	
+		is_playable_country = yes
+		fromfrom = {
+			is_planet_class = pc_acot_pmc_vault
+			has_planet_flag = ongoing_vault_infiltration
+		}
+		NOT = {
+			has_country_flag = acot_phanon_tech_stage_two_enabled
+		}
+	}
+
+	immediate = {
+		FROMFROM = {
+			remove_planet_flag = ongoing_vault_infiltration
+			set_planet_flag = acot_vault_floor_two_cleared
+			add_planet_devastation = -100
+			add_modifier = {
+				modifier = acot_modifier_vault_delay
+				days = 360
+			}
+		}
+		IF = {
+			limit = {
+				NOT = { has_country_flag = acot_phanon_tech_enabled }
+			}
+			set_country_flag = acot_phanon_tech_enabled
+		}	
+	}
+	
+	option = {
+		name = acot_pmc.1300.a
+		FROMFROM = {
+			set_planet_size = 20
+		}
+		set_country_flag = acot_phanon_tech_stage_two_enabled
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = acot_phanon_event_chain
+				counter = phanon_vault_stage
+				amount = 1
+			}
+		}
+	}
+}
+
+# Vault Invasion Commencing - Phase Three
+planet_event = {
+	id = acot_pmc.14
+	title = "acot_pmc.14.title"
+	desc = "acot_pmc.14.desc"
+	show_sound = event_mystery
+	picture = GFX_evt_sentry_guns
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		name = acot_pmc.14.a
+		custom_tooltip = acot_pmc.14.a.tooltip
+		hidden_effect = {
+			while = {
+				count = 80
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_soldier
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 40
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_elite
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 20
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_psi
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 3
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+			set_planet_flag = vault_mech_backup_possible
+			owner = {
+				country_event = {
+					id = acot_pmc.1401
+					days = 180
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_pmc.14.b
+		custom_tooltip = acot_pmc.14.b.tooltip
+		hidden_effect = {
+			while = {
+				count = 80
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 40
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_shielder
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 40
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commando
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 3
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+			set_planet_flag = vault_bio_backup_possible
+			owner = {
+				country_event = {
+					id = acot_pmc.1401
+					days = 180
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_pmc.14.c
+		custom_tooltip = acot_pmc.14.c.tooltip
+		hidden_effect = {
+			event_target:phanon_security = {
+				add_modifier = {
+					modifier = acot_vault_exposed_debuff_50
+					days = 180
+				}
+			}
+			while = {
+				count = 80
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_soldier
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 40
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_elite
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 20
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_psi
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 3
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+			### DROID ONE
+			while = {
+				count = 80
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 40
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_shielder
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 40
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commando
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 3
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+		}
+	}
+	option = {
+		name = acot_pmc.14.d
+		hidden_effect = {
+			remove_modifier = acot_modifier_vault_delay
+		}
+	}
+}
+
+# Vault Invasion Victory - Phase Three
+country_event = {
+	id = acot_pmc.1400
+	title = "acot_pmc.1400.title"
+	desc = {
+		text = acot_pmc.1400.desc.a
+	}
+	show_sound = event_ground_battle
+	picture = GFX_evt_sentry_guns
+	is_triggered_only = yes
+	trigger = {
+		is_playable_country = yes
+		fromfrom = {
+			is_planet_class = pc_acot_pmc_vault
+			has_planet_flag = ongoing_vault_infiltration
+		}
+		NOT = {
+			has_country_flag = acot_phanon_tech_stage_three_enabled
+		}
+	}
+	immediate = {
+		event_target:phanon_security = {
+			IF = {
+				limit = {
+					has_modifier = acot_vault_exposed_debuff_50
+				}
+				remove_modifier = acot_vault_exposed_debuff_50
+			}
+		}
+		FROMFROM = {
+			remove_planet_flag = ongoing_vault_infiltration
+			set_planet_flag = acot_vault_floor_three_cleared
+			add_planet_devastation = -100
+			add_modifier = {
+				modifier = acot_modifier_vault_delay
+				days = 360
+			}
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_country_flag = acot_phanon_tech_enabled
+				}
+			}
+			set_country_flag = acot_phanon_tech_enabled
+		}
+	}
+	option = {
+		name = acot_pmc.1400.a
+		FROMFROM = {
+			set_planet_size = 25
+		}
+		phanon_species_traits_tech_gift_card = yes
+		set_country_flag = acot_phanon_tech_stage_three_enabled
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = acot_phanon_event_chain
+				counter = phanon_vault_stage
+				amount = 1
+			}
+		}
+	}
+}
+
+# Vault Invasion Commencing - Phase Four
+planet_event = {
+	id = acot_pmc.15
+	title = "acot_pmc.15.title"
+	desc = "acot_pmc.15.desc"
+	show_sound = event_mystery
+	picture = GFX_evt_sentry_guns
+
+	is_triggered_only = yes
+
+	trigger = {	
+	}
+
+	immediate = {
+	}
+	
+	option = {
+		name = acot_pmc.15.a
+		custom_tooltip = acot_pmc.15.a.tooltip
+		hidden_effect = {
+			while = {
+				count = 100
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_soldier
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 60
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_elite
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 20
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_psi
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 5
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+			### DROID ONE
+			while = {
+				count = 100
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 50
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_shielder
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 50
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commando
+					species = event_target:phanon_operative_species
+				}
+			}
+			while = {
+				count = 5
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_droid_commander
+					species = event_target:phanon_operative_species
+				}
+			}
+			### AUTOMATED DEFENSES
+			while = {
+				count = 20
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_turret
+					species = event_target:phanon_operative_species
+				}
+			}
+			### OPERATIVE
+			while = {
+				count = 1
+				create_army = {
+					owner = event_target:phanon_security
+					type = acot_phanon_defense_operative
+					species = event_target:phanon_operative_species
+				}
+			}
+			### POSSIBLE REINFORCEMENT
+			IF = {
+				limit = {
+					has_planet_flag = vault_bio_backup_possible
+				}
+				random_list = {
+					50 = {
+						while = {
+							count = 80
+							create_army = {
+								owner = event_target:phanon_security
+								type = acot_phanon_defense_soldier
+								species = event_target:phanon_operative_species
+							}
+						}
+						while = {
+							count = 40
+							create_army = {
+								owner = event_target:phanon_security
+								type = acot_phanon_defense_elite
+								species = event_target:phanon_operative_species
+							}
+						}
+						while = {
+							count = 20
+							create_army = {
+								owner = event_target:phanon_security
+								type = acot_phanon_defense_psi
+								species = event_target:phanon_operative_species
+							}
+						}
+						while = {
+							count = 3
+							create_army = {
+								owner = event_target:phanon_security
+								type = acot_phanon_defense_commander
+								species = event_target:phanon_operative_species
+							}
+						}
+						remove_planet_flag = vault_bio_backup_possible	
+					}
+					50 = {
+						
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_planet_flag = vault_mech_backup_possible
+				}
+				random_list = {
+					50 = {
+						while = {
+							count = 80
+							create_army = {
+								owner = event_target:phanon_security
+								type = acot_phanon_defense_droid
+								species = event_target:phanon_operative_species
+							}
+						}
+						while = {
+							count = 40
+							create_army = {
+								owner = event_target:phanon_security
+								type = acot_phanon_defense_droid_shielder
+								species = event_target:phanon_operative_species
+							}
+						}
+						while = {
+							count = 40
+							create_army = {
+								owner = event_target:phanon_security
+								type = acot_phanon_defense_droid_commando
+								species = event_target:phanon_operative_species
+							}
+						}
+						while = {
+							count = 3
+							create_army = {
+								owner = event_target:phanon_security
+								type = acot_phanon_defense_droid_commander
+								species = event_target:phanon_operative_species
+							}
+						}
+						remove_planet_flag = vault_mech_backup_possible
+					}
+					50 = {
+						
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = acot_pmc.15.d
+		hidden_effect = {
+			remove_modifier = acot_modifier_vault_delay
+		}
+	}
+}
+
+# Vault Invasion Victory - Phase Four
+country_event = {
+	id = acot_pmc.1500
+	title = "acot_pmc.1500.title"
+	desc = {
+		text = acot_pmc.1500.desc.a
+	}
+	show_sound = event_ground_battle
+	picture = GFX_evt_sentry_guns
+	is_triggered_only = yes
+	trigger = {
+		is_playable_country = yes
+		fromfrom = {
+			is_planet_class = pc_acot_pmc_vault
+			has_planet_flag = ongoing_vault_infiltration
+		}
+		NOT = {
+			has_country_flag = acot_phanon_tech_stage_four_enabled
+		}
+	}
+	immediate = {
+		FROMFROM = {
+			remove_planet_flag = ongoing_vault_infiltration
+			set_planet_flag = acot_vault_floor_four_cleared
+			add_planet_devastation = -100
+			add_modifier = {
+				modifier = acot_modifier_vault_delay
+				days = 360
+			}
+		}
+		IF = {
+			limit = {
+				NOT = {
+					has_country_flag = acot_phanon_tech_enabled
+				}
+			}
+			set_country_flag = acot_phanon_tech_enabled
+		}
+	}
+	option = {
+		name = acot_pmc.1500.a
+		FROMFROM = {
+			set_planet_size = 30
+		}
+		phanon_type_b_tech_gift = yes
+		set_country_flag = acot_phanon_tech_stage_four_enabled
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = acot_phanon_event_chain
+				counter = phanon_vault_stage
+				amount = 1
+			}
+			country_event = {
+				id = acot_pmc.16
+				days = 5
+			}
+		}
+	}
+}

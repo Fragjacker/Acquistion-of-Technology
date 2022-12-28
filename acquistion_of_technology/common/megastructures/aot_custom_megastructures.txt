@@ -576,10 +576,6 @@ sigma_star_imploder_0 = {
 	on_build_cancel = {
 	}
 	on_build_complete = {
-		add_modifier = {
-			modifier = sigma_solaripp_mod
-			days = -1
-		}
 		set_star_flag = sigma_star_imploder_built
 		from = {
 			set_country_flag = built_sigma_star_imploder
@@ -749,6 +745,12 @@ solaripp_0 = {
 				colonizable_planet = no
 			}
 		}
+		custom_tooltip = {
+			fail_text = "requires_no_solaripp"
+			NOT = {
+				has_star_flag = system_has_solaripp
+			}
+		}
 	}
 	placement_rules = {
 		planet_possible = {
@@ -792,9 +794,9 @@ solaripp_0 = {
 	on_build_cancel = {
 	}
 	on_build_complete = {
-		set_star_flag = macripp_built
+		set_star_flag = system_has_solaripp
 		from = {
-			set_country_flag = built_macripp
+			set_country_flag = built_solaripp
 		}
 		every_system_planet = {
 			limit = {
