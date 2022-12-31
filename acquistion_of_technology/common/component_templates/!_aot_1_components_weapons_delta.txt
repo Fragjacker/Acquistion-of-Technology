@@ -1,61 +1,17 @@
 utility_component_template = {
-	key = "COLOSSUS_SHIP_THRUSTER_5"
-	size = small
-	icon = "GFX_ship_part_thruster_4"
-	icon_frame = 1
-	power = @colossus_power_5
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @colossus_cost5
-			sr_dark_matter = 32
-		}
-	}
-	modifier = {
-		ship_base_speed_mult = 1.25
-	}
-	prerequisites = {
-		"tech_thrusters_dm"
-	}
-	component_set = "thruster_components"
-	size_restriction = {
-		colossus
-		juggernaut
-		ascended_juggernaut
-		precursor_juggernaut
-	}
-	upgrades_to = "COLOSSUS_SHIP_THRUSTER_AE"
-	ai_weight = {
-		weight = 5
-		modifier = {
-			factor = 0
-			has_monthly_income = {
-				resource = sr_dark_matter
-				value <= 2
-			}
-			has_resource = {
-				type = sr_dark_matter
-				amount <= 5
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "AE_COMBAT_COMPUTER_CAPITAL_1"
+	key = "DM_COMBAT_COMPUTER_CAPITAL_1"
 	size = small
 	icon = "GFX_ship_part_computer_role_artillery_bionic"
 	icon_frame = 1
 	power = -20
-	class_restriction = {
-		shipclass_military
-		shipclass_starbase
-	}
+	#class_restriction = { shipclass_military shipclass_starbase }
 	size_restriction = {
+		acot_giga_fortress
 		movable_fortress
-		juggernaut
 		ascended_juggernaut
 		precursor_juggernaut
+		aot_gatekeeper
+		juggernaut
 		titan
 		Dreadnought
 		Flagship
@@ -66,7 +22,6 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_aegis_guard
-		aot_gatekeeper
 	}
 	#fe_goliath
 	component_set = "combat_computers"
@@ -78,8 +33,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @cost2
-			sr_dark_matter = 1
+			alloys = 20
+			sr_dark_matter = 2
 			acot_sr_dark_energy = 1
 		}
 	}
@@ -88,7 +43,7 @@ utility_component_template = {
 		ship_weapon_range_mult = 0.2
 	}
 	ai_weight = {
-		weight = 205
+		weight = 20
 		modifier = {
 			factor = 0
 			has_monthly_income = {
@@ -115,20 +70,19 @@ utility_component_template = {
 }
 
 utility_component_template = {
-	key = "AE_COMBAT_COMPUTER_CAPITAL_2"
+	key = "DM_COMBAT_COMPUTER_CAPITAL_2"
 	size = small
 	icon = "GFX_ship_part_computer_role_sniper_bionic"
 	icon_frame = 1
 	power = -20
-	class_restriction = {
-		shipclass_military
-		shipclass_starbase
-	}
+	#class_restriction = { shipclass_military shipclass_starbase }
 	size_restriction = {
+		acot_giga_fortress
 		movable_fortress
-		juggernaut
 		ascended_juggernaut
 		precursor_juggernaut
+		aot_gatekeeper
+		juggernaut
 		titan
 		Dreadnought
 		Flagship
@@ -139,11 +93,10 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_aegis_guard
-		aot_gatekeeper
 	}
 	#fe_goliath
 	component_set = "combat_computers"
-	ship_behavior = "acot_long_range"
+	ship_behavior = "carrier"
 	prerequisites = {
 		"tech_dm_combat_computer"
 	}
@@ -151,8 +104,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @cost2
-			sr_dark_matter = 1
+			alloys = 20
+			sr_dark_matter = 2
 			acot_sr_dark_energy = 1
 		}
 	}
@@ -161,7 +114,7 @@ utility_component_template = {
 		ship_weapon_range_mult = 0.2
 	}
 	ai_weight = {
-		weight = 205
+		weight = 20
 		modifier = {
 			factor = 0
 			has_monthly_income = {
@@ -188,20 +141,19 @@ utility_component_template = {
 }
 
 utility_component_template = {
-	key = "AE_COMBAT_COMPUTER_CAPITAL_3"
+	key = "DM_COMBAT_COMPUTER_CAPITAL_3"
 	size = small
 	icon = "GFX_ship_part_computer_role_long_bionic"
 	icon_frame = 1
 	power = -20
-	class_restriction = {
-		shipclass_military
-		shipclass_starbase
-	}
+	#class_restriction = { shipclass_military shipclass_starbase }
 	size_restriction = {
+		acot_giga_fortress
 		movable_fortress
 		juggernaut
 		ascended_juggernaut
 		precursor_juggernaut
+		aot_gatekeeper
 		titan
 		Dreadnought
 		Flagship
@@ -212,20 +164,17 @@ utility_component_template = {
 		fe_assault_carrier
 		progenitor_carrier
 		sofe_aegis_guard
-		aot_gatekeeper
 	}
 	#fe_goliath
 	component_set = "combat_computers"
 	ship_behavior = "acot_max_range"
-	prerequisites = {
-		"tech_dm_combat_computer"
-	}
+	hidden = yes
 	upgrades_to = "AE_DEFENSIVE_COMBAT_COMPUTER_GOLIATH"
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @cost2
-			sr_dark_matter = 1
+			alloys = 20
+			sr_dark_matter = 2
 			acot_sr_dark_energy = 1
 		}
 	}
@@ -233,81 +182,28 @@ utility_component_template = {
 		ship_fire_rate_mult = 0.25
 		ship_weapon_range_mult = 0.2
 	}
-	ai_weight = {
-		weight = 205
-		modifier = {
-			factor = 0
-			has_monthly_income = {
-				resource = sr_dark_matter
-				value <= 2
-			}
-			has_resource = {
-				type = sr_dark_matter
-				amount <= 5
-			}
-		}
-	}
 }
 
 utility_component_template = {
-	key = "TITAN_SHIP_THRUSTER_5"
-	size = small
-	icon = "GFX_ship_part_thruster_4"
-	icon_frame = 1
-	power = @titan_power_5
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @titan_cost5
-			sr_dark_matter = 16
-		}
-	}
-	modifier = {
-		ship_base_speed_mult = 1.25
-		ship_evasion_add = 4
-	}
-	prerequisites = {
-		"tech_thrusters_dm"
-	}
-	component_set = "thruster_components"
-	size_restriction = {
-		titan
-		aot_gatekeeper
-	}
-	upgrades_to = "TITAN_SHIP_THRUSTER_AE"
-	ai_weight = {
-		weight = 5
-		modifier = {
-			factor = 0
-			has_monthly_income = {
-				resource = sr_dark_matter
-				value <= 2
-			}
-			has_resource = {
-				type = sr_dark_matter
-				amount <= 5
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "TITAN_DARK_MATTER_REACTOR"
+	key = "TITAN_DARK_MATTER_REACTOR_DM"
 	size = small
 	icon = "GFX_ship_part_dark_matter_power_core_dm"
 	icon_frame = 1
-	power = 6000
+	power = 9600
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = 592
-			sr_dark_matter = 16
-			acot_sr_dark_energy = 16
+			alloys = 640
+			sr_dark_matter = 64
+			acot_sr_dark_energy = 32
 		}
 		upkeep = {
-			energy = 5.93
-			alloys = 0.593
+			energy = 6.4
+			alloys = 0.64
 		}
+	}
+	modifier = {
+		ship_hull_mult = 0.05
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_dm"
@@ -315,11 +211,24 @@ utility_component_template = {
 	component_set = "power_core"
 	size_restriction = {
 		titan
+		sofe_gatekeeper_warden
+		ion_cannon
+		precursor_titan
+		fe_assault_carrier
+		progenitor_carrier
+		sentinel_sphere
+		precursor_guardian
+		Carrier
+		SCX_Dreadnought
+		fe_titan
+		Dreadnought
+		fe_large_station
+		fe_small_station
 		aot_gatekeeper
 	}
 	upgrades_to = "TITAN_DARK_MATTER_REACTOR_AE"
 	ai_weight = {
-		weight = 6
+		weight = 20
 		modifier = {
 			factor = 0
 			has_monthly_income = {
