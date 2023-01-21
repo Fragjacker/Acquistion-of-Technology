@@ -45,7 +45,6 @@ acot_dark_matter_obelisk_core = {
 				#can_build_megastructure_on_planet = yes
 				NOR = {
 					has_planet_flag = has_megastructure
-
 					is_planet_class = pc_ringworld_habitable_damaged
 					is_planet_class = pc_ringworld_tech
 					is_planet_class = pc_ringworld_tech_damaged
@@ -85,6 +84,10 @@ acot_dark_matter_obelisk_core = {
 		upkeep = {
 		}
 		produces = {
+			energy = 50
+			alloys = 50
+		}
+		produces = {
 			trigger = {
 				exists = owner
 				owner = {
@@ -109,20 +112,30 @@ acot_dark_matter_obelisk_core = {
 					has_technology = tech_precursor_design
 				}
 			}
-			energy = 100
-			alloys = 100
-			acot_sr_dark_energy = 50
-			sr_dark_matter = 50
+			energy = 50
+			alloys = 50
+			acot_sr_dark_energy = 25
+			sr_dark_matter = 25
 		}
 		produces = {
 			trigger = {
 				exists = owner
 				owner = {
-					has_technology = tech_dark_matter_power_core_ae
+					has_technology = tech_precursor_enigmalith_ae
 				}
 			}
-			acot_sr_dark_energy = 100
-			sr_dark_matter = 100
+			energy = 100
+			alloys = 100
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_enigmalith_se
+				}
+			}
+			energy = 200
+			alloys = 200
 		}
 	}
 	ai_weight = {
@@ -186,11 +199,11 @@ acot_dark_matter_obelisk_core_ae = {
 	construction_blocks_and_blocked_by = none
 	country_modifier = {
 	}
-	build_time = 720
+	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 50000
+			alloys = 10000
 			sr_dark_matter = 2500
 			acot_sr_dark_energy = 2500
 		}
@@ -199,7 +212,23 @@ acot_dark_matter_obelisk_core_ae = {
 		produces = {
 			energy = 250
 			alloys = 250
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
 			sr_dark_matter = 250
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
 			acot_sr_dark_energy = 250
 		}
 	}
@@ -227,7 +256,7 @@ acot_dark_matter_obelisk_core_pe = {
 		acot_dark_matter_obelisk_core_ae
 	}
 	construction_blocks_and_blocked_by = none
-	build_time = 1400
+	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
@@ -241,8 +270,32 @@ acot_dark_matter_obelisk_core_pe = {
 		produces = {
 			energy = 2000
 			alloys = 2000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
 			sr_dark_matter = 2500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
 			acot_sr_dark_energy = 2500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_re
+				}
+			}
 			aot_sr_runic_power = 500
 		}
 	}
@@ -270,11 +323,13 @@ acot_dark_matter_obelisk_core_se = {
 	construction_blocks_and_blocked_by = none
 	country_modifier = {
 	}
-	build_time = 1800
+	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
 			alloys = 10000
+			sr_dark_matter = 20000
+			acot_sr_dark_energy = 20000
 			aot_sr_runic_power = 20000
 			acot_sr_stellarite = 10000
 		}
@@ -283,10 +338,52 @@ acot_dark_matter_obelisk_core_se = {
 		produces = {
 			energy = 2500
 			alloys = 2500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
 			sr_dark_matter = 2500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
 			acot_sr_dark_energy = 2500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_re
+				}
+			}
 			aot_sr_runic_power = 2000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_se
+				}
+			}
 			acot_sr_stellarite = 500
+		}
+		# Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_country_flag = omega_tech_researchable
+				}
+			}
+			acot_sr_light_matter = 5
 		}
 	}
 }
@@ -313,7 +410,7 @@ acot_dark_matter_obelisk_core_oe = {
 	construction_blocks_and_blocked_by = none
 	country_modifier = {
 	}
-	build_time = 700
+	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
@@ -322,10 +419,57 @@ acot_dark_matter_obelisk_core_oe = {
 		upkeep = {
 		}
 		produces = {
+			food = 5000
+			consumer_goods = 5000
+			minerals = 5000
 			energy = 5000
 			alloys = 5000
-			acot_sr_stellarite = 10000
-			aot_sr_runic_power = 10000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
+			sr_dark_matter = 5000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
+			acot_sr_dark_energy = 5000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_re
+				}
+			}
+			aot_sr_runic_power = 5000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_se
+				}
+			}
+			acot_sr_stellarite = 5000
+		}
+		# Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_country_flag = omega_tech_researchable
+				}
+			}
+			acot_sr_light_matter = 100
 		}
 	}
 }
