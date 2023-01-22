@@ -473,3 +473,325 @@ acot_dark_matter_obelisk_core_oe = {
 		}
 	}
 }
+
+######################################################################################################
+#PRECURSOR CITADEL SITE
+acot_precursor_citadel_site = {
+	entity = "acot_precursor_starbase_construction_platform_entity"
+	construction_entity = "acot_precursor_starbase_construction_platform_entity"
+	portrait = "GFX_acot_precursor_station_plans_background"
+	place_entity_on_planet_plane = no
+	#entity_offset = { x = -7 y = -7 }
+	build_time = 720
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 50000
+			influence = 200
+		}
+		upkeep = {
+		}
+	}
+	prerequisites = {
+		"tech_precursor_citadel"
+	}
+	possible = {
+		owner = {
+			has_technology = tech_precursor_citadel
+		}
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		any_fleet_in_system = {
+			OR = {
+				is_ship_size = starbase_outpost
+				is_ship_size = starbase_starport
+				is_ship_size = starbase_starhold
+				is_ship_size = starbase_starfortress
+				is_ship_size = starbase_citadel
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			NOR = {
+				has_megastructure = acot_precursor_citadel_site
+				has_megastructure = acot_precursor_citadel_base
+				has_megastructure = acot_precursor_sigma_citadel_site
+				has_megastructure = acot_precursor_sigma_citadel_base
+				has_megastructure = acot_precursor_phanon_citadel_site
+				has_megastructure = acot_precursor_phanon_citadel_base
+				starbase = {
+					has_starbase_size >= acot_precusor_starbase
+					has_starbase_size >= acot_precusor_sigma_starbase
+					has_starbase_size >= acot_precusor_phanon_starcitadel
+				}
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country	
+	ai_weight = {
+		factor = 0
+		modifier = {
+			factor = 0.1
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = {
+						is_same_value = from
+					}
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		#set_star_flag = dyson_sphere_built
+		#from = { set_country_flag = built_dyson_sphere }
+	}
+}
+
+#PRECURSOR SIGMA CITADEL SITE
+acot_precursor_sigma_citadel_site = {
+	entity = "acot_precursor_sigma_starbase_construction_platform_entity"
+	construction_entity = "acot_precursor_sigma_starbase_construction_platform_entity"
+	portrait = "GFX_acot_precursor_sigma_station_plans_background"
+	place_entity_on_planet_plane = no
+	#entity_offset = { x = -7 y = -7 }
+	build_time = 720
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 50000
+			influence = 200
+		}
+		upkeep = {
+		}
+	}
+	prerequisites = {
+		"tech_precursor_sigma_citadel"
+	}
+	possible = {
+		owner = {
+			has_technology = tech_precursor_sigma_citadel
+		}
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		any_fleet_in_system = {
+			OR = {
+				is_ship_size = starbase_outpost
+				is_ship_size = starbase_starport
+				is_ship_size = starbase_starhold
+				is_ship_size = starbase_starfortress
+				is_ship_size = starbase_citadel
+				is_ship_size = acot_precusor_starbase
+				is_ship_size = acot_precusor_starcitadel
+				is_ship_size = acot_precusor_starfortress
+				is_ship_size = acot_precusor_phanon_starcitadel
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			NOR = {
+				has_megastructure = acot_precursor_sigma_citadel_site
+				has_megastructure = acot_precursor_sigma_citadel_base
+				starbase = {
+					has_starbase_size >= acot_precusor_sigma_starbase
+				}
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country	
+	ai_weight = {
+		factor = 0
+		modifier = {
+			factor = 0.1
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = {
+						is_same_value = from
+					}
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		if = {
+			limit = {
+				any_ship_in_system = {
+					is_ship_size = acot_precusor_starfortress
+				}
+			}
+			set_star_flag = acot_will_become_fortress
+		}
+		if = {
+			limit = {
+				any_ship_in_system = {
+					is_ship_size = acot_precusor_starcitadel
+				}
+			}
+			set_star_flag = acot_will_become_citadel
+		}
+	}
+}
+
+#PRECURSOR PHANON CITADEL SITE
+acot_precursor_phanon_citadel_site = {
+	entity = "acot_precursor_phanon_starbase_construction_platform_entity"
+	construction_entity = "acot_precursor_phanon_starbase_construction_platform_entity"
+	portrait = "GFX_acot_precursor_sigma_station_plans_background"
+	place_entity_on_planet_plane = no
+	#entity_offset = { x = -7 y = -7 }
+	build_time = 720
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 50000
+			influence = 200
+		}
+		upkeep = {
+		}
+	}
+	prerequisites = {
+		"tech_precursor_phanon_design"
+	}
+	possible = {
+		owner = {
+			has_technology = tech_precursor_citadel
+		}
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		any_fleet_in_system = {
+			OR = {
+				is_ship_size = starbase_outpost
+				is_ship_size = starbase_starport
+				is_ship_size = starbase_starhold
+				is_ship_size = starbase_starfortress
+				is_ship_size = starbase_citadel
+				is_ship_size = acot_precusor_starbase
+				is_ship_size = acot_precusor_starcitadel
+				is_ship_size = acot_precusor_starfortress
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			NOR = {
+				has_megastructure = acot_precursor_sigma_citadel_site
+				has_megastructure = acot_precursor_sigma_citadel_base
+				has_megastructure = acot_precursor_phanon_citadel_site
+				has_megastructure = acot_precursor_phanon_citadel_base
+				starbase = {
+					has_starbase_size >= acot_precusor_sigma_starbase
+					has_starbase_size >= acot_precusor_phanon_starcitadel
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country	
+	ai_weight = {
+		factor = 0
+		modifier = {
+			factor = 0.1
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = {
+						is_same_value = from
+					}
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		#set_star_flag = dyson_sphere_built
+		#from = { set_country_flag = built_dyson_sphere }
+	}
+}
