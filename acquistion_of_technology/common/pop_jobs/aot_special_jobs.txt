@@ -2134,13 +2134,37 @@ phanon_roboman = {
 	icon = acot_roboman
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
 		is_being_assimilated = no
 	}
 	possible_precalc = can_fill_specialist_job
-	planet_modifier = {
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+	triggered_planet_modifier = {
+		potential = {
+			OR = {
+				AND = {
+					exists = owner
+					owner = {
+						NOT = { has_policy_flag = roboticist_output_build_cyborgs }
+					}
+				}
+				NOT = { exists = owner }
+			}
+		}
 		planet_pop_assembly_add = 30
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = roboticist_output_build_cyborgs
+			}
+			can_assemble_cyborg_pop = yes
+		}
+		planet_pop_assembly_organic_add = 32
 	}
 	resources = {
 		category = planet_pop_assemblers
@@ -4557,13 +4581,37 @@ stellarite_roboman = {
 	icon = acot_roboman
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
 		is_being_assimilated = no
 	}
 	possible_precalc = can_fill_specialist_job
-	planet_modifier = {
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+	triggered_planet_modifier = {
+		potential = {
+			OR = {
+				AND = {
+					exists = owner
+					owner = {
+						NOT = { has_policy_flag = roboticist_output_build_cyborgs }
+					}
+				}
+				NOT = { exists = owner }
+			}
+		}
 		planet_pop_assembly_add = 60
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = roboticist_output_build_cyborgs
+			}
+			can_assemble_cyborg_pop = yes
+		}
+		planet_pop_assembly_organic_add = 64
 	}
 	resources = {
 		category = planet_pop_assemblers
