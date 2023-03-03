@@ -1,0 +1,1816 @@
+## Changes from base ACOT
+# Removed spawning restriction for buildings
+# Job restrictions moved to scripted_trigger
+# Removed tech restriction for Cyborg Armies (They will be controled by spawn_chance like all others)
+# Play tested for around 20 hours by continuing an old save. No problems so far.
+# Defense Armies
+acot_defense_army_dm = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2
+	damage = 1.8
+	morale_damage = 0.5
+	morale = 1.75
+	collateral_damage = 0
+	war_exhaustion = 0.2	# No WE from defense armies
+	icon = GFX_army_type_infantry
+	potential_country = {
+		is_regular_empire = yes
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+	}
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			has_aot_army_jobs_dm = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+acot_defense_army_ae = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2.5
+	damage = 2.3
+	morale_damage = 0.5
+	morale = 2
+	collateral_damage = 0
+	war_exhaustion = 0.2	# No WE from defense armies
+	icon = GFX_army_type_infantry
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+	}
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			has_aot_army_jobs_de = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+# Defense Armies
+acot_defense_army_light_dm = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 3
+	damage = 2.8
+	morale = 2.25
+	morale_damage = 1
+	collateral_damage = 0
+	war_exhaustion = 0.5
+	icon = GFX_army_type_garrison_light
+	potential_country = {
+		is_regular_empire = yes
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			has_aot_army_jobs_dm = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+acot_defense_army_light_ae = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 3.5
+	damage = 3.3
+	morale = 2.25
+	morale_damage = 1
+	collateral_damage = 0
+	war_exhaustion = 0.5
+	icon = GFX_army_type_garrison_light
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			has_aot_army_jobs_de = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+# Defense Armies
+acot_defense_army_heavy_dm = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 6
+	damage = 5.8
+	morale = 3
+	morale_damage = 1
+	collateral_damage = 0
+	war_exhaustion = 1
+	icon = GFX_acot_type_garrison_heavy
+	potential_country = {
+		is_regular_empire = yes
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			has_aot_army_jobs_dm = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+acot_defense_army_heavy_ae = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 6.5
+	damage = 6.3
+	morale = 3.5
+	morale_damage = 1
+	collateral_damage = 0
+	war_exhaustion = 1
+	icon = GFX_acot_type_garrison_heavy
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			has_aot_army_jobs_de = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+#########################################
+# Undead Armies
+acot_defense_undead_dm = {
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2.5
+	damage = 1.6
+	collateral_damage = 0.25
+	has_morale = no
+	morale_damage = 1
+	war_exhaustion = 0.1
+	icon = GFX_army_type_undead
+	use_armynames_from = undead_army
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			OR = {
+				AND = {
+					has_active_building = building_dread_encampment
+					num_assigned_jobs = {
+						job = necromancer
+						value >= 1
+					}
+				}
+				has_planet_flag = active_dread_outpost
+			}
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+# Undead Armies
+acot_defense_undead_ae = {
+	defensive = yes
+	is_pop_spawned = yes
+	health = 3
+	damage = 2.1
+	collateral_damage = 0.25
+	has_morale = no
+	morale_damage = 1
+	war_exhaustion = 0.1
+	icon = GFX_army_type_undead
+	use_armynames_from = undead_army
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			OR = {
+				AND = {
+					has_active_building = building_dread_encampment
+					num_assigned_jobs = {
+						job = necromancer
+						value >= 1
+					}
+				}
+				has_planet_flag = active_dread_outpost
+			}
+			has_aot_army_jobs_de = yes
+		}
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+	}
+	spawn_chance = {
+		factor = 135
+	}
+}
+
+# Undead Armies
+acot_defense_undead_light_dm = {
+	defensive = yes
+	is_pop_spawned = yes
+	health = 3.5
+	damage = 2.6
+	collateral_damage = 0.5
+	has_morale = no
+	morale_damage = 1.5
+	war_exhaustion = 0.2
+	icon = GFX_army_type_undead
+	use_armynames_from = undead_army
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			OR = {
+				AND = {
+					has_active_building = building_dread_encampment
+					num_assigned_jobs = {
+						job = necromancer
+						value >= 1
+					}
+				}
+				has_planet_flag = active_dread_outpost
+			}
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+# Undead Armies
+acot_defense_undead_light_ae = {
+	defensive = yes
+	is_pop_spawned = yes
+	health = 4
+	damage = 3.1
+	collateral_damage = 0.5
+	has_morale = no
+	morale_damage = 1.5
+	war_exhaustion = 0.2
+	icon = GFX_army_type_undead
+	use_armynames_from = undead_army
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			OR = {
+				AND = {
+					has_active_building = building_dread_encampment
+					num_assigned_jobs = {
+						job = necromancer
+						value >= 1
+					}
+				}
+				has_planet_flag = active_dread_outpost
+			}
+			has_aot_army_jobs_de = yes
+		}
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+	}
+	spawn_chance = {
+		factor = 135
+	}
+}
+
+# Undead Armies
+acot_defense_undead_heavy_dm = {
+	defensive = yes
+	is_pop_spawned = yes
+	health = 6.5
+	damage = 5.6
+	collateral_damage = 0.5
+	has_morale = no
+	morale_damage = 1.5
+	war_exhaustion = 0.5
+	icon = GFX_army_type_undead
+	use_armynames_from = undead_army
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			OR = {
+				AND = {
+					has_active_building = building_dread_encampment
+					num_assigned_jobs = {
+						job = necromancer
+						value >= 1
+					}
+				}
+				has_planet_flag = active_dread_outpost
+			}
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+# Undead Armies
+acot_defense_undead_heavy_ae = {
+	defensive = yes
+	is_pop_spawned = yes
+	health = 7
+	damage = 6.1
+	collateral_damage = 0.5
+	has_morale = no
+	morale_damage = 1.5
+	war_exhaustion = 0.5
+	icon = GFX_army_type_undead
+	use_armynames_from = undead_army
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			OR = {
+				AND = {
+					has_active_building = building_dread_encampment
+					num_assigned_jobs = {
+						job = necromancer
+						value >= 1
+					}
+				}
+				has_planet_flag = active_dread_outpost
+			}
+			has_aot_army_jobs_de = yes
+		}
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	spawn_chance = {
+		factor = 135
+	}
+}
+
+###############################################################
+# Defense Armies
+acot_defense_robot_dm = {
+	use_armynames_from = robotic_defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	damage = 2
+	health = 2.25
+	morale_damage = 0.1
+	collateral_damage = 0
+	war_exhaustion = 0.4	# No WE from defense armies
+	has_morale = no
+	icon = GFX_army_type_machine_infantry
+	has_species = yes
+	potential_country = {
+		is_regular_empire = yes
+	}
+	potential = {
+		from = {
+			has_trait = "trait_mechanical"
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			has_aot_army_jobs_dm = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+acot_defense_robot_ae = {
+	use_armynames_from = robotic_defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	damage = 2.5
+	health = 2.75
+	morale_damage = 0.1
+	collateral_damage = 0
+	war_exhaustion = 0.4	# No WE from defense armies
+	has_morale = no
+	icon = GFX_army_type_machine_infantry
+	has_species = yes
+	potential = {
+		from = {
+			has_trait = "trait_mechanical"
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			has_aot_army_jobs_de = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+# Defense Armies
+acot_defense_robot_light_dm = {
+	use_armynames_from = robotic_defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	damage = 3
+	health = 3.25
+	morale_damage = 0.15
+	collateral_damage = 0
+	war_exhaustion = 0.75	# No WE from defense armies
+	has_morale = no
+	icon = GFX_army_type_droid_unit
+	has_species = yes
+	potential_country = {
+		is_regular_empire = yes
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential = {
+		from = {
+			has_trait = "trait_mechanical"
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			has_aot_army_jobs_dm = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+acot_defense_robot_light_ae = {
+	use_armynames_from = robotic_defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	damage = 3.5
+	health = 3.75
+	morale_damage = 0.15
+	collateral_damage = 0
+	war_exhaustion = 0.75	# No WE from defense armies
+	has_morale = no
+	icon = GFX_army_type_droid_unit
+	has_species = yes
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential = {
+		from = {
+			has_trait = "trait_mechanical"
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			has_aot_army_jobs_de = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+# Defense Armies
+acot_defense_robot_heavy_dm = {
+	use_armynames_from = robotic_defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	damage = 6
+	health = 6.25
+	morale_damage = 0.25
+	collateral_damage = 0
+	war_exhaustion = 1.5	# No WE from defense armies
+	has_morale = no
+	icon = GFX_acot_type_droid_mech
+	has_species = yes
+	potential_country = {
+		is_regular_empire = yes
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	potential = {
+		from = {
+			has_trait = "trait_mechanical"
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			has_aot_army_jobs_dm = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+acot_defense_robot_heavy_ae = {
+	use_armynames_from = robotic_defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	damage = 6.5
+	health = 6.75
+	morale_damage = 0.25
+	collateral_damage = 0
+	war_exhaustion = 1.5	# No WE from defense armies
+	has_morale = no
+	icon = GFX_acot_type_droid_mech
+	has_species = yes
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	potential = {
+		from = {
+			has_trait = "trait_mechanical"
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			has_aot_army_jobs_de = yes
+		}
+		owner = {
+			is_primitive = no
+			is_regular_empire = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+############################### HIVE
+# Defense Armies
+acot_hive_defense_army_dm = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 1.75
+	damage = 1.75
+	has_morale = no
+	morale_damage = 2
+	collateral_damage = 0
+	war_exhaustion = 0.05
+	icon = GFX_army_type_hive_infantry
+	potential_country = {
+		is_hive_empire = yes
+	}
+	potential = {
+		from = {
+			has_trait = trait_hive_mind
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+acot_hive_defense_army_ae = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2.25
+	damage = 2.25
+	has_morale = no
+	morale_damage = 2
+	collateral_damage = 0
+	war_exhaustion = 0.05
+	icon = GFX_army_type_hive_infantry
+	potential_country = {
+		is_hive_empire = yes
+	}
+	potential = {
+		from = {
+			has_trait = trait_hive_mind
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			has_aot_army_jobs_de = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+###########
+# Defense Armies
+acot_hive_defense_army_light_dm = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2.75
+	damage = 2.75
+	has_morale = no
+	morale_damage = 2.25
+	collateral_damage = 0
+	war_exhaustion = 0.15
+	icon = GFX_army_type_hive_light
+	potential_country = {
+		is_hive_empire = yes
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential = {
+		from = {
+			has_trait = trait_hive_mind
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+acot_hive_defense_army_light_ae = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 3.25
+	damage = 3.25
+	has_morale = no
+	morale_damage = 2.25
+	collateral_damage = 0
+	war_exhaustion = 0.15
+	icon = GFX_army_type_hive_light
+	potential_country = {
+		is_hive_empire = yes
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential = {
+		from = {
+			has_trait = trait_hive_mind
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			has_aot_army_jobs_de = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+###########
+# Defense Armies
+acot_hive_defense_army_heavy_dm = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 5.75
+	damage = 5.75
+	has_morale = no
+	morale_damage = 2.5
+	collateral_damage = 0
+	war_exhaustion = 0.5
+	icon = GFX_acot_type_hive_heavy
+	potential_country = {
+		is_hive_empire = yes
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	potential = {
+		from = {
+			has_trait = trait_hive_mind
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+acot_hive_defense_army_heavy_ae = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 6.25
+	damage = 6.25
+	has_morale = no
+	morale_damage = 2.5
+	collateral_damage = 0
+	war_exhaustion = 0.5
+	icon = GFX_acot_type_hive_heavy
+	potential_country = {
+		is_hive_empire = yes
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	potential = {
+		from = {
+			has_trait = trait_hive_mind
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			has_aot_army_jobs_de = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+############################### MACHINE
+# Defense Armies
+acot_army_machine_cyborg_defense = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 1.1
+	damage = 0.9
+	has_morale = no
+	morale_damage = 0.3
+	collateral_damage = 0
+	war_exhaustion = 0.2
+	icon = GFX_army_type_cyborg
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+	}
+	potential_country = {
+		has_valid_civic = civic_machine_assimilator
+	}
+	potential = {
+		from = {
+			has_trait = trait_cybernetic
+			NOR = {
+				is_sapient = no
+			}
+		}
+		# owner = {
+		# 	NOT = {
+		# 		has_technology = tech_acot_army_machine_dm
+		# 	}
+		# }
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+# Defense Armies
+acot_army_machine_cyborg_defense_dm = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2.1
+	damage = 1.9
+	has_morale = no
+	morale_damage = 0.3
+	collateral_damage = 0
+	war_exhaustion = 0.2
+	icon = GFX_army_type_cyborg
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+	}
+	potential_country = {
+		has_valid_civic = civic_machine_assimilator
+	}
+	potential = {
+		from = {
+			has_trait = trait_cybernetic
+			NOR = {
+				is_sapient = no
+			}
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+# Defense Armies
+acot_army_machine_cyborg_defense_ae = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2.6
+	damage = 2.4
+	has_morale = no
+	morale_damage = 0.3
+	collateral_damage = 0
+	war_exhaustion = 0.2
+	icon = GFX_army_type_cyborg
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+	}
+	potential_country = {
+		has_valid_civic = civic_machine_assimilator
+	}
+	potential = {
+		from = {
+			has_trait = trait_cybernetic
+			NOR = {
+				is_sapient = no
+			}
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			has_aot_army_jobs_de = yes
+		}
+	}
+	spawn_chance = {
+		factor = 135
+	}
+}
+
+# Defense Armies
+acot_army_machine_cyborg_defense_light = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2.1
+	damage = 1.9
+	has_morale = no
+	morale_damage = 0.5
+	collateral_damage = 0
+	war_exhaustion = 0.5
+	icon = GFX_army_type_cyborg
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential_country = {
+		has_valid_civic = civic_machine_assimilator
+	}
+	potential = {
+		from = {
+			has_trait = trait_cybernetic
+			NOR = {
+				is_sapient = no
+			}
+		}
+		# owner = {
+		# 	NOT = {
+		# 		has_technology = tech_acot_army_machine_dm
+		# 	}
+		# }
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+# Defense Armies
+acot_army_machine_cyborg_defense_light_dm = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 3.1
+	damage = 2.9
+	has_morale = no
+	morale_damage = 0.5
+	collateral_damage = 0
+	war_exhaustion = 0.5
+	icon = GFX_army_type_cyborg
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential_country = {
+		has_valid_civic = civic_machine_assimilator
+	}
+	potential = {
+		from = {
+			has_trait = trait_cybernetic
+			NOR = {
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+# Defense Armies
+acot_army_machine_cyborg_defense_light_ae = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 3.6
+	damage = 3.4
+	has_morale = no
+	morale_damage = 0.5
+	collateral_damage = 0
+	war_exhaustion = 0.5
+	icon = GFX_army_type_cyborg
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential_country = {
+		has_valid_civic = civic_machine_assimilator
+	}
+	potential = {
+		from = {
+			has_trait = trait_cybernetic
+			NOR = {
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			has_aot_army_jobs_de = yes
+		}
+	}
+	spawn_chance = {
+		factor = 135
+	}
+}
+
+# Defense Armies
+acot_army_machine_cyborg_defense_heavy = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 5.1
+	damage = 4.9
+	has_morale = no
+	morale_damage = 1
+	collateral_damage = 0
+	war_exhaustion = 1
+	icon = GFX_army_type_cyborg
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	potential_country = {
+		has_valid_civic = civic_machine_assimilator
+	}
+	potential = {
+		from = {
+			has_trait = trait_cybernetic
+			NOR = {
+				is_sapient = no
+			}
+		}
+		# owner = {
+		# 	NOT = {
+		# 		has_technology = tech_acot_army_machine_dm
+		# 	}
+		# }
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+# Defense Armies
+acot_army_machine_cyborg_defense_heavy_dm = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 6.1
+	damage = 5.9
+	has_morale = no
+	morale_damage = 1
+	collateral_damage = 0
+	war_exhaustion = 1
+	icon = GFX_army_type_cyborg
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	potential_country = {
+		has_valid_civic = civic_machine_assimilator
+	}
+	potential = {
+		from = {
+			has_trait = trait_cybernetic
+			NOR = {
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+# Defense Armies
+acot_army_machine_cyborg_defense_heavy_ae = {
+	use_armynames_from = defense_army
+	defensive = yes
+	is_pop_spawned = yes
+	health = 6.6
+	damage = 6.4
+	has_morale = no
+	morale_damage = 1
+	collateral_damage = 0
+	war_exhaustion = 1
+	icon = GFX_army_type_cyborg
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	potential_country = {
+		has_valid_civic = civic_machine_assimilator
+	}
+	potential = {
+		from = {
+			has_trait = trait_cybernetic
+			NOR = {
+				is_sapient = no
+			}
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			has_aot_army_jobs_de = yes
+		}
+	}
+	spawn_chance = {
+		factor = 135
+	}
+}
+
+###################################################
+### Machine Empire Armies
+acot_defense_drone_dm = {
+	use_armynames_from = machine_defense
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2
+	damage = 2.2
+	has_morale = no
+	morale_damage = 0.05
+	collateral_damage = 0
+	war_exhaustion = 0.2	# No WE from defense armies
+	icon = GFX_army_type_machine_infantry
+	has_species = yes
+	potential = {
+		owner = {
+			has_authority = auth_machine_intelligence
+		}
+		from = {
+			has_trait = "trait_machine_unit"
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+### Machine Empire Armies
+acot_defense_drone_ae = {
+	use_armynames_from = machine_defense
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2.5
+	damage = 2
+	has_morale = no
+	morale_damage = 1
+	collateral_damage = 0
+	war_exhaustion = 0	# No WE from defense armies
+	icon = GFX_army_type_machine_infantry
+	has_species = yes
+	potential = {
+		owner = {
+			has_authority = auth_machine_intelligence
+		}
+		from = {
+			has_trait = "trait_machine_unit"
+		}
+		planet = {
+			NOR = {
+				has_modifier = acot_modifier_defense_upgrade_1
+				has_modifier = acot_modifier_defense_upgrade_2
+			}
+			has_aot_army_jobs_de = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+###############
+### Machine Empire Armies
+acot_defense_drone_light_dm = {
+	use_armynames_from = machine_defense
+	defensive = yes
+	is_pop_spawned = yes
+	health = 3
+	damage = 3.2
+	has_morale = no
+	morale_damage = 0.1
+	collateral_damage = 0
+	war_exhaustion = 0.5
+	icon = GFX_army_type_machine_defensive
+	has_species = yes
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential = {
+		owner = {
+			has_authority = auth_machine_intelligence
+		}
+		from = {
+			has_trait = "trait_machine_unit"
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+### Machine Empire Armies
+acot_defense_drone_light_ae = {
+	use_armynames_from = machine_defense
+	defensive = yes
+	is_pop_spawned = yes
+	health = 3.5
+	damage = 3.7
+	has_morale = no
+	morale_damage = 0.1
+	collateral_damage = 0
+	war_exhaustion = 0.5
+	icon = GFX_army_type_machine_defensive
+	has_species = yes
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	potential = {
+		owner = {
+			has_authority = auth_machine_intelligence
+		}
+		from = {
+			has_trait = "trait_machine_unit"
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_1
+			has_aot_army_jobs_de = yes
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
+
+###############
+### Machine Empire Armies
+acot_defense_drone_heavy_dm = {
+	use_armynames_from = machine_defense
+	defensive = yes
+	is_pop_spawned = yes
+	health = 6
+	damage = 6.2
+	has_morale = no
+	morale_damage = 0.25
+	collateral_damage = 0
+	war_exhaustion = 1.5
+	icon = GFX_army_type_machine_heavy
+	has_species = yes
+	potential = {
+		owner = {
+			has_authority = auth_machine_intelligence
+		}
+		from = {
+			has_trait = "trait_machine_unit"
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			has_aot_army_jobs_dm = yes
+		}
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	spawn_chance = {
+		factor = 125
+	}
+}
+
+### Machine Empire Armies
+acot_defense_drone_heavy_ae = {
+	use_armynames_from = machine_defense
+	defensive = yes
+	is_pop_spawned = yes
+	health = 6.5
+	damage = 6.7
+	has_morale = no
+	morale_damage = 0.25
+	collateral_damage = 0
+	war_exhaustion = 1.5
+	icon = GFX_army_type_machine_heavy
+	has_species = yes
+	potential = {
+		owner = {
+			has_authority = auth_machine_intelligence
+		}
+		from = {
+			has_trait = "trait_machine_unit"
+		}
+		planet = {
+			has_modifier = acot_modifier_defense_upgrade_2
+			has_aot_army_jobs_de = yes
+		}
+	}
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 0.5
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	spawn_chance = {
+		factor = 130
+	}
+}
