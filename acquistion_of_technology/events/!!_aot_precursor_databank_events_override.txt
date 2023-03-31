@@ -102,13 +102,15 @@ country_event = {
 				has_technology = tech_precursor_escort				#1
 				has_technology = tech_precursor_bc				#2
 				has_technology = tech_precursor_titan				#3
-				has_technology = tech_fe_assault_carrier				#4
-				has_technology = tech_fe_tower_offense				#5
+				has_technology = tech_precursor_assault_carrier				#4
+				has_technology = tech_precursor_sentinel				#5
 				has_technology = tech_precursor_guardian				#6
 				has_technology = tech_precursor_construcor				#8
 				has_technology = tech_precursor_science				#9
 				has_technology = tech_precursor_colonizer				#10
 				has_technology = tech_precursor_citadel				#11
+				has_technology = tech_precursor_enigmalith				#12
+				has_technology = tech_precursor_world_shaper				#13
 				has_technology = tech_dm_habitat				#12
 				has_technology = tech_precursor_enigmalith				#13
 				has_technology = tech_gatekeepers				#14
@@ -204,13 +206,15 @@ country_event = {
 				has_technology = tech_precursor_escort				#1
 				has_technology = tech_precursor_bc				#2
 				has_technology = tech_precursor_titan				#3
-				has_technology = tech_fe_assault_carrier				#4
-				has_technology = tech_fe_tower_offense				#5
+				has_technology = tech_precursor_assault_carrier				#4
+				has_technology = tech_precursor_sentinel				#5
 				has_technology = tech_precursor_guardian				#6
 				has_technology = tech_precursor_construcor				#8
 				has_technology = tech_precursor_science				#9
 				has_technology = tech_precursor_colonizer				#10
 				has_technology = tech_precursor_citadel				#11
+				has_technology = tech_precursor_enigmalith				#12
+				has_technology = tech_precursor_world_shaper				#13
 				has_technology = tech_dm_habitat				#12
 				has_technology = tech_precursor_enigmalith				#13
 				has_technology = tech_gatekeepers				#14
@@ -253,13 +257,13 @@ country_event = {
 	}
 	### GENERAL LORE ###
 	option = {
-		name = acot_precursor_databank.400.lore
+		name = acot_precursor_databank.500.lore
 		response_text = acot_precursor_databank.400.a.warbarge.lore
 		is_dialog_only = yes
 	}
 	### TACTICAL LORE ###
 	option = {
-		name = acot_precursor_databank.400.tacdata
+		name = acot_precursor_databank.500.tacdata
 		response_text = acot_precursor_databank.400.a.warbarge.data
 		is_dialog_only = yes
 	}
@@ -304,13 +308,13 @@ country_event = {
 	}
 	### GENERAL LORE ###
 	option = {
-		name = acot_precursor_databank.400.lore
+		name = acot_precursor_databank.500.lore
 		response_text = acot_precursor_databank.400.a.gatekeepers.lore
 		is_dialog_only = yes
 	}
 	### TACTICAL LORE ###
 	option = {
-		name = acot_precursor_databank.400.tacdata
+		name = acot_precursor_databank.500.tacdata
 		response_text = acot_precursor_databank.400.a.gatekeepers.data
 		is_dialog_only = yes
 	}
@@ -355,13 +359,13 @@ country_event = {
 	}
 	### GENERAL LORE ###
 	option = {
-		name = acot_precursor_databank.400.lore
+		name = acot_precursor_databank.500.lore
 		response_text = acot_precursor_databank.400.a.enigmatic_fortress_platform.lore
 		is_dialog_only = yes
 	}
 	### TACTICAL LORE ###
 	option = {
-		name = acot_precursor_databank.400.tacdata
+		name = acot_precursor_databank.500.tacdata
 		response_text = acot_precursor_databank.400.a.enigmatic_fortress_platform.data
 		is_dialog_only = yes
 	}
@@ -873,6 +877,85 @@ country_event = {
 			}
 		}
 	}
+	### SHAPER ###
+	option = {
+		name = acot_precursor_databank.900.shaper
+		custom_tooltip = acot_precursor_databank.900.shaper.infodata
+		allow = {
+			has_ascension_perk = ap_precursor_dream
+			resource_stockpile_compare = {
+				resource = acot_sr_dark_energy
+				value >= 1000
+			}
+			resource_stockpile_compare = {
+				resource = sr_dark_matter
+				value >= 1000
+			}
+		}
+		trigger = {
+			has_technology = tech_precursor_escort
+			NOR = {
+				has_tech_option = tech_precursor_world_shaper
+				has_technology = tech_precursor_world_shaper
+			}
+		}
+		response_text = acot_precursor_databank.900.shaper.response
+		add_resource = {
+			acot_sr_dark_energy = -1000
+			sr_dark_matter = -1000
+		}
+		set_country_flag = project_shaper_selected
+		hidden_effect = {
+			begin_event_chain = {
+				event_chain = acot_precursor_design_chain
+			}
+			add_event_chain_counter = {
+				event_chain = acot_precursor_design_chain
+				counter = quota_required
+				amount = 400
+			}
+			set_variable = {
+				which = acot_quota_required
+				value = 400
+			}
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
+			}
+			set_country_flag = precuursor_design_project_active
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.901
+				days = 1
+			}
+		}
+	}
 	### Hyperion ###
 	option = {
 		name = acot_precursor_databank.900.titan
@@ -969,8 +1052,8 @@ country_event = {
 		trigger = {
 			has_technology = tech_precursor_bc
 			NOR = {
-				has_tech_option = tech_fe_assault_carrier
-				has_technology = tech_fe_assault_carrier
+				has_tech_option = tech_precursor_assault_carrier
+				has_technology = tech_precursor_assault_carrier
 			}
 		}
 		response_text = acot_precursor_databank.900.pac.response
@@ -1048,8 +1131,8 @@ country_event = {
 		trigger = {
 			has_technology = tech_precursor_guardian
 			NOR = {
-				has_tech_option = tech_fe_tower_offense
-				has_technology = tech_fe_tower_offense
+				has_tech_option = tech_precursor_sentinel
+				has_technology = tech_precursor_sentinel
 			}
 		}
 		response_text = acot_precursor_databank.900.sentinel.response
@@ -1126,7 +1209,7 @@ country_event = {
 		}
 		trigger = {
 			has_technology = tech_precursor_guardian
-			has_technology = tech_fe_tower_offense
+			has_technology = tech_precursor_sentinel
 			NOR = {
 				has_tech_option = tech_dm_habitat
 				has_technology = tech_dm_habitat
@@ -1153,6 +1236,86 @@ country_event = {
 			set_variable = {
 				which = acot_quota_required
 				value = 350
+			}
+			IF = {
+				limit = {
+					has_ascension_perk = ap_precursor_dream
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 6
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 6
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_ascension_perk = ap_precursor_dream
+					}
+				}
+				add_event_chain_counter = {
+					event_chain = acot_precursor_design_chain
+					counter = attempts_remain
+					amount = 5
+				}
+				set_variable = {
+					which = acot_quota_attempts
+					value = 5
+				}
+			}
+			set_country_flag = precuursor_design_project_active
+			remove_country_flag = acot_databank_diplomacy_engaged
+			country_event = {
+				id = acot_precursor_databank.901
+				days = 1
+			}
+		}
+	}
+	### Citadel ###
+	option = {
+		name = acot_precursor_databank.900.citadel
+		custom_tooltip = acot_precursor_databank.900.citadel.infodata
+		allow = {
+			has_ascension_perk = ap_precursor_dream
+			resource_stockpile_compare = {
+				resource = acot_sr_dark_energy
+				value >= 2500
+			}
+			resource_stockpile_compare = {
+				resource = sr_dark_matter
+				value >= 2500
+			}
+		}
+		trigger = {
+			has_technology = tech_precursor_guardian
+			has_technology = tech_precursor_sentinel
+			NOR = {
+				has_tech_option = tech_precursor_citadel
+				has_technology = tech_precursor_citadel
+			}
+		}
+		response_text = acot_precursor_databank.900.citadel.response
+		add_resource = {
+			acot_sr_dark_energy = -2500
+			sr_dark_matter = -2500
+		}
+		set_country_flag = project_citadel_selected
+		hidden_effect = {
+			begin_event_chain = {
+				event_chain = acot_precursor_design_chain
+			}
+			add_event_chain_counter = {
+				event_chain = acot_precursor_design_chain
+				counter = quota_required
+				amount = 600
+			}
+			set_variable = {
+				which = acot_quota_required
+				value = 600
 			}
 			IF = {
 				limit = {
@@ -1289,7 +1452,7 @@ country_event = {
 		}
 		trigger = {
 			has_technology = tech_precursor_guardian
-			has_technology = tech_fe_tower_offense
+			has_technology = tech_precursor_sentinel
 			has_technology = tech_precursor_titan
 			NOR = {
 				has_tech_option = tech_gatekeepers
@@ -1431,86 +1594,6 @@ country_event = {
 			}
 		}
 	}
-	### Citadel ###
-	option = {
-		name = acot_precursor_databank.900.citadel
-		custom_tooltip = acot_precursor_databank.900.citadel.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 2500
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 2500
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_guardian
-			has_technology = tech_fe_tower_offense
-			NOR = {
-				has_tech_option = tech_precursor_citadel
-				has_technology = tech_precursor_citadel
-			}
-		}
-		response_text = acot_precursor_databank.900.citadel.response
-		add_resource = {
-			acot_sr_dark_energy = -2500
-			sr_dark_matter = -2500
-		}
-		set_country_flag = project_citadel_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 600
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 600
-			}
-			IF = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			ELSE_IF = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
 	### Enigmatic Fortress Platform ###
 	option = {
 		name = acot_precursor_databank.900.enigmatic_fortress
@@ -1527,7 +1610,7 @@ country_event = {
 		}
 		trigger = {
 			has_technology = tech_precursor_guardian
-			has_technology = tech_fe_tower_offense
+			has_technology = tech_precursor_sentinel
 			has_technology = tech_precursor_titan
 			NOR = {
 				has_tech_option = tech_dm_enigmatic_fortress_platform
@@ -1759,28 +1842,32 @@ country_event = {
 				last_increased_tech = tech_precursor_science
 			}
 			AND = {
+				has_country_flag = project_shaper_selected
+				last_increased_tech = tech_precursor_world_shaper
+			}
+			AND = {
 				has_country_flag = project_emiss_selected
 				last_increased_tech = tech_precursor_colonizer
 			}
 			AND = {
 				has_country_flag = project_sentinel_selected
-				last_increased_tech = tech_fe_tower_offense
+				last_increased_tech = tech_precursor_sentinel
 			}
 			AND = {
 				has_country_flag = project_pac_selected
-				last_increased_tech = tech_fe_assault_carrier
+				last_increased_tech = tech_precursor_assault_carrier
 			}
 			AND = {
 				has_country_flag = project_titan_selected
 				last_increased_tech = tech_precursor_titan
 			}
 			AND = {
-				has_country_flag = project_citadel_selected
-				last_increased_tech = tech_precursor_citadel
-			}
-			AND = {
 				has_country_flag = project_enigmalith_selected
 				last_increased_tech = tech_precursor_enigmalith
+			}
+			AND = {
+				has_country_flag = project_citadel_selected
+				last_increased_tech = tech_precursor_citadel
 			}
 			AND = {
 				has_country_flag = project_dm_hab_selected
@@ -1925,6 +2012,12 @@ country_event = {
 			has_country_flag = project_oracle_selected
 		}
 		text = acot_precursor_databank.904.desc.oracle
+	}
+	desc = {
+		trigger = {
+			has_country_flag = project_shaper_selected
+		}
+		text = acot_precursor_databank.904.desc.shaper
 	}
 	desc = {
 		trigger = {
@@ -2077,6 +2170,21 @@ country_event = {
 			progress = 0.2
 		}
 	}
+	###SHAPER
+	option = {
+		trigger = {
+			has_country_flag = project_shaper_selected
+		}
+		name = acot_precursor_databank.904.shaper
+		remove_country_flag = project_shaper_selected
+		end_event_chain = acot_precursor_design_chain
+		remove_country_flag = precuursor_design_project_active
+		add_research_option = tech_precursor_world_shaper
+		add_tech_progress = {
+			tech = tech_precursor_world_shaper
+			progress = 0.2
+		}
+	}
 	###HYPERION
 	option = {
 		trigger = {
@@ -2101,9 +2209,9 @@ country_event = {
 		remove_country_flag = project_pac_selected
 		end_event_chain = acot_precursor_design_chain
 		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_fe_assault_carrier
+		add_research_option = tech_precursor_assault_carrier
 		add_tech_progress = {
-			tech = tech_fe_assault_carrier
+			tech = tech_precursor_assault_carrier
 			progress = 0.2
 		}
 	}
@@ -2116,9 +2224,24 @@ country_event = {
 		remove_country_flag = project_sentinel_selected
 		end_event_chain = acot_precursor_design_chain
 		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_fe_tower_offense
+		add_research_option = tech_precursor_sentinel
 		add_tech_progress = {
-			tech = tech_fe_tower_offense
+			tech = tech_precursor_sentinel
+			progress = 0.2
+		}
+	}
+	###CITADEL
+	option = {
+		trigger = {
+			has_country_flag = project_citadel_selected
+		}
+		name = acot_precursor_databank.904.citadel
+		remove_country_flag = project_citadel_selected
+		end_event_chain = acot_precursor_design_chain
+		remove_country_flag = precuursor_design_project_active
+		add_research_option = tech_precursor_citadel
+		add_tech_progress = {
+			tech = tech_precursor_citadel
 			progress = 0.2
 		}
 	}
@@ -2179,21 +2302,6 @@ country_event = {
 		add_research_option = tech_precursor_juggernaut
 		add_tech_progress = {
 			tech = tech_precursor_juggernaut
-			progress = 0.2
-		}
-	}
-	###CITADEL
-	option = {
-		trigger = {
-			has_country_flag = project_citadel_selected
-		}
-		name = acot_precursor_databank.904.citadel
-		remove_country_flag = project_citadel_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_citadel
-		add_tech_progress = {
-			tech = tech_precursor_citadel
 			progress = 0.2
 		}
 	}
