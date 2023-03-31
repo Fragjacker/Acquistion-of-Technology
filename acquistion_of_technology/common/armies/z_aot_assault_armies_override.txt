@@ -41,9 +41,71 @@ acot_army_machine_special = {
 		from = {
 			has_trait = "trait_machine_unit"
 		}
+		owner = {
+			NOT = {
+				has_technology = tech_acot_army_machine_se
+			}
+		}
 	}
 	show_tech_unlock_if = {
 		has_authority = auth_machine_intelligence
+	}
+	prerequisites = {
+		"tech_acot_army_machine_special"
+	}
+}
+
+# Omnimech
+acot_army_machine_special_se = {
+	use_armynames_from = machine_assault_2
+	damage = 4
+	health = 5.75
+	morale = 5.5
+	morale_damage = 1.25
+	collateral_damage = 1
+	war_exhaustion = 1
+	time = 145
+	has_species = yes
+	icon = GFX_army_type_machine_special
+	resources = {
+		category = armies
+		cost = {
+			minerals = 375
+			sr_dark_matter = 3.75
+			acot_sr_dark_energy = 3.75
+			unity = 3.75
+		}
+		upkeep = {
+			energy = 3.75
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_fe_machine_dome
+			has_building = building_ae_machine_dome
+			has_building = building_stellarite_machine_dome
+			has_building = building_phanon_machine_dome
+			has_district = district_acot_enigmapolis_fortress
+		}
+	}
+	show_tech_unlock_if = {
+		owner = {
+			has_technology = tech_acot_army_machine_se
+		}
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		owner = {
+			has_authority = auth_machine_intelligence
+		}
+		from = {
+			has_trait = "trait_machine_unit"
+		}
+		owner = {
+			has_technology = tech_acot_army_machine_se
+		}
 	}
 	prerequisites = {
 		"tech_acot_army_machine_special"
@@ -161,6 +223,59 @@ acot_army_hive_control = {
 		}
 		from = {
 			has_trait = trait_hive_mind
+		}
+	}
+	prerequisites = {
+		"tech_acot_army_hive_control"
+	}
+}
+
+# Hive-Mind Masterminds
+acot_army_hive_control_se = {
+	damage = 3.75
+	health = 5.25
+	morale = 8.25
+	morale_damage = 4.75
+	collateral_damage = 1.25
+	war_exhaustion = 1.5
+	time = 90
+	has_species = yes
+	icon = GFX_acot_type_hive_controller
+	resources = {
+		category = armies
+		cost = {
+			minerals = 225
+			sr_dark_matter = 2.25
+			acot_sr_dark_energy = 2.25
+			unity = 25
+		}
+	}
+	allow = {
+		OR = {
+			has_building = building_fe_hive_evochamber
+			has_building = building_ae_hive_evochamber
+			has_building = building_stellarite_hive_evochamber
+			has_building = building_phanon_hive_evochamber
+			has_district = district_acot_enigmapolis_fortress
+		}
+	}
+	show_tech_unlock_if = {
+		owner = {
+			has_technology = tech_acot_army_hive_se
+		}
+	}
+	potential_country = {
+		is_hive_empire = yes
+	}
+	potential = {
+		NOT = {
+			has_global_flag = acot_army_forbidden
+		}
+		from = {
+			has_trait = trait_hive_mind
+		}
+		owner = {
+			has_technology = tech_acot_army_hive_se
 		}
 	}
 	prerequisites = {
