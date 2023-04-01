@@ -425,7 +425,9 @@ weapon_component_template = {
 		weapon_type_energy
 	}
 	ai_tags = {
-		weapon_role_anti_shield
+		weapon_role_anti_hull
+		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 50
@@ -487,7 +489,9 @@ weapon_component_template = {
 		weapon_type_energy
 	}
 	ai_tags = {
-		weapon_role_anti_shield
+		weapon_role_anti_hull
+		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 50
@@ -549,7 +553,9 @@ weapon_component_template = {
 		weapon_type_energy
 	}
 	ai_tags = {
-		weapon_role_anti_shield
+		weapon_role_anti_hull
+		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 50
@@ -608,14 +614,79 @@ weapon_component_template = {
 		"tech_energy_cannon_se"
 	}
 	component_set = "ACOT_ENERGY_CANNON_SE"
-	projectile_gfx = "acot_xl_plasma_se"
+	projectile_gfx = "acot_energy_torpedoes_se"
 	tags = {
 		weapon_type_energy
 	}
 	ai_tags = {
+		weapon_role_anti_shield
 		weapon_role_artillery
-		weapon_role_anti_armor
-		gunship
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+### SE  Plasma Accelerator
+weapon_component_template = {
+	key = "ACOT_ENERGY_TORPEDO_SE"
+	size = torpedo
+	icon = "GFX_ship_part_energy_torpedo_se"
+	icon_frame = 1
+	type = instant
+	damage = {
+		min = 648
+		max = 1395
+	}
+	windup = {
+		min = 75
+		max = 300
+	}
+	total_fire_time = 150
+	range = 130
+	min_range = 45
+	accuracy = 0.9
+	power = @m_se_power_cost
+	hull_damage = 1.75
+	armor_penetration = 0
+	armor_damage = 1.5
+	shield_penetration = 0
+	shield_damage = 0.75
+	tracking = 0.05
+	size_damage_factor = 1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_se_cost
+			acot_sr_stellarite = @m_se_sr_cost
+		}
+		upkeep = {
+			alloys = @m_se_upkeep_alloys
+			energy = @m_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_energy_torpedo_se"
+	}
+	component_set = "ACOT_ENERGY_TORPEDO_SE"
+	projectile_gfx = "acot_energy_cannon_se"
+	tags = {
+		weapon_type_energy
+	}
+	ai_tags = {
+		weapon_role_anti_shield
+		weapon_role_artillery
 	}
 	ai_weight = {
 		weight = 50
@@ -680,6 +751,7 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_point_defense
+		screen
 	}
 	ai_weight = {
 		weight = 50
@@ -694,6 +766,10 @@ weapon_component_template = {
 				value <= 3
 			}
 		}
+	}
+	point_defence_targets = {
+		"missile"
+		"strike_craft"
 	}
 }
 
@@ -743,6 +819,7 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_point_defense
+		screen
 	}
 	ai_weight = {
 		weight = 50
@@ -758,6 +835,9 @@ weapon_component_template = {
 			}
 		}
 	}
+	point_defence_targets = {
+		"missile"
+	}
 }
 
 weapon_component_template = {
@@ -767,23 +847,25 @@ weapon_component_template = {
 	icon = "GFX_ship_part_point_defense_se"
 	icon_frame = 1
 	damage = {
-		min = 14
-		max = 28
+		min = 84
+		max = 168
 	}
 	windup = {
 		min = 0
 		max = 0
 	}
-	total_fire_time = 5
+	total_fire_time = 10
 	range = 80
+	min_range = 20
 	accuracy = 0.75
 	power = @m_se_power_cost
 	hull_damage = 1
-	armor_penetration = 0
-	armor_damage = 1.25
+	armor_penetration = 0.25
+	armor_damage = 2
 	shield_penetration = 0
-	shield_damage = 0.5
-	tracking = 0.4
+	shield_damage = 0.25
+	tracking = 0.8
+	size_damage_factor = -0.25
 	resources = {
 		category = ship_components
 		cost = {
@@ -806,6 +888,7 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_point_defense
+		screen
 	}
 	ai_weight = {
 		weight = 50
@@ -820,6 +903,9 @@ weapon_component_template = {
 				value <= 3
 			}
 		}
+	}
+	point_defence_targets = {
+		"missile"
 	}
 }
 
@@ -870,6 +956,7 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_anti_shield
+		gunship
 	}
 	ai_weight = {
 		weight = 50
@@ -932,6 +1019,7 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_anti_shield
+		gunship
 	}
 	ai_weight = {
 		weight = 50
@@ -994,6 +1082,7 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_anti_shield
+		gunship
 	}
 	ai_weight = {
 		weight = 50
@@ -1058,6 +1147,7 @@ weapon_component_template = {
 	ai_tags = {
 		weapon_role_anti_shield
 		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 50
@@ -1121,6 +1211,7 @@ weapon_component_template = {
 	ai_tags = {
 		weapon_role_anti_shield
 		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 50
@@ -1184,6 +1275,7 @@ weapon_component_template = {
 	ai_tags = {
 		weapon_role_anti_shield
 		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 50
@@ -1337,23 +1429,23 @@ weapon_component_template = {
 	icon_frame = 1
 	type = point_defence
 	damage = {
-		min = 25
-		max = 50
+		min = 42
+		max = 84
 	}
 	windup = {
 		min = 0
 		max = 0
 	}
-	total_fire_time = 2.5
-	range = 45
-	accuracy = 0.75
+	total_fire_time = 5
+	range = 35
+	accuracy = 0.8
 	power = @s_se_power_cost
 	hull_damage = 1
 	armor_penetration = 0
-	armor_damage = 0.5
-	shield_penetration = 0
-	shield_damage = 1
-	tracking = 0.9
+	armor_damage = 0.25
+	shield_penetration = 0.25
+	shield_damage = 2
+	tracking = 0.95
 	resources = {
 		category = ship_components
 		cost = {
@@ -1392,6 +1484,10 @@ weapon_component_template = {
 			}
 		}
 	}
+	point_defence_targets = {
+		"missile"
+		"strike_craft"
+	}
 }
 
 weapon_component_template = {
@@ -1401,23 +1497,23 @@ weapon_component_template = {
 	icon_frame = 1
 	type = point_defence
 	damage = {
-		min = 7
-		max = 14
+		min = 42
+		max = 84
 	}
 	windup = {
 		min = 0
 		max = 0
 	}
-	total_fire_time = 2.5
-	range = 45
-	accuracy = 0.75
+	total_fire_time = 5
+	range = 35
+	accuracy = 0.8
 	power = @s_se_power_cost
 	hull_damage = 1
 	armor_penetration = 0
-	armor_damage = 0.5
-	shield_penetration = 0
-	shield_damage = 1
-	tracking = 0.9
+	armor_damage = 0.25
+	shield_penetration = 0.25
+	shield_damage = 2
+	tracking = 0.95
 	resources = {
 		category = ship_components
 		cost = {
@@ -1440,6 +1536,7 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_point_defense
+		screen
 	}
 	ai_weight = {
 		weight = 50
@@ -1455,6 +1552,9 @@ weapon_component_template = {
 			}
 		}
 	}
+	point_defence_targets = {
+		"strike_craft"
+	}
 }
 
 weapon_component_template = {
@@ -1464,23 +1564,24 @@ weapon_component_template = {
 	icon_frame = 1
 	type = point_defence
 	damage = {
-		min = 14
-		max = 28
+		min = 84
+		max = 168
 	}
 	windup = {
 		min = 0
 		max = 0
 	}
-	total_fire_time = 5
-	range = 90
-	accuracy = 0.75
+	total_fire_time = 10
+	range = 80
+	min_range = 20
+	accuracy = 0.8
 	power = @m_se_power_cost
 	hull_damage = 1
 	armor_penetration = 0
-	armor_damage = 0.5
-	shield_penetration = 0
-	shield_damage = 1
-	tracking = 0.9
+	armor_damage = 0.25
+	shield_penetration = 0.25
+	shield_damage = 2
+	tracking = 0.95
 	resources = {
 		category = ship_components
 		cost = {
@@ -1518,10 +1619,13 @@ weapon_component_template = {
 			}
 		}
 	}
+	point_defence_targets = {
+		"strike_craft"
+	}
 }
 
 ### ### ### ### ### MISSILES ### ### ### ### ### 
-### SE Missiles smol
+### SE Missiles
 weapon_component_template = {
 	key = "ACOT_MISSILE_SE"
 	size = small
@@ -1533,33 +1637,33 @@ weapon_component_template = {
 		max = 835
 	}
 	windup = {
-		min = 1
-		max = 15
+		min = 10
+		max = 40
 	}
-	total_fire_time = 42
+	total_fire_time = 60
 	range = 120
 	accuracy = 1
 	missile_speed = 40	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
-	missile_evasion = 0.75
+	missile_evasion = 0.8
 	missile_health = 12
-	missile_shield = 0
+	missile_armor = 12
 	missile_retarget_range = 120
-	power = @m_se_power_cost
+	power = @s_se_power_cost
 	hull_damage = 1.25
 	armor_damage = 1.25
 	armor_penetration = 0
 	shield_damage = 1
 	shield_penetration = 1
-	tracking = 0.45
+	tracking = 0.35
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @m_se_cost
-			acot_sr_stellarite = @m_se_sr_cost
+			alloys = @s_se_cost
+			acot_sr_stellarite = @s_se_sr_cost
 		}
 		upkeep = {
-			alloys = @m_se_upkeep_alloys
-			energy = @m_se_upkeep_energy
+			alloys = @s_se_upkeep_alloys
+			energy = @s_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -1606,21 +1710,21 @@ weapon_component_template = {
 		min = 10
 		max = 40
 	}
-	total_fire_time = 30
+	total_fire_time = 60
 	range = 140
 	accuracy = 1
 	missile_speed = 40	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
-	missile_evasion = 0.75
+	missile_evasion = 0.4
 	missile_health = 12
-	missile_shield = 0
-	missile_retarget_range = 120
+	missile_armor = 24
+	missile_retarget_range = 140
 	power = @m_se_power_cost
 	hull_damage = 1.25
 	armor_damage = 1.25
 	armor_penetration = 0
 	shield_damage = 1
 	shield_penetration = 1
-	tracking = 0.45
+	tracking = 0.35
 	resources = {
 		category = ship_components
 		cost = {
@@ -1661,72 +1765,6 @@ weapon_component_template = {
 	}
 }
 
-### SE Energy Torpedo
-weapon_component_template = {
-	key = "ACOT_ENERGY_TORPEDO_SE"
-	size = torpedo
-	icon = "GFX_ship_part_energy_torpedo_se"
-	icon_frame = 1
-	type = instant
-	damage = {
-		min = 2609
-		max = 3833
-	}
-	windup = {
-		min = 10
-		max = 40
-	}
-	total_fire_time = 30
-	range = 140
-	min_range = 45
-	accuracy = 0.9
-	power = @m_se_power_cost
-	hull_damage = 1.75
-	armor_penetration = 0
-	armor_damage = 1.5
-	shield_penetration = 0
-	shield_damage = 0.75
-	tracking = 0.05
-	size_damage_factor = 1
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @m_se_cost
-			acot_sr_stellarite = @m_se_sr_cost
-		}
-		upkeep = {
-			alloys = @m_se_upkeep_alloys
-			energy = @m_se_upkeep_energy
-		}
-	}
-	prerequisites = {
-		"tech_energy_torpedo_se"
-	}
-	component_set = "ACOT_ENERGY_TORPEDO_SE"
-	projectile_gfx = "acot_energy_cannon_se"
-	tags = {
-		weapon_type_energy
-	}
-	ai_tags = {
-		weapon_role_anti_shield
-		weapon_role_artillery
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
 ### SE PETODOR
 weapon_component_template = {
 	key = "ACOT_TORPEDO_SE"
@@ -1742,8 +1780,8 @@ weapon_component_template = {
 		min = 5
 		max = 10
 	}
-	total_fire_time = 100
-	range = 50
+	total_fire_time = 200
+	range = 30
 	accuracy = 1
 	missile_speed = 17	# 300 -- apparently, the game doesn't auto-convert speed for non-vanilla components
 	missile_evasion = 0
@@ -1808,23 +1846,23 @@ weapon_component_template = {
 		min = 5536
 		max = 6383
 	}
-	#increased by 15% per tier
 	windup = {
 		min = 20
 		max = 30
 	}
-	total_fire_time = 60
-	range = 180
+	total_fire_time = 120
+	range = 150
+	min_range = 45
 	accuracy = 1
 	missile_speed = 22	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
 	missile_evasion = 0
-	missile_health = 500
-	missile_retarget_range = 120
+	missile_health = 135
+	missile_retarget_range = 75
 	power = @al_se_power_cost
 	hull_damage = 1.25
-	armor_damage = 1.25
+	armor_damage = 1
 	armor_penetration = 0
-	shield_damage = 1
+	shield_damage = 1.25
 	shield_penetration = 1
 	tracking = 0.3
 	resources = {
@@ -1848,6 +1886,8 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_artillery
+		artillery
+		energy_torpedoes
 	}
 	ai_weight = {
 		weight = 50
@@ -1880,13 +1920,13 @@ weapon_component_template = {
 		min = 1
 		max = 10
 	}
-	total_fire_time = 20
-	range = 200
+	total_fire_time = 40
+	range = 180
 	min_range = 30
 	accuracy = 1
 	missile_speed = 47	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
 	missile_evasion = 0.6
-	missile_health = 1250
+	missile_health = 100
 	missile_retarget_range = 190
 	power = @xl_se_power_cost
 	hull_damage = 1.25
@@ -1895,6 +1935,7 @@ weapon_component_template = {
 	shield_damage = 1
 	shield_penetration = 1
 	tracking = 0.2
+	firing_arc = 135
 	resources = {
 		category = ship_components
 		cost = {
@@ -1916,6 +1957,8 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_artillery
+		artillery
+		energy_torpedoes
 	}
 	ai_weight = {
 		weight = 50
@@ -1948,14 +1991,14 @@ weapon_component_template = {
 		min = 100
 		max = 100
 	}
-	total_fire_time = 75
-	range = 475
-	min_range = 100
+	total_fire_time = 400
+	range = 450
+	min_range = 150
 	accuracy = 1
 	missile_speed = 13	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
 	missile_evasion = 0
-	missile_health = 12500
-	missile_retarget_range = 237
+	missile_health = 650
+	missile_retarget_range = 125
 	power = @titanic_se_power_cost
 	hull_damage = 3
 	armor_damage = 1
@@ -1963,6 +2006,8 @@ weapon_component_template = {
 	shield_damage = 1
 	shield_penetration = 1
 	tracking = 0
+	size_damage_factor = 3
+	firing_arc = 90
 	resources = {
 		category = ship_components
 		cost = {
@@ -1984,6 +2029,8 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_artillery
+		artillery
+		energy_torpedoes
 	}
 	ai_weight = {
 		weight = 50
@@ -2002,7 +2049,7 @@ weapon_component_template = {
 }
 
 ### ### ### ### ### HANGER ### ### ### ### ### 
-### SE Scouts
+### SE Fighter
 strike_craft_component_template = {
 	key = "ACOT_SCOUT_HANGAR_SE"
 	size = LARGE
@@ -2015,6 +2062,7 @@ strike_craft_component_template = {
 	count = 8
 	regeneration_per_day = 1
 	launch_time = 0.25
+	engagement_range = 300
 	damage = {
 		min = 64
 		max = 128
@@ -2022,9 +2070,9 @@ strike_craft_component_template = {
 	cooldown = 1
 	range = 20
 	accuracy = 1
-	health = 3750
-	armor = 2500
-	shield = 3750
+	health = 18
+	armor = 35
+	shield = 35
 	tracking = 1
 	speed = 1000
 	rotation_speed = 1
@@ -2091,8 +2139,9 @@ strike_craft_component_template = {
 	projectile_gfx = "acot_fighter_se"
 	power = @l_se_power_cost
 	count = 8
-	regeneration_per_day = 2
+	regeneration_per_day = 0.5
 	launch_time = 0.25
+	engagement_range = 300
 	damage = {
 		min = 128
 		max = 362
@@ -2100,9 +2149,9 @@ strike_craft_component_template = {
 	cooldown = 2
 	range = 10
 	accuracy = 1
-	health = 3750
-	armor = 2500
-	shield = 3750
+	health = 25
+	armor = 20
+	shield = 50
 	tracking = 1
 	speed = 850
 	rotation_speed = 1
@@ -2166,8 +2215,9 @@ strike_craft_component_template = {
 	projectile_gfx = "acot_bomber_se"
 	power = @l_se_power_cost
 	count = 4
-	regeneration_per_day = 1
+	regeneration_per_day = 0.5
 	launch_time = 0.25
+	engagement_range = 300
 	damage = {
 		min = 958
 		max = 1916
@@ -2175,9 +2225,9 @@ strike_craft_component_template = {
 	cooldown = 3
 	range = 30
 	accuracy = 1
-	health = 4000
-	armor = 2250
-	shield = 2250
+	health = 40
+	armor = 30
+	shield = 100
 	evasion = 0.7
 	speed = 700
 	rotation_speed = 1
@@ -2241,6 +2291,7 @@ strike_craft_component_template = {
 	count = 1
 	regeneration_per_day = 0.1
 	launch_time = 0.25
+	engagement_range = 300
 	damage = {
 		min = 2129
 		max = 4259
@@ -2248,9 +2299,9 @@ strike_craft_component_template = {
 	cooldown = 6
 	range = 165
 	accuracy = 0.85
-	health = 3750
-	armor = 1750
-	shield = 1750
+	health = 180
+	armor = 90
+	shield = 400
 	evasion = 0.3
 	speed = 350
 	tracking = 0.3
@@ -2339,7 +2390,6 @@ weapon_component_template = {
 		}
 	}
 	firing_arc = 25
-	min_range = 10
 	use_ship_kill_target = no
 	prerequisites = {
 		"tech_energy_lance_se"
@@ -2384,8 +2434,8 @@ weapon_component_template = {
 		min = 12
 		max = 48
 	}
-	total_fire_time = 36
-	range = 170
+	total_fire_time = 71
+	range = 150
 	accuracy = 1
 	power = @xl_se_power_cost
 	hull_damage = 1.5
@@ -2394,7 +2444,8 @@ weapon_component_template = {
 	shield_penetration = 1
 	shield_damage = 1
 	tracking = 0
-	firing_arc = 75
+	firing_arc = 25
+	min_range = 10
 	use_ship_kill_target = no
 	resources = {
 		category = ship_components
@@ -2447,19 +2498,21 @@ weapon_component_template = {
 		max = 27682
 	}
 	windup = {
-		min = 25
-		max = 40
+		min = 14
+		max = 54
 	}
-	total_fire_time = 75
-	range = 200
+	total_fire_time = 80
+	range = 175
 	accuracy = 1
 	power = @xl_se_power_cost
-	hull_damage = 1
-	armor_penetration = 0.25
+	hull_damage = 1.5
+	armor_penetration = 0
 	armor_damage = 1
-	shield_penetration = 0.25
+	shield_penetration = 0.5
 	shield_damage = 2
-	tracking = 0.1
+	tracking = 0
+	firing_arc = 45
+	min_range = 45
 	use_ship_kill_target = no
 	firing_arc = 135
 	resources = {
@@ -2510,7 +2563,7 @@ weapon_component_template = {
 	icon = "GFX_ship_part_perdition_beam_se"
 	icon_frame = 1
 	firing_arc = 10
-	min_range = 30
+	min_range = 0
 	use_ship_kill_target = no
 	damage = {
 		min = 53235
@@ -2520,13 +2573,15 @@ weapon_component_template = {
 		min = 30
 		max = 120
 	}
-	total_fire_time = 90
-	range = 275
+	total_fire_time = 180
+	range = 250
 	accuracy = 1
-	hull_damage = 1.25
-	shield_damage = 1
-	armor_damage = 1.5
-	tracking = 0.1
+	hull_damage = 1.75
+	armor_penetration = 0.25
+	armor_damage = 2
+	shield_penetration = 0
+	shield_damage = 0.75
+	tracking = 0
 	power = @titanic_se_power_cost
 	resources = {
 		category = ship_components
@@ -2549,7 +2604,7 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_artillery
-		gunship
+		artillery
 	}
 	ai_weight = {
 		weight = 50
@@ -2582,17 +2637,18 @@ weapon_component_template = {
 		min = 24
 		max = 48
 	}
-	total_fire_time = 40
-	range = 300
+	total_fire_time = 80
+	range = 275
 	accuracy = 1
 	power = @titanic_se_power_cost
-	hull_damage = 1
+	hull_damage = 2.5
 	armor_penetration = 1
 	armor_damage = 1
 	shield_penetration = 1
 	shield_damage = 1
-	tracking = 1
-	firing_arc = 30
+	tracking = 0
+	firing_arc = 10
+	min_range = 15
 	use_ship_kill_target = no
 	resources = {
 		category = ship_components
@@ -2648,16 +2704,18 @@ weapon_component_template = {
 		min = 45
 		max = 90
 	}
-	total_fire_time = 90
-	range = 325
+	total_fire_time = 180
+	range = 300
 	accuracy = 1
 	power = @titanic_se_power_cost
-	hull_damage = 1.25
-	armor_penetration = 0.25
+	hull_damage = 2
+	armor_penetration = 0
 	armor_damage = 1
-	shield_penetration = 0.25
-	shield_damage = 1.5
+	shield_penetration = 0.5
+	shield_damage = 2
 	tracking = 1
+	firing_arc = 45
+	min_range = 60
 	use_ship_kill_target = no
 	firing_arc = 135
 	resources = {
@@ -2722,9 +2780,9 @@ utility_component_template = {
 	}
 	modifier = {
 		ship_armor_add = 3087
-		ship_armor_regen_add_static = 0.45
+		ship_armor_regen_add_static = 3.45
 		ship_hull_add = 1545
-		ship_hull_regen_add_static = 1.9
+		ship_hull_regen_add_static = 10.3
 	}
 	prerequisites = {
 		tech_armor_se
@@ -2764,10 +2822,10 @@ utility_component_template = {
 		}
 	}
 	modifier = {
-		ship_hull_add = 580
-		ship_hull_regen_add_static = 1.17
+		ship_hull_add = 860
+		ship_hull_regen_add_static = 8.6
 		ship_armor_add = 7720
-		ship_armor_regen_add_static = 4.72
+		ship_armor_regen_add_static = 25.75
 	}
 	prerequisites = {
 		tech_armor_se
@@ -2808,9 +2866,9 @@ utility_component_template = {
 	}
 	modifier = {
 		ship_hull_add = 9262
-		ship_hull_regen_add_static = 1.17
+		ship_hull_regen_add_static = 20.6
 		ship_armor_add = 18527
-		ship_armor_regen_add_static = 4.72
+		ship_armor_regen_add_static = 61.75
 	}
 	prerequisites = {
 		tech_armor_se
@@ -2854,11 +2912,8 @@ utility_component_template = {
 	}
 	modifier = {
 		ship_hull_add = 1170
-		ship_hull_regen_add_static = 11.5
-		ship_armor_add = 780
-		ship_armor_regen_add_static = 78
 		ship_shield_add = 2342
-		ship_shield_regen_add_static = 234.2
+		ship_shield_regen_add_static = 78
 	}
 	prerequisites = {
 		"tech_dark_matter_deflector_se"
@@ -2899,11 +2954,8 @@ utility_component_template = {
 	}
 	modifier = {
 		ship_hull_add = 2927
-		ship_hull_regen_add_static = 29
-		ship_armor_add = 1950
-		ship_armor_regen_add_static = 195
 		ship_shield_add = 5855
-		ship_shield_regen_add_static = 585.5
+		ship_shield_regen_add_static = 165
 	}
 	prerequisites = {
 		"tech_dark_matter_deflector_se"
@@ -2944,11 +2996,8 @@ utility_component_template = {
 	}
 	modifier = {
 		ship_hull_add = 7202
-		ship_hull_regen_add_static = 72
-		ship_armor_add = 4685
-		ship_armor_regen_add_static = 468.5
 		ship_shield_add = 14055
-		ship_shield_regen_add_static = 1405.5
+		ship_shield_regen_add_static = 394
 	}
 	prerequisites = {
 		"tech_dark_matter_deflector_se"
@@ -2986,13 +3035,12 @@ utility_component_template = {
 			acot_sr_stellarite = 2
 		}
 	}
-	sensor_range = 15
-	hyperlane_range = 30
+	sensor_range = 12
+	hyperlane_range = 24
 	ship_modifier = {
 		ship_tracking_add = 40
-		ship_tracking_mult = 0.25
-		ship_tracking_add = 10
-		ship_accuracy_mult = 0.25
+		ship_tracking_mult = 0.2
+		ship_accuracy_mult = 0.2
 	}
 	prerequisites = {
 		"tech_sensor_se"
@@ -3113,8 +3161,8 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = 30
-			acot_sr_stellarite = 5
+			alloys = 20
+			acot_sr_stellarite = 8
 		}
 	}
 	class_restriction = {
@@ -3137,6 +3185,7 @@ utility_component_template = {
 		aot_gatekeeper
 		precursor_assault_carrier
 		progenitor_carrier
+		acot_giga_fortress
 	}
 	component_set = "combat_computers"
 	ship_behavior = "origin_offense_goliath"
@@ -3175,10 +3224,8 @@ utility_component_template = {
 	power = -40
 	resources = {
 		category = ship_components
-		cost = {
-			alloys = 30
-			acot_sr_stellarite = 5
-		}
+		alloys = 20
+		acot_sr_stellarite = 8
 	}
 	class_restriction = {
 		shipclass_military
@@ -3200,6 +3247,7 @@ utility_component_template = {
 		aot_gatekeeper
 		precursor_assault_carrier
 		progenitor_carrier
+		acot_giga_fortress
 	}
 	component_set = "combat_computers"
 	ship_behavior = "origin_balance_goliath"
@@ -3262,6 +3310,7 @@ utility_component_template = {
 		aot_gatekeeper
 		precursor_assault_carrier
 		progenitor_carrier
+		acot_giga_fortress
 	}
 	component_set = "combat_computers"
 	ship_behavior = "origin_defense_goliath"
@@ -3292,217 +3341,8 @@ utility_component_template = {
 	}
 }
 
-####################
-# Engimatic Reactors SE
-####################
-utility_component_template = {
-	key = "TITAN_DARK_MATTER_REACTOR_SE"
-	size = small
-	icon = "GFX_ship_part_dark_matter_power_core_se"
-	icon_frame = 1
-	power = 153600
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = 640
-			acot_sr_stellarite = 256
-		}
-		upkeep = {
-			energy = 0
-			alloys = 0
-		}
-	}
-	modifier = {
-		ship_hull_mult = 0.25
-	}
-	prerequisites = {
-		"tech_dark_matter_power_core_se"
-	}
-	component_set = "power_core"
-	size_restriction = {
-		titan
-		sofe_gatekeeper_warden
-		aot_gatekeeper
-		ion_cannon
-		precursor_titan
-		precursor_assault_carrier
-		progenitor_carrier
-		sentinel_sphere
-		precursor_guardian
-		Carrier
-		SCX_Dreadnought
-		fe_titan
-		Dreadnought
-		fe_large_station
-		fe_small_station
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
 ########################################
 ##############################################
-utility_component_template = {
-	key = "BASE_COMBAT_COMPUTER_COLOSSUS_SE"
-	size = small
-	icon = "GFX_ship_part_computer_attack_colossus_se"
-	icon_frame = 1
-	power = -100
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = 30
-			acot_sr_stellarite = 5
-		}
-	}
-	ship_behavior = "colossus"
-	ship_modifier = {
-		ship_fire_rate_mult = 0.3
-		ship_weapon_range_mult = 0.3
-		ship_tracking_add = 30
-		ship_weapon_damage = 0.3
-		ship_accuracy_mult = 0.3
-		ship_evasion_mult = 0.3
-	}
-	size_restriction = {
-		precursor_colossus
-	}
-	#fe_goliath
-	component_set = "combat_computers"
-	prerequisites = {
-		"tech_computer_stellarite"
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "SE_STARBASE_DEFENSIVE_COMBAT_COMPUTER"
-	size = small
-	icon = "GFX_ship_part_computer_stellarite_defensive"
-	icon_frame = 1
-	power = -40
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = 30
-			acot_sr_stellarite = 5
-		}
-	}
-	class_restriction = {
-		shipclass_starbase
-	}
-	size_restriction = {
-		starbase_outpost
-		starbase_starport
-		starbase_starhold
-		starbase_starfortress
-		starbase_citadel
-		acot_precusor_starbase
-		acot_precusor_starfortress
-		acot_precusor_starcitadel
-		acot_precusor_sigma_starbase
-		acot_precusor_sigma_starfortress
-		acot_precusor_sigma_starcitadel
-	}
-	component_set = "combat_computers"
-	ship_behavior = "platform"
-	ship_modifier = {
-		ship_fire_rate_mult = 0.3
-		ship_weapon_range_mult = 0.3
-		ship_tracking_add = 30
-		ship_weapon_damage = 0.3
-		ship_accuracy_mult = 0.3
-		ship_evasion_mult = 0.3
-	}
-	prerequisites = {
-		"tech_computer_stellarite"
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "SE_PLATFORM_DEFENSIVE_COMBAT_COMPUTER"
-	size = small
-	icon = "GFX_ship_part_computer_stellarite_defensive"
-	icon_frame = 1
-	power = -40
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = 30
-			acot_sr_stellarite = 5
-		}
-	}
-	class_restriction = {
-		shipclass_military_station
-	}
-	component_set = "combat_computers"
-	ship_behavior = "platform"
-	ship_modifier = {
-		ship_fire_rate_mult = 0.3
-		ship_weapon_range_mult = 0.3
-		ship_tracking_add = 30
-		ship_weapon_damage = 0.3
-		ship_accuracy_mult = 0.3
-		ship_evasion_mult = 0.3
-	}
-	prerequisites = {
-		"tech_computer_stellarite"
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
 utility_component_template = {
 	key = "ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR_SE"
 	size = small
