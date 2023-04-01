@@ -21,7 +21,7 @@ weapon_component_template = {
 	range = 40
 	accuracy = 1
 	power = @s_re_power_cost
-	hull_damage = 1
+	hull_damage = 1.25
 	armor_penetration = 0
 	armor_damage = 1.5
 	shield_penetration = 0
@@ -148,8 +148,8 @@ weapon_component_template = {
 	total_fire_time = 35
 	range = 80
 	accuracy = 1
-	power = @l_pe_power_cost
-	hull_damage = 1
+	power = @l_re_power_cost
+	hull_damage = 1.25
 	armor_penetration = 0
 	armor_damage = 1.5
 	shield_penetration = 0
@@ -216,7 +216,7 @@ weapon_component_template = {
 	power = @s_re_power_cost
 	hull_damage = 1.5
 	armor_penetration = 0
-	armor_damage = 2.25
+	armor_damage = 2
 	shield_penetration = 0
 	shield_damage = 0.5
 	tracking = 0.4
@@ -277,10 +277,10 @@ weapon_component_template = {
 	total_fire_time = 40
 	range = 60
 	accuracy = 0.8
-	power = @m_pe_power_cost
+	power = @m_re_power_cost
 	hull_damage = 1.5
 	armor_penetration = 0
-	armor_damage = 2.25
+	armor_damage = 2
 	shield_penetration = 0
 	shield_damage = 0.5
 	tracking = 0.2
@@ -340,14 +340,15 @@ weapon_component_template = {
 	}
 	total_fire_time = 40
 	range = 80
+	min_range = 45
 	accuracy = 0.8
 	power = @l_pe_power_cost
 	hull_damage = 1.5
 	armor_penetration = 0
-	armor_damage = 2.25
+	armor_damage = 2
 	shield_penetration = 0
 	shield_damage = 0.5
-	tracking = 0.05
+	tracking = 0.1
 	upgrades_to = "LARGE_ACOT_PLASMA_SE"
 	resources = {
 		category = ship_components
@@ -397,13 +398,13 @@ weapon_component_template = {
 	type = instant
 	damage = {
 		min = 1
-		max = 99
+		max = 63
 	}
 	windup = {
-		min = 2
-		max = 20
+		min = 3
+		max = 11
 	}
-	total_fire_time = 30
+	total_fire_time = 16
 	range = 30
 	accuracy = 1
 	power = @s_re_power_cost
@@ -434,8 +435,9 @@ weapon_component_template = {
 		weapon_type_energy
 	}
 	ai_tags = {
-		weapon_role_anti_shield
-		gunship
+		weapon_role_anti_hull
+		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 40
@@ -461,17 +463,16 @@ weapon_component_template = {
 	type = instant
 	damage = {
 		min = 1
-		max = 248
-	}
-	# DO NOT  TRUST SHEPHERD
+		max = 157
+	}	# DO NOT  TRUST SHEPHERD
 	windup = {
-		min = 2
-		max = 20
+		min = 3
+		max = 11
 	}
-	total_fire_time = 30
-	range = 50
+	total_fire_time = 16
+	range = 40
 	accuracy = 1
-	power = @m_pe_power_cost
+	power = @m_re_power_cost
 	hull_damage = 1.25
 	armor_penetration = 1
 	armor_damage = 1
@@ -499,8 +500,9 @@ weapon_component_template = {
 		weapon_type_energy
 	}
 	ai_tags = {
-		weapon_role_anti_shield
-		gunship
+		weapon_role_anti_hull
+		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 40
@@ -526,17 +528,16 @@ weapon_component_template = {
 	type = instant
 	damage = {
 		min = 1
-		max = 596
-	}
-	# DO NOT  TRUST SHEPHERD
+		max = 378
+	}	# DO NOT  TRUST SHEPHERD
 	windup = {
-		min = 2
-		max = 20
+		min = 3
+		max = 11
 	}
-	total_fire_time = 30
-	range = 50
+	total_fire_time = 16
+	range = 60
 	accuracy = 1
-	power = @m_pe_power_cost
+	power = @m_re_power_cost
 	hull_damage = 1.25
 	armor_penetration = 1
 	armor_damage = 1
@@ -565,8 +566,9 @@ weapon_component_template = {
 		weapon_type_energy
 	}
 	ai_tags = {
-		weapon_role_anti_shield
-		gunship
+		weapon_role_anti_hull
+		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 40
@@ -592,20 +594,21 @@ weapon_component_template = {
 	icon_frame = 1
 	type = instant
 	damage = {
-		min = 1550
-		max = 3445
+		min = 202
+		max = 434
 	}
 	windup = {
-		min = 1
-		max = 19
+		min = 25
+		max = 100
 	}
 	total_fire_time = 150
 	range = 130
+	min_range = 45
 	accuracy = 0.9
-	power = @al_pe_power_cost
+	power = @m_re_power_cost
 	hull_damage = 1.75
 	armor_penetration = 0
-	armor_damage = 1.75
+	armor_damage = 1.5
 	shield_penetration = 0
 	shield_damage = 0.75
 	tracking = 0.05
@@ -633,7 +636,6 @@ weapon_component_template = {
 	ai_tags = {
 		weapon_role_anti_shield
 		weapon_role_artillery
-		artillery
 	}
 	ai_weight = {
 		weight = 40
@@ -659,7 +661,7 @@ weapon_component_template = {
 	icon = "GFX_ship_part_point_defense_re"
 	icon_frame = 1
 	damage = {
-		min = 7
+		min = 13
 		max = 26
 	}
 	windup = {
@@ -671,11 +673,11 @@ weapon_component_template = {
 	accuracy = 0.75
 	power = @s_re_power_cost
 	hull_damage = 1
-	armor_penetration = 0
-	armor_damage = 1.25
+	armor_penetration = 0.25
+	armor_damage = 2
 	shield_penetration = 0
-	shield_damage = 0.5
-	tracking = 0.4
+	shield_damage = 0.25
+	tracking = 0.7
 	upgrades_to = "ACOT_POINT_DEFENSE_SE"
 	resources = {
 		category = ship_components
@@ -724,7 +726,7 @@ weapon_component_template = {
 	icon = "GFX_ship_part_point_defense_re"
 	icon_frame = 1
 	damage = {
-		min = 7
+		min = 13
 		max = 26
 	}
 	windup = {
@@ -790,8 +792,8 @@ weapon_component_template = {
 	icon = "GFX_ship_part_point_defense_re"
 	icon_frame = 1
 	damage = {
-		min = 17
-		max = 66
+		min = 26
+		max = 52
 	}
 	windup = {
 		min = 0
@@ -1097,6 +1099,7 @@ weapon_component_template = {
 	ai_tags = {
 		weapon_role_anti_shield
 		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 40
@@ -1162,6 +1165,7 @@ weapon_component_template = {
 	ai_tags = {
 		weapon_role_anti_shield
 		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 40
@@ -1186,12 +1190,12 @@ weapon_component_template = {
 	icon_frame = 1
 	type = instant
 	damage = {
-		min = 278
+		min = 258
 		max = 537
 	}
 	windup = {
 		min = 2
-		max = 14
+		max = 6
 	}
 	total_fire_time = 9
 	range = 40
@@ -1227,6 +1231,7 @@ weapon_component_template = {
 	ai_tags = {
 		weapon_role_anti_shield
 		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 40
@@ -1292,6 +1297,7 @@ weapon_component_template = {
 	ai_tags = {
 		weapon_role_anti_shield
 		brawler
+		brawler_stealth
 	}
 	ai_weight = {
 		weight = 40
@@ -1325,13 +1331,14 @@ weapon_component_template = {
 		max = 25
 	}
 	total_fire_time = 50
-	range = 150
+	range = 135
+	min_range = 45
 	accuracy = 0.75
-	power = @al_pe_power_cost
-	hull_damage = 1.25
+	power = @al_re_power_cost
+	hull_damage = 1
 	armor_penetration = 0
-	armor_damage = 0.75
-	shield_penetration = 0
+	armor_damage = 0.5
+	shield_penetration = 0.5
 	shield_damage = 2
 	tracking = 0.05
 	upgrades_to = "ACOT_ARTILLERY_SE"
@@ -1374,22 +1381,23 @@ weapon_component_template = {
 	}
 }
 
+### AE Flak
 weapon_component_template = {
-	key = "SMALL_ACOT_FLAK_CANNON_RE"
-	size = small
-	icon = "GFX_ship_part_flak_batteries_pe"
+	key = "ACOT_FLAK_CANNON_RE"
+	size = point_defence
+	icon = "GFX_ship_part_flak_batteries_re"
 	icon_frame = 1
 	type = point_defence
 	damage = {
-		min = 7
-		max = 20
+		min = 13
+		max = 26
 	}
 	windup = {
 		min = 0
 		max = 0
 	}
 	total_fire_time = 5
-	range = 35
+	range = 40
 	accuracy = 0.8
 	power = @s_re_power_cost
 	hull_damage = 1
@@ -1398,13 +1406,11 @@ weapon_component_template = {
 	shield_penetration = 0.25
 	shield_damage = 2
 	tracking = 0.9
-	upgrades_to = "SMALL_ACOT_FLAK_CANNON_SE"
 	resources = {
 		category = ship_components
 		cost = {
 			alloys = @s_re_cost
-			sr_dark_matter = @s_re_sr_cost
-			acot_sr_dark_energy = @s_re_sr2_cost
+			aot_sr_runic_power = @s_re_runic_cost
 		}
 		upkeep = {
 			energy = @s_re_upkeep_energy
@@ -1438,6 +1444,78 @@ weapon_component_template = {
 			}
 		}
 	}
+	point_defence_targets = {
+		"missile"
+		"strike_craft"
+	}
+}
+
+weapon_component_template = {
+	key = "SMALL_ACOT_FLAK_CANNON_RE"
+	size = small
+	icon = "GFX_ship_part_flak_batteries_re"
+	icon_frame = 1
+	type = point_defence
+	damage = {
+		min = 13
+		max = 26
+	}
+	windup = {
+		min = 0
+		max = 0
+	}
+	total_fire_time = 5
+	range = 35
+	accuracy = 0.8
+	power = @s_re_power_cost
+	hull_damage = 1
+	armor_penetration = 0
+	armor_damage = 0.25
+	shield_penetration = 0.25
+	shield_damage = 2
+	tracking = 0.9
+	upgrades_to = "SMALL_ACOT_FLAK_CANNON_SE"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @s_re_cost
+			aot_sr_runic_power = @s_re_runic_cost
+		}
+		upkeep = {
+			energy = @s_re_upkeep_energy
+			alloys = @s_re_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_flak_batteries_re"
+	}
+	component_set = "ACOT_FLAK_CANNON_RE"
+	projectile_gfx = "acot_flak_pd_re"
+	tags = {
+		weapon_type_point_defense
+		weapon_type_kinetic
+	}
+	ai_tags = {
+		weapon_role_point_defense
+		screen
+	}
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+	}
+	point_defence_targets = {
+		"strike_craft"
+	}
 }
 
 weapon_component_template = {
@@ -1447,8 +1525,8 @@ weapon_component_template = {
 	icon_frame = 1
 	type = point_defence
 	damage = {
-		min = 17
-		max = 50
+		min = 26
+		max = 52
 	}
 	windup = {
 		min = 0
@@ -1470,8 +1548,7 @@ weapon_component_template = {
 		category = ship_components
 		cost = {
 			alloys = @m_re_cost
-			sr_dark_matter = @m_re_sr_cost
-			acot_sr_dark_energy = @m_re_sr2_cost
+			aot_sr_runic_power = @m_re_runic_cost
 		}
 		upkeep = {
 			energy = @m_re_upkeep_energy
@@ -1505,6 +1582,9 @@ weapon_component_template = {
 			}
 		}
 	}
+	point_defence_targets = {
+		"strike_craft"
+	}
 }
 
 #####################################################
@@ -1518,8 +1598,8 @@ weapon_component_template = {
 	icon_frame = 1
 	type = missile
 	damage = {
-		min = 285
-		max = 378
+		min = 162
+		max = 238
 	}
 	windup = {
 		min = 10
@@ -1562,6 +1642,8 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_artillery
+		artillery
+		energy_torpedoes
 	}
 	ai_weight = {
 		weight = 40
@@ -1579,7 +1661,6 @@ weapon_component_template = {
 	}
 }
 
-# TODO: Finish port of runic tier weapons from here.
 weapon_component_template = {
 	key = "MEDIUM_ACOT_MISSILE_RE"
 	size = medium
@@ -1631,6 +1712,8 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_artillery
+		artillery
+		energy_torpedoes
 	}
 	ai_weight = {
 		weight = 40
@@ -1916,6 +1999,9 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_artillery
+		artillery
+		energy_torpedoes
+		explosive
 	}
 	ai_weight = {
 		weight = 40
@@ -1952,6 +2038,7 @@ strike_craft_component_template = {
 	count = 8
 	regeneration_per_day = 1
 	launch_time = 0.25
+	engagement_range = 300
 	damage = {
 		min = 10
 		max = 20
@@ -2030,6 +2117,7 @@ strike_craft_component_template = {
 	count = 8
 	regeneration_per_day = 0.5
 	launch_time = 0.25
+	engagement_range = 300
 	damage = {
 		min = 20
 		max = 566
@@ -2065,11 +2153,17 @@ strike_craft_component_template = {
 	ship_behavior = "acot_fighters_behavior"
 	component_set = "ACOT_FIGHTERS_HANGAR_RE"
 	prerequisites = {
-		tech_strike_craft_fighter_re
+		"tech_strike_craft_fighter_re"
 	}
 	tags = {
 		weapon_type_strike_craft
-		weapon_type_kinetic
+	}
+	ai_tags = {
+		weapon_role_point_defense
+		carrier
+	}
+	point_defence_targets = {
+		"strike_craft"
 	}
 	ai_weight = {
 		weight = 40
@@ -2100,6 +2194,7 @@ strike_craft_component_template = {
 	count = 4
 	regeneration_per_day = 0.5
 	launch_time = 0.25
+	engagement_range = 300
 	damage = {
 		min = 149
 		max = 298
@@ -2139,7 +2234,11 @@ strike_craft_component_template = {
 	}
 	tags = {
 		weapon_type_strike_craft
-		weapon_type_explosive
+	}
+	ai_tags = {
+		weapon_role_anti_armor
+		carrier
+		explosive
 	}
 	ai_weight = {
 		weight = 40
@@ -2182,6 +2281,7 @@ strike_craft_component_template = {
 	count = 1
 	regeneration_per_day = 0.1
 	launch_time = 0.25
+	engagement_range = 300
 	damage = {
 		min = 662
 		max = 1325
@@ -2390,8 +2490,10 @@ weapon_component_template = {
 	accuracy = 0.75
 	power = @xl_re_power_cost
 	hull_damage = 1
-	shield_damage = 1.5
-	armor_damage = 0.75
+	armor_penetration = 0
+	armor_damage = 1
+	shield_penetration = 0.5
+	shield_damage = 2
 	tracking = 0
 	firing_arc = 45
 	min_range = 45
@@ -2460,9 +2562,11 @@ weapon_component_template = {
 	total_fire_time = 180
 	range = 250
 	accuracy = 1
-	hull_damage = 1.25
-	shield_damage = 1
-	armor_damage = 1.5
+	hull_damage = 1.5
+	armor_penetration = 0.25
+	armor_damage = 2
+	shield_penetration = 0
+	shield_damage = 0.75
 	tracking = 0
 	power = @titanic_re_power_cost
 	upgrades_to = "ACOT_PERDITION_BEAM_SE"
@@ -2527,7 +2631,7 @@ weapon_component_template = {
 	range = 275
 	accuracy = 1
 	power = -300
-	hull_damage = 1
+	hull_damage = 2
 	armor_penetration = 1
 	armor_damage = 1
 	shield_penetration = 1
@@ -2596,9 +2700,11 @@ weapon_component_template = {
 	range = 300
 	accuracy = 1
 	power = @titanic_re_power_cost
-	hull_damage = 1.25
-	shield_damage = 1.5
+	hull_damage = 1.5
+	armor_penetration = 0
 	armor_damage = 1
+	shield_penetration = 0.5
+	shield_damage = 2
 	tracking = 0
 	upgrades_to = "ACOT_TITAN_CANNON_SE"
 	resources = {
@@ -2699,13 +2805,13 @@ weapon_component_template = {
 
 weapon_component_template = {
 	key = "ACOT_PHANON_DECIMATOR_CANNON"
-	size = planet_killer
+	size = titanic
 	type = instant
 	prio_projectile = yes
 	icon = "GFX_ship_part_pmc_decimator_beam"
 	icon_frame = 1
 	firing_arc = 15
-	min_range = 200
+	min_range = 100
 	use_ship_kill_target = no
 	damage = {
 		min = 50000
@@ -2716,7 +2822,7 @@ weapon_component_template = {
 		max = 300
 	}
 	total_fire_time = 100
-	range = 300
+	range = 400
 	accuracy = 1
 	hull_damage = 5
 	shield_damage = 4
@@ -2747,7 +2853,7 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_artillery
-		artillery
+		weapon_role_anti_shield
 	}
 	ai_weight = {
 		weight = 0
@@ -2795,6 +2901,7 @@ weapon_component_template = {
 	prerequisites = {
 		tech_pmc_decimator_beam
 	}
+	ship_limit = 1
 	component_set = "ACOT_PHANON_DECIMATOR_CANNON"
 	projectile_gfx = "acot_pmc_decimator_cannon"
 	tags = {
@@ -2804,7 +2911,7 @@ weapon_component_template = {
 	}
 	ai_tags = {
 		weapon_role_artillery
-		artillery
+		weapon_role_anti_shield
 	}
 	ai_weight = {
 		weight = 40
@@ -2962,8 +3069,8 @@ utility_component_template = {
 	modifier = {
 		ship_hull_add = 240
 		ship_hull_regen_add_static = 2.4
-		ship_armor_add = 480
-		ship_armor_regen_add_static = 4.8
+		ship_armor_add = 960
+		ship_armor_regen_add_static = 9.6
 	}
 	upgrades_to = "SMALL_ACOT_ARMOR_SE"
 	resources = {
@@ -3002,12 +3109,12 @@ utility_component_template = {
 	size = medium
 	icon = "GFX_ship_part_armor_re"
 	icon_frame = 1
-	power = @armor_m_pe_power_cost
+	power = @armor_m_re_power_cost
 	modifier = {
-		ship_hull_add = 605
-		ship_hull_regen_add_static = 6.05
-		ship_armor_add = 1210
-		ship_armor_regen_add_static = 12.1
+		ship_hull_add = 610
+		ship_hull_regen_add_static = 6.1
+		ship_armor_add = 2400
+		ship_armor_regen_add_static = 24
 	}
 	upgrades_to = "MEDIUM_ACOT_ARMOR_SE"
 	resources = {
@@ -3046,12 +3153,12 @@ utility_component_template = {
 	size = large
 	icon = "GFX_ship_part_armor_re"
 	icon_frame = 1
-	power = @armor_l_pe_power_cost
+	power = @armor_l_re_power_cost
 	modifier = {
 		ship_hull_add = 1440
 		ship_hull_regen_add_static = 14.4
-		ship_armor_add = 2880
-		ship_armor_regen_add_static = 28.8
+		ship_armor_add = 5765
+		ship_armor_regen_add_static = 57.65
 	}
 	upgrades_to = "LARGE_ACOT_ARMOR_SE"
 	resources = {
@@ -3107,9 +3214,9 @@ utility_component_template = {
 		}
 	}
 	modifier = {
-		ship_hull_add = 305
-		ship_shield_add = 610
-		ship_shield_regen_add_static = 61
+		ship_hull_add = 365
+		ship_shield_add = 730
+		ship_shield_regen_add_static = 73
 	}
 	prerequisites = {
 		"tech_dark_matter_deflector_re"
@@ -3127,9 +3234,9 @@ utility_component_template = {
 	icon_frame = 1
 	power = @shield_m_pe_power_cost
 	modifier = {
-		ship_hull_add = 750
-		ship_shield_add = 1540
-		ship_shield_regen_add_static = 154
+		ship_hull_add = 910
+		ship_shield_add = 1820
+		ship_shield_regen_add_static = 182
 	}
 	upgrades_to = "MEDIUM_ACOT_ENIGMATIC_SHIELD_SE"
 	resources = {
@@ -3170,9 +3277,9 @@ utility_component_template = {
 	icon_frame = 1
 	power = @shield_l_pe_power_cost
 	modifier = {
-		ship_hull_add = 1840
-		ship_shield_add = 3680
-		ship_shield_regen_add_static = 368
+		ship_hull_add = 2185
+		ship_shield_add = 4370
+		ship_shield_regen_add_static = 437
 	}
 	upgrades_to = "LARGE_ACOT_ENIGMATIC_SHIELD_SE"
 	resources = {
@@ -3225,8 +3332,8 @@ utility_component_template = {
 	sensor_range = 10
 	hyperlane_range = 20
 	ship_modifier = {
-		ship_tracking_add = 45
-		ship_accuracy_mult = 0.3
+		ship_tracking_add = 35
+		ship_accuracy_mult = 0.2
 	}
 	prerequisites = {
 		"tech_sensor_re"
@@ -3370,6 +3477,7 @@ utility_component_template = {
 	component_set = "power_core"
 	size_restriction = {
 		corvette
+		frigate
 		colonizer
 		lithoid_colonizer
 		sponsored_colonizer
@@ -3476,6 +3584,7 @@ utility_component_template = {
 		precursor_science
 		precursor_constructor
 		precursor_colonizer
+		precursor_world_shaper
 		military_station_small
 		military_station_medium
 		military_station_large
@@ -3530,6 +3639,7 @@ utility_component_template = {
 	size_restriction = {
 		battleship
 		offspring_battleship
+		payback_warship
 		precursor_platform_l
 		precursor_battlecruiser
 		fe_battlecruiser
@@ -3593,9 +3703,9 @@ utility_component_template = {
 		aot_gatekeeper
 		ion_cannon
 		precursor_titan
-		fe_assault_carrier
+		precursor_assault_carrier
 		progenitor_carrier
-		sentinel_sphere
+		precursor_sentinel
 		precursor_guardian
 		Carrier
 		SCX_Dreadnought
@@ -3649,6 +3759,7 @@ utility_component_template = {
 	size_restriction = {
 		colossus
 		star_eater
+		acot_giga_fortress
 		fe_goliath
 		ultradreadnought
 		Flagship
@@ -4222,7 +4333,7 @@ utility_component_template = {
 		sofe_aegis_guard
 		sofe_gatekeeper_warden
 		progenitor_avatar
-		fe_assault_carrier
+		precursor_assault_carrier
 	}
 	component_set = "combat_computers"
 	ship_behavior = "origin_offense"
@@ -4287,7 +4398,7 @@ utility_component_template = {
 		sofe_aegis_guard
 		sofe_gatekeeper_warden
 		progenitor_avatar
-		fe_assault_carrier
+		precursor_assault_carrier
 	}
 	component_set = "combat_computers"
 	ship_behavior = "origin_balance"
@@ -4352,7 +4463,7 @@ utility_component_template = {
 		sofe_aegis_guard
 		sofe_gatekeeper_warden
 		progenitor_avatar
-		fe_assault_carrier
+		precursor_assault_carrier
 	}
 	component_set = "combat_computers"
 	ship_behavior = "origin_defense"
@@ -4605,7 +4716,7 @@ utility_component_template = {
 		shipclass_military
 	}
 	size_restriction = {
-		fe_assault_carrier
+		precursor_assault_carrier
 	}
 	component_set = "combat_computers"
 	ship_behavior = "acot_carrier_avoid"
@@ -4655,7 +4766,7 @@ utility_component_template = {
 		shipclass_military
 	}
 	size_restriction = {
-		fe_assault_carrier
+		precursor_assault_carrier
 	}
 	component_set = "combat_computers"
 	ship_behavior = "acot_carrier_stationary"
@@ -4736,44 +4847,12 @@ utility_component_template = {
 }
 
 utility_component_template = {
-	key = "ACOT_HYPERCHARGED_JUMPER_RE"
-	size = aux
-	icon = "GFX_ship_part_darkmatter_hyper_jump_drive_re"
-	icon_frame = 1
-	power = -80
-	upgrades_to = "ACOT_HYPERCHARGED_JUMPER_SE"
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @armor_s_re_cost
-			aot_sr_runic_power = @s_re_runic_cost
-		}
-	}
-	ship_modifier = {
-		ship_ftl_jumpdrive_range_mult = 0.75
-		ship_windup_mult = 0.35
-		ship_jumpdrive_cooldown_mult = -0.2
-	}
-	prerequisites = {
-		"tech_darkmatter_hyper_jump_drive_re"
-	}
-	component_set = "ACOT_HYPERCHARGED_JUMPER_RE"
-	ai_weight = {
-		weight = 40
-		modifier = {
-			factor = 2
-			is_preferred_weapons = weapon_type_explosive
-		}
-	}
-}
-
-utility_component_template = {
 	key = "ACOT_REPAIR_COUNTERMEASURES_RE"
 	size = aux
 	icon = "GFX_ship_part_darkmatter_reactive_drone_re"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "ACOT_REPAIR_COUNTERMEASURES_SE"
+	upgrades_to = "ACOT_HYPERCHARGED_JUMPER_SE"
 	resources = {
 		category = ship_components
 		cost = {
@@ -4805,7 +4884,6 @@ utility_component_template = {
 	icon = "GFX_ship_part_darkmatter_reactor_booster_re"
 	icon_frame = 1
 	power = 4000
-	upgrades_to = "ACOT_REACTOR_BOOSTER_SE"
 	resources = {
 		category = ship_components
 		cost = {
@@ -4814,8 +4892,53 @@ utility_component_template = {
 		}
 	}
 	ship_modifier = {
-		ship_hull_mult = 0.2
-		ships_upkeep_mult = -0.2
+		ship_shield_regen_add_perc = 0.25
+		ship_weapon_damage = 0.08
+		ship_fire_rate_mult = 0.08
+		ship_speed_mult = 0.08
+	}
+	prerequisites = {
+		"tech_darkmatter_reactor_booster_re"
+	}
+	component_set = "ACOT_REACTOR_BOOSTER_RE"
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_SHIELD_BOOSTER_RE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_shield_supercharger_re"
+	icon_frame = 1
+	power = -400
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_re_cost
+			aot_sr_runic_power = @s_re_runic_cost
+		}
+	}
+	prerequisites = {
+		"tech_darkmatter_shield_supercharger_re"
+	}
+	component_set = "ACOT_SHIELD_BOOSTER_RE"
+	modifier = {
+		ship_shield_mult = 0.25
+	}
+	ship_modifier = {
+		ship_shield_hardening_add = 0.25
 	}
 	prerequisites = {
 		"tech_darkmatter_reactor_booster_re"
@@ -4857,45 +4980,9 @@ utility_component_template = {
 	component_set = "ACOT_ARMOR_BOOSTER_RE"
 	modifier = {
 		ship_armor_mult = 0.25
-		ship_armor_hardening_add = 0.25
 	}
-	ai_weight = {
-		weight = 40
-		modifier = {
-			factor = 0
-			has_monthly_income = {
-				resource = aot_sr_runic_power
-				value <= 2
-			}
-			has_resource = {
-				type = aot_sr_runic_power
-				amount <= 5
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "ACOT_SHIELD_BOOSTER_RE"
-	size = aux
-	icon = "GFX_ship_part_darkmatter_shield_supercharger_re"
-	icon_frame = 1
-	power = -160
-	upgrades_to = "ACOT_SHIELD_BOOSTER_SE"
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @armor_s_re_cost
-			aot_sr_runic_power = @s_re_runic_cost
-		}
-	}
-	prerequisites = {
-		"tech_darkmatter_shield_supercharger_re"
-	}
-	component_set = "ACOT_SHIELD_BOOSTER_RE"
-	modifier = {
-		ship_shield_mult = 0.25
-		ship_shield_hardening_add = 0.25
+	ship_modifier = {
+		ship_armor_hardening_add = 0.15
 	}
 	ai_weight = {
 		weight = 40
@@ -4918,8 +5005,7 @@ utility_component_template = {
 	size = aux
 	icon = "GFX_ship_part_darkmatter_star_charter_re"
 	icon_frame = 1
-	power = -60
-	upgrades_to = "ACOT_STARCHARTER_SE"
+	power = -160
 	resources = {
 		category = ship_components
 		cost = {
@@ -4927,7 +5013,7 @@ utility_component_template = {
 			aot_sr_runic_power = @s_re_runic_cost
 		}
 	}
-	hyperlane_range = 60
+	hyperlane_range = 12
 	ship_modifier = {
 		ship_sensor_range_add = 6
 		ship_tracking_add = 20
@@ -4937,6 +5023,10 @@ utility_component_template = {
 		"tech_darkmatter_star_charter_re"
 	}
 	component_set = "ACOT_STARCHARTER_RE"
+	modifier = {
+		ship_shield_mult = 0.25
+		ship_shield_hardening_add = 0.25
+	}
 	ai_weight = {
 		weight = 40
 		modifier = {
@@ -4950,6 +5040,254 @@ utility_component_template = {
 				amount <= 5
 			}
 		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_HYPERCHARGED_JUMPER_RE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_hyper_jump_drive_re"
+	icon_frame = 1
+	power = -80
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @armor_s_re_cost
+			aot_sr_runic_power = @s_re_runic_cost
+		}
+	}
+	ship_modifier = {
+		ship_ftl_jumpdrive_range_mult = 0.75
+		ship_windup_mult = 0.35
+		ship_jumpdrive_cooldown_mult = -0.2
+	}
+	prerequisites = {
+		"tech_darkmatter_hyper_jump_drive_re"
+	}
+	component_set = "ACOT_HYPERCHARGED_JUMPER_RE"
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+	}
+}
+
+# Dark Matter Cloaking Device
+utility_component_template = {
+	key = "ACOT_CLOAKING_LIGHT_RE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_stealth_generator_re"
+	icon_frame = 1
+	power = -160
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 200
+			sr_dark_matter = 0.5
+			acot_sr_dark_energy = 0.5
+		}
+	}
+	modifier = {
+		ship_cloaking_strength_add = 4
+	}
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+		}
+		modifier = {
+			#ship_shield_reduction = 0.5
+		}
+	}
+	custom_tooltip = "ACOT_CLOAKING_LIGHT_RE_TOOLTIP"
+	ship_limit = 1
+	blocked_by = {
+		CORVETTE_CLOAKING_1
+		CORVETTE_CLOAKING_2
+		CORVETTE_CLOAKING_3
+		CORVETTE_CLOAKING_DARK_MATTER
+		CORVETTE_CLOAKING_PSI
+		DESTROYER_CLOAKING_2
+		DESTROYER_CLOAKING_3
+		DESTROYER_CLOAKING_DARK_MATTER
+		DESTROYER_CLOAKING_PSI
+		CRUISER_CLOAKING_3
+		CRUISER_CLOAKING_DARK_MATTER
+		CRUISER_CLOAKING_PSI
+		BATTLESHIP_CLOAKING_DARK_MATTER
+		BATTLESHIP_CLOAKING_PSI
+		ACOT_CLOAKING_LIGHT_DM
+		ACOT_CLOAKING_LIGHT_AE
+		ACOT_CLOAKING_LIGHT_SE
+		ACOT_CLOAKING_FULL_DM
+		ACOT_CLOAKING_FULL_AE
+		ACOT_CLOAKING_FULL_RE
+		ACOT_CLOAKING_FULL_SE
+		ACOT_CLOAKING_DIMENSIONAL
+	}
+	prerequisites = {
+		"tech_darkmatter_stealth_generator_re"
+	}
+	component_set = "ACOT_CLOAKING_LIGHT_RE"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+	}
+	ai_weight = {
+		weight = 35
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
+	}
+}
+
+# Dark Matter Cloaking Device
+utility_component_template = {
+	key = "ACOT_CLOAKING_FULL_RE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_stealth_generator_heavy_re"
+	icon_frame = 1
+	power = -1200
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 1200
+			sr_dark_matter = 3
+			acot_sr_dark_energy = 3
+		}
+	}
+	modifier = {
+		ship_cloaking_strength_add = 7
+	}
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+			NOR = {
+				has_component = ACOT_SHIELD_BOOSTER_DM
+				has_component = ACOT_SHIELD_BOOSTER_AE
+				has_component = ACOT_SHIELD_BOOSTER_SE
+				has_component = ACOT_SHIELD_BOOSTER_RE
+				has_component = ACOT_SHIELD_BOOSTER_PE
+				has_component = ACOT_SHIELD_BOOSTER_OE
+			}
+		}
+		modifier = {
+			ship_shield_reduction = 0.6
+		}
+	}
+	triggered_ship_modifier = {
+		potential = {
+			is_cloaked = yes
+			OR = {
+				has_component = ACOT_SHIELD_BOOSTER_DM
+				has_component = ACOT_SHIELD_BOOSTER_AE
+				has_component = ACOT_SHIELD_BOOSTER_SE
+				has_component = ACOT_SHIELD_BOOSTER_RE
+				has_component = ACOT_SHIELD_BOOSTER_PE
+				has_component = ACOT_SHIELD_BOOSTER_OE
+			}
+		}
+		modifier = {
+			ship_shield_reduction = 0.3
+		}
+	}
+	custom_tooltip = "ACOT_CLOAKING_HEAVY_RE_TOOLTIP"
+	ship_limit = 1
+	blocked_by = {
+		CORVETTE_CLOAKING_1
+		CORVETTE_CLOAKING_2
+		CORVETTE_CLOAKING_3
+		CORVETTE_CLOAKING_DARK_MATTER
+		CORVETTE_CLOAKING_PSI
+		DESTROYER_CLOAKING_2
+		DESTROYER_CLOAKING_3
+		DESTROYER_CLOAKING_DARK_MATTER
+		DESTROYER_CLOAKING_PSI
+		CRUISER_CLOAKING_3
+		CRUISER_CLOAKING_DARK_MATTER
+		CRUISER_CLOAKING_PSI
+		BATTLESHIP_CLOAKING_DARK_MATTER
+		BATTLESHIP_CLOAKING_PSI
+		ACOT_CLOAKING_LIGHT_DM
+		ACOT_CLOAKING_LIGHT_AE
+		ACOT_CLOAKING_LIGHT_RE
+		ACOT_CLOAKING_LIGHT_SE
+		ACOT_CLOAKING_FULL_DM
+		ACOT_CLOAKING_FULL_AE
+		ACOT_CLOAKING_FULL_SE
+		ACOT_CLOAKING_DIMENSIONAL
+	}
+	prerequisites = {
+		"tech_darkmatter_stealth_generator_re"
+	}
+	component_set = "ACOT_CLOAKING_FULL_RE"
+	ai_tags = {
+		gunship_stealth
+		explosive_stealth
+		carrier_stealth
+		screen_stealth
+		artillery_stealth
+		brawler_stealth
+		energy_torpedoes_stealth
+	}
+	ai_weight = {
+		weight = 35
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+		}
+		inline_script = ship_components/weights/roles_cloaking_devices
 	}
 }
 
@@ -4984,6 +5322,10 @@ utility_component_template = {
 	component_set = "WEAPON_EXPLOSIVE_CORE_RE"
 	ai_weight = {
 		weight = 40
+		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_explosive
+		}
 		modifier = {
 			factor = 0
 			has_monthly_income = {
@@ -5026,6 +5368,10 @@ utility_component_template = {
 	ai_weight = {
 		weight = 40
 		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_kinetic
+		}
+		modifier = {
 			factor = 0
 			has_monthly_income = {
 				resource = aot_sr_runic_power
@@ -5066,6 +5412,10 @@ utility_component_template = {
 	component_set = "WEAPON_ENERGY_CORE_RE"
 	ai_weight = {
 		weight = 40
+		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_energy
+		}
 		modifier = {
 			factor = 0
 			has_monthly_income = {
@@ -5112,6 +5462,10 @@ utility_component_template = {
 	ai_weight = {
 		weight = 40
 		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_strike_craft
+		}
+		modifier = {
 			factor = 0
 			has_monthly_income = {
 				resource = aot_sr_runic_power
@@ -5139,6 +5493,7 @@ utility_component_template = {
 	class_restriction = {
 		shipclass_military
 		shipclass_starbase
+		shipclass_military_special
 	}
 	component_set = "ship_aura_components"
 	resources = {
@@ -5260,6 +5615,7 @@ utility_component_template = {
 	class_restriction = {
 		shipclass_military
 		shipclass_starbase
+		shipclass_military_special
 	}
 	prerequisites = {
 		"tech_darkmatter_hyper_jump_drive_re"

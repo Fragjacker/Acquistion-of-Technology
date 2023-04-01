@@ -990,7 +990,6 @@ building_dm_stronghold = {
 	can_build = yes
 	base_buildtime = 400
 	planetary_ftl_inhibitor = yes
-	add_to_first_building_slot = yes
 	category = army
 	position_priority = 100
 	allow = {
@@ -1043,29 +1042,6 @@ building_dm_stronghold = {
 	prerequisites = {
 		tech_dm_stronghold
 	}
-	ai_weight = {
-		weight = 0
-		modifier = {
-			weight = 50
-			num_pops >= 25
-			NOR = {
-				num_buildings = {
-					type = building_dm_stronghold
-					value <= 2
-				}
-			}
-			owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
-				}
-				has_monthly_income = {
-					resource = acot_sr_dark_energy
-					value <= 3
-				}
-			}
-		}
-	}
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -1083,6 +1059,8 @@ building_dm_stronghold = {
 			}
 			sr_dark_matter = 2
 			acot_sr_dark_energy = 2
+		}
+		upkeep = {
 			trigger = {
 				#Mod Pack: added upkeep
 				owner = {
@@ -1339,60 +1317,6 @@ building_giga_fortress = {
 	}
 }
 
-##Disable ZOFE Machine Buildings override
-building_fe_ancient_cryo_chamber = {
-	base_buildtime = 360
-	can_build = no
-	can_demolish = yes
-	icon = building_dm_ancient_cryo_chamber
-	category = unity
-	potential = {
-		always = no
-	}
-	show_tech_unlock_if = {
-		has_authority = auth_machine_intelligence
-	}
-	allow = {
-		has_enigmatic_capital = yes
-	}
-	convert_to = {
-		building_fe_mansion
-		building_fe_hive_depot
-	}
-	planet_modifier = {
-		planet_housing_add = 20
-		planet_amenities_add = 20
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 550
-			sr_dark_matter = 50
-		}
-		upkeep = {
-			energy = 20
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
-		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			free_housing > 1
-		}
-	}
-	upgrades = {
-		building_ae_ancient_cryo_chamber
-	}
-}
-
 building_dm_ancient_cryo_chamber = {
 	base_buildtime = 400
 	can_demolish = yes
@@ -1445,61 +1369,6 @@ building_dm_ancient_cryo_chamber = {
 	}
 	upgrades = {
 		building_ae_ancient_cryo_chamber
-	}
-}
-
-##Disable ZOFE empyrean shrine when using ACOT since it is bettah ya git!
-building_fe_empyrean_shrine = {
-	base_buildtime = 360
-	can_build = yes
-	can_demolish = yes
-	icon = building_citadel_of_faith
-	base_cap_amount = 1
-	category = unity
-	potential = {
-		always = no
-	}
-	allow = {
-		has_major_upgraded_capital = yes
-	}
-	destroy_trigger = {
-		AND = {
-			exists = owner
-			owner = {
-				NOT = {
-					has_ethic = ethic_fanatic_spiritualist
-				}
-			}
-		}
-	}
-	show_tech_unlock_if = {
-		has_ethic = ethic_fanatic_spiritualist
-	}
-	planet_modifier = {
-		pop_ethic_spiritualist_attraction_mult = 0.5
-		job_priest_add = 10
-	}
-	triggered_desc = {
-		text = job_priest_effect_desc
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			rare_crystals = 150
-		}
-		upkeep = {
-			rare_crystals = 2
-		}
-	}
-	prerequisites = {
-	}
-	triggered_desc = {
-		text = job_priest_effect_desc
-	}
-	upgrades = {
-	}
-	ai_weight = {
-		weight = 50
 	}
 }
 
