@@ -42,7 +42,7 @@ MainCode PixelAotPlanetShieldDM
 			float pulse = ( 0.9f + 0.1f * sin( 3.141f * length( texCUBElod( EnvironmentMap, float4(reflection, 0) ).rgb ) + HdrRange_Time_ClipHeight.y * 1.f - In.vSphere.z * In.vSphere.y * 0.125f ) );
 			vColor += pow( pulse, 40.0f ) * 0.1f;
 
-			vColor.rgb = ApplyDissolve( PrimaryColor.rgb, vDamage, vColor.rgb, RimColor, In.vUV0 );
+			vColor.rgb = ApplyDissolve( PrimaryColor.rgb, ShipVars.b, vColor.rgb, RimColor, In.vUV0 );
 
 			vColor.rgb *= vBloomFactor;
 			return vColor;
@@ -83,7 +83,7 @@ MainCode PixelAotPlanetShieldDM
 			float pulse = ( 0.9f + 0.1f * sin( 3.141f * length( texCUBElod( EnvironmentMap, float4(reflection, 0) ).rgb ) + HdrRange_Time_ClipHeight.y * 1.f - In.vSphere.z * In.vSphere.y * 0.125f ) );
 			vColor += pow( pulse, 40.0f ) * 0.1f;
 
-			vColor.rgb = ApplyDissolve( PrimaryColor.rgb, vDamage, vColor.rgb, RimColor, In.vUV0 );
+			vColor.rgb = ApplyDissolve( PrimaryColor.rgb, ShipVars.b, vColor.rgb, RimColor, In.vUV0 );
 
 			vColor.rgb *= vBloomFactor;
 			return vColor;
@@ -124,7 +124,7 @@ MainCode PixelAotPlanetShieldDM
 			float pulse = ( 0.9f + 0.1f * sin( 3.141f * length( texCUBElod( EnvironmentMap, float4(reflection, 0) ).rgb ) + HdrRange_Time_ClipHeight.y * 1.f - In.vSphere.z * In.vSphere.y * 0.125f ) );
 			vColor += pow( pulse, 40.0f ) * 0.1f;
 
-			vColor.rgb = ApplyDissolve( PrimaryColor.rgb, vDamage, vColor.rgb, RimColor, In.vUV0 );
+			vColor.rgb = ApplyDissolve( PrimaryColor.rgb, ShipVars.b, vColor.rgb, RimColor, In.vUV0 );
 
 			vColor.rgb *= vBloomFactor;
 			return vColor;
@@ -165,7 +165,7 @@ MainCode PixelAotPlanetShieldDM
 			float pulse = ( 0.9f + 0.1f * sin( 3.141f * length( texCUBElod( EnvironmentMap, float4(reflection, 0) ).rgb ) + HdrRange_Time_ClipHeight.y * 1.f - In.vSphere.z * In.vSphere.y * 0.125f ) );
 			vColor += pow( pulse, 40.0f ) * 0.1f;
 
-			vColor.rgb = ApplyDissolve( PrimaryColor.rgb, vDamage, vColor.rgb, RimColor, In.vUV0 );
+			vColor.rgb = ApplyDissolve( PrimaryColor.rgb, ShipVars.b, vColor.rgb, RimColor, In.vUV0 );
 
 			vColor.rgb *= vBloomFactor;
 			return vColor;

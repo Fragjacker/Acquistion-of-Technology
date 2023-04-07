@@ -7,7 +7,7 @@ country_event = {
 	desc = {
 		text = stellarite_events.1.desc.a
 		trigger = {
-			NOT = {
+			NOR = {
 				has_country_flag = hear_stellarite
 				has_country_flag = learned_stellarite_from_outergate_ask
 			}
@@ -32,16 +32,16 @@ country_event = {
 	show_sound = event_mystic_reveal
 	trigger = {
 		is_ai = no
+		NOR = {
+			has_global_flag = acot_sigma_forbidden
+			has_global_flag = acot_stellarite_project_begin
+			has_technology = tech_dark_matter_power_core_se
+			has_tech_option = tech_dark_matter_power_core_se
+		}
+		is_fallen_empire = no
 		is_playable_country = yes
 		has_technology = tech_dark_matter_power_core_re
 		has_established_contact = event_target:acot_precursor_databank_country
-		NOR = {
-			has_global_flag = acot_stellarite_project_begin
-			has_country_flag = hear_stellarite
-			has_technology = tech_dark_matter_power_core_se
-			has_tech_option = tech_dark_matter_power_core_se
-			is_fallen_empire = yes
-		}
 	}
 	mean_time_to_happen = {
 		years = 25
@@ -69,52 +69,6 @@ country_event = {
 				has_global_flag = sofe_activated
 			}
 		}
-		ai_chance = {
-			factor = 0
-		}
-	}
-	# AI eats too much glue so they get a random chance to get Stellarite Tech right away or nah.
-	option = {
-		name = EXCELLENT
-		default_hide_option = yes
-		trigger = {
-			is_ai = yes
-			has_global_flag = acot_ai_simple_event_forbidden
-			resource_stockpile_compare = {
-				resource = energy
-				value >= 5000
-			}
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= 5000
-			}
-			resource_stockpile_compare = {
-				resource = aot_sr_runic_power
-				value >= 1000
-			}
-		}
-		random_list = {
-			90 = {
-			}
-			10 = {
-				add_resource = {
-					energy = -5000
-					minerals = -5000
-					aot_sr_runic_power = -1000
-				}
-				add_research_option = tech_dark_matter_power_core_se
-				add_tech_progress = {
-					tech = tech_dark_matter_power_core_se
-					progress = 0.1
-				}
-			}
-		}
-		ai_chance = {
-			factor = 100
-		}
-	}
-	option = {
-		name = stellarite_events.1.b
 		ai_chance = {
 			factor = 0
 		}

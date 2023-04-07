@@ -1,1113 +1,143 @@
 ############DARK MATTER EVENTS
 namespace = acot_ships
-# SHIP PRECURSOROS Built
-ship_event = {
-	id = acot_ships.0
-	hide_window = yes
+# Terraform choice
+country_event = {
+	id = acot_ships.90
+	title = acot_ships.90.name
+	desc = acot_ships.90.desc
+	picture = GFX_acot_emissary_invasion
+	show_sound = event_laboratory_sound
 	is_triggered_only = yes
-	trigger = {
-		OR = {
-			is_ship_size = precursor_colossus
-			is_ship_size = precursor_science
-			is_ship_size = precursor_constructor
-			is_ship_size = precursor_colonizer
-		}
-	}
 	immediate = {
-		IF = {
-			limit = {
-				is_ship_size = precursor_colossus
-			}
-			set_disable_at_health = 0.02
-		}
-		IF = {
-			limit = {
-				is_ship_size = precursor_science
-			}
-			#set_ship_flag = precursor_science_eject
-			set_disable_at_health = 0.02
-		}
-		IF = {
-			limit = {
-				is_ship_size = precursor_constructor
-			}
-			if = {
-				limit = {
-					has_component = INITIALIZER_DELTA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_builder_delta
-				}
+	}
+	option = {
+		name = "acot_ships.90.a"
+		custom_tooltip = "acot_ships.90.a.tooltip"
+		allow = {
+			event_target:terraforming_planet = {
 				solar_system = {
-					every_system_planet = {
-						limit = {
-							is_owned_by = root.owner
-							NOT = {
-								has_modifier = acot_modifier_builder_delta
-							}
-						}
-						remove_modifier = acot_modifier_builder_delta
-						remove_modifier = acot_modifier_builder_alpha
-						remove_modifier = acot_modifier_builder_sigma
-						remove_modifier = acot_modifier_builder_omega
-						add_modifier = {
-							modifier = acot_modifier_builder_delta
-							days = 360
-						}
-						planet_event = {
-							id = acot_ships.7
-							days = 360
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_component = INITIALIZER_ALPHA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_builder_alpha
-				}
-				solar_system = {
-					every_system_planet = {
-						limit = {
-							is_owned_by = root.owner
-							NOT = {
-								has_modifier = acot_modifier_builder_alpha
-							}
-						}
-						remove_modifier = acot_modifier_builder_delta
-						remove_modifier = acot_modifier_builder_alpha
-						remove_modifier = acot_modifier_builder_sigma
-						remove_modifier = acot_modifier_builder_omega
-						add_modifier = {
-							modifier = acot_modifier_builder_alpha
-							days = 360
-						}
-						planet_event = {
-							id = acot_ships.7
-							days = 360
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_component = INITIALIZER_SIGMA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_builder_sigma
-				}
-				solar_system = {
-					every_system_planet = {
-						limit = {
-							is_owned_by = root.owner
-							NOT = {
-								has_modifier = acot_modifier_builder_sigma
-							}
-						}
-						remove_modifier = acot_modifier_builder_delta
-						remove_modifier = acot_modifier_builder_alpha
-						remove_modifier = acot_modifier_builder_sigma
-						remove_modifier = acot_modifier_builder_omega
-						add_modifier = {
-							modifier = acot_modifier_builder_sigma
-							days = 360
-						}
-						planet_event = {
-							id = acot_ships.7
-							days = 360
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_component = INITIALIZER_OMEGA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_builder_omega
-				}
-				solar_system = {
-					every_system_planet = {
-						limit = {
-							is_owned_by = root.owner
-							NOT = {
-								has_modifier = acot_modifier_builder_omega
-							}
-						}
-						remove_modifier = acot_modifier_builder_delta
-						remove_modifier = acot_modifier_builder_alpha
-						remove_modifier = acot_modifier_builder_sigma
-						remove_modifier = acot_modifier_builder_omega
-						add_modifier = {
-							modifier = acot_modifier_builder_omega
-							days = 360
-						}
-						planet_event = {
-							id = acot_ships.7
-							days = 360
+					custom_tooltip = {
+						fail_text = "requires_no_black_hole_neutron_star_pulsar"
+						NOR = {
+							is_star_class = sc_black_hole
+							is_star_class = sc_neutron_star
+							is_star_class = sc_pulsar
 						}
 					}
 				}
 			}
 		}
-		IF = {
-			limit = {
-				is_ship_size = precursor_colonizer
-			}
-			if = {
-				limit = {
-					has_component = EMISSARY_DELTA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_delta
-				}
-			}
-			if = {
-				limit = {
-					has_component = EMISSARY_ALPHA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_alpha
-				}
-			}
-			if = {
-				limit = {
-					has_component = EMISSARY_SIGMA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_sigma
-				}
-			}
-			if = {
-				limit = {
-					has_component = EMISSARY_PHANON_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_phanon
-				}
-			}
-			if = {
-				limit = {
-					has_component = EMISSARY_OMEGA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_omega
-				}
-			}
-			##### FOR EXTRA SHITS
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_POP
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_pop
-				}
-			}
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_TROOPS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_troop
-				}
-			}
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_DROIDS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_droid
-				}
-			}
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_LAB
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_lab
-				}
-			}
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_GIGA
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_giga
-				}
-			}
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_ASSEMBLY
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_assembly
-				}
-			}
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_SKYSHIELD
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_skyshield
-				}
-			}
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_NEXUS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_nexus
-				}
-			}
-			# Stellarite Emissary Parts
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_POP
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_pop
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_TROOPS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_troop
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_DROIDS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_droid
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_LAB
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_lab
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_GIGA
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_giga
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_ASSEMBLY
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_assembly
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_SKYSHIELD
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_skyshield
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_NEXUS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_nexus
-				}
-			}
-			# Phanon Emissary Parts
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_POP
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_pop
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_TROOPS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_troop
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_DROIDS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_droid
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_LAB
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_lab
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_GIGA
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_giga
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_ASSEMBLY
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_assembly
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_SKYSHIELD
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_skyshield
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_NEXUS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_nexus
-				}
+		hidden_effect = {
+			country_event = {
+				id = acot_ships.91
 			}
 		}
 	}
-}
-
-# SHIP PRECURSOROS REUPGRADE
-ship_event = {
-	id = acot_ships.700
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		OR = {
-			is_ship_size = precursor_constructor
-			is_ship_size = precursor_colonizer
-		}
-	}
-	immediate = {
-		IF = {
-			limit = {
-				is_ship_size = precursor_constructor
-			}
-			if = {
-				limit = {
-					NOR = {
-						has_component = INITIALIZER_DELTA_COMPUTER
-						has_component = INITIALIZER_ALPHA_COMPUTER
-						has_component = INITIALIZER_SIGMA_COMPUTER
-						has_component = INITIALIZER_OMEGA_COMPUTER
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_builder_delta
-					remove_fleet_flag = precursor_builder_alpha
-					remove_fleet_flag = precursor_builder_sigma
-					remove_fleet_flag = precursor_builder_omega
-				}
-				solar_system = {
-					every_system_planet = {
-						limit = {
-							is_owned_by = root.owner
-						}
-						remove_modifier = acot_modifier_builder_delta
-						remove_modifier = acot_modifier_builder_alpha
-						remove_modifier = acot_modifier_builder_sigma
-						remove_modifier = acot_modifier_builder_omega
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_component = INITIALIZER_DELTA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_builder_delta
-					remove_fleet_flag = precursor_builder_alpha
-					remove_fleet_flag = precursor_builder_sigma
-					remove_fleet_flag = precursor_builder_omega
-				}
-				solar_system = {
-					every_system_planet = {
-						limit = {
-							is_owned_by = root.owner
-						}
-						add_modifier = {
-							modifier = acot_modifier_builder_delta
-							days = 360
-						}
-						remove_modifier = acot_modifier_builder_alpha
-						remove_modifier = acot_modifier_builder_sigma
-						remove_modifier = acot_modifier_builder_omega
-						planet_event = {
-							id = acot_ships.7
-							days = 360
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_component = INITIALIZER_ALPHA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_builder_alpha
-					remove_fleet_flag = precursor_builder_delta
-					remove_fleet_flag = precursor_builder_sigma
-					remove_fleet_flag = precursor_builder_omega
-				}
-				solar_system = {
-					every_system_planet = {
-						limit = {
-							is_owned_by = root.owner
-						}
-						add_modifier = {
-							modifier = acot_modifier_builder_alpha
-							days = 360
-						}
-						remove_modifier = acot_modifier_builder_delta
-						remove_modifier = acot_modifier_builder_sigma
-						remove_modifier = acot_modifier_builder_omega
-						planet_event = {
-							id = acot_ships.7
-							days = 360
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_component = INITIALIZER_SIGMA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_builder_sigma
-					remove_fleet_flag = precursor_builder_alpha
-					remove_fleet_flag = precursor_builder_delta
-					remove_fleet_flag = precursor_builder_omega
-				}
-				solar_system = {
-					every_system_planet = {
-						limit = {
-							is_owned_by = root.owner
-						}
-						add_modifier = {
-							modifier = acot_modifier_builder_sigma
-							days = 360
-						}
-						remove_modifier = acot_modifier_builder_delta
-						remove_modifier = acot_modifier_builder_alpha
-						remove_modifier = acot_modifier_builder_omega
-						planet_event = {
-							id = acot_ships.7
-							days = 360
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_component = INITIALIZER_OMEGA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_builder_omega
-					remove_fleet_flag = precursor_builder_alpha
-					remove_fleet_flag = precursor_builder_sigma
-					remove_fleet_flag = precursor_builder_delta
-				}
-				solar_system = {
-					every_system_planet = {
-						limit = {
-							is_owned_by = root.owner
-						}
-						add_modifier = {
-							modifier = acot_modifier_builder_omega
-							days = 360
-						}
-						remove_modifier = acot_modifier_builder_delta
-						remove_modifier = acot_modifier_builder_alpha
-						remove_modifier = acot_modifier_builder_sigma
-						planet_event = {
-							id = acot_ships.7
-							days = 360
-						}
-					}
-				}
+	option = {
+		name = "acot_ships.90.b"
+		custom_tooltip = "acot_ships.90.b.tooltip"
+		allow = {
+			OR = {
+				has_ascension_perk = ap_world_shaper
+				has_ascension_perk = ap_machine_worlds
+				has_ascension_perk = ap_arcology_project
+				has_ascension_perk = ap_hive_worlds
+				has_technology = tech_tomb_world_adaption
+				has_technology = tech_acot_colonize_fractured
+				has_technology = tech_acot_create_enigmatic_world
 			}
 		}
-		IF = {
-			limit = {
-				is_ship_size = precursor_colonizer
-			}
-			if = {
-				limit = {
-					NOR = {
-						has_component = EMISSARY_DELTA_COMPUTER
+		trigger = {
+			event_target:terraforming_emissary = {
+				any_owned_ship = {
+					OR = {
 						has_component = EMISSARY_ALPHA_COMPUTER
-						has_component = EMISSARY_SIGMA_COMPUTER
 						has_component = EMISSARY_PHANON_COMPUTER
+						has_component = EMISSARY_SIGMA_COMPUTER
 						has_component = EMISSARY_OMEGA_COMPUTER
 					}
 				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_delta
-					remove_fleet_flag = precursor_colonizer_alpha
-					remove_fleet_flag = precursor_colonizer_sigma
-					remove_fleet_flag = precursor_colonizer_phanon
-					remove_fleet_flag = precursor_colonizer_omega
-				}
 			}
-			if = {
-				limit = {
-					has_component = EMISSARY_DELTA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_delta
-					remove_fleet_flag = precursor_colonizer_alpha
-					remove_fleet_flag = precursor_colonizer_sigma
-					remove_fleet_flag = precursor_colonizer_phanon
-					remove_fleet_flag = precursor_colonizer_omega
-				}
+		}
+		hidden_effect = {
+			country_event = {
+				id = acot_ships.92
 			}
-			if = {
-				limit = {
-					has_component = EMISSARY_ALPHA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_alpha
-					remove_fleet_flag = precursor_colonizer_delta
-					remove_fleet_flag = precursor_colonizer_sigma
-					remove_fleet_flag = precursor_colonizer_phanon
-					remove_fleet_flag = precursor_colonizer_omega
-				}
+		}
+	}
+	option = {
+		name = "acot_ships.90.c"
+		custom_tooltip = "acot_ships.90.c.tooltip"
+		hidden_effect = {
+			country_event = {
+				id = acot_ships.93
 			}
-			if = {
-				limit = {
-					has_component = EMISSARY_SIGMA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_sigma
-					remove_fleet_flag = precursor_colonizer_alpha
-					remove_fleet_flag = precursor_colonizer_delta
-					remove_fleet_flag = precursor_colonizer_phanon
-					remove_fleet_flag = precursor_colonizer_omega
-				}
-			}
-			if = {
-				limit = {
-					has_component = EMISSARY_PHANON_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_phanon
-					remove_fleet_flag = precursor_colonizer_alpha
-					remove_fleet_flag = precursor_colonizer_delta
-					remove_fleet_flag = precursor_colonizer_sigma
-					remove_fleet_flag = precursor_colonizer_omega
-				}
-			}
-			if = {
-				limit = {
-					has_component = EMISSARY_OMEGA_COMPUTER
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_omega
-					remove_fleet_flag = precursor_colonizer_alpha
-					remove_fleet_flag = precursor_colonizer_sigma
-					remove_fleet_flag = precursor_colonizer_phanon
-					remove_fleet_flag = precursor_colonizer_delta
-				}
-			}
-			##### FOR EXTRA SHITS
-			### POPS
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_POP
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_pop
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = ACOT_EMISSART_EXTRA_POP
+		}
+	}
+	option = {
+		name = "acot_ships.90.d"
+		trigger = {
+			event_target:terraforming_emissary = {
+				any_owned_ship = {
+					NOR = {
+						has_component = EMISSARY_SIGMA_COMPUTER
+						has_component = EMISSARY_OMEGA_COMPUTER
 					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_pop
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_POP
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_pop
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_STELLARITE_EXTRA_POP
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_stellarite_pop
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_POP
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_pop
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_PHANON_EXTRA_POP
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_phanon_pop
-				}
-			}
-			### TROOPS
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_TROOPS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_troop
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = ACOT_EMISSART_EXTRA_TROOPS
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_troop
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_TROOPS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_troop
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_STELLARITE_EXTRA_TROOPS
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_stellarite_troop
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_TROOPS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_troop
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_PHANON_EXTRA_TROOPS
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_phanon_troop
-				}
-			}
-			###  DROIDS
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_DROIDS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_droid
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = ACOT_EMISSART_EXTRA_DROIDS
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_droid
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_DROIDS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_droid
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_STELLARITE_EXTRA_DROIDS
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_stellarite_droid
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_DROIDS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_droid
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_PHANON_EXTRA_DROIDS
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_phanon_droid
-				}
-			}
-			### LABS
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_LAB
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_lab
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = ACOT_EMISSART_EXTRA_LAB
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_lab
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_LAB
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_lab
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_STELLARITE_EXTRA_LAB
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_stellarite_lab
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_LAB
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_lab
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_PHANON_EXTRA_LAB
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_phanon_lab
-				}
-			}
-			### GIGA
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_GIGA
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_giga
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = ACOT_EMISSART_EXTRA_GIGA
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_giga
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_GIGA
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_giga
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_STELLARITE_EXTRA_GIGA
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_stellarite_giga
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_GIGA
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_giga
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_PHANON_EXTRA_GIGA
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_phanon_giga
-				}
-			}
-			### ASSEMBLY
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_ASSEMBLY
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_assembly
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = ACOT_EMISSART_EXTRA_ASSEMBLY
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_assembly
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_ASSEMBLY
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_assembly
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_STELLARITE_EXTRA_ASSEMBLY
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_stellarite_assembly
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_ASSEMBLY
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_assembly
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_PHANON_EXTRA_ASSEMBLY
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_phanon_assembly
-				}
-			}
-			### SKYSHIELD
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_SKYSHIELD
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_skyshield
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = ACOT_EMISSART_EXTRA_SKYSHIELD
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_skyshield
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_SKYSHIELD
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_skyshield
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_STELLARITE_EXTRA_SKYSHIELD
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_stellarite_skyshield
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_SKYSHIELD
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_skyshield
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_PHANON_EXTRA_SKYSHIELD
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_phanon_skyshield
-				}
-			}
-			### NEXUS
-			if = {
-				limit = {
-					has_component = ACOT_EMISSART_EXTRA_NEXUS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_nexus
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = ACOT_EMISSART_EXTRA_NEXUS
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_nexus
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_STELLARITE_EXTRA_NEXUS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_stellarite_nexus
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_STELLARITE_EXTRA_NEXUS
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_stellarite_nexus
-				}
-			}
-			if = {
-				limit = {
-					has_component = AOT_EMISSARY_PHANON_EXTRA_NEXUS
-				}
-				fleet = {
-					set_fleet_flag = precursor_colonizer_extra_phanon_nexus
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_component = AOT_EMISSARY_PHANON_EXTRA_NEXUS
-					}
-				}
-				fleet = {
-					remove_fleet_flag = precursor_colonizer_extra_phanon_nexus
 				}
 			}
 		}
+		hidden_effect = {
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = "acot_ships.90.d"
+		custom_tooltip = "acot_ships.90.d.tooltip"
+		trigger = {
+			event_target:terraforming_emissary = {
+				any_owned_ship = {
+					OR = {
+						has_component = EMISSARY_SIGMA_COMPUTER
+						has_component = EMISSARY_OMEGA_COMPUTER
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = acot_ships.94
+			}
+		}
+		default_hide_option = yes
 	}
 }
 
-#  ATTACKER VICTORIOUS
-country_event = {
-	id = acot_ships.11
+planet_event = {
+	id = acot_ships.10
 	hide_window = yes
 	is_triggered_only = yes
-	trigger = {
-		FromFrom = {
-			OR = {
-				has_planet_flag = will_have_delta_emis
-				has_planet_flag = will_have_alpha_emis
-				has_planet_flag = will_have_sigma_emis
-				has_planet_flag = will_have_phanon_emis
-				has_planet_flag = will_have_omega_emis
-			}
-		}
-	}
 	immediate = {
-		fromfrom = {
-			remove_all_buildings = yes
+		save_event_target_as = terraforming_planet
+		from = {
+			save_event_target_as = terraforming_emissary
+		}
+		IF = {
+			limit = {
+				has_owner = no
+			}
+			create_colony = {
+				owner = event_target:terraforming_emissary.owner
+			}
+			# ALPHA CAPITAL BUILDINGS
 			if = {
 				limit = {
-					event_target:orbitting_emissary = {
-						has_fleet_flag = precursor_colonizer_alpha
-					}
-					owner = {
+					event_target:terraforming_emissary.owner = {
 						is_regular_empire = yes
+					}
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = EMISSARY_ALPHA_COMPUTER
+						}
 					}
 				}
 				remove_building = building_colony_shelter
@@ -1115,35 +145,13 @@ country_event = {
 			}
 			if = {
 				limit = {
-					event_target:orbitting_emissary = {
-						has_fleet_flag = precursor_colonizer_sigma
-					}
-					owner = {
-						is_regular_empire = yes
-					}
-				}
-				remove_building = building_colony_shelter
-				add_building = building_stellarite_palace
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						has_fleet_flag = precursor_colonizer_phanon
-					}
-					owner = {
-						is_regular_empire = yes
-					}
-				}
-				remove_building = building_colony_shelter
-				add_building = building_phanon_palace
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						has_fleet_flag = precursor_colonizer_alpha
-					}
-					owner = {
+					event_target:terraforming_emissary.owner = {
 						is_hive_empire = yes
+					}
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = EMISSARY_ALPHA_COMPUTER
+						}
 					}
 				}
 				remove_building = building_colony_shelter
@@ -1151,23 +159,42 @@ country_event = {
 			}
 			if = {
 				limit = {
-					event_target:orbitting_emissary = {
-						has_fleet_flag = precursor_colonizer_sigma
+					event_target:terraforming_emissary.owner = {
+						is_machine_empire = yes
 					}
-					owner = {
-						is_hive_empire = yes
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = EMISSARY_ALPHA_COMPUTER
+						}
+					}
+				}
+				remove_building = building_deployment_post
+				add_building = building_ae_ancient_control_center
+			}
+			# PHANON
+			if = {
+				limit = {
+					event_target:terraforming_emissary.owner = {
+						is_regular_empire = yes
+					}
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = EMISSARY_PHANON_COMPUTER
+						}
 					}
 				}
 				remove_building = building_colony_shelter
-				add_building = building_stellarite_hive_cluster
+				add_building = building_phanon_palace
 			}
 			if = {
 				limit = {
-					event_target:orbitting_emissary = {
-						has_fleet_flag = precursor_colonizer_phanon
-					}
-					owner = {
+					event_target:terraforming_emissary.owner = {
 						is_hive_empire = yes
+					}
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = EMISSARY_PHANON_COMPUTER
+						}
 					}
 				}
 				remove_building = building_colony_shelter
@@ -1175,327 +202,798 @@ country_event = {
 			}
 			if = {
 				limit = {
-					event_target:orbitting_emissary = {
-						has_fleet_flag = precursor_colonizer_alpha
-					}
-					owner = {
+					event_target:terraforming_emissary.owner = {
 						is_machine_empire = yes
 					}
-				}
-				remove_building = building_deployment_post
-				add_building = building_ae_ancient_control_center
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						has_fleet_flag = precursor_colonizer_sigma
-					}
-					owner = {
-						is_machine_empire = yes
-					}
-				}
-				remove_building = building_deployment_post
-				add_building = building_stellarite_control_center
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						has_fleet_flag = precursor_colonizer_phanon
-					}
-					owner = {
-						is_machine_empire = yes
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = EMISSARY_PHANON_COMPUTER
+						}
 					}
 				}
 				remove_building = building_deployment_post
 				add_building = building_phanon_control_center
 			}
-			set_owner = root
-			set_controller = root
-			IF = {
+			# SIGMA
+			if = {
 				limit = {
-					has_planet_flag = will_have_delta_emis
+					event_target:terraforming_emissary.owner = {
+						is_regular_empire = yes
+					}
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = EMISSARY_SIGMA_COMPUTER
+						}
+					}
 				}
-				remove_planet_flag = will_have_delta_emis
+				remove_building = building_colony_shelter
+				add_building = building_stellarite_palace
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary.owner = {
+						is_hive_empire = yes
+					}
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = EMISSARY_SIGMA_COMPUTER
+						}
+					}
+				}
+				remove_building = building_colony_shelter
+				add_building = building_stellarite_hive_cluster
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary.owner = {
+						is_machine_empire = yes
+					}
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = EMISSARY_SIGMA_COMPUTER
+						}
+					}
+				}
+				remove_building = building_deployment_post
+				add_building = building_stellarite_control_center
+			}
+			## SPECIAL ADDITIONAL STUFFS
+			#### DELTA	
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						has_fleet_flag = precursor_colonizer_delta
+					}
+				}
 				while = {
 					count = 5
 					create_pop = {
-						species = root.owner_species
+						species = event_target:terraforming_emissary.owner.species
 					}
 				}
 			}
-			IF = {
+			### ALPHA	
+			if = {
 				limit = {
-					has_planet_flag = will_have_alpha_emis
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_alpha		
+						any_owned_ship = {
+							has_component = EMISSARY_ALPHA_COMPUTER
+						}
+					}
 				}
-				remove_planet_flag = will_have_alpha_emis
 				while = {
 					count = 10
 					create_pop = {
-						species = root.owner_species
+						species = event_target:terraforming_emissary.owner.species
 					}
 				}
 			}
-			IF = {
+			#### PHANON	
+			if = {
 				limit = {
-					has_planet_flag = will_have_phanon_emis
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = EMISSARY_PHANON_COMPUTER
+						}
+					}
 				}
-				remove_planet_flag = will_have_phanon_emis
 				while = {
 					count = 15
 					create_pop = {
-						species = root.owner_species
+						species = event_target:terraforming_emissary.owner.species
 					}
 				}
 			}
-			IF = {
-				limit = {
-					has_planet_flag = will_have_sigma_emis
-				}
-				remove_planet_flag = will_have_sigma_emis
-				while = {
-					count = 20
-					create_pop = {
-						species = root.owner_species
-					}
-				}
-			}
-			IF = {
-				limit = {
-					has_planet_flag = will_have_omega_emis
-				}
-				remove_planet_flag = will_have_omega_emis
-				while = {
-					count = 20
-					create_pop = {
-						species = root.owner_species
-					}
-				}
-			}
-			#### EXTRA STUFFF
+			#### SUGNA	
 			if = {
 				limit = {
-					has_planet_flag = will_have_additional_pop
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_sigma		
+						any_owned_ship = {
+							has_component = EMISSARY_SIGMA_COMPUTER
+						}
+					}
 				}
-				remove_planet_flag = will_have_additional_pop
+				while = {
+					count = 20
+					create_pop = {
+						species = event_target:terraforming_emissary.owner.species
+					}
+				}
+			}
+			#### INEGA
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_omega		
+						any_owned_ship = {
+							has_component = EMISSARY_OMEGA_COMPUTER
+						}
+					}
+				}
+				while = {
+					count = 25
+					create_pop = {
+						species = event_target:terraforming_emissary.owner.species
+					}
+				}
+			}
+			### EXTRA STUFFS
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_pop
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_POP
+						}
+					}
+				}
 				while = {
 					count = 10
 					create_pop = {
-						species = root.owner_species
+						species = event_target:terraforming_emissary.owner.species
 					}
 				}
 			}
+			# GIGA FORTRESSES
 			if = {
 				limit = {
-					has_planet_flag = will_have_additional_phanon_pop
-				}
-				remove_planet_flag = will_have_additional_phanon_pop
-				while = {
-					count = 20
-					create_pop = {
-						species = root.owner_species
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_giga		
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_GIGA
+						}
 					}
 				}
-			}
-			if = {
-				limit = {
-					has_planet_flag = will_have_additional_stellarite_pop
-				}
-				remove_planet_flag = will_have_additional_stellarite_pop
-				while = {
-					count = 30
-					create_pop = {
-						species = root.owner_species
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_planet_flag = will_have_giga
-				}
-				remove_planet_flag = will_have_giga
 				add_building = building_giga_fortress
 			}
 			if = {
 				limit = {
-					has_planet_flag = will_have_stellarite_giga
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_giga		
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_GIGA
+						}
+					}
 				}
-				remove_planet_flag = will_have_stellarite_giga
-				add_building = building_stellarite_giga_fortress_obelisk
-			}
-			if = {
-				limit = {
-					has_planet_flag = will_have_phanon_giga
-				}
-				remove_planet_flag = will_have_phanon_giga
 				add_building = building_phanon_giga_fortress_obelisk
 			}
 			if = {
 				limit = {
-					has_planet_flag = will_have_lab
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_giga		
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_GIGA
+						}
+					}
 				}
-				remove_planet_flag = will_have_lab
+				add_building = building_stellarite_giga_fortress_obelisk
+			}
+			# LABS
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_lab
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_LAB
+						}
+					}
+				}
 				add_building = building_ae_enigmatic_lab
 			}
 			if = {
 				limit = {
-					has_planet_flag = will_have_stellarite_lab
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_lab
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_LAB
+						}
+					}
 				}
-				remove_planet_flag = will_have_stellarite_lab
-				add_building = building_stellarite_enigmatic_lab
-			}
-			if = {
-				limit = {
-					has_planet_flag = will_have_phanon_lab
-				}
-				remove_planet_flag = will_have_phanon_lab
 				add_building = building_phanon_enigmatic_lab
 			}
 			if = {
 				limit = {
-					has_planet_flag = will_have_psg
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_lab
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_LAB
+						}
+					}
 				}
-				remove_planet_flag = will_have_psg
+				add_building = building_stellarite_enigmatic_lab
+			}
+			# SHIELD GENERATORS
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_skyshield	
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_SKYSHIELD
+						}
+					}
+				}
 				add_building = building_ae_dark_energy_psg
 			}
 			if = {
 				limit = {
-					has_planet_flag = will_have_stellarite_psg
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_skyshield	
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_SKYSHIELD
+						}
+					}
 				}
-				remove_planet_flag = will_have_stellarite_psg
-				add_building = building_stellarite_psg
-			}
-			if = {
-				limit = {
-					has_planet_flag = will_have_phanon_psg
-				}
-				remove_planet_flag = will_have_phanon_psg
 				add_building = building_phanon_psg
 			}
 			if = {
 				limit = {
-					has_planet_flag = will_have_nexus
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_skyshield	
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_SKYSHIELD
+						}
+					}
 				}
-				remove_planet_flag = will_have_nexus
+				add_building = building_stellarite_psg
+			}
+			# Synthesizer
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_nexus		
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_NEXUS
+						}
+					}
+				}
 				add_building = building_ae_dark_matter_synthersizer
 			}
 			if = {
 				limit = {
-					has_planet_flag = will_have_stellarite_nexus
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_nexus		
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_NEXUS
+						}
+					}
 				}
-				remove_planet_flag = will_have_stellarite_nexus
-				add_building = building_stellarite_nexus
+				add_building = building_phanon_stellarite_nexus
 			}
 			if = {
 				limit = {
-					has_planet_flag = will_have_phanon_nexus
-				}
-				remove_planet_flag = will_have_phanon_nexus
-				add_building = building_phanon_stellarite_nexus
-			}
-			IF = {
-				limit = {
-					habitable_structure = no
-					NOT = {
-						is_planet_class = pc_habitat
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_nexus		
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_NEXUS
+						}
 					}
 				}
-				planet_event = {
-					id = acot_ships.9
-					days = 1
+				add_building = building_stellarite_nexus
+			}
+			# Robot assembly
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_assembly	
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_ASSEMBLY
+						}
+					}
+				}
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = no
+						}
+					}
+					add_building = building_ae_super_assembly
+				}
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = yes
+						}
+					}
+					add_building = building_ae_super_assembly_machine
+				}
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_assembly	
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_ASSEMBLY
+						}
+					}
+				}
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = no
+						}
+					}
+					add_building = building_phanon_super_assembly
+				}
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = yes
+						}
+					}
+					add_building = building_phanon_super_assembly_machine
+				}
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_assembly	
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_ASSEMBLY
+						}
+					}
+				}
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = no
+						}
+					}
+					add_building = building_stellarite_super_assembly
+				}
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = yes
+						}
+					}
+					add_building = building_stellarite_super_assembly_machine
 				}
 			}
 		}
-	}
-}
-
-#  DEFENDER VICTORIOUS
-country_event = {
-	id = acot_ships.12
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		FromFrom = {
-			OR = {
-				has_planet_flag = will_have_delta_emis
-				has_planet_flag = will_have_alpha_emis
-				has_planet_flag = will_have_sigma_emis
-				has_planet_flag = will_have_phanon_emis
-				has_planet_flag = will_have_omega_emis
+		############## ATTACK #############################
+		IF = {
+			limit = {
+				planet_is_hostile = yes
 			}
-		}
-	}
-	immediate = {
-		fromfrom = {
-			switch = {
-				trigger = has_planet_flag
-				will_have_delta_emis = {
-					remove_planet_flag = will_have_delta_emis
+			### DELTA ###
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_delta
+						any_owned_ship = {
+							has_component = EMISSARY_DELTA_COMPUTER
+						}
+					}
 				}
-				will_have_alpha_emis = {
-					remove_planet_flag = will_have_delta_emis
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = no
+						}
+					}
+					while = {
+						count = 10
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army
+							species = event_target:terraforming_emissary.owner.species
+						}
+					}
 				}
-				will_have_sigma_emis = {
-					remove_planet_flag = will_have_sigma_emis
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = yes
+						}
+					}
+					while = {
+						count = 10
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army_droid
+							species = event_target:terraforming_emissary.owner.species
+						}
+					}
 				}
-				will_have_phanon_emis = {
-					remove_planet_flag = will_have_phanon_emis
+			}
+			### ALPHA ###
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_alpha
+						any_owned_ship = {
+							has_component = EMISSARY_ALPHA_COMPUTER
+						}
+					}
 				}
-				will_have_omega_emis = {
-					remove_planet_flag = will_have_omega_emis
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = no
+						}
+					}
+					while = {
+						count = 15
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army
+							species = event_target:terraforming_emissary.owner.species
+							effect = {
+								set_army_flag = acot_emissary_army
+							}
+						}
+					}
 				}
-				will_have_nexus = {
-					remove_planet_flag = will_have_nexus
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = yes
+						}
+					}
+					while = {
+						count = 15
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army_droid
+							species = event_target:terraforming_emissary.owner.species
+							effect = {
+								set_army_flag = acot_emissary_army
+							}
+						}
+					}
 				}
-				will_have_stellarite_nexus = {
-					remove_planet_flag = will_have_stellarite_nexus
+			}
+			### PHANON ###
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_sigma
+						any_owned_ship = {
+							has_component = EMISSARY_SIGMA_COMPUTER
+						}
+					}
 				}
-				will_have_phanon_nexus = {
-					remove_planet_flag = will_have_phanon_nexus
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = no
+						}
+					}
+					while = {
+						count = 20
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army
+							species = event_target:terraforming_emissary.owner.species
+							effect = {
+								set_army_flag = acot_emissary_army
+							}
+						}
+					}
 				}
-				will_have_psg = {
-					remove_planet_flag = will_have_psg
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = yes
+						}
+					}
+					while = {
+						count = 20
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army_droid
+							species = event_target:terraforming_emissary.owner.species
+							effect = {
+								set_army_flag = acot_emissary_army
+							}
+						}
+					}
 				}
-				will_have_stellarite_psg = {
-					remove_planet_flag = will_have_stellarite_psg
+			}
+			### SIGMA ###
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_sigma
+						any_owned_ship = {
+							has_component = EMISSARY_SIGMA_COMPUTER
+						}
+					}
 				}
-				will_have_phanon_psg = {
-					remove_planet_flag = will_have_phanon_psg
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = no
+						}
+					}
+					while = {
+						count = 25
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army
+							species = event_target:terraforming_emissary.owner.species
+							effect = {
+								set_army_flag = acot_emissary_army
+							}
+						}
+					}
 				}
-				will_have_lab = {
-					remove_planet_flag = will_have_lab
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = yes
+						}
+					}
+					while = {
+						count = 25
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army_droid
+							species = event_target:terraforming_emissary.owner.species
+							effect = {
+								set_army_flag = acot_emissary_army
+							}
+						}
+					}
 				}
-				will_have_stellarite_lab = {
-					remove_planet_flag = will_have_stellarite_lab
+			}
+			### OMEGA ###
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_omega
+						any_owned_ship = {
+							has_component = EMISSARY_OMEGA_COMPUTER
+						}
+					}
 				}
-				will_have_phanon_lab = {
-					remove_planet_flag = will_have_phanon_lab
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = no
+						}
+					}
+					while = {
+						count = 30
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army
+							species = event_target:terraforming_emissary.owner.species
+							effect = {
+								set_army_flag = acot_emissary_army
+							}
+						}
+					}
 				}
-				will_have_giga = {
-					remove_planet_flag = will_have_giga
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = yes
+						}
+					}
+					while = {
+						count = 30
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army_droid
+							species = event_target:terraforming_emissary.owner.species
+							effect = {
+								set_army_flag = acot_emissary_army
+							}
+						}
+					}
 				}
-				will_have_stellarite_giga = {
-					remove_planet_flag = will_have_stellarite_giga
+			}
+			### EXTRA STUFFS
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_troop	
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_TROOPS
+						}
+					}
 				}
-				will_have_phanon_giga = {
-					remove_planet_flag = will_have_phanon_giga
+				while = {
+					count = 10
+					create_army = {
+						owner = from.owner
+						type = acot_garrison_army
+						species = from.owner.species
+						effect = {
+							set_army_flag = acot_emissary_army
+						}
+					}
 				}
-				will_have_additional_pop = {
-					remove_planet_flag = will_have_additional_pop
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_troop	
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_TROOPS
+						}
+					}
 				}
-				will_have_additional_stellarite_pop = {
-					remove_planet_flag = will_have_additional_stellarite_pop
+				while = {
+					count = 15
+					create_army = {
+						owner = from.owner
+						type = acot_garrison_army
+						species = from.owner.species
+						effect = {
+							set_army_flag = acot_emissary_army
+						}
+					}
 				}
-				will_have_additional_phanon_pop = {
-					remove_planet_flag = will_have_additional_phanon_pop
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_troop	
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_TROOPS
+						}
+					}
 				}
-				will_have_assembly = {
-					remove_planet_flag = will_have_assembly
+				while = {
+					count = 20
+					create_army = {
+						owner = from.owner
+						type = acot_garrison_army
+						species = from.owner.species
+						effect = {
+							set_army_flag = acot_emissary_army
+						}
+					}
 				}
-				will_have_stellarite_assembly = {
-					remove_planet_flag = will_have_stellarite_assembly
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_droid	
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_DROIDS
+						}
+					}
 				}
-				will_have_phanon_assembly = {
-					remove_planet_flag = will_have_phanon_assembly
+				while = {
+					count = 10
+					create_army = {
+						owner = from.owner
+						type = acot_garrison_army_droid
+						species = from.owner.species
+						effect = {
+							set_army_flag = acot_emissary_army
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_droid	
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_DROIDS
+						}
+					}
+				}
+				while = {
+					count = 15
+					create_army = {
+						owner = from.owner
+						type = acot_garrison_army_droid
+						species = from.owner.species
+						effect = {
+							set_army_flag = acot_emissary_army
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_droid	
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_DROIDS
+						}
+					}
+				}
+				while = {
+					count = 20
+					create_army = {
+						owner = from.owner
+						type = acot_garrison_army_droid
+						species = from.owner.species
+						effect = {
+							set_army_flag = acot_emissary_army
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_giga		
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_GIGA
+						}
+					}
+				}
+				while = {
+					count = 3
+					create_army = {
+						owner = from.owner
+						type = acot_garrison_army_giga
+						species = from.owner.species
+						effect = {
+							set_army_flag = acot_emissary_army
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_giga		
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_GIGA
+						}
+					}
+				}
+				while = {
+					count = 6
+					create_army = {
+						owner = from.owner
+						type = acot_garrison_army_giga
+						species = from.owner.species
+						effect = {
+							set_army_flag = acot_emissary_army
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						#has_fleet_flag = precursor_colonizer_extra_giga		
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_GIGA
+						}
+					}
+				}
+				while = {
+					count = 12
+					create_army = {
+						owner = from.owner
+						type = acot_garrison_army_giga
+						species = from.owner.species
+						effect = {
+							set_army_flag = acot_emissary_army
+						}
+					}
 				}
 			}
 		}

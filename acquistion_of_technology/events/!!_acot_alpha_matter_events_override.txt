@@ -94,20 +94,19 @@ country_event = {
 		custom_tooltip = acot_alpha_matter_events.1.b.explain
 		set_country_flag = hear_precursor_rumor
 		trigger = {
-			OR = {
-				is_zofe_country = yes
-				has_country_flag = doa_ascension_complete				# Player ascended Dawn of Ascension style
+			NOT = {
+				is_country_type = default
 			}
 			is_ai = no
 		}
 		allow = {
 			resource_stockpile_compare = {
-				resource = influence
-				value >= 500
+				resource = unity
+				value >= 50000
 			}
 		}
 		add_resource = {
-			influence = -500
+			unity = -50000
 		}
 		set_country_flag = allow_databank_steal
 		begin_event_chain = {
@@ -178,22 +177,19 @@ country_event = {
 		default_hide_option = yes
 		trigger = {
 			is_ai = no
-			OR = {
-				is_zofe_country = yes
-				has_country_flag = doa_ascension_complete
-			}
+			has_country_flag = doa_ascension_complete
 			any_owned_leader = {
 				leader_class = scientist
 			}
 		}
 		allow = {
 			resource_stockpile_compare = {
-				resource = influence
-				value >= 500
+				resource = unity
+				value >= 50000
 			}
 		}
 		add_resource = {
-			influence = -500
+			unity = -50000
 		}
 		hidden_effect = {
 			country_event = {
@@ -227,10 +223,7 @@ country_event = {
 		name = acot_alpha_diy_postpone_ae_empire
 		custom_tooltip = acot_alpha_diy_postpone_ae_empire_desc
 		trigger = {
-			OR = {
-				is_zofe_country = yes
-				has_country_flag = doa_ascension_complete
-			}
+			has_country_flag = doa_ascension_complete
 			is_ai = no
 		}
 		set_timed_country_flag = {

@@ -1,4 +1,8 @@
 namespace = acot_pmc
+#-----------------------------------------------------
+# Cooldown time before we can raid again
+@vault_delay = 720
+#-----------------------------------------------------
 # On Taking the Vault
 country_event = {
 	id = acot_pmc.11
@@ -26,6 +30,7 @@ country_event = {
 		}
 	}
 	immediate = {
+		create_protecc_country = yes
 		FROMFROM = {
 			every_owned_pop = {
 				limit = {
@@ -149,7 +154,7 @@ planet_event = {
 			while = {
 				count = 80
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_soldier
 					species = event_target:phanon_operative_species
 				}
@@ -157,7 +162,7 @@ planet_event = {
 			while = {
 				count = 20
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_elite
 					species = event_target:phanon_operative_species
 				}
@@ -165,7 +170,7 @@ planet_event = {
 			while = {
 				count = 1
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_commander
 					species = event_target:phanon_operative_species
 				}
@@ -176,7 +181,7 @@ planet_event = {
 		name = acot_pmc.12.b
 		custom_tooltip = acot_pmc.12.b.tooltip
 		hidden_effect = {
-			event_target:phanon_security = {
+			event_target:phanon_protecc_base_country = {
 				add_modifier = {
 					modifier = acot_vault_exposed_debuff_25
 					days = 180
@@ -185,7 +190,7 @@ planet_event = {
 			while = {
 				count = 80
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_soldier
 					species = event_target:phanon_operative_species
 				}
@@ -193,7 +198,7 @@ planet_event = {
 			while = {
 				count = 20
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_elite
 					species = event_target:phanon_operative_species
 				}
@@ -201,7 +206,7 @@ planet_event = {
 			while = {
 				count = 1
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_commander
 					species = event_target:phanon_operative_species
 				}
@@ -209,7 +214,7 @@ planet_event = {
 			while = {
 				count = 5
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_turret
 					species = event_target:phanon_operative_species
 				}
@@ -224,7 +229,7 @@ planet_event = {
 				modifier = acot_vault_psi_gas_debuff
 				days = 180
 			}
-			event_target:phanon_security = {
+			event_target:phanon_protecc_base_country = {
 				add_modifier = {
 					modifier = acot_vault_psi_gas_debuff
 					days = 180
@@ -233,7 +238,7 @@ planet_event = {
 			while = {
 				count = 80
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_soldier
 					species = event_target:phanon_operative_species
 				}
@@ -241,7 +246,7 @@ planet_event = {
 			while = {
 				count = 20
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_elite
 					species = event_target:phanon_operative_species
 				}
@@ -249,7 +254,7 @@ planet_event = {
 			while = {
 				count = 1
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_commander
 					species = event_target:phanon_operative_species
 				}
@@ -260,10 +265,12 @@ planet_event = {
 		name = acot_pmc.12.d
 		hidden_effect = {
 			remove_modifier = acot_modifier_vault_delay
+			remove_modifier = ongoing_vault_infiltration
 		}
 	}
 }
 
+# Vault Invasion Victory - Phase One
 country_event = {
 	id = acot_pmc.1200
 	title = "acot_pmc.1200.title"
@@ -289,7 +296,7 @@ country_event = {
 			add_planet_devastation = -100
 			add_modifier = {
 				modifier = acot_modifier_vault_delay
-				days = 360
+				days = @vault_delay
 			}
 			IF = {
 				limit = {
@@ -304,7 +311,7 @@ country_event = {
 				remove_modifier = acot_vault_psi_gas_debuff
 			}
 		}
-		event_target:phanon_security = {
+		event_target:phanon_protecc_base_country = {
 			IF = {
 				limit = {
 					has_modifier = acot_vault_exposed_debuff_25
@@ -364,7 +371,7 @@ planet_event = {
 			while = {
 				count = 60
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid
 					species = event_target:phanon_operative_species
 				}
@@ -372,7 +379,7 @@ planet_event = {
 			while = {
 				count = 20
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_shielder
 					species = event_target:phanon_operative_species
 				}
@@ -380,7 +387,7 @@ planet_event = {
 			while = {
 				count = 10
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commando
 					species = event_target:phanon_operative_species
 				}
@@ -388,7 +395,7 @@ planet_event = {
 			while = {
 				count = 1
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commander
 					species = event_target:phanon_operative_species
 				}
@@ -419,7 +426,7 @@ planet_event = {
 			while = {
 				count = 60
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid
 					species = event_target:phanon_operative_species
 				}
@@ -427,7 +434,7 @@ planet_event = {
 			while = {
 				count = 20
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_shielder
 					species = event_target:phanon_operative_species
 				}
@@ -435,7 +442,7 @@ planet_event = {
 			while = {
 				count = 10
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commando
 					species = event_target:phanon_operative_species
 				}
@@ -443,7 +450,7 @@ planet_event = {
 			while = {
 				count = 1
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commander
 					species = event_target:phanon_operative_species
 				}
@@ -488,7 +495,7 @@ planet_event = {
 			while = {
 				count = 80
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid
 					species = event_target:phanon_operative_species
 				}
@@ -496,7 +503,7 @@ planet_event = {
 			while = {
 				count = 30
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_shielder
 					species = event_target:phanon_operative_species
 				}
@@ -504,7 +511,7 @@ planet_event = {
 			while = {
 				count = 10
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commando
 					species = event_target:phanon_operative_species
 				}
@@ -512,7 +519,7 @@ planet_event = {
 			while = {
 				count = 1
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commander
 					species = event_target:phanon_operative_species
 				}
@@ -523,6 +530,7 @@ planet_event = {
 		name = acot_pmc.13.d
 		hidden_effect = {
 			remove_modifier = acot_modifier_vault_delay
+			remove_modifier = ongoing_vault_infiltration
 		}
 	}
 }
@@ -536,10 +544,8 @@ country_event = {
 	}
 	show_sound = event_ground_battle
 	picture = GFX_evt_sentry_guns
-
 	is_triggered_only = yes
-
-	trigger = {	
+	trigger = {
 		is_playable_country = yes
 		fromfrom = {
 			is_planet_class = pc_acot_pmc_vault
@@ -549,7 +555,6 @@ country_event = {
 			has_country_flag = acot_phanon_tech_stage_two_enabled
 		}
 	}
-
 	immediate = {
 		FROMFROM = {
 			remove_planet_flag = ongoing_vault_infiltration
@@ -557,23 +562,25 @@ country_event = {
 			add_planet_devastation = -100
 			add_modifier = {
 				modifier = acot_modifier_vault_delay
-				days = 360
+				days = @vault_delay
 			}
 		}
 		IF = {
 			limit = {
-				NOT = { has_country_flag = acot_phanon_tech_enabled }
+				NOT = {
+					has_country_flag = acot_phanon_tech_enabled
+				}
 			}
 			set_country_flag = acot_phanon_tech_enabled
-		}	
+		}
 	}
-	
 	option = {
 		name = acot_pmc.1300.a
 		FROMFROM = {
 			set_planet_size = 20
 		}
 		set_country_flag = acot_phanon_tech_stage_two_enabled
+		phanon_type_civ_tech_gift = yes
 		hidden_effect = {
 			add_event_chain_counter = {
 				event_chain = acot_phanon_event_chain
@@ -603,7 +610,7 @@ planet_event = {
 			while = {
 				count = 80
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_soldier
 					species = event_target:phanon_operative_species
 				}
@@ -611,7 +618,7 @@ planet_event = {
 			while = {
 				count = 40
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_elite
 					species = event_target:phanon_operative_species
 				}
@@ -619,7 +626,7 @@ planet_event = {
 			while = {
 				count = 20
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_psi
 					species = event_target:phanon_operative_species
 				}
@@ -627,7 +634,7 @@ planet_event = {
 			while = {
 				count = 3
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_commander
 					species = event_target:phanon_operative_species
 				}
@@ -648,7 +655,7 @@ planet_event = {
 			while = {
 				count = 80
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid
 					species = event_target:phanon_operative_species
 				}
@@ -656,7 +663,7 @@ planet_event = {
 			while = {
 				count = 40
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_shielder
 					species = event_target:phanon_operative_species
 				}
@@ -664,7 +671,7 @@ planet_event = {
 			while = {
 				count = 40
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commando
 					species = event_target:phanon_operative_species
 				}
@@ -672,7 +679,7 @@ planet_event = {
 			while = {
 				count = 3
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commander
 					species = event_target:phanon_operative_species
 				}
@@ -690,7 +697,7 @@ planet_event = {
 		name = acot_pmc.14.c
 		custom_tooltip = acot_pmc.14.c.tooltip
 		hidden_effect = {
-			event_target:phanon_security = {
+			event_target:phanon_protecc_base_country = {
 				add_modifier = {
 					modifier = acot_vault_exposed_debuff_50
 					days = 180
@@ -699,7 +706,7 @@ planet_event = {
 			while = {
 				count = 80
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_soldier
 					species = event_target:phanon_operative_species
 				}
@@ -707,7 +714,7 @@ planet_event = {
 			while = {
 				count = 40
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_elite
 					species = event_target:phanon_operative_species
 				}
@@ -715,7 +722,7 @@ planet_event = {
 			while = {
 				count = 20
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_psi
 					species = event_target:phanon_operative_species
 				}
@@ -723,7 +730,7 @@ planet_event = {
 			while = {
 				count = 3
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_commander
 					species = event_target:phanon_operative_species
 				}
@@ -732,7 +739,7 @@ planet_event = {
 			while = {
 				count = 80
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid
 					species = event_target:phanon_operative_species
 				}
@@ -740,7 +747,7 @@ planet_event = {
 			while = {
 				count = 40
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_shielder
 					species = event_target:phanon_operative_species
 				}
@@ -748,7 +755,7 @@ planet_event = {
 			while = {
 				count = 40
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commando
 					species = event_target:phanon_operative_species
 				}
@@ -756,7 +763,7 @@ planet_event = {
 			while = {
 				count = 3
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commander
 					species = event_target:phanon_operative_species
 				}
@@ -767,6 +774,7 @@ planet_event = {
 		name = acot_pmc.14.d
 		hidden_effect = {
 			remove_modifier = acot_modifier_vault_delay
+			remove_modifier = ongoing_vault_infiltration
 		}
 	}
 }
@@ -792,7 +800,7 @@ country_event = {
 		}
 	}
 	immediate = {
-		event_target:phanon_security = {
+		event_target:phanon_protecc_base_country = {
 			IF = {
 				limit = {
 					has_modifier = acot_vault_exposed_debuff_50
@@ -806,7 +814,7 @@ country_event = {
 			add_planet_devastation = -100
 			add_modifier = {
 				modifier = acot_modifier_vault_delay
-				days = 360
+				days = @vault_delay
 			}
 		}
 		IF = {
@@ -842,15 +850,11 @@ planet_event = {
 	desc = "acot_pmc.15.desc"
 	show_sound = event_mystery
 	picture = GFX_evt_sentry_guns
-
 	is_triggered_only = yes
-
-	trigger = {	
+	trigger = {
 	}
-
 	immediate = {
 	}
-	
 	option = {
 		name = acot_pmc.15.a
 		custom_tooltip = acot_pmc.15.a.tooltip
@@ -858,7 +862,7 @@ planet_event = {
 			while = {
 				count = 100
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_soldier
 					species = event_target:phanon_operative_species
 				}
@@ -866,7 +870,7 @@ planet_event = {
 			while = {
 				count = 60
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_elite
 					species = event_target:phanon_operative_species
 				}
@@ -874,7 +878,7 @@ planet_event = {
 			while = {
 				count = 20
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_psi
 					species = event_target:phanon_operative_species
 				}
@@ -882,7 +886,7 @@ planet_event = {
 			while = {
 				count = 5
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_commander
 					species = event_target:phanon_operative_species
 				}
@@ -891,7 +895,7 @@ planet_event = {
 			while = {
 				count = 100
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid
 					species = event_target:phanon_operative_species
 				}
@@ -899,7 +903,7 @@ planet_event = {
 			while = {
 				count = 50
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_shielder
 					species = event_target:phanon_operative_species
 				}
@@ -907,7 +911,7 @@ planet_event = {
 			while = {
 				count = 50
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commando
 					species = event_target:phanon_operative_species
 				}
@@ -915,7 +919,7 @@ planet_event = {
 			while = {
 				count = 5
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_droid_commander
 					species = event_target:phanon_operative_species
 				}
@@ -924,7 +928,7 @@ planet_event = {
 			while = {
 				count = 20
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_turret
 					species = event_target:phanon_operative_species
 				}
@@ -933,7 +937,7 @@ planet_event = {
 			while = {
 				count = 1
 				create_army = {
-					owner = event_target:phanon_security
+					owner = event_target:phanon_protecc_base_country
 					type = acot_phanon_defense_operative
 					species = event_target:phanon_operative_species
 				}
@@ -948,7 +952,7 @@ planet_event = {
 						while = {
 							count = 80
 							create_army = {
-								owner = event_target:phanon_security
+								owner = event_target:phanon_protecc_base_country
 								type = acot_phanon_defense_soldier
 								species = event_target:phanon_operative_species
 							}
@@ -956,7 +960,7 @@ planet_event = {
 						while = {
 							count = 40
 							create_army = {
-								owner = event_target:phanon_security
+								owner = event_target:phanon_protecc_base_country
 								type = acot_phanon_defense_elite
 								species = event_target:phanon_operative_species
 							}
@@ -964,7 +968,7 @@ planet_event = {
 						while = {
 							count = 20
 							create_army = {
-								owner = event_target:phanon_security
+								owner = event_target:phanon_protecc_base_country
 								type = acot_phanon_defense_psi
 								species = event_target:phanon_operative_species
 							}
@@ -972,15 +976,14 @@ planet_event = {
 						while = {
 							count = 3
 							create_army = {
-								owner = event_target:phanon_security
+								owner = event_target:phanon_protecc_base_country
 								type = acot_phanon_defense_commander
 								species = event_target:phanon_operative_species
 							}
 						}
-						remove_planet_flag = vault_bio_backup_possible	
+						remove_planet_flag = vault_bio_backup_possible
 					}
 					50 = {
-						
 					}
 				}
 			}
@@ -993,7 +996,7 @@ planet_event = {
 						while = {
 							count = 80
 							create_army = {
-								owner = event_target:phanon_security
+								owner = event_target:phanon_protecc_base_country
 								type = acot_phanon_defense_droid
 								species = event_target:phanon_operative_species
 							}
@@ -1001,7 +1004,7 @@ planet_event = {
 						while = {
 							count = 40
 							create_army = {
-								owner = event_target:phanon_security
+								owner = event_target:phanon_protecc_base_country
 								type = acot_phanon_defense_droid_shielder
 								species = event_target:phanon_operative_species
 							}
@@ -1009,7 +1012,7 @@ planet_event = {
 						while = {
 							count = 40
 							create_army = {
-								owner = event_target:phanon_security
+								owner = event_target:phanon_protecc_base_country
 								type = acot_phanon_defense_droid_commando
 								species = event_target:phanon_operative_species
 							}
@@ -1017,7 +1020,7 @@ planet_event = {
 						while = {
 							count = 3
 							create_army = {
-								owner = event_target:phanon_security
+								owner = event_target:phanon_protecc_base_country
 								type = acot_phanon_defense_droid_commander
 								species = event_target:phanon_operative_species
 							}
@@ -1025,17 +1028,16 @@ planet_event = {
 						remove_planet_flag = vault_mech_backup_possible
 					}
 					50 = {
-						
 					}
 				}
 			}
 		}
 	}
-
 	option = {
 		name = acot_pmc.15.d
 		hidden_effect = {
 			remove_modifier = acot_modifier_vault_delay
+			remove_modifier = ongoing_vault_infiltration
 		}
 	}
 }
@@ -1067,7 +1069,7 @@ country_event = {
 			add_planet_devastation = -100
 			add_modifier = {
 				modifier = acot_modifier_vault_delay
-				days = 360
+				days = @vault_delay
 			}
 		}
 		IF = {

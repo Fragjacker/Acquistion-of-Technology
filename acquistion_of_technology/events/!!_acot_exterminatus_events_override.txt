@@ -47,22 +47,37 @@ planet_event = {
 			add_static_war_exhaustion = {
 				attacker = from.fleet.owner
 				location = root
-				value_for_planet_destruction = 0.5
+				value_for_planet_destruction = 1
 			}
-			country_event = {
-				id = acot_exterminatus_event.101
+			IF = {
+				limit = {
+					NOT = {
+						has_global_flag = fractured_happened
+					}
+				}
+				country_event = {
+					id = acot_exterminatus_event.101
+				}
 			}
 		}
 		from = {
-			country_event = {
-				id = acot_exterminatus_event.102
+			IF = {
+				limit = {
+					NOT = {
+						has_global_flag = fractured_happened
+					}
+				}
+				country_event = {
+					id = acot_exterminatus_event.102
+				}
 			}
 		}
 		every_playable_country = {
 			limit = {
 				NOR = {
-					is_same_empire = root.owner
+					is_same_value = root.owner
 					is_same_value = from
+					has_global_flag = fractured_happened
 				}
 			}
 			country_event = {
@@ -71,15 +86,63 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				has_orbital_bombardment_stance = punishment
 				is_memeable_planet = yes
 			}
-			change_pc = pc_dark_fractured_unstable
-			reset_planet = yes
+			random_list = {
+				10 = {
+					modifier = {
+						factor = 0
+						check_variable = {
+							which = acot_planet_damage
+							value >= 10
+						}
+					}
+					change_pc = pc_dark_fractured
+					planet_event = {
+						id = acot_exterminatus_event.1000
+					}
+				}
+				40 = {
+					modifier = {
+						factor = 0
+						check_variable = {
+							which = acot_planet_damage
+							value >= 30
+						}
+					}
+					change_pc = pc_dark_fractured_unstable
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						check_variable = {
+							which = acot_planet_damage
+							value <= 10
+						}
+					}
+					change_pc = pc_dark_fractured_ae
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						check_variable = {
+							which = acot_planet_damage
+							value <= 30
+						}
+					}
+					modifier = {
+						factor = 2
+						check_variable = {
+							which = acot_planet_damage
+							value >= 60
+						}
+					}
+					change_pc = pc_dark_fractured_ae_unstable
+				}
+			}
 		}
 		else_if = {
 			limit = {
-				has_orbital_bombardment_stance = punishment
 				is_memeable_ringworld = yes
 			}
 			change_pc = pc_ringworld_habitable_damaged
@@ -88,33 +151,6 @@ planet_event = {
 		}
 		else_if = {
 			limit = {
-				has_orbital_bombardment_stance = punishment
-				is_memeable_space_habitat = yes
-			}
-			spawn_habitat_cracker_effect = yes
-			remove_planet = yes
-		}
-		### ALPHAFRACT
-		if = {
-			limit = {
-				has_orbital_bombardment_stance = exterminatus
-				is_memeable_planet = yes
-			}
-			change_pc = pc_dark_fractured_ae_unstable
-			reset_planet = yes
-		}
-		else_if = {
-			limit = {
-				has_orbital_bombardment_stance = exterminatus
-				is_memeable_ringworld = yes
-			}
-			change_pc = pc_ringworld_habitable_damaged
-			reset_planet = yes
-			spawn_ringworld_cracker_effect = yes
-		}
-		else_if = {
-			limit = {
-				has_orbital_bombardment_stance = exterminatus
 				is_memeable_space_habitat = yes
 			}
 			spawn_habitat_cracker_effect = yes
@@ -130,7 +166,10 @@ planet_event = {
 	is_triggered_only = yes
 	trigger = {
 		planet_devastation >= 100
-		has_orbital_bombardment_stance = punishment
+		OR = {
+			has_orbital_bombardment_stance = exterminatus
+			has_orbital_bombardment_stance = punishment
+		}
 		NOT = {
 			has_global_flag = acot_exterminatus_forbidden
 		}
@@ -151,7 +190,7 @@ planet_event = {
 	immediate = {
 		set_timed_planet_flag = {
 			flag = bombardment_cooldown
-			days = 60
+			days = 30
 		}
 		random_list = {
 			80 = {
@@ -206,6 +245,13 @@ planet_event = {
 					factor = 0
 					has_building = building_stellarite_psg
 				}
+				modifier = {
+					factor = 4
+					check_variable = {
+						which = acot_planet_damage
+						value >= 40
+					}
+				}
 				if = {
 					limit = {
 						NOT = {
@@ -222,22 +268,37 @@ planet_event = {
 					add_static_war_exhaustion = {
 						attacker = from.fleet.owner
 						location = root
-						value_for_planet_destruction = 0.5
+						value_for_planet_destruction = 1
 					}
-					country_event = {
-						id = acot_exterminatus_event.101
+					IF = {
+						limit = {
+							NOT = {
+								has_global_flag = fractured_happened
+							}
+						}
+						country_event = {
+							id = acot_exterminatus_event.101
+						}
 					}
 				}
 				from = {
-					country_event = {
-						id = acot_exterminatus_event.102
+					IF = {
+						limit = {
+							NOT = {
+								has_global_flag = fractured_happened
+							}
+						}
+						country_event = {
+							id = acot_exterminatus_event.102
+						}
 					}
 				}
 				every_playable_country = {
 					limit = {
 						NOR = {
-							is_same_empire = root.owner
+							is_same_value = root.owner
 							is_same_value = from
+							has_global_flag = fractured_happened
 						}
 					}
 					country_event = {
@@ -254,8 +315,55 @@ planet_event = {
 					limit = {
 						is_memeable_planet = yes
 					}
-					change_pc = pc_dark_fractured_unstable
-					reset_planet = yes
+					random_list = {
+						10 = {
+							modifier = {
+								factor = 0
+								check_variable = {
+									which = acot_planet_damage
+									value >= 10
+								}
+							}
+							change_pc = pc_dark_fractured_unstable
+						}
+						40 = {
+							modifier = {
+								factor = 0
+								check_variable = {
+									which = acot_planet_damage
+									value >= 30
+								}
+							}
+							change_pc = pc_dark_fractured_unstable
+						}
+						25 = {
+							modifier = {
+								factor = 0
+								check_variable = {
+									which = acot_planet_damage
+									value <= 10
+								}
+							}
+							change_pc = pc_dark_fractured_ae
+						}
+						25 = {
+							modifier = {
+								factor = 0
+								check_variable = {
+									which = acot_planet_damage
+									value <= 30
+								}
+							}
+							modifier = {
+								factor = 2
+								check_variable = {
+									which = acot_planet_damage
+									value >= 60
+								}
+							}
+							change_pc = pc_dark_fractured_ae_unstable
+						}
+					}
 				}
 				else_if = {
 					limit = {
@@ -279,7 +387,7 @@ planet_event = {
 
 # Colony Rolls Chance to being MEMED
 planet_event = {
-	id = acot_exterminatus_event.200
+	id = acot_exterminatus_event.100
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
@@ -305,20 +413,20 @@ planet_event = {
 	immediate = {
 		set_timed_planet_flag = {
 			flag = bombardment_cooldown
-			days = 60
+			days = 30
 		}
 		random_list = {
 			80 = {
 				modifier = {
 					factor = 0
-					num_pops <= 20
+					num_pops <= 5
 				}
 				IF = {
 					limit = {
 						has_building = building_dark_energy_psg
 					}
 					while = {
-						count = 10
+						count = 3
 						random_owned_pop = {
 							kill_pop = yes
 						}
@@ -385,26 +493,41 @@ planet_event = {
 					add_static_war_exhaustion = {
 						attacker = from.fleet.owner
 						location = root
-						value_for_planet_destruction = 0.5
+						value_for_planet_destruction = 1
 					}
-					country_event = {
-						id = acot_exterminatus_event.104
+					IF = {
+						limit = {
+							NOT = {
+								has_global_flag = fractured_happened
+							}
+						}
+						country_event = {
+							id = acot_exterminatus_event.101
+						}
 					}
 				}
 				from = {
-					country_event = {
-						id = acot_exterminatus_event.105
+					IF = {
+						limit = {
+							NOT = {
+								has_global_flag = fractured_happened
+							}
+						}
+						country_event = {
+							id = acot_exterminatus_event.102
+						}
 					}
 				}
 				every_playable_country = {
 					limit = {
 						NOR = {
-							is_same_empire = root.owner
+							is_same_value = root.owner
 							is_same_value = from
+							has_global_flag = fractured_happened
 						}
 					}
 					country_event = {
-						id = acot_exterminatus_event.105
+						id = acot_exterminatus_event.103
 					}
 				}
 				every_owned_pop = {
@@ -417,8 +540,55 @@ planet_event = {
 					limit = {
 						is_memeable_planet = yes
 					}
-					change_pc = pc_dark_fractured_ae_unstable
-					reset_planet = yes
+					random_list = {
+						10 = {
+							modifier = {
+								factor = 0
+								check_variable = {
+									which = acot_planet_damage
+									value >= 10
+								}
+							}
+							change_pc = pc_dark_fractured_unstable
+						}
+						40 = {
+							modifier = {
+								factor = 0
+								check_variable = {
+									which = acot_planet_damage
+									value >= 30
+								}
+							}
+							change_pc = pc_dark_fractured_unstable
+						}
+						25 = {
+							modifier = {
+								factor = 0
+								check_variable = {
+									which = acot_planet_damage
+									value <= 10
+								}
+							}
+							change_pc = pc_dark_fractured_ae
+						}
+						25 = {
+							modifier = {
+								factor = 0
+								check_variable = {
+									which = acot_planet_damage
+									value <= 30
+								}
+							}
+							modifier = {
+								factor = 2
+								check_variable = {
+									which = acot_planet_damage
+									value >= 60
+								}
+							}
+							change_pc = pc_dark_fractured_ae_unstable
+						}
+					}
 				}
 				else_if = {
 					limit = {
@@ -466,6 +636,9 @@ planet_event = {
 		}
 		planet_owner = {
 			or = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
 				is_country_type = awakened_marauders
 				is_playable_country = yes
 			}
@@ -544,13 +717,10 @@ planet_event = {
 			is_memeable_space_habitat = yes
 			is_memeable_ringworld = yes
 		}
-		planet_owner = {
-			or = {
-				is_country_type = awakened_marauders
-				is_playable_country = yes
-			}
+		OWNER = {
+			is_playable_country = yes
 		}
-		from = {
+		FROM = {
 			has_technology = tech_bombardment_ae_final
 		}
 		NOT = {
@@ -686,7 +856,7 @@ country_event = {
 					limit = {
 						is_memeable_planet = yes
 					}
-					change_pc = pc_dark_fractured_ae_unstable
+					change_pc = pc_dark_fractured_ae
 				}
 				else = {
 					if = {
