@@ -8,6 +8,9 @@ acot_dark_matter_obelisk_core = {
 	prerequisites = {
 		"tech_precursor_enigmalith"
 	}
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_portal
+	}
 	place_entity_on_planet_plane = no
 	entity_offset = {
 		x = 0
@@ -174,6 +177,12 @@ acot_dark_matter_obelisk_core = {
 				}
 			}
 		}
+		create_message = {
+			type = ACOT_MEGA_BUILT
+			localization = message_acot_mega_enigmalith_built
+			days = 20
+			target = fromfrom
+		}
 	}
 }
 
@@ -299,6 +308,18 @@ acot_dark_matter_obelisk_core_pe = {
 			aot_sr_runic_power = 500
 		}
 	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
 }
 
 acot_dark_matter_obelisk_core_se = {
@@ -384,6 +405,18 @@ acot_dark_matter_obelisk_core_se = {
 				}
 			}
 			acot_sr_light_matter = 5
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
 		}
 	}
 }
@@ -472,21 +505,38 @@ acot_dark_matter_obelisk_core_oe = {
 			acot_sr_light_matter = 100
 		}
 	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
 }
 
 ######################################################################################################
 #PRECURSOR CITADEL SITE
 acot_precursor_citadel_site = {
-	entity = "acot_precursor_starbase_construction_platform_entity"
-	construction_entity = "acot_precursor_starbase_construction_platform_entity"
+	entity = "precursor_dark_obelisk_construction_portal_entity"
+	construction_entity = "precursor_dark_obelisk_construction_portal_entity"
 	portrait = "GFX_acot_precursor_station_plans_background"
-	place_entity_on_planet_plane = no
-	#entity_offset = { x = -7 y = -7 }
-	build_time = 720
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	build_time = 1
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 50000
+			alloys = 200000
+			sr_dark_matter = 15000
+			acot_sr_dark_energy = 15000
 			influence = 200
 		}
 		upkeep = {
@@ -511,6 +561,8 @@ acot_precursor_citadel_site = {
 				is_ship_size = starbase_starhold
 				is_ship_size = starbase_starfortress
 				is_ship_size = starbase_citadel
+				is_ship_size = acot_fallen_outpost
+				is_ship_size = acot_fallen_starbase
 			}
 		}
 		custom_tooltip = {
@@ -573,23 +625,28 @@ acot_precursor_citadel_site = {
 	on_build_cancel = {
 	}
 	on_build_complete = {
-		#set_star_flag = dyson_sphere_built
-		#from = { set_country_flag = built_dyson_sphere }
+		fromfrom = {
+			upgrade_megastructure_to = acot_precursor_citadel_base
+		}
 	}
 }
 
 #PRECURSOR SIGMA CITADEL SITE
 acot_precursor_sigma_citadel_site = {
-	entity = "acot_precursor_sigma_starbase_construction_platform_entity"
-	construction_entity = "acot_precursor_sigma_starbase_construction_platform_entity"
+	entity = "precursor_dark_obelisk_construction_portal_entity"
+	construction_entity = "precursor_dark_obelisk_construction_portal_entity"
 	portrait = "GFX_acot_precursor_sigma_station_plans_background"
-	place_entity_on_planet_plane = no
-	#entity_offset = { x = -7 y = -7 }
-	build_time = 720
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	place_entity_on_planet_plane = yes
+	build_time = 1
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 50000
+			alloys = 200000
+			acot_sr_stellarite = 15000
 			influence = 200
 		}
 		upkeep = {
@@ -614,6 +671,8 @@ acot_precursor_sigma_citadel_site = {
 				is_ship_size = starbase_starhold
 				is_ship_size = starbase_starfortress
 				is_ship_size = starbase_citadel
+				is_ship_size = acot_fallen_outpost
+				is_ship_size = acot_fallen_starbase
 				is_ship_size = acot_precusor_starbase
 				is_ship_size = acot_precusor_starcitadel
 				is_ship_size = acot_precusor_starfortress
@@ -689,6 +748,9 @@ acot_precursor_sigma_citadel_site = {
 				}
 			}
 			set_star_flag = acot_will_become_citadel
+		}
+		fromfrom = {
+			upgrade_megastructure_to = acot_precursor_sigma_citadel_base
 		}
 	}
 }
@@ -791,7 +853,8 @@ acot_precursor_phanon_citadel_site = {
 	on_build_cancel = {
 	}
 	on_build_complete = {
-		#set_star_flag = dyson_sphere_built
-		#from = { set_country_flag = built_dyson_sphere }
+		fromfrom = {
+			upgrade_megastructure_to = acot_precursor_phanon_citadel_base
+		}
 	}
 }

@@ -3344,6 +3344,65 @@ utility_component_template = {
 ########################################
 ##############################################
 utility_component_template = {
+	key = "TITAN_DARK_MATTER_REACTOR_SE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_se"
+	icon_frame = 1
+	power = 153600
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 640
+			acot_sr_stellarite = 256
+		}
+		upkeep = {
+			energy = 0
+			alloys = 0
+		}
+	}
+	modifier = {
+		ship_hull_mult = 0.1
+		ship_weapon_damage = 0.1
+		ship_fire_rate_mult = 0.1
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_se"
+	}
+	component_set = "power_core"
+	size_restriction = {
+		titan
+		aot_gatekeeper
+		sofe_gatekeeper_warden
+		ion_cannon
+		precursor_titan
+		precursor_assault_carrier
+		progenitor_carrier
+		precursor_sentinel
+		precursor_guardian
+		Carrier
+		SCX_Dreadnought
+		fe_titan
+		Dreadnought
+		fe_large_station
+		fe_small_station
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+utility_component_template = {
 	key = "ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR_SE"
 	size = small
 	icon = "GFX_ship_part_dark_matter_power_core_se"
