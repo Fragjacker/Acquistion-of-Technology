@@ -1,0 +1,565 @@
+################## HERCULEAN WEAPONS
+weapon_component_template = {
+	key = "ACOT_HERCULEAN_PD_WEAPON_7S"
+	size = large
+	icon = "GFX_ship_part_acot_precursor_herculean_pd_weapon_s7"
+	icon_frame = 1
+	type = point_defence
+	damage = {
+		min = 225
+		max = 450
+	}
+	windup = {
+		min = 0
+		max = 0
+	}
+	total_fire_time = 10
+	range = 120
+	accuracy = 1
+	power = @l_ae_power_cost
+	hull_damage = 1
+	armor_penetration = 0
+	armor_damage = 1
+	shield_penetration = 0
+	shield_damage = 1
+	tracking = 0.9
+	size_restriction = {
+		precursor_colossus
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_se_cost
+			acot_sr_stellarite = @m_se_sr_cost
+		}
+		upkeep = {
+			energy = @m_se_upkeep_energy
+			alloys = @m_se_upkeep_alloys
+		}
+	}
+	prerequisites = {
+		"tech_acot_precursor_herculean_basic_weapon_s7"
+	}
+	component_set = "ACOT_HERCULEAN_PD_WEAPON_7S"
+	projectile_gfx = "acot_plasma_cannon_se_m"
+	tags = {
+		weapon_type_point_defense
+		weapon_type_energy
+		weapon_type_kinetic
+		weapon_type_explosive
+	}
+	ai_tags = {
+		weapon_role_point_defense
+		screen
+	}
+	ai_weight = {
+		weight = 150
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 10
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 2
+			}
+		}
+	}
+	point_defence_targets = {
+		"missile"
+		"strike_craft"
+	}
+}
+
+weapon_component_template = {
+	key = "ACOT_HERCULEAN_L_WEAPON_7S"
+	size = large
+	icon = "GFX_ship_part_acot_precursor_herculean_artillery_weapon_s7"
+	icon_frame = 1
+	type = instant
+	damage = {
+		min = 2700
+		max = 8100
+	}
+	windup = {
+		min = 10
+		max = 20
+	}
+	total_fire_time = 40
+	range = 175
+	accuracy = 0.75
+	power = @al_ae_power_cost
+	hull_damage = 1.5
+	armor_penetration = 0
+	armor_damage = 1.5
+	shield_penetration = 0
+	shield_damage = 1.5
+	tracking = 0.5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @al_ae_cost
+			sr_dark_matter = @al_ae_sr_cost
+			acot_sr_dark_energy = @al_ae_sr2_cost
+		}
+		upkeep = {
+			energy = @al_ae_upkeep_energy
+			alloys = @al_ae_upkeep_alloys
+		}
+	}
+	size_restriction = {
+		precursor_colossus
+	}
+	prerequisites = {
+		"tech_acot_precursor_herculean_basic_weapon_s7"
+	}
+	component_set = "ACOT_HERCULEAN_L_WEAPON_7S"
+	projectile_gfx = "acot_herculean_artillery_se"
+	tags = {
+		weapon_type_energy
+		weapon_type_kinetic
+		weapon_type_explosive
+	}
+	ai_tags = {
+		weapon_role_artillery
+		weapon_role_anti_armor
+		weapon_role_anti_hull
+		weapon_role_anti_shield
+	}
+	#upgrades_to = "ACOT_ARTILLERY_SE"
+	ai_weight = {
+		weight = 150
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 10
+			}
+		}
+	}
+}
+
+### Sigma Lance
+weapon_component_template = {
+	key = "ACOT_HERCULEAN_XL_WEAPON_7S"
+	size = extra_large
+	icon = "GFX_ship_part_acot_precursor_herculean_spinal_weapon_s7"
+	icon_frame = 1
+	type = instant
+	damage = {
+		min = 2925
+		max = 5700
+	}
+	windup = {
+		min = 0
+		max = 0
+	}
+	total_fire_time = 15
+	range = 220
+	accuracy = 1
+	power = @xl_ae_power_cost
+	hull_damage = 1.5
+	armor_penetration = 0
+	armor_damage = 1.5
+	shield_penetration = 0
+	shield_damage = 1.5
+	tracking = 0.4
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @xl_ae_cost
+			acot_sr_dark_energy = @xl_ae_sr_cost
+		}
+		upkeep = {
+			energy = @xl_ae_upkeep_energy
+			alloys = @xl_ae_upkeep_alloys
+		}
+	}
+	use_ship_kill_target = no
+	size_restriction = {
+		precursor_colossus
+	}
+	prerequisites = {
+		"tech_acot_precursor_herculean_advanced_weapon_s7"
+	}
+	component_set = "ACOT_HERCULEAN_XL_WEAPON_7S"
+	projectile_gfx = "acot_herculean_xl_se"
+	tags = {
+		weapon_type_energy
+		weapon_type_kinetic
+		weapon_type_explosive
+	}
+	ai_tags = {
+		weapon_role_artillery
+		weapon_role_anti_armor
+		weapon_role_anti_hull
+		weapon_role_anti_shield
+	}
+	#upgrades_to = "ACOT_PARTICLE_LANCE_SE"
+	ai_weight = {
+		weight = 150
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 10
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+		}
+	}
+}
+
+### Sigma Lance
+weapon_component_template = {
+	key = "ACOT_HERCULEAN_T_WEAPON_7S"
+	size = titanic
+	icon = "GFX_ship_part_acot_precursor_herculean_spinal_weapon_s7"
+	icon_frame = 1
+	type = instant
+	damage = {
+		min = 67500
+		max = 135000
+	}
+	windup = {
+		min = 200
+		max = 200
+	}
+	total_fire_time = 0
+	range = 275
+	accuracy = 1
+	power = -7500
+	hull_damage = 2
+	armor_penetration = 0.5
+	armor_damage = 2
+	shield_penetration = 0.5
+	shield_damage = 2
+	tracking = 0.15
+	size_damage_factor = 1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @titanic_ae_cost
+			acot_sr_dark_energy = @titanic_ae_sr_cost
+		}
+		upkeep = {
+			energy = @titanic_ae_upkeep_energy
+			alloys = @titanic_ae_upkeep_alloys
+		}
+	}
+	use_ship_kill_target = no
+	size_restriction = {
+		precursor_colossus
+	}
+	prerequisites = {
+		"tech_acot_precursor_herculean_advanced_weapon_s7"
+	}
+	component_set = "ACOT_HERCULEAN_T_WEAPON_7S"
+	projectile_gfx = "acot_herculean_t_se"
+	tags = {
+		weapon_type_energy
+		weapon_type_kinetic
+		weapon_type_explosive
+	}
+	ai_tags = {
+		weapon_role_artillery
+		weapon_role_anti_armor
+		weapon_role_anti_hull
+		weapon_role_anti_shield
+	}
+	#upgrades_to = "ACOT_PARTICLE_LANCE_SE"
+	ai_weight = {
+		weight = 150
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 10
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "ACOT_HERCULEAN_SPIRIT_WEAPON_7S"
+	size = titanic
+	icon = "GFX_ship_part_acot_w_herculean_spirit_attack_s7"
+	icon_frame = 1
+	type = missile
+	damage = {
+		min = 900000
+		max = 900000
+	}
+	windup = {
+		min = 50
+		max = 50
+	}
+	total_fire_time = 100
+	range = 400
+	min_range = 125
+	accuracy = 1
+	missile_speed = 16	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
+	missile_evasion = 50
+	missile_health = 650000
+	missile_retarget_range = 250
+	power = -6500
+	hull_damage = 4
+	armor_damage = 3
+	armor_penetration = 0
+	shield_damage = 3
+	shield_penetration = 0
+	tracking = 1
+	ship_limit = 1
+	size_damage_factor = 3
+	size_restriction = {
+		precursor_colossus
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 5000
+			sr_dark_matter = 5000
+		}
+		upkeep = {
+			energy = 500
+			alloys = 500
+		}
+	}
+	prerequisites = {
+		"tech_acot_precursor_herculean_spirit_weapon_s7"
+	}
+	component_set = "ACOT_HERCULEAN_SPIRIT_WEAPON_7S"
+	projectile_gfx = "acot_herculean_spirit_e8_projectile"
+	tags = {
+		weapon_type_energy
+		weapon_type_kinetic
+		weapon_type_explosive
+	}
+	ai_tags = {
+		weapon_role_artillery
+	}
+	ai_weight = {
+		weight = 4
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 10
+			}
+		}
+	}
+}
+
+################## HERCULEAN HANGARS
+### SE Gunship
+############################
+strike_craft_component_template = {
+	key = "ACOT_HERCULEAN_ESCORT_HANGAR_7S"
+	size = LARGE
+	entity = "alpha_precursor_escort_bow_entity"
+	icon = "GFX_ship_part_acot_w_strike_craft_esc_7s"
+	icon_frame = 1
+	weapon_type = point_defence
+	projectile_gfx = "acot_mass_driver_se"
+	power = -550
+	count = 1
+	regeneration_per_day = 0.01
+	launch_time = 2
+	damage = {
+		min = 900
+		max = 1800
+	}
+	cooldown = 2
+	range = 80
+	accuracy = 1
+	health = 6000
+	armor = 3000
+	shield = 3000
+	tracking = 0.9
+	speed = 350
+	rotation_speed = 1
+	acceleration = 1
+	evasion = 0.2
+	hull_damage = 1
+	armor_penetration = 0
+	armor_damage = 1
+	shield_penetration = 0
+	shield_damage = 1.5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 2500
+			acot_sr_stellarite = 250
+		}
+		upkeep = {
+			energy = 250
+			alloys = 250
+		}
+	}
+	size_restriction = {
+		precursor_colossus
+	}
+	ship_behavior = "origin_fighters_behavior"
+	component_set = "ACOT_HERCULEAN_ESCORT_HANGAR_7S"
+	prerequisites = {
+		"tech_acot_precursor_herculean_hangar_escort_s7"
+	}
+	tags = {
+		weapon_type_strike_craft
+		weapon_type_kinetic
+	}
+	#upgrades_to = "ACOT_FIGHTERS_HANGAR_SE"	
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 10
+			}
+		}
+	}
+	point_defence_targets = {
+		"missile"
+		"strike_craft"
+	}
+}
+
+### SE Gunship
+strike_craft_component_template = {
+	key = "ACOT_HERCULEAN_BC_HANGAR_7S"
+	size = LARGE
+	entity = "stellar_precursor_battlecruiser_mid_entity"
+	icon = "GFX_ship_part_acot_w_strike_craft_bc_7s"
+	icon_frame = 1
+	weapon_type = instant
+	projectile_gfx = "acot_energy_lance_se"
+	power = -850
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 2500
+			acot_sr_stellarite = 250
+		}
+		upkeep = {
+			energy = 250
+			alloys = 250
+		}
+	}
+	count = 1
+	regeneration_per_day = 0.01
+	launch_time = 2
+	damage = {
+		min = 3600
+		max = 7200
+	}
+	cooldown = 8
+	range = 200
+	accuracy = 0.85
+	health = 14000
+	armor = 7000
+	shield = 7000
+	evasion = 0
+	speed = 300
+	tracking = 0.5
+	rotation_speed = 0.4
+	acceleration = 0.3
+	hull_damage = 1
+	armor_damage = 1.5
+	shield_damage = 1
+	shield_penetration = 0
+	ship_behavior = "origin_gunship_behavior"
+	size_restriction = {
+		precursor_colossus
+	}
+	#upgrades_to = ACOT_GUNSHIP_HANGAR_SE
+	component_set = "ACOT_HERCULEAN_BC_HANGAR_7S"
+	prerequisites = {
+		"tech_acot_precursor_herculean_hangar_bc_s7"
+	}
+	tags = {
+		weapon_type_strike_craft
+		weapon_type_energy
+	}
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 10
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_HERCULEAN_SHIELD_7S"
+	size = large
+	icon = "GFX_ship_part_acot_precursor_herculean_shield_s7"
+	icon_frame = 1
+	power = -900
+	modifier = {
+		ship_hull_add = 30375
+		ship_hull_regen_add_static = 300
+		ship_armor_add = 60750
+		ship_armor_regen_add_static = 600
+		ship_shield_add = 60750
+		ship_shield_regen_add_static = 600
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			energy = @shield_l_ae_cost
+			acot_sr_dark_energy = @shield_l_ae_sr_cost
+		}
+		upkeep = {
+			energy = @shield_l_ae_upkeep_energy
+		}
+	}
+	size_restriction = {
+		precursor_colossus
+	}
+	prerequisites = {
+		"tech_acot_precursor_herculean_shield_s7"
+	}
+	component_set = "ACOT_HERCULEAN_SHIELD_7S"
+	#upgrades_to = "LARGE_ACOT_ENIGMATIC_SHIELD_SE"
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 10
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+		}
+	}
+}
