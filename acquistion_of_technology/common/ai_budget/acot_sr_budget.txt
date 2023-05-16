@@ -1,0 +1,106 @@
+## Categories used in this file must have use_for_ai_budget = yes defined in economic_categories ##
+## It is possible to have multiple entries with the same category and resource ##
+
+#################
+## Expenditure ##
+#################
+
+aot_sr_runic_power_expenditure_ships = {
+	resource = aot_sr_runic_power
+	type = expenditure
+	category = ships
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 0.2
+		modifier = {
+			factor = 10
+			has_ascension_perk = ap_become_the_crisis
+			has_crisis_level = crisis_level_5
+			NOT = {
+				count_controlled_fleet = {
+					count >= 1
+					limit = {
+						is_ship_size = star_eater
+					}
+				}
+			}
+		}
+	}
+	desired_min = {
+		base = 0
+		modifier = {
+			add = 10000
+			has_ascension_perk = ap_become_the_crisis
+			NOT = {
+				count_controlled_fleet = {
+					count >= 1
+					limit = {
+						is_ship_size = star_eater
+					}
+				}
+			}
+		}
+	}
+}
+
+aot_sr_runic_power_expenditure_upgrade = {
+    resource = aot_sr_runic_power
+    type = expenditure
+    category = ship_upgrades
+
+    potential = {
+        always = yes
+    }
+
+
+	weight = {
+		base = 0.2
+	}
+}
+
+aot_sr_runic_power_expenditure_decisions = {
+	resource = aot_sr_runic_power
+	type = expenditure
+	category = decisions
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 0.1
+	}
+}
+
+aot_sr_runic_power_expenditure_peace_time_upgrade = {
+	resource = aot_sr_runic_power
+	type = expenditure
+	category = ship_upgrades
+
+	potential = {
+		is_at_war = no
+	}
+
+	weight = {
+		base = 0.4
+	}
+}
+
+aot_sr_runic_power_upkeep_ships = {
+	resource = aot_sr_runic_power
+	type = upkeep
+	category = ships
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 0.3
+	}
+}
+
