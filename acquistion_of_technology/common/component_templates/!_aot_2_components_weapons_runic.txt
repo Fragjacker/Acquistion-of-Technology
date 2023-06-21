@@ -46,6 +46,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_re_laser_s"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_armor
@@ -110,6 +111,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_re_laser_m"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_armor
@@ -174,6 +176,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_re_laser_l"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_armor
@@ -239,6 +242,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_plasma_cannon_re_s"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_armor
@@ -303,6 +307,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_plasma_cannon_re_m"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_armor
@@ -365,9 +370,10 @@ weapon_component_template = {
 		"tech_plasma_re"
 	}
 	component_set = "ACOT_PLASMA_RE"
-	projectile_gfx = "acot_plasma_cannon_pe_l"
+	projectile_gfx = "acot_plasma_cannon_re_l"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_armor
@@ -433,6 +439,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_disruptor_re_small"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_hull
@@ -499,6 +506,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_disruptor_re_medium"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_hull
@@ -565,11 +573,79 @@ weapon_component_template = {
 	projectile_gfx = "acot_disruptor_re_medium"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_hull
 		brawler
 		brawler_stealth
+	}
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+	}
+}
+
+### AE Launcher
+weapon_component_template = {
+	key = "ACOT_ENERGY_CANNON_RE"
+	size = large
+	icon = "GFX_ship_part_energy_cannon_re"
+	icon_frame = 1
+	type = instant
+	damage = {
+		min = 1550
+		max = 3445
+	}
+	windup = {
+		min = 1
+		max = 19
+	}
+	total_fire_time = 150
+	range = 140
+	min_range = 45
+	accuracy = 1
+	power = @al_re_power_cost
+	hull_damage = 1.5
+	armor_penetration = 0
+	armor_damage = 1.5
+	shield_penetration = 0
+	shield_damage = 0.75
+	tracking = 0.1
+	upgrades_to = ACOT_ENERGY_TORPEDO_SE
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @l_re_cost
+			aot_sr_runic_power = @l_pleb_re_runic_cost
+		}
+		upkeep = {
+			energy = @l_re_upkeep_energy
+			alloys = @l_re_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_energy_cannon_re"
+	}
+	component_set = "ACOT_ENERGY_CANNON_RE"
+	projectile_gfx = "acot_energy_cannon_re"
+	tags = {
+		weapon_type_energy
+		weapon_type_acot_runic
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
 	}
 	ai_weight = {
 		weight = 40
@@ -633,6 +709,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_energy_torpedoes_re"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_shield
@@ -699,6 +776,7 @@ weapon_component_template = {
 	tags = {
 		weapon_type_point_defense
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_point_defense
@@ -760,10 +838,11 @@ weapon_component_template = {
 		"tech_point_defense_re"
 	}
 	component_set = "ACOT_POINT_DEFENSE_RE"
-	projectile_gfx = "acot_point_defence_laser_pe"
+	projectile_gfx = "acot_point_defence_laser_re"
 	tags = {
 		weapon_type_point_defense
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_point_defense
@@ -827,10 +906,11 @@ weapon_component_template = {
 		"tech_point_defense_re"
 	}
 	component_set = "ACOT_POINT_DEFENSE_RE"
-	projectile_gfx = "acot_point_defence_laser_pe"
+	projectile_gfx = "acot_point_defence_laser_re"
 	tags = {
 		weapon_type_point_defense
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_point_defense
@@ -900,6 +980,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_mass_driver_re_s"
 	tags = {
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_shield
@@ -964,6 +1045,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_mass_driver_re_m"
 	tags = {
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_shield
@@ -1028,6 +1110,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_mass_driver_re_l"
 	tags = {
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_shield
@@ -1090,9 +1173,10 @@ weapon_component_template = {
 		"tech_autocannon_re"
 	}
 	component_set = "ACOT_AUTOCANNON_RE"
-	projectile_gfx = "acot_auto_cannons_pe_l"
+	projectile_gfx = "acot_auto_cannons_re_l"
 	tags = {
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_shield
@@ -1155,9 +1239,10 @@ weapon_component_template = {
 		"tech_autocannon_re"
 	}
 	component_set = "ACOT_AUTOCANNON_RE"
-	projectile_gfx = "acot_auto_cannons_pe_l"
+	projectile_gfx = "acot_auto_cannons_re_l"
 	tags = {
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_shield
@@ -1220,9 +1305,10 @@ weapon_component_template = {
 		"tech_autocannon_re"
 	}
 	component_set = "ACOT_AUTOCANNON_RE"
-	projectile_gfx = "acot_auto_cannons_pe_l"
+	projectile_gfx = "acot_auto_cannons_re_l"
 	tags = {
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_shield
@@ -1289,6 +1375,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_dakka_cannon_re"
 	tags = {
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_shield
@@ -1356,6 +1443,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_kinetic_artillery_re"
 	tags = {
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -1421,6 +1509,7 @@ weapon_component_template = {
 	tags = {
 		weapon_type_point_defense
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_point_defense
@@ -1490,6 +1579,7 @@ weapon_component_template = {
 	tags = {
 		weapon_type_point_defense
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_point_defense
@@ -1559,6 +1649,7 @@ weapon_component_template = {
 	tags = {
 		weapon_type_point_defense
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_point_defense
@@ -1635,6 +1726,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_missile_small_re"
 	tags = {
 		weapon_type_explosive
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -1705,6 +1797,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_missile_small_re"
 	tags = {
 		weapon_type_explosive
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -1776,6 +1869,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_missile_small_re"
 	tags = {
 		weapon_type_explosive
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_shield
@@ -1847,6 +1941,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_barrage_missile_re"
 	tags = {
 		weapon_type_explosive
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -1929,6 +2024,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_xl_missile_re"
 	tags = {
 		weapon_type_explosive
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -2012,6 +2108,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_missile_nuke_re"
 	tags = {
 		weapon_type_explosive
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -2095,6 +2192,7 @@ strike_craft_component_template = {
 	tags = {
 		weapon_type_strike_craft
 		weapon_type_point_defense
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_point_defense
@@ -2173,6 +2271,7 @@ strike_craft_component_template = {
 	}
 	tags = {
 		weapon_type_strike_craft
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_point_defense
@@ -2250,6 +2349,7 @@ strike_craft_component_template = {
 	}
 	tags = {
 		weapon_type_strike_craft
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_anti_armor
@@ -2325,6 +2425,7 @@ strike_craft_component_template = {
 	}
 	tags = {
 		weapon_type_strike_craft
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -2407,6 +2508,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_energy_lance_re"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -2485,6 +2587,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_arc_emitter_re"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -2566,6 +2669,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_giga_cannon_re"
 	tags = {
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -2644,6 +2748,7 @@ weapon_component_template = {
 	projectile_gfx = "titan_laser_re"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -2723,6 +2828,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_arc_emitter_re"
 	tags = {
 		weapon_type_energy
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -2801,6 +2907,7 @@ weapon_component_template = {
 	projectile_gfx = "acot_giga_cannon_re"
 	tags = {
 		weapon_type_kinetic
+		weapon_type_acot_runic
 	}
 	ai_tags = {
 		weapon_role_artillery
