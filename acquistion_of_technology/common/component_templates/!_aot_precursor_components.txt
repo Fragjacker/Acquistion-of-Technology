@@ -8,12 +8,88 @@ utility_component_template = {
 		category = ship_components
 		cost = {
 			alloys = 1200
-			acot_sr_dark_energy = 1200
+			sr_dark_matter = 1200
 			acot_sr_dark_energy = 1200
 		}
 		upkeep = {
+			sr_dark_matter = 12
 			acot_sr_dark_energy = 12
-			acot_sr_dark_energy = 12
+		}
+	}
+	triggered_ship_modifier = {
+		potential = {
+			exists = solar_system
+			solar_system = {
+				OR = {
+					any_system_planet = {
+						is_planet_class = pc_pulsar
+					}
+					has_modifier = space_storm
+					has_modifier = vluur_storm
+					has_modifier = zroni_storm
+				}
+			}
+		}
+		modifier = {
+			ship_shield_reduction = -1
+		}
+	}
+	triggered_ship_modifier = {
+		potential = {
+			exists = solar_system
+			solar_system = {
+				any_system_planet = {
+					is_planet_class = pc_toxoid_star
+				}
+			}
+		}
+		modifier = {
+			ship_armor_reduction = -1
+		}
+	}
+	triggered_ship_modifier = {
+		potential = {
+			exists = solar_system
+			solar_system = {
+				any_system_planet = {
+					OR = {
+						is_planet_class = pc_black_hole
+						is_planet_class = pc_acot_void_star
+						is_planet_class = pc_acot_void_hole
+					}
+				}
+			}
+		}
+		modifier = {
+			ship_fire_rate_mult = 0.1
+			ship_weapon_damage = 0.1
+		}
+	}
+	triggered_ship_modifier = {
+		potential = {
+			exists = solar_system
+			solar_system = {
+				any_system_planet = {
+					is_planet_class = pc_black_hole
+				}
+			}
+		}
+		modifier = {
+			ship_disengage_chance_reduction = -0.5
+			ship_emergency_ftl_min_days_mult = -0.5
+		}
+	}
+	triggered_ship_modifier = {
+		potential = {
+			exists = solar_system
+			solar_system = {
+				any_system_planet = {
+					is_planet_class = pc_neutron_star
+				}
+			}
+		}
+		modifier = {
+			ship_speed_reduction = -0.5
 		}
 	}
 	hostile_aura = {
