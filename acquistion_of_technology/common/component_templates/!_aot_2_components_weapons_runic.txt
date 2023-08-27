@@ -85,8 +85,8 @@ weapon_component_template = {
 	total_fire_time = 35
 	range = 60
 	accuracy = 1
-	power = @m_pe_power_cost
-	hull_damage = 1
+	power = @m_re_power_cost
+	hull_damage = 1.25
 	armor_penetration = 0
 	armor_damage = 1.5
 	shield_penetration = 0
@@ -957,9 +957,9 @@ weapon_component_template = {
 	power = @s_re_power_cost
 	hull_damage = 1
 	armor_penetration = 0
-	armor_damage = 0.75
-	shield_penetration = 0
-	shield_damage = 1.75
+	armor_damage = 0.5
+	shield_penetration = 0.25
+	shield_damage = 1.5
 	tracking = 0.6
 	upgrades_to = "SMALL_ACOT_MASS_DRIVER_SE"
 	resources = {
@@ -1140,12 +1140,12 @@ weapon_component_template = {
 	icon_frame = 1
 	type = instant
 	damage = {
-		min = 46
+		min = 43
 		max = 89
 	}
 	windup = {
 		min = 2
-		max = 14
+		max = 6
 	}
 	total_fire_time = 9
 	range = 30
@@ -1206,12 +1206,12 @@ weapon_component_template = {
 	icon_frame = 1
 	type = instant
 	damage = {
-		min = 116
+		min = 108
 		max = 224
 	}
 	windup = {
 		min = 2
-		max = 14
+		max = 6
 	}
 	total_fire_time = 9
 	range = 35
@@ -1607,7 +1607,7 @@ weapon_component_template = {
 weapon_component_template = {
 	key = "MEDIUM_ACOT_FLAK_CANNON_RE"
 	size = medium
-	icon = "GFX_ship_part_flak_batteries_pe"
+	icon = "GFX_ship_part_flak_batteries_re"
 	icon_frame = 1
 	type = point_defence
 	damage = {
@@ -2499,7 +2499,6 @@ weapon_component_template = {
 		}
 	}
 	firing_arc = 25
-	min_range = 10
 	use_ship_kill_target = no
 	prerequisites = {
 		"tech_energy_lance_re"
@@ -2534,7 +2533,7 @@ weapon_component_template = {
 weapon_component_template = {
 	key = "ACOT_ARC_EMITTER_RE"
 	size = extra_large
-	icon = "GFX_ship_part_arc_emitter_pe"
+	icon = "GFX_ship_part_arc_emitter_re"
 	icon_frame = 1
 	type = instant
 	damage = {
@@ -2659,9 +2658,6 @@ weapon_component_template = {
 			alloys = @xl_re_upkeep_energy
 		}
 	}
-	firing_arc = 25
-	min_range = 10
-	use_ship_kill_target = no
 	prerequisites = {
 		"tech_mass_accelerator_re"
 	}
@@ -2737,8 +2733,8 @@ weapon_component_template = {
 			aot_sr_runic_power = @titanic_re_runic_cost
 		}
 		upkeep = {
-			energy = @titanic_pe_upkeep_energy
-			alloys = @titanic_pe_upkeep_energy
+			energy = @titanic_re_upkeep_energy
+			alloys = @titanic_re_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -2775,7 +2771,7 @@ weapon_component_template = {
 	size = titanic
 	type = instant
 	prio_projectile = yes
-	icon = "GFX_ship_part_titan_emitter_pe"
+	icon = "GFX_ship_part_titan_emitter_re"
 	icon_frame = 1
 	firing_arc = 10
 	min_range = 15
@@ -2896,8 +2892,8 @@ weapon_component_template = {
 			aot_sr_runic_power = @titanic_re_runic_cost
 		}
 		upkeep = {
-			energy = @titanic_pe_upkeep_energy
-			alloys = @titanic_pe_upkeep_energy
+			energy = @titanic_re_upkeep_energy
+			alloys = @titanic_re_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -3145,8 +3141,10 @@ utility_component_template = {
 	icon_frame = 1
 	power = 0
 	modifier = {
-		ship_hull_add = 480
-		ship_hull_regen_add_static = 4.8
+		ship_hull_add = 1000
+		ship_hull_regen_add_static = 50
+		ship_armor_add = 250
+		ship_shield_add = 250
 	}
 	upgrades_to = "SMALL_ACOT_ARMOR_SE"
 	resources = {
@@ -3186,8 +3184,10 @@ utility_component_template = {
 	icon_frame = 1
 	power = 0
 	modifier = {
-		ship_hull_add = 1210
-		ship_hull_regen_add_static = 12.1
+		ship_hull_add = 2500
+		ship_hull_regen_add_static = 125
+		ship_armor_add = 625
+		ship_shield_add = 625
 	}
 	upgrades_to = "MEDIUM_ACOT_ARMOR_SE"
 	resources = {
@@ -3227,8 +3227,10 @@ utility_component_template = {
 	icon_frame = 1
 	power = 0
 	modifier = {
-		ship_hull_add = 2880
-		ship_hull_regen_add_static = 28
+		ship_hull_add = 6000
+		ship_hull_regen_add_static = 300
+		ship_armor_add = 1500
+		ship_shield_add = 1500
 	}
 	upgrades_to = "LARGE_ACOT_ARMOR_SE"
 	resources = {
@@ -3269,10 +3271,10 @@ utility_component_template = {
 	icon_frame = 1
 	power = @armor_s_re_power_cost
 	modifier = {
-		ship_hull_add = 240
-		ship_hull_regen_add_static = 2.4
-		ship_armor_add = 960
-		ship_armor_regen_add_static = 9.6
+		ship_hull_add = 250
+		ship_hull_regen_add_static = 10
+		ship_armor_add = 1000
+		ship_armor_regen_add_static = 50
 	}
 	upgrades_to = "SMALL_ACOT_ARMOR_SE"
 	resources = {
@@ -3313,10 +3315,10 @@ utility_component_template = {
 	icon_frame = 1
 	power = @armor_m_re_power_cost
 	modifier = {
-		ship_hull_add = 610
-		ship_hull_regen_add_static = 6.1
-		ship_armor_add = 2400
-		ship_armor_regen_add_static = 24
+		ship_hull_add = 625
+		ship_hull_regen_add_static = 25
+		ship_armor_add = 2500
+		ship_armor_regen_add_static = 125
 	}
 	upgrades_to = "MEDIUM_ACOT_ARMOR_SE"
 	resources = {
@@ -3357,10 +3359,10 @@ utility_component_template = {
 	icon_frame = 1
 	power = @armor_l_re_power_cost
 	modifier = {
-		ship_hull_add = 1440
-		ship_hull_regen_add_static = 14.4
-		ship_armor_add = 5765
-		ship_armor_regen_add_static = 57.65
+		ship_hull_add = 1500
+		ship_hull_regen_add_static = 60
+		ship_armor_add = 6000
+		ship_armor_regen_add_static = 300
 	}
 	upgrades_to = "LARGE_ACOT_ARMOR_SE"
 	resources = {
@@ -3416,9 +3418,9 @@ utility_component_template = {
 		}
 	}
 	modifier = {
-		ship_hull_add = 365
-		ship_shield_add = 730
-		ship_shield_regen_add_static = 73
+		ship_hull_add = 250
+		ship_shield_add = 1000
+		ship_shield_regen_add_static = 100
 	}
 	prerequisites = {
 		"tech_dark_matter_deflector_re"
@@ -3434,11 +3436,11 @@ utility_component_template = {
 	size = medium
 	icon = "GFX_ship_part_dark_matter_shield_re"
 	icon_frame = 1
-	power = @shield_m_pe_power_cost
+	power = @shield_m_re_power_cost
 	modifier = {
-		ship_hull_add = 910
-		ship_shield_add = 1820
-		ship_shield_regen_add_static = 182
+		ship_hull_add = 625
+		ship_shield_add = 2500
+		ship_shield_regen_add_static = 250
 	}
 	upgrades_to = "MEDIUM_ACOT_ENIGMATIC_SHIELD_SE"
 	resources = {
@@ -3448,7 +3450,7 @@ utility_component_template = {
 			aot_sr_runic_power = @s_re_runic_cost
 		}
 		upkeep = {
-			alloys = @shield_m_pe_upkeep_alloys
+			alloys = @shield_m_re_upkeep_alloys
 			energy = @shield_m_re_upkeep_energy
 		}
 	}
@@ -3477,11 +3479,11 @@ utility_component_template = {
 	size = large
 	icon = "GFX_ship_part_dark_matter_shield_re"
 	icon_frame = 1
-	power = @shield_l_pe_power_cost
+	power = @shield_l_re_power_cost
 	modifier = {
-		ship_hull_add = 2185
-		ship_shield_add = 4370
-		ship_shield_regen_add_static = 437
+		ship_hull_add = 1500
+		ship_shield_add = 6000
+		ship_shield_regen_add_static = 600
 	}
 	upgrades_to = "LARGE_ACOT_ENIGMATIC_SHIELD_SE"
 	resources = {
@@ -3491,7 +3493,7 @@ utility_component_template = {
 			aot_sr_runic_power = @s_re_runic_cost
 		}
 		upkeep = {
-			alloys = @shield_l_pe_upkeep_alloys
+			alloys = @shield_l_re_upkeep_alloys
 			energy = @shield_l_re_upkeep_energy
 		}
 	}
@@ -3573,6 +3575,21 @@ utility_component_template = {
 		ship_disengage_opportunities_add = 2
 	}
 	upgrades_to = "STELLARITE_DRIVE_SE"
+	triggered_ship_modifier = {
+		potential = {
+			exists = solar_system
+			solar_system = {
+				any_system_planet = {
+					is_planet_class = pc_black_hole
+				}
+			}
+		}
+		modifier = {
+			ship_disengage_chance_reduction = -0.5
+			ship_emergency_ftl_min_days_mult = -0.5
+		}
+	}
+	custom_tooltip = "ACOT_DARK_MATTER_FTL_RE_TOOLTIP"
 	resources = {
 		category = ship_components
 		cost = {
@@ -3624,8 +3641,13 @@ utility_component_template = {
 			aot_sr_runic_power = @s_re_runic_cost
 		}
 	}
+	modifier = {
+		ship_base_speed_mult = 1.75
+		ship_evasion_add = 30
+	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					is_planet_class = pc_neutron_star
@@ -3637,10 +3659,6 @@ utility_component_template = {
 		}
 	}
 	custom_tooltip = "ACOT_DARK_MATTER_THRUSTERS_RE_TOOLTIP"
-	modifier = {
-		ship_base_speed_mult = 1.75
-		ship_evasion_add = 30
-	}
 	prerequisites = {
 		"tech_thrusters_re"
 	}
@@ -3688,6 +3706,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				OR = {
 					any_system_planet = {
@@ -3705,6 +3724,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					is_planet_class = pc_toxoid_star
@@ -3717,6 +3737,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					OR = {
@@ -3746,7 +3767,6 @@ utility_component_template = {
 		constructor
 		science
 		transport
-		crisis_corvette
 		offspring_corvette
 	}
 	ai_weight = {
@@ -3789,6 +3809,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				OR = {
 					any_system_planet = {
@@ -3806,6 +3827,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					is_planet_class = pc_toxoid_star
@@ -3818,6 +3840,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					OR = {
@@ -3840,7 +3863,6 @@ utility_component_template = {
 	component_set = "power_core"
 	size_restriction = {
 		destroyer
-		crisis_destroyer
 		fe_escort
 	}
 	ai_weight = {
@@ -3883,6 +3905,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				OR = {
 					any_system_planet = {
@@ -3900,6 +3923,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					is_planet_class = pc_toxoid_star
@@ -3912,6 +3936,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					OR = {
@@ -3934,7 +3959,6 @@ utility_component_template = {
 	component_set = "power_core"
 	size_restriction = {
 		cruiser
-		crisis_cruiser
 		precursor_escort
 		precursor_platform_m
 		precursor_science
@@ -3990,6 +4014,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				OR = {
 					any_system_planet = {
@@ -4007,6 +4032,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					is_planet_class = pc_toxoid_star
@@ -4019,6 +4045,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					OR = {
@@ -4098,6 +4125,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				OR = {
 					any_system_planet = {
@@ -4115,6 +4143,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					is_planet_class = pc_toxoid_star
@@ -4127,6 +4156,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					OR = {
@@ -4204,6 +4234,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				OR = {
 					any_system_planet = {
@@ -4221,6 +4252,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					is_planet_class = pc_toxoid_star
@@ -4233,6 +4265,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					OR = {
@@ -4300,6 +4333,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				OR = {
 					any_system_planet = {
@@ -4317,6 +4351,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					is_planet_class = pc_toxoid_star
@@ -4329,6 +4364,7 @@ utility_component_template = {
 	}
 	triggered_ship_modifier = {
 		potential = {
+			exists = solar_system
 			solar_system = {
 				any_system_planet = {
 					OR = {
@@ -4553,17 +4589,6 @@ utility_component_template = {
 	}
 	prerequisites = {
 		"tech_computer_runic"
-	}
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @runic_component_alloy_S_cost
-			aot_sr_runic_power = @runic_component_runic_power_S_cost
-		}
-		upkeep = {
-			alloys = @runic_component_alloy_S_upkeep
-			energy = @runic_component_energy_S_upkeep
-		}
 	}
 	ai_weight = {
 		weight = 40
@@ -5034,6 +5059,11 @@ utility_component_template = {
 		acot_precusor_sigma_starbase
 		acot_precusor_sigma_starfortress
 		acot_precusor_sigma_starcitadel
+		acot_precusor_orbital_ring_t1
+		acot_precusor_orbital_ring_t2
+		acot_precusor_orbital_ring_t3
+		acot_fallen_outpost
+		acot_fallen_starbase
 	}
 	component_set = "combat_computers"
 	ship_behavior = "platform"
@@ -5313,7 +5343,7 @@ utility_component_template = {
 	size = aux
 	icon = "GFX_ship_part_darkmatter_afterburners_re"
 	icon_frame = 1
-	power = -60
+	power = -160
 	upgrades_to = "ACOT_AFTERBURNERS_SE"
 	resources = {
 		category = ship_components
@@ -5351,7 +5381,7 @@ utility_component_template = {
 	size = aux
 	icon = "GFX_ship_part_darkmatter_reactive_drone_re"
 	icon_frame = 1
-	power = -80
+	power = -320
 	upgrades_to = "ACOT_HYPERCHARGED_JUMPER_SE"
 	resources = {
 		category = ship_components
@@ -5361,9 +5391,9 @@ utility_component_template = {
 		}
 	}
 	modifier = {
-		ship_hull_mult = 0.25
-		ship_hull_regen_add_perc = 0.25
-		ship_armor_regen_add_perc = 0.25
+		ship_hull_mult = 0.5
+		ship_hull_regen_add_perc = 0.05
+		ship_armor_regen_add_perc = 0.05
 	}
 	prerequisites = {
 		"tech_darkmatter_reactive_drone_re"
@@ -5392,7 +5422,7 @@ utility_component_template = {
 		}
 	}
 	ship_modifier = {
-		ship_shield_regen_add_perc = 0.25
+		ship_shield_regen_add_perc = 0.05
 		ship_weapon_damage = 0.08
 		ship_fire_rate_mult = 0.08
 		ship_speed_mult = 0.08
@@ -5435,10 +5465,10 @@ utility_component_template = {
 	}
 	component_set = "ACOT_SHIELD_BOOSTER_RE"
 	modifier = {
-		ship_shield_mult = 0.25
+		ship_shield_mult = 0.5
 	}
 	ship_modifier = {
-		ship_shield_hardening_add = 0.25
+		ship_shield_hardening_add = 0.5
 	}
 	ai_weight = {
 		weight = 40
@@ -5474,10 +5504,10 @@ utility_component_template = {
 	}
 	component_set = "ACOT_ARMOR_BOOSTER_RE"
 	modifier = {
-		ship_armor_mult = 0.25
+		ship_armor_mult = 0.5
 	}
 	ship_modifier = {
-		ship_armor_hardening_add = 0.15
+		ship_armor_hardening_add = 0.5
 	}
 	ai_weight = {
 		weight = 40
@@ -5518,10 +5548,6 @@ utility_component_template = {
 		"tech_darkmatter_star_charter_re"
 	}
 	component_set = "ACOT_STARCHARTER_RE"
-	modifier = {
-		ship_shield_mult = 0.25
-		ship_shield_hardening_add = 0.25
-	}
 	ai_weight = {
 		weight = 40
 		modifier = {
@@ -5602,6 +5628,14 @@ utility_component_template = {
 		}
 	}
 	custom_tooltip = "ACOT_CLOAKING_LIGHT_RE_TOOLTIP"
+	class_restriction = {
+		shipclass_military
+		shipclass_transport
+		shipclass_military_special
+		shipclass_colonizer
+		shipclass_constructor
+		shipclass_science_ship
+	}
 	ship_limit = 1
 	blocked_by = {
 		CORVETTE_CLOAKING_1
@@ -5707,6 +5741,14 @@ utility_component_template = {
 		}
 	}
 	custom_tooltip = "ACOT_CLOAKING_HEAVY_RE_TOOLTIP"
+	class_restriction = {
+		shipclass_military
+		shipclass_transport
+		shipclass_military_special
+		shipclass_colonizer
+		shipclass_constructor
+		shipclass_science_ship
+	}
 	ship_limit = 1
 	blocked_by = {
 		CORVETTE_CLOAKING_1
@@ -5924,7 +5966,6 @@ utility_component_template = {
 		weapon_type_strike_craft_speed_mult = 0.3
 	}
 	modifier = {
-		ship_hull_mult = 0.1
 	}
 	prerequisites = {
 		"tech_fighter_core_re"
@@ -6303,12 +6344,20 @@ utility_component_template = {
 		modifier = {
 			factor = 0
 			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
+				type = aot_sr_runic_power
+				amount <= 10000
+			}
+			has_resource = {
+				type = alloys
+				amount <= 4000
 			}
 			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
+				resource = energy
+				value <= 100
+			}
+			has_monthly_income = {
+				resource = alloys
+				value <= 10
 			}
 		}
 	}
