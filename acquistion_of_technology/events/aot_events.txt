@@ -1,53 +1,4 @@
 namespace = aot_events
-# Ascended Empire ENERGIZE Edict Unlock
-country_event = {
-	id = aot_events.1
-	title = aot_events.1.name
-	desc = aot_events.1.desc
-	picture = GFX_evt_fallen_empire
-	trigger = {
-		is_country_type = ascended_empire
-		is_at_war = no
-		has_technology = tech_dark_matter_power_core_ae
-		NOT = {
-			has_country_flag = ae_decadence_edict_gained
-		}
-		any_owned_pop = {
-			has_job = ae_hedonist
-		}
-	}
-	mean_time_to_happen = {
-		years = 5
-	}
-	option = {
-		name = aot_events.1.a
-		custom_tooltip = enable_ae_decadence_edict
-		hidden_effect = {
-			set_country_flag = ae_decadence_edict_gained
-		}
-		ai_chance = {
-			# AI chance
-			factor = 1000
-		}
-	}
-}
-
-# Ascended Empire ENERGIZING Notification
-country_event = {
-	id = aot_events.2
-	title = aot_events.2.name
-	desc = aot_events.2.desc
-	picture = GFX_evt_fallen_empire
-	is_triggered_only = yes
-	option = {
-		name = aot_events.2.a
-		ai_chance = {
-			# AI chance
-			factor = 1000
-		}
-	}
-}
-
 # Turn all planet pops into main species
 planet_event = {
 	id = aot_events.3
@@ -351,8 +302,8 @@ planet_event = {
 					value >= 50000
 				}
 				resource_stockpile_compare = {
-					resource = acot_sr_stellarite
-					value >= 5000
+					resource = aot_sr_runic_power
+					value >= 10000
 				}
 				fail_text = {
 					text = no_normal_leaders
@@ -370,7 +321,7 @@ planet_event = {
 			owner = {
 				add_resource = {
 					energy = -50000
-					acot_sr_stellarite = -5000
+					aot_sr_runic_power = -10000
 				}
 			}
 			owner = {
@@ -461,6 +412,9 @@ country_event = {
 		}
 	}
 	immediate = {
+		from = {
+			save_event_target_as = to_be_resurrected_leader
+		}
 	}
 	option = {
 		name = aot_mod_options.resurrect.1.a
@@ -480,64 +434,20 @@ country_event = {
 			aot_sr_runic_power = -10000
 		}
 		hidden_effect = {
-			if = {
-				limit = {
-					from = {
-						leader_class = scientist
+			clone_leader = {
+				target = event_target:to_be_resurrected_leader
+				effect = {
+					save_event_target_as = cloned_leader
+					if = {
+						limit = {
+							NOT = {
+								has_trait = leader_trait_cell_activated
+							}
+						}
+						add_trait = leader_trait_cell_activated
 					}
+					set_leader_flag = is_resurrection_candidate
 				}
-				clone_leader = {
-					target = from
-					class = scientist
-				}
-			}
-			if = {
-				limit = {
-					from = {
-						leader_class = general
-					}
-				}
-				clone_leader = {
-					target = from
-					class = general
-				}
-			}
-			if = {
-				limit = {
-					from = {
-						leader_class = admiral
-					}
-				}
-				clone_leader = {
-					target = from
-					class = admiral
-				}
-			}
-			if = {
-				limit = {
-					from = {
-						leader_class = governor
-					}
-				}
-				clone_leader = {
-					target = from
-					class = governor
-				}
-			}
-			if = {
-				limit = {
-					from = {
-						leader_class = ruler
-					}
-				}
-				clone_leader = {
-					target = from
-					class = ruler
-				}
-			}
-			last_created_leader = {
-				add_trait = leader_trait_cell_activated
-				set_leader_flag = is_resurrection_candidate
 			}
 		}
 	}
@@ -578,53 +488,26 @@ country_event = {
 	}
 }
 
-#Zofe lost empire event
-country_event = {
-	id = aot_events.6
-	title = aot_events.6.name
-	desc = aot_events.6.desc
-	picture = GFX_evt_fallen_empire
-	is_triggered_only = yes
-	option = {
-		name = aot_events.6.a
-		custom_tooltip = renounce_ascendancy
-		allow = {
-			resource_stockpile_compare = {
-				resource = unity
-				value >= 200000
-			}
-			resource_stockpile_compare = {
-				resource = unity
-				value >= 500
-			}
-		}
-		add_resource = {
-			unity = -200000
-			unity = -500
-		}
-		hidden_effect = {
-			country_event = {
-				id = lost_empire.1001
-			}
-		}
-		ai_chance = {
-			# AI chance
-			factor = 1000
-		}
-	}
-	option = {
-		name = aot_events.6.b
-	}
-}
-
 #Assign the resurrection candidate flag to valuable, leaders that have just levelled up.
-country_event = {
+leader_event = {
 	id = aot_events.7
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		from = {
+		this = {
 			set_leader_flag = is_resurrection_candidate
+		}
+	}
+}
+
+#Remove the resurrection candidate flag.
+leader_event = {
+	id = aot_events.71
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		this = {
+			remove_leader_flag = is_resurrection_candidate
 		}
 	}
 }
@@ -1022,9 +905,6 @@ planet_event = {
 						has_trait = leader_trait_lethargic						#leader_trait_gale_speed
 						has_trait = leader_trait_corrupt						#leader_trait_righteous
 						has_trait = leader_trait_armchair_commander						#leader_trait_glory_seeker
-						has_trait = leader_trait_rigid_programming						#leader_trait_flexible_programming
-						has_trait = leader_trait_erratic_morality_core						#leader_trait_demoralizer
-						has_trait = leader_trait_unstable_code_base						#leader_trait_unyielding
 					}
 				}
 				resource_stockpile_compare = {
@@ -1048,18 +928,6 @@ planet_event = {
 				}
 				switch = {
 					trigger = has_trait
-					leader_trait_rigid_programming = {
-						remove_trait = leader_trait_rigid_programming
-						add_trait = leader_trait_flexible_programming
-					}
-					leader_trait_erratic_morality_core = {
-						remove_trait = leader_trait_erratic_morality_core
-						add_trait = leader_trait_demoralizer
-					}
-					leader_trait_unstable_code_base = {
-						remove_trait = leader_trait_unstable_code_base
-						add_trait = leader_trait_unyielding
-					}
 					leader_trait_arrested_development = {
 						remove_trait = leader_trait_arrested_development
 						add_trait = leader_trait_eager
@@ -1286,9 +1154,6 @@ planet_event = {
 						has_trait = leader_trait_lethargic						#leader_trait_gale_speed
 						has_trait = leader_trait_corrupt						#leader_trait_righteous
 						has_trait = leader_trait_armchair_commander						#leader_trait_glory_seeker
-						has_trait = leader_trait_rigid_programming						#leader_trait_flexible_programming
-						has_trait = leader_trait_erratic_morality_core						#leader_trait_demoralizer
-						has_trait = leader_trait_unstable_code_base						#leader_trait_unyielding
 					}
 				}
 				resource_stockpile_compare = {
@@ -1312,18 +1177,6 @@ planet_event = {
 				}
 				switch = {
 					trigger = has_trait
-					leader_trait_rigid_programming = {
-						remove_trait = leader_trait_rigid_programming
-						add_trait = leader_trait_flexible_programming
-					}
-					leader_trait_erratic_morality_core = {
-						remove_trait = leader_trait_erratic_morality_core
-						add_trait = leader_trait_demoralizer
-					}
-					leader_trait_unstable_code_base = {
-						remove_trait = leader_trait_unstable_code_base
-						add_trait = leader_trait_unyielding
-					}
 					leader_trait_arrested_development = {
 						remove_trait = leader_trait_arrested_development
 						add_trait = leader_trait_eager
@@ -1498,7 +1351,6 @@ country_event = {
 					leader_class = admiral
 				}
 				add_trait = leader_trait_acot_phanon_admiral
-				add_ruler_trait = leader_trait_ruler_phanon_mans
 				break = yes
 			}
 			else_if = {
@@ -1506,28 +1358,18 @@ country_event = {
 					leader_class = general
 				}
 				add_trait = leader_trait_phanon_six_stars_general
-				add_ruler_trait = leader_trait_ruler_phanon_mans
 			}
 			else_if = {
 				limit = {
 					leader_class = governor
 				}
 				add_trait = leader_trait_phanon_big_leader
-				add_ruler_trait = leader_trait_ruler_phanon_mans
 			}
 			else_if = {
 				limit = {
 					leader_class = scientist
 				}
 				add_trait = leader_trait_phanon_big_brain
-				add_ruler_trait = leader_trait_ruler_phanon_mans
-			}
-			else_if = {
-				limit = {
-					leader_class = ruler
-				}
-				add_trait = leader_trait_ruler_phanon_mans
-				add_ruler_trait = leader_trait_ruler_phanon_mans
 			}
 		}
 	}
