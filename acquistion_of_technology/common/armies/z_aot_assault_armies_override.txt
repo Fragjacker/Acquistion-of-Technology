@@ -619,9 +619,9 @@ acot_phanon_army = {
 	morale = 2
 	morale_damage = 0.5
 	collateral_damage = 0.75
-	war_exhaustion = 1
+	war_exhaustion = 0.5
 	time = 90
-	icon = GFX_army_type_primitive
+	icon = GFX_army_type_infantry
 	prerequisites = {
 		"tech_phanon_army"
 	}
@@ -634,33 +634,109 @@ acot_phanon_army = {
 			unity = 50
 		}
 		upkeep = {
-			energy = 25
+			energy = 5
 		}
 	}
 	potential = {
-		OR = {
-			is_planet_class = pc_acot_pmc_vault
-			is_aot_macripp = yes
-			has_building = building_phanon_stronghold
-			has_building = building_stellarite_stronghold
-			owner = {
-				is_country_type = acot_phanon_base
-			}
+		can_build_phanon_army = yes
+	}
+}
+
+acot_phanon_army_sniper = {
+	damage = 6
+	health = 2.5
+	morale = 1.5
+	morale_damage = 2
+	collateral_damage = 0.1
+	war_exhaustion = 0.5
+	time = 90
+	icon = GFX_army_type_infantry
+	prerequisites = {
+		"tech_phanon_army"
+	}
+	has_species = no
+	resources = {
+		category = armies
+		cost = {
+			minerals = 250
+			energy = 100
+			unity = 50
 		}
-		NOT = {
-			has_global_flag = acot_army_forbidden
+		upkeep = {
+			energy = 5
 		}
+	}
+	potential = {
+		can_build_phanon_army = yes
+	}
+}
+
+acot_phanon_elite = {
+	damage = 6.5
+	health = 7
+	morale = 2
+	morale_damage = 1
+	collateral_damage = 1
+	war_exhaustion = 2
+	time = 150
+	icon = GFX_army_type_special
+	prerequisites = {
+		"tech_phanon_army_elite"
+	}
+	has_species = no
+	resources = {
+		category = armies
+		cost = {
+			minerals = 400
+			energy = 200
+			unity = 100
+		}
+		upkeep = {
+			energy = 30
+		}
+	}
+	potential = {
+		can_build_phanon_army = yes
+	}
+}
+
+acot_phanon_tank = {
+	damage = 8.5
+	health = 6.5
+	morale = 2.5
+	morale_damage = 1.5
+	collateral_damage = 3
+	war_exhaustion = 2.5
+	time = 360
+	icon = GFX_army_type_heavy
+	prerequisites = {
+		"tech_phanon_army_elite"
+	}
+	has_species = no
+	resources = {
+		category = armies
+		cost = {
+			minerals = 600
+			alloys = 300
+			unity = 100
+		}
+		upkeep = {
+			energy = 60
+		}
+	}
+	potential = {
+		can_build_phanon_army = yes
 	}
 }
 
 # Phanon Army
 acot_phanon_attack_dog = {
-	damage = 8.5
-	health = 3
+	damage = 7
+	health = 1.5
 	has_morale = no
 	morale_damage = 2
-	collateral_damage = 1
-	war_exhaustion = 1
+	collateral_damage = 2
+	war_exhaustion = 0.5
 	has_species = no
 	time = 150
 	icon = GFX_army_type_xenomorph
@@ -675,22 +751,40 @@ acot_phanon_attack_dog = {
 			unity = 50
 		}
 		upkeep = {
-			energy = 35
+			energy = 25
 		}
 	}
 	potential = {
-		OR = {
-			is_planet_class = pc_acot_pmc_vault
-			is_aot_macripp = yes
-			has_building = building_phanon_stronghold
-			has_building = building_stellarite_stronghold
-			owner = {
-				is_country_type = acot_phanon_base
-			}
+		can_build_phanon_army = yes
+	}
+}
+
+acot_phanon_attack_mammoth = {
+	damage = 12.5
+	health = 4.5
+	has_morale = no
+	morale_damage = 3
+	collateral_damage = 5
+	war_exhaustion = 1
+	has_species = no
+	time = 450
+	icon = GFX_army_type_xenomorph
+	prerequisites = {
+		"tech_phanon_attack_dog"
+	}
+	resources = {
+		category = armies
+		cost = {
+			minerals = 700
+			energy = 100
+			unity = 100
 		}
-		NOT = {
-			has_global_flag = acot_army_forbidden
+		upkeep = {
+			energy = 50
 		}
+	}
+	potential = {
+		can_build_phanon_army = yes
 	}
 }
 
@@ -699,11 +793,11 @@ acot_phanon_operative = {
 	damage = 45
 	health = 100
 	morale = 30
-	morale_damage = 1.5
-	collateral_damage = 0.1
+	morale_damage = 4
+	collateral_damage = 0.05
 	war_exhaustion = 0
 	time = 800
-	icon = GFX_army_type_psionic
+	icon = GFX_army_type_hero
 	has_species = no
 	prerequisites = {
 		tech_phanon_operative
@@ -722,17 +816,38 @@ acot_phanon_operative = {
 		}
 	}
 	potential = {
-		OR = {
-			is_planet_class = pc_acot_pmc_vault
-			is_aot_macripp = yes
-			has_building = building_phanon_stronghold
-			has_building = building_stellarite_stronghold
-			owner = {
-				is_country_type = acot_phanon_base
-			}
+		can_build_phanon_army = yes
+	}
+}
+
+# Phanon Army
+acot_phanon_operative_type_b = {
+	damage = 55
+	health = 80
+	morale = 30
+	morale_damage = 1
+	collateral_damage = 5
+	war_exhaustion = 0
+	time = 800
+	icon = GFX_army_type_hero
+	has_species = no
+	prerequisites = {
+		tech_phanon_operative
+	}
+	resources = {
+		category = armies
+		cost = {
+			minerals = 3500
+			energy = 500
+			unity = 500
+			influence = 500
 		}
-		NOT = {
-			has_global_flag = acot_army_forbidden
+		upkeep = {
+			energy = 250
+			unity = 250
 		}
+	}
+	potential = {
+		can_build_phanon_army = yes
 	}
 }
