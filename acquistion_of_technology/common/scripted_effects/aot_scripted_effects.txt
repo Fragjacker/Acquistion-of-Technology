@@ -2445,3 +2445,120 @@ create_sigma_habitat = {
 		}
 	}
 }
+
+on_aot_orbital_complete_effect = {
+	fromfrom.solar_system = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = habitat
+			}
+			save_event_target_as = target_habitat
+		}
+	}
+	event_target:target_planet = {
+		set_planet_flag = has_megastructure
+		if = {
+			limit = {
+				has_orbital_station = yes
+			}
+			orbital_station = {
+				dismantle = yes
+			}
+		}
+		create_fleet = {
+			effect = {
+				set_owner = FROM
+				create_ship = {
+					random_existing_design = $TIER$_$BODY$_orbital_$TYPE$
+					effect = {
+						set_disable_at_health = 0.05
+						set_name = {
+							key = TARGET_ORBITAL_NAME
+							variable_string = "\\[FROM.from.planet.GetName]"
+						}
+					}
+				}
+				save_event_target_as = target_orbital
+				fleet = {
+					set_location = {
+						target = event_target:target_planet
+					}
+				}
+			}
+		}
+		event_target:target_orbital = {
+			set_name = {
+				key = TARGET_ORBITAL_NAME
+				variable_string = "\\[FROM.from.planet.GetName]"
+			}
+		}
+		set_habitat_planetary_features_effect = yes
+		if = {
+			limit = {
+				event_target:target_planet = {
+					has_deposit_for = shipclass_research_station
+				}
+			}
+			event_target:target_orbital = {
+				set_fleet_flag = science_orbital
+			}
+		}
+		if = {
+			limit = {
+				event_target:target_planet = {
+					has_orbital_mining_deposit = yes
+				}
+			}
+			event_target:target_orbital = {
+				set_fleet_flag = mining_orbital
+			}
+		}
+		if = {
+			limit = {
+				event_target:target_planet = {
+					has_orbital_energy_deposit = yes
+				}
+			}
+			event_target:target_orbital = {
+				set_fleet_flag = energy_orbital
+			}
+		}
+	}
+	remove_megastructure = fromfrom
+}
+
+# PARAMETERS: FROM_TIER, TO_TIER, BODY, TYPE
+update_minor_major_orbitals = {
+	solar_system = {
+		every_fleet_in_system = {
+			limit = {
+				OR = {
+					is_ship_size = $FROM_TIER$_$BODY$_orbital_$TYPE$
+					is_ship_size = $BODY$_orbital_$TYPE$
+				}
+			}
+			save_event_target_as = delet_ship
+			create_fleet = {
+				effect = {
+					set_owner = FROM
+					create_ship = {
+						random_existing_design = $TO_TIER$_$BODY$_orbital_$TYPE$
+						effect = {
+							set_disable_at_health = 0.05
+							set_name = {
+								key = TARGET_ORBITAL_NAME
+								variable_string = "\\[FROM.from.planet.GetName]"
+							}
+						}
+					}
+					fleet = {
+						set_location = {
+							target = event_target:delet_ship
+						}
+					}
+				}
+			}
+			delete_fleet = event_target:delet_ship
+		}
+	}
+}
