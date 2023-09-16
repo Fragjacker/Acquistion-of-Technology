@@ -2488,12 +2488,118 @@ on_aot_orbital_complete_effect = {
 	remove_megastructure = fromfrom
 }
 
-# PARAMETERS: FROM_TIER, TO_TIER, BODY, TYPE
+######################################################################################
+# Orbitals Code
+######################################################################################
+# Wraps the handling executing the proper function depending on the ship size of the last built orbital.
+update_last_orbital_wrapper = {
+	last_created_fleet = {
+		switch = {
+			trigger = is_ship_size
+			major_orbital_generic = {
+				update_last_built_orbital = {
+					TO_TIER = $TIER$
+					BODY = major
+					TYPE = generic
+				}
+			}
+			major_orbital_resource = {
+				update_last_built_orbital = {
+					TO_TIER = $TIER$
+					BODY = major
+					TYPE = resource
+				}
+			}
+			minor_orbital_generic = {
+				update_last_built_orbital = {
+					TO_TIER = $TIER$
+					BODY = minor
+					TYPE = generic
+				}
+			}
+			minor_orbital_resource = {
+				update_last_built_orbital = {
+					TO_TIER = $TIER$
+					BODY = minor
+					TYPE = resource
+				}
+			}
+		}
+	}
+}
+
+# Updates the last build orbital to another tier visual.
+update_last_built_orbital = {
+	last_created_fleet = {
+		save_event_target_as = old_orbital
+		create_fleet = {
+			effect = {
+				set_owner = FROM
+				create_ship = {
+					random_existing_design = $TO_TIER$_$BODY$_orbital_$TYPE$
+					effect = {
+						set_disable_at_health = 0.05
+						set_name = {
+							key = TARGET_ORBITAL_NAME
+							variable_string = "\\[FROM.from.planet.GetName]"
+						}
+					}
+				}
+				save_event_target_as = target_orbital
+				fleet = {
+					set_location = {
+						target = event_target:old_orbital
+					}
+				}
+			}
+		}
+		event_target:target_orbital = {
+			set_name = {
+				key = TARGET_ORBITAL_NAME
+				variable_string = "\\[FROM.from.planet.GetName]"
+			}
+		}
+		delete_fleet = event_target:old_orbital
+	}
+}
+
+# Wraps all possible minor/major orbital upgrade paths in one command.
+update_all_orbitals_wrapper = {
+	update_minor_major_orbitals = {
+		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
+		TO_TIER = $TO_TIER$
+		BODY = major
+		TYPE = generic
+	}
+	update_minor_major_orbitals = {
+		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
+		TO_TIER = $TO_TIER$
+		BODY = major
+		TYPE = resource
+	}
+	update_minor_major_orbitals = {
+		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
+		TO_TIER = $TO_TIER$
+		BODY = minor
+		TYPE = generic
+	}
+	update_minor_major_orbitals = {
+		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
+		TO_TIER = $TO_TIER$
+		BODY = minor
+		TYPE = resource
+	}
+}
+
+# Upgrades all orbitals of the same kind on the system. PARAMETERS: FROM_TIER, TO_TIER, BODY, TYPE
 update_minor_major_orbitals = {
 	solar_system = {
 		every_fleet_in_system = {
 			limit = {
-				is_ship_size = $BODY$_orbital_$TYPE$
+				OR = {
+					[[!FROM_TIER]is_ship_size = $BODY$_orbital_$TYPE$]
+					[[FROM_TIER]is_ship_size = $FROM_TIER$_$BODY$_orbital_$TYPE$]
+				}
 			}
 			save_event_target_as = old_orbital
 			create_fleet = {

@@ -1399,35 +1399,24 @@ ship_event = {
 # Update all existing Major and Minor orbitals to new visuals.
 country_event = {
 	id = aot_events.12
-	title = "UPDATING THE STUFF YEAH @from!"
+	title = "UPDATING THE STUFF YEAH!"
 	picture = GFX_evt_society_research
 	is_triggered_only = yes
 	immediate = {
-		from = {
-			switch = {
-				trigger = is_megastructure_type
-				major_orbital = {
-					update_minor_major_orbitals = {
-						TO_TIER = dm
-						BODY = major
-						TYPE = generic
-					}
-					update_minor_major_orbitals = {
-						TO_TIER = dm
-						BODY = major
-						TYPE = resource
-					}
+		fromfrom.solar_system = {
+			random_system_planet = {
+				limit = {
+					has_planet_flag = habitat
 				}
-				minor_orbital = {
-					update_minor_major_orbitals = {
-						TO_TIER = dm
-						BODY = minor
-						TYPE = generic
-					}
-					update_minor_major_orbitals = {
-						TO_TIER = dm
-						BODY = minor
-						TYPE = resource
+				save_event_target_as = central_habitat
+			}
+		}
+		event_target:central_habitat = {
+			switch = {
+				trigger = is_planet_class
+				pc_dm_habitat = {
+					update_last_orbital_wrapper = {
+						TIER = dm
 					}
 				}
 			}
