@@ -1665,73 +1665,34 @@ create_new_aot_habitat_districts = {
 }
 
 create_dm_habitat = {
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = district_hab_housing
-		}
-		variable = num_houses
-	}
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = district_hab_energy
-		}
-		variable = num_energy
-	}
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = district_hab_mining
-		}
-		variable = num_mines
-	}
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = district_hab_industrial
-		}
-		variable = num_industry
-	}
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = district_hab_science
-		}
-		variable = num_research
+	save_aot_habitat_districts = {
+		HOUSING = district_hab_housing
+		ENERGY = district_hab_energy
+		MINING = district_hab_mining
+		INDUSTRY = district_hab_arms_industry
+		SCIENCE = district_hab_research
+		SPECIAL = district_hab_dark_matter_energy
 	}
 	clear_deposits = yes
 	set_colony_type = col_habitat_dm
 	change_pc = pc_dm_habitat
 	set_planet_entity = {
-		entity = "dm_habitat_phase_01_entity"
+		entity = "dm_habitat_phase_03_entity"
 	}
 	set_planet_size = @size_lvl1
-	set_planet_flag = is_base_dm_habitat
+	set_planet_flag = advanced_ascended_habitat_2
 	add_modifier = {
 		modifier = dm_habitat_mod
 		days = -1
 	}
 	# Add housing districts if there's been built any previously.
-	while = {
-		count = num_houses
-		add_district = district_dm_hab_housing
-	}
-	while = {
-		count = num_industry
-		add_district = district_dm_hab_arms_industry
-	}
-	while = {
-		count = num_energy
-		add_district = district_dm_hab_energy
-	}
-	while = {
-		count = num_mines
-		add_district = district_dm_hab_mining
-	}
-	while = {
-		count = num_research
-		add_district = district_dm_hab_research
+	create_new_aot_habitat_districts = {
+		HOUSING = district_hab_housing
+		ENERGY = district_hab_energy
+		MINING = district_hab_mining
+		INDUSTRY = district_hab_arms_industry
+		SCIENCE = district_hab_research
+		SPECIAL = district_hab_dark_matter_energy
 	}
 	clear_variable = num_houses
 	clear_variable = num_industry
@@ -2532,12 +2493,9 @@ update_minor_major_orbitals = {
 	solar_system = {
 		every_fleet_in_system = {
 			limit = {
-				OR = {
-					is_ship_size = $FROM_TIER$_$BODY$_orbital_$TYPE$
-					is_ship_size = $BODY$_orbital_$TYPE$
-				}
+				is_ship_size = $BODY$_orbital_$TYPE$
 			}
-			save_event_target_as = delet_ship
+			save_event_target_as = old_orbital
 			create_fleet = {
 				effect = {
 					set_owner = FROM
@@ -2551,14 +2509,21 @@ update_minor_major_orbitals = {
 							}
 						}
 					}
+					save_event_target_as = target_orbital
 					fleet = {
 						set_location = {
-							target = event_target:delet_ship
+							target = event_target:old_orbital
 						}
 					}
 				}
 			}
-			delete_fleet = event_target:delet_ship
+			event_target:target_orbital = {
+				set_name = {
+					key = TARGET_ORBITAL_NAME
+					variable_string = "\\[FROM.from.planet.GetName]"
+				}
+			}
+			delete_fleet = event_target:old_orbital
 		}
 	}
 }

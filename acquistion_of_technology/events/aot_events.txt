@@ -1403,70 +1403,34 @@ country_event = {
 	picture = GFX_evt_society_research
 	is_triggered_only = yes
 	immediate = {
-		if = {
-			limit = {
-				from = {
-					OR = {
-						is_megastructure_type = major_orbital
-						is_megastructure_type = minor_orbital
+		from = {
+			switch = {
+				trigger = is_megastructure_type
+				major_orbital = {
+					update_minor_major_orbitals = {
+						TO_TIER = dm
+						BODY = major
+						TYPE = generic
+					}
+					update_minor_major_orbitals = {
+						TO_TIER = dm
+						BODY = major
+						TYPE = resource
+					}
+				}
+				minor_orbital = {
+					update_minor_major_orbitals = {
+						TO_TIER = dm
+						BODY = minor
+						TYPE = generic
+					}
+					update_minor_major_orbitals = {
+						TO_TIER = dm
+						BODY = minor
+						TYPE = resource
 					}
 				}
 			}
-			update_minor_major_orbitals = {
-				TO_TIER = dm
-				BODY = major
-				TYPE = generic
-			}
-			update_minor_major_orbitals = {
-				TO_TIER = dm
-				BODY = minor
-				TYPE = generic
-			}
-			update_minor_major_orbitals = {
-				TO_TIER = dm
-				BODY = major
-				TYPE = resource
-			}
-			update_minor_major_orbitals = {
-				TO_TIER = dm
-				BODY = minor
-				TYPE = resource
-			}
-			# solar_system = {
-			# 	every_fleet_in_system = {
-			# 		limit = {
-			# 			OR = {
-			# 				is_ship_size = major_orbital_generic
-			# 				is_ship_size = major_orbital_resource
-			# 				is_ship_size = minor_orbital_generic
-			# 				is_ship_size = minor_orbital_resource
-			# 			}
-			# 		}
-			# 		save_event_target_as = delet_ship
-			# 		create_fleet = {
-			# 			effect = {
-			# 				set_owner = FROM
-			# 				create_ship = {
-			# 					random_existing_design = dm_major_orbital_generic
-			# 					effect = {
-			# 						set_disable_at_health = 0.05
-			# 						set_name = {
-			# 							key = TARGET_ORBITAL_NAME
-			# 							variable_string = "\\[FROM.from.planet.GetName]"
-			# 						}
-			# 					}
-			# 				}
-			# 				save_event_target_as = target_orbital
-			# 				fleet = {
-			# 					set_location = {
-			# 						target = event_target:delet_ship
-			# 					}
-			# 				}
-			# 			}
-			# 		}
-			# 		delete_fleet = event_target:delet_ship
-			# 	}
-			# }
 		}
 	}
 }
