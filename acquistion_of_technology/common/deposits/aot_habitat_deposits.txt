@@ -1,0 +1,163 @@
+aot_habitat_system_resources = {
+	is_for_colonizable = yes
+	icon = "d_station_cargo"
+	category = deposit_cat_rare
+	potential = {
+		always = no
+	}
+	# Major Orbitals give additional District Slots
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_max_districts_add = 0.5
+		mult = solar_system.value:aot_num_major_orbitals
+	}
+	# Non-Resource Orbitals give additional Building Slots
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_max_buildings_add = 0.5
+		mult = solar_system.value:aot_num_major_and_minor_orbitals_class|CLASS|generic|
+	}
+	# Upgraded Habitats get additional Habitability, District Slots and Building Slots
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = advanced_habitat
+		}
+		pop_environment_tolerance = 0.1
+		planet_max_branch_office_buildings_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = advanced_habitat_2
+		}
+		pop_environment_tolerance = 0.1
+		planet_max_branch_office_buildings_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = advanced_habitat
+		}
+		planet_max_districts_add = 0.25
+		mult = solar_system.value:aot_num_major_orbitals
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = advanced_habitat_2
+		}
+		planet_max_districts_add = 0.25
+		mult = solar_system.value:aot_num_major_orbitals
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = advanced_habitat
+		}
+		planet_max_buildings_add = 0.25
+		mult = solar_system.value:aot_num_major_and_minor_orbitals_class|CLASS|generic|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = advanced_habitat_2
+		}
+		planet_max_buildings_add = 0.25
+		mult = solar_system.value:aot_num_major_and_minor_orbitals_class|CLASS|generic|
+	}
+	# Extra Jobs from Order's Outposts
+	triggered_planet_modifier = {
+		potential = {
+			uses_district_set = habitat
+			solar_system = {
+				any_fleet_in_system = {
+					is_ship_size = major_orbital_knights
+				}
+			}
+			exists = owner
+			owner = {
+				has_origin = origin_toxic_knights
+			}
+		}
+		job_knight_add = 1
+		mult = solar_system.value:num_major_orbitals_class|CLASS|knights|
+	}
+	# The district cap for provided by support habitats is
+	# 3 × NUM_ORBITALS_TYPE
+	# Mining Districts
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_dm_habitat
+		}
+		district_dm_hab_mining_max = 1
+		mult = value:aot_habitat_district_value|TYPE|mining|
+	}
+	# Energy Districts
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_dm_habitat
+		}
+		district_dm_hab_energy_max = 1
+		mult = value:aot_habitat_district_value|TYPE|energy|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_ae_habitat
+		}
+		district_ae_hab_mining_max = 1
+		mult = value:aot_habitat_district_value|TYPE|mining|
+	}
+	# Energy Districts
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_ae_habitat
+		}
+		district_ae_hab_energy_max = 1
+		mult = value:aot_habitat_district_value|TYPE|energy|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_phanon_habitat
+		}
+		district_hab_phanon_mining_max = 1
+		mult = value:aot_habitat_district_value|TYPE|mining|
+	}
+	# Energy Districts
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_phanon_habitat
+		}
+		district_hab_phanon_energy_max = 1
+		mult = value:aot_habitat_district_value|TYPE|energy|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_sigma_habitat
+		}
+		district_hab_stellarite_mining_max = 1
+		mult = value:aot_habitat_district_value|TYPE|mining|
+	}
+	# Energy Districts
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_sigma_habitat
+		}
+		district_hab_stellarite_energy_max = 1
+		mult = value:aot_habitat_district_value|TYPE|energy|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_sigma_deepspace_habitat
+		}
+		district_hab_stellarite_mining_max = 1
+		mult = value:aot_habitat_district_value|TYPE|mining|
+	}
+	# Energy Districts
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_sigma_deepspace_habitat
+		}
+		district_hab_stellarite_energy_max = 1
+		mult = value:aot_habitat_district_value|TYPE|energy|
+	}
+	custom_tooltip = system_resources_tooltip
+}

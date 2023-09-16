@@ -2407,6 +2407,10 @@ create_sigma_habitat = {
 	}
 }
 
+# ------------------------------------------------------------------------------------------------ #
+#                                         Aot Orbitals Code                                        #
+# ------------------------------------------------------------------------------------------------ #
+
 on_aot_orbital_complete_effect = {
 	fromfrom.solar_system = {
 		random_system_planet = {
@@ -2488,9 +2492,6 @@ on_aot_orbital_complete_effect = {
 	remove_megastructure = fromfrom
 }
 
-######################################################################################
-# Orbitals Code
-######################################################################################
 # Wraps the handling executing the proper function depending on the ship size of the last built orbital.
 update_last_orbital_wrapper = {
 	last_created_fleet = {
@@ -2557,6 +2558,21 @@ update_last_built_orbital = {
 			set_name = {
 				key = TARGET_ORBITAL_NAME
 				variable_string = "\\[FROM.from.planet.GetName]"
+			}
+		}
+		event_target:old_orbital = {
+			switch = {
+				trigger = has_fleet_flag
+				mining_orbital = {
+					event_target:target_orbital = {
+						set_fleet_flag = mining_orbital
+					}
+				}
+				energy_orbital = {
+					event_target:target_orbital = {
+						set_fleet_flag = energy_orbital
+					}
+				}
 			}
 		}
 		delete_fleet = event_target:old_orbital
@@ -2627,6 +2643,21 @@ update_minor_major_orbitals = {
 				set_name = {
 					key = TARGET_ORBITAL_NAME
 					variable_string = "\\[FROM.from.planet.GetName]"
+				}
+			}
+			event_target:old_orbital = {
+				switch = {
+					trigger = has_fleet_flag
+					mining_orbital = {
+						event_target:target_orbital = {
+							set_fleet_flag = mining_orbital
+						}
+					}
+					energy_orbital = {
+						event_target:target_orbital = {
+							set_fleet_flag = energy_orbital
+						}
+					}
 				}
 			}
 			delete_fleet = event_target:old_orbital
