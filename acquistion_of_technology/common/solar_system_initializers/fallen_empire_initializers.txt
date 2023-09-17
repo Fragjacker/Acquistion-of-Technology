@@ -43,7 +43,7 @@ fallen_1 = {
 			min = 90
 			max = 270
 		}
-		size = 20
+		size = 40
 		deposit_blockers = none
 		modifiers = none
 		has_ring = no
@@ -78,6 +78,7 @@ fallen_1 = {
 			deposit_blockers = none
 			modifiers = none
 			init_effect = {
+				create_dm_habitat = yes
 				set_planet_flag = fallen_empire_world
 				set_planet_flag = is_base_dm_habitat
 				set_planet_flag = advanced_ascended_habitat
@@ -85,14 +86,6 @@ fallen_1 = {
 				prevent_anomaly = yes
 				set_owner = root
 				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_03_entity"
-				}
 				add_building = building_dm_ancient_palace
 				add_building = building_master_archive
 				add_building = building_dm_stronghold
@@ -104,6 +97,9 @@ fallen_1 = {
 				add_building = building_fe_affluence_center
 				add_building = building_fe_dimensional_fabricator
 				add_building = building_fe_nano_forge
+				set_planet_entity = {
+					entity = "dm_habitat_phase_03_entity"
+				}
 				while = {
 					count = 12
 					add_district = district_dm_hab_dark_matter_energy
@@ -137,24 +133,32 @@ fallen_1 = {
 			set_owner = root
 			set_controller = root
 			set_capital = yes
-			add_building = building_dm_ancient_palace
+			add_building = building_ancient_palace
 			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
 			add_building = building_dark_energy_psg
-			add_building = building_fe_affluence_center
-			add_building = building_fe_nourishment_center
-			add_building = building_fe_nourishment_center
+			add_building = building_affluence_center
+			add_building = building_affluence_center
+			add_building = building_nourishment_center
+			add_building = building_nourishment_center
+			add_building = building_nourishment_center
+			add_building = building_class_4_singularity
 			add_building = building_class_4_singularity
 			add_building = building_class_4_singularity
 			add_building = building_dark_matter_synthersizer
-			add_building = building_fe_dimensional_fabricator
-			add_building = building_fe_nano_forge
-			add_building = building_fe_nano_forge
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
 			while = {
-				count = 20
+				count = 40
 				add_district = district_arcology_housing
 			}
 			while = {
-				count = 94
+				count = 99
 				create_pop = {
 					species = owner_main_species
 				}
@@ -190,7 +194,7 @@ fallen_1 = {
 					name = random
 					owner = root
 					species = root
-					type = acot_defense_army_fe_machine
+					type = "acot_army_fe_mat"
 				}
 			}
 		}
@@ -219,69 +223,6 @@ fallen_1 = {
 			}
 			orbit_distance = 10
 		}
-		moon = {
-			class = pc_dm_habitat
-			name = "NAME_The_Watcher"
-			orbit_angle = {
-				min = 90
-				max = 270
-			}
-			orbit_distance = 5
-			size = @dm_hab_size_lvl2
-			flags = {
-				megastructure
-				habitat
-			}
-			deposit_blockers = none
-			modifiers = none
-			init_effect = {
-				set_planet_flag = fallen_empire_world
-				set_planet_flag = is_base_dm_habitat
-				set_planet_flag = is_base_dm_habitat
-				set_planet_flag = advanced_ascended_habitat
-				prevent_anomaly = yes
-				set_owner = root
-				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_02_entity"
-				}
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
-				add_building = building_class_4_singularity
-				add_building = building_fe_nourishment_center
-				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nano_forge
-				add_building = building_fe_nano_forge
-				while = {
-					count = 10
-					add_district = district_dm_hab_dark_matter_energy
-				}
-				while = {
-					count = 3
-					add_district = district_dm_hab_arms_industry
-				}
-				while = {
-					count = 20
-					create_pop = {
-						species = owner_main_species
-					}
-				}
-				while = {
-					count = 43
-					create_pop = {
-						species = event_target:fe_servants
-					}
-				}
-			}
-		}
 	}
 	planet = {
 		count = {
@@ -307,65 +248,6 @@ fallen_1 = {
 			}
 			orbit_distance = 10
 		}
-		moon = {
-			class = pc_dm_habitat
-			name = "NAME_Solitude_of_Wisdom"
-			orbit_angle = {
-				min = 90
-				max = 270
-			}
-			orbit_distance = 5
-			size = @dm_hab_size_lvl1
-			flags = {
-				megastructure
-				habitat
-			}
-			deposit_blockers = none
-			modifiers = none
-			init_effect = {
-				set_planet_flag = fallen_empire_world
-				set_planet_flag = is_base_dm_habitat
-				prevent_anomaly = yes
-				set_owner = root
-				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_01_entity"
-				}
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
-				add_building = building_class_4_singularity
-				add_building = building_fe_nourishment_center
-				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nano_forge
-				while = {
-					count = 8
-					add_district = district_dm_hab_dark_matter_energy
-				}
-				while = {
-					count = 1
-					add_district = district_dm_hab_arms_industry
-				}
-				while = {
-					count = 12
-					create_pop = {
-						species = owner_main_species
-					}
-				}
-				while = {
-					count = 30
-					create_pop = {
-						species = event_target:fe_servants
-					}
-				}
-			}
-		}
 	}
 	neighbor_system = {
 		distance = {
@@ -389,7 +271,19 @@ fallen_1 = {
 		initializer = "fallen_orbitals_2"
 	}
 	init_effect = {
-		create_fe_citadel = yes
+		create_fe_home_citadel = yes
+		spawn_megastructure = {
+			type = acot_dark_matter_obelisk_core
+			orbit_angle = 110
+			orbit_distance = 115
+			graphical_culture = owner
+		}
+		spawn_megastructure = {
+			type = gateway_final
+			orbit_angle = random
+			orbit_distance = 250
+			graphical_culture = owner
+		}
 	}
 }
 
@@ -436,7 +330,7 @@ fallen_1_2 = {
 			min = 90
 			max = 270
 		}
-		size = 15
+		size = 30
 		deposit_blockers = none
 		modifiers = none
 		has_ring = no
@@ -445,30 +339,37 @@ fallen_1_2 = {
 			prevent_anomaly = yes
 			set_owner = root
 			set_controller = root
-			add_building = building_dm_ancient_palace
+			add_building = building_ancient_palace
 			add_building = building_master_archive
-			add_building = building_dm_stronghold
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
 			add_building = building_dark_energy_psg
-			add_building = building_fe_sky_dome
+			add_building = building_fe_dome
+			add_building = building_fe_dome
 			add_building = building_class_4_singularity
 			add_building = building_class_4_singularity
-			add_building = building_fe_affluence_center
-			add_building = building_fe_nourishment_center
-			add_building = building_fe_dimensional_fabricator
-			add_building = building_fe_dimensional_fabricator
-			add_building = building_fe_nano_forge
+			add_building = building_dark_matter_synthersizer
+			add_building = building_affluence_center
+			add_building = building_affluence_center
+			add_building = building_nourishment_center
+			add_building = building_nourishment_center
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_nano_forge
+			add_building = building_nano_forge
 			while = {
-				count = 15
+				count = 30
 				add_district = district_city
 			}
 			while = {
-				count = 35
+				count = 30
 				create_pop = {
 					species = owner_main_species
 				}
 			}
 			while = {
-				count = 35
+				count = 40
 				create_pop = {
 					species = event_target:fe_servants
 				}
@@ -527,6 +428,18 @@ fallen_1_2 = {
 	}
 	init_effect = {
 		create_fe_citadel = yes
+		spawn_megastructure = {
+			type = acot_dark_matter_obelisk_core
+			orbit_angle = 110
+			orbit_distance = 115
+			graphical_culture = owner
+		}
+		spawn_megastructure = {
+			type = gateway_final
+			orbit_angle = random
+			orbit_distance = 250
+			graphical_culture = owner
+		}
 	}
 }
 
@@ -595,7 +508,7 @@ fallen_2 = {
 			min = 90
 			max = 270
 		}
-		size = 30
+		size = 35
 		deposit_blockers = none
 		modifiers = none
 		init_effect = {
@@ -609,36 +522,38 @@ fallen_2 = {
 			set_owner = root
 			set_controller = root
 			set_capital = yes
-			add_building = building_dm_ancient_palace
+			add_building = building_ancient_palace
 			add_building = building_giga_fortress_fe
+			add_building = building_empyrean_shrine
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
 			add_building = building_dark_energy_psg
-			add_building = building_fe_sky_dome
-			add_building = building_fe_sky_dome
-			add_building = building_fe_sky_dome
+			add_building = building_fe_dome
+			add_building = building_fe_dome
+			add_building = building_fe_dome
+			add_building = building_fe_dome
+			add_building = building_affluence_center
 			add_building = building_dark_matter_synthersizer
-			add_building = building_fe_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
 			add_building = building_class_4_singularity
 			add_building = building_class_4_singularity
-			add_building = building_fe_nano_forge
-			add_building = building_fe_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
 			while = {
-				count = 14
+				count = 15
 				add_district = district_city
 			}
 			while = {
-				count = 8
-				add_district_and_planet_size_if_needed_effect = {
-					district = district_mining
-				}
+				count = 10
+				add_district = district_mining
 			}
 			while = {
-				count = 8
-				add_district_and_planet_size_if_needed_effect = {
-					district = district_farming
-				}
+				count = 10
+				add_district = district_farming
 			}
 			while = {
-				count = 115
+				count = 120
 				create_pop = {
 					species = owner_main_species
 				}
@@ -650,7 +565,7 @@ fallen_2 = {
 					name = random
 					owner = root
 					species = root
-					type = acot_defense_army_fe_spirit
+					type = "acot_army_fe_spirit"
 				}
 			}
 		}
@@ -671,6 +586,7 @@ fallen_2 = {
 			deposit_blockers = none
 			modifiers = none
 			init_effect = {
+				create_dm_habitat = yes
 				set_planet_flag = fallen_empire_world
 				set_planet_flag = is_base_dm_habitat
 				set_planet_flag = advanced_ascended_habitat
@@ -678,14 +594,6 @@ fallen_2 = {
 				prevent_anomaly = yes
 				set_owner = root
 				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_03_entity"
-				}
 				add_building = building_dm_ancient_palace
 				add_building = building_aot_fe_empyrean_shrine
 				add_building = building_aot_fe_empyrean_shrine
@@ -698,6 +606,9 @@ fallen_2 = {
 				add_building = building_fe_affluence_center
 				add_building = building_fe_dimensional_fabricator
 				add_building = building_fe_nano_forge
+				set_planet_entity = {
+					entity = "dm_habitat_phase_03_entity"
+				}
 				while = {
 					count = 12
 					add_district = district_dm_hab_housing
@@ -740,7 +651,7 @@ fallen_2 = {
 			min = 90
 			max = 270
 		}
-		size = 22
+		size = 35
 		deposit_blockers = none
 		modifiers = none
 		init_effect = {
@@ -748,100 +659,38 @@ fallen_2 = {
 			prevent_anomaly = yes
 			set_owner = root
 			set_controller = root
-			add_building = building_dm_ancient_palace
-			add_building = building_aot_fe_empyrean_shrine
-			add_building = building_fe_sky_dome
-			add_building = building_fe_sky_dome
+			add_building = building_ancient_palace
+			add_building = building_empyrean_shrine
 			add_building = building_dark_energy_psg
-			add_building = building_fe_nano_forge
-			add_building = building_dm_stronghold
-			add_building = building_dm_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_fe_dome
+			add_building = building_fe_dome
+			add_building = building_fe_dome
+			add_building = building_fe_dome
+			add_building = building_affluence_center
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
 			add_building = building_class_4_singularity
 			add_building = building_class_4_singularity
-			add_building = building_fe_nano_forge
-			add_building = building_fe_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
 			while = {
-				count = 12
+				count = 20
 				add_district = district_city
 			}
 			while = {
 				count = 5
-				add_district_and_planet_size_if_needed_effect = {
-					district = district_mining
-				}
+				add_district = district_mining
 			}
 			while = {
-				count = 5
-				add_district_and_planet_size_if_needed_effect = {
-					district = district_farming
-				}
+				count = 10
+				add_district = district_farming
 			}
 			while = {
 				count = 68
 				create_pop = {
 					species = owner_main_species
-				}
-			}
-		}
-		moon = {
-			class = pc_dm_habitat
-			name = "NAME_Pious"
-			orbit_angle = {
-				min = 90
-				max = 270
-			}
-			orbit_distance = 5
-			size = @dm_hab_size_lvl2
-			flags = {
-				megastructure
-				habitat
-			}
-			deposit_blockers = none
-			modifiers = none
-			init_effect = {
-				set_planet_flag = fallen_empire_world
-				set_planet_flag = is_base_dm_habitat
-				set_planet_flag = advanced_ascended_habitat
-				prevent_anomaly = yes
-				set_owner = root
-				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_02_entity"
-				}
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
-				add_building = building_fe_sky_dome
-				add_building = building_fe_sky_dome
-				add_building = building_class_4_singularity
-				add_building = building_fe_nourishment_center
-				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nano_forge
-				add_building = building_fe_nano_forge
-				while = {
-					count = 10
-					add_district = district_dm_hab_housing
-				}
-				while = {
-					count = 2
-					add_district = district_dm_hab_dark_matter_energy
-				}
-				while = {
-					count = 1
-					add_district = district_dm_hab_arms_industry
-				}
-				while = {
-					count = 63
-					create_pop = {
-						species = owner_main_species
-					}
 				}
 			}
 		}
@@ -920,64 +769,6 @@ fallen_2 = {
 			}
 			orbit_distance = 5
 		}
-		moon = {
-			class = pc_dm_habitat
-			name = "NAME_Prophet"
-			orbit_angle = {
-				min = 90
-				max = 270
-			}
-			orbit_distance = 5
-			size = @dm_hab_size_lvl1
-			flags = {
-				megastructure
-				habitat
-			}
-			deposit_blockers = none
-			modifiers = none
-			init_effect = {
-				set_planet_flag = fallen_empire_world
-				set_planet_flag = is_base_dm_habitat
-				prevent_anomaly = yes
-				set_owner = root
-				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_01_entity"
-				}
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
-				add_building = building_fe_sky_dome
-				add_building = building_class_4_singularity
-				add_building = building_fe_nourishment_center
-				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nano_forge
-				while = {
-					count = 7
-					add_district = district_dm_hab_housing
-				}
-				while = {
-					count = 1
-					add_district = district_dm_hab_dark_matter_energy
-				}
-				while = {
-					count = 1
-					add_district = district_dm_hab_arms_industry
-				}
-				while = {
-					count = 42
-					create_pop = {
-						species = owner_main_species
-					}
-				}
-			}
-		}
 	}
 	neighbor_system = {
 		distance = {
@@ -1030,7 +821,19 @@ fallen_2 = {
 		initializer = "fallen_shrouded"
 	}
 	init_effect = {
-		create_fe_citadel = yes
+		create_fe_home_citadel = yes
+		spawn_megastructure = {
+			type = acot_dark_matter_obelisk_core
+			orbit_angle = random
+			orbit_distance = 115
+			graphical_culture = owner
+		}
+		spawn_megastructure = {
+			type = gateway_final
+			orbit_angle = random
+			orbit_distance = 250
+			graphical_culture = owner
+		}
 	}
 }
 
@@ -1093,24 +896,30 @@ fallen_3 = {
 				set_owner = root
 				set_controller = root
 				set_capital = yes
-				add_building = building_dm_ancient_palace
-				add_building = building_fe_sky_dome
-				add_building = building_fe_sky_dome
+				add_building = building_ancient_palace
 				add_building = building_giga_fortress_fe
+				add_building = building_fe_stronghold
+				add_building = building_fe_stronghold
 				add_building = building_dark_energy_psg
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nourishment_center
+				add_building = building_fe_dome
+				add_building = building_fe_dome
+				add_building = building_affluence_center
+				add_building = building_affluence_center
+				add_building = building_nourishment_center
+				add_building = building_nourishment_center
 				add_building = building_class_4_singularity
 				add_building = building_class_4_singularity
 				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_dimensional_fabricator
-				add_building = building_fe_nano_forge
+				add_building = building_dimensional_fabricator
+				add_building = building_dimensional_fabricator
+				add_building = building_nano_forge
+				add_building = building_nano_forge
 				while = {
-					count = 20
+					count = 35
 					add_district = district_city
 				}
 				while = {
-					count = 52
+					count = 60
 					create_pop = {
 						species = owner_main_species
 					}
@@ -1146,7 +955,7 @@ fallen_3 = {
 						name = random
 						owner = root
 						species = root
-						type = acot_defense_army_fe_phile
+						type = acot_army_fe_phile
 					}
 				}
 			}
@@ -1167,6 +976,7 @@ fallen_3 = {
 			deposit_blockers = none
 			modifiers = none
 			init_effect = {
+				create_dm_habitat = yes
 				set_planet_flag = fallen_empire_world
 				set_planet_flag = is_base_dm_habitat
 				set_planet_flag = advanced_ascended_habitat
@@ -1174,14 +984,6 @@ fallen_3 = {
 				prevent_anomaly = yes
 				set_owner = root
 				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_03_entity"
-				}
 				add_building = building_dm_ancient_palace
 				add_building = building_master_archive
 				add_building = building_dm_stronghold
@@ -1193,6 +995,9 @@ fallen_3 = {
 				add_building = building_fe_affluence_center
 				add_building = building_fe_dimensional_fabricator
 				add_building = building_fe_nano_forge
+				set_planet_entity = {
+					entity = "dm_habitat_phase_03_entity"
+				}
 				while = {
 					count = 12
 					add_district = district_dm_hab_dark_matter_energy
@@ -1238,26 +1043,35 @@ fallen_3 = {
 				prevent_anomaly = yes
 				set_owner = root
 				set_controller = root
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
+				add_building = building_ancient_palace
+				add_building = building_giga_fortress_fe
+				add_building = building_fe_stronghold
+				add_building = building_fe_stronghold
+				add_building = building_fe_dome
+				add_building = building_fe_dome
 				add_building = building_dark_energy_psg
-				add_building = building_fe_dimensional_fabricator
-				add_building = building_fe_dimensional_fabricator
-				add_building = building_fe_nano_forge
-				add_building = building_fe_nano_forge
+				add_building = building_dimensional_fabricator
+				add_building = building_dimensional_fabricator
+				add_building = building_dark_matter_synthersizer
+				add_building = building_nano_forge
+				add_building = building_nano_forge
+				add_building = building_nano_forge
+				add_building = building_affluence_center
+				add_building = building_affluence_center
+				add_building = building_nourishment_center
+				add_building = building_nourishment_center
 				while = {
-					count = 10
+					count = 20
 					add_district = district_city
 				}
 				while = {
-					count = 18
+					count = 25
 					create_pop = {
 						species = owner_main_species
 					}
 				}
 				while = {
-					count = 18
+					count = 25
 					create_pop = {
 						species = event_target:fe_servants
 					}
@@ -1277,29 +1091,33 @@ fallen_3 = {
 				prevent_anomaly = yes
 				set_owner = root
 				set_controller = root
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
+				add_building = building_ancient_palace
+				add_building = building_giga_fortress_fe
+				add_building = building_fe_stronghold
+				add_building = building_fe_stronghold
 				add_building = building_dark_energy_psg
-				add_building = building_fe_sky_dome
 				add_building = building_class_4_singularity
 				add_building = building_class_4_singularity
-				add_building = building_fe_affluence_center
-				add_building = building_fe_affluence_center
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nourishment_center
-				add_building = building_fe_nourishment_center
+				add_building = building_class_4_singularity
+				add_building = building_dark_matter_synthersizer
+				add_building = building_affluence_center
+				add_building = building_affluence_center
+				add_building = building_affluence_center
+				add_building = building_nourishment_center
+				add_building = building_nourishment_center
+				add_building = building_nourishment_center
 				while = {
-					count = 12
+					count = 30
 					add_district = district_city
 				}
 				while = {
-					count = 27
+					count = 30
 					create_pop = {
 						species = owner_main_species
 					}
 				}
 				while = {
-					count = 27
+					count = 40
 					create_pop = {
 						species = event_target:fe_servants
 					}
@@ -1331,68 +1149,6 @@ fallen_3 = {
 			}
 			orbit_distance = 10
 		}
-		moon = {
-			class = pc_dm_habitat
-			name = "NAME_Aunt"
-			orbit_angle = {
-				min = 90
-				max = 270
-			}
-			orbit_distance = 5
-			size = @dm_hab_size_lvl2
-			flags = {
-				megastructure
-				habitat
-			}
-			deposit_blockers = none
-			modifiers = none
-			init_effect = {
-				set_planet_flag = fallen_empire_world
-				set_planet_flag = is_base_dm_habitat
-				set_planet_flag = advanced_ascended_habitat
-				prevent_anomaly = yes
-				set_owner = root
-				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_02_entity"
-				}
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
-				add_building = building_class_4_singularity
-				add_building = building_fe_nourishment_center
-				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nano_forge
-				add_building = building_fe_nano_forge
-				while = {
-					count = 10
-					add_district = district_dm_hab_dark_matter_energy
-				}
-				while = {
-					count = 3
-					add_district = district_dm_hab_arms_industry
-				}
-				while = {
-					count = 20
-					create_pop = {
-						species = owner_main_species
-					}
-				}
-				while = {
-					count = 43
-					create_pop = {
-						species = event_target:fe_servants
-					}
-				}
-			}
-		}
 	}
 	planet = {
 		count = {
@@ -1418,65 +1174,6 @@ fallen_3 = {
 			}
 			orbit_distance = 10
 		}
-		moon = {
-			class = pc_dm_habitat
-			name = "NAME_Stepmother"
-			orbit_angle = {
-				min = 90
-				max = 270
-			}
-			orbit_distance = 5
-			size = @dm_hab_size_lvl1
-			flags = {
-				megastructure
-				habitat
-			}
-			deposit_blockers = none
-			modifiers = none
-			init_effect = {
-				set_planet_flag = fallen_empire_world
-				set_planet_flag = is_base_dm_habitat
-				prevent_anomaly = yes
-				set_owner = root
-				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_01_entity"
-				}
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
-				add_building = building_class_4_singularity
-				add_building = building_fe_nourishment_center
-				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nano_forge
-				while = {
-					count = 8
-					add_district = district_dm_hab_dark_matter_energy
-				}
-				while = {
-					count = 1
-					add_district = district_dm_hab_arms_industry
-				}
-				while = {
-					count = 12
-					create_pop = {
-						species = owner_main_species
-					}
-				}
-				while = {
-					count = 30
-					create_pop = {
-						species = event_target:fe_servants
-					}
-				}
-			}
-		}
 	}
 	neighbor_system = {
 		distance = {
@@ -1500,7 +1197,19 @@ fallen_3 = {
 		initializer = "fallen_orbitals_2"
 	}
 	init_effect = {
-		create_citadel_with_enigmatic_fortress_platform = yes
+		create_fe_home_citadel = yes
+		spawn_megastructure = {
+			type = acot_dark_matter_obelisk_core
+			orbit_angle = random
+			orbit_distance = 115
+			graphical_culture = owner
+		}
+		spawn_megastructure = {
+			type = gateway_final
+			orbit_angle = random
+			orbit_distance = 250
+			graphical_culture = owner
+		}
 	}
 }
 
@@ -1569,7 +1278,7 @@ fallen_4 = {
 			min = 90
 			max = 270
 		}
-		size = 25
+		size = 35
 		deposit_blockers = none
 		modifiers = none
 		has_ring = no
@@ -1584,24 +1293,30 @@ fallen_4 = {
 			set_owner = root
 			set_controller = root
 			set_capital = yes
-			add_building = building_dm_ancient_palace
+			add_building = building_ancient_palace
 			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
 			add_building = building_dark_energy_psg
-			add_building = building_fe_affluence_center
-			add_building = building_fe_affluence_center
+			add_building = building_affluence_center
+			add_building = building_affluence_center
+			add_building = building_nourishment_center
+			add_building = building_nourishment_center
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
 			add_building = building_dark_matter_synthersizer
-			add_building = building_fe_nourishment_center
-			add_building = building_class_4_singularity
-			add_building = building_class_4_singularity
-			add_building = building_fe_dimensional_fabricator
-			add_building = building_fe_nano_forge
-			add_building = building_fe_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
 			while = {
-				count = 25
+				count = 35
 				add_district = district_city
 			}
 			while = {
-				count = 62
+				count = 50
 				create_pop = {
 					species = owner_main_species
 				}
@@ -1613,7 +1328,7 @@ fallen_4 = {
 				save_event_target_as = fe_servants
 			}
 			while = {
-				count = 62
+				count = 35
 				create_pop = {
 					species = event_target:fe_servants
 				}
@@ -1625,7 +1340,7 @@ fallen_4 = {
 					name = random
 					owner = root
 					species = root
-					type = acot_defense_army_fe_phobe
+					type = acot_army_fe_phobe
 				}
 			}
 		}
@@ -1645,6 +1360,7 @@ fallen_4 = {
 			deposit_blockers = none
 			modifiers = none
 			init_effect = {
+				create_dm_habitat = yes
 				set_planet_flag = fallen_empire_world
 				set_planet_flag = is_base_dm_habitat
 				set_planet_flag = advanced_ascended_habitat
@@ -1652,14 +1368,6 @@ fallen_4 = {
 				prevent_anomaly = yes
 				set_owner = root
 				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_03_entity"
-				}
 				add_building = building_dm_ancient_palace
 				add_building = building_giga_fortress_fe
 				add_building = building_dm_stronghold
@@ -1671,6 +1379,9 @@ fallen_4 = {
 				add_building = building_fe_affluence_center
 				add_building = building_fe_dimensional_fabricator
 				add_building = building_fe_nano_forge
+				set_planet_entity = {
+					entity = "dm_habitat_phase_03_entity"
+				}
 				while = {
 					count = 12
 					add_district = district_dm_hab_dark_matter_energy
@@ -1696,7 +1407,7 @@ fallen_4 = {
 		moon = {
 			name = "NAME_Boundary"
 			class = "pc_gaia"
-			size = 12
+			size = 25
 			orbit_distance = 14
 			orbit_angle = 10
 			deposit_blockers = none
@@ -1706,30 +1417,36 @@ fallen_4 = {
 				prevent_anomaly = yes
 				set_owner = root
 				set_controller = root
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
+				add_building = building_ancient_palace
+				add_building = building_giga_fortress_fe
+				add_building = building_fe_stronghold
+				add_building = building_fe_stronghold
 				add_building = building_dark_energy_psg
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nourishment_center
-				add_building = building_fe_nourishment_center
+				add_building = building_affluence_center
+				add_building = building_nourishment_center
+				add_building = building_nourishment_center
 				add_building = building_class_4_singularity
 				add_building = building_class_4_singularity
-				add_building = building_fe_dimensional_fabricator
-				add_building = building_fe_dimensional_fabricator
-				add_building = building_fe_nano_forge
-				add_building = building_fe_nano_forge
+				add_building = building_class_4_singularity
+				add_building = building_dimensional_fabricator
+				add_building = building_dimensional_fabricator
+				add_building = building_dimensional_fabricator
+				add_building = building_dark_matter_synthersizer
+				add_building = building_nano_forge
+				add_building = building_nano_forge
+				add_building = building_nano_forge
 				while = {
-					count = 12
+					count = 25
 					add_district = district_city
 				}
 				while = {
-					count = 33
+					count = 35
 					create_pop = {
 						species = owner_main_species
 					}
 				}
 				while = {
-					count = 33
+					count = 25
 					create_pop = {
 						species = event_target:fe_servants
 					}
@@ -1811,68 +1528,6 @@ fallen_4 = {
 			}
 			orbit_distance = 10
 		}
-		moon = {
-			class = pc_dm_habitat
-			name = "NAME_The_Warden"
-			orbit_angle = {
-				min = 90
-				max = 270
-			}
-			orbit_distance = 5
-			size = @dm_hab_size_lvl2
-			flags = {
-				megastructure
-				habitat
-			}
-			deposit_blockers = none
-			modifiers = none
-			init_effect = {
-				set_planet_flag = fallen_empire_world
-				set_planet_flag = is_base_dm_habitat
-				set_planet_flag = advanced_ascended_habitat
-				prevent_anomaly = yes
-				set_owner = root
-				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_02_entity"
-				}
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
-				add_building = building_class_4_singularity
-				add_building = building_fe_nourishment_center
-				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nano_forge
-				add_building = building_fe_nano_forge
-				while = {
-					count = 10
-					add_district = district_dm_hab_dark_matter_energy
-				}
-				while = {
-					count = 3
-					add_district = district_dm_hab_arms_industry
-				}
-				while = {
-					count = 20
-					create_pop = {
-						species = owner_main_species
-					}
-				}
-				while = {
-					count = 43
-					create_pop = {
-						species = event_target:fe_servants
-					}
-				}
-			}
-		}
 	}
 	planet = {
 		count = {
@@ -1897,65 +1552,6 @@ fallen_4 = {
 				max = 270
 			}
 			orbit_distance = 10
-		}
-		moon = {
-			class = pc_dm_habitat
-			name = "NAME_The_Watchtower"
-			orbit_angle = {
-				min = 90
-				max = 270
-			}
-			orbit_distance = 5
-			size = @dm_hab_size_lvl1
-			flags = {
-				megastructure
-				habitat
-			}
-			deposit_blockers = none
-			modifiers = none
-			init_effect = {
-				set_planet_flag = fallen_empire_world
-				set_planet_flag = is_base_dm_habitat
-				prevent_anomaly = yes
-				set_owner = root
-				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_01_entity"
-				}
-				add_building = building_dm_ancient_palace
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
-				add_building = building_class_4_singularity
-				add_building = building_fe_nourishment_center
-				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nano_forge
-				while = {
-					count = 8
-					add_district = district_dm_hab_dark_matter_energy
-				}
-				while = {
-					count = 1
-					add_district = district_dm_hab_arms_industry
-				}
-				while = {
-					count = 12
-					create_pop = {
-						species = owner_main_species
-					}
-				}
-				while = {
-					count = 30
-					create_pop = {
-						species = event_target:fe_servants
-					}
-				}
-			}
 		}
 	}
 	neighbor_system = {
@@ -1994,7 +1590,19 @@ fallen_4 = {
 		initializer = "fallen_shielded_3"
 	}
 	init_effect = {
-		create_fe_citadel = yes
+		create_fe_home_citadel = yes
+		spawn_megastructure = {
+			type = acot_dark_matter_obelisk_core
+			orbit_angle = random
+			orbit_distance = 115
+			graphical_culture = owner
+		}
+		spawn_megastructure = {
+			type = gateway_final
+			orbit_angle = random
+			orbit_distance = 250
+			graphical_culture = owner
+		}
 	}
 }
 
@@ -2146,6 +1754,18 @@ fallen_col_1 = {
 	}
 	init_effect = {
 		create_fe_citadel = yes
+		spawn_megastructure = {
+			type = acot_dark_matter_obelisk_core
+			orbit_angle = random
+			orbit_distance = 115
+			graphical_culture = owner
+		}
+		spawn_megastructure = {
+			type = gateway_final
+			orbit_angle = random
+			orbit_distance = 250
+			graphical_culture = owner
+		}
 	}
 }
 
@@ -2308,6 +1928,18 @@ fallen_col_2 = {
 	}
 	init_effect = {
 		create_fe_citadel = yes
+		spawn_megastructure = {
+			type = acot_dark_matter_obelisk_core
+			orbit_angle = random
+			orbit_distance = 115
+			graphical_culture = owner
+		}
+		spawn_megastructure = {
+			type = gateway_final
+			orbit_angle = random
+			orbit_distance = 250
+			graphical_culture = owner
+		}
 	}
 }
 
@@ -3009,7 +2641,10 @@ fallen_holy_01 = {
 		random_list = {
 			# 30% chance outpost is "broken"
 			30 = {
-				star = {
+				random_system_planet = {
+					limit = {
+						is_star = yes
+					}
 					create_broken_fe_outpost = yes
 				}
 			}
@@ -3111,7 +2746,10 @@ fallen_holy_02 = {
 		random_list = {
 			# 30% chance outpost is "broken"
 			30 = {
-				star = {
+				random_system_planet = {
+					limit = {
+						is_star = yes
+					}
 					create_broken_fe_outpost = yes
 				}
 			}
@@ -3206,7 +2844,10 @@ fallen_holy_03 = {
 		random_list = {
 			# 30% chance outpost is "broken"
 			30 = {
-				star = {
+				random_system_planet = {
+					limit = {
+						is_star = yes
+					}
 					create_broken_fe_outpost = yes
 				}
 			}
@@ -3288,7 +2929,10 @@ fallen_holy_04 = {
 		random_list = {
 			# 30% chance outpost is "broken"
 			30 = {
-				star = {
+				random_system_planet = {
+					limit = {
+						is_star = yes
+					}
 					create_broken_fe_outpost = yes
 				}
 			}
@@ -3329,24 +2973,41 @@ fallen_xeno_zoo = {
 			min = 90
 			max = 270
 		}
-		size = 20
+		size = 25
 		orbit_angle = 60
 		deposit_blockers = none
 		modifiers = none
 		init_effect = {
 			set_planet_flag = fallen_empire_world
 			prevent_anomaly = yes
-			set_owner = root
+			set_owner = ROOT
 			set_planet_flag = fe_the_preserve
+			add_building = building_ancient_palace
 			add_building = building_fe_xeno_zoo
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_fe_dome
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_affluence_center
+			add_building = building_affluence_center
+			add_building = building_nourishment_center
+			add_building = building_dimensional_fabricator
+			add_building = building_nano_forge
 			while = {
-				count = 2
+				count = 10
 				create_pop = {
 					species = owner_main_species
 				}
 			}
 			while = {
-				count = 5
+				count = 20
+				add_district = district_city
+			}
+			while = {
+				count = 10
 				create_species = {
 					name = random
 					class = random_non_machine
@@ -3373,6 +3034,18 @@ fallen_xeno_zoo = {
 	}
 	init_effect = {
 		create_fe_citadel = yes
+		spawn_megastructure = {
+			type = acot_dark_matter_obelisk_core
+			orbit_angle = random
+			orbit_distance = 115
+			graphical_culture = owner
+		}
+		spawn_megastructure = {
+			type = gateway_final
+			orbit_angle = random
+			orbit_distance = 250
+			graphical_culture = owner
+		}
 	}
 }
 
@@ -3388,16 +3061,98 @@ fallen_machine = {
 	}
 	change_orbit = 45
 	planet = {
-		class = "pc_ringworld_tech"
-		name = "NAME_Circuit_I"
+		class = "pc_ringworld_habitable"
+		name = "NAME_ACOT_FE_MACHINE_STASIS_RINGWORLD_1"
 		orbit_angle = 30
 		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			set_planet_flag = fallen_empire_world
+			prevent_anomaly = yes
+			set_owner = ROOT
+			add_building = building_ancient_control_center
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_dimensional_fabricator
+			add_building = building_nano_forge
+			add_building = building_nourishment_center
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			while = {
+				count = 10
+				add_district = district_rw_nexus
+			}
+			while = {
+				count = 25
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
+				}
+			}
+		}
 	}
 	planet = {
-		class = "pc_ringworld_seam"
-		name = "NAME_Superstructure_I"
+		class = "pc_ringworld_habitable"
+		name = "NAME_ACOT_FE_MACHINE_STASIS_RINGWORLD_3"
 		orbit_angle = 30
 		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			set_planet_flag = fallen_empire_world
+			prevent_anomaly = yes
+			set_owner = ROOT
+			add_building = building_ancient_control_center
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_dimensional_fabricator
+			add_building = building_nano_forge
+			add_building = building_nourishment_center
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			while = {
+				count = 10
+				add_district = district_rw_nexus
+			}
+			while = {
+				count = 25
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
+				}
+			}
+		}
 	}
 	planet = {
 		class = "pc_ringworld_habitable"
@@ -3418,12 +3173,17 @@ fallen_machine = {
 			set_controller = root
 			set_capital = yes
 			add_building = building_ancient_control_center
-			add_building = building_fe_nourishment_center
-			add_building = building_fe_nourishment_center
-			add_building = building_fe_nourishment_center
-			add_building = building_dark_matter_synthersizer
 			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
 			add_building = building_dark_energy_psg
+			add_building = building_nourishment_center
+			add_building = building_nourishment_center
+			add_building = building_nourishment_center
+			add_building = building_dark_matter_synthersizer
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
 			add_building = building_ancient_cryo_chamber
 			add_building = building_ancient_cryo_chamber
 			add_building = building_ancient_cryo_chamber
@@ -3431,15 +3191,11 @@ fallen_machine = {
 			add_building = building_ancient_cryo_chamber
 			add_building = building_ancient_cryo_chamber
 			while = {
-				count = 5
+				count = 10
 				add_district = district_rw_science
 			}
 			while = {
-				count = 5
-				add_district = district_rw_nexus
-			}
-			while = {
-				count = 105
+				count = 60
 				create_pop = {
 					species = owner_main_species
 				}
@@ -3452,7 +3208,18 @@ fallen_machine = {
 					name = random
 					owner = root
 					species = root
-					type = acot_defense_army_fe_machine
+					type = "acot_army_fe_machine"
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
 				}
 			}
 		}
@@ -3472,6 +3239,7 @@ fallen_machine = {
 			deposit_blockers = none
 			modifiers = none
 			init_effect = {
+				create_dm_habitat = yes
 				set_planet_flag = fallen_empire_world
 				set_planet_flag = is_base_dm_habitat
 				set_planet_flag = advanced_ascended_habitat
@@ -3479,14 +3247,6 @@ fallen_machine = {
 				prevent_anomaly = yes
 				set_owner = root
 				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_03_entity"
-				}
 				add_building = building_ancient_control_center
 				add_building = building_master_archive
 				add_building = building_dm_stronghold
@@ -3498,6 +3258,9 @@ fallen_machine = {
 				add_building = building_fe_affluence_center
 				add_building = building_fe_dimensional_fabricator
 				add_building = building_fe_nano_forge
+				set_planet_entity = {
+					entity = "dm_habitat_phase_03_entity"
+				}
 				while = {
 					count = 12
 					add_district = district_dm_hab_housing
@@ -3520,20 +3283,8 @@ fallen_machine = {
 		}
 	}
 	planet = {
-		class = "pc_ringworld_tech"
-		name = "NAME_Circuit_II"
-		orbit_angle = 30
-		orbit_distance = 0
-	}
-	planet = {
-		class = "pc_ringworld_seam"
-		name = "NAME_Superstructure_II"
-		orbit_angle = 30
-		orbit_distance = 0
-	}
-	planet = {
 		class = "pc_ringworld_habitable"
-		name = "NAME_Production_Unit"
+		name = "NAME_ACOT_FE_MACHINE_GENERAL_RINGWORLD_1"
 		orbit_angle = 30
 		orbit_distance = 0
 		deposit_blockers = none
@@ -3541,105 +3292,50 @@ fallen_machine = {
 		init_effect = {
 			set_planet_flag = fallen_empire_world
 			prevent_anomaly = yes
-			set_owner = root
+			set_owner = ROOT
 			add_building = building_ancient_control_center
-			add_building = building_fe_dimensional_fabricator
-			add_building = building_fe_dimensional_fabricator
-			add_building = building_fe_dimensional_fabricator
-			add_building = building_fe_dimensional_fabricator
-			add_building = building_fe_dimensional_fabricator
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
 			add_building = building_dark_matter_synthersizer
-			add_building = building_fe_nano_forge
-			add_building = building_fe_nano_forge
-			add_building = building_fe_nano_forge
-			add_building = building_dm_stronghold
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
 			while = {
-				count = 5
+				count = 10
 				add_district = district_rw_nexus
 			}
 			while = {
-				count = 50
+				count = 40
 				create_pop = {
 					species = owner_main_species
 				}
 			}
-		}
-		moon = {
-			class = pc_dm_habitat
-			name = "NAME_Backup"
-			orbit_angle = {
-				min = 90
-				max = 270
-			}
-			orbit_distance = 5
-			size = @dm_hab_size_lvl2
-			flags = {
-				megastructure
-				habitat
-			}
-			deposit_blockers = none
-			modifiers = none
-			init_effect = {
-				set_planet_flag = fallen_empire_world
-				set_planet_flag = is_base_dm_habitat
-				set_planet_flag = advanced_ascended_habitat
-				prevent_anomaly = yes
-				set_owner = root
-				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
-				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_02_entity"
-				}
-				add_building = building_ancient_control_center
-				add_building = building_dm_stronghold
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
-				add_building = building_class_4_singularity
-				add_building = building_fe_nourishment_center
-				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nano_forge
-				add_building = building_fe_nano_forge
-				while = {
-					count = 9
-					add_district = district_dm_hab_housing
-				}
-				while = {
-					count = 2
-					add_district = district_dm_hab_dark_matter_energy
-				}
-				while = {
-					count = 2
-					add_district = district_dm_hab_arms_industry
-				}
-				while = {
-					count = 63
-					create_pop = {
-						species = owner_main_species
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
 					}
 				}
 			}
 		}
 	}
 	planet = {
-		class = "pc_ringworld_tech"
-		name = "NAME_Circuit_III"
-		orbit_angle = 30
-		orbit_distance = 0
-	}
-	planet = {
-		class = "pc_ringworld_seam"
-		name = "NAME_Superstructure_III"
-		orbit_angle = 30
-		orbit_distance = 0
-	}
-	planet = {
 		class = "pc_ringworld_habitable"
-		name = "NAME_Processing_Unit"
+		name = "NAME_ACOT_FE_MACHINE_GENERAL_RINGWORLD_2"
 		orbit_angle = 30
 		orbit_distance = 0
 		deposit_blockers = none
@@ -3647,88 +3343,374 @@ fallen_machine = {
 		init_effect = {
 			set_planet_flag = fallen_empire_world
 			prevent_anomaly = yes
-			set_owner = root
+			set_owner = ROOT
 			add_building = building_ancient_control_center
-			add_building = building_dm_stronghold
-			add_building = building_class_4_singularity
-			add_building = building_class_4_singularity
-			add_building = building_class_4_singularity
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dark_matter_synthersizer
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
 			while = {
-				count = 5
-				add_district = district_rw_generator
+				count = 10
+				add_district = district_rw_nexus
 			}
 			while = {
-				count = 22
+				count = 40
 				create_pop = {
 					species = owner_main_species
 				}
 			}
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
+				}
+			}
 		}
-		moon = {
-			class = pc_dm_habitat
-			name = "NAME_Restoration"
-			orbit_angle = {
-				min = 90
-				max = 270
+	}
+	planet = {
+		class = "pc_ringworld_habitable"
+		name = "NAME_ACOT_FE_MACHINE_GENERAL_RINGWORLD_3"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			set_planet_flag = fallen_empire_world
+			prevent_anomaly = yes
+			set_owner = ROOT
+			add_building = building_ancient_control_center
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dimensional_fabricator
+			add_building = building_dark_matter_synthersizer
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			add_building = building_nano_forge
+			while = {
+				count = 10
+				add_district = district_rw_nexus
 			}
-			orbit_distance = 5
-			size = @dm_hab_size_lvl1
-			flags = {
-				megastructure
-				habitat
+			while = {
+				count = 40
+				create_pop = {
+					species = owner_main_species
+				}
 			}
-			deposit_blockers = none
-			modifiers = none
-			init_effect = {
-				set_planet_flag = fallen_empire_world
-				set_planet_flag = is_base_dm_habitat
-				prevent_anomaly = yes
-				set_owner = root
-				set_controller = root
-				set_colony_type = col_habitat_dm
-				add_modifier = {
-					modifier = dm_habitat_mod
-					days = -1
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
 				}
-				set_planet_entity = {
-					entity = "dm_habitat_phase_01_entity"
+			}
+		}
+	}
+	planet = {
+		class = "pc_ringworld_habitable"
+		name = "NAME_ACOT_FE_MACHINE_POWER_RINGWORLD_3"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			set_planet_flag = fallen_empire_world
+			prevent_anomaly = yes
+			set_owner = ROOT
+			add_building = building_ancient_control_center
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			while = {
+				count = 10
+				add_district = district_rw_generator
+			}
+			while = {
+				count = 20
+				create_pop = {
+					species = owner_main_species
 				}
-				add_building = building_ancient_control_center
-				add_building = building_dm_stronghold
-				add_building = building_fe_sky_dome
-				add_building = building_class_4_singularity
-				add_building = building_fe_nourishment_center
-				add_building = building_dark_matter_synthersizer
-				add_building = building_fe_affluence_center
-				add_building = building_fe_nano_forge
-				while = {
-					count = 7
-					add_district = district_dm_hab_housing
+			}
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
 				}
-				while = {
-					count = 1
-					add_district = district_dm_hab_dark_matter_energy
+			}
+		}
+	}
+	planet = {
+		class = "pc_ringworld_habitable"
+		name = "NAME_ACOT_FE_MACHINE_POWER_RINGWORLD_2"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			set_planet_flag = fallen_empire_world
+			prevent_anomaly = yes
+			set_owner = ROOT
+			add_building = building_ancient_control_center
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			while = {
+				count = 10
+				add_district = district_rw_generator
+			}
+			while = {
+				count = 20
+				create_pop = {
+					species = owner_main_species
 				}
-				while = {
-					count = 1
-					add_district = district_dm_hab_arms_industry
+			}
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
 				}
-				while = {
-					count = 42
-					create_pop = {
-						species = owner_main_species
+			}
+		}
+	}
+	planet = {
+		class = "pc_ringworld_habitable"
+		name = "NAME_ACOT_FE_MACHINE_POWER_RINGWORLD_1"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			set_planet_flag = fallen_empire_world
+			prevent_anomaly = yes
+			set_owner = ROOT
+			add_building = building_ancient_control_center
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			while = {
+				count = 10
+				add_district = district_rw_generator
+			}
+			while = {
+				count = 20
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
+				}
+			}
+		}
+	}
+	planet = {
+		class = "pc_ringworld_habitable"
+		name = "NAME_ACOT_FE_MACHINE_POWER_RINGWORLD_4"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			set_planet_flag = fallen_empire_world
+			prevent_anomaly = yes
+			set_owner = ROOT
+			add_building = building_ancient_control_center
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			add_building = building_class_4_singularity
+			while = {
+				count = 10
+				add_district = district_rw_generator
+			}
+			while = {
+				count = 20
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
+				}
+			}
+		}
+	}
+	planet = {
+		class = "pc_ringworld_habitable"
+		name = "NAME_ACOT_FE_MACHINE_STASIS_RINGWORLD_2"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			set_planet_flag = fallen_empire_world
+			prevent_anomaly = yes
+			set_owner = ROOT
+			add_building = building_ancient_control_center
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_dimensional_fabricator
+			add_building = building_nano_forge
+			add_building = building_nourishment_center
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			while = {
+				count = 10
+				add_district = district_rw_nexus
+			}
+			while = {
+				count = 25
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
+					}
+				}
+			}
+		}
+	}
+	planet = {
+		class = "pc_ringworld_habitable"
+		name = "NAME_ACOT_FE_MACHINE_STASIS_RINGWORLD_4"
+		orbit_angle = 30
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		init_effect = {
+			set_planet_flag = fallen_empire_world
+			prevent_anomaly = yes
+			set_owner = ROOT
+			add_building = building_ancient_control_center
+			add_building = building_giga_fortress_fe
+			add_building = building_fe_stronghold
+			add_building = building_fe_stronghold
+			add_building = building_dark_energy_psg
+			add_building = building_dimensional_fabricator
+			add_building = building_nano_forge
+			add_building = building_nourishment_center
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			add_building = building_ancient_cryo_chamber
+			while = {
+				count = 10
+				add_district = district_rw_nexus
+			}
+			while = {
+				count = 25
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = ROOT
+					create_fallen_empire_platform = yes
+					set_location = {
+						target = prev
+						distance = 0
+						angle = 0
 					}
 				}
 			}
 		}
 	}
 	init_effect = {
-		spawn_megastructure = {
-			type = "ring_world_ruined"
-			orbit_angle = 330
-			orbit_distance = 45
-		}
-		create_fe_citadel = yes
+		create_fe_home_citadel = yes
 	}
 	neighbor_system = {
 		distance = {

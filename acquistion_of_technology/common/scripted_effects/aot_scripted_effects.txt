@@ -3,9 +3,9 @@
 @sigma_habitat_distance = 245
 @sigma_habitat_size = 25
 @enigmalith_orbit_distance = 37.5
-##############################
-# PHANON VAULT PROTECC FLEETS
-##############################
+# ------------------------------------------------------------------------------------------------ #
+#                                    PHANON VAULT PROTECC FLEETS                                   #
+# ------------------------------------------------------------------------------------------------ #
 create_protecc_country = {
 	create_species = {
 		name = "Phanon GLA Workers"
@@ -700,6 +700,10 @@ move_protecc_fleet_to_system_star = {
 	}
 }
 
+# ------------------------------------------------------------------------------------------------ #
+#                                           Star creation                                          #
+# ------------------------------------------------------------------------------------------------ #
+
 # Phanon Pylon blasts system to bits
 phanon_destroy_solar_system = {
 	solar_system = {
@@ -857,9 +861,9 @@ create_sigma_Star = {
 	}
 }
 
-#######################
-# PHANON INFRASTRUCTURE
-#######################
+# ------------------------------------------------------------------------------------------------ #
+#                                       PHANON INFRASTRUCTURE                                      #
+# ------------------------------------------------------------------------------------------------ #
 spawn_inner_phanon_mega_turrets = {
 	spawn_megastructure = {
 		name = "Mega Turret 1"
@@ -1309,9 +1313,9 @@ spawn_great_wall_macripps = {
 	}
 }
 
-######################### PHANON VAULT EFFECT ###########################################
-### CAN CHECK LIST AT TEST EVENT
-#########################################################################################
+# ------------------------------------------------------------------------------------------------ #
+#                                        PHANON VAULT EFFECT                                       #
+# ------------------------------------------------------------------------------------------------ #
 phanon_type_a_tech_gift = {
 	if = {
 		limit = {
@@ -1586,6 +1590,11 @@ check_production_core_state = {
 	}
 }
 
+# ------------------------------------------------------------------------------------------------ #
+#                                     Habitat creation effects                                     #
+# ------------------------------------------------------------------------------------------------ #
+
+# --------------------------------- Save old amount of districts --------------------------------- #
 save_aot_habitat_districts = {
 	export_trigger_value_to_variable = {
 		trigger = num_districts
@@ -1664,6 +1673,7 @@ create_new_aot_habitat_districts = {
 	clear_variable = num_special
 }
 
+# ---------------------------------- AoT habitat initialisation ---------------------------------- #
 create_dm_habitat = {
 	save_aot_habitat_districts = {
 		HOUSING = district_hab_housing
@@ -2413,87 +2423,6 @@ create_sigma_habitat = {
 # ------------------------------------------------------------------------------------------------ #
 #                                         Aot Orbitals Code                                        #
 # ------------------------------------------------------------------------------------------------ #
-
-on_aot_orbital_complete_effect = {
-	fromfrom.solar_system = {
-		random_system_planet = {
-			limit = {
-				has_planet_flag = habitat
-			}
-			save_event_target_as = target_habitat
-		}
-	}
-	event_target:target_planet = {
-		set_planet_flag = has_megastructure
-		if = {
-			limit = {
-				has_orbital_station = yes
-			}
-			orbital_station = {
-				dismantle = yes
-			}
-		}
-		create_fleet = {
-			effect = {
-				set_owner = FROM
-				create_ship = {
-					random_existing_design = $TIER$_$BODY$_orbital_$TYPE$
-					effect = {
-						set_disable_at_health = 0.05
-						set_name = {
-							key = TARGET_ORBITAL_NAME
-							variable_string = "\\[FROM.from.planet.GetName]"
-						}
-					}
-				}
-				save_event_target_as = target_orbital
-				fleet = {
-					set_location = {
-						target = event_target:target_planet
-					}
-				}
-			}
-		}
-		event_target:target_orbital = {
-			set_name = {
-				key = TARGET_ORBITAL_NAME
-				variable_string = "\\[FROM.from.planet.GetName]"
-			}
-		}
-		set_habitat_planetary_features_effect = yes
-		if = {
-			limit = {
-				event_target:target_planet = {
-					has_deposit_for = shipclass_research_station
-				}
-			}
-			event_target:target_orbital = {
-				set_fleet_flag = science_orbital
-			}
-		}
-		if = {
-			limit = {
-				event_target:target_planet = {
-					has_orbital_mining_deposit = yes
-				}
-			}
-			event_target:target_orbital = {
-				set_fleet_flag = mining_orbital
-			}
-		}
-		if = {
-			limit = {
-				event_target:target_planet = {
-					has_orbital_energy_deposit = yes
-				}
-			}
-			event_target:target_orbital = {
-				set_fleet_flag = energy_orbital
-			}
-		}
-	}
-	remove_megastructure = fromfrom
-}
 
 # Wraps the handling executing the proper function depending on the ship size of the last built orbital.
 update_last_orbital_wrapper = {
