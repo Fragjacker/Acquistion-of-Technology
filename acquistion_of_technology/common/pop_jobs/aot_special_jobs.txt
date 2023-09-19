@@ -1580,21 +1580,21 @@ phanon_overlord = {
 	icon = administrator
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
+		is_enslaved = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_ruler_job
 	country_modifier = {
 	}
 	resources = {
-		category = planet_administrators
+		category = planet_jobs
 		produces = {
 			physics_research = 100
 			engineering_research = 100
 			society_research = 100
 			unity = 100
+			influence = 0.3
 		}
 		upkeep = {
 		}
@@ -1608,65 +1608,60 @@ phanon_overlord = {
 	weight = {
 		weight = @ruler_job_weight
 		modifier = {
-			factor = 0.1
+			factor = 0.2
 			has_citizenship_rights = no
 			NOT = {
 				has_trait = trait_mechanical
 			}
 		}
 		modifier = {
+			factor = 2
+			has_living_standard = {
+				type = living_standard_academic_privilege
+			}
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_erudite
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_trait = trait_robot_logic_engines
+				has_trait = trait_intelligent
+			}
+		}
+		modifier = {
 			factor = 1.5
 			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
+				has_trait = trait_natural_engineers
+				has_trait = trait_natural_physicists
+				has_trait = trait_natural_sociologists
 			}
 		}
 		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
+			factor = 100
+			has_job = acot_overlord
 		}
 		modifier = {
-			factor = 1.25
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
+			factor = 1.5
+			has_trait = trait_latent_psionic
 		}
 		modifier = {
-			factor = 0.75
-			has_trait = trait_quarrelsome
+			factor = 2
+			has_trait = trait_psionic
 		}
 		modifier = {
-			factor = 5
-			has_job = phanon_overlord
+			factor = 0.1
+			has_trait = trait_enigmatic_intelligence_failed
 		}
 		modifier = {
-			factor = 1.25
+			factor = 2
 			has_trait = trait_brainslug
 		}
 		modifier = {
-			factor = 1.125
-			has_trait = trait_presapient_natural_intellectuals
-		}
-		modifier = {
-			factor = 1.125
-			has_trait = trait_robust
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_necrophage
-		}
-		# crisis purge
-		modifier = {
-			factor = 0.01
-			exists = planet
-			exists = planet.controller
-			planet.controller = {
-				OR = {
-					is_country_type = swarm
-					is_country_type = ai_empire
-				}
-			}
+			factor = 0.75
+			has_trait = trait_repugnant
 		}
 	}
 }
@@ -1679,16 +1674,15 @@ phanon_overseer = {
 	icon = noble
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
+		is_enslaved = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_ruler_job
 	country_modifier = {
 	}
 	resources = {
-		category = planet_administrators
+		category = planet_jobs
 		produces = {
 			unity = 30
 		}
@@ -1703,65 +1697,60 @@ phanon_overseer = {
 	weight = {
 		weight = @ruler_job_weight
 		modifier = {
-			factor = 0.1
+			factor = 0.2
 			has_citizenship_rights = no
 			NOT = {
 				has_trait = trait_mechanical
 			}
 		}
 		modifier = {
+			factor = 2
+			has_living_standard = {
+				type = living_standard_academic_privilege
+			}
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_erudite
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_trait = trait_robot_logic_engines
+				has_trait = trait_intelligent
+			}
+		}
+		modifier = {
 			factor = 1.5
 			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
+				has_trait = trait_natural_engineers
+				has_trait = trait_natural_physicists
+				has_trait = trait_natural_sociologists
 			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
-		}
-		modifier = {
-			factor = 1.25
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
-		}
-		modifier = {
-			factor = 0.75
-			has_trait = trait_quarrelsome
 		}
 		modifier = {
 			factor = 5
-			has_job = phanon_overseer
-		}
-		modifier = {
-			factor = 1.25
-			has_trait = trait_brainslug
-		}
-		modifier = {
-			factor = 1.125
-			has_trait = trait_presapient_natural_intellectuals
-		}
-		modifier = {
-			factor = 1.125
-			has_trait = trait_robust
+			has_job = acot_overseer
 		}
 		modifier = {
 			factor = 1.5
-			has_trait = trait_necrophage
+			has_trait = trait_latent_psionic
 		}
-		# crisis purge
 		modifier = {
-			factor = 0.01
-			exists = planet
-			exists = planet.controller
-			planet.controller = {
-				OR = {
-					is_country_type = swarm
-					is_country_type = ai_empire
-				}
-			}
+			factor = 2
+			has_trait = trait_psionic
+		}
+		modifier = {
+			factor = 0.1
+			has_trait = trait_enigmatic_intelligence_failed
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_brainslug
+		}
+		modifier = {
+			factor = 0.75
+			has_trait = trait_repugnant
 		}
 	}
 }
@@ -1773,21 +1762,25 @@ phanon_overlord_droid = {
 	icon = coordinator
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_drone_job
+	possible = {
+		NOT = {
+			has_trait = trait_nerve_stapled
+		}
+	}
 	country_modifier = {
 	}
 	resources = {
-		category = planet_administrators
+		category = planet_jobs
 		produces = {
 			physics_research = 300
 			engineering_research = 300
 			society_research = 300
 			unity = 300
+			influence = 0.3
 		}
 		upkeep = {
 		}
@@ -1821,16 +1814,19 @@ phanon_overseer_droid = {
 	icon = coordinator
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_drone_job
+	possible = {
+		NOT = {
+			has_trait = trait_nerve_stapled
+		}
+	}
 	country_modifier = {
 	}
 	resources = {
-		category = planet_administrators
+		category = planet_jobs
 		produces = {
 			unity = 30
 		}
@@ -1864,9 +1860,13 @@ phanon_overlord_drone = {
 		has_owner = yes
 		is_being_purged = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_drone_job
+	possible = {
+		NOT = {
+			has_trait = trait_nerve_stapled
+		}
+	}
 	country_modifier = {
 	}
 	planet_modifier = {
@@ -1875,12 +1875,13 @@ phanon_overlord_drone = {
 		planet_crime_no_happiness_add = -30
 	}
 	resources = {
-		category = planet_administrators
+		category = planet_jobs
 		produces = {
 			physics_research = 300
 			engineering_research = 300
 			society_research = 300
 			unity = 300
+			influence = 0.3
 		}
 		upkeep = {
 		}
@@ -1909,13 +1910,17 @@ phanon_overseer_drone = {
 		has_owner = yes
 		is_being_purged = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_drone_job
+	possible = {
+		NOT = {
+			has_trait = trait_nerve_stapled
+		}
+	}
 	country_modifier = {
 	}
 	resources = {
-		category = planet_administrators
+		category = planet_jobs
 		produces = {
 			unity = 30
 		}
@@ -3764,9 +3769,9 @@ phanon_giga_fortress_operator_mentat_drone = {
 	}
 }
 
-###################
-# Stellarite Research Jobs
-###################
+# ------------------------------------------------------------------------------------------------ #
+#                                     Stellarite Research Jobs                                     #
+# ------------------------------------------------------------------------------------------------ #
 phanon_researcher = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -3982,9 +3987,9 @@ phanon_priest = {
 	}
 }
 
-###################
-# Phanon Governing Jobs
-###################
+# ------------------------------------------------------------------------------------------------ #
+#                                       Sigma Governing Jobs                                       #
+# ------------------------------------------------------------------------------------------------ #
 stellarite_overlord = {
 	category = ruler
 	condition_string = RULER_JOB_TRIGGER
@@ -3993,21 +3998,21 @@ stellarite_overlord = {
 	icon = administrator
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
+		is_enslaved = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_ruler_job
 	country_modifier = {
 	}
 	resources = {
-		category = planet_administrators
+		category = planet_jobs
 		produces = {
 			physics_research = 600
 			engineering_research = 600
 			society_research = 600
 			unity = 600
+			influence = 0.4
 		}
 		upkeep = {
 		}
@@ -4021,65 +4026,60 @@ stellarite_overlord = {
 	weight = {
 		weight = @ruler_job_weight
 		modifier = {
-			factor = 0.1
+			factor = 0.2
 			has_citizenship_rights = no
 			NOT = {
 				has_trait = trait_mechanical
 			}
 		}
 		modifier = {
+			factor = 2
+			has_living_standard = {
+				type = living_standard_academic_privilege
+			}
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_erudite
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_trait = trait_robot_logic_engines
+				has_trait = trait_intelligent
+			}
+		}
+		modifier = {
 			factor = 1.5
 			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
+				has_trait = trait_natural_engineers
+				has_trait = trait_natural_physicists
+				has_trait = trait_natural_sociologists
 			}
 		}
 		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
+			factor = 100
+			has_job = acot_overlord
 		}
 		modifier = {
-			factor = 1.25
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
+			factor = 1.5
+			has_trait = trait_latent_psionic
 		}
 		modifier = {
-			factor = 0.75
-			has_trait = trait_quarrelsome
+			factor = 2
+			has_trait = trait_psionic
 		}
 		modifier = {
-			factor = 5
-			has_job = stellarite_overlord
+			factor = 0.1
+			has_trait = trait_enigmatic_intelligence_failed
 		}
 		modifier = {
-			factor = 1.25
+			factor = 2
 			has_trait = trait_brainslug
 		}
 		modifier = {
-			factor = 1.125
-			has_trait = trait_presapient_natural_intellectuals
-		}
-		modifier = {
-			factor = 1.125
-			has_trait = trait_robust
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_necrophage
-		}
-		# crisis purge
-		modifier = {
-			factor = 0.01
-			exists = planet
-			exists = planet.controller
-			planet.controller = {
-				OR = {
-					is_country_type = swarm
-					is_country_type = ai_empire
-				}
-			}
+			factor = 0.75
+			has_trait = trait_repugnant
 		}
 	}
 }
@@ -4092,16 +4092,15 @@ stellarite_overseer = {
 	icon = noble
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
+		is_enslaved = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_ruler_job
 	country_modifier = {
 	}
 	resources = {
-		category = planet_administrators
+		category = planet_jobs
 		produces = {
 			unity = 60
 		}
@@ -4116,65 +4115,60 @@ stellarite_overseer = {
 	weight = {
 		weight = @ruler_job_weight
 		modifier = {
-			factor = 0.1
+			factor = 0.2
 			has_citizenship_rights = no
 			NOT = {
 				has_trait = trait_mechanical
 			}
 		}
 		modifier = {
+			factor = 2
+			has_living_standard = {
+				type = living_standard_academic_privilege
+			}
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_erudite
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_trait = trait_robot_logic_engines
+				has_trait = trait_intelligent
+			}
+		}
+		modifier = {
 			factor = 1.5
 			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
+				has_trait = trait_natural_engineers
+				has_trait = trait_natural_physicists
+				has_trait = trait_natural_sociologists
 			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
-		}
-		modifier = {
-			factor = 1.25
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
-		}
-		modifier = {
-			factor = 0.75
-			has_trait = trait_quarrelsome
 		}
 		modifier = {
 			factor = 5
-			has_job = stellarite_overseer
-		}
-		modifier = {
-			factor = 1.25
-			has_trait = trait_brainslug
-		}
-		modifier = {
-			factor = 1.125
-			has_trait = trait_presapient_natural_intellectuals
-		}
-		modifier = {
-			factor = 1.125
-			has_trait = trait_robust
+			has_job = acot_overseer
 		}
 		modifier = {
 			factor = 1.5
-			has_trait = trait_necrophage
+			has_trait = trait_latent_psionic
 		}
-		# crisis purge
 		modifier = {
-			factor = 0.01
-			exists = planet
-			exists = planet.controller
-			planet.controller = {
-				OR = {
-					is_country_type = swarm
-					is_country_type = ai_empire
-				}
-			}
+			factor = 2
+			has_trait = trait_psionic
+		}
+		modifier = {
+			factor = 0.1
+			has_trait = trait_enigmatic_intelligence_failed
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_brainslug
+		}
+		modifier = {
+			factor = 0.75
+			has_trait = trait_repugnant
 		}
 	}
 }
@@ -4186,21 +4180,25 @@ stellarite_overlord_droid = {
 	icon = coordinator
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_drone_job
+	possible = {
+		NOT = {
+			has_trait = trait_nerve_stapled
+		}
+	}
 	country_modifier = {
 	}
 	resources = {
-		category = planet_administrators
+		category = planet_jobs
 		produces = {
 			physics_research = 600
 			engineering_research = 600
 			society_research = 600
 			unity = 600
+			influence = 0.4
 		}
 		upkeep = {
 		}
@@ -4234,12 +4232,15 @@ stellarite_overseer_droid = {
 	icon = coordinator
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_drone_job
+	possible = {
+		NOT = {
+			has_trait = trait_nerve_stapled
+		}
+	}
 	country_modifier = {
 	}
 	resources = {
@@ -4275,12 +4276,15 @@ stellarite_overlord_drone = {
 	icon = coordinator
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_drone_job
+	possible = {
+		NOT = {
+			has_trait = trait_nerve_stapled
+		}
+	}
 	country_modifier = {
 	}
 	planet_modifier = {
@@ -4295,6 +4299,7 @@ stellarite_overlord_drone = {
 			engineering_research = 600
 			society_research = 600
 			unity = 600
+			influence = 0.4
 		}
 		upkeep = {
 		}
@@ -4321,16 +4326,19 @@ stellarite_overseer_drone = {
 	icon = coordinator
 	possible_pre_triggers = {
 		has_owner = yes
-		is_enslaved = no
 		is_being_purged = no
 		is_being_assimilated = no
-		is_sapient = yes
 	}
 	possible_precalc = can_fill_drone_job
+	possible = {
+		NOT = {
+			has_trait = trait_nerve_stapled
+		}
+	}
 	country_modifier = {
 	}
 	resources = {
-		category = planet_administrators
+		category = planet_jobs
 		produces = {
 			unity = 60
 		}
@@ -4353,9 +4361,9 @@ stellarite_overseer_drone = {
 	}
 }
 
-###################
-# Phanon Creator Jobs
-###################
+# ------------------------------------------------------------------------------------------------ #
+#                                        Sigma Creator Jobs                                        #
+# ------------------------------------------------------------------------------------------------ #
 stellarite_apothecary = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -4641,9 +4649,9 @@ stellarite_robodrone = {
 	}
 }
 
-###################
-# Phanon Special Jobs
-###################
+# ------------------------------------------------------------------------------------------------ #
+#                                        Sigma Special Jobs                                        #
+# ------------------------------------------------------------------------------------------------ #
 stellarite_energyman = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -5451,9 +5459,9 @@ stellarite_entertainer_drone = {
 	}
 }
 
-###################
-# Phanon Military Jobs
-###################
+# ------------------------------------------------------------------------------------------------ #
+#                                        Sigma Military Jobs                                       #
+# ------------------------------------------------------------------------------------------------ #
 stellarite_enforcer = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -5992,9 +6000,9 @@ stellarite_giga_fortress_operator_mentat_drone = {
 	}
 }
 
-###################
-# Phanon Research Jobs
-###################
+# ------------------------------------------------------------------------------------------------ #
+#                                        Sigma Research Jobs                                       #
+# ------------------------------------------------------------------------------------------------ #
 stellarite_researcher = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -6321,9 +6329,9 @@ stellarite_bureaucrat = {
 	}
 }
 
-###################
-# Phanon Creator Jobs
-###################
+# ------------------------------------------------------------------------------------------------ #
+#                                        Phanon Creator Jobs                                       #
+# ------------------------------------------------------------------------------------------------ #
 phanon_dimension_folder = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -6436,9 +6444,9 @@ phanon_dimension_folderdrone = {
 	}
 }
 
-###################
-# Stellarite Creator Jobs
-###################
+# ------------------------------------------------------------------------------------------------ #
+#                                      Stellarite Creator Jobs                                     #
+# ------------------------------------------------------------------------------------------------ #
 aot_ae_stellariteman = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
