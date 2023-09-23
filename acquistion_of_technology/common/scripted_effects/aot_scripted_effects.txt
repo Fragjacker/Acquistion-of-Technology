@@ -703,7 +703,6 @@ move_protecc_fleet_to_system_star = {
 # ------------------------------------------------------------------------------------------------ #
 #                                           Star creation                                          #
 # ------------------------------------------------------------------------------------------------ #
-
 # Phanon Pylon blasts system to bits
 phanon_destroy_solar_system = {
 	solar_system = {
@@ -1593,84 +1592,167 @@ check_production_core_state = {
 # ------------------------------------------------------------------------------------------------ #
 #                                     Habitat creation effects                                     #
 # ------------------------------------------------------------------------------------------------ #
-
 # --------------------------------- Save old amount of districts --------------------------------- #
 save_aot_habitat_districts = {
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = $HOUSING$
+	[[HOUSING]
+	if = {
+		limit = {
+			has_district = $HOUSING$
 		}
-		variable = num_houses
-	}
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = $ENERGY$
+		export_trigger_value_to_variable = {
+			trigger = num_districts
+			parameters = {
+				type = $HOUSING$
+			}
+			variable = num_houses
 		}
-		variable = num_energy
 	}
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = $MINING$
+	]
+	[[ENERGY]
+	if = {
+		limit = {
+			has_district = $ENERGY$
 		}
-		variable = num_mines
-	}
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = $INDUSTRY$
+		export_trigger_value_to_variable = {
+			trigger = num_districts
+			parameters = {
+				type = $ENERGY$
+			}
+			variable = num_energy
 		}
-		variable = num_industry
 	}
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = $SCIENCE$
+	]
+	[[MINING]
+	if = {
+		limit = {
+			has_district = $MINING$
 		}
-		variable = num_research
-	}
-	export_trigger_value_to_variable = {
-		trigger = num_districts
-		parameters = {
-			type = $SPECIAL$
+		export_trigger_value_to_variable = {
+			trigger = num_districts
+			parameters = {
+				type = $MINING$
+			}
+			variable = num_mines
 		}
-		variable = num_special
 	}
+	]
+	[[INDUSTRY]
+	if = {
+		limit = {
+			has_district = $INDUSTRY$
+		}
+		export_trigger_value_to_variable = {
+			trigger = num_districts
+			parameters = {
+				type = $INDUSTRY$
+			}
+			variable = num_industry
+		}
+	}
+	]
+	[[SCIENCE]
+	if = {
+		limit = {
+			has_district = $SCIENCE$
+		}
+		export_trigger_value_to_variable = {
+			trigger = num_districts
+			parameters = {
+				type = $SCIENCE$
+			}
+			variable = num_research
+		}
+	}
+	]
+	[[SPECIAL]
+	if = {
+		limit = {
+			has_district = $SPECIAL$
+		}
+		export_trigger_value_to_variable = {
+			trigger = num_districts
+			parameters = {
+				type = $SPECIAL$
+			}
+			variable = num_special
+		}
+	}
+	]
 }
 
 create_new_aot_habitat_districts = {
-	while = {
-		count = num_houses
-		add_district = $HOUSING$
+	[[HOUSING]
+	if = {
+		limit = {
+			is_variable_set = num_houses
+		}
+		while = {
+			count = num_houses
+			add_district = $HOUSING$
+		}
+		clear_variable = num_houses
 	}
-	while = {
-		count = num_energy
-		add_district = $ENERGY$
+	]
+	[[ENERGY]
+	if = {
+		limit = {
+			is_variable_set = num_energy
+		}
+		while = {
+			count = num_energy
+			add_district = $ENERGY$
+		}
+		clear_variable = num_energy
 	}
-	while = {
-		count = num_mines
-		add_district = $MINING$
+	]
+	[[MINING]
+	if = {
+		limit = {
+			is_variable_set = num_mines
+		}
+		while = {
+			count = num_mines
+			add_district = $MINING$
+		}
+		clear_variable = num_mines
 	}
-	while = {
-		count = num_industry
-		add_district = $INDUSTRY$
+	]
+	[[INDUSTRY]
+	if = {
+		limit = {
+			is_variable_set = num_industry
+		}
+		while = {
+			count = num_industry
+			add_district = $INDUSTRY$
+		}
+		clear_variable = num_industry
 	}
-	while = {
-		count = num_research
-		add_district = $SCIENCE$
+	]
+	[[SCIENCE]
+	if = {
+		limit = {
+			is_variable_set = num_research
+		}
+		while = {
+			count = num_research
+			add_district = $SCIENCE$
+		}
+		clear_variable = num_research
 	}
-	while = {
-		count = num_special
-		add_district = $SPECIAL$
+	]
+	[[SPECIAL]
+	if = {
+		limit = {
+			is_variable_set = num_special
+		}
+		while = {
+			count = num_special
+			add_district = $SPECIAL$
+		}
+		clear_variable = num_special
 	}
-	clear_variable = num_houses
-	clear_variable = num_energy
-	clear_variable = num_mines
-	clear_variable = num_industry
-	clear_variable = num_research
-	clear_variable = num_special
+	]
 }
 
 # ---------------------------------- AoT habitat initialisation ---------------------------------- #
@@ -1689,14 +1771,14 @@ create_fe_dm_habitat = {
 	}
 }
 
+# -------- Temporary disabled mining and energy district code, as it doesn't work anyways. ------- #
 create_dm_habitat = {
 	save_aot_habitat_districts = {
 		HOUSING = district_hab_housing
-		ENERGY = district_hab_energy
-		MINING = district_hab_mining
-		INDUSTRY = district_hab_arms_industry
-		SCIENCE = district_hab_research
-		SPECIAL = district_hab_dark_matter_energy
+		# ENERGY = district_hab_energy
+		# MINING = district_hab_mining
+		INDUSTRY = district_hab_industrial
+		# SCIENCE = district_hab_science
 	}
 	clear_deposits = yes
 	set_colony_type = col_habitat_dm
@@ -1712,18 +1794,15 @@ create_dm_habitat = {
 	}
 	# Add housing districts if there's been built any previously.
 	create_new_aot_habitat_districts = {
-		HOUSING = district_hab_housing
-		ENERGY = district_hab_energy
-		MINING = district_hab_mining
-		INDUSTRY = district_hab_arms_industry
-		SCIENCE = district_hab_research
-		SPECIAL = district_hab_dark_matter_energy
+		HOUSING = district_dm_hab_housing
+		# ENERGY = district_dm_hab_energy
+		# MINING = district_dm_hab_mining
+		INDUSTRY = district_dm_hab_arms_industry
+		# SCIENCE = district_dm_hab_research
 	}
-	clear_variable = num_houses
-	clear_variable = num_industry
-	clear_variable = num_research
 	if = {
 		limit = {
+			exists = owner
 			has_enigmatic_capital = no
 		}
 		if = {
@@ -1853,8 +1932,8 @@ create_dm_habitat = {
 create_ae_habitat = {
 	save_aot_habitat_districts = {
 		HOUSING = district_dm_hab_housing
-		ENERGY = district_dm_hab_energy
-		MINING = district_dm_hab_mining
+		# ENERGY = district_dm_hab_energy
+		# MINING = district_dm_hab_mining
 		INDUSTRY = district_dm_hab_arms_industry
 		SCIENCE = district_dm_hab_research
 		SPECIAL = district_dm_hab_dark_matter_energy
@@ -1871,8 +1950,8 @@ create_ae_habitat = {
 	}
 	create_new_aot_habitat_districts = {
 		HOUSING = district_ae_hab_housing
-		ENERGY = district_ae_hab_energy
-		MINING = district_ae_hab_mining
+		# ENERGY = district_ae_hab_energy
+		# MINING = district_ae_hab_mining
 		INDUSTRY = district_ae_hab_arms_industry
 		SCIENCE = district_ae_hab_research
 		SPECIAL = district_ae_hab_dark_matter_energy
@@ -1906,6 +1985,7 @@ create_ae_habitat = {
 	}
 	if = {
 		limit = {
+			exists = owner
 			has_ascended_capital = no
 		}
 		if = {
@@ -2047,8 +2127,8 @@ create_ae_habitat = {
 create_phanon_habitat = {
 	save_aot_habitat_districts = {
 		HOUSING = district_ae_hab_housing
-		ENERGY = district_ae_hab_energy
-		MINING = district_ae_hab_mining
+		# ENERGY = district_ae_hab_energy
+		# MINING = district_ae_hab_mining
 		INDUSTRY = district_ae_hab_arms_industry
 		SCIENCE = district_ae_hab_research
 		SPECIAL = district_ae_hab_dark_matter_energy
@@ -2066,8 +2146,8 @@ create_phanon_habitat = {
 	}
 	create_new_aot_habitat_districts = {
 		HOUSING = district_hab_phanon_housing
-		ENERGY = district_hab_phanon_energy
-		MINING = district_hab_phanon_mining
+		# ENERGY = district_hab_phanon_energy
+		# MINING = district_hab_phanon_mining
 		INDUSTRY = district_hab_phanon_arms_industry
 		SCIENCE = district_hab_phanon_research
 		SPECIAL = district_hab_phanon_generator
@@ -2101,6 +2181,7 @@ create_phanon_habitat = {
 	}
 	if = {
 		limit = {
+			exists = owner
 			has_phanon_capital = no
 		}
 		if = {
@@ -2242,8 +2323,8 @@ create_phanon_habitat = {
 create_sigma_habitat = {
 	save_aot_habitat_districts = {
 		HOUSING = district_hab_phanon_housing
-		ENERGY = district_hab_phanon_energy
-		MINING = district_hab_phanon_mining
+		# ENERGY = district_hab_phanon_energy
+		# MINING = district_hab_phanon_mining
 		INDUSTRY = district_hab_phanon_arms_industry
 		SCIENCE = district_hab_phanon_research
 		SPECIAL = district_hab_phanon_generator
@@ -2262,8 +2343,8 @@ create_sigma_habitat = {
 	}
 	create_new_aot_habitat_districts = {
 		HOUSING = district_hab_stellarite_housing
-		ENERGY = district_hab_stellarite_energy
-		MINING = district_hab_stellarite_mining
+		# ENERGY = district_hab_stellarite_energy
+		# MINING = district_hab_stellarite_mining
 		INDUSTRY = district_hab_stellarite_arms_industry
 		SCIENCE = district_hab_stellarite_research
 		SPECIAL = district_hab_stellarite_generator
@@ -2297,6 +2378,7 @@ create_sigma_habitat = {
 	}
 	if = {
 		limit = {
+			exists = owner
 			has_stellarite_capital = no
 		}
 		if = {
@@ -2438,7 +2520,6 @@ create_sigma_habitat = {
 # ------------------------------------------------------------------------------------------------ #
 #                                         Aot Orbitals Code                                        #
 # ------------------------------------------------------------------------------------------------ #
-
 # Wraps the handling executing the proper function depending on the ship size of the last built orbital.
 update_last_orbital_wrapper = {
 	last_created_fleet = {
