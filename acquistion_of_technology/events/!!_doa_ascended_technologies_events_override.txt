@@ -1,16 +1,18 @@
-namespace = ascension_event
-#### fe buildings
+namespace = doa_acot_ascension
+############################
+### automated industries ###
+############################
 situation_event = {
-	id = ascension_event.5
-	title = ascension_event.5.name
-	desc = ascension_event.5.desc
+	id = doa_acot_ascension.5
+	title = doa_acot_ascension.5.name
+	desc = doa_acot_ascension.5.desc
 	picture = GFX_evt_city_planet
 	show_sound = event_cityscape
-	location = from
+	location = target
 	is_triggered_only = yes
 	situation = this
 	option = {
-		name = ascension_event.5.a
+		name = doa_acot_ascension.5.a
 		owner = {
 			if = {
 				limit = {
@@ -22,97 +24,13 @@ situation_event = {
 						has_technology = tech_dm_production_core
 					}
 				}
-				set_country_flag = doa_tech_5
+				set_country_flag = doa_tech_3
 				add_research_option = tech_dm_production_core
 				add_tech_progress = {
 					tech = tech_dm_production_core
 					progress = 0.2
 				}
 			}
-		}
-	}
-}
-
-#### ascension complete
-country_event = {
-	id = ascension_event.8
-	title = ascension_event.8.name
-	picture = GFX_evt_coronation
-	show_sound = event_celebration
-	location = from
-	is_triggered_only = yes
-	immediate = {
-		owner = {
-			save_event_target_as = owner
-		}
-	}
-	desc = {
-		trigger = {
-			NOR = {
-				has_authority = auth_hive_mind
-				has_authority = auth_machine_intelligence
-			}
-		}
-		text = ascension_event.8.desc
-	}
-	desc = {
-		trigger = {
-			has_authority = auth_hive_mind
-		}
-		text = ascension_event.8.desc.1
-	}
-	desc = {
-		trigger = {
-			has_authority = auth_machine_intelligence
-		}
-		text = ascension_event.8.desc.2
-	}
-	option = {
-		name = ascension_event.8.a
-		trigger = {
-			NOT = {
-				has_valid_civic = civic_inwards_perfection
-			}
-		}
-		owner = {
-			remove_country_flag = doa_tech_1
-			remove_country_flag = doa_tech_2
-			remove_country_flag = doa_tech_3
-			remove_country_flag = doa_tech_4
-			remove_country_flag = doa_tech_5
-			add_resource = {
-				unity = 30000
-			}
-			set_country_flag = ascended_empire
-			set_country_flag = doa_ascension_complete
-			force_add_civic = civic_ascended_empire
-			set_government_cooldown = no
-			set_timed_country_flag = {
-				flag = new_ascended_empire
-				days = 7200
-			}
-		}
-	}
-	option = {
-		name = ascension_event.8.b
-		trigger = {
-			has_valid_civic = civic_inwards_perfection
-		}
-		owner = {
-			remove_country_flag = doa_tech_1
-			remove_country_flag = doa_tech_2
-			remove_country_flag = doa_tech_3
-			remove_country_flag = doa_tech_4
-			remove_country_flag = doa_tech_5
-			add_resource = {
-				unity = 30000
-			}
-			set_country_flag = ascended_empire_isolationist
-			set_country_flag = doa_ascension_complete
-			force_add_civic = civic_isolationist_empire
-			force_add_civic = civic_isolationist_ideals
-			force_add_civic = civic_secured_borders
-			set_government_cooldown = no
 		}
 	}
 }
