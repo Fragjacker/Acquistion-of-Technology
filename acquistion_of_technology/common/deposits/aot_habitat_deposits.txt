@@ -161,3 +161,37 @@ aot_habitat_system_resources = {
 	}
 	custom_tooltip = system_resources_tooltip
 }
+
+aot_orbital_energy = {
+	is_for_colonizable = yes
+	icon = "d_satellite_in_orbit"
+	category = deposit_cat_rare
+
+	potential = { always = no }
+	# Energy Districts
+	custom_tooltip = d_orbital_energy_tt
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_hab_energy_max = 1
+		mult = value:aot_habitat_district_value|TYPE|energy|
+	}
+}
+
+aot_orbital_mining = {
+	is_for_colonizable = yes
+	icon = "d_mining_station"
+	category = deposit_cat_rare
+
+	potential = { always = no }
+	custom_tooltip = d_orbital_mining_tt
+	# Mining Districts
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_hab_mining_max = 1
+		mult = value:aot_habitat_district_value|TYPE|mining|
+	}
+}

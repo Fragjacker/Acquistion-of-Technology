@@ -2517,11 +2517,41 @@ create_sigma_habitat = {
 	}
 }
 
+add_aot_habitat_deposits = {
+	set_all_comms_surveyed = yes
+	clear_blockers = yes
+	set_planet_flag = megastructure
+	set_planet_flag = habitat
+	set_planet_flag = advanced_habitat_2
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
+	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_orbital_energy
+	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_orbital_mining
+	}
+}
+
 # ------------------------------------------------------------------------------------------------ #
 #                                         Aot Orbitals Code                                        #
 # ------------------------------------------------------------------------------------------------ #
 # Wraps the handling executing the proper function depending on the ship size of the last built orbital.
 update_last_orbital_wrapper = {
+	remove_deposit = d_system_resources
+	remove_deposit = d_orbital_energy
+	remove_deposit = d_orbital_mining
+	remove_deposit = d_orbital_research
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
+	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_orbital_energy
+	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_orbital_mining
+	}
 	last_created_fleet = {
 		switch = {
 			trigger = is_ship_size
