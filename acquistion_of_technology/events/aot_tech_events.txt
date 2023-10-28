@@ -1,0 +1,130 @@
+namespace = aot_tech_events
+# ------------------------------------------------------------------------------------------------ #
+#            Fire technology acquisition events whenever a certain tech gets researched            #
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+#                                            Start Alpha                                           #
+# ------------------------------------------------------------------------------------------------ #
+country_event = {
+	id = aot_tech_events.1
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				last_increased_tech = tech_dark_matter_power_core_dm # Start the whole thing once the Dark Energy Reactor got researched.
+			}
+			# 2 years with a margin of 1 year less for it to appear.
+			country_event = {
+				id = acot_alpha_matter_events.11
+				days = 720
+				random = 360
+			}
+		}
+	}
+}
+# -------------- Check if all requirements are reached if not check once every year -------------- #
+country_event = {
+	id = aot_tech_events.11
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				is_valid_alpha_research_candidate = yes # Is the actual criteria fulfilled? If not check again in a year.
+			}
+			country_event = {
+				id = acot_alpha_matter_events.1
+			}
+		}
+		else = {
+			country_event = {
+				id = aot_tech_events.11
+				days = 360
+			}
+		}
+	}
+}
+# ------------------------------------------------------------------------------------------------ #
+#                                           Start Phanon                                           #
+# ------------------------------------------------------------------------------------------------ #
+country_event = {
+	id = aot_tech_events.2
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				last_increased_tech = tech_dark_matter_power_core_ae # Start the whole thing once the Dark Energy Reactor got researched.
+			}
+			# 20 years with a margin of 1 year less for it to appear.
+			country_event = {
+				id = aot_tech_events.22
+				days = 7200
+				random = 360
+			}
+		}
+	}
+}
+# -------------- Check if all requirements are reached if not check once every year -------------- #
+country_event = {
+	id = aot_tech_events.22
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				is_viable_phanon_research_candidate = yes # Is the actual criteria fulfilled? If not check again in a year.
+			}
+			country_event = {
+				id = aot_phanon_events.1
+			}
+		}
+		else = {
+			country_event = {
+				id = aot_tech_events.22
+				days = 360
+			}
+		}
+	}
+}
+
+# ------------------------------------------------------------------------------------------------ #
+#                                         Start Stellarite                                         #
+# ------------------------------------------------------------------------------------------------ #
+country_event = {
+	id = aot_tech_events.3
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				last_increased_tech = tech_dark_matter_power_core_re # Start the whole thing once the Runic Power Reactor got researched.
+			}
+			# 25 years with a margin of 5 years less for it to appear.
+			country_event = {
+				id = aot_tech_events.33
+				days = 9000
+				random = 1800
+			}
+		}
+	}
+}
+# -------------- Check if all requirements are reached if not check once every year -------------- #
+country_event = {
+	id = aot_tech_events.33
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				is_viable_sigma_research_candidate = yes # Is the actual criteria fulfilled? If not check again in a year.
+			}
+			country_event = {
+				id = stellarite_events.1
+			}
+		}
+		else = {
+			country_event = {
+				id = aot_tech_events.33
+				days = 360
+			}
+		}
+	}
+}
+# ------------------------------------------------------------------------------------------------ #

@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------------------------ #
+#                           Dark Matter Production Coure Resource checks                           #
+# ------------------------------------------------------------------------------------------------ #
 has_enough_dark_matter_for_project = {
 	hidden_trigger = {
 		NOT = {
@@ -149,6 +152,9 @@ has_enough_dark_matter_to_increase_reactor_intensity = {
 	}
 }
 
+# ------------------------------------------------------------------------------------------------ #
+#                                     Check for new Tech Tiers                                     #
+# ------------------------------------------------------------------------------------------------ #
 is_valid_alpha_research_candidate = {
 	NOT = {
 		has_global_flag = acot_alpha_forbidden
@@ -256,25 +262,31 @@ is_valid_alpha_research_candidate = {
 	}
 }
 
-has_phanon_traits = {
-	OR = {
-		has_trait = leader_trait_phanon_big_brain
-		has_trait = leader_trait_phanon_big_leader
-		has_trait = leader_trait_phanon_six_stars_general
-		has_trait = leader_trait_acot_phanon_admiral
+is_viable_phanon_research_candidate = {
+	is_playable_country = yes
+	has_technology = tech_dark_matter_power_core_ae
+	NOR = {
+		has_global_flag = aot_phanon_content_OFF
+		has_country_flag = offer_phanon_dimensional_mirror_chain
+		has_country_flag = block_phanon_dimensional_mirror_chain
+		has_country_flag = finished_phanon_dimensional_mirror_chain
+		has_event_chain = phanon_dimensional_mirror_chain
+		has_country_flag = attacked_phanon_property
+		has_technology = tech_dark_matter_power_core_re
 	}
 }
 
-is_playable_country = {
-	OR = {
-		is_country_type = default
-		is_country_type = fallen_empire
-		is_country_type = awakened_fallen_empire
-		is_zofe_country = yes
-		is_country_type = lost_empire
-		is_country_type = eternal_empire
-		is_country_type = original_empire_active
+is_viable_sigma_research_candidate = {
+	is_ai = no
+	NOR = {
+		has_global_flag = acot_sigma_forbidden
+		has_country_flag = acot_stellarite_project_begin
+		has_technology = tech_dark_matter_power_core_se
+		has_tech_option = tech_dark_matter_power_core_se
 	}
+	is_playable_country = yes
+	has_technology = tech_dark_matter_power_core_re
+	has_established_contact = event_target:acot_precursor_databank_country
 }
 
 is_eligible_production_core_country = {
@@ -308,3 +320,30 @@ is_eligible_production_core_country = {
 		}
 	}
 }
+
+# ------------------------------------------------------------------------------------------------ #
+#                                               Misc                                               #
+# ------------------------------------------------------------------------------------------------ #
+
+has_phanon_traits = {
+	OR = {
+		has_trait = leader_trait_phanon_big_brain
+		has_trait = leader_trait_phanon_big_leader
+		has_trait = leader_trait_phanon_six_stars_general
+		has_trait = leader_trait_acot_phanon_admiral
+	}
+}
+
+is_playable_country = {
+	OR = {
+		is_country_type = default
+		is_country_type = fallen_empire
+		is_country_type = awakened_fallen_empire
+		is_zofe_country = yes
+		is_country_type = lost_empire
+		is_country_type = eternal_empire
+		is_country_type = original_empire_active
+	}
+}
+
+
