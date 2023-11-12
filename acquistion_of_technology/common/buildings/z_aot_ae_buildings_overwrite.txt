@@ -598,7 +598,7 @@ building_ae_dimensional_fabricator = {
 			owner = {
 				has_monthly_income = {
 					resource = minerals
-					value < 10
+					value < @auto_minerals_ae
 				}
 			}
 		}
@@ -656,7 +656,7 @@ building_ae_class_4_singularity = {
 			owner = {
 				has_monthly_income = {
 					resource = energy
-					value < 20
+					value < @auto_energy_ae
 				}
 			}
 		}
@@ -711,7 +711,7 @@ building_ae_nano_forge = {
 			owner = {
 				has_monthly_income = {
 					resource = alloys
-					value < 30
+					value < @auto_alloy_ae
 				}
 			}
 		}
@@ -887,6 +887,12 @@ building_ae_empyrean_shrine = {
 	}
 	ai_weight = {
 		weight = 100
+		modifier = {
+			factor = 0
+			owner = {
+				is_spiritualist = no
+			}
+		}
 	}
 }
 
@@ -925,8 +931,21 @@ building_ae_sky_dome = {
 	upgrades = {
 		building_phanon_sky_dome
 	}
+	# ---------------------------- Build only if we have no districts left --------------------------- #
 	ai_weight = {
 		weight = 5
+		modifier = {
+			factor = 0
+			free_district_slots > 0
+		}
+		modifier = {
+			factor = 2
+			free_district_slots = 0
+		}
+		modifier = {
+			factor = 10
+			free_housing <= 0
+		}
 	}
 }
 
@@ -972,19 +991,20 @@ building_ae_ancient_cryo_chamber = {
 	prerequisites = {
 		"tech_ae_ancient_cryo_chamber"
 	}
+	# ---------------------------- Build only if we have no districts left --------------------------- #
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
-		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
-		}
+		weight = 5
 		modifier = {
 			factor = 0
-			free_housing > 1
+			free_district_slots > 0
+		}
+		modifier = {
+			factor = 2
+			free_district_slots = 0
+		}
+		modifier = {
+			factor = 10
+			free_housing <= 0
 		}
 	}
 }
@@ -1048,19 +1068,20 @@ building_ae_mansion = {
 			}
 		}
 	}
+	# ---------------------------- Build only if we have no districts left --------------------------- #
 	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 300000
-			free_amenities < 0
-		}
-		modifier = {
-			factor = 500000
-			free_housing < 1
-		}
+		weight = 5
 		modifier = {
 			factor = 0
-			free_housing > 1
+			free_district_slots > 0
+		}
+		modifier = {
+			factor = 2
+			free_district_slots = 0
+		}
+		modifier = {
+			factor = 10
+			free_housing <= 0
 		}
 	}
 }
@@ -1117,19 +1138,20 @@ building_ae_hive_depot = {
 	prerequisites = {
 		tech_ae_hive_depot
 	}
+	# ---------------------------- Build only if we have no districts left --------------------------- #
 	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
-		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
-		}
+		weight = 5
 		modifier = {
 			factor = 0
-			free_housing > 1
+			free_district_slots > 0
+		}
+		modifier = {
+			factor = 2
+			free_district_slots = 0
+		}
+		modifier = {
+			factor = 10
+			free_housing <= 0
 		}
 	}
 }
