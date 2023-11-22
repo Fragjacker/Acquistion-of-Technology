@@ -351,7 +351,7 @@ planet_event = {
 							NOT = {
 								has_trait = leader_trait_phanon_six_stars_general
 							}
-							leader_class = general
+							leader_class = commander
 						}
 						add_trait = leader_trait_phanon_six_stars_general
 					}
@@ -360,7 +360,7 @@ planet_event = {
 							NOT = {
 								has_trait = leader_trait_acot_phanon_admiral
 							}
-							leader_class = admiral
+							leader_class = commander
 						}
 						add_trait = leader_trait_acot_phanon_admiral
 					}
@@ -837,7 +837,7 @@ planet_event = {
 							NOT = {
 								has_trait = leader_trait_phanon_six_stars_general
 							}
-							leader_class = general
+							leader_class = commander
 						}
 						add_trait = leader_trait_phanon_six_stars_general
 					}
@@ -846,7 +846,7 @@ planet_event = {
 							NOT = {
 								has_trait = leader_trait_acot_phanon_admiral
 							}
-							leader_class = admiral
+							leader_class = commander
 						}
 						add_trait = leader_trait_acot_phanon_admiral
 					}
@@ -1086,7 +1086,7 @@ planet_event = {
 							NOT = {
 								has_trait = leader_trait_phanon_six_stars_general
 							}
-							leader_class = general
+							leader_class = commander
 						}
 						add_trait = leader_trait_phanon_six_stars_general
 					}
@@ -1095,7 +1095,7 @@ planet_event = {
 							NOT = {
 								has_trait = leader_trait_acot_phanon_admiral
 							}
-							leader_class = admiral
+							leader_class = commander
 						}
 						add_trait = leader_trait_acot_phanon_admiral
 					}
@@ -1346,30 +1346,18 @@ country_event = {
 	}
 	immediate = {
 		from = {
-			if = {
-				limit = {
-					leader_class = admiral
+			switch = {
+				trigger = leader_class
+				commander = {
+					add_trait = leader_trait_acot_phanon_admiral
+					add_trait = leader_trait_phanon_six_stars_general
 				}
-				add_trait = leader_trait_acot_phanon_admiral
-				break = yes
-			}
-			else_if = {
-				limit = {
-					leader_class = general
+				official = {
+					add_trait = leader_trait_phanon_big_leader
 				}
-				add_trait = leader_trait_phanon_six_stars_general
-			}
-			else_if = {
-				limit = {
-					leader_class = governor
+				scientist = {
+					add_trait = leader_trait_phanon_big_brain
 				}
-				add_trait = leader_trait_phanon_big_leader
-			}
-			else_if = {
-				limit = {
-					leader_class = scientist
-				}
-				add_trait = leader_trait_phanon_big_brain
 			}
 		}
 	}
