@@ -882,6 +882,30 @@ building_stellarite_alloy_forge = {
 			job_stellarite_alloyman_add = 4
 		}
 	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 5
+			planet_metallurgists_minerals_upkeep_add = 6
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 4.75
+			planet_metallurgists_food_upkeep_add = 7
+		}
+	}
 	resources = {
 		category = planet_buildings
 		produces = {
@@ -1476,6 +1500,19 @@ building_stellarite_civilian_factory = {
 			job_stellarite_artisan_add = 4
 		}
 	}
+	planet_modifier = {
+		planet_artisans_consumer_goods_produces_add = 6
+		planet_artisans_minerals_upkeep_add = 6
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_ringworld_output_boost = yes
+		}
+		modifier = {
+			planet_artisans_consumer_goods_produces_add = 5
+			planet_artisans_minerals_upkeep_add = 5
+		}
+	}
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -1967,12 +2004,14 @@ building_stellarite_clone_vats = {
 	}
 	show_tech_unlock_if = {
 		owner = {
-			has_ascension_perk = ap_evolutionary_mastery
+			has_tradition = tr_genetics_efficient_cloning
 		}
 	}
-	planet_modifier = {
-		pop_growth_speed = 4
-		planet_pop_assembly_organic_add = 20
+	inline_script = {
+		script = buildings/clone_vats_and_evochambers
+		POP_GROWTH = 1.25
+		POP_ASSEMBLY = 15
+		POP_ASSEMBLY_GENETIC_TRADITION = 7.5
 	}
 	resources = {
 		category = planet_buildings
@@ -2246,8 +2285,11 @@ building_stellarite_hive_evochamber = {
 			has_technology = tech_stellarite_hive_evochamber
 		}
 	}
-	planet_modifier = {
-		pop_growth_speed = 2
+	inline_script = {
+		script = buildings/clone_vats_and_evochambers
+		POP_GROWTH = 1
+		POP_ASSEMBLY = 15
+		POP_ASSEMBLY_GENETIC_TRADITION = 7.5
 	}
 	allow = {
 		has_stellarite_capital = yes
@@ -3521,7 +3563,7 @@ building_stellarite_commercial_megaplex = {
 building_stellarite_bureaucratic = {
 	base_buildtime = 900
 	can_build = no
-	category = government
+	category = unity
 	potential = {
 		exists = owner
 		owner = {
@@ -3553,6 +3595,9 @@ building_stellarite_bureaucratic = {
 	}
 	planet_modifier = {
 		job_stellarite_bureaucrat_add = 16
+	}
+	country_modifier = {
+		empire_size_mult = -0.025
 	}
 	prerequisites = {
 		"tech_stellarite_bureau"

@@ -644,6 +644,59 @@ has_lightmatter_reactor_tech = {
 	}
 }
 
+# ------------------------------- clone vat and huve depot triggers ------------------------------ #
+potential_can_have_vats_or_evochamber = {
+	exists = owner
+	owner = {
+		has_ascension_perk = ap_engineered_evolution
+	}
+	NOT = {
+		has_modifier = resort_colony
+	}
+	OR = {
+		owner = {
+			is_ai = no
+		}
+		NOT = {
+			exists = assembling_species
+		}
+		assembling_species = {
+			is_organic_species = yes
+		}
+	}
+	OR = {
+		owner = {
+			is_ai = no
+		}
+		NAND = {
+			free_district_slots = 0
+			free_building_slots <= 1
+			free_housing <= 0
+			free_jobs <= 0
+		}
+	}
+}
+
+destroy_trigger_vats_or_evochamber = {
+	exists = owner
+	OR = {
+		AND = {
+			owner = {
+				is_ai = yes
+			}
+			free_district_slots = 0
+			free_building_slots = 0
+			free_housing <= 0
+			free_jobs <= 0
+		}
+		NOT = {
+			owner = {
+				has_ascension_perk = ap_engineered_evolution
+			}
+		}
+	}
+}
+
 # ----------- Prevent multiple different shield generator buildings on the same planet ----------- #
 acot_has_planetary_shield_building = {
 	OR = {

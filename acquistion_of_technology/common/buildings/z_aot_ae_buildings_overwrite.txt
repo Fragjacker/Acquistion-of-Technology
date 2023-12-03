@@ -1829,14 +1829,14 @@ building_ae_clone_vats = {
 	}
 	show_tech_unlock_if = {
 		owner = {
-			has_ascension_perk = ap_evolutionary_mastery
+			has_tradition = tr_genetics_efficient_cloning
 		}
 	}
-	upgrades = {
-		building_phanon_clone_vats
-	}
-	planet_modifier = {
-		pop_growth_speed = 2
+	inline_script = {
+		script = buildings/clone_vats_and_evochambers
+		POP_GROWTH = 0.75
+		POP_ASSEMBLY = 9
+		POP_ASSEMBLY_GENETIC_TRADITION = 4.5
 	}
 	resources = {
 		category = planet_buildings
@@ -2128,6 +2128,17 @@ building_ae_hive_evochamber = {
 	upgrades = {
 		building_phanon_hive_evochamber
 	}
+	show_tech_unlock_if = {
+		owner = {
+			has_tradition = tr_genetics_efficient_cloning
+		}
+	}
+	inline_script = {
+		script = buildings/clone_vats_and_evochambers
+		POP_GROWTH = 0.5
+		POP_ASSEMBLY = 9
+		POP_ASSEMBLY_GENETIC_TRADITION = 4.5
+	}
 	resources = {
 		category = planet_buildings
 		produces = {
@@ -2210,6 +2221,30 @@ building_ae_alloy_forge = {
 		}
 		modifier = {
 			job_ae_alloyman_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 3
+			planet_metallurgists_minerals_upkeep_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 2.75
+			planet_metallurgists_food_upkeep_add = 5
 		}
 	}
 	resources = {
@@ -2834,6 +2869,19 @@ building_ae_factory = {
 		}
 		modifier = {
 			job_acot_artisan_add = 4
+		}
+	}
+	planet_modifier = {
+		planet_artisans_consumer_goods_produces_add = 4
+		planet_artisans_minerals_upkeep_add = 4
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_ringworld_output_boost = yes
+		}
+		modifier = {
+			planet_artisans_consumer_goods_produces_add = 3
+			planet_artisans_minerals_upkeep_add = 3
 		}
 	}
 	resources = {

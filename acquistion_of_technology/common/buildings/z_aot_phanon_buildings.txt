@@ -945,6 +945,30 @@ building_phanon_alloy_forge = {
 			job_phanon_alloyman_add = 4
 		}
 	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 4
+			planet_metallurgists_minerals_upkeep_add = 5
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 3.75
+			planet_metallurgists_food_upkeep_add = 6
+		}
+	}
 	resources = {
 		category = planet_buildings
 		produces = {
@@ -1575,6 +1599,19 @@ building_phanon_civilian_factory = {
 			job_phanon_artisan_add = 4
 		}
 	}
+	planet_modifier = {
+		planet_artisans_consumer_goods_produces_add = 5
+		planet_artisans_minerals_upkeep_add = 5
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_ringworld_output_boost = yes
+		}
+		modifier = {
+			planet_artisans_consumer_goods_produces_add = 4
+			planet_artisans_minerals_upkeep_add = 4
+		}
+	}
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -2106,17 +2143,23 @@ building_phanon_clone_vats = {
 	allow = {
 		has_phanon_capital = yes
 	}
-	show_tech_unlock_if = {
-		owner = {
-			has_ascension_perk = ap_evolutionary_mastery
-		}
-	}
 	upgrades = {
 		building_stellarite_clone_vats
 	}
 	planet_modifier = {
 		pop_growth_speed = 3
 		planet_pop_assembly_organic_add = 10
+	}
+	show_tech_unlock_if = {
+		owner = {
+			has_tradition = tr_genetics_efficient_cloning
+		}
+	}
+	inline_script = {
+		script = buildings/clone_vats_and_evochambers
+		POP_GROWTH = 1
+		POP_ASSEMBLY = 12
+		POP_ASSEMBLY_GENETIC_TRADITION = 6
 	}
 	resources = {
 		category = planet_buildings
@@ -2419,8 +2462,11 @@ building_phanon_hive_evochamber = {
 			has_technology = tech_phanon_hive_evochamber
 		}
 	}
-	planet_modifier = {
-		pop_growth_speed = 2
+	inline_script = {
+		script = buildings/clone_vats_and_evochambers
+		POP_GROWTH = 0.75
+		POP_ASSEMBLY = 12
+		POP_ASSEMBLY_GENETIC_TRADITION = 6
 	}
 	allow = {
 		has_phanon_capital = yes
@@ -3443,7 +3489,7 @@ building_phanon_commercial_megaplex = {
 building_phanon_bureaucratic = {
 	base_buildtime = 900
 	can_build = no
-	category = government
+	category = unity
 	potential = {
 		NOT = {
 			has_global_flag = aot_phanon_content_OFF
@@ -3483,6 +3529,9 @@ building_phanon_bureaucratic = {
 	}
 	planet_modifier = {
 		job_phanon_bureaucrat_add = 16
+	}
+	country_modifier = {
+		empire_size_mult = -0.02
 	}
 	prerequisites = {
 		tech_phanon_bureau
