@@ -1,13 +1,13 @@
-version="8.0.3"
-tags={
+version = "8.0.4"
+tags = {
 	"Technologies"
 	"Gameplay"
 	"Overhaul"
 }
-dependencies={
+dependencies = {
 	"Ancient Cache of Technologies"
 }
-name="Acquisition of Technology"
-picture="thumbnail.png"
-supported_version="3.10.*"
-remote_file_id="2178603631"
+name = "Acquisition of Technology"
+picture = "thumbnail.png"
+supported_version = "3.10.*"
+remote_file_id = "2178603631"

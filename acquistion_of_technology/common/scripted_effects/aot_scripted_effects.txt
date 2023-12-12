@@ -165,164 +165,188 @@ create_sigma_Star = {
 # ------------------------------------------------------------------------------------------------ #
 # --------------------------------- Save old amount of districts --------------------------------- #
 save_aot_habitat_districts = {
-	[[HOUSING]
-	if = {
-		limit = {
-			has_district = $HOUSING$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $HOUSING$
-			}
-			variable = num_houses
-		}
-	}
+	[[
+	HOUSING
 	]
-	[[ENERGY]
-	if = {
-		limit = {
-			has_district = $ENERGY$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $ENERGY$
+		if = {
+			limit = {
+				has_district = $HOUSING$
 			}
-			variable = num_energy
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $HOUSING$
+				}
+				variable = num_houses
+			}
 		}
-	}
 	]
-	[[MINING]
-	if = {
-		limit = {
-			has_district = $MINING$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $MINING$
-			}
-			variable = num_mines
-		}
-	}
+	[[
+	ENERGY
 	]
-	[[INDUSTRY]
-	if = {
-		limit = {
-			has_district = $INDUSTRY$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $INDUSTRY$
+		if = {
+			limit = {
+				has_district = $ENERGY$
 			}
-			variable = num_industry
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $ENERGY$
+				}
+				variable = num_energy
+			}
 		}
-	}
 	]
-	[[SCIENCE]
-	if = {
-		limit = {
-			has_district = $SCIENCE$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $SCIENCE$
-			}
-			variable = num_research
-		}
-	}
+	[[
+	MINING
 	]
-	[[SPECIAL]
-	if = {
-		limit = {
-			has_district = $SPECIAL$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $SPECIAL$
+		if = {
+			limit = {
+				has_district = $MINING$
 			}
-			variable = num_special
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $MINING$
+				}
+				variable = num_mines
+			}
 		}
-	}
+	]
+	[[
+	INDUSTRY
+	]
+		if = {
+			limit = {
+				has_district = $INDUSTRY$
+			}
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $INDUSTRY$
+				}
+				variable = num_industry
+			}
+		}
+	]
+	[[
+	SCIENCE
+	]
+		if = {
+			limit = {
+				has_district = $SCIENCE$
+			}
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $SCIENCE$
+				}
+				variable = num_research
+			}
+		}
+	]
+	[[
+	SPECIAL
+	]
+		if = {
+			limit = {
+				has_district = $SPECIAL$
+			}
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $SPECIAL$
+				}
+				variable = num_special
+			}
+		}
 	]
 }
 
 create_new_aot_habitat_districts = {
-	[[HOUSING]
-	if = {
-		limit = {
-			is_variable_set = num_houses
-		}
-		while = {
-			count = num_houses
-			add_district = $HOUSING$
-		}
-		clear_variable = num_houses
-	}
+	[[
+	HOUSING
 	]
-	[[ENERGY]
-	if = {
-		limit = {
-			is_variable_set = num_energy
+		if = {
+			limit = {
+				is_variable_set = num_houses
+			}
+			while = {
+				count = num_houses
+				add_district = $HOUSING$
+			}
+			clear_variable = num_houses
 		}
-		while = {
-			count = num_energy
-			add_district = $ENERGY$
-		}
-		clear_variable = num_energy
-	}
 	]
-	[[MINING]
-	if = {
-		limit = {
-			is_variable_set = num_mines
-		}
-		while = {
-			count = num_mines
-			add_district = $MINING$
-		}
-		clear_variable = num_mines
-	}
+	[[
+	ENERGY
 	]
-	[[INDUSTRY]
-	if = {
-		limit = {
-			is_variable_set = num_industry
+		if = {
+			limit = {
+				is_variable_set = num_energy
+			}
+			while = {
+				count = num_energy
+				add_district = $ENERGY$
+			}
+			clear_variable = num_energy
 		}
-		while = {
-			count = num_industry
-			add_district = $INDUSTRY$
-		}
-		clear_variable = num_industry
-	}
 	]
-	[[SCIENCE]
-	if = {
-		limit = {
-			is_variable_set = num_research
-		}
-		while = {
-			count = num_research
-			add_district = $SCIENCE$
-		}
-		clear_variable = num_research
-	}
+	[[
+	MINING
 	]
-	[[SPECIAL]
-	if = {
-		limit = {
-			is_variable_set = num_special
+		if = {
+			limit = {
+				is_variable_set = num_mines
+			}
+			while = {
+				count = num_mines
+				add_district = $MINING$
+			}
+			clear_variable = num_mines
 		}
-		while = {
-			count = num_special
-			add_district = $SPECIAL$
+	]
+	[[
+	INDUSTRY
+	]
+		if = {
+			limit = {
+				is_variable_set = num_industry
+			}
+			while = {
+				count = num_industry
+				add_district = $INDUSTRY$
+			}
+			clear_variable = num_industry
 		}
-		clear_variable = num_special
-	}
+	]
+	[[
+	SCIENCE
+	]
+		if = {
+			limit = {
+				is_variable_set = num_research
+			}
+			while = {
+				count = num_research
+				add_district = $SCIENCE$
+			}
+			clear_variable = num_research
+		}
+	]
+	[[
+	SPECIAL
+	]
+		if = {
+			limit = {
+				is_variable_set = num_special
+			}
+			while = {
+				count = num_special
+				add_district = $SPECIAL$
+			}
+			clear_variable = num_special
+		}
 	]
 }
 
