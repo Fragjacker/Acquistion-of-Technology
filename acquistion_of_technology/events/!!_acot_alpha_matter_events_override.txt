@@ -175,7 +175,7 @@ country_event = {
 		default_hide_option = yes
 		trigger = {
 			is_ai = no
-			has_country_flag = doa_ascension_complete
+			is_doa_ascendend = yes
 			any_owned_leader = {
 				leader_class = scientist
 			}
@@ -216,17 +216,31 @@ country_event = {
 			flag = block_precursor_rumor
 			days = 720
 		}
+		hidden_effect = {
+			# Queue the event back up
+			country_event = {
+				id = aot_tech_events.11
+				days = 360
+			}
+		}
 	}
 	option = {
 		name = acot_alpha_diy_postpone_ae_empire
 		custom_tooltip = acot_alpha_diy_postpone_ae_empire_desc
 		trigger = {
-			has_country_flag = doa_ascension_complete
+			is_doa_ascendend = yes
 			is_ai = no
 		}
 		set_timed_country_flag = {
 			flag = block_precursor_rumor
 			days = 720
+		}
+		hidden_effect = {
+			# Queue the event back up
+			country_event = {
+				id = aot_tech_events.11
+				days = 360
+			}
 		}
 	}
 	option = {

@@ -1,4 +1,4 @@
-version="8.0.3"
+version="8.0.5"
 tags={
 	"Technologies"
 	"Gameplay"
