@@ -1,0 +1,200 @@
+animation = {
+	name = "aot_enigmalith_idle_animation"
+	file = "aot_enigmalith_idle.anim"
+}
+
+entity = {
+	name = "enigmalith_clouds_entity"
+	pdxmesh = "enigmalith_clouds_mesh"
+	default_state = "idle"
+	scale = 1
+
+	state = {
+		name = "idle"
+		animation = "idle"
+		animation_speed = 0.5
+		animation_blend_time = 4
+		looping = yes
+	}
+
+	game_data = {
+		shader_type = VFX
+
+		bloom_factor = 0.72
+		uv_animation_speed = 0.12
+		uv_animation_direction = { 0.46 0.67 }
+
+		wpo_animation_speed = 0.15
+		wpo_animation_direction = { 0.5 1.0 }
+		wpo_animation_scale = 1.0
+		wpo_animation_big_scale = 0.85
+		wpo_animation_offset_strength = 4.0
+	}
+}
+
+entity = {
+	name = "dm_aot_enigmalith_entity"
+	pdxmesh = "dm_aot_enigmalith_mesh"
+	default_state = "idle"
+
+	locator = { name = "center" position = { 0 0 0 } rotation = { 0 0 0 } }
+
+	attach = { cloud_anchor_01 = "enigmalith_clouds_entity" }
+	attach = { cloud_anchor_02 = "enigmalith_clouds_entity" }
+	attach = { cloud_anchor_03 = "enigmalith_clouds_entity" }
+
+	state = {
+		name = "idle"
+		animation = "idle"
+		animation_speed = 0.5
+		animation_blend_time = 4
+		looping = yes
+
+		event = { time = 0 node = "center" particle = "dm_bare_black_hole_effect" keep_particle = yes trigger_once = yes }
+
+		event = { trigger_once = yes sound = { soundeffect = "fallen_empire_starbase_amb" } }
+		event = { trigger_once = yes sound = { soundeffect = "fallen_empire_starbase_energy_field" } }
+	}
+}
+
+entity = {
+	name = "ae_aot_enigmalith_entity"
+	pdxmesh = "ae_aot_enigmalith_mesh"
+	default_state = "idle"
+
+	locator = { name = "center" position = { 0 0 0 } rotation = { 0 0 0 } }
+
+	attach = { cloud_anchor_01 = "enigmalith_clouds_entity" }
+	attach = { cloud_anchor_02 = "enigmalith_clouds_entity" }
+	attach = { cloud_anchor_03 = "enigmalith_clouds_entity" }
+
+	state = {
+		name = "idle"
+		animation = "idle"
+		animation_speed = 0.5
+		animation_blend_time = 4
+		looping = yes
+
+		event = { time = 0 node = "center" particle = "ae_bare_black_hole_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "top_point" particle = "quantum_catapult_lightning_stage_2_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "bottom_point" particle = "quantum_catapult_lightning_stage_2_effect" keep_particle = yes trigger_once = yes }
+
+		event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_01_idle" } }
+		event = { trigger_once = yes sound = { soundeffect = "fallen_empire_starbase_amb" } }
+		event = { trigger_once = yes sound = { soundeffect = "fallen_empire_starbase_energy_field" } }
+	}
+}
+
+entity = {
+	name = "phanon_aot_enigmalith_entity"
+	pdxmesh = "phanon_aot_enigmalith_mesh"
+	default_state = "idle"
+
+	locator = { name = "center" position = { 0 0 0 } rotation = { 0 0 0 } }
+	locator = { name = "center_rotated" position = { 0 0 0 } rotation = { 0 -90 0 } }
+
+	attach = { cloud_anchor_01 = "enigmalith_clouds_entity" }
+	attach = { cloud_anchor_02 = "enigmalith_clouds_entity" }
+	attach = { cloud_anchor_03 = "enigmalith_clouds_entity" }
+
+	state = {
+		name = "idle"
+		animation = "idle"
+		animation_speed = 0.5
+		animation_blend_time = 4
+		looping = yes
+
+		event = { time = 0 node = "center" particle = "phanon_habitat_sun_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "top_point" particle = "quantum_catapult_lightning_stage_2_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "bottom_point" particle = "quantum_catapult_lightning_stage_2_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "center_rotated" particle = "phanon_enigmalith_swirl_effect" keep_particle = yes trigger_once = yes }
+
+		event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
+		event = { trigger_once = yes sound = { soundeffect = "fallen_empire_starbase_amb" } }
+		event = { trigger_once = yes sound = { soundeffect = "fallen_empire_starbase_energy_field" } }
+	}
+}
+
+entity = {
+	name = "sigma_aot_enigmalith_entity"
+	pdxmesh = "sigma_aot_enigmalith_mesh"
+	default_state = "idle"
+
+	locator = { name = "center" position = { 0 0 0 } rotation = { 0 0 0 } }
+
+	attach = { cloud_anchor_01 = "enigmalith_clouds_entity" }
+	attach = { cloud_anchor_02 = "enigmalith_clouds_entity" }
+	attach = { cloud_anchor_03 = "enigmalith_clouds_entity" }
+
+	state = {
+		name = "idle"
+		animation = "idle"
+		animation_speed = 0.5
+		animation_blend_time = 4
+		looping = yes
+
+		event = { time = 0 node = "center" particle = "sigma_habitat_stellarite_sun_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "top_point" particle = "quantum_catapult_lightning_stage_2_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "bottom_point" particle = "quantum_catapult_lightning_stage_2_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "cloud_anchor_01" particle = "sigma_enigmalith_energy_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "cloud_anchor_02" particle = "sigma_enigmalith_energy_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "cloud_anchor_03" particle = "sigma_enigmalith_energy_effect" keep_particle = yes trigger_once = yes }
+
+		event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
+		event = { trigger_once = yes sound = { soundeffect = "fallen_empire_starbase_amb" } }
+		event = { trigger_once = yes sound = { soundeffect = "fallen_empire_starbase_energy_field" } }
+	}
+}
+
+entity = {
+	name = "omega_aot_enigmalith_entity"
+	pdxmesh = "omega_aot_enigmalith_mesh"
+	default_state = "idle"
+
+	locator = { name = "center" position = { 0 0 0 } rotation = { 0 0 0 } }
+	locator = { name = "center_rotated" position = { 0 0 0 } rotation = { 0 -90 0 } }
+
+	attach = { center = "omega_precursor_dark_obelisk_effect_entity" }
+	attach = { cloud_anchor_01 = "enigmalith_clouds_entity" }
+	attach = { cloud_anchor_02 = "enigmalith_clouds_entity" }
+	attach = { cloud_anchor_03 = "enigmalith_clouds_entity" }
+
+	state = {
+		name = "idle"
+		animation = "idle"
+		animation_speed = 0.5
+		animation_blend_time = 4
+		looping = yes
+
+		event = { time = 0 node = "center" particle = "sigma_habitat_stellarite_sun_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "top_point" particle = "quantum_catapult_lightning_stage_2_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "bottom_point" particle = "quantum_catapult_lightning_stage_2_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "center_rotated" particle = "quantum_catapult_outer_stage_1_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "cloud_anchor_01" particle = "sigma_enigmalith_energy_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "cloud_anchor_02" particle = "sigma_enigmalith_energy_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "cloud_anchor_03" particle = "sigma_enigmalith_energy_effect" keep_particle = yes trigger_once = yes }
+
+		event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
+		event = { trigger_once = yes sound = { soundeffect = "fallen_empire_starbase_amb" } }
+		event = { trigger_once = yes sound = { soundeffect = "fallen_empire_starbase_energy_field" } }
+	}
+}
+
+#entity = {
+#	name = "star_imploder_stage_1_entity"
+#	pdxmesh = "star_imploder_stage_1"
+#	default_state = "idle"
+#	state = {
+#		name = "idle"
+#		animation = "idle"
+#		animation_speed = 0.1
+#		animation_blend_time = 1
+#		looping = yes
+#		start_event = {
+#			trigger_once = yes
+#			sound = {
+#				soundeffect = "ancient_space_station_idle_layer_02"
+#			}
+#		}
+#	}
+#}

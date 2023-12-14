@@ -1,9 +1,135 @@
 @entity_x = 0
 @entity_y = -20
+# ------------------------------------------------------------------------------------------------ #
+#                                       Enigmalith Overrides                                       #
+# ------------------------------------------------------------------------------------------------ #
+acot_dark_matter_obelisk_core_portal = {
+	entity = "precursor_dark_obelisk_construction_portal_entity"
+	construction_entity = "precursor_dark_obelisk_construction_portal_entity"
+	portrait = "GFX_acot_dark_obelisk_background"
+	prerequisites = {
+		tech_precursor_enigmalith
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# used from script only
+	#upgrade_desc = hide
+	potential = {
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {
+					# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				#can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					is_planet_class = pc_habitat
+				}
+			}
+			# balance for habitats
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOR = {
+					is_asteroid = yes
+					is_moon = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+		}
+		# use these for all non-star megastructures
+	}
+	country_modifier = {
+	}
+	construction_blocks_and_blocked_by = none
+	build_time = 3
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 20000
+			sr_dark_matter = 2000
+			acot_sr_dark_energy = 2000
+		}
+		upkeep = {
+		}
+	}
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0.1
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = {
+						is_same_value = from
+					}
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		fromfrom = {
+			upgrade_megastructure_to = acot_dark_matter_obelisk_core
+		}
+	}
+}
+
 #Conduit
 acot_dark_matter_obelisk_core = {
-	entity = "precursor_dark_obelisk_entity"
-	construction_entity = "precursor_dark_obelisk_entity"
+	entity = "dm_aot_enigmalith_entity"
+	construction_entity = "dm_aot_enigmalith_entity"
 	portrait = "GFX_acot_dark_obelisk_background"
 	prerequisites = {
 		"tech_precursor_enigmalith"
@@ -212,8 +338,8 @@ acot_dark_matter_obelisk_core = {
 }
 
 acot_dark_matter_obelisk_core_ae = {
-	entity = "precursor_dark_obelisk_ae_entity"
-	construction_entity = "precursor_dark_obelisk_ae_entity"
+	entity = "ae_aot_enigmalith_entity"
+	construction_entity = "ae_aot_enigmalith_entity"
 	portrait = "GFX_acot_dark_obelisk_ae_background"
 	prerequisites = {
 		"tech_precursor_enigmalith_ae"
@@ -317,8 +443,8 @@ acot_dark_matter_obelisk_core_ae = {
 }
 
 acot_dark_matter_obelisk_core_pe = {
-	entity = "aot_precursor_dark_obelisk_pe_entity"
-	construction_entity = "aot_precursor_dark_obelisk_pe_entity"
+	entity = "phanon_aot_enigmalith_entity"
+	construction_entity = "phanon_aot_enigmalith_entity"
 	portrait = "GFX_acot_dark_obelisk_background"
 	place_entity_on_planet_plane = no
 	entity_offset = {
@@ -435,8 +561,8 @@ acot_dark_matter_obelisk_core_pe = {
 }
 
 acot_dark_matter_obelisk_core_se = {
-	entity = "precursor_dark_obelisk_se_entity"
-	construction_entity = "precursor_dark_obelisk_se_entity"
+	entity = "sigma_aot_enigmalith_entity"
+	construction_entity = "sigma_aot_enigmalith_entity"
 	portrait = "GFX_acot_dark_obelisk_se_background"
 	prerequisites = {
 		"tech_precursor_enigmalith_se"
