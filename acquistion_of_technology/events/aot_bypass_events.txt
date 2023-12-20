@@ -1,0 +1,62 @@
+namespace = aot_bypass_events
+
+event = {
+	id = aot_bypass_events.1
+	#title = "Test"
+	#desc = "Test"
+	#picture = GFX_evt_astral_rift
+	#show_sound = event_space_cloud
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_bypass = {
+			limit = {
+				is_valid_bypass_for_lock = yes
+				solar_system = {
+					has_megastructure = enigmatic_lock_1
+				}
+			}
+			if = {
+				limit = { exists = this.owner }
+				lock_bypass = { country = this.owner duration = 30 }
+				bypass_event = {
+					id = aot_bypass_events.1
+					days = 30
+				}
+			}
+			else = {
+				solar_system = {
+					save_event_target_as = lock_location
+					random_system_megastructure = {
+						limit = { is_megastructure_type = enigmatic_lock_1 }
+						spawn_aot_habitat_blast_effect = yes
+						remove_megastructure = this
+					}
+				}
+				every_country = {
+					limit = { is_ai = no }
+					country_event = {
+						id = aot_bypass_events.2
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = aot_bypass_events.2
+	title = "aot_bypass_events.2.name"
+	desc = "aot_bypass_events.2.desc"
+	picture = GFX_evt_exploding_ship
+	show_sound = event_super_explosion
+	location = event_target:lock_location
+	is_triggered_only = yes
+
+	option = {
+		name = "aot_bypass_events.2.a"
+		name = "aot_bypass_events.2.b"
+		name = "aot_bypass_events.2.c"
+	}
+}
