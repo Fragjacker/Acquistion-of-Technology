@@ -3142,7 +3142,10 @@ enigmatic_lock_0 = {
 	}
 	construction_blocks_and_blocked_by = self_type
 	potential = {
-		# TODO: Add proper technology prerequisites here
+		has_technology = tech_aot_enigmatic_lock_mega
+	}
+	prerequisites = {
+		tech_aot_enigmatic_lock_mega
 	}
 	possible = {
 		exists = starbase
@@ -3257,43 +3260,21 @@ enigmatic_lock_1 = {
 		}
 	}
 	potential = {
-		# TODO: Add proper technology prerequisites here
+		has_technology = tech_aot_enigmatic_lock_mega
+	}
+	prerequisites = {
+		tech_aot_enigmatic_lock_mega
 	}
 	possible = {
-		#custom_tooltip = {
-		#	fail_text = "requires_technology_gateway_construction"
-		#	from = {
-		#		has_technology = tech_phanon_dimensional_mirror
-		#	}
-		#}
 	}
 	upgrade_from = {
 		enigmatic_lock_0
 	}
 	construction_blocks_and_blocked_by = self_type
 	on_build_complete = {
-		#fromfrom = {
-		#	save_event_target_as = dimensional_mirror_obj
-		#}
-		#from = {
-		#	country_event = {
-		#		id = aot_phanon_events.4
-		#	}
-		#}
-		every_bypass = {
-			limit = {
-				is_valid_bypass_for_lock = yes
-				has_lock = no
-				solar_system = {
-					is_owned_by = from
-					has_megastructure = enigmatic_lock_1
-
-				}
-			}
-			lock_bypass = { country = from duration = 30 }
-			bypass_event = {
-				id = aot_bypass_events.1
-				days = 30
+		from = {
+			country_event = {
+				id = aot_enigmatic_lock_events.3
 			}
 		}
 	}

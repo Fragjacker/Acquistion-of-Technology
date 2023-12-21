@@ -379,6 +379,54 @@ tech_phanon_great_wall = {
 	}
 }
 
+tech_aot_enigmatic_lock_mega = {
+	area = physics
+	cost = @acot_tier7cost3
+	tier = 7
+	is_rare = yes
+	category = {
+		field_manipulation
+	}
+	ai_update_type = military
+	weight = 10
+	potential = {
+		has_technology = tech_precursor_enigmalith
+	}
+	prerequisites = {
+		tech_precursor_enigmalith
+	}
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_UNLOCK_ENIGMATIC_LOCK_TITLE"
+			desc = "TECH_UNLOCK_ENIGMATIC_LOCK_DESC"
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_megastructure = {
+					is_megastructure_type = acot_dark_matter_obelisk_core
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			any_owned_megastructure = {
+				is_megastructure_type = acot_dark_matter_obelisk_core
+			}
+		}
+	}
+	ai_weight = {
+		factor = 100
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = {
+				TRAIT = leader_trait_expertise_field_manipulation
+			}
+		}
+	}
+}
 #####################
 # DM Habitat Tech
 #####################
