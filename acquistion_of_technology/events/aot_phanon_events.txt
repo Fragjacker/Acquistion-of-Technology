@@ -375,6 +375,7 @@ country_event = {
 					}
 				}
 			}
+			# Blow up the Mirror now.
 			spawn_aot_habitat_blast_effect = yes
 			remove_megastructure = this
 		}
@@ -480,6 +481,9 @@ country_event = {
 	id = aot_phanon_events.8
 	title = aot_phanon_events.8.name
 	location = FROM
+	picture = GFX_evt_dimensional_mirror
+	show_sound = event_phanon_vault_summon
+	is_triggered_only = yes
 	desc = {
 		trigger = {
 			root = {
@@ -527,9 +531,22 @@ country_event = {
 		}
 		text = aot_phanon_events.8.wave4.desc
 	}
-	picture = GFX_evt_dimensional_mirror
-	show_sound = event_phanon_vault_summon
-	is_triggered_only = yes
+	option = {
+		trigger = {
+			NOT = { has_country_flag = defeated_wave_4 }
+		}
+		name = aot_enigmatic_lock_events.2.a
+		name = aot_enigmatic_lock_events.2.b
+		name = aot_enigmatic_lock_events.2.c
+	}
+	option = {
+		trigger = {
+			has_country_flag = defeated_wave_4
+		}
+		name = aot_mod_options.koolaid_consoomed.1.b
+		name = acot_special_menu.exit.a
+		name = aot_phanon_events.1000.a
+	}
 	trigger = {
 	}
 	immediate = {
