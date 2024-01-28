@@ -2073,8 +2073,8 @@ phanon_megaturret_destroyed_1 = {
 }
 
 aot_macripp_dark_matter_obelisk_core_pe = {
-	entity = "aot_precursor_dark_obelisk_pe_entity"
-	construction_entity = "aot_precursor_dark_obelisk_pe_entity"
+	entity = "phanon_aot_enigmalith_entity"
+	construction_entity = "phanon_aot_enigmalith_entity"
 	portrait = "GFX_acot_dark_obelisk_background"
 	place_entity_on_planet_plane = yes
 	show_in_outliner = no
@@ -2094,7 +2094,8 @@ aot_macripp_dark_matter_obelisk_core_pe = {
 	}
 	upgrade_from = {
 	}
-	build_time = 1400
+	construction_blocks_and_blocked_by = none
+	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
@@ -2108,8 +2109,32 @@ aot_macripp_dark_matter_obelisk_core_pe = {
 		produces = {
 			energy = 2000
 			alloys = 2000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
 			sr_dark_matter = 2500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
 			acot_sr_dark_energy = 2500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_re
+				}
+			}
 			aot_sr_runic_power = 500
 		}
 	}
@@ -2117,8 +2142,8 @@ aot_macripp_dark_matter_obelisk_core_pe = {
 
 # Special version of the obelisk to reside on the planet plane
 aot_macripp_dark_matter_obelisk_core_se = {
-	entity = "precursor_dark_obelisk_se_entity"
-	construction_entity = "precursor_dark_obelisk_se_entity"
+	entity = "sigma_aot_enigmalith_entity"
+	construction_entity = "sigma_aot_enigmalith_entity"
 	portrait = "GFX_acot_dark_obelisk_se_background"
 	show_in_outliner = no
 	prerequisites = {
@@ -2139,11 +2164,13 @@ aot_macripp_dark_matter_obelisk_core_se = {
 	construction_blocks_and_blocked_by = none
 	country_modifier = {
 	}
-	build_time = 1800
+	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
 			alloys = 10000
+			sr_dark_matter = 20000
+			acot_sr_dark_energy = 20000
 			aot_sr_runic_power = 20000
 			acot_sr_stellarite = 10000
 		}
@@ -2152,21 +2179,83 @@ aot_macripp_dark_matter_obelisk_core_se = {
 		produces = {
 			energy = 2500
 			alloys = 2500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
 			sr_dark_matter = 2500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
 			acot_sr_dark_energy = 2500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_re
+				}
+			}
 			aot_sr_runic_power = 2000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_se
+				}
+			}
 			acot_sr_stellarite = 500
 		}
+		# Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_country_flag = omega_tech_researchable
+				}
+			}
+			acot_sr_light_matter = 5
+		}
 	}
-	# ----------- Encourage building this if we can afford it but have low monthly incomes ----------- #
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
 	ai_weight = {
-		factor = 5
+		factor = 10
+		modifier = {
+			factor = 0
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		# ----------------------- Encourage building this if we have low resources ----------------------- #
 		modifier = {
 			factor = 2
 			owner = {
 				has_monthly_income = {
 					resource = energy
-					value < 2500
+					value < 5000
 				}
 			}
 		}
@@ -2175,25 +2264,7 @@ aot_macripp_dark_matter_obelisk_core_se = {
 			owner = {
 				has_monthly_income = {
 					resource = alloys
-					value < 2500
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value < 2500
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = acot_sr_dark_energy
-					value < 2500
+					value < 5000
 				}
 			}
 		}
@@ -2202,7 +2273,7 @@ aot_macripp_dark_matter_obelisk_core_se = {
 			owner = {
 				has_monthly_income = {
 					resource = aot_sr_runic_power
-					value < 2000
+					value < 5000
 				}
 			}
 		}
@@ -2211,7 +2282,7 @@ aot_macripp_dark_matter_obelisk_core_se = {
 			owner = {
 				has_monthly_income = {
 					resource = acot_sr_stellarite
-					value < 500
+					value < 1000
 				}
 			}
 		}
@@ -2239,7 +2310,9 @@ aot_macripp_dark_matter_obelisk_core_oe = {
 	potential = {
 	}
 	construction_blocks_and_blocked_by = none
-	build_time = 700
+	country_modifier = {
+	}
+	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
@@ -2248,21 +2321,88 @@ aot_macripp_dark_matter_obelisk_core_oe = {
 		upkeep = {
 		}
 		produces = {
+			food = 5000
+			consumer_goods = 5000
+			minerals = 5000
 			energy = 5000
 			alloys = 5000
-			acot_sr_stellarite = 10000
-			aot_sr_runic_power = 10000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
+			sr_dark_matter = 5000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
+			acot_sr_dark_energy = 5000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_re
+				}
+			}
+			aot_sr_runic_power = 5000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_se
+				}
+			}
+			acot_sr_stellarite = 5000
+		}
+		# Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_country_flag = omega_tech_researchable
+				}
+			}
+			acot_sr_light_matter = 100
 		}
 	}
-	# ----------- Encourage building this if we can afford it but have low monthly incomes ----------- #
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
 	ai_weight = {
-		factor = 20
+		factor = 10
+		modifier = {
+			factor = 0
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		# ----------------------- Encourage building this if we have low resources ----------------------- #
 		modifier = {
 			factor = 2
 			owner = {
 				has_monthly_income = {
 					resource = energy
-					value < 5000
+					value < 10000
 				}
 			}
 		}
@@ -2271,7 +2411,25 @@ aot_macripp_dark_matter_obelisk_core_oe = {
 			owner = {
 				has_monthly_income = {
 					resource = alloys
-					value < 5000
+					value < 10000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = food
+					value < 10000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = minerals
+					value < 10000
 				}
 			}
 		}
