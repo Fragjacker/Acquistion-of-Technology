@@ -1,4 +1,4 @@
-version="8.1.6"
+version="8.2.0"
 tags={
 	"Technologies"
 	"Gameplay"
@@ -9,6 +9,6 @@ dependencies={
 }
 name="Acquisition of Technology"
 picture="thumbnail.png"
-supported_version="3.10.*"
+supported_version="3.11.*"
 path="C:/Users/godly/OneDrive/Documents/Paradox Interactive/Stellaris/mod/Acquisition_of_Technology"
 remote_file_id="2178603631"
