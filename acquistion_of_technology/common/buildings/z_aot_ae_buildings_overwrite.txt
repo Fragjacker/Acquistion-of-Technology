@@ -38,12 +38,12 @@ building_ae_ancient_palace = {
 	}
 	planet_modifier = {
 		planet_housing_add = 20
-		planet_amenities_add = 30        #Mod Pack: reduced from 50
-		planet_max_districts_add = 3        #Mod Pack: reduced from 4
-		planet_max_buildings_add = 8        #Mod Pack: reduced from 12
-		planet_max_branch_office_buildings_add = 3        #Mod Pack: reduced from 5
-		trade_value_add = 7.5        #Mod Pack: reduced from 15
-		trade_value_mult = 0.7        #Mod Pack: reduced from 1
+		planet_amenities_add = 30		#Mod Pack: reduced from 50
+		planet_max_districts_add = 3		#Mod Pack: reduced from 4
+		planet_max_buildings_add = 8		#Mod Pack: reduced from 12
+		planet_max_branch_office_buildings_add = 3		#Mod Pack: reduced from 5
+		trade_value_add = 7.5		#Mod Pack: reduced from 15
+		trade_value_mult = 0.7		#Mod Pack: reduced from 1
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -54,8 +54,8 @@ building_ae_ancient_palace = {
 		}
 		modifier = {
 			job_acot_overlord_add = 1
-			job_acot_overseer_add = 2            #Mod Pack: Reduced from 4
-			job_acot_enforcer_add = 2            #Mod Pack: Reduced from 4
+			job_acot_overseer_add = 2			#Mod Pack: Reduced from 4
+			job_acot_enforcer_add = 2			#Mod Pack: Reduced from 4
 		}
 	}
 	##### FOR FE ###
@@ -200,10 +200,10 @@ building_ae_ancient_control_center = {
 		is_machine_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 20        #Mod Pack: reduced from 20
-		planet_amenities_add = 20        #Mod Pack: reduced from 50
-		planet_max_districts_add = 2        #Mod Pack: reduced from 4
-		planet_max_buildings_add = 8        #Mod Pack: reduced from 12
+		planet_housing_add = 20		#Mod Pack: reduced from 20
+		planet_amenities_add = 20		#Mod Pack: reduced from 50
+		planet_max_districts_add = 2		#Mod Pack: reduced from 4
+		planet_max_buildings_add = 8		#Mod Pack: reduced from 12
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -214,8 +214,8 @@ building_ae_ancient_control_center = {
 		}
 		modifier = {
 			job_acot_overlord_droid_add = 1
-			job_acot_overseer_droid_add = 2            #Mod Pack: Reduced from 4
-			job_acot_enforcer_drone_add = 2            #Mod Pack: Reduced from 4
+			job_acot_overseer_droid_add = 2			#Mod Pack: Reduced from 4
+			job_acot_enforcer_drone_add = 2			#Mod Pack: Reduced from 4
 		}
 	}
 	##### FOR FE ###
@@ -319,7 +319,7 @@ building_ae_ancient_hive_cluster = {
 	can_be_disabled = no
 	position_priority = 0
 	country_modifier = {
-		country_resource_max_add = 15000        #Mod Pack: Reduced from 20000
+		country_resource_max_add = 15000		#Mod Pack: Reduced from 20000
 	}
 	category = government
 	upgrades = {
@@ -347,12 +347,12 @@ building_ae_ancient_hive_cluster = {
 	}
 	planet_modifier = {
 		planet_housing_add = 20
-		planet_amenities_add = 20        #Mod Pack: Reduced from 50
-		planet_max_districts_add = 2        #Mod Pack: Reduced from 4
-		planet_max_buildings_add = 8        #Mod Pack: Reduced from 12
+		planet_amenities_add = 20		#Mod Pack: Reduced from 50
+		planet_max_districts_add = 2		#Mod Pack: Reduced from 4
+		planet_max_buildings_add = 8		#Mod Pack: Reduced from 12
 		job_acot_overlord_drone_add = 1
-		job_acot_overseer_drone_add = 2        #Mod Pack: Reduced from 4
-		job_acot_enforcer_drone_add = 2        #Mod Pack: Reduced from 4
+		job_acot_overseer_drone_add = 2		#Mod Pack: Reduced from 4
+		job_acot_enforcer_drone_add = 2		#Mod Pack: Reduced from 4
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -584,7 +584,7 @@ building_ae_dimensional_fabricator = {
 			sr_living_metal = @auto_sr_ae
 		}
 		upkeep = {
-			energy = 30            #Mod Pack: added
+			energy = 30			#Mod Pack: added
 			acot_sr_dark_energy = 30
 		}
 	}
@@ -800,7 +800,7 @@ building_ae_master_archive = {
 		upkeep = {
 			acot_sr_dark_energy = 15
 			sr_dark_matter = 15
-			energy = 20            #Mod Pack: added
+			energy = 20			#Mod Pack: added
 		}
 	}
 	upgrades = {
@@ -971,16 +971,22 @@ building_ae_ancient_cryo_chamber = {
 		has_ascended_capital = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 35
-		planet_amenities_add = 35
-		job_maintenance_drone_add = 5
+		planet_housing_add = 30
+		planet_amenities_add = 30
+		job_acot_entertainer_drone_add = 4
 	}
 	resources = {
 		category = planet_buildings
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			unity = 30
+		}
 		cost = {
 			minerals = 550
-			sr_dark_matter = 50
-			acot_sr_dark_energy = 50
+			sr_dark_matter = 225
+			acot_sr_dark_energy = 225
 		}
 		upkeep = {
 			energy = 2
@@ -991,20 +997,19 @@ building_ae_ancient_cryo_chamber = {
 	prerequisites = {
 		"tech_ae_ancient_cryo_chamber"
 	}
-	# ---------------------------- Build only if we have no districts left --------------------------- #
 	ai_weight = {
-		weight = 5
+		weight = 10
+		modifier = {
+			factor = 20000
+			free_housing < 0
+		}
+		modifier = {
+			factor = 30000
+			free_amenities < 2
+		}
 		modifier = {
 			factor = 0
-			free_district_slots > 0
-		}
-		modifier = {
-			factor = 2
-			free_district_slots = 0
-		}
-		modifier = {
-			factor = 10
-			free_housing <= 0
+			free_housing > 1
 		}
 	}
 }
@@ -1052,7 +1057,7 @@ building_ae_mansion = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
-			energy = 10            #Mod Pack: added upkeep
+			energy = 10			#Mod Pack: added upkeep
 			acot_sr_dark_energy = 2
 			sr_dark_matter = 2
 		}
@@ -1182,9 +1187,9 @@ building_ae_dark_energy_psg = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 1000            #Mod Pack: added
-			minerals = 500            #Mod Pack: added
-			alloys = 500            #Mod Pack: added
+			energy = 1000			#Mod Pack: added
+			minerals = 500			#Mod Pack: added
+			alloys = 500			#Mod Pack: added
 			acot_sr_dark_energy = 150
 		}
 		upkeep = {
@@ -1193,8 +1198,8 @@ building_ae_dark_energy_psg = {
 					is_ai = no
 				}
 			}
-			energy = 50            #Mod Pack: added
-			acot_sr_dark_energy = 10            #Mod Pack: added
+			energy = 50			#Mod Pack: added
+			acot_sr_dark_energy = 10			#Mod Pack: added
 		}
 	}
 	prerequisites = {
@@ -1271,8 +1276,8 @@ building_ae_stronghold = {
 					is_ai = no
 				}
 			}
-			sr_dark_matter = 10            #Mod Pack: raised from 5
-			acot_sr_dark_energy = 10            #Mod Pack: raised from 5
+			sr_dark_matter = 10			#Mod Pack: raised from 5
+			acot_sr_dark_energy = 10			#Mod Pack: raised from 5
 		}
 	}
 	prerequisites = {
@@ -1321,14 +1326,14 @@ building_giga_fortress_array = {
 		building_phanon_giga_fortress_array
 	}
 	planet_modifier = {
-		planet_amenities_add = 10        #Mod Pack; reduced from 20
-		planet_housing_add = 10        #Mod Pack; reduced from 20
-		planet_stability_add = 10        #Mod Pack; reduced from 50
+		planet_amenities_add = 10		#Mod Pack; reduced from 20
+		planet_housing_add = 10		#Mod Pack; reduced from 20
+		planet_stability_add = 10		#Mod Pack; reduced from 50
 	}
 	army_modifier = {
-		army_defense_damage_mult = 1        #Mod Pack; reduced from 10
-		army_defense_health_mult = 1        #Mod Pack; reduced from 5
-		army_defense_morale_mult = 1        #Mod Pack; reduced from 5
+		army_defense_damage_mult = 1		#Mod Pack; reduced from 10
+		army_defense_health_mult = 1		#Mod Pack; reduced from 5
+		army_defense_morale_mult = 1		#Mod Pack; reduced from 5
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1337,7 +1342,7 @@ building_giga_fortress_array = {
 				is_gestalt = no
 			}
 		}
-		job_acot_giga_fortress_operator_add = 1        #Mod Pack; reduced from 3
+		job_acot_giga_fortress_operator_add = 1		#Mod Pack; reduced from 3
 		job_acot_giga_fortress_operator_mentat_add = 1
 	}
 	triggered_planet_modifier = {
@@ -1347,7 +1352,7 @@ building_giga_fortress_array = {
 				is_gestalt = yes
 			}
 		}
-		job_acot_giga_fortress_operator_drone_add = 1        #Mod Pack; reduced from 3
+		job_acot_giga_fortress_operator_drone_add = 1		#Mod Pack; reduced from 3
 		job_aot_ae_giga_fortress_operator_mentat_drone_add = 1
 	}
 	triggered_planet_modifier = {
@@ -1357,7 +1362,7 @@ building_giga_fortress_array = {
 				is_fallen_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_ancient_add = 1        #Mod Pack; reduced from 3
+		job_acot_giga_fortress_operator_ancient_add = 1		#Mod Pack; reduced from 3
 	}
 	country_modifier = {
 		country_naval_cap_add = 200
@@ -1415,14 +1420,14 @@ building_giga_fortress_lab = {
 		building_phanon_giga_fortress_lab
 	}
 	planet_modifier = {
-		planet_amenities_add = 15        #Mod Pack: reduced from 100
-		planet_housing_add = 15        #Mod Pack: reduced from 100
-		planet_stability_add = 10        #Mod Pack: reduced from 50
+		planet_amenities_add = 15		#Mod Pack: reduced from 100
+		planet_housing_add = 15		#Mod Pack: reduced from 100
+		planet_stability_add = 10		#Mod Pack: reduced from 50
 	}
 	army_modifier = {
-		army_defense_morale_mult = 1        #Mod Pack: reduced from 10
-		army_defense_health_mult = 1        #Mod Pack: reduced from 5
-		army_defense_damage_mult = 1        #Mod Pack: reduced from 5
+		army_defense_morale_mult = 1		#Mod Pack: reduced from 10
+		army_defense_health_mult = 1		#Mod Pack: reduced from 5
+		army_defense_damage_mult = 1		#Mod Pack: reduced from 5
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1431,7 +1436,7 @@ building_giga_fortress_lab = {
 				is_regular_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_add = 2        #Mod Pack; reduced from 3
+		job_acot_giga_fortress_operator_add = 2		#Mod Pack; reduced from 3
 		job_acot_overseer_add = 2
 	}
 	triggered_planet_modifier = {
@@ -1451,8 +1456,8 @@ building_giga_fortress_lab = {
 				is_hive_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_drone_add = 2        #Mod Pack; reduced from 3
-		job_acot_enforcer_drone_add = 2        #Mod Pack: reduced from 10
+		job_acot_giga_fortress_operator_drone_add = 2		#Mod Pack; reduced from 3
+		job_acot_enforcer_drone_add = 2		#Mod Pack: reduced from 10
 		job_acot_overseer_droid_add = 2
 	}
 	triggered_planet_modifier = {
@@ -1520,7 +1525,7 @@ building_giga_fortress_obelisk = {
 	planet_modifier = {
 		planet_amenities_add = 20
 		planet_housing_add = 20
-		planet_stability_add = 5        #Mod Pack; reduced from 100
+		planet_stability_add = 5		#Mod Pack; reduced from 100
 	}
 	army_modifier = {
 		army_defense_morale_mult = 20
@@ -1535,8 +1540,8 @@ building_giga_fortress_obelisk = {
 				is_gestalt = no
 			}
 		}
-		job_acot_giga_fortress_operator_add = 2        #Mod Pack: reduced from 5
-		job_acot_enforcer_add = 5        #Mod Pack: reduced from 15
+		job_acot_giga_fortress_operator_add = 2		#Mod Pack: reduced from 5
+		job_acot_enforcer_add = 5		#Mod Pack: reduced from 15
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1545,8 +1550,8 @@ building_giga_fortress_obelisk = {
 				is_gestalt = yes
 			}
 		}
-		job_acot_giga_fortress_operator_drone_add = 2        #Mod Pack: reduced from 5
-		job_acot_enforcer_drone_add = 5        #Mod Pack: reduced from 15
+		job_acot_giga_fortress_operator_drone_add = 2		#Mod Pack: reduced from 5
+		job_acot_enforcer_drone_add = 5		#Mod Pack: reduced from 15
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1555,7 +1560,7 @@ building_giga_fortress_obelisk = {
 				is_fallen_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_ancient_add = 2        #Mod Pack: reduced from 5
+		job_acot_giga_fortress_operator_ancient_add = 2		#Mod Pack: reduced from 5
 	}
 	resources = {
 		category = planet_buildings
