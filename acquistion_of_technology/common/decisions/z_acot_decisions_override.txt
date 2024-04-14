@@ -263,7 +263,7 @@ decision_upgrade_synth_extra_space = {
 	effect = {
 		IF = {
 			limit = {
-				is_ringworld = no
+				has_ringworld_output_boost = no
 			}
 			add_modifier = {
 				modifier = acot_modifier_upgrade_synth_extra_space
@@ -271,7 +271,7 @@ decision_upgrade_synth_extra_space = {
 		}
 		IF = {
 			limit = {
-				is_ringworld = yes
+				has_ringworld_output_boost = yes
 			}
 			add_modifier = {
 				modifier = acot_modifier_upgrade_synth_extra_space_ringworld
@@ -583,7 +583,7 @@ decision_fractured_self_detonation = {
 			has_technology = tech_bombardment_ae_final
 		}
 		is_star = no
-		is_ringworld = no
+		has_ringworld_output_boost = no
 		is_moon = no
 		is_memeable_planet = yes
 		is_memeable_ringworld = no
@@ -637,7 +637,7 @@ decision_stellarite_reactor_detonation = {
 	potential = {
 		exists = owner
 		owner = {
-			is_same_value = root.owner
+			is_same_empire = root.owner
 		}
 		NOT = {
 			has_planet_flag = acot_stellarite_discharge_authorized
@@ -706,7 +706,7 @@ decision_acot_infiltrate_phanon_grid = {
 			set_planet_flag = ongoing_vault_infiltration
 			add_modifier = {
 				modifier = acot_modifier_vault_delay
-				days = 180
+				months = 6
 			}
 			IF = {
 				limit = {
@@ -997,7 +997,7 @@ decision_acot_emissary_landing = {
 					while = {
 						count = 5
 						create_pop = {
-							species = event_target:orbitting_emissary.owner.species
+							species = event_target:orbitting_emissary.owner_species
 						}
 					}
 				}
@@ -1013,7 +1013,7 @@ decision_acot_emissary_landing = {
 					while = {
 						count = 10
 						create_pop = {
-							species = event_target:orbitting_emissary.owner.species
+							species = event_target:orbitting_emissary.owner_species
 						}
 					}
 				}
@@ -1029,7 +1029,7 @@ decision_acot_emissary_landing = {
 					while = {
 						count = 15
 						create_pop = {
-							species = event_target:orbitting_emissary.owner.species
+							species = event_target:orbitting_emissary.owner_species
 						}
 					}
 				}
@@ -1061,7 +1061,7 @@ decision_acot_emissary_landing = {
 					while = {
 						count = 20
 						create_pop = {
-							species = event_target:orbitting_emissary.owner.species
+							species = event_target:orbitting_emissary.owner_species
 						}
 					}
 				}
@@ -1078,7 +1078,7 @@ decision_acot_emissary_landing = {
 				while = {
 					count = 10
 					create_pop = {
-						species = event_target:orbitting_emissary.owner.species
+						species = event_target:orbitting_emissary.owner_species
 					}
 				}
 			}
@@ -1093,7 +1093,7 @@ decision_acot_emissary_landing = {
 				while = {
 					count = 20
 					create_pop = {
-						species = event_target:orbitting_emissary.owner.species
+						species = event_target:orbitting_emissary.owner_species
 					}
 				}
 			}
@@ -1108,7 +1108,7 @@ decision_acot_emissary_landing = {
 				while = {
 					count = 30
 					create_pop = {
-						species = event_target:orbitting_emissary.owner.species
+						species = event_target:orbitting_emissary.owner_species
 					}
 				}
 			}
@@ -1125,7 +1125,7 @@ decision_acot_emissary_landing = {
 					create_army = {
 						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army
-						species = event_target:orbitting_emissary.owner.species
+						species = event_target:orbitting_emissary.owner_species
 					}
 				}
 			}
@@ -1142,7 +1142,7 @@ decision_acot_emissary_landing = {
 					create_army = {
 						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army
-						species = event_target:orbitting_emissary.owner.species
+						species = event_target:orbitting_emissary.owner_species
 					}
 				}
 			}
@@ -1159,7 +1159,7 @@ decision_acot_emissary_landing = {
 					create_army = {
 						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army
-						species = event_target:orbitting_emissary.owner.species
+						species = event_target:orbitting_emissary.owner_species
 					}
 				}
 			}
@@ -1176,7 +1176,7 @@ decision_acot_emissary_landing = {
 					create_army = {
 						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army_droid
-						species = event_target:orbitting_emissary.owner.species
+						species = event_target:orbitting_emissary.owner_species
 					}
 				}
 			}
@@ -1193,7 +1193,7 @@ decision_acot_emissary_landing = {
 					create_army = {
 						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army_droid
-						species = event_target:orbitting_emissary.owner.species
+						species = event_target:orbitting_emissary.owner_species
 					}
 				}
 			}
@@ -1210,7 +1210,7 @@ decision_acot_emissary_landing = {
 					create_army = {
 						owner = event_target:orbitting_emissary.owner
 						type = acot_garrison_army_droid
-						species = event_target:orbitting_emissary.owner.species
+						species = event_target:orbitting_emissary.owner_species
 					}
 				}
 			}
@@ -1440,7 +1440,7 @@ decision_acot_emissary_landing = {
 							create_army = {
 								owner = event_target:orbitting_emissary.owner
 								type = acot_garrison_army
-								species = event_target:orbitting_emissary.owner.species
+								species = event_target:orbitting_emissary.owner_species
 							}
 						}
 					}
@@ -1455,7 +1455,7 @@ decision_acot_emissary_landing = {
 							create_army = {
 								owner = event_target:orbitting_emissary.owner
 								type = acot_garrison_army_droid
-								species = event_target:orbitting_emissary.owner.species
+								species = event_target:orbitting_emissary.owner_species
 							}
 						}
 					}
@@ -1481,7 +1481,7 @@ decision_acot_emissary_landing = {
 							create_army = {
 								owner = event_target:orbitting_emissary.owner
 								type = acot_garrison_army
-								species = event_target:orbitting_emissary.owner.species
+								species = event_target:orbitting_emissary.owner_species
 							}
 						}
 					}
@@ -1496,7 +1496,7 @@ decision_acot_emissary_landing = {
 							create_army = {
 								owner = event_target:orbitting_emissary.owner
 								type = acot_garrison_army_droid
-								species = event_target:orbitting_emissary.owner.species
+								species = event_target:orbitting_emissary.owner_species
 							}
 						}
 					}
@@ -1522,7 +1522,7 @@ decision_acot_emissary_landing = {
 							create_army = {
 								owner = event_target:orbitting_emissary.owner
 								type = acot_garrison_army
-								species = event_target:orbitting_emissary.owner.species
+								species = event_target:orbitting_emissary.owner_species
 							}
 						}
 					}
@@ -1537,7 +1537,7 @@ decision_acot_emissary_landing = {
 							create_army = {
 								owner = event_target:orbitting_emissary.owner
 								type = acot_garrison_army_droid
-								species = event_target:orbitting_emissary.owner.species
+								species = event_target:orbitting_emissary.owner_species
 							}
 						}
 					}
@@ -1563,7 +1563,7 @@ decision_acot_emissary_landing = {
 							create_army = {
 								owner = event_target:orbitting_emissary.owner
 								type = acot_garrison_army
-								species = event_target:orbitting_emissary.owner.species
+								species = event_target:orbitting_emissary.owner_species
 							}
 						}
 					}
@@ -1578,7 +1578,7 @@ decision_acot_emissary_landing = {
 							create_army = {
 								owner = event_target:orbitting_emissary.owner
 								type = acot_garrison_army_droid
-								species = event_target:orbitting_emissary.owner.species
+								species = event_target:orbitting_emissary.owner_species
 							}
 						}
 					}
@@ -1604,7 +1604,7 @@ decision_acot_emissary_landing = {
 							create_army = {
 								owner = event_target:orbitting_emissary.owner
 								type = acot_garrison_army
-								species = event_target:orbitting_emissary.owner.species
+								species = event_target:orbitting_emissary.owner_species
 							}
 						}
 					}
@@ -1619,7 +1619,7 @@ decision_acot_emissary_landing = {
 							create_army = {
 								owner = event_target:orbitting_emissary.owner
 								type = acot_garrison_army_droid
-								species = event_target:orbitting_emissary.owner.species
+								species = event_target:orbitting_emissary.owner_species
 							}
 						}
 					}
@@ -1638,7 +1638,7 @@ decision_acot_emissary_landing = {
 						create_army = {
 							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army
-							species = event_target:orbitting_emissary.owner.species
+							species = event_target:orbitting_emissary.owner_species
 						}
 					}
 				}
@@ -1655,7 +1655,7 @@ decision_acot_emissary_landing = {
 						create_army = {
 							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army
-							species = event_target:orbitting_emissary.owner.species
+							species = event_target:orbitting_emissary.owner_species
 						}
 					}
 				}
@@ -1672,7 +1672,7 @@ decision_acot_emissary_landing = {
 						create_army = {
 							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army
-							species = event_target:orbitting_emissary.owner.species
+							species = event_target:orbitting_emissary.owner_species
 						}
 					}
 				}
@@ -1689,7 +1689,7 @@ decision_acot_emissary_landing = {
 						create_army = {
 							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army_droid
-							species = event_target:orbitting_emissary.owner.species
+							species = event_target:orbitting_emissary.owner_species
 						}
 					}
 				}
@@ -1706,7 +1706,7 @@ decision_acot_emissary_landing = {
 						create_army = {
 							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army_droid
-							species = event_target:orbitting_emissary.owner.species
+							species = event_target:orbitting_emissary.owner_species
 						}
 					}
 				}
@@ -1723,7 +1723,7 @@ decision_acot_emissary_landing = {
 						create_army = {
 							owner = event_target:orbitting_emissary.owner
 							type = acot_garrison_army_droid
-							species = event_target:orbitting_emissary.owner.species
+							species = event_target:orbitting_emissary.owner_species
 						}
 					}
 				}
