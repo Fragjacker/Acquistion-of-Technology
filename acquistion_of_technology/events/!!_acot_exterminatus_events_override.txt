@@ -49,7 +49,7 @@ planet_event = {
 				location = root
 				value_for_planet_destruction = 1
 			}
-			IF = {
+			if = {
 				limit = {
 					NOT = {
 						has_global_flag = fractured_happened
@@ -61,7 +61,7 @@ planet_event = {
 			}
 		}
 		from = {
-			IF = {
+			if = {
 				limit = {
 					NOT = {
 						has_global_flag = fractured_happened
@@ -198,7 +198,7 @@ planet_event = {
 					factor = 0
 					num_pops <= 5
 				}
-				IF = {
+				if = {
 					limit = {
 						has_building = building_dark_energy_psg
 					}
@@ -209,7 +209,7 @@ planet_event = {
 						}
 					}
 				}
-				IF = {
+				if = {
 					limit = {
 						NOR = {
 							has_building = building_dark_energy_psg
@@ -270,7 +270,7 @@ planet_event = {
 						location = root
 						value_for_planet_destruction = 1
 					}
-					IF = {
+					if = {
 						limit = {
 							NOT = {
 								has_global_flag = fractured_happened
@@ -282,7 +282,7 @@ planet_event = {
 					}
 				}
 				from = {
-					IF = {
+					if = {
 						limit = {
 							NOT = {
 								has_global_flag = fractured_happened
@@ -421,7 +421,7 @@ planet_event = {
 					factor = 0
 					num_pops <= 5
 				}
-				IF = {
+				if = {
 					limit = {
 						has_building = building_dark_energy_psg
 					}
@@ -432,7 +432,7 @@ planet_event = {
 						}
 					}
 				}
-				IF = {
+				if = {
 					limit = {
 						has_building = building_ae_dark_energy_psg
 					}
@@ -443,7 +443,7 @@ planet_event = {
 						}
 					}
 				}
-				IF = {
+				if = {
 					limit = {
 						NOR = {
 							has_building = building_dark_energy_psg
@@ -495,7 +495,7 @@ planet_event = {
 						location = root
 						value_for_planet_destruction = 1
 					}
-					IF = {
+					if = {
 						limit = {
 							NOT = {
 								has_global_flag = fractured_happened
@@ -507,7 +507,7 @@ planet_event = {
 					}
 				}
 				from = {
-					IF = {
+					if = {
 						limit = {
 							NOT = {
 								has_global_flag = fractured_happened
@@ -635,10 +635,9 @@ planet_event = {
 			is_memeable_ringworld = yes
 		}
 		planet_owner = {
-			or = {
-				is_country_type = default
-				is_country_type = fallen_empire
-				is_country_type = awakened_fallen_empire
+			OR = {
+				merg_is_default_empire = yes
+				is_fallen_empire = yes
 				is_country_type = awakened_marauders
 				is_playable_country = yes
 			}
@@ -717,10 +716,10 @@ planet_event = {
 			is_memeable_space_habitat = yes
 			is_memeable_ringworld = yes
 		}
-		OWNER = {
+		owner = {
 			is_playable_country = yes
 		}
-		FROM = {
+		from = {
 			has_technology = tech_bombardment_ae_final
 		}
 		NOT = {

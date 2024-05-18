@@ -1,5 +1,5 @@
 namespace = planet_destruction
-#planet_event = {
+# planet_event = {
 #	id = planet_destruction.1
 #	is_triggered_only = yes
 #	hide_window = yes
@@ -10,9 +10,9 @@ namespace = planet_destruction
 #}
 # Add static war exhaustion for these planet destruction events with:
 # add_static_war_exhaustion = {
-#				attacker = <country>		 				# attacker in this battle
-#				location = <planet>							# location for battle
-#				value_for_planet_destruction = <0.0-1.0>	# scale amount of WE added to this battle
+#				attacker = <country>		 				# Attacker in this battle
+#				location = <planet>							# Location for battle
+#				value_for_planet_destruction = <0.0-1.0>	# Scale amount of WE added to this battle
 #			}
 # Cracked
 planet_event = {
@@ -42,7 +42,7 @@ planet_event = {
 				}
 			}
 		}
-		#Dismantle observation post
+		# Dismantle observation post
 		if = {
 			limit = {
 				has_observation_outpost = yes
@@ -152,7 +152,7 @@ planet_event = {
 					who = from.owner
 					amount = 3
 				}
-				# modifier for allies + those upset by genocide
+				# Modifier for allies + those upset by genocide
 				every_country = {
 					limit = {
 						NOR = {
@@ -207,7 +207,7 @@ planet_event = {
 					amount = 1
 				}
 			}
-			# modifiers for victim
+			# Modifiers for victim
 			owner = {
 				if = {
 					limit = {
@@ -229,12 +229,12 @@ planet_event = {
 				if = {
 					limit = {
 						NOT = {
-							has_ethic = ethic_gestalt_consciousness
+							is_gestalt = yes
 						}
 					}
 					add_modifier = {
 						modifier = colossus_victim
-						days = 10800                        # 30 years
+						days = 10800						# 30 years
 					}
 				}
 			}
@@ -245,7 +245,7 @@ planet_event = {
 						is_primitive = yes
 					}
 				}
-				# modifier for allies + those upset by genocide
+				# Modifier for allies + those upset by genocide
 				every_country = {
 					limit = {
 						NOT = {
@@ -313,7 +313,7 @@ planet_event = {
 			kill_pop = yes
 		}
 		remove_all_buildings = yes
-		# destroy habitats and ringworlds
+		# Destroy habitats and ringworlds
 		if = {
 			limit = {
 				is_memeable_space_habitat = yes
@@ -434,7 +434,7 @@ planet_event = {
 				}
 			}
 		}
-		#Dismantle observation post
+		# Dismantle observation post
 		if = {
 			limit = {
 				has_observation_outpost = yes
@@ -515,7 +515,7 @@ planet_event = {
 				who = from.owner
 				amount = 3
 			}
-			# modifier for allies + those upset by the shield
+			# Modifier for allies + those upset by the shield
 			every_country = {
 				limit = {
 					NOR = {
@@ -551,7 +551,7 @@ planet_event = {
 					who = from.owner
 				}
 			}
-			# modifiers for victim
+			# Modifiers for victim
 			owner = {
 				add_opinion_modifier = {
 					modifier = opinion_shielded_my_world
@@ -560,12 +560,12 @@ planet_event = {
 				if = {
 					limit = {
 						NOT = {
-							has_ethic = ethic_gestalt_consciousness
+							is_gestalt = yes
 						}
 					}
 					add_modifier = {
 						modifier = colossus_victim
-						days = 10800                        # 30 years
+						days = 10800						# 30 years
 					}
 				}
 			}
@@ -639,7 +639,7 @@ planet_event = {
 				}
 			}
 		}
-		#Dismantle observation post
+		# Dismantle observation post
 		if = {
 			limit = {
 				has_observation_outpost = yes
@@ -705,7 +705,7 @@ planet_event = {
 				who = from.owner
 				amount = 3
 			}
-			# modifier for allies + those upset by genocide
+			# Modifier for allies + those upset by genocide
 			every_country = {
 				limit = {
 					NOR = {
@@ -741,7 +741,7 @@ planet_event = {
 					who = from.owner
 				}
 			}
-			# modifiers for victim
+			# Modifiers for victim
 			owner = {
 				add_opinion_modifier = {
 					modifier = opinion_swept_my_world
@@ -750,12 +750,12 @@ planet_event = {
 				if = {
 					limit = {
 						NOT = {
-							has_ethic = ethic_gestalt_consciousness
+							is_gestalt = yes
 						}
 					}
 					add_modifier = {
 						modifier = colossus_victim
-						days = 10800                        # 30 years
+						days = 10800						# 30 years
 					}
 				}
 			}
@@ -767,7 +767,7 @@ planet_event = {
 					is_primitive = yes
 				}
 			}
-			# modifier for allies + those upset by genocide
+			# Modifier for allies + those upset by genocide
 			every_country = {
 				limit = {
 					NOT = {
@@ -1201,7 +1201,7 @@ planet_event = {
 				who = from.owner
 				amount = 3
 			}
-			# modifier for allies + those upset by conversion
+			# Modifier for allies + those upset by conversion
 			every_country = {
 				limit = {
 					NOR = {
@@ -1227,7 +1227,7 @@ planet_event = {
 							OR = {
 								is_materialist = yes
 								is_egalitarian = yes
-								has_authority = auth_machine_intelligence
+								is_machine_empire = yes
 							}
 						}
 					}
@@ -1237,7 +1237,7 @@ planet_event = {
 					who = from.owner
 				}
 			}
-			# modifiers for victim
+			# Modifiers for victim
 			owner = {
 				add_opinion_modifier = {
 					modifier = opinion_converted_my_world
@@ -1246,12 +1246,12 @@ planet_event = {
 				if = {
 					limit = {
 						NOT = {
-							has_ethic = ethic_gestalt_consciousness
+							is_gestalt = yes
 						}
 					}
 					add_modifier = {
 						modifier = colossus_victim
-						days = 10800                        # 30 years
+						days = 10800						# 30 years
 					}
 				}
 			}
@@ -1559,7 +1559,7 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
-		# remove hive mind?
+		# Remove hive mind?
 		from.owner = {
 			country_event = {
 				id = planet_destruction.501
@@ -1595,7 +1595,7 @@ planet_event = {
 				who = from.owner
 				amount = 3
 			}
-			# modifier for allies + those upset by robots
+			# Modifier for allies + those upset by robots
 			every_country = {
 				limit = {
 					NOR = {
@@ -1630,7 +1630,7 @@ planet_event = {
 					who = from.owner
 				}
 			}
-			# modifiers for victim
+			# Modifiers for victim
 			owner = {
 				add_opinion_modifier = {
 					modifier = opinion_assimilated_my_world
@@ -1639,12 +1639,12 @@ planet_event = {
 				if = {
 					limit = {
 						NOT = {
-							has_ethic = ethic_gestalt_consciousness
+							is_gestalt = yes
 						}
 					}
 					add_modifier = {
 						modifier = colossus_victim
-						days = 10800                        # 30 years
+						days = 10800						# 30 years
 					}
 				}
 			}
@@ -1656,7 +1656,7 @@ planet_event = {
 					is_primitive = yes
 				}
 			}
-			# modifier for allies + those upset by genocide
+			# Modifier for allies + those upset by genocide
 			every_country = {
 				limit = {
 					NOR = {
@@ -1716,7 +1716,7 @@ planet_event = {
 					is_same_empire = from.owner
 				}
 			}
-			# already owned
+			# Already owned
 		}
 		else = {
 			set_owner = from.owner
