@@ -1,15 +1,35 @@
 destroy_trigger = {
 	destroy_trigger_vats_or_evochamber = yes
 }
+
 planet_modifier = {
 	pop_growth_speed = $POP_GROWTH$
 	planet_pop_assembly_organic_add = $POP_ASSEMBLY$
 }
+
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			has_technology = tech_gene_tailoring
+		}
+		any_owned_pop = {
+			has_auto_modding_trait = yes
+		}
+	}
+	modifier = {
+		planet_pop_assembly_organic_add = $POP_ASSEMBLY_GENETIC_TRADITION$
+	}
+}
+
 triggered_planet_modifier = {
 	potential = {
 		exists = owner
 		owner = {
-			has_tradition = tr_genetics_efficient_cloning
+			has_origin = origin_overtuned
+		}
+		any_owned_pop = {
+			has_auto_modding_trait = yes
 		}
 	}
 	modifier = {

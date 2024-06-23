@@ -449,7 +449,7 @@ has_enigmatic_capital = {
 has_ascended_capital = {
 	if = {
 		limit = {
-			owner = {
+			planet_owner = {
 				is_hive_empire = yes
 			}
 		}
@@ -457,8 +457,9 @@ has_ascended_capital = {
 			fail_text = "requires_building_fe_capital_hive"
 			OR = {
 				has_building = building_imperial_hive_capital
-				has_building = building_ae_ancient_hive_cluster
-				has_building = building_eternal_palace
+				has_building = building_acot_ae_ancient_hive_cluster
+				has_eternal_palace = yes
+				has_sbtg_upgraded_capital = yes
 				has_building = building_phanon_tower
 				has_building = building_stellarite_hive_cluster
 				has_building = building_phanon_hive_cluster
@@ -467,7 +468,7 @@ has_ascended_capital = {
 	}
 	else_if = {
 		limit = {
-			owner = {
+			planet_owner = {
 				is_machine_empire = yes
 			}
 		}
@@ -475,8 +476,9 @@ has_ascended_capital = {
 			fail_text = "requires_building_fe_capital_machine"
 			OR = {
 				has_building = building_imperial_machine_capital
-				has_building = building_ae_ancient_control_center
-				has_building = building_eternal_palace
+				has_building = building_acot_ae_ancient_control_center
+				has_eternal_palace = yes
+				has_sbtg_upgraded_capital = yes
 				has_building = building_phanon_tower
 				has_building = building_stellarite_control_center
 				has_building = building_phanon_control_center
@@ -488,8 +490,9 @@ has_ascended_capital = {
 			fail_text = "requires_building_fe_capital"
 			OR = {
 				has_building = building_imperial_capital
-				has_building = building_ae_ancient_palace
-				has_building = building_eternal_palace
+				has_building = building_acot_ae_ancient_palace
+				has_eternal_palace = yes
+				has_sbtg_upgraded_capital = yes
 				has_building = building_phanon_tower
 				has_building = building_stellarite_palace
 				has_building = building_phanon_palace
@@ -691,7 +694,7 @@ destroy_trigger_vats_or_evochamber = {
 		}
 		NOT = {
 			owner = {
-				has_genetic_ascension = yes
+				has_tradition = tr_genetics_adopt
 			}
 		}
 	}
