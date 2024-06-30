@@ -9,15 +9,17 @@ building_stellarite_palace = {
 	can_be_disabled = no
 	can_build = no
 	position_priority = 0
+	category = government
 	country_modifier = {
 		country_resource_max_add = 30000
+		country_resource_max_acot_sr_dark_energy_add = 5000
+		country_resource_max_sr_dark_matter_add = 5000
+		country_resource_max_aot_sr_runic_power_add = 10000
+		country_resource_max_acot_sr_stellarite_add = 10000
 	}
-	upgrades = {
-	}
-	category = government
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_regular_empire = yes
 			has_technology = tech_stellarite_palace
 		}
@@ -33,8 +35,10 @@ building_stellarite_palace = {
 	allow = {
 		num_sapient_pops >= 60
 	}
+	upgrades = {
+	}
 	prerequisites = {
-		"tech_stellarite_palace"
+		tech_stellarite_palace
 	}
 	show_tech_unlock_if = {
 		is_regular_empire = yes
@@ -47,11 +51,14 @@ building_stellarite_palace = {
 		planet_max_branch_office_buildings_add = 5		# Mod Pack: Reduced from 20
 		trade_value_add = 12.5		# Mod Pack: Reduced from 60
 		trade_value_mult = 1.3		# Mod Pack: Reduced from 4
+		planet_orbital_bombardment_damage = -0.2
+		pop_environment_tolerance = 0.2
+		defense_armies_add = @tier_4_capital_defense_armies
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				has_technology = tech_capital_productivity_1
 			}
 		}
@@ -62,8 +69,8 @@ building_stellarite_palace = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				has_technology = tech_capital_productivity_2
 			}
 		}
@@ -74,8 +81,8 @@ building_stellarite_palace = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				has_technology = tech_capital_productivity_3
 			}
 		}
@@ -86,8 +93,8 @@ building_stellarite_palace = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_fallen_empire = no
 			}
 		}
@@ -99,8 +106,8 @@ building_stellarite_palace = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_mechanical_empire = yes
 			}
 		}
@@ -112,18 +119,42 @@ building_stellarite_palace = {
 			energy = 80
 			acot_sr_stellarite = 10
 		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured
+			}
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae
+			}
+			energy = 40
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis
+			}
+			energy = 120
+			sr_dark_matter = 60
+			acot_sr_dark_energy = 60
+		}
 		cost = {
 			unity = 200
 			energy = 10000
 			minerals = 20000
-			acot_sr_stellarite = 1000
+			acot_sr_stellarite = 5000
 		}
 	}
 	##### FOR FE ###
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_fallen_empire_spiritualist = no
 				is_fallen_empire = yes
 			}
@@ -135,8 +166,8 @@ building_stellarite_palace = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_fallen_empire_spiritualist = yes
 				is_fallen_empire = yes
 			}
@@ -161,13 +192,17 @@ building_stellarite_control_center = {
 	position_priority = 0
 	country_modifier = {
 		country_resource_max_add = 30000
+		country_resource_max_acot_sr_dark_energy_add = 5000
+		country_resource_max_sr_dark_matter_add = 5000
+		country_resource_max_aot_sr_runic_power_add = 10000
+		country_resource_max_acot_sr_stellarite_add = 10000
 	}
 	category = government
 	upgrades = {
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_machine_empire = yes
 			has_technology = tech_stellarite_control_center
 		}
@@ -191,11 +226,14 @@ building_stellarite_control_center = {
 		planet_max_districts_add = 4		# Mod Pack: Reduced from 16
 		planet_max_buildings_add = 16		# Mod Pack: Reduced from 48
 		#		planet_max_branch_office_buildings_add = 20 # Mod Pack: removed
+		planet_orbital_bombardment_damage = -0.2
+		pop_environment_tolerance = 0.2
+		defense_armies_add = @tier_4_capital_defense_armies
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				has_technology = tech_capital_productivity_1
 			}
 		}
@@ -206,8 +244,8 @@ building_stellarite_control_center = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				has_technology = tech_capital_productivity_2
 			}
 		}
@@ -218,8 +256,8 @@ building_stellarite_control_center = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				has_technology = tech_capital_productivity_3
 			}
 		}
@@ -231,8 +269,8 @@ building_stellarite_control_center = {
 	##### FOR DEFEARTHH ###
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_fallen_empire_machine = no
 			}
 		}
@@ -255,12 +293,36 @@ building_stellarite_control_center = {
 			minerals = 10000
 			acot_sr_stellarite = 1000
 		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured
+			}
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae
+			}
+			energy = 40
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis
+			}
+			energy = 120
+			sr_dark_matter = 60
+			acot_sr_dark_energy = 60
+		}
 	}
 	##### FOR FE ###
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_fallen_empire_machine = yes
 			}
 		}
@@ -284,13 +346,17 @@ building_stellarite_hive_cluster = {
 	position_priority = 0
 	country_modifier = {
 		country_resource_max_add = 25000		# Mod Pack: Reduced from 30000
-	}
-	upgrades = {
+		country_resource_max_acot_sr_dark_energy_add = 5000
+		country_resource_max_sr_dark_matter_add = 5000
+		country_resource_max_aot_sr_runic_power_add = 10000
+		country_resource_max_acot_sr_stellarite_add = 10000
 	}
 	category = government
+	upgrades = {
+	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_hive_empire = yes
 			has_technology = tech_stellarite_hive_cluster
 		}
@@ -316,11 +382,14 @@ building_stellarite_hive_cluster = {
 		job_stellarite_overlord_drone_add = 1
 		job_stellarite_overseer_drone_add = 4		# Mod Pack: Reduced from 4
 		job_stellarite_enforcer_drone_add = 4		# Mod Pack: Reduced from 4
+		planet_orbital_bombardment_damage = -0.2
+		pop_environment_tolerance = 0.2
+		defense_armies_add = @tier_4_capital_defense_armies
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				has_technology = tech_capital_productivity_1
 			}
 		}
@@ -331,8 +400,8 @@ building_stellarite_hive_cluster = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				has_technology = tech_capital_productivity_2
 			}
 		}
@@ -343,8 +412,8 @@ building_stellarite_hive_cluster = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				has_technology = tech_capital_productivity_3
 			}
 		}
@@ -358,6 +427,30 @@ building_stellarite_hive_cluster = {
 		produces = {
 			energy = 80
 			acot_sr_stellarite = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured
+			}
+			energy = 20
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae
+			}
+			energy = 40
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis
+			}
+			energy = 120
+			sr_dark_matter = 60
+			acot_sr_dark_energy = 60
 		}
 		cost = {
 			unity = 100
@@ -380,8 +473,8 @@ building_stellarite_affluence_center = {
 	can_build = no
 	category = manufacturing
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_affluence_center
 		}
 	}
@@ -403,8 +496,8 @@ building_stellarite_affluence_center = {
 			unity = @auto_unity_se
 		}
 		upkeep = {
-			energy = 80
-			acot_sr_stellarite = 10
+			energy = 100
+			acot_sr_stellarite = 20
 		}
 	}
 	upgrades = {
@@ -413,7 +506,7 @@ building_stellarite_affluence_center = {
 		weight = 10
 		modifier = {
 			factor = 5
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = consumer_goods
 					value < 10
@@ -439,16 +532,20 @@ building_stellarite_nourishment_center = {
 	can_build = no
 	category = resource
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_nourishment_center
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_nourishment_center"
+		tech_stellarite_nourishment_center
 	}
 	allow = {
 		has_stellarite_capital = yes
+	}
+	planet_modifier = {
+		biological_pop_happiness = 0.6
+		BIOLOGICAL_pop_growth_speed = 0.4
 	}
 	resources = {
 		category = planet_buildings
@@ -461,7 +558,7 @@ building_stellarite_nourishment_center = {
 			food = @auto_food_se
 		}
 		upkeep = {
-			energy = 40
+			energy = 100
 			acot_sr_stellarite = 20
 		}
 	}
@@ -471,7 +568,7 @@ building_stellarite_nourishment_center = {
 		weight = 10
 		modifier = {
 			factor = 5
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = food
 					value < 10
@@ -493,13 +590,13 @@ building_stellarite_dimensional_fabricator = {
 	can_build = no
 	category = resource
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_dimensional_fabricator
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_dimensional_fabricator"
+		tech_stellarite_dimensional_fabricator
 	}
 	allow = {
 		has_stellarite_capital = yes
@@ -517,12 +614,14 @@ building_stellarite_dimensional_fabricator = {
 			exotic_gases = @auto_sr_se
 			volatile_motes = @auto_sr_se
 			sr_zro = @auto_sr_se
+			nanites = @auto_sr_se
 			sr_living_metal = @auto_sr_se
 			sr_dark_matter = @auto_sr_se			# Mod Pack: added production
 			acot_sr_dark_energy = @auto_sr_se			# Mod Pack: added production
 		}
 		upkeep = {
-			acot_sr_stellarite = 20
+			energy = 200
+			acot_sr_stellarite = 40
 		}
 	}
 	upgrades = {
@@ -531,7 +630,7 @@ building_stellarite_dimensional_fabricator = {
 		weight = 10
 		modifier = {
 			factor = 5
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = minerals
 					value < 10
@@ -557,11 +656,11 @@ building_stellarite_class_11_singularity = {
 	can_build = no
 	category = resource
 	prerequisites = {
-		"tech_stellarite_class_11_singularity"
+		tech_stellarite_class_11_singularity
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_class_11_singularity
 		}
 	}
@@ -577,9 +676,13 @@ building_stellarite_class_11_singularity = {
 		}
 		produces = {
 			energy = @auto_energy_se
+			acot_sr_dark_energy = 90
+			sr_dark_matter = 90
+			physics_research = 90
+			aot_sr_runic_power = 160
 		}
 		upkeep = {
-			acot_sr_stellarite = 30
+			acot_sr_stellarite = 100
 		}
 	}
 	upgrades = {
@@ -588,7 +691,7 @@ building_stellarite_class_11_singularity = {
 		weight = 10
 		modifier = {
 			factor = 5
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = energy
 					value < 20
@@ -610,16 +713,19 @@ building_stellarite_nano_forge = {
 	can_build = no
 	category = manufacturing
 	prerequisites = {
-		"tech_stellarite_nano_forge"
+		tech_stellarite_nano_forge
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_nano_forge
 		}
 	}
 	allow = {
 		has_stellarite_capital = yes
+	}
+	planet_modifier = {
+		planet_building_build_speed_mult = 0.1
 	}
 	resources = {
 		category = planet_buildings
@@ -630,9 +736,10 @@ building_stellarite_nano_forge = {
 		}
 		produces = {
 			alloys = @auto_alloy_se
+			engineering_research = 100
 		}
 		upkeep = {
-			acot_sr_stellarite = 20
+			acot_sr_stellarite = 50
 		}
 	}
 	upgrades = {
@@ -641,7 +748,7 @@ building_stellarite_nano_forge = {
 		weight = 10
 		modifier = {
 			factor = 5
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = alloys
 					value < 30
@@ -663,11 +770,11 @@ building_stellarite_master_archive = {
 	can_build = no
 	category = research
 	prerequisites = {
-		"tech_stellarite_master_archive"
+		tech_stellarite_master_archive
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_master_archive
 		}
 	}
@@ -676,8 +783,8 @@ building_stellarite_master_archive = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 				is_fallen_empire = no
 			}
@@ -688,8 +795,8 @@ building_stellarite_master_archive = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 				is_fallen_empire = no
 			}
@@ -709,10 +816,11 @@ building_stellarite_master_archive = {
 			physics_research = @auto_research_se
 			society_research = @auto_research_se
 			engineering_research = @auto_research_se
+			minor_artifacts = 20
 		}
 		upkeep = {
-			energy = 500
-			acot_sr_stellarite = 60
+			energy = 750
+			acot_sr_stellarite = 100
 		}
 	}
 	upgrades = {
@@ -736,11 +844,11 @@ building_stellarite_empyrean_shrine = {
 	can_build = no
 	category = unity
 	prerequisites = {
-		"tech_stellarite_empyrean_shrine"
+		tech_stellarite_empyrean_shrine
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_empyrean_shrine
 		}
 	}
@@ -749,8 +857,8 @@ building_stellarite_empyrean_shrine = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_fallen_empire = no
 				is_spiritualist = yes
 			}
@@ -759,8 +867,8 @@ building_stellarite_empyrean_shrine = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_fallen_empire = no
 				is_spiritualist = no
 			}
@@ -776,18 +884,25 @@ building_stellarite_empyrean_shrine = {
 		}
 		produces = {
 			society_research = 320
+			sr_zro = 200
 			unity = @auto_unity_se
-			unity = 4
+			influence = 2
 		}
 		upkeep = {
 			energy = 100
-			acot_sr_stellarite = 30
+			acot_sr_stellarite = 75
 		}
 	}
 	upgrades = {
 	}
 	ai_weight = {
 		weight = 100
+		modifier = {
+			factor = 0
+			planet_owner = {
+				is_spiritualist = no
+			}
+		}
 	}
 }
 
@@ -796,11 +911,11 @@ building_stellarite_sky_dome = {
 	can_build = no
 	category = amenity
 	prerequisites = {
-		"tech_stellarite_sky_dome"
+		tech_stellarite_sky_dome
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_sky_dome
 		}
 	}
@@ -810,6 +925,8 @@ building_stellarite_sky_dome = {
 	planet_modifier = {
 		planet_housing_add = @auto_housing_se
 		planet_amenities_add = @auto_amenities_se
+		planet_max_buildings_add = 4
+		planet_max_districts_add = 4
 	}
 	resources = {
 		category = planet_buildings
@@ -825,8 +942,21 @@ building_stellarite_sky_dome = {
 	}
 	upgrades = {
 	}
+	# ---------------------------- Build only if we have no districts left --------------------------- #
 	ai_weight = {
 		weight = 5
+		modifier = {
+			factor = 0
+			free_district_slots > 0
+		}
+		modifier = {
+			factor = 2
+			free_district_slots = 0
+		}
+		modifier = {
+			factor = 10
+			free_housing <= 0
+		}
 	}
 }
 
@@ -836,23 +966,20 @@ building_stellarite_sky_dome = {
 building_stellarite_alloy_forge = {
 	base_buildtime = 900
 	can_build = no
-	country_modifier = {
-		country_resource_max_alloys_add = 30000
-	}
 	category = manufacturing
 	allow = {
 		has_stellarite_capital = yes
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_alloy_foundry
 		}
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_hive_empire = yes
 			}
 		}
@@ -862,8 +989,8 @@ building_stellarite_alloy_forge = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_machine_empire = yes
 			}
 		}
@@ -873,8 +1000,8 @@ building_stellarite_alloy_forge = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
@@ -882,46 +1009,26 @@ building_stellarite_alloy_forge = {
 			job_stellarite_alloyman_add = 4
 		}
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			planet_metallurgists_alloys_produces_add = 5
-			planet_metallurgists_minerals_upkeep_add = 6
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_catalytic_empire = yes
-			}
-		}
-		modifier = {
-			planet_metallurgists_alloys_produces_add = 4.75
-			planet_metallurgists_food_upkeep_add = 7
-		}
-	}
 	resources = {
 		category = planet_buildings
+		cost = {
+			energy = 4000
+			minerals = 4000
+			acot_sr_stellarite = 800
+		}
+		produces = {
+			alloys = 100
+		}
 		produces = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
 			alloys = 40
 		}
-		cost = {
-			energy = 4000
-			minerals = 4000
-			acot_sr_stellarite = 800
-		}
 		upkeep = {
-			energy = 40
-			acot_sr_stellarite = 10
+			energy = 100
+			acot_sr_stellarite = 50
+			minerals = 50
 		}
 	}
 	prerequisites = {
@@ -931,7 +1038,7 @@ building_stellarite_alloy_forge = {
 		weight = 100000
 		modifier = {
 			factor = 50
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = alloys
 					value < 5
@@ -940,7 +1047,7 @@ building_stellarite_alloy_forge = {
 		}
 		modifier = {
 			factor = 0
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = sr_dark_matter
 					value <= 2
@@ -968,8 +1075,8 @@ building_stellarite_transmutor = {
 	can_build = no
 	category = manufacturing
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_transmutor
 		}
 	}
@@ -978,8 +1085,8 @@ building_stellarite_transmutor = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = no
 			}
 		}
@@ -989,8 +1096,8 @@ building_stellarite_transmutor = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
@@ -1008,7 +1115,7 @@ building_stellarite_transmutor = {
 		produces = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_rare_crystals
 				}
 			}
@@ -1017,7 +1124,7 @@ building_stellarite_transmutor = {
 		produces = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_volatile_motes
 				}
 			}
@@ -1026,7 +1133,7 @@ building_stellarite_transmutor = {
 		produces = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_exotic_gases
 				}
 			}
@@ -1035,7 +1142,7 @@ building_stellarite_transmutor = {
 		produces = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_mine_living_metal
 				}
 			}
@@ -1044,7 +1151,7 @@ building_stellarite_transmutor = {
 		produces = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_nanite_transmutation
 				}
 			}
@@ -1053,7 +1160,7 @@ building_stellarite_transmutor = {
 		produces = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_mine_zro
 				}
 			}
@@ -1062,7 +1169,7 @@ building_stellarite_transmutor = {
 		upkeep = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_rare_crystals
 				}
 			}
@@ -1071,7 +1178,7 @@ building_stellarite_transmutor = {
 		upkeep = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_volatile_motes
 				}
 			}
@@ -1080,7 +1187,7 @@ building_stellarite_transmutor = {
 		upkeep = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_exotic_gases
 				}
 			}
@@ -1089,7 +1196,7 @@ building_stellarite_transmutor = {
 		upkeep = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_mine_living_metal
 				}
 			}
@@ -1098,7 +1205,7 @@ building_stellarite_transmutor = {
 		upkeep = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_nanite_transmutation
 				}
 			}
@@ -1107,7 +1214,7 @@ building_stellarite_transmutor = {
 		upkeep = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
-				owner = {
+				planet_owner = {
 					has_technology = tech_mine_zro
 				}
 			}
@@ -1121,7 +1228,7 @@ building_stellarite_transmutor = {
 		weight = 20000
 		modifier = {
 			factor = 5000
-			owner = {
+			planet_owner = {
 				OR = {
 					has_monthly_income = {
 						resource = rare_crystals
@@ -1167,19 +1274,13 @@ building_stellarite_mineral_processing_plant = {
 	base_buildtime = 900
 	category = resource
 	can_build = no
-	country_modifier = {
-		country_resource_max_minerals_add = 30000
-	}
 	allow = {
 		has_stellarite_capital = yes
 	}
-	planet_modifier = {
-		planet_jobs_minerals_produces_mult = 0.4
-	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
@@ -1189,8 +1290,8 @@ building_stellarite_mineral_processing_plant = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
@@ -1201,13 +1302,26 @@ building_stellarite_mineral_processing_plant = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 4000
-			minerals = 4000
-			acot_sr_stellarite = 800
+			energy = 2000
+			alloys = 1000
+			acot_sr_stellarite = 500
+		}
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			minerals = 40
 		}
 		upkeep = {
-			energy = 20
-			acot_sr_stellarite = 10
+			energy = 50
+			acot_sr_stellarite = 25
+		}
+		upkeep = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			sr_dark_matter = 2
+			acot_sr_dark_energy = 2
 		}
 	}
 	prerequisites = {
@@ -1217,7 +1331,7 @@ building_stellarite_mineral_processing_plant = {
 		weight = 2000
 		modifier = {
 			factor = 5
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = minerals
 					value < 5
@@ -1226,24 +1340,11 @@ building_stellarite_mineral_processing_plant = {
 		}
 		modifier = {
 			factor = 0
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = energy
 					value < 5
 				}
-			}
-		}
-		# No one to work it
-		modifier = {
-			factor = 0
-			count_owned_pop = {
-				limit = {
-					OR = {
-						is_unemployed = yes
-						has_job = servant
-					}
-				}
-				count < 3
 			}
 		}
 	}
@@ -1260,15 +1361,12 @@ building_stellarite_power_hub = {
 	base_buildtime = 900
 	category = resource
 	can_build = no
-	country_modifier = {
-		country_resource_max_energy_add = 15000
-	}
 	allow = {
 		has_stellarite_capital = yes
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_power_hub
 		}
 	}
@@ -1277,8 +1375,8 @@ building_stellarite_power_hub = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
@@ -1288,8 +1386,8 @@ building_stellarite_power_hub = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
@@ -1304,9 +1402,18 @@ building_stellarite_power_hub = {
 			minerals = 4000
 			acot_sr_stellarite = 800
 		}
+		produces = {
+			energy = 100
+		}
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			energy = 40
+		}
 		upkeep = {
 			energy = 20
-			acot_sr_stellarite = 10
+			acot_sr_stellarite = 50
 		}
 	}
 	prerequisites = {
@@ -1316,7 +1423,7 @@ building_stellarite_power_hub = {
 		weight = 3000
 		modifier = {
 			factor = 5
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = energy
 					value < 10
@@ -1344,25 +1451,19 @@ building_stellarite_food_processing_complex = {
 	base_buildtime = 900
 	category = resource
 	can_build = no
-	planet_modifier = {
-		planet_jobs_food_produces_mult = 0.4
-	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_food_processing
 		}
-	}
-	country_modifier = {
-		country_resource_max_food_add = 30000
 	}
 	allow = {
 		has_stellarite_capital = yes
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
@@ -1372,8 +1473,8 @@ building_stellarite_food_processing_complex = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
@@ -1388,9 +1489,18 @@ building_stellarite_food_processing_complex = {
 			minerals = 4000
 			acot_sr_stellarite = 800
 		}
+		produces = {
+			food = 100
+		}
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			food = 40
+		}
 		upkeep = {
-			energy = 20
-			acot_sr_stellarite = 10
+			energy = 50
+			acot_sr_stellarite = 30
 		}
 	}
 	prerequisites = {
@@ -1400,7 +1510,7 @@ building_stellarite_food_processing_complex = {
 		weight = 2
 		modifier = {
 			factor = 5
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = food
 					value < 5
@@ -1409,7 +1519,7 @@ building_stellarite_food_processing_complex = {
 		}
 		modifier = {
 			factor = 0
-			owner = {
+			planet_owner = {
 				OR = {
 					is_mechanical_empire = no
 					AND = {
@@ -1428,7 +1538,7 @@ building_stellarite_food_processing_complex = {
 		}
 		modifier = {
 			factor = 0
-			owner = {
+			planet_owner = {
 				is_mechanical_empire = yes
 				NOR = {
 					has_civic = civic_machine_servitor
@@ -1462,15 +1572,12 @@ building_stellarite_civilian_factory = {
 	base_buildtime = 900
 	can_build = no
 	category = manufacturing
-	country_modifier = {
-		country_resource_max_consumer_goods_add = 30000
-	}
 	allow = {
 		has_stellarite_capital = yes
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			OR = {
 				is_gestalt = no
 				has_valid_civic = civic_machine_servitor
@@ -1480,8 +1587,8 @@ building_stellarite_civilian_factory = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
@@ -1491,26 +1598,13 @@ building_stellarite_civilian_factory = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
 		modifier = {
 			job_stellarite_artisan_add = 4
-		}
-	}
-	planet_modifier = {
-		planet_artisans_consumer_goods_produces_add = 6
-		planet_artisans_minerals_upkeep_add = 6
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_ringworld_output_boost = yes
-		}
-		modifier = {
-			planet_artisans_consumer_goods_produces_add = 5
-			planet_artisans_minerals_upkeep_add = 5
 		}
 	}
 	resources = {
@@ -1520,9 +1614,18 @@ building_stellarite_civilian_factory = {
 			minerals = 4000
 			acot_sr_stellarite = 800
 		}
+		produces = {
+			consumer_goods = 50
+		}
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			consumer_goods = 40
+		}
 		upkeep = {
-			energy = 20
-			acot_sr_stellarite = 10
+			energy = 100
+			acot_sr_stellarite = 50
 		}
 	}
 	prerequisites = {
@@ -1530,27 +1633,27 @@ building_stellarite_civilian_factory = {
 	}
 	triggered_desc = {
 		trigger = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
-		text = job_stellarite_artisan_effect_desc
+		text = job_artisan_effect_desc
 	}
 	triggered_desc = {
 		trigger = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
-		text = job_stellarite_artisan_drone_effect_desc
+		text = job_artisan_drone_effect_desc
 	}
 	ai_weight = {
 		weight = 2
 		modifier = {
 			factor = 5
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = consumer_goods
 					value < 5
@@ -1589,15 +1692,15 @@ building_stellarite_enigmatic_lab = {
 		has_stellarite_capital = yes
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_enigmatic_lab
 		}
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
@@ -1606,14 +1709,25 @@ building_stellarite_enigmatic_lab = {
 		}
 	}
 	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			job_stellarite_researcher_drone_add = 4
+		}
+	}
+	triggered_planet_modifier = {
 		# Mod Pack; added modifier from Vanilla, missed detail by A.C.o.T.
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 				is_galactic_community_member = yes
 			}
-			is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+			is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
 			has_modifier = pm_extradimensional_experimentation
 		}
 		modifier = {
@@ -1623,27 +1737,16 @@ building_stellarite_enigmatic_lab = {
 	triggered_planet_modifier = {
 		# Mod Pack; added modifier from Vanilla, missed detail by A.o.T.
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 				is_galactic_community_member = yes
 			}
-			is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+			is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
 			has_modifier = pm_extradimensional_experimentation
 		}
 		modifier = {
 			job_dimensional_portal_researcher_gestalt_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_stellarite_researcher_drone_add = 4
 		}
 	}
 	resources = {
@@ -1653,19 +1756,28 @@ building_stellarite_enigmatic_lab = {
 			minerals = 4000
 			acot_sr_stellarite = 800
 		}
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			physics_research = 50
+			engineering_research = 50
+			society_research = 50
+		}
 		upkeep = {
-			energy = 20
+			energy = 500
 			acot_sr_stellarite = 10
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
+			aot_sr_runic_power = 20
+			sr_dark_matter = 10			# Mod Pack: added upkeep
+			acot_sr_dark_energy = 10			# Mod Pack: added upkeep
 		}
 		upkeep = {
 			# Mod Pack; added upkeep from Vanilla, missed detail by A.o.T.
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_galactic_community_member = yes
 				}
-				is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
 				planet = {
 					has_modifier = pm_extradimensional_experimentation
 				}
@@ -1680,7 +1792,7 @@ building_stellarite_enigmatic_lab = {
 		weight = 50
 		modifier = {
 			factor = 0
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = sr_dark_matter
 					value <= 3
@@ -1689,7 +1801,7 @@ building_stellarite_enigmatic_lab = {
 		}
 		modifier = {
 			factor = 0
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = energy
 					value <= 10
@@ -1704,8 +1816,8 @@ building_stellarite_institute = {
 	can_build = no
 	category = research
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_institute
 		}
 	}
@@ -1718,7 +1830,7 @@ building_stellarite_institute = {
 			physics_research = 400
 			engineering_research = 400
 			society_research = 400
-			minor_artifacts = 8
+			minor_artifacts = 20
 		}
 		cost = {
 			energy = 5000
@@ -1726,8 +1838,11 @@ building_stellarite_institute = {
 			acot_sr_stellarite = 1000
 		}
 		upkeep = {
-			energy = 100
-			acot_sr_stellarite = 80
+			energy = 1000
+			acot_sr_stellarite = 100
+			aot_sr_runic_power = 200
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
 		}
 	}
 	planet_modifier = {
@@ -1736,14 +1851,17 @@ building_stellarite_institute = {
 		planet_jobs_physics_research_produces_mult = 2
 	}
 	country_modifier = {
-		country_scientist_cap_add = 8
+		country_scientist_cap_add = 6
+		physics_tech_cost_mult = -0.2
+		society_tech_cost_mult = -0.2
+		engineering_tech_cost_mult = -0.2
 		all_technology_research_speed = 0.6
 		num_tech_alternatives_add = 4
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
@@ -1753,8 +1871,8 @@ building_stellarite_institute = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
@@ -1787,8 +1905,8 @@ building_stellarite_hospital = {
 	can_build = no
 	category = amenity
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_regular_empire = yes
 			has_technology = tech_stellarite_hospital
 		}
@@ -1797,12 +1915,41 @@ building_stellarite_hospital = {
 		has_stellarite_capital = yes
 	}
 	destroy_trigger = {
-		owner = {
+		planet_owner = {
 			is_regular_empire = no
 		}
 	}
 	planet_modifier = {
 		job_stellarite_apothecary_add = 4
+		pop_happiness = 0.6
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				has_technology = tech_gene_tailoring
+			}
+			any_owned_pop = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				has_origin = origin_overtuned
+			}
+			any_owned_pop = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 8
+		}
 	}
 	resources = {
 		category = planet_buildings
@@ -1812,11 +1959,12 @@ building_stellarite_hospital = {
 			acot_sr_stellarite = 800
 		}
 		upkeep = {
-			acot_sr_stellarite = 8
+			energy = 100
+			acot_sr_stellarite = 20
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_hospital"
+		tech_stellarite_hospital
 	}
 	show_tech_unlock_if = {
 		is_regular_empire = yes
@@ -1845,19 +1993,64 @@ building_stellarite_hive_pool = {
 		has_stellarite_capital = yes
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_hive_empire = yes
 			has_technology = tech_stellarite_hive_pool
 		}
 	}
 	destroy_trigger = {
-		owner = {
+		planet_owner = {
 			is_hive_empire = no
 		}
 	}
-	planet_modifier = {
+	triggered_planet_modifier = {
+		potential = {
+			NAND = {
+				exists = planet_owner
+				planet_owner = {
+					has_origin = origin_progenitor_hive
+				}
+			}
+		}
 		job_stellarite_broodmother_add = 4
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				has_origin = origin_progenitor_hive
+			}
+		}
+		job_acot_offspring_add = 2
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				has_technology = tech_gene_tailoring
+			}
+			any_owned_pop = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 10
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				has_origin = origin_overtuned
+			}
+			any_owned_pop = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 10
+		}
 	}
 	prerequisites = {
 		tech_stellarite_hive_pool
@@ -1870,7 +2063,8 @@ building_stellarite_hive_pool = {
 			acot_sr_stellarite = 600
 		}
 		upkeep = {
-			acot_sr_stellarite = 8
+			energy = 100
+			acot_sr_stellarite = 20
 		}
 	}
 	ai_weight = {
@@ -1878,18 +2072,6 @@ building_stellarite_hive_pool = {
 		modifier = {
 			factor = 5
 			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			count_owned_pop = {
-				limit = {
-					OR = {
-						is_unemployed = yes
-						has_job = servant
-					}
-				}
-				count < 1
-			}
 		}
 		modifier = {
 			factor = 0
@@ -1903,17 +2085,81 @@ building_stellarite_super_assembly = {
 	can_build = no
 	category = pop_assembly
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_regular_empire = yes
 			has_technology = tech_stellarite_super_assembly
+			is_individual_machine = no
+			NOT = {
+				has_policy_flag = robots_outlawed
+			}
+			OR = {
+				is_ai = no
+				has_genetic_ascension = no
+				is_materialist = yes
+				assembling_species = {
+					is_robotic_species = yes
+				}
+			}
 		}
+		NOR = {
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+			exists = assembling_species
+		}
+	}
+	destroy_trigger = {
+		exists = planet_owner
+		OR = {
+			planet_owner = {
+				OR = {
+					is_regular_empire = no
+					has_policy_flag = robots_outlawed
+				}
+			}
+			has_modifier = slave_colony
+			AND = {
+				planet_owner = {
+					is_ai = yes
+				}
+				free_district_slots = 0
+				free_building_slots = 0
+				free_housing <= 0
+				free_jobs <= 0
+			}
+			planet_owner = {
+				is_ai = yes
+				has_genetic_ascension = yes
+				is_materialist = no
+			}
+		}
+	}
+	convert_to = {
+		building_stellarite_super_assembly_machine
 	}
 	allow = {
 		has_stellarite_capital = yes
 	}
 	planet_modifier = {
-		job_stellarite_roboman_add = 2
+		job_stellarite_roboman_add = 4
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				OR = {
+					has_origin = origin_mechanists
+					is_individual_machine = yes
+					has_country_flag = synthetic_empire
+				}
+			}
+			any_owned_pop = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 8
+		}
 	}
 	resources = {
 		category = planet_buildings
@@ -1923,7 +2169,8 @@ building_stellarite_super_assembly = {
 			acot_sr_stellarite = 1000
 		}
 		upkeep = {
-			acot_sr_stellarite = 8
+			energy = 100
+			acot_sr_stellarite = 50
 		}
 	}
 	prerequisites = {
@@ -1950,17 +2197,56 @@ building_stellarite_super_assembly_machine = {
 		has_stellarite_capital = yes
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_machine_empire = yes
 			has_technology = tech_stellarite_super_assembly
+			OR = {
+				is_machine_empire = yes
+				is_individual_machine = yes
+			}
 		}
 	}
-	planet_modifier = {
-		job_stellarite_robodrone_add = 2
+	convert_to = {
+		building_phanon_super_assembly
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				is_machine_empire = yes
+			}
+		}
+		job_stellarite_robodrone_add = 6
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				is_individual_machine = yes
+			}
+		}
+		job_stellarite_roboman_add = 4
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				OR = {
+					is_machine_empire = yes
+					is_individual_machine = yes
+				}
+			}
+			any_owned_pop = {
+				has_auto_modding_trait = yes
+			}
+		}
+		modifier = {
+			auto_mod_monthly_add = 10
+		}
 	}
 	prerequisites = {
-		"tech_stellarite_super_assembly"
+		tech_stellarite_super_assembly
 	}
 	resources = {
 		category = planet_buildings
@@ -1970,7 +2256,8 @@ building_stellarite_super_assembly_machine = {
 			acot_sr_stellarite = 600
 		}
 		upkeep = {
-			acot_sr_stellarite = 8
+			energy = 100
+			acot_sr_stellarite = 50
 		}
 	}
 	ai_weight = {
@@ -1991,8 +2278,8 @@ building_stellarite_clone_vats = {
 	can_build = no
 	category = pop_assembly
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_clone_vats
 		}
 	}
@@ -2003,28 +2290,54 @@ building_stellarite_clone_vats = {
 		has_stellarite_capital = yes
 	}
 	show_tech_unlock_if = {
-		owner = {
+		planet_owner = {
 			has_tradition = tr_genetics_efficient_cloning
 		}
 	}
 	inline_script = {
 		script = buildings/clone_vats_and_evochambers
-		POP_GROWTH = 1.25
-		POP_ASSEMBLY = 15
-		POP_ASSEMBLY_GENETIC_TRADITION = 7.5
+		POP_GROWTH = 5
+		POP_ASSEMBLY = 50
+		POP_ASSEMBLY_GENETIC_TRADITION = 15
 	}
 	resources = {
 		category = planet_buildings
-		produces = {
-			food = 200
-		}
 		cost = {
 			energy = 4000
 			minerals = 4000
 			acot_sr_stellarite = 1000
 		}
 		upkeep = {
-			acot_sr_stellarite = 20
+			acot_sr_stellarite = 40
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 4
+			acot_sr_dark_energy = 4
+		}
+		upkeep = {
+			trigger = {
+				exists = planet_owner
+				planet_owner = {
+					is_lithoid_empire = no
+				}
+			}
+			food = 20
+		}
+		upkeep = {
+			trigger = {
+				exists = planet_owner
+				planet_owner = {
+					is_lithoid_empire = yes
+				}
+			}
+			minerals = 20
 		}
 	}
 	ai_weight = {
@@ -2044,8 +2357,8 @@ building_stellarite_synt_center = {
 	can_build = no
 	category = government
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_synt_center
 		}
 	}
@@ -2054,28 +2367,28 @@ building_stellarite_synt_center = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 50
 		}
 		planet_jobs_specialist_produces_mult = 0.8
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 100
 		}
 		planet_jobs_specialist_produces_mult = 0.8
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 150
 		}
 		planet_jobs_specialist_produces_mult = 0.8
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 200
 		}
 		planet_jobs_specialist_produces_mult = 0.8
@@ -2094,7 +2407,18 @@ building_stellarite_synt_center = {
 			acot_sr_stellarite = 1000
 		}
 		upkeep = {
-			acot_sr_stellarite = 20
+			acot_sr_stellarite = 40
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
 		}
 	}
 	prerequisites = {
@@ -2117,8 +2441,8 @@ building_stellarite_psi_altar = {
 	can_build = no
 	category = government
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_psi_altar
 		}
 	}
@@ -2140,7 +2464,18 @@ building_stellarite_psi_altar = {
 			acot_sr_stellarite = 800
 		}
 		upkeep = {
-			acot_sr_stellarite = 20
+			acot_sr_stellarite = 40
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
 		}
 	}
 	prerequisites = {
@@ -2163,8 +2498,8 @@ building_stellarite_machine_dome = {
 	can_build = no
 	category = government
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_machine_dome
 		}
 	}
@@ -2174,7 +2509,7 @@ building_stellarite_machine_dome = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 25
 		}
 		planet_jobs_complex_drone_produces_mult = 0.2
@@ -2182,7 +2517,7 @@ building_stellarite_machine_dome = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 50
 		}
 		planet_jobs_complex_drone_produces_mult = 0.2
@@ -2190,7 +2525,7 @@ building_stellarite_machine_dome = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 75
 		}
 		planet_jobs_complex_drone_produces_mult = 0.2
@@ -2198,7 +2533,7 @@ building_stellarite_machine_dome = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 100
 		}
 		planet_jobs_complex_drone_produces_mult = 0.2
@@ -2206,7 +2541,7 @@ building_stellarite_machine_dome = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 125
 		}
 		planet_jobs_complex_drone_produces_mult = 0.2
@@ -2214,7 +2549,7 @@ building_stellarite_machine_dome = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 150
 		}
 		planet_jobs_complex_drone_produces_mult = 0.2
@@ -2222,7 +2557,7 @@ building_stellarite_machine_dome = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 175
 		}
 		planet_jobs_complex_drone_produces_mult = 0.2
@@ -2230,7 +2565,7 @@ building_stellarite_machine_dome = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 200
 		}
 		planet_jobs_complex_drone_produces_mult = 0.2
@@ -2238,7 +2573,7 @@ building_stellarite_machine_dome = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
+			exists = planet_owner
 			num_sapient_pops >= 225
 		}
 		planet_jobs_complex_drone_produces_mult = 0.2
@@ -2258,6 +2593,17 @@ building_stellarite_machine_dome = {
 		}
 		upkeep = {
 			acot_sr_stellarite = 20
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
 		}
 	}
 	prerequisites = {
@@ -2280,16 +2626,16 @@ building_stellarite_hive_evochamber = {
 	can_build = no
 	category = pop_assembly
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_hive_evochamber
 		}
 	}
 	inline_script = {
 		script = buildings/clone_vats_and_evochambers
-		POP_GROWTH = 1
-		POP_ASSEMBLY = 15
-		POP_ASSEMBLY_GENETIC_TRADITION = 7.5
+		POP_GROWTH = 5
+		POP_ASSEMBLY = 50
+		POP_ASSEMBLY_GENETIC_TRADITION = 15
 	}
 	allow = {
 		has_stellarite_capital = yes
@@ -2307,6 +2653,17 @@ building_stellarite_hive_evochamber = {
 		}
 		upkeep = {
 			acot_sr_stellarite = 20
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
 		}
 	}
 	prerequisites = {
@@ -2333,8 +2690,8 @@ building_stellarite_psg = {
 	category = army
 	position_priority = 100
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_psg
 		}
 	}
@@ -2353,12 +2710,23 @@ building_stellarite_psg = {
 		}
 		upkeep = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = no
 				}
 			}
 			energy = 2000
 			acot_sr_stellarite = 100
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
 		}
 	}
 	prerequisites = {
@@ -2380,9 +2748,40 @@ building_stellarite_giga_fortress_array = {
 	category = army
 	position_priority = 100
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_giga_fortress
+		}
+		NOT = {
+			has_modifier = resort_colony
+		}
+	}
+	on_built = {
+		if = {
+			limit = {
+				NOT = {
+					any_planet_army = {
+						army_type = acot_garrison_army_giga
+					}
+				}
+			}
+			create_army = {
+				owner = planet_owner
+				type = acot_garrison_army_giga
+			}
+		}
+	}
+	on_destroy = {
+		if = {
+			limit = {
+				has_giga_fort = no
+			}
+			every_planet_army = {
+				limit = {
+					army_type = acot_garrison_army_giga
+				}
+				remove_army = yes
+			}
 		}
 	}
 	allow = {
@@ -2394,15 +2793,21 @@ building_stellarite_giga_fortress_array = {
 		planet_stability_add = 20		# Mod Pack; reduced from 80
 		#		planet_crime_add = -200 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
 	}
+	triggered_planet_modifier = {
+		potential = {
+			has_ground_combat = yes
+		}
+		pop_defense_armies_add = 1
+	}
 	army_modifier = {
-		army_defense_damage_mult = 3		# Mod Pack; reduced from 20
-		army_defense_health_mult = 3		# Mod Pack; reduced from 20
-		army_defense_morale_mult = 3		# Mod Pack; reduced from 20
+		army_defense_damage_mult = 10		# Mod Pack; reduced from 20
+		army_defense_health_mult = 7		# Mod Pack; reduced from 20
+		army_defense_morale_mult = 7		# Mod Pack; reduced from 20
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = no
 			}
 		}
@@ -2412,8 +2817,8 @@ building_stellarite_giga_fortress_array = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
@@ -2428,9 +2833,24 @@ building_stellarite_giga_fortress_array = {
 	resources = {
 		category = planet_buildings
 		produces = {
-			unity = 100
-			influence = 4
-			food = 200
+			unity = 200
+			energy = 150
+		}
+		produces = {
+			trigger = {
+				planet_owner = {
+					country_uses_food = yes
+				}
+			}
+			food = 150
+		}
+		produces = {
+			trigger = {
+				planet_owner = {
+					country_uses_food = no
+				}
+			}
+			energy = 150
 		}
 		cost = {
 			energy = 100000
@@ -2467,29 +2887,60 @@ building_stellarite_giga_fortress_lab = {
 	category = army
 	position_priority = 100
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_giga_fortress
+		}
+		NOT = {
+			has_modifier = resort_colony
+		}
+	}
+	on_built = {
+		if = {
+			limit = {
+				NOT = {
+					any_planet_army = {
+						army_type = acot_garrison_army_giga
+					}
+				}
+			}
+			create_army = {
+				owner = planet_owner
+				type = acot_garrison_army_giga
+			}
+		}
+	}
+	on_destroy = {
+		if = {
+			limit = {
+				has_giga_fort = no
+			}
+			every_planet_army = {
+				limit = {
+					army_type = acot_garrison_army_giga
+				}
+				remove_army = yes
+			}
 		}
 	}
 	allow = {
 		has_stellarite_capital = yes
 	}
 	planet_modifier = {
-		planet_amenities_add = 25		# Mod Pack: reduced from 400
-		planet_housing_add = 25		# Mod Pack: reduced from 400
-		planet_stability_add = 20		# Mod Pack: reduced from 200
+		planet_amenities_add = 35		# Mod Pack: reduced from 400
+		planet_housing_add = 35		# Mod Pack: reduced from 400
+		planet_stability_add = 25		# Mod Pack: reduced from 200
 		#		planet_crime_add = -200 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
 	}
 	army_modifier = {
-		army_defense_damage_mult = 3		# Mod Pack: reduced from 40
-		army_defense_health_mult = 3		# Mod Pack: reduced from 40
-		army_defense_morale_mult = 3		# Mod Pack: reduced from 40
+		army_defense_damage_mult = 3.5		# Mod Pack: reduced from 40
+		army_defense_health_mult = 3.5		# Mod Pack: reduced from 40
+		army_defense_morale_mult = 3.5		# Mod Pack: reduced from 40
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
@@ -2499,25 +2950,25 @@ building_stellarite_giga_fortress_lab = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_machine_empire = yes
 			}
 		}
-		job_stellarite_giga_fortress_operator_drone_add = 6
-		job_stellarite_enforcer_drone_add = 20
-		job_acot_overseer_droid_add = 4
+		job_stellarite_giga_fortress_operator_drone_add = 3
+		job_stellarite_enforcer_drone_add = 3
+		job_acot_overseer_droid_add = 3
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_hive_empire = yes
 			}
 		}
-		job_stellarite_giga_fortress_operator_drone_add = 6
-		job_stellarite_enforcer_drone_add = 20
-		job_acot_overseer_droid_add = 4
+		job_stellarite_giga_fortress_operator_drone_add = 3
+		job_stellarite_enforcer_drone_add = 3
+		job_acot_overseer_droid_add = 3
 	}
 	country_modifier = {
 	}
@@ -2525,8 +2976,23 @@ building_stellarite_giga_fortress_lab = {
 		category = planet_buildings
 		produces = {
 			unity = 400
-			influence = 8
+			influence = 1.75
+		}
+		produces = {
+			trigger = {
+				planet_owner = {
+					country_uses_food = yes
+				}
+			}
 			food = 100
+		}
+		produces = {
+			trigger = {
+				planet_owner = {
+					country_uses_food = no
+				}
+			}
+			energy = 75
 		}
 		cost = {
 			energy = 100000
@@ -2541,11 +3007,12 @@ building_stellarite_giga_fortress_lab = {
 			rare_crystals = 2
 			sr_dark_matter = 5
 			acot_sr_dark_energy = 5
-			acot_sr_stellarite = 5
+			acot_sr_stellarite = 100
+			aot_sr_runic_power = 50
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_giga_fortress"
+		tech_stellarite_giga_fortress
 	}
 	ai_weight = {
 		weight = 15
@@ -2563,18 +3030,49 @@ building_stellarite_giga_fortress_obelisk = {
 	category = army
 	position_priority = 100
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_giga_fortress
+		}
+		NOT = {
+			has_modifier = resort_colony
+		}
+	}
+	on_built = {
+		if = {
+			limit = {
+				NOT = {
+					any_planet_army = {
+						army_type = acot_garrison_army_giga
+					}
+				}
+			}
+			create_army = {
+				owner = planet_owner
+				type = acot_garrison_army_giga
+			}
+		}
+	}
+	on_destroy = {
+		if = {
+			limit = {
+				has_giga_fort = no
+			}
+			every_planet_army = {
+				limit = {
+					army_type = acot_garrison_army_giga
+				}
+				remove_army = yes
+			}
 		}
 	}
 	allow = {
 		has_stellarite_capital = yes
 	}
 	planet_modifier = {
-		planet_amenities_add = 30		# Mod Pack: reduced from 80
-		planet_housing_add = 30		# Mod Pack: reduced from 80
-		planet_stability_add = 15		# Mod Pack: reduced from 400
+		planet_amenities_add = 35		# Mod Pack: reduced from 80
+		planet_housing_add = 35		# Mod Pack: reduced from 80
+		planet_stability_add = 20		# Mod Pack: reduced from 400
 		#		planet_crime_add = -400 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
 	}
 	army_modifier = {
@@ -2585,8 +3083,8 @@ building_stellarite_giga_fortress_obelisk = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = no
 			}
 		}
@@ -2595,8 +3093,8 @@ building_stellarite_giga_fortress_obelisk = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
@@ -2607,9 +3105,25 @@ building_stellarite_giga_fortress_obelisk = {
 		category = planet_buildings
 		produces = {
 			unity = 200
-			influence = 4
-			acot_sr_stellarite = 20
-			food = 1000
+			energy = 175
+			minerals = 300
+			alloys = 300
+		}
+		produces = {
+			trigger = {
+				planet_owner = {
+					country_uses_food = yes
+				}
+			}
+			food = 200
+		}
+		produces = {
+			trigger = {
+				planet_owner = {
+					country_uses_food = no
+				}
+			}
+			energy = 175
 		}
 		cost = {
 			energy = 100000
@@ -2624,7 +3138,8 @@ building_stellarite_giga_fortress_obelisk = {
 			rare_crystals = 2
 			sr_dark_matter = 5
 			acot_sr_dark_energy = 5
-			acot_sr_stellarite = 5
+			acot_sr_stellarite = 500
+			aot_sr_runic_power = 100
 		}
 	}
 	prerequisites = {
@@ -2638,15 +3153,14 @@ building_stellarite_giga_fortress_obelisk = {
 building_stellarite_stronghold = {
 	base_buildtime = 900
 	planetary_ftl_inhibitor = yes
-	add_to_first_building_slot = yes
 	can_build = no
-	category = army
 	position_priority = 100
+	category = army
 	allow = {
 		has_stellarite_capital = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 40
+		planet_housing_add = 30
 		planet_army_build_time_mult = -0.1
 		#		planet_crime_add = -20 # Mod Pack: removed (many other methods do reduce crime)
 		planet_stability_add = 10
@@ -2657,17 +3171,20 @@ building_stellarite_stronghold = {
 		army_defense_morale_mult = 4
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_stronghold
+		}
+		NOT = {
+			has_modifier = resort_colony
 		}
 	}
 	upgrades = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_fallen_empire = no
 				is_gestalt = no
 			}
@@ -2678,8 +3195,8 @@ building_stellarite_stronghold = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_fallen_empire = no
 				is_gestalt = yes
 			}
@@ -2697,12 +3214,12 @@ building_stellarite_stronghold = {
 		}
 		upkeep = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = no
 				}
 			}
 			energy = 100
-			acot_sr_stellarite = 20
+			acot_sr_stellarite = 50
 		}
 	}
 	prerequisites = {
@@ -2719,7 +3236,7 @@ building_stellarite_stronghold = {
 					value <= 2
 				}
 			}
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = acot_sr_stellarite
 					value <= 3
@@ -2737,8 +3254,8 @@ building_stellarite_generator = {
 	can_demolish = yes
 	category = manufacturing
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_dark_matter_power_core_se
 			advanced_resource_generation_building_regulation = yes
 		}
@@ -2748,8 +3265,8 @@ building_stellarite_generator = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
@@ -2759,8 +3276,8 @@ building_stellarite_generator = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = no
 			}
 		}
@@ -2776,7 +3293,7 @@ building_stellarite_generator = {
 		}
 		produces = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = yes
 				}
 			}
@@ -2785,7 +3302,7 @@ building_stellarite_generator = {
 		}
 		upkeep = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = no
 				}
 			}
@@ -2804,7 +3321,7 @@ building_stellarite_generator = {
 		weight = 150000
 		modifier = {
 			factor = 100000
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = acot_sr_stellarite
 					value <= 3
@@ -2820,7 +3337,7 @@ building_stellarite_generator = {
 		}
 		modifier = {
 			factor = 0
-			owner = {
+			planet_owner = {
 				merg_is_awakened_fe = yes
 			}
 		}
@@ -2833,8 +3350,8 @@ building_stellarite_generator_ae = {
 	can_build = no
 	category = manufacturing
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_generator_ae
 			advanced_resource_generation_building_regulation = yes
 		}
@@ -2850,8 +3367,8 @@ building_stellarite_generator_ae = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
@@ -2861,8 +3378,8 @@ building_stellarite_generator_ae = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = no
 			}
 		}
@@ -2873,8 +3390,8 @@ building_stellarite_generator_ae = {
 	triggered_desc = {
 		trigger = {
 			uses_district_set = sigma_habitat
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
@@ -2883,8 +3400,8 @@ building_stellarite_generator_ae = {
 	triggered_desc = {
 		trigger = {
 			uses_district_set = sigma_habitat
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_hive_empire = yes
 			}
 		}
@@ -2893,8 +3410,8 @@ building_stellarite_generator_ae = {
 	triggered_desc = {
 		trigger = {
 			uses_district_set = sigma_habitat
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_machine_empire = yes
 			}
 		}
@@ -2910,7 +3427,7 @@ building_stellarite_generator_ae = {
 		}
 		produces = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = yes
 				}
 			}
@@ -2933,7 +3450,7 @@ building_stellarite_generator_ae = {
 		weight = 150000
 		modifier = {
 			factor = 100000
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = acot_sr_stellarite
 					value <= 3
@@ -2949,7 +3466,7 @@ building_stellarite_generator_ae = {
 		}
 		modifier = {
 			factor = 0
-			owner = {
+			planet_owner = {
 				merg_is_awakened_fe = yes
 			}
 		}
@@ -2962,8 +3479,8 @@ building_stellarite_generator_lvl3 = {
 	can_build = no
 	category = manufacturing
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_generator_lvl3
 			advanced_resource_generation_building_regulation = yes
 		}
@@ -2975,8 +3492,8 @@ building_stellarite_generator_lvl3 = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = yes
 			}
 		}
@@ -2986,8 +3503,8 @@ building_stellarite_generator_lvl3 = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_gestalt = no
 			}
 		}
@@ -2998,8 +3515,8 @@ building_stellarite_generator_lvl3 = {
 	triggered_desc = {
 		trigger = {
 			uses_district_set = sigma_habitat
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_regular_empire = yes
 			}
 		}
@@ -3008,8 +3525,8 @@ building_stellarite_generator_lvl3 = {
 	triggered_desc = {
 		trigger = {
 			uses_district_set = sigma_habitat
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_hive_empire = yes
 			}
 		}
@@ -3018,8 +3535,8 @@ building_stellarite_generator_lvl3 = {
 	triggered_desc = {
 		trigger = {
 			uses_district_set = sigma_habitat
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_machine_empire = yes
 			}
 		}
@@ -3034,7 +3551,7 @@ building_stellarite_generator_lvl3 = {
 		}
 		produces = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = yes
 				}
 			}
@@ -3066,7 +3583,7 @@ building_stellarite_generator_lvl3 = {
 		weight = 150000
 		modifier = {
 			factor = 100000
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = acot_sr_stellarite
 					value <= 3
@@ -3088,8 +3605,8 @@ building_stellarite_synthersizer = {
 	can_build = no
 	category = manufacturing
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_synthersizer
 		}
 	}
@@ -3221,8 +3738,8 @@ building_stellarite_nexus = {
 	category = manufacturing
 	can_build = no
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_nexus
 		}
 	}
@@ -3241,7 +3758,7 @@ building_stellarite_nexus = {
 		}
 		upkeep = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = no
 				}
 			}
@@ -3258,13 +3775,13 @@ building_stellarite_nexus = {
 		weight = 10
 		modifier = {
 			factor = 0
-			owner = {
+			planet_owner = {
 				merg_is_awakened_fe = yes
 			}
 		}
 		modifier = {
 			factor = 10000
-			owner = {
+			planet_owner = {
 				has_monthly_income = {
 					resource = aot_sr_runic_power
 					value <= 1
@@ -3294,26 +3811,40 @@ building_stellarite_mansion = {
 	base_buildtime = 900
 	can_build = no
 	category = amenity
-	convert_to = {
-		building_stellarite_hive_depot
-	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			has_technology = tech_stellarite_mansion
 			is_regular_empire = yes
-			NOT = {
-				has_valid_civic = civic_shared_burden
-			}
+			is_spiritualist = no
+			has_make_spiritualist_perk = no
 		}
 	}
 	allow = {
 		has_stellarite_capital = yes
 	}
+	convert_to = {
+		building_stellarite_empyrean_shrine
+		building_stellarite_hive_depot
+		building_stellarite_ancient_cryo_chamber
+	}
+	upgrades = {
+		building_stellarite_mansion
+	}
+	destroy_trigger = {
+		exists = planet_owner
+		planet_owner = {
+			OR = {
+				is_regular_empire = no
+				is_spiritualist = yes
+				has_make_spiritualist_perk = yes
+			}
+		}
+	}
 	planet_modifier = {
-		planet_housing_add = 120
-		planet_amenities_add = 120
-		job_stellarite_entertainer_add = 4
+		planet_housing_add = 90
+		planet_amenities_add = 90
+		job_stellarite_entertainer_add = 6
 	}
 	resources = {
 		category = planet_buildings
@@ -3329,19 +3860,19 @@ building_stellarite_mansion = {
 			acot_sr_stellarite = 800
 		}
 		upkeep = {
-			acot_sr_stellarite = 10
+			acot_sr_stellarite = 20
+		}
+		upkeep = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			energy = 10			# Mod Pack: added upkeep
+			acot_sr_dark_energy = 4
+			sr_dark_matter = 4
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_mansion"
-	}
-	show_tech_unlock_if = {
-		owner = {
-			is_regular_empire = yes
-			NOT = {
-				has_valid_civic = civic_shared_burden
-			}
-		}
+		tech_stellarite_mansion
 	}
 	ai_weight = {
 		weight = 100
@@ -3365,8 +3896,8 @@ building_stellarite_hive_depot = {
 	can_build = no
 	category = amenity
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_hive_empire = yes
 			has_technology = tech_stellarite_hive_depot
 		}
@@ -3375,18 +3906,19 @@ building_stellarite_hive_depot = {
 		has_stellarite_capital = yes
 	}
 	show_tech_unlock_if = {
-		owner = {
+		root = {
 			is_hive_empire = yes
 		}
 	}
 	convert_to = {
+		building_stellarite_empyrean_shrine
 		building_stellarite_mansion
 		building_stellarite_ancient_cryo_chamber
 	}
 	planet_modifier = {
-		planet_housing_add = 120
-		planet_amenities_add = 120
-		job_stellarite_entertainer_drone_add = 4
+		planet_housing_add = 100
+		planet_amenities_add = 100
+		job_stellarite_entertainer_drone_add = 6
 	}
 	resources = {
 		category = planet_buildings
@@ -3402,7 +3934,14 @@ building_stellarite_hive_depot = {
 			acot_sr_stellarite = 800
 		}
 		upkeep = {
-			acot_sr_stellarite = 10
+			acot_sr_stellarite = 20
+		}
+		upkeep = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			acot_sr_dark_energy = 4
+			sr_dark_matter = 4
 		}
 	}
 	prerequisites = {
@@ -3431,36 +3970,43 @@ building_stellarite_ancient_cryo_chamber = {
 	can_build = no
 	category = amenity
 	potential = {
-		owner = {
+		planet_owner = {
 			is_machine_empire = yes
 			has_technology = tech_stellarite_ancient_cryo_chamber
 		}
 	}
-	convert_to = {
-		building_stellarite_mansion
-		building_stellarite_hive_depot
-	}
 	allow = {
 		has_stellarite_capital = yes
 	}
+	convert_to = {
+		building_stellarite_empyrean_shrine
+		building_stellarite_mansion
+		building_stellarite_hive_depot
+	}
 	planet_modifier = {
-		planet_housing_add = 140
-		planet_amenities_add = 140
-		job_maintenance_drone_add = 5
+		planet_housing_add = 100
+		planet_amenities_add = 100
+		job_maintenance_drone_add = 6
 	}
 	resources = {
 		category = planet_buildings
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			unity = 60
+		}
 		cost = {
 			energy = 4000
 			minerals = 4000
 			acot_sr_stellarite = 800
 		}
 		upkeep = {
-			acot_sr_stellarite = 10
+			acot_sr_stellarite = 20
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_ancient_cryo_chamber"
+		tech_stellarite_ancient_cryo_chamber
 	}
 	ai_weight = {
 		weight = 10
@@ -3487,8 +4033,8 @@ building_stellarite_commercial_megaplex = {
 		has_stellarite_capital = yes
 	}
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_regular_empire = yes
 			has_technology = tech_stellarite_commercial_megaplex
 		}
@@ -3497,17 +4043,17 @@ building_stellarite_commercial_megaplex = {
 		}
 	}
 	destroy_trigger = {
-		exists = owner
+		exists = planet_owner
 		OR = {
-			owner = {
+			planet_owner = {
 				is_regular_empire = no
 			}
 			has_modifier = slave_colony
 		}
 	}
 	planet_modifier = {
-		job_merchant_add = 4
-		job_stellarite_clerk_add = 40
+		job_merchant_add = 6
+		job_stellarite_clerk_add = 60
 		trade_value_mult = 0.3
 	}
 	resources = {
@@ -3518,11 +4064,11 @@ building_stellarite_commercial_megaplex = {
 			acot_sr_stellarite = 800
 		}
 		upkeep = {
-			acot_sr_stellarite = 15
+			acot_sr_stellarite = 30
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_commercial_megaplex"
+		tech_stellarite_commercial_megaplex
 	}
 	show_tech_unlock_if = {
 		is_regular_empire = yes
@@ -3537,7 +4083,7 @@ building_stellarite_commercial_megaplex = {
 		weight = 0
 		modifier = {
 			weight = 1
-			owner = {
+			planet_owner = {
 				resource_income_compare = {
 					resource = acot_sr_stellarite
 					value >= 11
@@ -3546,8 +4092,8 @@ building_stellarite_commercial_megaplex = {
 		}
 		modifier = {
 			factor = 10
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_megacorp = yes
 			}
 		}
@@ -3565,8 +4111,8 @@ building_stellarite_bureaucratic = {
 	can_build = no
 	category = unity
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_regular_empire = yes
 			has_technology = tech_stellarite_bureau
 		}
@@ -3575,9 +4121,9 @@ building_stellarite_bureaucratic = {
 		has_stellarite_capital = yes
 	}
 	destroy_trigger = {
-		exists = owner
+		exists = planet_owner
 		OR = {
-			owner = {
+			planet_owner = {
 				is_regular_empire = no
 			}
 		}
@@ -3616,31 +4162,31 @@ building_stellarite_bureaucratic = {
 		}
 		modifier = {
 			factor = 2
-			owner = {
+			planet_owner = {
 				empire_sprawl_over_cap > 0
 			}
 		}
 		modifier = {
 			factor = 2
-			owner = {
+			planet_owner = {
 				empire_sprawl_over_cap > 10
 			}
 		}
 		modifier = {
 			factor = 2
-			owner = {
+			planet_owner = {
 				empire_sprawl_over_cap > 20
 			}
 		}
 		modifier = {
 			factor = 2
-			owner = {
+			planet_owner = {
 				empire_sprawl_over_cap > 40
 			}
 		}
 		modifier = {
 			factor = 2
-			owner = {
+			planet_owner = {
 				has_valid_civic = civic_byzantine_bureaucracy
 			}
 		}
@@ -3660,8 +4206,8 @@ building_stellarite_embassy = {
 	can_build = no
 	category = government
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_regular_empire = yes
 			has_technology = tech_stellarite_embassy
 		}
@@ -3679,8 +4225,8 @@ building_stellarite_embassy = {
 	destroy_trigger = {
 		OR = {
 			AND = {
-				exists = owner
-				owner = {
+				exists = planet_owner
+				planet_owner = {
 					is_regular_empire = no
 				}
 			}
@@ -3690,7 +4236,7 @@ building_stellarite_embassy = {
 		}
 	}
 	country_modifier = {
-		envoys_add = 10		# Mod Pack: reduced from
+		envoys_add = 10
 		diplo_weight_mult = 0.4		# Mod Pack: reduced from 40
 	}
 	resources = {
@@ -3719,22 +4265,22 @@ building_stellarite_embassy = {
 		}
 		modifier = {
 			factor = 5
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_galactic_community_member = yes
 			}
 		}
 		modifier = {
 			factor = 5
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				has_federation = yes
 			}
 		}
 		modifier = {
 			factor = 3
-			exists = owner
-			owner = {
+			exists = planet_owner
+			planet_owner = {
 				is_part_of_galactic_council = yes
 			}
 		}
