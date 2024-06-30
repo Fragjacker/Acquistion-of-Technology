@@ -1,117 +1,129 @@
 utility_component_template = {
-	key = "DM_COMBAT_COMPUTER_CAPITAL_1"
+	key = "DM_OFFENSIVE_COMBAT_COMPUTER_GOLIATH"
 	size = small
-	icon = "GFX_ship_part_computer_role_artillery_bionic"
+	icon = "GFX_ship_part_computer_delta_offense"
 	icon_frame = 1
 	power = -20
-	# class_restriction = { shipclass_military shipclass_starbase }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 10
+			sr_dark_matter = 2
+			acot_sr_dark_energy = 1
+		}
+	}
 	size_restriction = {
-		acot_giga_fortress
-		movable_fortress
 		ascended_juggernaut
 		precursor_juggernaut
 		aot_gatekeeper
+		acot_giga_fortress
+		giga_planet_behemoth
 		juggernaut
-		titan
-		Dreadnought
-		Flagship
-		ultradreadnought
-		Carrier
+		movable_fortress
 		fe_goliath
-		sofe_gatekeeper_warden
+		Carrier
+		dcv
+		Flagship
+		sofe_aegis_guard
 		precursor_assault_carrier
 		progenitor_carrier
-		sofe_aegis_guard
+		offspring_precursor_assault_carrier
+		sofe_gatekeeper_warden
+		ultradreadnought
+		progenitor_avatar
 	}
-	# fe_goliath
 	component_set = "combat_computers"
-	ship_behavior = "artillery"
-	prerequisites = {
-		"tech_dm_combat_computer"
+	ship_behavior = "origin_offense_goliath"
+	modifier = {
+		ship_weapon_damage = 0.1
+		ship_evasion_mult = 0.1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.1
+		ship_weapon_range_mult = 0.1
+		ship_tracking_add = 10
+		ship_accuracy_mult = 0.1
 	}
 	upgrades_to = "AE_OFFENSIVE_COMBAT_COMPUTER_GOLIATH"
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = 20
-			sr_dark_matter = 2
-			acot_sr_dark_energy = 1
-		}
-	}
-	ship_modifier = {
-		ship_fire_rate_mult = 0.25
-		ship_weapon_range_mult = 0.2
-	}
-	ai_weight = {
-		weight = 20
-		modifier = {
-			factor = 0
-			has_monthly_income = {
-				resource = sr_dark_matter
-				value <= 2
-			}
-			has_resource = {
-				type = sr_dark_matter
-				amount <= 5
-			}
-		}
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_dark_energy
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_dark_energy
-				value <= 2
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "DM_COMBAT_COMPUTER_CAPITAL_2"
-	size = small
-	icon = "GFX_ship_part_computer_role_sniper_bionic"
-	icon_frame = 1
-	power = -20
-	# class_restriction = { shipclass_military shipclass_starbase }
-	size_restriction = {
-		acot_giga_fortress
-		movable_fortress
-		ascended_juggernaut
-		precursor_juggernaut
-		aot_gatekeeper
-		juggernaut
-		titan
-		Dreadnought
-		Flagship
-		ultradreadnought
-		Carrier
-		fe_goliath
-		sofe_gatekeeper_warden
-		precursor_assault_carrier
-		progenitor_carrier
-		sofe_aegis_guard
-	}
-	# fe_goliath
-	component_set = "combat_computers"
-	ship_behavior = "carrier"
 	prerequisites = {
 		"tech_dm_combat_computer"
 	}
-	upgrades_to = "AE_DEFENSIVE_COMBAT_COMPUTER_GOLIATH"
+	ai_weight = {
+		weight = 20
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "DM_BALANCE_COMBAT_COMPUTER_GOLIATH"
+	size = small
+	icon = "GFX_ship_part_computer_delta_balanced"
+	icon_frame = 1
+	power = -20
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = 20
+			alloys = 10
 			sr_dark_matter = 2
 			acot_sr_dark_energy = 1
 		}
 	}
+	size_restriction = {
+		ascended_juggernaut
+		precursor_juggernaut
+		aot_gatekeeper
+		acot_giga_fortress
+		giga_planet_behemoth
+		juggernaut
+		movable_fortress
+		fe_goliath
+		Carrier
+		dcv
+		Flagship
+		sofe_aegis_guard
+		precursor_assault_carrier
+		progenitor_carrier
+		offspring_precursor_assault_carrier
+		sofe_gatekeeper_warden
+		ultradreadnought
+		progenitor_avatar
+	}
+	component_set = "combat_computers"
+	ship_behavior = "origin_balance_goliath"
+	upgrades_to = "AE_BALANCE_COMBAT_COMPUTER_GOLIATH"
+	modifier = {
+		ship_weapon_damage = 0.1
+		ship_evasion_mult = 0.1
+	}
 	ship_modifier = {
-		ship_fire_rate_mult = 0.25
-		ship_weapon_range_mult = 0.2
+		ship_fire_rate_mult = 0.1
+		ship_weapon_range_mult = 0.1
+		ship_tracking_add = 10
+		ship_accuracy_mult = 0.1
+	}
+	prerequisites = {
+		"tech_dm_combat_computer"
 	}
 	ai_weight = {
 		weight = 20
@@ -141,46 +153,79 @@ utility_component_template = {
 }
 
 utility_component_template = {
-	key = "DM_COMBAT_COMPUTER_CAPITAL_3"
+	key = "DM_DEFENSIVE_COMBAT_COMPUTER_GOLIATH"
 	size = small
-	icon = "GFX_ship_part_computer_role_long_bionic"
+	icon = "GFX_ship_part_computer_delta_defensive"
 	icon_frame = 1
 	power = -20
-	# class_restriction = { shipclass_military shipclass_starbase }
-	size_restriction = {
-		acot_giga_fortress
-		movable_fortress
-		juggernaut
-		ascended_juggernaut
-		precursor_juggernaut
-		aot_gatekeeper
-		titan
-		Dreadnought
-		Flagship
-		ultradreadnought
-		Carrier
-		fe_goliath
-		sofe_gatekeeper_warden
-		precursor_assault_carrier
-		progenitor_carrier
-		sofe_aegis_guard
-	}
-	# fe_goliath
-	component_set = "combat_computers"
-	ship_behavior = "acot_max_range"
-	hidden = yes
-	upgrades_to = "AE_DEFENSIVE_COMBAT_COMPUTER_GOLIATH"
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = 20
+			alloys = 10
 			sr_dark_matter = 2
 			acot_sr_dark_energy = 1
 		}
 	}
+	size_restriction = {
+		ascended_juggernaut
+		precursor_juggernaut
+		aot_gatekeeper
+		acot_giga_fortress
+		giga_planet_behemoth
+		juggernaut
+		movable_fortress
+		fe_goliath
+		Carrier
+		dcv
+		Flagship
+		sofe_aegis_guard
+		precursor_assault_carrier
+		progenitor_carrier
+		offspring_precursor_assault_carrier
+		sofe_gatekeeper_warden
+		ultradreadnought
+		progenitor_avatar
+	}
+	component_set = "combat_computers"
+	ship_behavior = "origin_defense_goliath"
+	upgrades_to = "AE_DEFENSIVE_COMBAT_COMPUTER_GOLIATH"
+	modifier = {
+		ship_weapon_damage = 0.1
+		ship_evasion_mult = 0.1
+	}
 	ship_modifier = {
-		ship_fire_rate_mult = 0.25
-		ship_weapon_range_mult = 0.2
+		ship_fire_rate_mult = 0.1
+		ship_weapon_range_mult = 0.1
+		ship_tracking_add = 10
+		ship_accuracy_mult = 0.1
+	}
+	prerequisites = {
+		"tech_dm_combat_computer"
+	}
+	ai_weight = {
+		weight = 20
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
+			}
+		}
 	}
 }
 
@@ -205,6 +250,9 @@ utility_component_template = {
 	modifier = {
 		ship_hull_mult = 0.05
 	}
+	ship_modifier = {
+		ship_shield_reduction = -0.5
+	}
 	prerequisites = {
 		"tech_dark_matter_power_core_dm"
 	}
@@ -213,6 +261,8 @@ utility_component_template = {
 		titan
 		sofe_gatekeeper_warden
 		aot_gatekeeper
+		cosmo_crisis_titan
+		massive_ship_fallen_empire
 		ion_cannon
 		precursor_titan
 		precursor_assault_carrier
@@ -225,6 +275,9 @@ utility_component_template = {
 		Dreadnought
 		fe_large_station
 		fe_small_station
+		ag_aura_battleship
+		ag_alpha_psionic_container
+		ag_eta_titan_measurer		# ANCIENT EMPIRE STUFFS
 	}
 	upgrades_to = "TITAN_DARK_MATTER_REACTOR_AE"
 	ai_weight = {
