@@ -8,33 +8,39 @@ decision_transform_into_awesome = {
 	icon = decision_transform_into_awesome
 	enactment_time = 1200
 	prerequisites = {
-		"tech_dm_ancient_palace"
+		"tech_acot_dm_ancient_palace"
 	}
 	resources = {
 		category = planet_buildings
 		cost = {
 			trigger = {
-				owner = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_advanced_colony
+					}
 					is_ai = no
 				}
 			}
-			minerals = 5000
-			influence = 100
+			alloys = 1500
+			unity = 1000
 			sr_dark_matter = 500
 			acot_sr_dark_energy = 500
 		}
 		cost = {
 			trigger = {
-				owner = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_advanced_colony
+					}
 					is_ai = yes
 				}
 			}
 		}
 	}
 	potential = {
-		owner = {
+		planet_owner = {
 			is_regular_empire = yes
-			has_technology = tech_dm_ancient_palace
+			has_technology = tech_acot_dm_ancient_palace
 		}
 		has_enigmatic_capital = no
 	}
@@ -43,10 +49,10 @@ decision_transform_into_awesome = {
 	effect = {
 		hidden_effect = {
 			remove_capital_building = yes
-			add_building = building_dm_ancient_palace
+			add_building = building_acot_dm_ancient_palace
 			if = {
 				limit = {
-					owner = {
+					planet_owner = {
 						is_ai = yes
 					}
 				}
@@ -65,33 +71,33 @@ decision_transform_into_awesome_machine = {
 	icon = decision_transform_into_awesome
 	enactment_time = 1200
 	prerequisites = {
-		"tech_dm_ancient_control_center"
+		"tech_acot_dm_ancient_control_center"
 	}
 	resources = {
 		category = planet_buildings
 		cost = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = no
 				}
 			}
-			minerals = 5000
-			influence = 100
+			alloys = 1500
+			unity = 1000
 			sr_dark_matter = 500
 			acot_sr_dark_energy = 500
 		}
 		cost = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = yes
 				}
 			}
 		}
 	}
 	potential = {
-		owner = {
+		planet_owner = {
 			is_machine_empire = yes
-			has_technology = tech_dm_ancient_control_center
+			has_technology = tech_acot_dm_ancient_control_center
 		}
 		has_enigmatic_capital = no
 	}
@@ -100,10 +106,10 @@ decision_transform_into_awesome_machine = {
 	effect = {
 		hidden_effect = {
 			remove_capital_building = yes
-			add_building = building_dm_ancient_control_center
+			add_building = building_acot_dm_ancient_control_center
 			if = {
 				limit = {
-					owner = {
+					planet_owner = {
 						is_ai = yes
 					}
 				}
@@ -122,33 +128,33 @@ decision_transform_into_awesome_hive = {
 	icon = decision_transform_into_awesome
 	enactment_time = 1200
 	prerequisites = {
-		"tech_dm_ancient_hive_cluster"
+		"tech_acot_dm_ancient_hive_cluster"
 	}
 	resources = {
 		category = planet_buildings
 		cost = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = no
 				}
 			}
-			minerals = 5000
-			influence = 100
+			alloys = 1500
+			unity = 1000
 			sr_dark_matter = 500
 			acot_sr_dark_energy = 500
 		}
 		cost = {
 			trigger = {
-				owner = {
+				planet_owner = {
 					is_ai = yes
 				}
 			}
 		}
 	}
 	potential = {
-		owner = {
+		planet_owner = {
 			is_hive_empire = yes
-			has_technology = tech_dm_ancient_hive_cluster
+			has_technology = tech_acot_dm_ancient_hive_cluster
 		}
 		has_enigmatic_capital = no
 	}
@@ -157,10 +163,10 @@ decision_transform_into_awesome_hive = {
 	effect = {
 		hidden_effect = {
 			remove_capital_building = yes
-			add_building = building_dm_ancient_hive_cluster
+			add_building = building_acot_dm_ancient_hive_cluster
 			if = {
 				limit = {
-					owner = {
+					planet_owner = {
 						is_ai = yes
 					}
 				}
@@ -188,7 +194,7 @@ decision_upgrade_gen_growth = {
 	}
 	potential = {
 		OR = {
-			has_building = building_ae_clone_vats
+			has_building = building_acot_ae_clone_vats
 			has_building = building_stellarite_clone_vats
 			has_building = building_phanon_clone_vats
 		}
@@ -220,7 +226,7 @@ decision_upgrade_gen_adapt = {
 	}
 	potential = {
 		OR = {
-			has_building = building_ae_clone_vats
+			has_building = building_acot_ae_clone_vats
 			has_building = building_stellarite_clone_vats
 			has_building = building_phanon_clone_vats
 		}
@@ -252,7 +258,7 @@ decision_upgrade_synth_extra_space = {
 	}
 	potential = {
 		OR = {
-			has_building = building_ae_synt_center
+			has_building = building_acot_ae_synt_center
 			has_building = building_stellarite_synt_center
 			has_building = building_phanon_synt_center
 		}
@@ -297,7 +303,7 @@ decision_upgrade_synth_assemble = {
 	}
 	potential = {
 		OR = {
-			has_building = building_ae_synt_center
+			has_building = building_acot_ae_synt_center
 			has_building = building_stellarite_synt_center
 			has_building = building_phanon_synt_center
 		}
@@ -328,7 +334,7 @@ decision_upgrade_psi_manipulate = {
 	}
 	potential = {
 		OR = {
-			has_building = building_ae_psi_altar
+			has_building = building_acot_ae_psi_altar
 			has_building = building_stellarite_psi_altar
 			has_building = building_phanon_psi_altar
 		}
@@ -359,7 +365,7 @@ decision_upgrade_psi_telekinesis = {
 	}
 	potential = {
 		OR = {
-			has_building = building_ae_psi_altar
+			has_building = building_acot_ae_psi_altar
 			has_building = building_stellarite_psi_altar
 			has_building = building_phanon_psi_altar
 		}
@@ -391,7 +397,7 @@ decision_upgrade_hive_harvest = {
 	}
 	potential = {
 		OR = {
-			has_building = building_ae_hive_evochamber
+			has_building = building_acot_ae_hive_evochamber
 			has_building = building_stellarite_hive_evochamber
 			has_building = building_phanon_hive_evochamber
 		}
@@ -423,7 +429,7 @@ decision_upgrade_hive_growth = {
 	}
 	potential = {
 		OR = {
-			has_building = building_ae_hive_evochamber
+			has_building = building_acot_ae_hive_evochamber
 			has_building = building_stellarite_hive_evochamber
 			has_building = building_phanon_hive_evochamber
 		}
@@ -455,7 +461,7 @@ decision_upgrade_machine_cyberspace = {
 	}
 	potential = {
 		OR = {
-			has_building = building_ae_machine_dome
+			has_building = building_acot_ae_machine_dome
 			has_building = building_stellarite_machine_dome
 			has_building = building_phanon_machine_dome
 		}
@@ -487,7 +493,7 @@ decision_upgrade_machine_upkeep = {
 	}
 	potential = {
 		OR = {
-			has_building = building_ae_machine_dome
+			has_building = building_acot_ae_machine_dome
 			has_building = building_stellarite_machine_dome
 			has_building = building_phanon_machine_dome
 		}
@@ -512,16 +518,16 @@ decision_open_assembly_menu = {
 	icon = decision_machine_sapience
 	potential = {
 		OR = {
-			has_building = building_ae_machine_dome
-			has_building = building_ae_synt_center
+			has_building = building_acot_ae_machine_dome
+			has_building = building_acot_ae_synt_center
 			has_building = building_stellarite_machine_dome
 			has_building = building_stellarite_synt_center
 		}
 	}
 	allow = {
 		OR = {
-			has_building = building_ae_machine_dome
-			has_building = building_ae_synt_center
+			has_building = building_acot_ae_machine_dome
+			has_building = building_acot_ae_synt_center
 			has_building = building_stellarite_machine_dome
 			has_building = building_stellarite_synt_center
 		}
@@ -535,7 +541,7 @@ decision_open_assembly_menu = {
 		weight = 10
 		modifier = {
 			factor = 0
-			owner = {
+			planet_owner = {
 				resource_stockpile_compare = {
 					resource = unity
 					value <= 15000
@@ -557,16 +563,14 @@ decision_fractured_self_detonation = {
 		cost = {
 			trigger = {
 				exists = owner
-				owner = {
-					is_same_empire = root.owner
-				}
+				is_owned_by = root.owner
 			}
 			influence = 500
 			unity = 50000
 		}
 		cost = {
 			trigger = {
-				NOT = {
+				NAND = {
 					is_owned_by = root.owner
 				}
 			}
@@ -577,7 +581,7 @@ decision_fractured_self_detonation = {
 	potential = {
 		exists = space_owner
 		space_owner = {
-			is_same_value = from
+			is_same_empire = from
 		}
 		from = {
 			has_technology = tech_bombardment_ae_final
@@ -636,18 +640,16 @@ decision_stellarite_reactor_detonation = {
 	owned_planets_only = yes
 	potential = {
 		exists = owner
-		owner = {
-			is_same_empire = root.owner
-		}
+		is_owned_by = root.owner
 		NOT = {
 			has_planet_flag = acot_stellarite_discharge_authorized
 		}
 	}
 	allow = {
 		OR = {
-			has_building = building_stellarite_generator
-			has_building = building_stellarite_generator_ae
-			has_building = building_stellarite_nexus
+			has_building = building_acot_stellarite_generator
+			has_building = building_acot_stellarite_generator_ae
+			has_building = building_acot_stellarite_nexus
 			has_building = building_stellarite_generator_lvl3
 		}
 	}
@@ -683,9 +685,18 @@ decision_acot_infiltrate_phanon_grid = {
 			has_global_flag = aot_phanon_content_OFF
 			has_planet_flag = ongoing_vault_infiltration
 		}
+		planet_owner = {
+			has_technology = tech_precursor_phanon_design_pe_1
+			has_technology = tech_precursor_phanon_design_pe_2
+			has_technology = tech_precursor_phanon_design_pe_3
+		}
+		custom_tooltip = {
+			fail_text = acot_infiltrate_phanon_grid_fail_text
+			num_sapient_pops >= 30
+		}
 	}
 	potential = {
-		owner = {
+		planet_owner = {
 			is_ai = no
 			NOT = {
 				has_country_flag = acot_phanon_tech_stage_four_enabled
@@ -696,8 +707,9 @@ decision_acot_infiltrate_phanon_grid = {
 			is_same_value = event_target:acot_phanon_vault
 			is_same_value = event_target:aot_bootleg_phanon_vault
 		}
-		NOT = {
+		NOR = {
 			has_planet_flag = acot_vault_floor_four_cleared
+			has_planet_flag = acot_vault_rival_cleared
 		}
 		has_ground_combat = no
 	}
@@ -710,1198 +722,68 @@ decision_acot_infiltrate_phanon_grid = {
 			}
 			if = {
 				limit = {
-					owner = {
-						NOT = {
+					NOT = {
+						has_global_flag = acot_phanon_rival_plan_initiated
+					}
+				}
+				if = {
+					limit = {
+						planet_owner = {
+							NOT = {
+								has_country_flag = acot_phanon_tech_stage_one_enabled
+							}
+						}
+					}
+					planet_event = {
+						id = acot_pmc.12
+					}
+				}
+				if = {
+					limit = {
+						planet_owner = {
 							has_country_flag = acot_phanon_tech_stage_one_enabled
+							NOT = {
+								has_country_flag = acot_phanon_tech_stage_two_enabled
+							}
 						}
 					}
+					planet_event = {
+						id = acot_pmc.13
+					}
 				}
-				planet_event = {
-					id = acot_pmc.12
-				}
-			}
-			if = {
-				limit = {
-					owner = {
-						has_country_flag = acot_phanon_tech_stage_one_enabled
-						NOT = {
+				if = {
+					limit = {
+						planet_owner = {
 							has_country_flag = acot_phanon_tech_stage_two_enabled
+							NOT = {
+								has_country_flag = acot_phanon_tech_stage_three_enabled
+							}
 						}
 					}
+					planet_event = {
+						id = acot_pmc.14
+					}
 				}
-				planet_event = {
-					id = acot_pmc.13
-				}
-			}
-			if = {
-				limit = {
-					owner = {
-						has_country_flag = acot_phanon_tech_stage_two_enabled
-						NOT = {
+				if = {
+					limit = {
+						planet_owner = {
 							has_country_flag = acot_phanon_tech_stage_three_enabled
+							NOT = {
+								has_country_flag = acot_phanon_tech_stage_four_enabled
+							}
 						}
 					}
-				}
-				planet_event = {
-					id = acot_pmc.14
+					planet_event = {
+						id = acot_pmc.15
+					}
 				}
 			}
-			if = {
-				limit = {
-					owner = {
-						has_country_flag = acot_phanon_tech_stage_three_enabled
-						NOT = {
-							has_country_flag = acot_phanon_tech_stage_four_enabled
-						}
-					}
-				}
+			else = {
 				planet_event = {
-					id = acot_pmc.15
+					id = acot_pmc.16
 				}
 			}
 			create_vault_defense_drones = yes
-		}
-	}
-	ai_weight = {
-		weight = 0
-	}
-}
-
-################## EMISSARY SENDS HIS REGARDS ################
-decision_acot_emissary_landing = {
-	sound = choose_ascension_perk_01
-	owned_planets_only = no
-	resources = {
-		category = decisions
-		cost = {
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			text = acot_requires_emissary_orbit
-			any_fleet_in_orbit = {
-				is_ship_size = precursor_colonizer
-				owner = {
-					is_same_value = from
-				}
-			}
-		}
-	}
-	potential = {
-		always = no
-		is_a_habitable_planet_megastructure = yes
-		NOT = {
-			has_planet_flag = has_enigmapolis_project
-		}
-		solar_system = {
-			any_fleet_in_system = {
-				is_ship_size = precursor_colonizer
-				owner = {
-					is_same_value = from
-				}
-			}
-		}
-	}
-	effect = {
-		random_fleet_in_orbit = {
-			limit = {
-				is_ship_size = precursor_colonizer
-			}
-			save_event_target_as = orbitting_emissary
-		}
-		hidden_effect = {
-			if = {
-				limit = {
-					has_owner = no
-				}
-				create_colony = {
-					owner = event_target:orbitting_emissary.owner
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_DELTA_COMPUTER
-							}
-						}
-						owner = {
-							is_regular_empire = yes
-						}
-					}
-					remove_building = building_colony_shelter
-					add_building = building_dm_ancient_palace
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_ALPHA_COMPUTER
-							}
-						}
-						owner = {
-							is_regular_empire = yes
-						}
-					}
-					remove_building = building_colony_shelter
-					add_building = building_ae_ancient_palace
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_SIGMA_COMPUTER
-							}
-						}
-						owner = {
-							is_regular_empire = yes
-						}
-					}
-					remove_building = building_colony_shelter
-					add_building = building_stellarite_palace
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_PHANON_COMPUTER
-							}
-						}
-						owner = {
-							is_regular_empire = yes
-						}
-					}
-					remove_building = building_colony_shelter
-					add_building = building_phanon_palace
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_DELTA_COMPUTER
-							}
-						}
-						owner = {
-							is_hive_empire = yes
-						}
-					}
-					remove_building = building_colony_shelter
-					add_building = building_dm_ancient_hive_cluster
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_ALPHA_COMPUTER
-							}
-						}
-						owner = {
-							is_hive_empire = yes
-						}
-					}
-					remove_building = building_colony_shelter
-					add_building = building_ae_ancient_hive_cluster
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_SIGMA_COMPUTER
-							}
-						}
-						owner = {
-							is_hive_empire = yes
-						}
-					}
-					remove_building = building_colony_shelter
-					add_building = building_stellarite_hive_cluster
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_PHANON_COMPUTER
-							}
-						}
-						owner = {
-							is_hive_empire = yes
-						}
-					}
-					remove_building = building_colony_shelter
-					add_building = building_phanon_hive_cluster
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_DELTA_COMPUTER
-							}
-						}
-						owner = {
-							is_machine_empire = yes
-						}
-					}
-					remove_building = building_deployment_post
-					add_building = building_dm_ancient_control_center
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_ALPHA_COMPUTER
-							}
-						}
-						owner = {
-							is_machine_empire = yes
-						}
-					}
-					remove_building = building_deployment_post
-					add_building = building_ae_ancient_control_center
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_SIGMA_COMPUTER
-							}
-						}
-						owner = {
-							is_machine_empire = yes
-						}
-					}
-					remove_building = building_deployment_post
-					add_building = building_stellarite_control_center
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_PHANON_COMPUTER
-							}
-						}
-						owner = {
-							is_machine_empire = yes
-						}
-					}
-					remove_building = building_deployment_post
-					add_building = building_phanon_control_center
-				}
-				#### DELTA	
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_DELTA_COMPUTER
-							}
-						}
-					}
-					while = {
-						count = 5
-						create_pop = {
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-				### ALPHA	
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_ALPHA_COMPUTER
-							}
-						}
-					}
-					while = {
-						count = 10
-						create_pop = {
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-				#### SUGNA	
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_SIGMA_COMPUTER
-							}
-						}
-					}
-					while = {
-						count = 15
-						create_pop = {
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-				#### PHANONEMINAL
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_PHANON_COMPUTER
-							}
-						}
-					}
-					while = {
-						count = 20
-						create_pop = {
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-				#### INEGA
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_OMEGA_COMPUTER
-							}
-						}
-					}
-					while = {
-						count = 20
-						create_pop = {
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-			}
-			### EXTRA STUFFS
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_POP
-						}
-					}
-				}
-				while = {
-					count = 10
-					create_pop = {
-						species = event_target:orbitting_emissary.owner_species
-					}
-				}
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_STELLARITE_EXTRA_POP
-						}
-					}
-				}
-				while = {
-					count = 20
-					create_pop = {
-						species = event_target:orbitting_emissary.owner_species
-					}
-				}
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_POP
-						}
-					}
-				}
-				while = {
-					count = 30
-					create_pop = {
-						species = event_target:orbitting_emissary.owner_species
-					}
-				}
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_TROOPS
-						}
-					}
-				}
-				while = {
-					count = 10
-					create_army = {
-						owner = event_target:orbitting_emissary.owner
-						type = acot_garrison_army
-						species = event_target:orbitting_emissary.owner_species
-					}
-				}
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_STELLARITE_EXTRA_TROOPS
-						}
-					}
-				}
-				while = {
-					count = 20
-					create_army = {
-						owner = event_target:orbitting_emissary.owner
-						type = acot_garrison_army
-						species = event_target:orbitting_emissary.owner_species
-					}
-				}
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_TROOPS
-						}
-					}
-				}
-				while = {
-					count = 25
-					create_army = {
-						owner = event_target:orbitting_emissary.owner
-						type = acot_garrison_army
-						species = event_target:orbitting_emissary.owner_species
-					}
-				}
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_DROIDS
-						}
-					}
-				}
-				while = {
-					count = 10
-					create_army = {
-						owner = event_target:orbitting_emissary.owner
-						type = acot_garrison_army_droid
-						species = event_target:orbitting_emissary.owner_species
-					}
-				}
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_STELLARITE_EXTRA_DROIDS
-						}
-					}
-				}
-				while = {
-					count = 20
-					create_army = {
-						owner = event_target:orbitting_emissary.owner
-						type = acot_garrison_army_droid
-						species = event_target:orbitting_emissary.owner_species
-					}
-				}
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_DROIDS
-						}
-					}
-				}
-				while = {
-					count = 25
-					create_army = {
-						owner = event_target:orbitting_emissary.owner
-						type = acot_garrison_army_droid
-						species = event_target:orbitting_emissary.owner_species
-					}
-				}
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_GIGA
-						}
-					}
-				}
-				add_building = building_giga_fortress
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_LAB
-						}
-					}
-				}
-				add_building = building_ae_enigmatic_lab
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_SKYSHIELD
-						}
-					}
-				}
-				add_building = building_ae_dark_energy_psg
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_NEXUS
-						}
-					}
-				}
-				add_building = building_ae_dark_matter_synthersizer
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_ASSEMBLY
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary.owner = {
-							is_machine_empire = no
-						}
-					}
-					add_building = building_ae_super_assembly
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary.owner = {
-							is_machine_empire = yes
-						}
-					}
-					add_building = building_ae_super_assembly_machine
-				}
-			}
-			# Stellarite Stuffs
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_STELLARITE_EXTRA_GIGA
-						}
-					}
-				}
-				add_building = building_stellarite_giga_fortress_obelisk
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_STELLARITE_EXTRA_LAB
-						}
-					}
-				}
-				add_building = building_stellarite_enigmatic_lab
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_STELLARITE_EXTRA_SKYSHIELD
-						}
-					}
-				}
-				add_building = building_stellarite_psg
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_STELLARITE_EXTRA_NEXUS
-						}
-					}
-				}
-				add_building = building_stellarite_nexus
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_STELLARITE_EXTRA_ASSEMBLY
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary.owner = {
-							is_machine_empire = no
-						}
-					}
-					add_building = building_stellarite_super_assembly
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary.owner = {
-							is_machine_empire = yes
-						}
-					}
-					add_building = building_stellarite_super_assembly_machine
-				}
-			}
-			# Phanon Stuffs
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_GIGA
-						}
-					}
-				}
-				add_building = building_phanon_giga_fortress_obelisk
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_LAB
-						}
-					}
-				}
-				add_building = building_phanon_enigmatic_lab
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_SKYSHIELD
-						}
-					}
-				}
-				add_building = building_phanon_psg
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_NEXUS
-						}
-					}
-				}
-				add_building = building_phanon_stellarite_nexus
-			}
-			if = {
-				limit = {
-					event_target:orbitting_emissary = {
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_ASSEMBLY
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary.owner = {
-							is_machine_empire = no
-						}
-					}
-					add_building = building_phanon_super_assembly
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary.owner = {
-							is_machine_empire = yes
-						}
-					}
-					add_building = building_phanon_super_assembly_machine
-				}
-			}
-			event_target:orbitting_emissary = {
-				delete_fleet = this
-			}
-			############## ATTACK #############################
-			if = {
-				limit = {
-					planet_is_hostile = yes
-				}
-				### DELTA ###
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_DELTA_COMPUTER
-							}
-						}
-					}
-					set_planet_flag = will_have_delta_emis
-					if = {
-						limit = {
-							event_target:orbitting_emissary.owner = {
-								is_machine_empire = no
-							}
-						}
-						while = {
-							count = 10
-							create_army = {
-								owner = event_target:orbitting_emissary.owner
-								type = acot_garrison_army
-								species = event_target:orbitting_emissary.owner_species
-							}
-						}
-					}
-					if = {
-						limit = {
-							event_target:orbitting_emissary.owner = {
-								is_machine_empire = yes
-							}
-						}
-						while = {
-							count = 10
-							create_army = {
-								owner = event_target:orbitting_emissary.owner
-								type = acot_garrison_army_droid
-								species = event_target:orbitting_emissary.owner_species
-							}
-						}
-					}
-				}
-				### ALPHA ###
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_ALPHA_COMPUTER
-							}
-						}
-					}
-					set_planet_flag = will_have_alpha_emis
-					if = {
-						limit = {
-							event_target:orbitting_emissary.owner = {
-								is_machine_empire = no
-							}
-						}
-						while = {
-							count = 15
-							create_army = {
-								owner = event_target:orbitting_emissary.owner
-								type = acot_garrison_army
-								species = event_target:orbitting_emissary.owner_species
-							}
-						}
-					}
-					if = {
-						limit = {
-							event_target:orbitting_emissary.owner = {
-								is_machine_empire = yes
-							}
-						}
-						while = {
-							count = 15
-							create_army = {
-								owner = event_target:orbitting_emissary.owner
-								type = acot_garrison_army_droid
-								species = event_target:orbitting_emissary.owner_species
-							}
-						}
-					}
-				}
-				### SIGMA ###
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_SIGMA_COMPUTER
-							}
-						}
-					}
-					set_planet_flag = will_have_sigma_emis
-					if = {
-						limit = {
-							event_target:orbitting_emissary.owner = {
-								is_machine_empire = no
-							}
-						}
-						while = {
-							count = 20
-							create_army = {
-								owner = event_target:orbitting_emissary.owner
-								type = acot_garrison_army
-								species = event_target:orbitting_emissary.owner_species
-							}
-						}
-					}
-					if = {
-						limit = {
-							event_target:orbitting_emissary.owner = {
-								is_machine_empire = yes
-							}
-						}
-						while = {
-							count = 20
-							create_army = {
-								owner = event_target:orbitting_emissary.owner
-								type = acot_garrison_army_droid
-								species = event_target:orbitting_emissary.owner_species
-							}
-						}
-					}
-				}
-				### PHANON PEPSI ###
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_PHANON_COMPUTER
-							}
-						}
-					}
-					set_planet_flag = will_have_phanon_emis
-					if = {
-						limit = {
-							event_target:orbitting_emissary.owner = {
-								is_machine_empire = no
-							}
-						}
-						while = {
-							count = 25
-							create_army = {
-								owner = event_target:orbitting_emissary.owner
-								type = acot_garrison_army
-								species = event_target:orbitting_emissary.owner_species
-							}
-						}
-					}
-					if = {
-						limit = {
-							event_target:orbitting_emissary.owner = {
-								is_machine_empire = yes
-							}
-						}
-						while = {
-							count = 25
-							create_army = {
-								owner = event_target:orbitting_emissary.owner
-								type = acot_garrison_army_droid
-								species = event_target:orbitting_emissary.owner_species
-							}
-						}
-					}
-				}
-				### OMEGA ###
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = EMISSARY_OMEGA_COMPUTER
-							}
-						}
-					}
-					set_planet_flag = will_have_omega_emis
-					if = {
-						limit = {
-							event_target:orbitting_emissary.owner = {
-								is_machine_empire = no
-							}
-						}
-						while = {
-							count = 30
-							create_army = {
-								owner = event_target:orbitting_emissary.owner
-								type = acot_garrison_army
-								species = event_target:orbitting_emissary.owner_species
-							}
-						}
-					}
-					if = {
-						limit = {
-							event_target:orbitting_emissary.owner = {
-								is_machine_empire = yes
-							}
-						}
-						while = {
-							count = 30
-							create_army = {
-								owner = event_target:orbitting_emissary.owner
-								type = acot_garrison_army_droid
-								species = event_target:orbitting_emissary.owner_species
-							}
-						}
-					}
-				}
-				### EXTRA STUFFS
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = ACOT_EMISSART_EXTRA_TROOPS
-							}
-						}
-					}
-					while = {
-						count = 10
-						create_army = {
-							owner = event_target:orbitting_emissary.owner
-							type = acot_garrison_army
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_STELLARITE_EXTRA_TROOPS
-							}
-						}
-					}
-					while = {
-						count = 20
-						create_army = {
-							owner = event_target:orbitting_emissary.owner
-							type = acot_garrison_army
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_PHANON_EXTRA_TROOPS
-							}
-						}
-					}
-					while = {
-						count = 30
-						create_army = {
-							owner = event_target:orbitting_emissary.owner
-							type = acot_garrison_army
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = ACOT_EMISSART_EXTRA_DROIDS
-							}
-						}
-					}
-					while = {
-						count = 10
-						create_army = {
-							owner = event_target:orbitting_emissary.owner
-							type = acot_garrison_army_droid
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_STELLARITE_EXTRA_DROIDS
-							}
-						}
-					}
-					while = {
-						count = 20
-						create_army = {
-							owner = event_target:orbitting_emissary.owner
-							type = acot_garrison_army_droid
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_PHANON_EXTRA_DROIDS
-							}
-						}
-					}
-					while = {
-						count = 30
-						create_army = {
-							owner = event_target:orbitting_emissary.owner
-							type = acot_garrison_army_droid
-							species = event_target:orbitting_emissary.owner_species
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = ACOT_EMISSART_EXTRA_GIGA
-							}
-						}
-					}
-					set_planet_flag = will_have_giga
-					while = {
-						count = 3
-						create_army = {
-							owner = event_target:orbitting_emissary.owner
-							type = acot_garrison_army_giga
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_STELLARITE_EXTRA_GIGA
-							}
-						}
-					}
-					set_planet_flag = will_have_stellarite_giga
-					while = {
-						count = 6
-						create_army = {
-							owner = event_target:orbitting_emissary.owner
-							type = acot_garrison_army_giga
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_PHANON_EXTRA_GIGA
-							}
-						}
-					}
-					set_planet_flag = will_have_phanon_giga
-					while = {
-						count = 10
-						create_army = {
-							owner = event_target:orbitting_emissary.owner
-							type = acot_garrison_army_giga
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = ACOT_EMISSART_EXTRA_LAB
-							}
-						}
-					}
-					set_planet_flag = will_have_lab
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_STELLARITE_EXTRA_LAB
-							}
-						}
-					}
-					set_planet_flag = will_have_stellarite_lab
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_PHANON_EXTRA_LAB
-							}
-						}
-					}
-					set_planet_flag = will_have_phanon_lab
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = ACOT_EMISSART_EXTRA_SKYSHIELD
-							}
-						}
-					}
-					set_planet_flag = will_have_psg
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_STELLARITE_EXTRA_SKYSHIELD
-							}
-						}
-					}
-					set_planet_flag = will_have_stellarite_psg
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_PHANON_EXTRA_SKYSHIELD
-							}
-						}
-					}
-					set_planet_flag = will_have_phanon_psg
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = ACOT_EMISSART_EXTRA_NEXUS
-							}
-						}
-					}
-					set_planet_flag = will_have_nexus
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_STELLARITE_EXTRA_NEXUS
-							}
-						}
-					}
-					set_planet_flag = will_have_stellarite_nexus
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_PHANON_EXTRA_NEXUS
-							}
-						}
-					}
-					set_planet_flag = will_have_phanon_nexus
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = ACOT_EMISSART_EXTRA_ASSEMBLY
-							}
-						}
-					}
-					set_planet_flag = will_have_assembly
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_STELLARITE_EXTRA_ASSEMBLY
-							}
-						}
-					}
-					set_planet_flag = will_have_stellarite_assembly
-				}
-				if = {
-					limit = {
-						event_target:orbitting_emissary = {
-							any_owned_ship = {
-								has_component = AOT_EMISSARY_PHANON_EXTRA_ASSEMBLY
-							}
-						}
-					}
-					set_planet_flag = will_have_phanon_assembly
-				}
-				event_target:orbitting_emissary = {
-					delete_fleet = this
-				}
-			}
 		}
 	}
 	ai_weight = {
@@ -1918,18 +800,18 @@ decision_acot_gigafortress_deploy = {
 		}
 	}
 	prerequisites = {
-		tech_giga_fortress
+		tech_acot_giga_fortress
 	}
 	enactment_time = 30
 	allow = {
 	}
 	potential = {
 		OR = {
-			has_building = building_giga_fortress
-			has_building = building_giga_fortress_fe
-			has_building = building_giga_fortress_array
-			has_building = building_giga_fortress_lab
-			has_building = building_giga_fortress_obelisk
+			has_building = building_acot_giga_fortress
+			has_building = building_fe_giga_fortress
+			has_building = building_acot_giga_fortress_array
+			has_building = building_acot_giga_fortress_lab
+			has_building = building_acot_giga_fortress_obelisk
 			has_building = building_phanon_giga_fortress_array
 			has_building = building_phanon_giga_fortress_obelisk
 			has_building = building_phanon_giga_fortress_lab
@@ -1957,26 +839,26 @@ decision_acot_gigafortress_deploy = {
 			}
 			switch = {
 				trigger = has_building
-				building_giga_fortress = {
-					remove_building = building_giga_fortress
+				building_acot_giga_fortress = {
+					remove_building = building_acot_giga_fortress
 				}
-				building_giga_fortress_fe = {
-					remove_building = building_giga_fortress_fe
+				building_fe_giga_fortress = {
+					remove_building = building_fe_giga_fortress
 				}
-				building_giga_fortress_array = {
-					remove_building = building_giga_fortress_array
+				building_acot_giga_fortress_array = {
+					remove_building = building_acot_giga_fortress_array
 					last_created_fleet = {
 						set_fleet_flag = acot_gigafortress_array
 					}
 				}
-				building_giga_fortress_lab = {
-					remove_building = building_giga_fortress_lab
+				building_acot_giga_fortress_lab = {
+					remove_building = building_acot_giga_fortress_lab
 					last_created_fleet = {
 						set_fleet_flag = acot_gigafortress_lab
 					}
 				}
-				building_giga_fortress_obelisk = {
-					remove_building = building_giga_fortress_obelisk
+				building_acot_giga_fortress_obelisk = {
+					remove_building = building_acot_giga_fortress_obelisk
 					last_created_fleet = {
 						set_fleet_flag = acot_gigafortress_obelisk
 					}
@@ -2051,22 +933,22 @@ decision_acot_gigafortress_land = {
 		exists = owner
 		is_a_habitable_planet_megastructure = yes
 		NOR = {
-			has_building = building_giga_fortress
-			has_building = building_giga_fortress_fe
-			has_building = building_giga_fortress_array
-			has_building = building_giga_fortress_lab
-			has_building = building_giga_fortress_obelisk
+			has_building = building_acot_giga_fortress
+			has_building = building_fe_giga_fortress
+			has_building = building_acot_giga_fortress_array
+			has_building = building_acot_giga_fortress_lab
+			has_building = building_acot_giga_fortress_obelisk
 			has_building = building_phanon_giga_fortress_array
 			has_building = building_phanon_giga_fortress_obelisk
 			has_building = building_phanon_giga_fortress_lab
 			has_building = building_stellarite_giga_fortress_array
 			has_building = building_stellarite_giga_fortress_obelisk
 			has_building = building_stellarite_giga_fortress_lab
-			has_building_construction = building_giga_fortress
-			has_building_construction = building_giga_fortress_fe
-			has_building_construction = building_giga_fortress_array
-			has_building_construction = building_giga_fortress_lab
-			has_building_construction = building_giga_fortress_obelisk
+			has_building_construction = building_acot_giga_fortress
+			has_building_construction = building_fe_giga_fortress
+			has_building_construction = building_acot_giga_fortress_array
+			has_building_construction = building_acot_giga_fortress_lab
+			has_building_construction = building_acot_giga_fortress_obelisk
 			has_building_construction = building_phanon_giga_fortress_array
 			has_building_construction = building_phanon_giga_fortress_obelisk
 			has_building_construction = building_phanon_giga_fortress_lab
@@ -2094,17 +976,17 @@ decision_acot_gigafortress_land = {
 					trigger = has_fleet_flag
 					acot_gigafortress_array = {
 						prev = {
-							add_building = building_giga_fortress_array
+							add_building = building_acot_giga_fortress_array
 						}
 					}
 					acot_gigafortress_obelisk = {
 						prev = {
-							add_building = building_giga_fortress_obelisk
+							add_building = building_acot_giga_fortress_obelisk
 						}
 					}
 					acot_gigafortress_lab = {
 						prev = {
-							add_building = building_giga_fortress_lab
+							add_building = building_acot_giga_fortress_lab
 						}
 					}
 					aot_phanon_gigafortress_array = {
