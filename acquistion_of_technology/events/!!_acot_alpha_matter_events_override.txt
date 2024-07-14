@@ -2,34 +2,62 @@
 namespace = acot_alpha_matter_events
 # ALPHA EXISTENCE
 country_event = {
-	id = acot_alpha_matter_events.1
-	title = acot_alpha_matter_events.1.name
+	id = acot_alpha_matter_events.100
+	title = acot_alpha_matter_events.100.name
 	is_triggered_only = yes
 	desc = {
 		trigger = {
 			merg_is_default_empire = yes
 		}
-		text = acot_alpha_matter_events.1.a.desc
+		text = acot_alpha_matter_events.100.a.desc
 	}
 	desc = {
 		trigger = {
-			OR = {
-				is_zofe_country = yes
-				has_country_flag = ascended_empire				# Player ascended Dawn of Ascension style
-			}
+			is_country_type = ascended_empire
 		}
-		text = acot_alpha_matter_events.1.b.desc
+		text = acot_alpha_matter_events.100.b.desc
 	}
 	picture = GFX_evt_ancient_records
-	show_sound = event_mystery
-	# trigger = {
-	# 	is_valid_alpha_research_candidate = yes
-	# }
+	show_sound = event_acot_empire_event_start
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+		OR = {
+			merg_is_default_empire = yes
+			AND = {
+				is_country_type = ascended_empire
+				resource_stockpile_compare = {
+					resource = unity
+					value >= 50000
+				}
+			}
+		}
+		is_valid_alpha_research_candidate = yes
+		OR  = {
+			has_fallen_empire_building = yes
+			has_fallen_empire_ship = yes
+			has_origin = origin_acot_oracle_start
+			any_neighbor_country = {
+				is_fallen_empire = yes
+			}
+			any_owned_planet = {
+				OR ={
+					has_planet_flag = fallen_empire_world
+					is_planet_class = pc_dark_fractured
+					is_planet_class = pc_dark_fractured_ae
+				}
+			}
+			has_precursor_tech = yes
+		}
+		text = acot_alpha_matter_events.100.b.desc
+	}
+
 	option = {
-		name = acot_alpha_matter_events.1.a
+		name = acot_alpha_matter_events.100.a
 		trigger = {
 			merg_is_default_empire = yes
-			is_ai = no
 		}
 		set_country_flag = hear_precursor_rumor
 		set_country_flag = allow_databank_steal
@@ -37,65 +65,25 @@ country_event = {
 			event_chain = acot_alpha_tech_chain
 		}
 		capital_scope = {
-			if = {
-				limit = {
-					any_country = {
-						is_fallen_empire = yes
-					}
-				}
-				create_point_of_interest = {
-					id = acot_alpha_research.1
-					name = "acot_databank_attack_fe"
-					desc = "acot_databank_attack_fe_desc"
-					event_chain = acot_alpha_tech_chain
-					location = this
-				}
-				create_point_of_interest = {
-					id = acot_alpha_research.2
-					name = "acot_databank_trick_fe"
-					desc = "acot_databank_trick_fe_desc"
-					event_chain = acot_alpha_tech_chain
-					location = this
-				}
-			}
-			if = {
-				limit = {
-					any_country = {
-						has_country_flag = curator_enclave_country
-					}
-					owner = {
-						NOR = {
-							is_homicidal = yes
-							has_country_flag = attacked_curators
-						}
-					}
-				}
-				create_point_of_interest = {
-					id = acot_alpha_research.4
-					name = "acot_databank_ask_curator"
-					desc = "acot_databank_ask_curator_desc"
-					event_chain = acot_alpha_tech_chain
-					location = this
-				}
-			}
-			create_point_of_interest = {
-				id = acot_alpha_research.5
-				name = "acot_databank_self_assembly"
-				desc = "acot_databank_self_assembly_desc"
-				event_chain = acot_alpha_tech_chain
-				location = this
-			}
+			create_fe_alpha_matter_poi = yes
+			#create_pmc_alpha_matter_poi = yes
+			create_curator_alpha_matter_poi = yes
+			create_self_alpha_matter_poi = yes
+		}
+		hidden_country_self_event_call = {
+			EVENT_ID = acot_alpha_matter_events.101
+			DAYS = 1440
+			RANDOM = 360
 		}
 	}
+
 	option = {
-		name = acot_alpha_matter_events.1.b
-		custom_tooltip = acot_alpha_matter_events.1.b.explain
-		set_country_flag = hear_precursor_rumor
+		name = acot_alpha_matter_events.100.b
+		custom_tooltip = acot_alpha_matter_events.100.b.explain
 		trigger = {
 			NOT = {
 				merg_is_default_empire = yes
 			}
-			is_ai = no
 		}
 		allow = {
 			resource_stockpile_compare = {
@@ -111,63 +99,18 @@ country_event = {
 			event_chain = acot_alpha_tech_chain
 		}
 		capital_scope = {
-			if = {
-				limit = {
-					any_country = {
-						is_fallen_empire = yes
-					}
-				}
-				create_point_of_interest = {
-					id = acot_alpha_research.1
-					name = "acot_databank_attack_fe"
-					desc = "acot_databank_attack_fe_desc"
-					event_chain = acot_alpha_tech_chain
-					location = this
-				}
-				create_point_of_interest = {
-					id = acot_alpha_research.2
-					name = "acot_databank_trick_fe"
-					desc = "acot_databank_trick_fe_desc"
-					event_chain = acot_alpha_tech_chain
-					location = this
-				}
-			}
-			create_point_of_interest = {
-				id = acot_alpha_research.3
-				name = "acot_databank_ask_pmc"
-				desc = "acot_databank_ask_pmc_desc"
-				event_chain = acot_alpha_tech_chain
-				location = this
-			}
-			if = {
-				limit = {
-					any_country = {
-						has_country_flag = curator_enclave_country
-					}
-					owner = {
-						NOR = {
-							is_homicidal = yes
-							has_country_flag = attacked_curators
-						}
-					}
-				}
-				create_point_of_interest = {
-					id = acot_alpha_research.4
-					name = "acot_databank_ask_curator"
-					desc = "acot_databank_ask_curator_desc"
-					event_chain = acot_alpha_tech_chain
-					location = this
-				}
-			}
-			create_point_of_interest = {
-				id = acot_alpha_research.4
-				name = "acot_databank_self_assembly"
-				desc = "acot_databank_self_assembly_desc"
-				event_chain = acot_alpha_tech_chain
-				location = this
-			}
+			create_fe_alpha_matter_poi = yes
+			create_pmc_alpha_matter_poi = yes
+			create_curator_alpha_matter_poi = yes
+			create_self_alpha_matter_poi = yes
+		}
+		hidden_country_self_event_call = {
+			EVENT_ID = acot_alpha_matter_events.101
+			DAYS = 1440
+			RANDOM = 360
 		}
 	}
+
 	option = {
 		name = acot_alpha_matter_events.1.bb
 		custom_tooltip = acot_alpha_matter_events.1.bb_desc
@@ -191,7 +134,7 @@ country_event = {
 		}
 		hidden_effect = {
 			country_event = {
-				id = acot_alpha_matter_events.11
+				id = acot_alpha_matter_events.21
 			}
 		}
 		if = {
@@ -219,7 +162,7 @@ country_event = {
 		hidden_effect = {
 			# Queue the event back up
 			country_event = {
-				id = aot_tech_events.11
+				id = aot_tech_events.9001
 				days = 360
 			}
 		}
@@ -238,92 +181,20 @@ country_event = {
 		hidden_effect = {
 			# Queue the event back up
 			country_event = {
-				id = aot_tech_events.11
+				id = aot_tech_events.9001
 				days = 360
 			}
 		}
 	}
 	option = {
-		name = acot_alpha_matter_events.1.c
-		trigger = {
-			NOT = {
-				merg_is_default_empire = yes
-			}
-			is_ai = no
-		}
+		name = acot_alpha_matter_events.100.c
 	}
-	### AI IS TOO STUPID TO RELIABLY UNDERSTAND COMPLEX SYSTEMS WITHOUT BUNCH OF  CODES
-	option = {
-		name = EXCELLENT
-		trigger = {
-			is_ai = yes
-			NOT = {
-				has_global_flag = acot_ai_simple_event_forbidden
-			}
-		}
-		add_research_option = tech_precursor_design
-		add_research_option = tech_dark_matter_power_core_ae
-		set_country_flag = learned_dm_alpha_existence
-	}
-	### AI IS TOO STUPID TO RELIABLY UNDERSTAND COMPLEX SYSTEMS WITHOUT BUNCH OF  CODES
-	option = {
-		name = EXCELLENT
-		trigger = {
-			is_ai = yes
-			has_global_flag = acot_ai_simple_event_forbidden
-		}
-		set_country_flag = allow_databank_steal
-		begin_event_chain = {
-			event_chain = acot_alpha_tech_chain
-		}
-		random_list = {
-			60 = {
-				modifier = {
-					factor = 0
-					NOT = {
-						has_established_contact = event_target:curator_enclave_country
-					}
-				}
-				modifier = {
-					factor = 0
-					resource_stockpile_compare = {
-						resource = energy
-						value <= 100000
-					}
-					resource_stockpile_compare = {
-						resource = acot_sr_dark_energy
-						value <= 10000
-					}
-					resource_stockpile_compare = {
-						resource = sr_dark_matter
-						value <= 10000
-					}
-				}
-				add_resource = {
-					energy = -100000
-					sr_dark_matter = -10000
-					acot_sr_dark_energy = -10000
-				}
-				hidden_effect = {
-					country_event = {
-						id = acot_alpha_matter_events.1040
-						days = 30
-					}
-				}
-			}
-			40 = {
-				country_event = {
-					id = acot_alpha_matter_events.9000
-					days = 5
-				}
-			}
-		}
-	}
+
 }
 
 # SELECT LEADER FOR ALPHA DIY PROJECT
 country_event = {
-	id = acot_alpha_matter_events.11
+	id = acot_alpha_matter_events.21
 	title = alpha_diy_events.3.name
 	desc = alpha_diy_events.3.desc
 	picture = GFX_evt_physics_research
@@ -362,7 +233,7 @@ country_event = {
 
 # ALPHA PROJECT FAILED DOCTOR FREEMAN, TRY AGAIN!
 country_event = {
-	id = acot_alpha_matter_events.7
+	id = acot_alpha_matter_events.22
 	title = alpha_diy_events.4.name
 	desc = alpha_diy_events.4.desc.a
 	desc = alpha_diy_events.4.desc.b
@@ -401,14 +272,14 @@ country_event = {
 		add_resource = {
 			energy = -50000
 		}
-		name = stellarite_events.4.a
+		name = stellarite_events.5.a
 		trigger = {
 			any_owned_leader = {
 				leader_class = scientist
 			}
 		}
 		country_event = {
-			id = acot_alpha_matter_events.11
+			id = acot_alpha_matter_events.21
 		}
 	}
 	option = {
@@ -516,9 +387,10 @@ country_event = {
 	immediate = {
 		end_event_chain = acot_alpha_tech_chain
 		remove_country_flag = hear_precursor_rumor
-		set_timed_country_flag = {
-			flag = block_precursor_rumor
-			years = 5
+		# Queue the event back up
+		country_event = {
+			id = aot_tech_events.9001
+			days = 1800
 		}
 	}
 }

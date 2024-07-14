@@ -2,135 +2,84 @@ namespace = aot_tech_events
 # ------------------------------------------------------------------------------------------------ #
 #			Fire technology acquisition events whenever a certain tech gets researched			#
 # ------------------------------------------------------------------------------------------------ #
+# ------------------------------------------------------------------------------------------------ #
+#                                            Start Alpha                                           #
+# ------------------------------------------------------------------------------------------------ #
+# We don't need the initial starter event in this case since ACoT brings its own.
+country_event = {
+	id = aot_tech_events.9001
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		AoT_RecurringMTTH = {
+			RECURRING_ID = aot_tech_events.9001
+			TARGET_EVENT = acot_alpha_matter_events.100
+			END_TRIGGER = "is_valid_alpha_research_candidate = yes"
+			RECURRING_TIME = 360
+		}
+	}
+}
 
 # ------------------------------------------------------------------------------------------------ #
-#											Start Alpha										   #
-# ------------------------------------------------------------------------------------------------ #
-country_event = {
-	id = aot_tech_events.1
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		if = {
-			limit = {
-				last_increased_tech = tech_dark_matter_power_core_dm # Start the whole thing once the Dark Energy Reactor got researched.
-			}
-			# 2 years with a margin of 1 year less for it to appear.
-			country_event = {
-				id = aot_tech_events.11
-				days = 720
-				random = 360
-			}
-		}
-	}
-}
-# -------------- Check if all requirements are reached if not check once every year -------------- #
-country_event = {
-	id = aot_tech_events.11
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		if = {
-			limit = {
-				is_valid_alpha_research_candidate = yes # Is the actual criteria fulfilled? If not check again in a year.
-			}
-			country_event = {
-				id = acot_alpha_matter_events.1
-			}
-		}
-		else = {
-			country_event = {
-				id = aot_tech_events.11
-				days = 360
-			}
-		}
-	}
-}
-# ------------------------------------------------------------------------------------------------ #
-#										   Start Phanon										   #
+#                                           Start Phanon                                           #
 # ------------------------------------------------------------------------------------------------ #
 country_event = {
 	id = aot_tech_events.2
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		if = {
-			limit = {
-				last_increased_tech = tech_dark_matter_power_core_ae # Start the whole thing once the Dark Energy Reactor got researched.
-			}
-			# 20 years with a margin of 1 year less for it to appear.
-			country_event = {
-				id = aot_tech_events.22
-				days = 7200
-				random = 360
-			}
+		AoT_MTTH = {
+			START_TRIGGER = "last_increased_tech = tech_dark_matter_power_core_ae"
+			FOLLOW_UP_ID = aot_tech_events.9002
+			INITAL_TIME = 7200
+			INITAL_RANDOM = 360
 		}
 	}
 }
-# -------------- Check if all requirements are reached if not check once every year -------------- #
+
 country_event = {
-	id = aot_tech_events.22
+	id = aot_tech_events.9002
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		if = {
-			limit = {
-				is_viable_phanon_research_candidate = yes # Is the actual criteria fulfilled? If not check again in a year.
-			}
-			country_event = {
-				id = aot_phanon_events.1
-			}
-		}
-		else = {
-			country_event = {
-				id = aot_tech_events.22
-				days = 360
-			}
+		AoT_RecurringMTTH = {
+			RECURRING_ID = aot_tech_events.9002
+			TARGET_EVENT = aot_phanon_events.1
+			END_TRIGGER = "is_viable_phanon_research_candidate = yes"
+			RECURRING_TIME = 360
 		}
 	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
-#										 Start Stellarite										 #
+#                                         Start Stellarite                                         #
 # ------------------------------------------------------------------------------------------------ #
 country_event = {
 	id = aot_tech_events.3
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		if = {
-			limit = {
-				last_increased_tech = tech_dark_matter_power_core_re # Start the whole thing once the Runic Power Reactor got researched.
-			}
-			# 25 years with a margin of 5 years less for it to appear.
-			country_event = {
-				id = aot_tech_events.33
-				days = 9000
-				random = 1800
-			}
+		AoT_MTTH = {
+			START_TRIGGER = "last_increased_tech = tech_dark_matter_power_core_re"
+			FOLLOW_UP_ID = aot_tech_events.9003
+			INITAL_TIME = 9000
+			INITAL_RANDOM = 1800
 		}
 	}
 }
-# -------------- Check if all requirements are reached if not check once every year -------------- #
+
 country_event = {
-	id = aot_tech_events.33
+	id = aot_tech_events.9003
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = {
-		if = {
-			limit = {
-				is_viable_sigma_research_candidate = yes # Is the actual criteria fulfilled? If not check again in a year.
-			}
-			country_event = {
-				id = stellarite_events.1
-			}
-		}
-		else = {
-			country_event = {
-				id = aot_tech_events.33
-				days = 360
-			}
+		AoT_RecurringMTTH = {
+			RECURRING_ID = aot_tech_events.9003
+			TARGET_EVENT = stellarite_events.1
+			END_TRIGGER = "is_viable_sigma_research_candidate = yes"
+			RECURRING_TIME = 360
 		}
 	}
 }
+
 # ------------------------------------------------------------------------------------------------ #
