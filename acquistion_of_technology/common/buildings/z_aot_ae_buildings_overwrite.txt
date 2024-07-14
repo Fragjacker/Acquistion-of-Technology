@@ -1364,6 +1364,124 @@ building_acot_ae_stronghold = {
 	}
 }
 
+building_acot_giga_fortress = {
+	base_buildtime = 900
+	add_to_first_building_slot = yes
+	can_be_ruined = no
+	can_be_disabled = no
+	can_demolish = no
+	can_build = no
+	position_priority = 100
+	planetary_ftl_inhibitor = yes
+	category = army
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			has_technology = tech_acot_giga_fortress
+		}
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
+	upgrades = {
+		building_acot_giga_fortress_array
+		building_acot_giga_fortress_lab
+		building_acot_giga_fortress_obelisk
+	}
+	planet_modifier = {
+		planet_amenities_add = 20
+		planet_housing_add = 20
+		planet_stability_add = 5		# Mod Pack; reduced from 50
+	}
+	army_modifier = {
+		army_defense_morale_mult = 1
+		army_defense_health_mult = 0.5
+		army_defense_damage_mult = 0.5
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				is_gestalt = no
+			}
+		}
+		job_acot_giga_fortress_operator_add = 1		# Mod Pack; reduced from 3
+		job_acot_enforcer_add = 2		# Mod Pack; reduced from 10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				is_gestalt = yes
+			}
+		}
+		job_acot_giga_fortress_operator_drone_add = 1		# Mod Pack: reduced from 3
+		job_acot_enforcer_drone_add = 1		# Mod Pack; reduced from 10
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				is_fallen_empire = yes
+			}
+		}
+		job_acot_giga_fortress_operator_ancient_add = 3
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+			unity = 50
+			food = 50
+		}
+		cost = {
+			trigger = {
+				planet_owner = {
+					is_ai = no
+				}
+			}
+			minerals = 15000
+			influence = 50
+			sr_dark_matter = 200
+			acot_sr_dark_energy = 200
+		}
+		cost = {
+			trigger = {
+				planet_owner = {
+					is_ai = yes
+				}
+			}
+			minerals = 1250
+			influence = 25
+			sr_dark_matter = 100
+			acot_sr_dark_energy = 100
+		}
+		upkeep = {
+			# Mod Pack; added upkeep
+			energy = 10
+			volatile_motes = 1
+			exotic_gases = 1
+			rare_crystals = 1
+			sr_dark_matter = 2
+			acot_sr_dark_energy = 2
+		}
+	}
+	prerequisites = {
+		tech_acot_giga_fortress
+	}
+	ai_weight = {
+		weight = 15000
+		modifier = {
+			factor = 0
+			planet_owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value <= 3
+				}
+			}
+		}
+	}
+}
+
 building_acot_giga_fortress_array = {
 	base_buildtime = 1200
 	add_to_first_building_slot = yes
@@ -1376,7 +1494,7 @@ building_acot_giga_fortress_array = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			has_technology = tech_giga_fortress
+			has_technology = tech_acot_giga_fortress
 		}
 		NOT = {
 			has_modifier = resort_colony
@@ -1523,7 +1641,7 @@ building_acot_giga_fortress_lab = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			has_technology = tech_giga_fortress
+			has_technology = tech_acot_giga_fortress
 		}
 		NOT = {
 			has_modifier = resort_colony
@@ -1673,7 +1791,7 @@ building_acot_giga_fortress_obelisk = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			has_technology = tech_giga_fortress
+			has_technology = tech_acot_giga_fortress
 		}
 		NOT = {
 			has_modifier = resort_colony
