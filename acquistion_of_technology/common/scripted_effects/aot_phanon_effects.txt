@@ -1427,3 +1427,28 @@ check_production_core_state = {
 		value = var_dm_production_core_energy
 	}
 }
+
+exterminatus_planet_effect_phanon_digitizer = {
+	if = {
+		limit = {
+			exists = planet_owner
+		}
+		planet_owner = {
+			country_event = {
+				id = aot_phanon_digitizer_events.2
+				scopes = {
+					from = prev
+				}
+			}
+		}
+	}
+	from = {
+		country_event = {
+			id = aot_phanon_digitizer_events.3
+			scopes = {
+				from = prev
+			}
+		}
+	}
+	change_pc = pc_acot_pmc_data_planet
+}
