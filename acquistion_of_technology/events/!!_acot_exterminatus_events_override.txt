@@ -23,138 +23,11 @@ planet_event = {
 			is_memeable_ringworld = yes
 		}
 	}
+
 	immediate = {
-		add_threat = {
-			who = from
-			amount = 10
-		}
-		every_owned_pop = {
-			kill_pop = yes
-		}
-		remove_all_buildings = yes
-		reroll_deposits = yes
-		clear_planet_modifiers = yes
-		if = {
-			limit = {
-				NOT = {
-					has_global_flag = fractured_happened
-				}
-			}
-			set_global_flag = fractured_happened
-		}
-		### FRACTURE
-		planet_owner = {
-			add_static_war_exhaustion = {
-				attacker = from.fleet.owner
-				location = root
-				value_for_planet_destruction = 1
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_global_flag = fractured_happened
-					}
-				}
-				country_event = {
-					id = acot_exterminatus_event.101
-				}
-			}
-		}
-		from = {
-			if = {
-				limit = {
-					NOT = {
-						has_global_flag = fractured_happened
-					}
-				}
-				country_event = {
-					id = acot_exterminatus_event.102
-				}
-			}
-		}
-		every_playable_country = {
-			limit = {
-				NOR = {
-					is_same_empire = root.owner
-					is_same_value = from
-					has_global_flag = fractured_happened
-				}
-			}
-			country_event = {
-				id = acot_exterminatus_event.103
-			}
-		}
-		if = {
-			limit = {
-				is_memeable_planet = yes
-			}
-			random_list = {
-				10 = {
-					modifier = {
-						factor = 0
-						check_variable = {
-							which = acot_planet_damage
-							value >= 10
-						}
-					}
-					change_pc = pc_dark_fractured
-					planet_event = {
-						id = acot_exterminatus_event.1000
-					}
-				}
-				40 = {
-					modifier = {
-						factor = 0
-						check_variable = {
-							which = acot_planet_damage
-							value >= 30
-						}
-					}
-					change_pc = pc_dark_fractured_unstable
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						check_variable = {
-							which = acot_planet_damage
-							value <= 10
-						}
-					}
-					change_pc = pc_dark_fractured_ae
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						check_variable = {
-							which = acot_planet_damage
-							value <= 30
-						}
-					}
-					modifier = {
-						factor = 2
-						check_variable = {
-							which = acot_planet_damage
-							value >= 60
-						}
-					}
-					change_pc = pc_dark_fractured_ae_unstable
-				}
-			}
-		}
-		else_if = {
-			limit = {
-				is_memeable_ringworld = yes
-			}
-			change_pc = pc_ringworld_habitable_damaged
-			spawn_ringworld_cracker_effect = yes
-			reset_planet = yes
-		}
-		else_if = {
-			limit = {
-				is_memeable_space_habitat = yes
-			}
-			spawn_habitat_cracker_effect = yes
-			remove_planet = yes
+		inline_script = {
+			script = exterminatus_standard_effect
+			EFFECT = exterminatus_planet_effect
 		}
 	}
 }
@@ -169,16 +42,10 @@ planet_event = {
 		OR = {
 			has_orbital_bombardment_stance = exterminatus
 			has_orbital_bombardment_stance = punishment
+			has_orbital_bombardment_stance = final_destionation
 		}
-		NOT = {
+		NOR = {
 			has_global_flag = acot_exterminatus_forbidden
-		}
-		from = {
-			NOT = {
-				has_technology = tech_bombardment_ae_final
-			}
-		}
-		NOT = {
 			has_planet_flag = bombardment_cooldown
 		}
 		OR = {
@@ -188,689 +55,97 @@ planet_event = {
 		}
 	}
 	immediate = {
-		set_timed_planet_flag = {
-			flag = bombardment_cooldown
-			months = 1
-		}
-		random_list = {
-			80 = {
-				modifier = {
-					factor = 0
-					num_pops <= 5
-				}
-				if = {
-					limit = {
-						has_building = building_dark_energy_psg
-					}
-					while = {
-						count = 3
-						random_owned_pop = {
-							kill_pop = yes
-						}
-					}
-				}
-				if = {
-					limit = {
-						NOR = {
-							has_building = building_dark_energy_psg
-							has_building = building_ae_dark_energy_psg
-						}
-					}
-					while = {
-						count = 5
-						random_owned_pop = {
-							kill_pop = yes
-						}
-					}
-				}
-			}
-			20 = {
-				modifier = {
-					factor = 0.75
-					has_building = building_planetary_shield_generator
-				}
-				modifier = {
-					factor = 0.25
-					has_building = building_dark_energy_psg
-				}
-				modifier = {
-					factor = 0.15
-					has_building = building_ae_dark_energy_psg
-				}
-				modifier = {
-					factor = 0.05
-					has_building = building_phanon_psg
-				}
-				modifier = {
-					factor = 0
-					has_building = building_stellarite_psg
-				}
-				modifier = {
-					factor = 4
-					check_variable = {
-						which = acot_planet_damage
-						value >= 40
-					}
-				}
-				if = {
-					limit = {
-						NOT = {
-							has_global_flag = fractured_happened
-						}
-					}
-					set_global_flag = fractured_happened
-				}
-				add_threat = {
-					who = from
-					amount = 10
-				}
-				planet_owner = {
-					add_static_war_exhaustion = {
-						attacker = from.fleet.owner
-						location = root
-						value_for_planet_destruction = 1
-					}
-					if = {
-						limit = {
-							NOT = {
-								has_global_flag = fractured_happened
-							}
-						}
-						country_event = {
-							id = acot_exterminatus_event.101
-						}
-					}
-				}
-				from = {
-					if = {
-						limit = {
-							NOT = {
-								has_global_flag = fractured_happened
-							}
-						}
-						country_event = {
-							id = acot_exterminatus_event.102
-						}
-					}
-				}
-				every_playable_country = {
-					limit = {
-						NOR = {
-							is_same_empire = root.owner
-							is_same_value = from
-							has_global_flag = fractured_happened
-						}
-					}
-					country_event = {
-						id = acot_exterminatus_event.103
-					}
-				}
-				every_owned_pop = {
-					kill_pop = yes
-				}
-				remove_all_buildings = yes
-				destroy_colony = yes
-				clear_planet_modifiers = yes
-				if = {
-					limit = {
-						is_memeable_planet = yes
-					}
-					random_list = {
-						10 = {
-							modifier = {
-								factor = 0
-								check_variable = {
-									which = acot_planet_damage
-									value >= 10
-								}
-							}
-							change_pc = pc_dark_fractured_unstable
-						}
-						40 = {
-							modifier = {
-								factor = 0
-								check_variable = {
-									which = acot_planet_damage
-									value >= 30
-								}
-							}
-							change_pc = pc_dark_fractured_unstable
-						}
-						25 = {
-							modifier = {
-								factor = 0
-								check_variable = {
-									which = acot_planet_damage
-									value <= 10
-								}
-							}
-							change_pc = pc_dark_fractured_ae
-						}
-						25 = {
-							modifier = {
-								factor = 0
-								check_variable = {
-									which = acot_planet_damage
-									value <= 30
-								}
-							}
-							modifier = {
-								factor = 2
-								check_variable = {
-									which = acot_planet_damage
-									value >= 60
-								}
-							}
-							change_pc = pc_dark_fractured_ae_unstable
-						}
-					}
-				}
-				else_if = {
-					limit = {
-						is_memeable_ringworld = yes
-					}
-					change_pc = pc_ringworld_habitable_damaged
-					spawn_ringworld_cracker_effect = yes
-					reset_planet = yes
-				}
-				else_if = {
-					limit = {
-						is_memeable_space_habitat = yes
-					}
-					spawn_habitat_cracker_effect = yes
-					remove_planet = yes
-				}
-			}
-		}
-	}
-}
-
-# Colony Rolls Chance to being MEMED
-planet_event = {
-	id = acot_exterminatus_event.100
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		planet_devastation >= 100
-		has_orbital_bombardment_stance = exterminatus
-		NOT = {
-			has_global_flag = acot_exterminatus_forbidden
-		}
-		from = {
-			NOT = {
-				has_technology = tech_bombardment_ae_final
-			}
-		}
-		NOT = {
-			has_planet_flag = bombardment_cooldown
-		}
-		OR = {
-			is_memeable_planet = yes
-			is_memeable_space_habitat = yes
-			is_memeable_ringworld = yes
-		}
-	}
-	immediate = {
-		set_timed_planet_flag = {
-			flag = bombardment_cooldown
-			months = 1
-		}
-		random_list = {
-			80 = {
-				modifier = {
-					factor = 0
-					num_pops <= 5
-				}
-				if = {
-					limit = {
-						has_building = building_dark_energy_psg
-					}
-					while = {
-						count = 3
-						random_owned_pop = {
-							kill_pop = yes
-						}
-					}
-				}
-				if = {
-					limit = {
-						has_building = building_ae_dark_energy_psg
-					}
-					while = {
-						count = 5
-						random_owned_pop = {
-							kill_pop = yes
-						}
-					}
-				}
-				if = {
-					limit = {
-						NOR = {
-							has_building = building_dark_energy_psg
-							has_building = building_ae_dark_energy_psg
-							has_building = building_phanon_psg
-							has_building = building_stellarite_psg
-						}
-					}
-					while = {
-						count = 20
-						random_owned_pop = {
-							kill_pop = yes
-						}
-					}
-				}
-			}
-			20 = {
-				modifier = {
-					factor = 0.5
-					has_building = building_dark_energy_psg
-				}
-				modifier = {
-					factor = 0.25
-					has_building = building_ae_dark_energy_psg
-				}
-				modifier = {
-					factor = 0.05
-					has_building = building_phanon_psg
-				}
-				modifier = {
-					factor = 0
-					has_building = building_stellarite_psg
-				}
-				if = {
-					limit = {
-						NOT = {
-							has_global_flag = fractured_happened
-						}
-					}
-					set_global_flag = fractured_happened
-				}
-				add_threat = {
-					who = from
-					amount = 10
-				}
-				planet_owner = {
-					add_static_war_exhaustion = {
-						attacker = from.fleet.owner
-						location = root
-						value_for_planet_destruction = 1
-					}
-					if = {
-						limit = {
-							NOT = {
-								has_global_flag = fractured_happened
-							}
-						}
-						country_event = {
-							id = acot_exterminatus_event.101
-						}
-					}
-				}
-				from = {
-					if = {
-						limit = {
-							NOT = {
-								has_global_flag = fractured_happened
-							}
-						}
-						country_event = {
-							id = acot_exterminatus_event.102
-						}
-					}
-				}
-				every_playable_country = {
-					limit = {
-						NOR = {
-							is_same_empire = root.owner
-							is_same_value = from
-							has_global_flag = fractured_happened
-						}
-					}
-					country_event = {
-						id = acot_exterminatus_event.103
-					}
-				}
-				every_owned_pop = {
-					kill_pop = yes
-				}
-				remove_all_buildings = yes
-				destroy_colony = yes
-				clear_planet_modifiers = yes
-				if = {
-					limit = {
-						is_memeable_planet = yes
-					}
-					random_list = {
-						10 = {
-							modifier = {
-								factor = 0
-								check_variable = {
-									which = acot_planet_damage
-									value >= 10
-								}
-							}
-							change_pc = pc_dark_fractured_unstable
-						}
-						40 = {
-							modifier = {
-								factor = 0
-								check_variable = {
-									which = acot_planet_damage
-									value >= 30
-								}
-							}
-							change_pc = pc_dark_fractured_unstable
-						}
-						25 = {
-							modifier = {
-								factor = 0
-								check_variable = {
-									which = acot_planet_damage
-									value <= 10
-								}
-							}
-							change_pc = pc_dark_fractured_ae
-						}
-						25 = {
-							modifier = {
-								factor = 0
-								check_variable = {
-									which = acot_planet_damage
-									value <= 30
-								}
-							}
-							modifier = {
-								factor = 2
-								check_variable = {
-									which = acot_planet_damage
-									value >= 60
-								}
-							}
-							change_pc = pc_dark_fractured_ae_unstable
-						}
-					}
-				}
-				else_if = {
-					limit = {
-						is_memeable_ringworld = yes
-					}
-					change_pc = pc_ringworld_habitable_damaged
-					spawn_ringworld_cracker_effect = yes
-					reset_planet = yes
-				}
-				else_if = {
-					limit = {
-						is_memeable_space_habitat = yes
-					}
-					spawn_habitat_cracker_effect = yes
-					remove_planet = yes
-				}
-			}
-		}
-	}
-}
-
-# Planet is turned into meme after Final Destination
-planet_event = {
-	id = acot_exterminatus_event.4
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = {
-			has_global_flag = acot_exterminatus_forbidden
-		}
-		from = {
-			owner = {
-				OR = {
-					is_primitive = yes
-					is_playable_country = yes
-				}
-			}
-		}
-		has_orbital_bombardment_stance = final_destionation
-		planet_devastation >= 100
-		OR = {
-			is_memeable_planet = yes
-			is_memeable_space_habitat = yes
-			is_memeable_ringworld = yes
-		}
-		planet_owner = {
-			OR = {
-				merg_is_default_empire = yes
-				is_fallen_empire = yes
-				is_country_type = awakened_marauders
-				is_playable_country = yes
-			}
-		}
-	}
-	immediate = {
-		save_event_target_as = showered_planet
-		add_threat = {
-			who = from
-			amount = 10
-		}
-		every_owned_pop = {
-			kill_pop = yes
-		}
-		planet_owner = {
-			add_static_war_exhaustion = {
-				attacker = from.fleet.owner
-				location = root
-				value_for_planet_destruction = 1
-			}
-			country_event = {
-				id = acot_exterminatus_event.6
-			}
-		}
-		from = {
-			country_event = {
-				id = acot_exterminatus_event.5
-			}
-		}
-		remove_all_buildings = yes
-		reroll_deposits = yes
-		destroy_colony = yes
-		reset_planet = yes
-		clear_planet_modifiers = yes
 		if = {
 			limit = {
-				is_memeable_planet = yes
+				has_orbital_bombardment_stance = final_destionation
 			}
-			change_pc = pc_shattered
+			inline_script = {
+				script = exterminatus_standard_effect
+				EFFECT = exterminatus_planet_effect_final_destination
+			}
+		}
+		else_if = {
+			limit = {
+				from = {
+					has_technology = tech_bombardment_ae_final
+				}
+			}
+			set_timed_planet_flag = {
+				flag = bombardment_cooldown months = 2
+			}
+			inline_script = {
+				script = exterminatus_standard_effect
+				EFFECT = exterminatus_planet_effect_ae
+			}
 		}
 		else = {
-			if = {
-				limit = {
-					is_memeable_ringworld = yes
-				}
-				change_pc = pc_ringworld_habitable_damaged
-				spawn_ringworld_cracker_effect = yes
+			set_timed_planet_flag = {
+				flag = bombardment_cooldown months = 1
 			}
-			if = {
-				limit = {
-					is_memeable_space_habitat = yes
-				}
-				spawn_habitat_cracker_effect = yes
-				remove_planet = yes
-			}
-		}
-	}
-}
-
-# Planet is turned into meme after Final Destination
-planet_event = {
-	id = acot_exterminatus_event.7
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = {
-			has_global_flag = acot_exterminatus_forbidden
-		}
-		OR = {
-			has_orbital_bombardment_stance = exterminatus
-			has_orbital_bombardment_stance = punishment
-		}
-		planet_devastation >= 100
-		OR = {
-			is_memeable_planet = yes
-			is_memeable_space_habitat = yes
-			is_memeable_ringworld = yes
-		}
-		owner = {
-			is_playable_country = yes
-		}
-		from = {
-			has_technology = tech_bombardment_ae_final
-		}
-		NOT = {
-			has_planet_flag = bombardment_cooldown
-		}
-	}
-	immediate = {
-		set_timed_planet_flag = {
-			flag = bombardment_cooldown
-			months = 2
-		}
-		save_event_target_as = showered_planet
-		from = {
-			country_event = {
-				id = acot_exterminatus_event.8
-			}
-		}
-	}
-}
-
-# CAnnihilatust
-country_event = {
-	id = acot_exterminatus_event.8
-	title = "exterminatus_event.8.name"
-	picture = GFX_evt_planet_beam
-	desc = exterminatus_event.8.desc
-	show_sound = event_super_explosion
-	location = event_target:showered_planet
-	is_triggered_only = yes
-	option = {
-		name = exterminatus_event.8.a
-		custom_tooltip = exterminatus_event.8.a.explain
-		hidden_effect = {
-			event_target:showered_planet = {
-				set_timed_planet_flag = {
-					flag = bombardment_cooldown
-					years = 1
-				}
-			}
-		}
-	}
-	option = {
-		name = exterminatus_event.8.b
-		custom_tooltip = exterminatus_event.8.b.explain
-		hidden_effect = {
-			event_target:showered_planet = {
-				add_threat = {
-					who = from
-					amount = 10
-				}
-				every_owned_pop = {
-					kill_pop = yes
-				}
-				planet_owner = {
-					add_static_war_exhaustion = {
-						attacker = from.fleet.owner
-						location = event_target:showered_planet
-						value_for_planet_destruction = 1
-					}
-					country_event = {
-						id = acot_exterminatus_event.101
-					}
-				}
-				country_event = {
-					id = acot_exterminatus_event.102
-				}
-				remove_all_buildings = yes
-				reroll_deposits = yes
-				destroy_colony = yes
-				clear_planet_modifiers = yes
-				if = {
-					limit = {
-						is_memeable_planet = yes
-					}
-					change_pc = pc_dark_fractured_unstable
-				}
-				else = {
-					if = {
-						limit = {
-							is_memeable_ringworld = yes
-						}
-						spawn_ringworld_cracker_effect = yes
-						change_pc = pc_ringworld_habitable_damaged
+			random_list = {
+				80 = {
+					modifier = {
+						factor = 0
+						num_pops <= 5
 					}
 					if = {
 						limit = {
-							is_memeable_space_habitat = yes
+							has_building = building_acot_dm_psg
 						}
-						spawn_habitat_cracker_effect = yes
-						remove_planet = yes
+						while = {
+							count = 3
+							random_owned_pop = {
+								kill_pop = yes
+							}
+						}
 					}
-				}
-			}
-		}
-	}
-	option = {
-		name = exterminatus_event.8.c
-		custom_tooltip = exterminatus_event.8.c.explain
-		hidden_effect = {
-			event_target:showered_planet = {
-				add_threat = {
-					who = from
-					amount = 10
-				}
-				every_owned_pop = {
-					kill_pop = yes
-				}
-				planet_owner = {
-					add_static_war_exhaustion = {
-						attacker = from.fleet.owner
-						location = event_target:showered_planet
-						value_for_planet_destruction = 1
-					}
-					country_event = {
-						id = acot_exterminatus_event.101
-					}
-				}
-				country_event = {
-					id = acot_exterminatus_event.102
-				}
-				remove_all_buildings = yes
-				reroll_deposits = yes
-				destroy_colony = yes
-				reset_planet = yes
-				clear_planet_modifiers = yes
-				remove_modifier = "natural_beauty"
-				remove_modifier = "acot_modifier_ascended_city"
-				remove_modifier = "atmospheric_aphrodisiac"
-				remove_modifier = "atmospheric_hallucinogen"
-				remove_modifier = "lush_planet"
-				remove_modifier = "dangerous_wildlife"
-				if = {
-					limit = {
-						is_memeable_planet = yes
-					}
-					change_pc = pc_dark_fractured_ae
-				}
-				else = {
-					if = {
+					else_if = {
 						limit = {
-							is_memeable_ringworld = yes
+							NOR = {
+								has_building = building_acot_ae_psg
+								has_building = building_phanon_psg
+								has_building = building_stellarite_psg
+							}
 						}
-						spawn_ringworld_cracker_effect = yes
-						change_pc = pc_ringworld_habitable_damaged
+						while = {
+							count = 5
+							random_owned_pop = {
+								kill_pop = yes
+							}
+						}
 					}
-					if = {
-						limit = {
-							is_memeable_space_habitat = yes
+				}
+				20 = {
+					modifier = {
+						factor = 0.75
+						has_building = building_planetary_shield_generator
+					}
+					modifier = {
+						factor = 0.25
+						has_building = building_acot_dm_psg
+					}
+					modifier = {
+						factor = 0
+						has_building = building_acot_ae_psg
+					}
+					modifier = {
+						factor = 0
+						has_building = building_phanon_psg
+					}
+					modifier = {
+						factor = 0
+						has_building = building_stellarite_psg
+					}
+					modifier = {
+						factor = 4
+						check_variable = {
+							which = acot_planet_damage
+							value >= 40
 						}
-						spawn_habitat_cracker_effect = yes
-						remove_planet = yes
+					}
+					inline_script = {
+						script = exterminatus_standard_effect
+						EFFECT = exterminatus_planet_effect
 					}
 				}
 			}
