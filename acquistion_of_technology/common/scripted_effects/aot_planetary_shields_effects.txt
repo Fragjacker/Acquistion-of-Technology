@@ -2,11 +2,11 @@
 #								   Create Planetary Shields Code								  #
 # ------------------------------------------------------------------------------------------------ #
 create_aot_planetary_shield = {
-	remove_planet_flag = has_$FLAG$_01
+	remove_planet_flag = has_$TIER$_planetary_shield_01
 	solar_system = {
 		every_system_ambient_object = {
 			limit = {
-				has_ambient_object_flag = $FLAG$_01
+				has_ambient_object_flag = $TIER$_planetary_shield_01
 			}
 			destroy_ambient_object = this
 		}
@@ -20,92 +20,85 @@ create_aot_planetary_shield = {
 				limit = {
 					is_planet_class = pc_phanon_macripp
 				}
-				create_ambient_object = { type = $FLAG$_ps_macripp location = this }
+				create_ambient_object = { type = $TIER$_planetary_shield_ps_macripp location = this }
 			}
 			else_if = {
 				limit = {
 					is_moon = no
 				}
-				switch = {
-					trigger = planet_size
-					1 = { create_ambient_object = { type = $FLAG$_ps_1 location = this } }
-					2 = { create_ambient_object = { type = $FLAG$_ps_2 location = this } }
-					3 = { create_ambient_object = { type = $FLAG$_ps_3 location = this } }
-					4 = { create_ambient_object = { type = $FLAG$_ps_4 location = this } }
-					5 = { create_ambient_object = { type = $FLAG$_ps_5 location = this } }
-					6 = { create_ambient_object = { type = $FLAG$_ps_6 location = this } }
-					7 = { create_ambient_object = { type = $FLAG$_ps_7 location = this } }
-					8 = { create_ambient_object = { type = $FLAG$_ps_8 location = this } }
-					9 = { create_ambient_object = { type = $FLAG$_ps_9 location = this } }
-					10 = { create_ambient_object = { type = $FLAG$_ps_10 location = this } }
-					11 = { create_ambient_object = { type = $FLAG$_ps_11 location = this } }
-					12 = { create_ambient_object = { type = $FLAG$_ps_12 location = this } }
-					13 = { create_ambient_object = { type = $FLAG$_ps_13 location = this } }
-					14 = { create_ambient_object = { type = $FLAG$_ps_14 location = this } }
-					15 = { create_ambient_object = { type = $FLAG$_ps_15 location = this } }
-					16 = { create_ambient_object = { type = $FLAG$_ps_16 location = this } }
-					17 = { create_ambient_object = { type = $FLAG$_ps_17 location = this } }
-					18 = { create_ambient_object = { type = $FLAG$_ps_18 location = this } }
-					19 = { create_ambient_object = { type = $FLAG$_ps_19 location = this } }
-					20 = { create_ambient_object = { type = $FLAG$_ps_20 location = this } }
-					21 = { create_ambient_object = { type = $FLAG$_ps_21 location = this } }
-					22 = { create_ambient_object = { type = $FLAG$_ps_22 location = this } }
-					23 = { create_ambient_object = { type = $FLAG$_ps_23 location = this } }
-					24 = { create_ambient_object = { type = $FLAG$_ps_24 location = this } }
-					25 = { create_ambient_object = { type = $FLAG$_ps_25 location = this } }
-					26 = { create_ambient_object = { type = $FLAG$_ps_26 location = this } }
-					27 = { create_ambient_object = { type = $FLAG$_ps_27 location = this } }
-					28 = { create_ambient_object = { type = $FLAG$_ps_28 location = this } }
-					29 = { create_ambient_object = { type = $FLAG$_ps_29 location = this } }
-					30 = { create_ambient_object = { type = $FLAG$_ps_30 location = this } }
-					31 = { create_ambient_object = { type = $FLAG$_ps_31 location = this } }
-					32 = { create_ambient_object = { type = $FLAG$_ps_32 location = this } }
-					33 = { create_ambient_object = { type = $FLAG$_ps_33 location = this } }
-					34 = { create_ambient_object = { type = $FLAG$_ps_34 location = this } }
-					35 = { create_ambient_object = { type = $FLAG$_ps_35 location = this } }
-					36 = { create_ambient_object = { type = $FLAG$_ps_36 location = this } }
-					37 = { create_ambient_object = { type = $FLAG$_ps_37 location = this } }
-					38 = { create_ambient_object = { type = $FLAG$_ps_38 location = this } }
-					39 = { create_ambient_object = { type = $FLAG$_ps_39 location = this } }
-					40 = { create_ambient_object = { type = $FLAG$_ps_40 location = this } }
-					41 = { create_ambient_object = { type = $FLAG$_ps_41 location = this } }
-					42 = { create_ambient_object = { type = $FLAG$_ps_42 location = this } }
-					43 = { create_ambient_object = { type = $FLAG$_ps_43 location = this } }
-					44 = { create_ambient_object = { type = $FLAG$_ps_44 location = this } }
-					45 = { create_ambient_object = { type = $FLAG$_ps_45 location = this } }
-					46 = { create_ambient_object = { type = $FLAG$_ps_46 location = this } }
-					47 = { create_ambient_object = { type = $FLAG$_ps_47 location = this } }
-					48 = { create_ambient_object = { type = $FLAG$_ps_48 location = this } }
-					49 = { create_ambient_object = { type = $FLAG$_ps_49 location = this } }
-					50 = { create_ambient_object = { type = $FLAG$_ps_50 location = this } }
+				planetary_shield_switch_statement = {
+					TYPE = planetary_shield
+					TIER = $TIER$
 				}
 			}
 			else = {
-				switch = {
-					trigger = planet_size
-					10 <= { create_ambient_object = { type = $FLAG$_ps_7 location = this } }
-					11 = { create_ambient_object = { type = $FLAG$_ps_8 location = this } }
-					12 = { create_ambient_object = { type = $FLAG$_ps_8 location = this } }
-					13 = { create_ambient_object = { type = $FLAG$_ps_9 location = this } }
-					14 = { create_ambient_object = { type = $FLAG$_ps_9 location = this } }
-					15 = { create_ambient_object = { type = $FLAG$_ps_10 location = this } }
-					16 = { create_ambient_object = { type = $FLAG$_ps_11 location = this } }
-					17 = { create_ambient_object = { type = $FLAG$_ps_12 location = this } }
-					18 = { create_ambient_object = { type = $FLAG$_ps_12 location = this } }
-					19 = { create_ambient_object = { type = $FLAG$_ps_13 location = this } }
-					20 = { create_ambient_object = { type = $FLAG$_ps_14 location = this } }
-					21 = { create_ambient_object = { type = $FLAG$_ps_15 location = this } }
-					22 = { create_ambient_object = { type = $FLAG$_ps_16 location = this } }
-					23 = { create_ambient_object = { type = $FLAG$_ps_16 location = this } }
-					24 = { create_ambient_object = { type = $FLAG$_ps_17 location = this } }
-					25 = { create_ambient_object = { type = $FLAG$_ps_17 location = this } }
+				planetary_shield_switch_statement = {
+					TYPE = moon_shield
+					TIER = $TIER$
 				}
 			}
 			last_created_ambient_object = {
 				set_location = prev
-				set_ambient_object_flag = $FLAG$_01
+				set_ambient_object_flag = $TIER$_planetary_shield_01
 			}
-			set_planet_flag = has_$FLAG$_01
+			set_planet_flag = has_$TIER$_planetary_shield_01
 		}
 	}
+}
+
+planetary_shield_switch_statement = {
+	switch = {
+		trigger = planet_size
+		1 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_1 location = this } }
+		2 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_2 location = this } }
+		3 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_3 location = this } }
+		4 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_4 location = this } }
+		5 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_5 location = this } }
+		6 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_6 location = this } }
+		7 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_7 location = this } }
+		8 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_8 location = this } }
+		9 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_9 location = this } }
+		10 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_10 location = this } }
+		11 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_11 location = this } }
+		12 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_12 location = this } }
+		13 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_13 location = this } }
+		14 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_14 location = this } }
+		15 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_15 location = this } }
+		16 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_16 location = this } }
+		17 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_17 location = this } }
+		18 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_18 location = this } }
+		19 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_19 location = this } }
+		20 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_20 location = this } }
+		21 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_21 location = this } }
+		22 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_22 location = this } }
+		23 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_23 location = this } }
+		24 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_24 location = this } }
+		25 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_25 location = this } }
+		26 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_26 location = this } }
+		27 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_27 location = this } }
+		28 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_28 location = this } }
+		29 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_29 location = this } }
+		30 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_30 location = this } }
+		31 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_31 location = this } }
+		32 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_32 location = this } }
+		33 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_33 location = this } }
+		34 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_34 location = this } }
+		35 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_35 location = this } }
+		36 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_36 location = this } }
+		37 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_37 location = this } }
+		38 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_38 location = this } }
+		39 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_39 location = this } }
+		40 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_40 location = this } }
+		41 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_41 location = this } }
+		42 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_42 location = this } }
+		43 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_43 location = this } }
+		44 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_44 location = this } }
+		45 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_45 location = this } }
+		46 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_46 location = this } }
+		47 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_47 location = this } }
+		48 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_48 location = this } }
+		49 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_49 location = this } }
+		50 = { create_ambient_object = { type = $TIER$_$TYPE$_ps_50 location = this } }
+	}
+
 }
