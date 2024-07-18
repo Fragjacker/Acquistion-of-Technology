@@ -1,117 +1,6 @@
 ############ DARK MATTER EVENTS
 namespace = acot_ships
 # Terraform choice
-country_event = {
-	id = acot_ships.90
-	title = acot_ships.90.name
-	desc = acot_ships.90.desc
-	picture = GFX_acot_emissary_invasion
-	show_sound = event_laboratory_sound
-	is_triggered_only = yes
-	immediate = {
-	}
-	option = {
-		name = "acot_ships.90.a"
-		custom_tooltip = "acot_ships.90.a.tooltip"
-		allow = {
-			event_target:terraforming_planet = {
-				solar_system = {
-					custom_tooltip = {
-						fail_text = "requires_no_black_hole_neutron_star_pulsar"
-						NOR = {
-							is_star_class = sc_black_hole
-							is_star_class = sc_neutron_star
-							is_star_class = sc_pulsar
-						}
-					}
-				}
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_ships.91
-			}
-		}
-	}
-	option = {
-		name = "acot_ships.90.b"
-		custom_tooltip = "acot_ships.90.b.tooltip"
-		allow = {
-			OR = {
-				has_ascension_perk = ap_world_shaper
-				has_ascension_perk = ap_machine_worlds
-				has_ascension_perk = ap_arcology_project
-				has_ascension_perk = ap_hive_worlds
-				has_technology = tech_tomb_world_adaption
-				has_technology = tech_acot_colonize_fractured
-				has_technology = tech_acot_create_enigmatic_world
-			}
-		}
-		trigger = {
-			event_target:terraforming_emissary = {
-				any_owned_ship = {
-					OR = {
-						has_component = EMISSARY_ALPHA_COMPUTER
-						has_component = EMISSARY_PHANON_COMPUTER
-						has_component = EMISSARY_SIGMA_COMPUTER
-						has_component = EMISSARY_OMEGA_COMPUTER
-					}
-				}
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_ships.92
-			}
-		}
-	}
-	option = {
-		name = "acot_ships.90.c"
-		custom_tooltip = "acot_ships.90.c.tooltip"
-		hidden_effect = {
-			country_event = {
-				id = acot_ships.93
-			}
-		}
-	}
-	option = {
-		name = "acot_ships.90.d"
-		trigger = {
-			event_target:terraforming_emissary = {
-				any_owned_ship = {
-					NOR = {
-						has_component = EMISSARY_SIGMA_COMPUTER
-						has_component = EMISSARY_OMEGA_COMPUTER
-					}
-				}
-			}
-		}
-		hidden_effect = {
-		}
-		default_hide_option = yes
-	}
-	option = {
-		name = "acot_ships.90.d"
-		custom_tooltip = "acot_ships.90.d.tooltip"
-		trigger = {
-			event_target:terraforming_emissary = {
-				any_owned_ship = {
-					OR = {
-						has_component = EMISSARY_SIGMA_COMPUTER
-						has_component = EMISSARY_OMEGA_COMPUTER
-					}
-				}
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_ships.94
-			}
-		}
-		default_hide_option = yes
-	}
-}
-
 planet_event = {
 	id = acot_ships.10
 	hide_window = yes
@@ -268,11 +157,11 @@ planet_event = {
 				while = {
 					count = 5
 					create_pop = {
-						species = owner_main_species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
-			### ALPHA	
+			### ALPHA
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
@@ -284,11 +173,11 @@ planet_event = {
 				while = {
 					count = 10
 					create_pop = {
-						species = owner_main_species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
-			#### PHANON	
+			#### PHANON
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
@@ -300,11 +189,11 @@ planet_event = {
 				while = {
 					count = 15
 					create_pop = {
-						species = owner_main_species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
-			#### SUGNA	
+			#### SUGNA
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
@@ -316,7 +205,7 @@ planet_event = {
 				while = {
 					count = 20
 					create_pop = {
-						species = owner_main_species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
@@ -332,7 +221,7 @@ planet_event = {
 				while = {
 					count = 25
 					create_pop = {
-						species = owner_main_species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
@@ -348,7 +237,7 @@ planet_event = {
 				while = {
 					count = 10
 					create_pop = {
-						species = owner_main_species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
@@ -380,8 +269,8 @@ planet_event = {
 							has_component = ACOT_EMISSART_EXTRA_GIGA
 						}
 					}
-				}
-				add_building = building_giga_fortress
+				 }
+				 add_building = building_acot_giga_fortress
 			}
 			# LABS
 			if = {
@@ -391,8 +280,8 @@ planet_event = {
 							has_component = ACOT_EMISSART_EXTRA_LAB
 						}
 					}
-				}
-				add_building = building_ae_enigmatic_lab
+				 }
+				 add_building = building_acot_ae_enigmatic_lab
 			}
 			if = {
 				limit = {
@@ -442,8 +331,8 @@ planet_event = {
 							has_component = ACOT_EMISSART_EXTRA_SKYSHIELD
 						}
 					}
-				}
-				add_building = building_ae_dark_energy_psg
+				 }
+				 add_building = building_acot_ae_psg
 			}
 			# Synthesizer
 			if = {
@@ -453,8 +342,8 @@ planet_event = {
 							has_component = ACOT_EMISSART_EXTRA_NEXUS
 						}
 					}
-				}
-				add_building = building_ae_dark_matter_synthersizer
+				 }
+				 add_building = building_acot_ae_dark_matter_synthersizer
 			}
 			if = {
 				limit = {
@@ -561,23 +450,24 @@ planet_event = {
 							is_machine_empire = no
 						}
 					}
-					add_building = building_ae_super_assembly
+					add_building = building_acot_ae_super_assembly
 				}
 				if = {
 					limit = {
 						event_target:terraforming_emissary.owner = {
 							is_machine_empire = yes
 						}
-					}
-					add_building = building_ae_super_assembly_machine
-				}
+					 }
+					 add_building = building_acot_ae_super_assembly_machine
+				 }
 			}
 		}
-		############## ATTACK #############################
-		if = {
-			limit = {
-				planet_is_hostile = yes
-			}
+	############## ATTACK #############################
+			if = {
+				limit = {
+					planet_is_hostile = yes
+				}
+				set_planet_flag = acot_emissary_planet_attack
 			### DELTA ###
 			if = {
 				limit = {
@@ -590,33 +480,33 @@ planet_event = {
 				if = {
 					limit = {
 						event_target:terraforming_emissary.owner = {
-							is_machine_empire = no
-						}
-					}
-					while = {
-						count = 10
-						create_army = {
-							owner = event_target:terraforming_emissary.owner
-							type = acot_garrison_army
-							species = owner_main_species
-						}
-					}
-				}
-				if = {
-					limit = {
+							 is_machine_empire = no
+						 }
+					  }
+					  while ={
+						 count = 10
+						 create_army = {
+							 owner = event_target:terraforming_emissary.owner
+							 type = acot_garrison_army
+							 species = event_target:terraforming_emissary.owner_main_species
+						 }
+					 }
+				 }
+				 if = {
+					 limit = {
 						event_target:terraforming_emissary.owner = {
-							is_machine_empire = yes
-						}
-					}
-					while = {
-						count = 10
-						create_army = {
-							owner = event_target:terraforming_emissary.owner
-							type = acot_garrison_army_droid
-							species = owner_main_species
-						}
-					}
-				}
+							 is_machine_empire = yes
+						 }
+					  }
+					  while ={
+						 count = 10
+						 create_army = {
+							 owner = event_target:terraforming_emissary.owner
+							 type = acot_garrison_army_droid
+							 species = event_target:terraforming_emissary.owner_main_species
+						 }
+					 }
+				 }
 			}
 			### ALPHA ###
 			if = {
@@ -630,16 +520,16 @@ planet_event = {
 				if = {
 					limit = {
 						event_target:terraforming_emissary.owner = {
-							is_machine_empire = no
-						}
-					}
-					while = {
-						count = 15
-						create_army = {
-							owner = event_target:terraforming_emissary.owner
-							type = acot_garrison_army
-							species = owner_main_species
-							effect = {
+							 is_machine_empire = no
+						 }
+					  }
+					  while ={
+						 count = 15
+						 create_army = {
+							 owner = event_target:terraforming_emissary.owner
+							 type = acot_garrison_army
+							 species = event_target:terraforming_emissary.owner_main_species
+							 effect = {
 								set_army_flag = acot_emissary_army
 							}
 						}
@@ -656,7 +546,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army_droid
-							species = owner_main_species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -684,7 +574,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army
-							species = owner_main_species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -702,7 +592,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army_droid
-							species = owner_main_species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -730,7 +620,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army
-							species = owner_main_species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -748,7 +638,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army_droid
-							species = owner_main_species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -776,7 +666,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army
-							species = owner_main_species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -794,7 +684,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army_droid
-							species = owner_main_species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -816,7 +706,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army
-						species = from.owner_species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -836,7 +726,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army
-						species = from.owner_species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -856,7 +746,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army
-						species = from.owner_species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -876,7 +766,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_droid
-						species = from.owner_species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -896,7 +786,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_droid
-						species = from.owner_species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -916,7 +806,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_droid
-						species = from.owner_species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -936,7 +826,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_giga
-						species = from.owner_species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -956,7 +846,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_giga
-						species = from.owner_species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -976,7 +866,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_giga
-						species = from.owner_species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
