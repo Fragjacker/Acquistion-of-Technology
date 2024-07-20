@@ -799,93 +799,20 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NANOBOTS = {
 
 can_destroy_planet_with_ACOT_EMISSARY_BEAM = {
 	custom_tooltip = {
-		text = acot_emissary_on_cooldown
-		from = {
-			NOT = {
-				has_fleet_flag = acot_emissary_beam_delay
-			}
-		}
-	}
-	custom_tooltip = {
 		fail_text = is_shielded
 		NOR = {
-			is_blasteable_planet = yes
-			is_planet_class = pc_acot_pmc_vault
+			is_planet_class = pc_shielded
+			is_planet_class = pc_ringworld_shielded
+			is_planet_class = pc_habitat_shielded
 		}
 	}
 	OR = {
 		custom_tooltip = {
-			text = is_not_hostile_cracker
-			OR = {
-				AND = {
-					exists = space_owner
-					space_owner = {
-						OR = {
-							is_at_war_with = from.owner
-							is_country_type = swarm
-							is_country_type = extradimensional
-							is_country_type = extradimensional_2
-							is_country_type = extradimensional_3
-							is_country_type = ai_empire
-						}
-					}
-				}
-				AND = {
-					# colony
-					exists = owner
-					owner = {
-						OR = {
-							is_at_war_with = from.owner
-							is_country_type = swarm
-							is_country_type = extradimensional
-							is_country_type = extradimensional_2
-							is_country_type = extradimensional_3
-							is_country_type = ai_empire
-						}
-					}
-				}
-				AND = {
-					# primitive
-					exists = space_owner
-					exists = owner
-					owner = {
-						is_primitive = yes
-					}
-					space_owner = {
-						OR = {
-							is_at_war_with = from.owner
-							is_country_type = swarm
-							is_country_type = extradimensional
-							is_country_type = extradimensional_2
-							is_country_type = extradimensional_3
-							is_country_type = ai_empire
-						}
-					}
-				}
-			}
-		}
-		custom_tooltip = {
 			text = acot_is_valid_for_emissary_beam
-			OR = {
-				NOT = {
-					exists = space_owner
-				}
-				AND = {
-					exists = space_owner
-					space_owner = {
-						is_same_empire = from.owner
-					}
-				}
-			}
 			is_a_planet = yes
-			is_asteroid = no
-			is_star = no
+			can_destroy_planet_general = yes
+			is_blasteable_planet = yes
 			is_artificial = no
-			NOR = {
-				is_planet_class = pc_gas_giant
-				is_planet_class = pc_asteroid
-				is_artificial = yes
-			}
 		}
 	}
 }
