@@ -10,5 +10,5 @@ dependencies={
 name="Acquisition of Technology"
 picture="thumbnail.png"
 supported_version="3.12.*"
-path="C:/Users/godly/OneDrive/Documents/Paradox Interactive/Stellaris/mod/Acquisition_of_Technology"
+path="/mod/Acquisition_of_Technology"
 remote_file_id="2178603631"
