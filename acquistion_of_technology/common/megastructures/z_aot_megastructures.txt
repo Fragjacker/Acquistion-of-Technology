@@ -4,8 +4,8 @@
 #									   Enigmalith Overrides									   #
 # ------------------------------------------------------------------------------------------------ #
 acot_dark_matter_obelisk_core_portal = {
-	entity = "precursor_dark_obelisk_construction_portal_entity"
-	construction_entity = "precursor_dark_obelisk_construction_portal_entity"
+	entity = "dm_aot_enigmalith_construction_entity"
+	construction_entity = "dm_aot_enigmalith_construction_entity"
 	portrait = "GFX_acot_dark_obelisk_background"
 	prerequisites = {
 		tech_precursor_enigmalith
@@ -18,6 +18,13 @@ acot_dark_matter_obelisk_core_portal = {
 	# Used from script only
 	# upgrade_desc = hide
 	potential = {
+		is_fallen_empire = no
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_existing_similar_mega"
+			acot_has_enigmalith_in_system = no
+		}
 	}
 	placement_rules = {
 		planet_possible = {
@@ -31,9 +38,7 @@ acot_dark_matter_obelisk_core_portal = {
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_anomaly"
-				NOT = {
-					has_anomaly = yes
-				}
+				has_anomaly = no
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_existing_megastructure"
@@ -70,8 +75,8 @@ acot_dark_matter_obelisk_core_portal = {
 	}
 	country_modifier = {
 	}
-	construction_blocks_and_blocked_by = none
-	build_time = 3
+	construction_blocks_and_blocked_by = self_type
+	build_time = 1
 	resources = {
 		category = megastructures
 		cost = {
@@ -83,20 +88,28 @@ acot_dark_matter_obelisk_core_portal = {
 		}
 	}
 	ai_weight = {
-		factor = 10
+		factor = 5
 		modifier = {
-			factor = 0.1
-			starbase = {
-				NOT = {
-					has_starbase_size >= starbase_starfortress
+			factor = 0
+			NOR = {
+				starbase = {
+					NOT = {
+						has_starbase_size >= starbase_starfortress
+					}
+				}
+				any_system_planet = {
+					exists = owner
+					is_owned_by = from
 				}
 			}
 		}
 		modifier = {
-			factor = 0.1
+			factor = 0
 			any_neighbor_system = {
 				exists = owner
-				NOT = { is_owned_by = from }
+				NOT = {
+					is_owned_by = from
+				}
 			}
 		}
 	}
@@ -107,6 +120,7 @@ acot_dark_matter_obelisk_core_portal = {
 	on_build_complete = {
 		fromfrom.planet = {
 			set_planet_flag = has_megastructure
+			set_planet_flag = has_enigmalith
 			if = {
 				limit = {
 					has_orbital_station = yes
@@ -122,91 +136,70 @@ acot_dark_matter_obelisk_core_portal = {
 	}
 }
 
-# Conduit
 acot_dark_matter_obelisk_core = {
 	entity = "dm_aot_enigmalith_entity"
-	construction_entity = "dm_aot_enigmalith_entity"
+	construction_entity = "dm_aot_enigmalith_construction_entity"
 	portrait = "GFX_acot_dark_obelisk_background"
 	prerequisites = {
-		"tech_precursor_enigmalith"
+		tech_precursor_enigmalith
 	}
 	upgrade_from = {
 		acot_dark_matter_obelisk_core_portal
 	}
-	place_entity_on_planet_plane = no
+	place_entity_on_planet_plane = yes
 	entity_offset = {
-		x = 0
-		y = 0
+		x = -20
+		y = -20
 	}
 	# Used from script only
 	# upgrade_desc = hide
 	potential = {
-	}
-	possible = {
-		exists = starbase
-		custom_tooltip = {
-			fail_text = "requires_inside_border"
-			is_inside_border = from
-		}
-	}
-	placement_rules = {
-		planet_possible = {
-			custom_tooltip = {
-				fail_text = "requires_surveyed_planet"
-				is_surveyed = {
-					# Prevent leaking habitability information
-					who = prev.from
-					status = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_anomaly"
-				NOT = {
-					has_anomaly = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_existing_megastructure"
-				# can_build_megastructure_on_planet = yes
-				NOR = {
-					has_planet_flag = has_megastructure
-					is_planet_class = pc_ringworld_habitable_damaged
-					is_planet_class = pc_ringworld_tech
-					is_planet_class = pc_ringworld_tech_damaged
-					is_planet_class = pc_ringworld_seam
-					is_planet_class = pc_ringworld_seam_damaged
-					merg_is_habitat = yes
-					is_aot_habitat = yes
-				}
-			}
-			# Balance for habitats
-			custom_tooltip = {
-				fail_text = "requires_not_minor_planetary_body"
-				NOR = {
-					is_asteroid = yes
-					is_moon = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_not_star"
-				is_star = no
-			}
-		}
-		# Use these for all non-star megastructures
+		is_fallen_empire = no
 	}
 	country_modifier = {
+		country_resource_max_alloys_add = 50000
+		country_resource_max_minerals_add = 50000
+		country_resource_max_energy_add = 50000
 	}
-	construction_blocks_and_blocked_by = none
-	build_time = 720
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 10000
+			}
+		}
+	}
+	build_time = 719
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 30000
 		}
 		upkeep = {
 		}
 		produces = {
 			energy = 50
+			minerals = 50
 			alloys = 50
 		}
 		produces = {
@@ -235,6 +228,7 @@ acot_dark_matter_obelisk_core = {
 				}
 			}
 			energy = 50
+			minerals = 50
 			alloys = 50
 			acot_sr_dark_energy = 25
 			sr_dark_matter = 25
@@ -247,6 +241,7 @@ acot_dark_matter_obelisk_core = {
 				}
 			}
 			energy = 100
+			minerals = 100
 			alloys = 100
 		}
 		produces = {
@@ -257,53 +252,414 @@ acot_dark_matter_obelisk_core = {
 				}
 			}
 			energy = 200
+			minerals = 200
 			alloys = 200
+		}
+	}
+	ai_weight = {
+		factor = 10
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_BUILT
+			localization = message_acot_mega_enigmalith_built
+			days = 20
+			target = fromfrom
+		}
+	}
+}
+
+acot_dark_matter_obelisk_core_advanced = {
+	entity = "dm_aot_enigmalith_advanced_entity"
+	construction_entity = "dm_aot_enigmalith_entity"
+	portrait = "GFX_acot_dark_obelisk_background"
+	prerequisites = {
+		tech_precursor_enigmalith
+	}
+	upgrade_from = {
+		acot_dark_matter_obelisk_core
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		is_fallen_empire = no
+	}
+	country_modifier = {
+		country_resource_max_alloys_add = 100000
+		country_resource_max_minerals_add = 100000
+		country_resource_max_energy_add = 100000
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 10000
+			}
+		}
+	}
+	build_time = 360
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 20000
+			sr_dark_matter = 2000
+			acot_sr_dark_energy = 2000
+		}
+		upkeep = {
+		}
+		produces = {
+			energy = 100
+			minerals = 100
+			alloys = 100
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
+			sr_dark_matter = 25
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
+			acot_sr_dark_energy = 25
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_design
+				}
+			}
+			energy = 100
+			minerals = 100
+			alloys = 100
+			acot_sr_dark_energy = 25
+			sr_dark_matter = 25
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_enigmalith_ae
+				}
+			}
+			energy = 200
+			minerals = 200
+			alloys = 200
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_enigmalith_se
+				}
+			}
+			energy = 400
+			minerals = 400
+			alloys = 400
+		}
+	}
+	ai_weight = {
+		factor = 10
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
+}
+
+acot_dark_matter_obelisk_core_super = {
+	entity = "dm_aot_enigmalith_super_entity"
+	construction_entity = "dm_aot_enigmalith_advanced_entity"
+	portrait = "GFX_acot_dark_obelisk_background"
+	prerequisites = {
+		tech_precursor_enigmalith
+	}
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_advanced
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		is_fallen_empire = no
+	}
+	country_modifier = {
+		country_resource_max_alloys_add = 200000
+		country_resource_max_minerals_add = 200000
+		country_resource_max_energy_add = 200000
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 20000
+			}
+		}
+	}
+	build_time = 720
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			sr_dark_matter = 4000
+			acot_sr_dark_energy = 4000
+		}
+		upkeep = {
+		}
+		produces = {
+			energy = 200
+			minerals = 200
+			alloys = 200
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
+			sr_dark_matter = 25
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
+			acot_sr_dark_energy = 25
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_design
+				}
+			}
+			energy = 200
+			minerals = 200
+			alloys = 200
+			acot_sr_dark_energy = 25
+			sr_dark_matter = 25
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_enigmalith_ae
+				}
+			}
+			energy = 400
+			minerals = 400
+			alloys = 400
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_enigmalith_se
+				}
+			}
+			energy = 800
+			minerals = 800
+			alloys = 800
+		}
+	}
+	ai_weight = {
+		factor = 10
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
+}
+
+###############################################
+acot_dark_matter_obelisk_core_portal_ae = {
+	entity = "ae_aot_enigmalith_construction_entity"
+	construction_entity = "ae_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_ae_background"
+	prerequisites = {
+		tech_precursor_enigmalith_ae
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		is_fallen_empire = no
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_existing_similar_mega"
+			acot_has_enigmalith_in_system = no
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {
+					# Prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				has_anomaly = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				# can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					merg_is_hab_ringworld = yes
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					merg_is_habitat = yes
+				}
+			}
+			# Balance for habitats
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOR = {
+					is_asteroid = yes
+					is_moon = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+		}
+		# Use these for all non-star megastructures
+	}
+	country_modifier = {
+	}
+	construction_blocks_and_blocked_by = self_type
+	build_time = 1
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+		}
+		upkeep = {
 		}
 	}
 	ai_weight = {
 		factor = 10
 		modifier = {
 			factor = 0
-			starbase = {
+			NOR = {
+				starbase = {
+					NOT = {
+						has_starbase_size >= starbase_starfortress
+					}
+				}
+				any_system_planet = {
+					exists = owner
+					is_owned_by = from
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			any_neighbor_system = {
+				exists = owner
 				NOT = {
-					has_starbase_size >= starbase_starfortress
-				}
-			}
-		}
-		# ----------------------- Encourage building this if we have low resources ----------------------- #
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 500
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 500
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value < 250
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = acot_sr_dark_energy
-					value < 250
+					is_owned_by = from
 				}
 			}
 		}
@@ -315,6 +671,7 @@ acot_dark_matter_obelisk_core = {
 	on_build_complete = {
 		fromfrom.planet = {
 			set_planet_flag = has_megastructure
+			set_planet_flag = has_enigmalith
 			if = {
 				limit = {
 					has_orbital_station = yes
@@ -324,6 +681,92 @@ acot_dark_matter_obelisk_core = {
 				}
 			}
 		}
+		fromfrom = {
+			upgrade_megastructure_to = acot_dark_matter_obelisk_core_ae
+		}
+	}
+}
+
+acot_dark_matter_obelisk_core_ae = {
+	entity = "ae_aot_enigmalith_entity"
+	construction_entity = "ae_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_ae_background"
+	prerequisites = {
+		tech_precursor_enigmalith_ae
+	}
+	show_prereqs = yes
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_portal_ae
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		is_fallen_empire = no
+	}
+	construction_blocks_and_blocked_by = self_type
+	country_modifier = {
+		country_resource_max_sr_dark_matter_add = 25000
+		country_resource_max_acot_sr_dark_energy_add = 25000
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_ae
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 10000
+			}
+		}
+	}
+	build_time = 719
+	resources = {
+		category = megastructures
+		cost = {
+		}
+		produces = {
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_enigmalith_se
+				}
+			}
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
 		create_message = {
 			type = ACOT_MEGA_BUILT
 			localization = message_acot_mega_enigmalith_built
@@ -333,173 +776,376 @@ acot_dark_matter_obelisk_core = {
 	}
 }
 
-acot_dark_matter_obelisk_core_ae = {
-	entity = "ae_aot_enigmalith_entity"
+acot_dark_matter_obelisk_core_advanced_ae = {
+	entity = "ae_aot_enigmalith_advanced_entity"
 	construction_entity = "ae_aot_enigmalith_entity"
 	portrait = "GFX_acot_dark_obelisk_ae_background"
 	prerequisites = {
-		"tech_precursor_enigmalith_ae"
+		tech_precursor_enigmalith_ae
 	}
 	upgrade_from = {
-		acot_dark_matter_obelisk_core
+		acot_dark_matter_obelisk_core_ae
 	}
-	place_entity_on_planet_plane = no
+	place_entity_on_planet_plane = yes
 	entity_offset = {
-		x = 0
-		y = 0
+		x = -20
+		y = -20
 	}
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-	}
-	construction_blocks_and_blocked_by = none
+	construction_blocks_and_blocked_by = self_type
 	country_modifier = {
+		country_resource_max_sr_dark_matter_add = 50000
+		country_resource_max_acot_sr_dark_energy_add = 50000
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_ae
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 10000
+			}
+		}
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
+			alloys = 20000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
+		}
+		produces = {
+			sr_dark_matter = 1000
+			acot_sr_dark_energy = 1000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_enigmalith_se
+				}
+			}
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
+}
+
+acot_dark_matter_obelisk_core_super_ae = {
+	entity = "ae_aot_enigmalith_super_entity"
+	construction_entity = "ae_aot_enigmalith_advanced_entity"
+	portrait = "GFX_acot_dark_obelisk_ae_background"
+	prerequisites = {
+		tech_precursor_enigmalith_ae
+	}
+	show_prereqs = yes
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_advanced_ae
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		is_fallen_empire = no
+	}
+	country_modifier = {
+		country_resource_max_sr_dark_matter_add = 100000
+		country_resource_max_acot_sr_dark_energy_add = 100000
+	}
+	construction_blocks_and_blocked_by = self_type
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_ae
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 20000
+			}
+		}
+	}
+	build_time = 360
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			sr_dark_matter = 20000
+			acot_sr_dark_energy = 20000
+		}
+		produces = {
+			sr_dark_matter = 2000
+			acot_sr_dark_energy = 2000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_enigmalith_se
+				}
+			}
+			sr_dark_matter = 1000
+			acot_sr_dark_energy = 1000
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
+}
+
+##############################################
+aot_dark_matter_obelisk_core_portal_pe = {
+	entity = "pe_aot_enigmalith_construction_entity"
+	construction_entity = "pe_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_se_background"
+	prerequisites = {
+		tech_precursor_enigmalith_pe
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		is_fallen_empire = no
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_existing_similar_mega"
+			acot_has_enigmalith_in_system = no
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {
+					# Prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				has_anomaly = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				# can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					merg_is_hab_ringworld = yes
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					merg_is_habitat = yes
+				}
+			}
+			# Balance for habitats
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOR = {
+					is_asteroid = yes
+					is_moon = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+		}
+		# Use these for all non-star megastructures
+	}
+	country_modifier = {
+	}
+	construction_blocks_and_blocked_by = self_type
+	build_time = 1
+	resources = {
+		category = megastructures
+		cost = {
 			alloys = 10000
-			sr_dark_matter = 2500
-			acot_sr_dark_energy = 2500
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+			acot_sr_stellarite = 2500
 		}
 		upkeep = {
-		}
-		produces = {
-			energy = 250
-			alloys = 250
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_mine_dark_matter
-				}
-			}
-			sr_dark_matter = 250
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_mine_dark_energy
-				}
-			}
-			acot_sr_dark_energy = 250
 		}
 	}
 	ai_weight = {
 		factor = 10
 		modifier = {
 			factor = 0
-			starbase = {
+			NOR = {
+				starbase = {
+					NOT = {
+						has_starbase_size >= starbase_starfortress
+					}
+				}
+				any_system_planet = {
+					exists = owner
+					is_owned_by = from
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			any_neighbor_system = {
+				exists = owner
 				NOT = {
-					has_starbase_size >= starbase_starfortress
+					is_owned_by = from
 				}
 			}
 		}
-		# ----------------------- Encourage building this if we have low resources ----------------------- #
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 2500
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = has_enigmalith
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
 				}
 			}
 		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 2500
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value < 2500
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = acot_sr_dark_energy
-					value < 2500
-				}
-			}
+		fromfrom = {
+			upgrade_megastructure_to = aot_dark_matter_obelisk_core_pe
 		}
 	}
 }
 
-acot_dark_matter_obelisk_core_pe = {
+aot_dark_matter_obelisk_core_pe = {
 	entity = "phanon_aot_enigmalith_entity"
-	construction_entity = "phanon_aot_enigmalith_entity"
-	portrait = "GFX_acot_dark_obelisk_background"
-	place_entity_on_planet_plane = no
-	entity_offset = {
-		x = 0
-		y = 0
-	}
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-	}
-	country_modifier = {
-	}
+	construction_entity = "pe_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_se_background"
 	prerequisites = {
 		tech_precursor_enigmalith_pe
 	}
+	show_prereqs = yes
 	upgrade_from = {
-		acot_dark_matter_obelisk_core_ae
+		aot_dark_matter_obelisk_core_portal_pe
 	}
-	construction_blocks_and_blocked_by = none
-	build_time = 360
-	resources = {
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	construction_blocks_and_blocked_by = self_type
+	country_modifier = {
+		country_resource_max_aot_sr_runic_power_add = 10000
+	}
+	dismantle_cost = {
 		category = megastructures
 		cost = {
-			alloys = 10000
-			sr_dark_matter = 20000
-			acot_sr_dark_energy = 20000
-			aot_sr_runic_power = 5000
+			energy = 10000
 		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_se
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 10000
+			}
+		}
+	}
+	build_time = 719
+	resources = {
+		category = megastructures
 		upkeep = {
 		}
 		produces = {
-			energy = 2000
-			alloys = 2000
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_mine_dark_matter
-				}
-			}
-			sr_dark_matter = 2500
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_mine_dark_energy
-				}
-			}
-			acot_sr_dark_energy = 2500
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_dark_matter_power_core_re
-				}
-			}
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
 			aot_sr_runic_power = 500
 		}
 	}
@@ -509,136 +1155,75 @@ acot_dark_matter_obelisk_core_pe = {
 	}
 	on_build_complete = {
 		create_message = {
-			type = ACOT_MEGA_UPGRADED
-			localization = message_acot_mega_enigmalith_upgraded
+			type = ACOT_MEGA_BUILT
+			localization = message_acot_mega_enigmalith_built
 			days = 20
 			target = fromfrom
 		}
 	}
-	ai_weight = {
-		factor = 10
-		modifier = {
-			factor = 0
-			starbase = {
-				NOT = {
-					has_starbase_size >= starbase_starfortress
-				}
-			}
-		}
-		# ----------------------- Encourage building this if we have low resources ----------------------- #
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 5000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 5000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = aot_sr_runic_power
-					value < 1000
-				}
-			}
-		}
-	}
 }
 
-acot_dark_matter_obelisk_core_se = {
-	entity = "sigma_aot_enigmalith_entity"
-	construction_entity = "sigma_aot_enigmalith_entity"
+aot_dark_matter_obelisk_core_advanced_pe = {
+	entity = "phanon_aot_enigmalith_advanced_entity"
+	construction_entity = "phanon_aot_enigmalith_entity"
 	portrait = "GFX_acot_dark_obelisk_se_background"
 	prerequisites = {
-		"tech_precursor_enigmalith_se"
+		tech_precursor_enigmalith_pe
 	}
 	upgrade_from = {
-		acot_dark_matter_obelisk_core_pe
+		aot_dark_matter_obelisk_core_pe
 	}
-	place_entity_on_planet_plane = no
+	place_entity_on_planet_plane = yes
 	entity_offset = {
-		x = 0
-		y = 0
+		x = -20
+		y = -20
 	}
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-	}
-	construction_blocks_and_blocked_by = none
+	construction_blocks_and_blocked_by = self_type
 	country_modifier = {
+		country_resource_max_aot_sr_runic_power_add = 20000
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_se
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 10000
+			}
+		}
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 10000
-			sr_dark_matter = 20000
-			acot_sr_dark_energy = 20000
-			aot_sr_runic_power = 20000
-			acot_sr_stellarite = 10000
-		}
-		upkeep = {
+			alloys = 20000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
+			aot_sr_runic_power = 5000
 		}
 		produces = {
-			energy = 2500
-			alloys = 2500
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_mine_dark_matter
-				}
-			}
-			sr_dark_matter = 2500
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_mine_dark_energy
-				}
-			}
-			acot_sr_dark_energy = 2500
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_dark_matter_power_core_re
-				}
-			}
-			aot_sr_runic_power = 2000
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_dark_matter_power_core_se
-				}
-			}
-			acot_sr_stellarite = 500
-		}
-		# Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_country_flag = omega_tech_researchable
-				}
-			}
-			acot_sr_light_matter = 5
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
+			aot_sr_runic_power = 1000
 		}
 	}
 	on_build_start = {
@@ -653,137 +1238,813 @@ acot_dark_matter_obelisk_core_se = {
 			target = fromfrom
 		}
 	}
-	ai_weight = {
-		factor = 10
-		modifier = {
-			factor = 0
-			starbase = {
-				NOT = {
-					has_starbase_size >= starbase_starfortress
-				}
-			}
-		}
-		# ----------------------- Encourage building this if we have low resources ----------------------- #
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 5000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 5000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = aot_sr_runic_power
-					value < 5000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = acot_sr_stellarite
-					value < 1000
-				}
-			}
-		}
-	}
 }
 
-acot_dark_matter_obelisk_core_oe = {
-	entity = "precursor_dark_obelisk_oe_entity"
-	construction_entity = "precursor_dark_obelisk_oe_entity"
-	portrait = "GFX_acot_dark_obelisk_oe_background"
+aot_dark_matter_obelisk_core_super_pe = {
+	entity = "phanon_aot_enigmalith_super_entity"
+	construction_entity = "phanon_aot_enigmalith_advanced_entity"
+	portrait = "GFX_acot_dark_obelisk_se_background"
 	prerequisites = {
-		tech_precursor_enigmalith_oe
+		tech_precursor_enigmalith_pe
 	}
-	place_entity_on_planet_plane = no
-	entity_offset = {
-		x = 0
-		y = 0
-	}
+	show_prereqs = yes
 	upgrade_from = {
-		acot_dark_matter_obelisk_core_se
+		aot_dark_matter_obelisk_core_advanced_pe
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
 	}
 	# Used from script only
 	# upgrade_desc = hide
 	potential = {
+		is_fallen_empire = no
 	}
-	construction_blocks_and_blocked_by = none
 	country_modifier = {
+		country_resource_max_aot_sr_runic_power_add = 40000
+	}
+	construction_blocks_and_blocked_by = self_type
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_se
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 20000
+			}
+		}
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
-			acot_sr_light_matter = 2500
+			alloys = 40000
+			sr_dark_matter = 20000
+			acot_sr_dark_energy = 20000
+			aot_sr_runic_power = 10000
+		}
+		produces = {
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
+			aot_sr_runic_power = 2000
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
+}
+
+##############################################
+acot_dark_matter_obelisk_core_portal_se = {
+	entity = "se_aot_enigmalith_construction_entity"
+	construction_entity = "se_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_se_background"
+	prerequisites = {
+		tech_precursor_enigmalith_se
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		is_fallen_empire = no
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_existing_similar_mega"
+			acot_has_enigmalith_in_system = no
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {
+					# Prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				has_anomaly = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				# can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					merg_is_hab_ringworld = yes
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					merg_is_habitat = yes
+				}
+			}
+			# Balance for habitats
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOR = {
+					is_asteroid = yes
+					is_moon = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+		}
+		# Use these for all non-star megastructures
+	}
+	country_modifier = {
+	}
+	construction_blocks_and_blocked_by = self_type
+	build_time = 1
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+			aot_sr_runic_power = 5000
+			acot_sr_stellarite = 2500
 		}
 		upkeep = {
 		}
+	}
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOR = {
+				starbase = {
+					NOT = {
+						has_starbase_size >= starbase_starfortress
+					}
+				}
+				any_system_planet = {
+					exists = owner
+					is_owned_by = from
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					is_owned_by = from
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = has_enigmalith
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		fromfrom = {
+			upgrade_megastructure_to = acot_dark_matter_obelisk_core_se
+		}
+	}
+}
+
+acot_dark_matter_obelisk_core_se = {
+	entity = "sigma_aot_enigmalith_entity"
+	construction_entity = "se_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_se_background"
+	prerequisites = {
+		tech_precursor_enigmalith_se
+	}
+	show_prereqs = yes
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_portal_se
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	construction_blocks_and_blocked_by = self_type
+	country_modifier = {
+		country_resource_max_acot_sr_stellarite_add = 10000
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_se
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 10000
+			}
+		}
+	}
+	build_time = 719
+	resources = {
+		category = megastructures
+		upkeep = {
+		}
+		produces = {
+			aot_sr_runic_power = 250
+			acot_sr_stellarite = 500
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_BUILT
+			localization = message_acot_mega_enigmalith_built
+			days = 20
+			target = fromfrom
+		}
+	}
+}
+
+acot_dark_matter_obelisk_core_advanced_se = {
+	entity = "sigma_aot_enigmalith_advanced_entity"
+	construction_entity = "sigma_aot_enigmalith_entity"
+	portrait = "GFX_acot_dark_obelisk_se_background"
+	prerequisites = {
+		tech_precursor_enigmalith_se
+	}
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_se
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	construction_blocks_and_blocked_by = self_type
+	country_modifier = {
+		country_resource_max_acot_sr_stellarite_add = 20000
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_se
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 10000
+			}
+		}
+	}
+	build_time = 360
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 20000
+			aot_sr_runic_power = 10000
+			acot_sr_stellarite = 5000
+		}
+		produces = {
+			aot_sr_runic_power = 250
+			acot_sr_stellarite = 1000
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
+}
+
+acot_dark_matter_obelisk_core_super_se = {
+	entity = "sigma_aot_enigmalith_super_entity"
+	construction_entity = "sigma_aot_enigmalith_advanced_entity"
+	portrait = "GFX_acot_dark_obelisk_se_background"
+	prerequisites = {
+		tech_precursor_enigmalith_se
+	}
+	show_prereqs = yes
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_advanced_se
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		is_fallen_empire = no
+	}
+	country_modifier = {
+		country_resource_max_acot_sr_stellarite_add = 40000
+	}
+	construction_blocks_and_blocked_by = self_type
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 10000
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_se
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+		from = {
+			add_resource = {
+				alloys = 20000
+			}
+		}
+	}
+	build_time = 360
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 20000
+			acot_sr_stellarite = 10000
+		}
+		produces = {
+			aot_sr_runic_power = 250
+			acot_sr_stellarite = 2000
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
+}
+
+##########################
+acot_dark_matter_obelisk_core_portal_oe = {
+	entity = "oe_aot_enigmalith_construction_entity"
+	construction_entity = "oe_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_oe_background"
+	prerequisites = {
+		tech_precursor_enigmalith_oe
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		is_fallen_empire = no
+		is_sbtg_activated = yes
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_no_existing_similar_mega"
+			acot_has_enigmalith_in_system = no
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {
+					# Prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				has_anomaly = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				# can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+					solar_system = {
+						has_star_flag = ring_world_built
+					}
+					merg_is_hab_ringworld = yes
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					merg_is_habitat = yes
+				}
+			}
+			# Balance for habitats
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOR = {
+					is_asteroid = yes
+					is_moon = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+		}
+		# Use these for all non-star megastructures
+	}
+	country_modifier = {
+	}
+	construction_blocks_and_blocked_by = self_type
+	build_time = 1
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			acot_sr_light_matter = 1000
+		}
+		upkeep = {
+		}
+	}
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOR = {
+				starbase = {
+					NOT = {
+						has_starbase_size >= starbase_starfortress
+					}
+				}
+				any_system_planet = {
+					exists = owner
+					is_owned_by = from
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					is_owned_by = from
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = has_enigmalith
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		fromfrom = {
+			upgrade_megastructure_to = acot_dark_matter_obelisk_core_oe
+		}
+	}
+}
+
+acot_dark_matter_obelisk_core_oe = {
+	entity = "omega_aot_enigmalith_entity"
+	construction_entity = "oe_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_oe_background"
+	prerequisites = {
+		tech_precursor_enigmalith_oe
+	}
+	show_prereqs = yes
+	potential = {
+		is_fallen_empire = no
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_portal_oe
+	}
+	construction_blocks_and_blocked_by = self_type
+	country_modifier = {
+		country_resource_max_add = 100000
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_oe
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+	}
+	build_time = 359
+	resources = {
+		category = megastructures
 		produces = {
 			food = 5000
 			consumer_goods = 5000
 			minerals = 5000
 			energy = 5000
 			alloys = 5000
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_mine_dark_matter
-				}
-			}
 			sr_dark_matter = 5000
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_mine_dark_energy
-				}
-			}
 			acot_sr_dark_energy = 5000
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_dark_matter_power_core_re
-				}
-			}
 			aot_sr_runic_power = 5000
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_dark_matter_power_core_se
-				}
-			}
 			acot_sr_stellarite = 5000
 		}
-		# Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_country_flag = omega_tech_researchable
-				}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+		fromfrom = {
+			upgrade_megastructure_to = acot_dark_matter_obelisk_core_oe
+		}
+	}
+}
+
+acot_dark_matter_obelisk_core_advanced_oe = {
+	entity = "omega_aot_enigmalith_advanced_entity"
+	construction_entity = "omega_aot_enigmalith_entity"
+	portrait = "GFX_acot_dark_obelisk_oe_background"
+	prerequisites = {
+		tech_precursor_enigmalith_oe
+	}
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_oe
+	}
+	potential = {
+		is_fallen_empire = no
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	construction_blocks_and_blocked_by = self_type
+	country_modifier = {
+		country_resource_max_add = 200000
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_oe
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
 			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+	}
+	build_time = 180
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			acot_sr_light_matter = 500
+		}
+		produces = {
+			food = 10000
+			consumer_goods = 10000
+			minerals = 10000
+			energy = 10000
+			alloys = 10000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
+			aot_sr_runic_power = 10000
+			acot_sr_stellarite = 10000
+			acot_sr_light_matter = 50
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+		fromfrom = {
+			upgrade_megastructure_to = acot_dark_matter_obelisk_core_super_oe
+		}
+	}
+}
+
+acot_dark_matter_obelisk_core_super_oe = {
+	entity = "omega_aot_enigmalith_super_entity"
+	construction_entity = "omega_aot_enigmalith_advanced_entity"
+	portrait = "GFX_acot_dark_obelisk_oe_background"
+	prerequisites = {
+		tech_precursor_enigmalith_oe
+	}
+	show_prereqs = yes
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_advanced_oe
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = -20
+		y = -20
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		is_fallen_empire = no
+	}
+	country_modifier = {
+		country_resource_max_add = 400000
+	}
+	construction_blocks_and_blocked_by = self_type
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+		}
+	}
+	dismantle_time = 30
+	dismantle_potential = {
+		always = yes
+	}
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_precursor_enigmalith_oe
+		}
+	}
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_planet_flag = has_enigmalith
+			}
+			remove_planet_flag = has_megastructure
+			remove_planet_flag = has_enigmalith
+		}
+	}
+	build_time = 180
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+			acot_sr_light_matter = 250
+		}
+		produces = {
+			food = 20000
+			consumer_goods = 20000
+			minerals = 20000
+			energy = 20000
+			alloys = 20000
+			sr_dark_matter = 20000
+			acot_sr_dark_energy = 20000
+			aot_sr_runic_power = 20000
+			acot_sr_stellarite = 20000
 			acot_sr_light_matter = 100
 		}
 	}
@@ -797,72 +2058,6 @@ acot_dark_matter_obelisk_core_oe = {
 			localization = message_acot_mega_enigmalith_upgraded
 			days = 20
 			target = fromfrom
-		}
-	}
-	ai_weight = {
-		factor = 10
-		modifier = {
-			factor = 0
-			starbase = {
-				NOT = {
-					has_starbase_size >= starbase_starfortress
-				}
-			}
-		}
-		# ----------------------- Encourage building this if we have low resources ----------------------- #
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 10000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 10000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = food
-					value < 10000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = minerals
-					value < 10000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = aot_sr_runic_power
-					value < 10000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = acot_sr_stellarite
-					value < 10000
-				}
-			}
 		}
 	}
 }
@@ -882,10 +2077,22 @@ acot_precursor_citadel_site = {
 	resources = {
 		category = megastructures
 		cost = {
+			trigger = {
+				is_ai = no
+			}
 			alloys = 200000
+			unity = 50000
 			sr_dark_matter = 15000
 			acot_sr_dark_energy = 15000
-			influence = 200
+			influence = 50
+		}
+		cost = {
+			trigger = {
+				is_ai = yes
+			}
+			alloys = 20000
+			sr_dark_matter = 1500
+			acot_sr_dark_energy = 1500
 		}
 		upkeep = {
 		}
@@ -894,10 +2101,10 @@ acot_precursor_citadel_site = {
 	prerequisites = {
 		"tech_precursor_citadel"
 	}
+	potential = {
+		is_fallen_empire = no
+	}
 	possible = {
-		owner = {
-			has_technology = tech_precursor_citadel
-		}
 		exists = starbase
 		custom_tooltip = {
 			fail_text = "requires_inside_border"
@@ -924,9 +2131,11 @@ acot_precursor_citadel_site = {
 				has_megastructure = acot_precursor_phanon_citadel_site
 				has_megastructure = acot_precursor_phanon_citadel_base
 				starbase = {
-					has_starbase_size >= acot_precusor_starbase
-					has_starbase_size >= acot_precusor_sigma_starbase
-					has_starbase_size >= acot_precusor_phanon_starcitadel
+					OR = {
+						has_starbase_size >= acot_precusor_starbase
+						has_starbase_size >= acot_precusor_sigma_starbase
+						has_starbase_size >= acot_precusor_phanon_starbase
+					}
 				}
 			}
 		}
@@ -934,34 +2143,21 @@ acot_precursor_citadel_site = {
 	placement_rules = {
 		planet_possible = {
 			custom_tooltip = {
-				fail_text = "must_build_around_star"
-				is_star = yes
-			}
-			custom_tooltip = {
 				fail_text = "requires_no_anomaly"
-				NOT = {
-					has_anomaly = yes
-				}
+				has_anomaly = no
 			}
 		}
 	}
 	# root = system
 	# from = country	
 	ai_weight = {
-		factor = 10
+		factor = 100
 		modifier = {
 			factor = 0.1
 			starbase = {
 				NOT = {
 					has_starbase_size >= starbase_starfortress
 				}
-			}
-		}
-		modifier = {
-			factor = 0.1
-			any_neighbor_system = {
-				exists = owner
-				NOT = { is_owned_by = from }
 			}
 		}
 	}
@@ -990,9 +2186,20 @@ acot_precursor_sigma_citadel_site = {
 	resources = {
 		category = megastructures
 		cost = {
+			trigger = {
+				is_ai = no
+			}
 			alloys = 200000
+			unity = 50000
 			acot_sr_stellarite = 15000
-			influence = 200
+			influence = 50
+		}
+		cost = {
+			trigger = {
+				is_ai = yes
+			}
+			alloys = 20000
+			acot_sr_stellarite = 1500
 		}
 		upkeep = {
 		}
@@ -1001,10 +2208,10 @@ acot_precursor_sigma_citadel_site = {
 	prerequisites = {
 		"tech_precursor_sigma_citadel"
 	}
+	potential = {
+		is_fallen_empire = no
+	}
 	possible = {
-		owner = {
-			has_technology = tech_precursor_sigma_citadel
-		}
 		exists = starbase
 		custom_tooltip = {
 			fail_text = "requires_inside_border"
@@ -1039,34 +2246,21 @@ acot_precursor_sigma_citadel_site = {
 	placement_rules = {
 		planet_possible = {
 			custom_tooltip = {
-				fail_text = "must_build_around_star"
-				is_star = yes
-			}
-			custom_tooltip = {
 				fail_text = "requires_no_anomaly"
-				NOT = {
-					has_anomaly = yes
-				}
+				has_anomaly = no
 			}
 		}
 	}
 	# root = system
 	# from = country	
 	ai_weight = {
-		factor = 10
+		factor = 200
 		modifier = {
 			factor = 0.1
 			starbase = {
 				NOT = {
 					has_starbase_size >= starbase_starfortress
 				}
-			}
-		}
-		modifier = {
-			factor = 0.1
-			any_neighbor_system = {
-				exists = owner
-				NOT = { is_owned_by = from }
 			}
 		}
 	}
@@ -1099,17 +2293,20 @@ acot_precursor_sigma_citadel_site = {
 
 # PRECURSOR PHANON CITADEL SITE
 acot_precursor_phanon_citadel_site = {
-	entity = "acot_precursor_phanon_starbase_construction_platform_entity"
-	construction_entity = "acot_precursor_phanon_starbase_construction_platform_entity"
+	entity = "precursor_dark_obelisk_construction_portal_entity"
+	construction_entity = "precursor_dark_obelisk_construction_portal_entity"
 	portrait = "GFX_acot_precursor_sigma_station_plans_background"
 	place_entity_on_planet_plane = no
 	# entity_offset = { x = -7 y = -7 }
-	build_time = 720
+	build_time = 1
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 50000
-			influence = 200
+			alloys = 500000
+			unity = 50000
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+			influence = 50
 		}
 		upkeep = {
 		}
@@ -1118,10 +2315,10 @@ acot_precursor_phanon_citadel_site = {
 	prerequisites = {
 		"tech_precursor_phanon_design"
 	}
+	potential = {
+		is_fallen_empire = no
+	}
 	possible = {
-		owner = {
-			has_technology = tech_precursor_citadel
-		}
 		exists = starbase
 		custom_tooltip = {
 			fail_text = "requires_inside_border"
@@ -1134,23 +2331,11 @@ acot_precursor_phanon_citadel_site = {
 				is_ship_size = starbase_starhold
 				is_ship_size = starbase_starfortress
 				is_ship_size = starbase_citadel
+				is_ship_size = acot_fallen_outpost
+				is_ship_size = acot_fallen_starbase
 				is_ship_size = acot_precusor_starbase
 				is_ship_size = acot_precusor_starcitadel
 				is_ship_size = acot_precusor_starfortress
-			}
-		}
-	}
-	placement_rules = {
-		planet_possible = {
-			custom_tooltip = {
-				fail_text = "must_build_around_star"
-				is_star = yes
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_anomaly"
-				NOT = {
-					has_anomaly = yes
-				}
 			}
 		}
 		custom_tooltip = {
@@ -1161,29 +2346,32 @@ acot_precursor_phanon_citadel_site = {
 				has_megastructure = acot_precursor_phanon_citadel_site
 				has_megastructure = acot_precursor_phanon_citadel_base
 				starbase = {
-					has_starbase_size >= acot_precusor_sigma_starbase
-					has_starbase_size >= acot_precusor_phanon_starcitadel
+					OR = {
+						has_starbase_size >= acot_precusor_sigma_starbase
+						has_starbase_size >= acot_precusor_phanon_starbase
+					}
 				}
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				has_anomaly = no
 			}
 		}
 	}
 	# root = system
 	# from = country	
 	ai_weight = {
-		factor = 10
+		factor = 50
 		modifier = {
 			factor = 0.1
 			starbase = {
 				NOT = {
 					has_starbase_size >= starbase_starfortress
 				}
-			}
-		}
-		modifier = {
-			factor = 0.1
-			any_neighbor_system = {
-				exists = owner
-				NOT = { is_owned_by = from }
 			}
 		}
 	}
