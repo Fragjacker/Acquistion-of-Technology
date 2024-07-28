@@ -1613,6 +1613,24 @@ building_acot_dm_clone_vats = {
 			sr_dark_matter = 5
 			acot_sr_dark_energy = 5
 		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = no
+				}
+			}
+			food = 10
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = yes
+				}
+			}
+			minerals = 10
+		}
 	}
 	upgrades = {
 		building_acot_ae_clone_vats
@@ -1633,17 +1651,12 @@ building_acot_dm_hive_evochamber = {
 	base_buildtime = 360
 	base_cap_amount = 1
 	category = pop_assembly
-	show_tech_unlock_if = {
-		planet_owner = {
-			has_genetic_ascension = yes
-		}
-	}
 	potential = {
 		potential_can_have_vats_or_evochamber = yes
 	}
 	inline_script = {
 		script = buildings/clone_vats_and_evochambers
-		POP_GROWTH = 0.25
+		POP_GROWTH = 0.5
 		POP_ASSEMBLY = 6
 		POP_ASSEMBLY_GENETIC_TRADITION = 3
 	}
@@ -1657,7 +1670,7 @@ building_acot_dm_hive_evochamber = {
 			food = 50
 		}
 		cost = {
-			minerals = 250
+			alloys = 250
 			sr_dark_matter = 100
 			acot_sr_dark_energy = 100
 		}
@@ -1688,249 +1701,6 @@ building_acot_dm_hive_evochamber = {
 				has_building = building_acot_ae_hive_evochamber
 			}
 		}
-	}
-}
-
-building_acot_dm_alloy_forge = {
-	base_buildtime = 400
-	category = manufacturing
-	country_modifier = {
-		country_resource_max_alloys_add = 7500
-	}
-	allow = {
-		has_enigmatic_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_hive_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_alloydrone_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_machine_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_alloydrone_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_alloyman_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			planet_metallurgists_alloys_produces_add = 2
-			planet_metallurgists_minerals_upkeep_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_catalytic_empire = yes
-			}
-		}
-		modifier = {
-			planet_metallurgists_alloys_produces_add = 1.75
-			planet_metallurgists_food_upkeep_add = 4
-		}
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			alloys = 20
-		}
-		cost = {
-			minerals = 650
-			sr_dark_matter = 50
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			sr_dark_matter = 2
-		}
-	}
-	prerequisites = {
-		tech_acot_dm_alloy_foundry
-	}
-	ai_weight = {
-		weight = 100000
-		modifier = {
-			factor = 0
-			num_buildings = {
-				type = building_acot_dm_alloy_forge
-				value >= 3
-			}
-		}
-		modifier = {
-			factor = 50
-			planet_owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 5
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 2
-				}
-			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		alloys = 10
-		trigger = {
-			always = yes
-		}
-	}
-	upgrades = {
-		building_acot_ae_alloy_forge
-	}
-}
-
-building_acot_dm_factory = {
-	base_buildtime = 450
-	category = manufacturing
-	country_modifier = {
-		country_resource_max_consumer_goods_add = 7500
-	}
-	allow = {
-		has_enigmatic_capital = yes
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			OR = {
-				is_gestalt = no
-				has_valid_civic = civic_machine_servitor
-			}
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_artisan_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_artisan_add = 2
-		}
-	}
-	planet_modifier = {
-		planet_artisans_consumer_goods_produces_add = 3
-		planet_artisans_minerals_upkeep_add = 3
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_ringworld_output_boost = yes
-		}
-		modifier = {
-			planet_artisans_consumer_goods_produces_add = 2
-			planet_artisans_minerals_upkeep_add = 2
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 600
-			sr_dark_matter = 200
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			consumer_goods = 20
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			sr_dark_matter = 1
-		}
-	}
-	prerequisites = {
-		tech_acot_dm_factory
-	}
-	ai_weight = {
-		weight = 2
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = consumer_goods
-					value < 5
-				}
-				has_monthly_income = {
-					resource = minerals
-					value > 6
-				}
-			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		consumer_goods = 10
-		trigger = {
-			always = yes
-		}
-	}
-	upgrades = {
-		building_acot_ae_factory
 	}
 }
 
@@ -1996,9 +1766,9 @@ building_acot_dm_stronghold = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 400
-			sr_dark_matter = 100
-			acot_sr_dark_energy = 100
+			alloys = 400
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 125
 		}
 		upkeep = {
 			trigger = {
@@ -2010,16 +1780,6 @@ building_acot_dm_stronghold = {
 			}
 			sr_dark_matter = 2
 			acot_sr_dark_energy = 2
-		}
-		upkeep = {
-			trigger = {
-				# Mod Pack: added upkeep
-				planet_owner = {
-					is_ai = no
-				}
-			}
-			energy = 10
-			sr_dark_matter = 2
 		}
 	}
 	upgrades = {
@@ -2037,7 +1797,7 @@ building_acot_dm_stronghold = {
 						value <= 1
 					}
 					num_buildings = {
-						type = building_acot_dm_stronghold
+						type = building_acot_ae_stronghold
 						value <= 1
 					}
 				}
@@ -2150,70 +1910,6 @@ building_giga_fortress_dm = {
 	}
 }
 
-building_dm_ancient_cryo_chamber = {
-	base_buildtime = 400
-	can_demolish = yes
-	category = amenity
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_machine_empire = yes
-			has_technology = tech_acot_dm_ancient_cryo_chamber
-		}
-	}
-	allow = {
-		has_enigmatic_capital = yes
-	}
-	convert_to = {
-		building_acot_dm_mansion
-		building_acot_dm_hive_depot
-	}
-	planet_modifier = {
-		planet_housing_add = 15
-		planet_amenities_add = 15
-		job_acot_entertainer_drone_add = 2
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			unity = 15
-		}
-		cost = {
-			minerals = 550
-			sr_dark_matter = 50
-		}
-		upkeep = {
-			energy = 1
-			acot_sr_dark_energy = 1
-			sr_dark_matter = 1
-		}
-	}
-	prerequisites = {
-		tech_acot_dm_ancient_cryo_chamber
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
-		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			free_housing > 1
-		}
-	}
-	upgrades = {
-		building_acot_ae_ancient_cryo_chamber
-	}
-}
-
 building_acot_dm_psg = {
 	base_buildtime = 600
 	base_cap_amount = 1
@@ -2221,7 +1917,7 @@ building_acot_dm_psg = {
 	category = army
 	allow = {
 		has_enigmatic_capital = yes
-		acot_has_planetary_shield_building = no
+		aot_has_planetary_shield_building = no
 	}
 	planet_modifier = {
 		planet_orbital_bombardment_damage = -0.7
