@@ -889,7 +889,7 @@ ae_dark_energy_man = {
 					is_planet_class = pc_acot_enigmopolis
 				}
 			}
-			acot_sr_dark_energy = 12
+			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
@@ -928,7 +928,7 @@ ae_dark_energy_man = {
 					has_modifier = acot_modifier_supercharged_pylon
 				}
 			}
-			energy = 12
+			energy = 16
 		}
 	}
 	weight = {
@@ -984,7 +984,7 @@ ae_dark_energy_drone = {
 					is_planet_class = pc_acot_enigmopolis
 				}
 			}
-			acot_sr_dark_energy = 12
+			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
@@ -1023,7 +1023,7 @@ ae_dark_energy_drone = {
 					has_modifier = acot_modifier_supercharged_pylon
 				}
 			}
-			energy = 12
+			energy = 16
 		}
 	}
 	weight = {
@@ -1062,7 +1062,7 @@ ae_dark_matter_man = {
 					is_planet_class = pc_acot_enigmopolis
 				}
 			}
-			sr_dark_matter = 12
+			sr_dark_matter = 20
 		}
 		produces = {
 			trigger = {
@@ -1101,7 +1101,7 @@ ae_dark_matter_man = {
 					has_modifier = acot_modifier_supercharged_reactor
 				}
 			}
-			energy = 12
+			minerals = 16
 		}
 	}
 	weight = {
@@ -1156,7 +1156,7 @@ ae_dark_matter_drone = {
 					is_planet_class = pc_acot_enigmopolis
 				}
 			}
-			sr_dark_matter = 12
+			sr_dark_matter = 20
 		}
 		produces = {
 			trigger = {
@@ -1195,7 +1195,7 @@ ae_dark_matter_drone = {
 					has_modifier = acot_modifier_supercharged_reactor
 				}
 			}
-			energy = 12
+			minerals = 16
 		}
 	}
 	weight = {
@@ -1226,11 +1226,11 @@ ae_mineralman = {
 	resources = {
 		category = planet_miners
 		produces = {
-			minerals = 20
+			minerals = 30
 		}
 		upkeep = {
-			sr_dark_matter = 0.5
-			acot_sr_dark_energy = 0.5
+			sr_dark_matter = 1
+			acot_sr_dark_energy = 1
 		}
 	}
 	weight = {
@@ -1279,11 +1279,11 @@ ae_mineraldrone = {
 	resources = {
 		category = planet_miners
 		produces = {
-			minerals = 20
+			minerals = 30
 		}
 		upkeep = {
-			sr_dark_matter = 0.5
-			acot_sr_dark_energy = 0.5
+			sr_dark_matter = 1
+			acot_sr_dark_energy = 1
 		}
 	}
 	weight = {
@@ -1326,7 +1326,7 @@ ae_alloyman = {
 	resources = {
 		category = planet_metallurgists
 		produces = {
-			alloys = 10
+			alloys = 30
 		}
 		upkeep = {
 			minerals = 10
@@ -1379,7 +1379,7 @@ ae_alloydrone = {
 	resources = {
 		category = planet_metallurgists
 		produces = {
-			alloys = 10
+			alloys = 30
 		}
 		upkeep = {
 			minerals = 10
@@ -1426,11 +1426,11 @@ ae_energyman = {
 	resources = {
 		category = planet_technician
 		produces = {
-			energy = 20
+			energy = 30
 		}
 		upkeep = {
-			sr_dark_matter = 0.5
-			acot_sr_dark_energy = 0.5
+			sr_dark_matter = 1
+			acot_sr_dark_energy = 1
 		}
 	}
 	weight = {
@@ -1479,11 +1479,11 @@ ae_energydrone = {
 	resources = {
 		category = planet_technician
 		produces = {
-			energy = 20
+			energy = 30
 		}
 		upkeep = {
-			sr_dark_matter = 0.5
-			acot_sr_dark_energy = 0.5
+			sr_dark_matter = 1
+			acot_sr_dark_energy = 1
 		}
 	}
 	weight = {
@@ -1526,9 +1526,9 @@ ae_researcher = {
 	resources = {
 		category = planet_researchers
 		produces = {
-			physics_research = 12
-			engineering_research = 12
-			society_research = 12
+			physics_research = 25
+			engineering_research = 25
+			society_research = 25
 		}
 		upkeep = {
 			consumer_goods = 3
@@ -1609,9 +1609,9 @@ ae_researcher_drone = {
 	resources = {
 		category = planet_researchers
 		produces = {
-			physics_research = 12
-			engineering_research = 12
-			society_research = 12
+			physics_research = 25
+			engineering_research = 25
+			society_research = 25
 		}
 		upkeep = {
 			sr_dark_matter = 2
@@ -3421,6 +3421,277 @@ phanon_enforcer_drone = {
 		modifier = {
 			factor = 0.5
 			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+		modifier = {
+			factor = 1.2
+			has_trait = trait_cybernetic
+		}
+	}
+}
+
+phanon_soldier = {
+	category = specialist
+	condition_string = SOLDIER_JOB_TRIGGER
+	building_icon = building_acot_dm_stronghold
+	clothes_texture_index = 4
+	icon = aot_pe_enforcer
+	country_modifier = {
+		country_naval_cap_add = 18		# Built-in sum from ground defense planning then x2 it
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					is_councilor = yes
+					has_trait = leader_trait_bellicose
+				}
+			}
+		}
+		modifier = {
+			country_naval_cap_add = 3
+		}
+		mult = value:bellicose_naval_cap
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = {
+			is_gestalt = no
+		}
+	}
+	resources = {
+		category = planet_soldiers
+		produces = {
+			unity = 0.75
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			unity = 0.75
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					NOT = {
+						is_planet_class = pc_dark_fractured
+					}
+				}
+			}
+			aot_sr_runic_power = 2
+		}
+	}
+	pop_modifier = {
+		pop_defense_armies_add = 9
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					is_councilor = yes
+					has_trait = leader_trait_bellicose
+				}
+			}
+		}
+		modifier = {
+			pop_defense_armies_add = 3
+		}
+		mult = value:bellicose_naval_cap
+	}
+	planet_modifier = {
+		planet_stability_add = 0.75
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_councilor = {
+				COUNCILOR = "councilor_private_military_companies"
+			}
+		}
+		modifier = {
+			planet_stability_add = @councilor_private_military_companies_stability
+		}
+		mult = value:councilor_level|TYPE|councilor_private_military_companies|
+	}
+	weight = {
+		weight = @soldier_job_weight
+		modifier = {
+			factor = 10
+			exists = planet
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			is_enslaved = yes
+			NOT = {
+				has_slavery_type = {
+					type = slavery_military
+				}
+			}
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_military
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_presapient_earthbound
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_limited_regeneration
+		}
+		modifier = {
+			factor = 0
+			species = {
+				can_be_soldier = no
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+	}
+}
+
+phanon_soldier_drone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_acot_dm_stronghold
+	clothes_texture_index = 5
+	icon = aot_pe_enforcer
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+	}
+	country_modifier = {
+		country_naval_cap_add = 18
+	}
+	resources = {
+		category = planet_soldiers
+		produces = {
+			unity = 0.75
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			unity = 0.75
+		}
+		upkeep = {
+			aot_sr_runic_power = 2
+		}
+	}
+	pop_modifier = {
+		pop_defense_armies_add = 9
+	}
+	planet_modifier = {
+		planet_stability_add = 0.75
+	}
+	weight = {
+		weight = 5
+		modifier = {
+			weight = 100
+			exists = owner
+			owner = {
+				is_at_war = yes
+			}
+		}
+		modifier = {
+			factor = 10
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 4
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 4
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.9
+			exists = owner
+			years_passed < 1
+			owner = {
+				has_valid_civic = civic_machine_assimilator
+			}
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 0
+			planet = {
+				num_pops < 12
+			}
+			owner = {
+				is_ai = yes
+			}
 		}
 		modifier = {
 			factor = 2
@@ -5723,6 +5994,277 @@ stellarite_enforcer_drone = {
 		modifier = {
 			factor = 0.5
 			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+		modifier = {
+			factor = 1.2
+			has_trait = trait_cybernetic
+		}
+	}
+}
+
+stellarite_soldier = {
+	category = specialist
+	condition_string = SOLDIER_JOB_TRIGGER
+	building_icon = building_acot_dm_stronghold
+	clothes_texture_index = 4
+	icon = aot_se_enforcer
+	country_modifier = {
+		country_naval_cap_add = 36		# Built-in sum from ground defense planning then x2 it
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					is_councilor = yes
+					has_trait = leader_trait_bellicose
+				}
+			}
+		}
+		modifier = {
+			country_naval_cap_add = 9
+		}
+		mult = value:bellicose_naval_cap
+	}
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = {
+			is_gestalt = no
+		}
+	}
+	resources = {
+		category = planet_soldiers
+		produces = {
+			unity = 1.5
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			unity = 1.5
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					NOT = {
+						is_planet_class = pc_dark_fractured
+					}
+				}
+			}
+			acot_sr_stellarite = 4
+		}
+	}
+	pop_modifier = {
+		pop_defense_armies_add = 18
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					is_councilor = yes
+					has_trait = leader_trait_bellicose
+				}
+			}
+		}
+		modifier = {
+			pop_defense_armies_add = 9
+		}
+		mult = value:bellicose_naval_cap
+	}
+	planet_modifier = {
+		planet_stability_add = 1.5
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_councilor = {
+				COUNCILOR = "councilor_private_military_companies"
+			}
+		}
+		modifier = {
+			planet_stability_add = @councilor_private_military_companies_stability
+		}
+		mult = value:councilor_level|TYPE|councilor_private_military_companies|
+	}
+	weight = {
+		weight = @soldier_job_weight
+		modifier = {
+			factor = 10
+			exists = planet
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			is_enslaved = yes
+			NOT = {
+				has_slavery_type = {
+					type = slavery_military
+				}
+			}
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = {
+				type = slavery_military
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_presapient_earthbound
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_limited_regeneration
+		}
+		modifier = {
+			factor = 0
+			species = {
+				can_be_soldier = no
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+	}
+}
+
+stellarite_soldier_drone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_acot_dm_stronghold
+	clothes_texture_index = 5
+	icon = aot_se_enforcer
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+	}
+	country_modifier = {
+		country_naval_cap_add = 36
+	}
+	resources = {
+		category = planet_soldiers
+		produces = {
+			unity = 1.5
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			unity = 1.5
+		}
+		upkeep = {
+			acot_sr_stellarite = 4
+		}
+	}
+	pop_modifier = {
+		pop_defense_armies_add = 18
+	}
+	planet_modifier = {
+		planet_stability_add = 1.5
+	}
+	weight = {
+		weight = 5
+		modifier = {
+			weight = 100
+			exists = owner
+			owner = {
+				is_at_war = yes
+			}
+		}
+		modifier = {
+			factor = 10
+			planet = {
+				exists = leader
+				leader = {
+					leader_class = commander
+				}
+			}
+		}
+		modifier = {
+			factor = 4
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 4
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 3
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.5
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.9
+			exists = owner
+			years_passed < 1
+			owner = {
+				has_valid_civic = civic_machine_assimilator
+			}
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 0
+			planet = {
+				num_pops < 12
+			}
+			owner = {
+				is_ai = yes
+			}
 		}
 		modifier = {
 			factor = 2
