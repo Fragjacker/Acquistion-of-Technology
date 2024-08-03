@@ -6,8 +6,13 @@ tech_acot_ae_ancient_palace = {
 	cost = @acot_tier7cost3
 	area = society
 	tier = 7
-	category = { statecraft }
-	prerequisites = { "tech_dark_matter_power_core_ae" "tech_acot_dm_ancient_palace" }
+	category = {
+		statecraft
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_ae"
+		"tech_acot_dm_ancient_palace"
+	}
 	weight = 100000
 	gateway = capital	# Unlocks Empire Capital-Complex
 	potential = {
@@ -29,8 +34,13 @@ tech_acot_ae_ancient_control_center = {
 	cost = @acot_tier7cost3
 	area = society
 	tier = 7
-	category = { statecraft }
-	prerequisites = { "tech_dark_matter_power_core_ae" "tech_acot_dm_ancient_control_center" }
+	category = {
+		statecraft
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_ae"
+		"tech_acot_dm_ancient_control_center"
+	}
 	weight = 100000
 	gateway = capital	# Unlocks Empire Capital-Complex
 	potential = {
@@ -52,8 +62,13 @@ tech_acot_ae_ancient_hive_cluster = {
 	cost = @acot_tier7cost3
 	area = society
 	tier = 7
-	category = { statecraft }
-	prerequisites = { "tech_dark_matter_power_core_ae" "tech_acot_dm_ancient_hive_cluster" }
+	category = {
+		statecraft
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_ae"
+		"tech_acot_dm_ancient_hive_cluster"
+	}
 	weight = 100000
 	gateway = capital	# Unlocks Empire Capital-Complex
 	potential = {
@@ -1295,6 +1310,66 @@ tech_acot_ae_mansion = {
 			has_trait_in_council = {
 				TRAIT = leader_trait_expertise_statecraft
 			}
+		}
+	}
+}
+
+# Synt center override
+tech_acot_ae_synt_center = {
+	cost = @acot_tier7cost2
+	area = engineering
+	tier = 7
+	category = {
+		industry
+	}
+	prerequisites = {
+		"tech_acot_ae_super_assembly"
+		"tech_acot_dm_synt_center"
+	}
+	weight = @tier5weight1
+	potential = {
+		OR = {
+			has_technology = tech_acot_ae_super_assembly
+			has_technology = tech_acot_dm_synt_center
+		}
+		NOT = {
+			has_global_flag = acot_building_forbidden
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			has_policy_flag = robots_outlawed
+		}
+		modifier = {
+			factor = 0.5
+			is_spiritualist = yes
+		}
+		modifier = {
+			factor = 2
+			is_materialist = yes
+		}
+		modifier = {
+			factor = 2
+			has_origin = origin_mechanists
+		}
+	}
+	ai_weight = {
+		weight = 2
+		modifier = {
+			factor = 2
+			is_materialist = yes
+		}
+		modifier = {
+			factor = 0
+			NOR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+		}
+		modifier = {
+			factor = 2
+			has_origin = origin_mechanists
 		}
 	}
 }
