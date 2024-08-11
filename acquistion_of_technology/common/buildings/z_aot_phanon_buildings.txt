@@ -2685,9 +2685,19 @@ building_phanon_super_assembly = {
 			has_global_flag = aot_phanon_content_OFF
 		}
 		exists = planet_owner
+		OR = {
+			planet_owner = {
+				is_ai = no
+			}
+			NOT = {
+				exists = assembling_species
+			}
+			assembling_species = {
+				is_robotic_species = yes
+			}
+		}
 		planet_owner = {
 			is_regular_empire = yes
-			has_technology = tech_phanon_super_assembly
 			is_individual_machine = no
 			NOT = {
 				has_policy_flag = robots_outlawed
@@ -2696,15 +2706,11 @@ building_phanon_super_assembly = {
 				is_ai = no
 				has_genetic_ascension = no
 				is_materialist = yes
-				assembling_species = {
-					is_robotic_species = yes
-				}
 			}
 		}
 		NOR = {
 			has_modifier = slave_colony
 			has_modifier = resort_colony
-			exists = assembling_species
 		}
 	}
 	destroy_trigger = {
@@ -2807,7 +2813,6 @@ building_phanon_super_assembly_machine = {
 		}
 		exists = planet_owner
 		planet_owner = {
-			has_technology = tech_phanon_super_assembly
 			OR = {
 				is_machine_empire = yes
 				is_individual_machine = yes
