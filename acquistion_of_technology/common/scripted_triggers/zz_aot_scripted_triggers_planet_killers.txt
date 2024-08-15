@@ -6,10 +6,7 @@
 #	...
 #}
 is_blasteable_planet = {
-	OR = {
-		is_planet_class = pc_shielded
-		is_planet_class = pc_ringworld_shielded
-		is_planet_class = pc_habitat_shielded
+	NOR = {
 		has_active_building = building_phanon_psg
 		has_active_building = building_stellarite_psg
 	}
@@ -22,7 +19,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_CRACKER = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	OR = {
 		custom_tooltip = {
@@ -118,7 +115,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_SHIELDER = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 }
 
@@ -129,7 +126,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_NEUTRON = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile
@@ -183,7 +180,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_GODRAY = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		# success_text = "is at war with player"
@@ -238,7 +235,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_NANOBOTS = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile_or_primitive
@@ -283,7 +280,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_CRACKER = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	OR = {
 		custom_tooltip = {
@@ -379,7 +376,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_SHIELDER = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 }
 
@@ -390,7 +387,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_NEUTRON = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile
@@ -444,7 +441,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_GODRAY = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		# success_text = "is at war with player"
@@ -499,7 +496,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_NANOBOTS = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile_or_primitive
@@ -544,7 +541,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_CRACKER = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	OR = {
 		custom_tooltip = {
@@ -640,7 +637,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_SHIELDER = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 }
 
@@ -651,7 +648,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NEUTRON = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile
@@ -705,7 +702,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_GODRAY = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		# success_text = "is at war with player"
@@ -760,7 +757,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NANOBOTS = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile_or_primitive
@@ -797,22 +794,30 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NANOBOTS = {
 	}
 }
 
-can_destroy_planet_with_ACOT_EMISSARY_BEAM = {
-	custom_tooltip = {
-		fail_text = is_shielded
-		NOR = {
-			is_planet_class = pc_shielded
-			is_planet_class = pc_ringworld_shielded
-			is_planet_class = pc_habitat_shielded
-		}
-	}
+can_destroy_planet_with_ACOT_EMISSARY_BEAM_LANDING = {
 	OR = {
 		custom_tooltip = {
+			text = is_not_hostile_cracker
+			exists = owner
+			is_colony = yes
+			owner = {
+				OR = {
+					is_at_war_with = from.owner
+					is_hostile_to = from.owner
+					is_country_type = swarm
+					is_country_type = extradimensional
+					is_country_type = extradimensional_2
+					is_country_type = extradimensional_3
+					is_country_type = ai_empire
+				}
+			}
+		}
+		custom_tooltip = {
 			text = acot_is_valid_for_emissary_beam
-			is_a_planet = yes
-			can_destroy_planet_general = yes
+			exists = space_owner
+			space_owner = { is_same_empire = from.owner }
+			is_colonizable = yes
 			is_blasteable_planet = yes
-			is_artificial = no
 		}
 	}
 }

@@ -241,6 +241,36 @@ planet_event = {
 					}
 				}
 			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_POP
+						}
+					}
+				}
+				while = {
+					count = 15
+					create_pop = {
+						species = event_target:terraforming_emissary.owner_main_species
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_POP
+						}
+					}
+				}
+				while = {
+					count = 20
+					create_pop = {
+						species = event_target:terraforming_emissary.owner_main_species
+					}
+				}
+			}
 			# GIGA FORTRESSES
 			if = {
 				limit = {
@@ -283,7 +313,7 @@ planet_event = {
 				 }
 				 add_building = building_acot_ae_enigmatic_lab
 			}
-			if = {
+			else_if = {
 				limit = {
 					event_target:terraforming_emissary = {
 						any_owned_ship = {
@@ -293,7 +323,7 @@ planet_event = {
 				}
 				add_building = building_phanon_enigmatic_lab
 			}
-			if = {
+			else_if = {
 				limit = {
 					event_target:terraforming_emissary = {
 						any_owned_ship = {
@@ -345,7 +375,7 @@ planet_event = {
 				 }
 				 add_building = building_acot_ae_dark_matter_synthersizer
 			}
-			if = {
+			else_if = {
 				limit = {
 					event_target:terraforming_emissary = {
 						any_owned_ship = {
