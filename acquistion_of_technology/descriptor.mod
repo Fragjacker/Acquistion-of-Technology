@@ -1,4 +1,4 @@
-version="3.12.2.1"
+version="3.12.2.2"
 tags={
 	"Technologies"
 	"Gameplay"
