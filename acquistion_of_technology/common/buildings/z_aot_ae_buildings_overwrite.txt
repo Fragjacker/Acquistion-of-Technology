@@ -19,6 +19,7 @@ building_acot_ae_ancient_palace = {
 		exists = planet_owner
 		planet_owner = {
 			is_regular_empire = yes
+			is_individual_machine = yes
 			has_technology = tech_acot_ae_ancient_palace
 		}
 	}
@@ -34,9 +35,6 @@ building_acot_ae_ancient_palace = {
 	}
 	prerequisites = {
 		"tech_acot_ae_ancient_palace"
-	}
-	show_tech_unlock_if = {
-		is_regular_empire = yes
 	}
 	planet_modifier = {
 		planet_housing_add = 20
@@ -527,6 +525,7 @@ building_ae_affluence_center = {
 			planet_owner = {
 				is_fallen_empire = no
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_crafter_empire = no
 			}
 		}
@@ -540,6 +539,7 @@ building_ae_affluence_center = {
 			planet_owner = {
 				is_fallen_empire = no
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_crafter_empire = no
 			}
 		}
@@ -551,6 +551,7 @@ building_ae_affluence_center = {
 			planet_owner = {
 				is_fallen_empire = no
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_crafter_empire = yes
 			}
 		}
@@ -564,6 +565,7 @@ building_ae_affluence_center = {
 			planet_owner = {
 				is_fallen_empire = no
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_crafter_empire = yes
 			}
 		}
@@ -684,6 +686,7 @@ building_ae_nourishment_center = {
 			exists = planet_owner
 			planet_owner = {
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_fallen_empire = no
 				OR = {
 					is_anglers_empire = no
@@ -732,6 +735,7 @@ building_ae_nourishment_center = {
 			exists = planet_owner
 			planet_owner = {
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_fallen_empire = no
 				is_anglers_empire = yes
 				PREV = {
@@ -957,6 +961,7 @@ building_ae_class_4_singularity = {
 			exists = planet_owner
 			planet_owner = {
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_fallen_empire = no
 			}
 		}
@@ -1093,6 +1098,7 @@ building_ae_nano_forge = {
 			planet_owner = {
 				is_fallen_empire = no
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_catalytic_empire = no
 			}
 		}
@@ -1106,6 +1112,7 @@ building_ae_nano_forge = {
 			planet_owner = {
 				is_fallen_empire = no
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_catalytic_empire = no
 			}
 		}
@@ -1117,6 +1124,7 @@ building_ae_nano_forge = {
 			planet_owner = {
 				is_fallen_empire = no
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_catalytic_empire = yes
 			}
 		}
@@ -1130,6 +1138,7 @@ building_ae_nano_forge = {
 			planet_owner = {
 				is_fallen_empire = no
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_catalytic_empire = yes
 			}
 		}
@@ -1271,6 +1280,7 @@ building_ae_master_archive = {
 			exists = planet_owner
 			planet_owner = {
 				is_regular_empire = yes
+				is_individual_machine = yes
 				is_fallen_empire = no
 			}
 		}
@@ -1550,6 +1560,7 @@ building_acot_ae_mansion = {
 		exists = planet_owner
 		planet_owner = {
 			is_regular_empire = yes
+			is_individual_machine = yes
 			is_spiritualist = no
 			has_make_spiritualist_perk = no
 		}
@@ -1636,11 +1647,6 @@ building_acot_ae_hive_depot = {
 	}
 	upgrades = {
 		building_phanon_hive_depot
-	}
-	show_tech_unlock_if = {
-		planet_owner = {
-			is_hive_empire = yes
-		}
 	}
 	convert_to = {
 		building_acot_ae_mansion
@@ -1862,20 +1868,47 @@ building_acot_giga_fortress = {
 	allow = {
 		has_ascended_capital = yes
 	}
-	upgrades = {
-		building_acot_giga_fortress_array
-		building_acot_giga_fortress_lab
-		building_acot_giga_fortress_obelisk
+	on_built = {
+		if = {
+			limit = {
+				NOT = {
+					any_planet_army = {
+						army_type = acot_garrison_army_giga
+					}
+				}
+			}
+			create_army = {
+				owner = planet_owner
+				type = acot_garrison_army_giga
+			}
+		}
+	}
+	on_destroy = {
+		if = {
+			limit = {
+				has_giga_fort = no
+			}
+			every_planet_army = {
+				limit = {
+					army_type = acot_garrison_army_giga
+				}
+				remove_army = yes
+			}
+		}
+	}
+	country_modifier = {
+		country_naval_cap_add = 100
 	}
 	planet_modifier = {
 		planet_amenities_add = 20
 		planet_housing_add = 20
 		planet_stability_add = 5		# Mod Pack; reduced from 50
 	}
-	army_modifier = {
-		army_defense_morale_mult = 1
-		army_defense_health_mult = 0.5
-		army_defense_damage_mult = 0.5
+	triggered_planet_modifier = {
+		potential = {
+			has_ground_combat = yes
+		}
+		pop_defense_armies_add = 1
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1885,7 +1918,7 @@ building_acot_giga_fortress = {
 			}
 		}
 		job_acot_giga_fortress_operator_add = 1		# Mod Pack; reduced from 3
-		job_acot_enforcer_add = 2		# Mod Pack; reduced from 10
+		job_acot_soldier_add = 2
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1895,7 +1928,7 @@ building_acot_giga_fortress = {
 			}
 		}
 		job_acot_giga_fortress_operator_drone_add = 1		# Mod Pack: reduced from 3
-		job_acot_enforcer_drone_add = 1		# Mod Pack; reduced from 10
+		job_acot_soldier_drone_add = 1
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1906,22 +1939,38 @@ building_acot_giga_fortress = {
 		}
 		job_acot_giga_fortress_operator_ancient_add = 3
 	}
+	army_modifier = {
+		army_defense_morale_mult = 1
+		army_defense_health_mult = 0.5
+		army_defense_damage_mult = 0.5
+	}
 	resources = {
 		category = planet_buildings
 		produces = {
 			unity = 50
-			food = 50
+			energy = 50
 		}
-		cost = {
+		produces = {
 			trigger = {
 				planet_owner = {
-					is_ai = no
+					country_uses_food = yes
 				}
 			}
-			minerals = 15000
+			food = 50
+		}
+		produces = {
+			trigger = {
+				planet_owner = {
+					country_uses_food = no
+				}
+			}
+			energy = 25
+		}
+		cost = {
+			minerals = 35000
 			influence = 50
-			sr_dark_matter = 200
-			acot_sr_dark_energy = 200
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
 		}
 		cost = {
 			trigger = {
@@ -1958,6 +2007,11 @@ building_acot_giga_fortress = {
 				}
 			}
 		}
+	}
+	upgrades = {
+		building_acot_giga_fortress_array
+		building_acot_giga_fortress_lab
+		building_acot_giga_fortress_obelisk
 	}
 }
 
@@ -2170,6 +2224,7 @@ building_acot_giga_fortress_lab = {
 			exists = planet_owner
 			planet_owner = {
 				is_regular_empire = yes
+				is_individual_machine = yes
 			}
 		}
 		job_acot_giga_fortress_operator_add = 2		# Mod Pack; reduced from 3
@@ -2343,6 +2398,7 @@ building_acot_giga_fortress_obelisk = {
 			}
 		}
 		job_acot_giga_fortress_operator_ancient_add = 2		# Mod Pack: reduced from 5
+		job_fe_protector_add = 3
 	}
 	army_modifier = {
 		army_defense_morale_mult = 20
@@ -2694,9 +2750,9 @@ building_acot_ae_super_assembly = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 400
-			sr_dark_matter = 500
-			acot_sr_dark_energy = 500
+			alloys = 400
+			sr_dark_matter = 300
+			acot_sr_dark_energy = 450
 		}
 		upkeep = {
 			trigger = {
@@ -2792,9 +2848,9 @@ building_acot_ae_super_assembly_machine = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 400
-			sr_dark_matter = 500
-			acot_sr_dark_energy = 500
+			alloys = 400
+			sr_dark_matter = 300
+			acot_sr_dark_energy = 450
 		}
 		upkeep = {
 			trigger = {
@@ -3864,6 +3920,8 @@ building_acot_ae_factory = {
 				has_modifier = acot_modifier_ascended_city
 			}
 			sr_dark_matter = 2
+			acot_sr_dark_energy = 2
+			minerals = 20
 		}
 	}
 	prerequisites = {
@@ -4028,7 +4086,6 @@ building_acot_ae_institute = {
 			minor_artifacts = 10
 		}
 		cost = {
-			minerals = 1000
 			alloys = 400
 			sr_dark_matter = 2000
 			acot_sr_dark_energy = 2000

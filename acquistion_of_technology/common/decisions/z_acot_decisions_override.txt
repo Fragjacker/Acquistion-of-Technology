@@ -40,6 +40,7 @@ decision_transform_into_awesome = {
 	potential = {
 		planet_owner = {
 			is_regular_empire = yes
+			is_individual_machine = yes
 			has_technology = tech_acot_dm_ancient_palace
 		}
 		has_enigmatic_capital = no
@@ -551,76 +552,7 @@ decision_open_assembly_menu = {
 	}
 }
 
-######################## Blow uo shups ######################## 
-# Blow Up to Fractured World
-decision_fractured_self_detonation = {
-	icon = decision_planet_beam
-	resources = {
-		category = decisions
-		cost = {
-			influence = 250
-		}
-		cost = {
-			trigger = {
-				exists = owner
-				is_owned_by = root.owner
-			}
-			influence = 500
-			unity = 50000
-		}
-		cost = {
-			trigger = {
-				NAND = {
-					is_owned_by = root.owner
-				}
-			}
-			influence = 250
-		}
-	}
-	sound = event_ai_started_01
-	potential = {
-		exists = space_owner
-		space_owner = {
-			is_same_empire = from
-		}
-		from = {
-			has_technology = tech_bombardment_ae_final
-		}
-		is_star = no
-		has_ringworld_output_boost = no
-		is_moon = no
-		is_memeable_planet = yes
-		is_memeable_ringworld = no
-		is_memeable_space_habitat = no
-		NOR = {
-			is_planet_class = pc_dark_fractured_ae
-			is_planet_class = pc_acot_enigmopolis
-			is_planet_class = pc_acot_pmc_vault
-		}
-		NOT = {
-			has_planet_flag = final_word_underway
-		}
-	}
-	allow = {
-	}
-	effect = {
-		hidden_effect = {
-			set_planet_flag = final_word_underway
-			save_event_target_as = showered_planet
-			space_owner = {
-				enable_special_project = {
-					name = ACOT_FINAL_WORD_PLANET
-					location = event_target:showered_planet
-					owner = this
-				}
-			}
-		}
-	}
-	ai_weight = {
-		weight = 0
-	}
-}
-
+######################## Blow uo shups ########################
 # Blow Up to Fractured World
 decision_stellarite_reactor_detonation = {
 	icon = decision_shattered_planet
@@ -696,6 +628,9 @@ decision_acot_infiltrate_phanon_grid = {
 		}
 	}
 	potential = {
+		NOT = {
+			has_global_flag = acot_phanon_rival_plan_initiated
+		}
 		planet_owner = {
 			is_ai = no
 			NOT = {

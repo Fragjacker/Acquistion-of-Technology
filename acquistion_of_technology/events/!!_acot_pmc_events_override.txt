@@ -1116,12 +1116,33 @@ country_event = {
 	}
 }
 
-#### TECH CHECK UP BY CORPS
+################## TOP SECRET OTHER AGENT FUCKERY
 country_event = {
-	id = acot_pmc.20004
+	id = acot_pmc.2000
 	hide_window = yes
 	is_triggered_only = yes
-	trigger = {
-		always = no		# Disable this event from ever firing since it messes with our stuff too much.
+	immediate = {
+		if = {
+			limit = {
+				NOR = {
+					has_country_flag = acot_phanon_diplomacy_engaged
+					# Mirror in the Sky is incompatible with the rival path.
+					has_country_flag = offer_phanon_dimensional_mirror_chain
+					has_country_flag = block_phanon_dimensional_mirror_chain
+					has_country_flag = finished_phanon_dimensional_mirror_chain
+					has_event_chain = phanon_dimensional_mirror_chain
+				}
+			}
+			country_event = {
+				id = acot_pmc.2001
+			}
+		}
+		else = {
+			country_event = {
+				id = acot_pmc.2000
+				days = 10
+				random = 5
+			}
+		}
 	}
 }
