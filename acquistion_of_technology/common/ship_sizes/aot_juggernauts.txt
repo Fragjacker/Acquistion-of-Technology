@@ -41,12 +41,18 @@ ascended_juggernaut = {
 	possible_country = {
 		is_fallen_empire = yes
 	}
+	potential_construction = {
+		can_build_precursor_ship = yes
+	}
+	possible_construction = {
+		can_build_precursor_ship = yes
+	}
 	is_designable = no
 	num_target_locators = 0
 	can_have_federation_design = no
-	enable_default_design = no    #if yes, countries will have an auto-generated design at start
+	enable_default_design = no	# if yes, countries will have an auto-generated design at start
 	can_disable = no
-	icon_frame = 7    #probably unused, but mobile starbases are special
+	icon_frame = 7	# probably unused, but mobile starbases are special
 	icon = ship_size_military_64
 	ship_class_icon_frame = 35
 	default_behavior = artillery
@@ -113,81 +119,17 @@ precursor_juggernaut = {
 		}
 	}
 	potential_construction = {
-		OR = {
-			AND = {
-				is_scope_type = starbase
-				NOR = {
-					has_starbase_size = juggernaut
-					is_ascended_juggernaut = yes
-				}
-			}
-			AND = {
-				is_scope_type = megastructure
-				OR = {
-					is_megastructure_type = mega_shipyard_3
-					is_megastructure_type = mega_shipyard_restored
-					is_megastructure_type = sofe_omega_spy_orb_center
-				}
-			}
-		}
+		can_build_precursor_ship = yes
 	}
 	possible_construction = {
-		custom_tooltip = {
-			fail_text = starbase_citadel_trigger
-			OR = {
-				AND = {
-					is_scope_type = megastructure
-					OR = {
-						is_megastructure_type = mega_shipyard_3
-						is_megastructure_type = mega_shipyard_restored
-						is_megastructure_type = sofe_omega_spy_orb_center
-					}
-				}
-				AND = {
-					is_scope_type = starbase
-					OR = {
-						has_starbase_size >= starbase_citadel
-						has_starbase_size >= acot_precusor_starbase
-						has_starbase_size >= acot_precusor_sigma_starbase
-						has_starbase_size >= origin_citadel
-						has_starbase_size >= origin_super_citadel_playable
-						has_starbase_size >= acot_precusor_phanon_starcitadel
-						has_starbase_size = precursor_colossus
-					}
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = starbase_colossal_yards_trigger
-			OR = {
-				AND = {
-					is_scope_type = megastructure
-					OR = {
-						is_megastructure_type = mega_shipyard_3
-						is_megastructure_type = mega_shipyard_restored
-						is_megastructure_type = sofe_omega_spy_orb_center
-					}
-				}
-				AND = {
-					is_scope_type = starbase
-					OR = {
-						has_starbase_building = colossus_yards
-						has_starbase_module = acot_starbase_shipyard
-						has_starbase_module = acot_sigma_starbase_shipyard
-						has_starbase_module = acot_phanon_starbase_shipyard
-						has_starbase_module = sofe_omega_shipyard
-						has_starbase_size = precursor_colossus
-					}
-				}
-			}
-		}
+		can_build_precursor_ship = yes
 	}
 	num_target_locators = 0
 	can_have_federation_design = no
-	enable_default_design = yes    #if yes, countries will have an auto-generated design at start
-	enable_3dview_in_ship_browser = yes    #if yes, ship design will have a 3d view in the ship browser
+	enable_default_design = yes	# if yes, countries will have an auto-generated design at start
+	enable_3dview_in_ship_browser = yes	# if yes, ship design will have a 3d view in the ship browser
 	can_disable = no
-	icon_frame = 7    #probably unused, but mobile starbases are special
+	icon_frame = 7	# probably unused, but mobile starbases are special
 	icon = ship_size_military_64
 	ship_class_icon_frame = 35
 	default_behavior = artillery

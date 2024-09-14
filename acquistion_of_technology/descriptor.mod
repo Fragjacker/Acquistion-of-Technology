@@ -1,4 +1,4 @@
-version="8.1.6"
+version="3.13.0.2"
 tags={
 	"Technologies"
 	"Gameplay"
@@ -9,5 +9,5 @@ dependencies={
 }
 name="Acquisition of Technology"
 picture="thumbnail.png"
-supported_version="3.10.*"
+supported_version="v3.13.*"
 remote_file_id="2178603631"

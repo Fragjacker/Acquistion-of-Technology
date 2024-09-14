@@ -2,14 +2,11 @@
 # Scope:
 #   this = planet being targeted
 #   from = fleet
-#can_destroy_planet_with_PLANET_DESTRUCTION_COMPONENT = {
+# can_destroy_planet_with_PLANET_DESTRUCTION_COMPONENT = {
 #	...
 #}
 is_blasteable_planet = {
-	OR = {
-		is_planet_class = pc_shielded
-		is_planet_class = pc_ringworld_shielded
-		is_planet_class = pc_habitat_shielded
+	NOR = {
 		has_active_building = building_phanon_psg
 		has_active_building = building_stellarite_psg
 	}
@@ -22,7 +19,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_CRACKER = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	OR = {
 		custom_tooltip = {
@@ -87,7 +84,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_CRACKER = {
 				AND = {
 					exists = space_owner
 					space_owner = {
-						is_same_value = from.owner
+						is_same_empire = from.owner
 					}
 				}
 			}
@@ -111,14 +108,14 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_SHIELDER = {
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 			}
 		}
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 }
 
@@ -129,7 +126,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_NEUTRON = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile
@@ -138,7 +135,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_NEUTRON = {
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 				from.owner = {
 					OR = {
@@ -148,7 +145,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_NEUTRON = {
 				}
 			}
 			AND = {
-				# at war with primitive space owner
+				# At war with primitive space owner
 				exists = space_owner
 				exists = owner
 				owner = {
@@ -183,28 +180,28 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_GODRAY = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
-		#success_text = "is at war with player"
+		# success_text = "is at war with player"
 		fail_text = is_not_hostile_or_primitive
 		OR = {
 			planet_is_hostile = yes
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 			}
 			AND = {
 				exists = owner
 				owner = {
-					is_same_value = from.owner
+					is_same_empire = from.owner
 				}
 			}
 		}
 	}
-	# target own colony
+	# Target own colony
 	if = {
 		limit = {
 			NOR = {
@@ -212,20 +209,20 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_GODRAY = {
 				AND = {
 					exists = owner
 					owner = {
-						is_country_type = primitive
+						is_primitive = yes
 					}
 				}
 			}
 			exists = owner
 			owner = {
-				is_same_value = from.owner
+				is_same_empire = from.owner
 			}
 		}
 		custom_tooltip = {
 			text = not_owned_test_fire
 			exists = owner
 			owner = {
-				is_same_value = from.owner
+				is_same_empire = from.owner
 			}
 		}
 	}
@@ -238,7 +235,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_NANOBOTS = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile_or_primitive
@@ -247,7 +244,7 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_NANOBOTS = {
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 			}
 		}
@@ -256,14 +253,14 @@ can_destroy_planet_with_ACOT_PLANET_KILLER_NANOBOTS = {
 		limit = {
 			exists = owner
 			owner = {
-				is_country_type = primitive
+				is_primitive = yes
 			}
 		}
 		custom_tooltip = {
 			fail_text = primitives_not_in_borders
 			exists = space_owner
 			space_owner = {
-				is_same_value = from.owner
+				is_same_empire = from.owner
 			}
 		}
 	}
@@ -283,7 +280,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_CRACKER = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	OR = {
 		custom_tooltip = {
@@ -348,7 +345,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_CRACKER = {
 				AND = {
 					exists = space_owner
 					space_owner = {
-						is_same_value = from.owner
+						is_same_empire = from.owner
 					}
 				}
 			}
@@ -372,14 +369,14 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_SHIELDER = {
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 			}
 		}
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 }
 
@@ -390,7 +387,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_NEUTRON = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile
@@ -399,7 +396,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_NEUTRON = {
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 				from.owner = {
 					OR = {
@@ -409,7 +406,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_NEUTRON = {
 				}
 			}
 			AND = {
-				# at war with primitive space owner
+				# At war with primitive space owner
 				exists = space_owner
 				exists = owner
 				owner = {
@@ -444,28 +441,28 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_GODRAY = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
-		#success_text = "is at war with player"
+		# success_text = "is at war with player"
 		fail_text = is_not_hostile_or_primitive
 		OR = {
 			planet_is_hostile = yes
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 			}
 			AND = {
 				exists = owner
 				owner = {
-					is_same_value = from.owner
+					is_same_empire = from.owner
 				}
 			}
 		}
 	}
-	# target own colony
+	# Target own colony
 	if = {
 		limit = {
 			NOR = {
@@ -473,20 +470,20 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_GODRAY = {
 				AND = {
 					exists = owner
 					owner = {
-						is_country_type = primitive
+						is_primitive = yes
 					}
 				}
 			}
 			exists = owner
 			owner = {
-				is_same_value = from.owner
+				is_same_empire = from.owner
 			}
 		}
 		custom_tooltip = {
 			text = not_owned_test_fire
 			exists = owner
 			owner = {
-				is_same_value = from.owner
+				is_same_empire = from.owner
 			}
 		}
 	}
@@ -499,7 +496,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_NANOBOTS = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile_or_primitive
@@ -508,7 +505,7 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_NANOBOTS = {
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 			}
 		}
@@ -517,14 +514,14 @@ can_destroy_planet_with_ACOT_SE_PLANET_KILLER_NANOBOTS = {
 		limit = {
 			exists = owner
 			owner = {
-				is_country_type = primitive
+				is_primitive = yes
 			}
 		}
 		custom_tooltip = {
 			fail_text = primitives_not_in_borders
 			exists = space_owner
 			space_owner = {
-				is_same_value = from.owner
+				is_same_empire = from.owner
 			}
 		}
 	}
@@ -544,7 +541,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_CRACKER = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	OR = {
 		custom_tooltip = {
@@ -609,7 +606,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_CRACKER = {
 				AND = {
 					exists = space_owner
 					space_owner = {
-						is_same_value = from.owner
+						is_same_empire = from.owner
 					}
 				}
 			}
@@ -633,14 +630,14 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_SHIELDER = {
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 			}
 		}
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 }
 
@@ -651,7 +648,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NEUTRON = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile
@@ -660,7 +657,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NEUTRON = {
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 				from.owner = {
 					OR = {
@@ -670,7 +667,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NEUTRON = {
 				}
 			}
 			AND = {
-				# at war with primitive space owner
+				# At war with primitive space owner
 				exists = space_owner
 				exists = owner
 				owner = {
@@ -705,28 +702,28 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_GODRAY = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
-		#success_text = "is at war with player"
+		# success_text = "is at war with player"
 		fail_text = is_not_hostile_or_primitive
 		OR = {
 			planet_is_hostile = yes
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 			}
 			AND = {
 				exists = owner
 				owner = {
-					is_same_value = from.owner
+					is_same_empire = from.owner
 				}
 			}
 		}
 	}
-	# target own colony
+	# Target own colony
 	if = {
 		limit = {
 			NOR = {
@@ -734,20 +731,20 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_GODRAY = {
 				AND = {
 					exists = owner
 					owner = {
-						is_country_type = primitive
+						is_primitive = yes
 					}
 				}
 			}
 			exists = owner
 			owner = {
-				is_same_value = from.owner
+				is_same_empire = from.owner
 			}
 		}
 		custom_tooltip = {
 			text = not_owned_test_fire
 			exists = owner
 			owner = {
-				is_same_value = from.owner
+				is_same_empire = from.owner
 			}
 		}
 	}
@@ -760,7 +757,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NANOBOTS = {
 	}
 	custom_tooltip = {
 		fail_text = is_shielded
-		is_blasteable_planet = no
+		is_blasteable_planet = yes
 	}
 	custom_tooltip = {
 		fail_text = is_not_hostile_or_primitive
@@ -769,7 +766,7 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NANOBOTS = {
 			AND = {
 				exists = owner
 				owner = {
-					is_country_type = primitive
+					is_primitive = yes
 				}
 			}
 		}
@@ -778,14 +775,14 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NANOBOTS = {
 		limit = {
 			exists = owner
 			owner = {
-				is_country_type = primitive
+				is_primitive = yes
 			}
 		}
 		custom_tooltip = {
 			fail_text = primitives_not_in_borders
 			exists = space_owner
 			space_owner = {
-				is_same_value = from.owner
+				is_same_empire = from.owner
 			}
 		}
 	}
@@ -797,104 +794,30 @@ can_destroy_planet_with_ACOT_HE_PLANET_KILLER_NANOBOTS = {
 	}
 }
 
-can_destroy_planet_with_ACOT_EMISSARY_BEAM = {
-	custom_tooltip = {
-		text = acot_emissary_on_cooldown
-		FROM = {
-			NOT = {
-				has_fleet_flag = acot_emissary_beam_delay
-			}
-		}
-	}
-	custom_tooltip = {
-		fail_text = is_shielded
-		NOR = {
-			is_blasteable_planet = yes
-			is_planet_class = pc_acot_pmc_vault
-		}
-	}
+can_destroy_planet_with_ACOT_EMISSARY_BEAM_LANDING = {
 	OR = {
 		custom_tooltip = {
 			text = is_not_hostile_cracker
-			OR = {
-				AND = {
-					exists = space_owner
-					space_owner = {
-						OR = {
-							is_at_war_with = from.owner
-							is_country_type = swarm
-							is_country_type = extradimensional
-							is_country_type = extradimensional_2
-							is_country_type = extradimensional_3
-							is_country_type = ai_empire
-						}
-					}
-				}
-				AND = {
-					# colony
-					exists = owner
-					owner = {
-						OR = {
-							is_at_war_with = from.owner
-							is_country_type = swarm
-							is_country_type = extradimensional
-							is_country_type = extradimensional_2
-							is_country_type = extradimensional_3
-							is_country_type = ai_empire
-						}
-					}
-				}
-				AND = {
-					# primitive
-					exists = space_owner
-					exists = owner
-					owner = {
-						is_primitive = yes
-					}
-					space_owner = {
-						OR = {
-							is_at_war_with = from.owner
-							is_country_type = swarm
-							is_country_type = extradimensional
-							is_country_type = extradimensional_2
-							is_country_type = extradimensional_3
-							is_country_type = ai_empire
-						}
-					}
+			exists = owner
+			is_colony = yes
+			owner = {
+				OR = {
+					is_at_war_with = from.owner
+					is_hostile_to = from.owner
+					is_country_type = swarm
+					is_country_type = extradimensional
+					is_country_type = extradimensional_2
+					is_country_type = extradimensional_3
+					is_country_type = ai_empire
 				}
 			}
 		}
 		custom_tooltip = {
 			text = acot_is_valid_for_emissary_beam
-			OR = {
-				NOT = {
-					exists = space_owner
-				}
-				AND = {
-					exists = space_owner
-					space_owner = {
-						is_same_value = from.owner
-					}
-				}
-			}
-			is_a_planet = yes
-			is_asteroid = no
-			is_star = no
-			is_artificial = no
-			NOR = {
-				is_planet_class = pc_gas_giant
-				is_planet_class = pc_asteroid
-				is_planet_class = pc_habitat
-				is_planet_class = pc_ringworld_habitable
-			}
+			exists = space_owner
+			space_owner = { is_same_empire = from.owner }
+			is_colonizable = yes
+			is_blasteable_planet = yes
 		}
-	}
-}
-
-is_a_habitable_planet_megastructure = {
-	OR = {
-		is_memeable_planet = yes
-		is_memeable_ringworld = yes
-		is_memeable_space_habitat = yes
 	}
 }

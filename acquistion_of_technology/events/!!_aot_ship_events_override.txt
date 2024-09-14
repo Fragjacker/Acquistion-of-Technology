@@ -1,117 +1,6 @@
-############DARK MATTER EVENTS
+############ DARK MATTER EVENTS
 namespace = acot_ships
 # Terraform choice
-country_event = {
-	id = acot_ships.90
-	title = acot_ships.90.name
-	desc = acot_ships.90.desc
-	picture = GFX_acot_emissary_invasion
-	show_sound = event_laboratory_sound
-	is_triggered_only = yes
-	immediate = {
-	}
-	option = {
-		name = "acot_ships.90.a"
-		custom_tooltip = "acot_ships.90.a.tooltip"
-		allow = {
-			event_target:terraforming_planet = {
-				solar_system = {
-					custom_tooltip = {
-						fail_text = "requires_no_black_hole_neutron_star_pulsar"
-						NOR = {
-							is_star_class = sc_black_hole
-							is_star_class = sc_neutron_star
-							is_star_class = sc_pulsar
-						}
-					}
-				}
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_ships.91
-			}
-		}
-	}
-	option = {
-		name = "acot_ships.90.b"
-		custom_tooltip = "acot_ships.90.b.tooltip"
-		allow = {
-			OR = {
-				has_ascension_perk = ap_world_shaper
-				has_ascension_perk = ap_machine_worlds
-				has_ascension_perk = ap_arcology_project
-				has_ascension_perk = ap_hive_worlds
-				has_technology = tech_tomb_world_adaption
-				has_technology = tech_acot_colonize_fractured
-				has_technology = tech_acot_create_enigmatic_world
-			}
-		}
-		trigger = {
-			event_target:terraforming_emissary = {
-				any_owned_ship = {
-					OR = {
-						has_component = EMISSARY_ALPHA_COMPUTER
-						has_component = EMISSARY_PHANON_COMPUTER
-						has_component = EMISSARY_SIGMA_COMPUTER
-						has_component = EMISSARY_OMEGA_COMPUTER
-					}
-				}
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_ships.92
-			}
-		}
-	}
-	option = {
-		name = "acot_ships.90.c"
-		custom_tooltip = "acot_ships.90.c.tooltip"
-		hidden_effect = {
-			country_event = {
-				id = acot_ships.93
-			}
-		}
-	}
-	option = {
-		name = "acot_ships.90.d"
-		trigger = {
-			event_target:terraforming_emissary = {
-				any_owned_ship = {
-					NOR = {
-						has_component = EMISSARY_SIGMA_COMPUTER
-						has_component = EMISSARY_OMEGA_COMPUTER
-					}
-				}
-			}
-		}
-		hidden_effect = {
-		}
-		default_hide_option = yes
-	}
-	option = {
-		name = "acot_ships.90.d"
-		custom_tooltip = "acot_ships.90.d.tooltip"
-		trigger = {
-			event_target:terraforming_emissary = {
-				any_owned_ship = {
-					OR = {
-						has_component = EMISSARY_SIGMA_COMPUTER
-						has_component = EMISSARY_OMEGA_COMPUTER
-					}
-				}
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_ships.94
-			}
-		}
-		default_hide_option = yes
-	}
-}
-
 planet_event = {
 	id = acot_ships.10
 	hide_window = yes
@@ -121,7 +10,7 @@ planet_event = {
 		from = {
 			save_event_target_as = terraforming_emissary
 		}
-		IF = {
+		if = {
 			limit = {
 				has_owner = no
 			}
@@ -132,7 +21,7 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary.owner = {
-						is_regular_empire = yes
+						is_individualistic_empire = yes
 					}
 					event_target:terraforming_emissary = {
 						any_owned_ship = {
@@ -141,7 +30,7 @@ planet_event = {
 					}
 				}
 				remove_building = building_colony_shelter
-				add_building = building_ae_ancient_palace
+				add_building = building_acot_ae_ancient_palace
 			}
 			if = {
 				limit = {
@@ -155,7 +44,7 @@ planet_event = {
 					}
 				}
 				remove_building = building_colony_shelter
-				add_building = building_ae_ancient_hive_cluster
+				add_building = building_acot_ae_ancient_hive_cluster
 			}
 			if = {
 				limit = {
@@ -169,13 +58,13 @@ planet_event = {
 					}
 				}
 				remove_building = building_deployment_post
-				add_building = building_ae_ancient_control_center
+				add_building = building_acot_ae_ancient_control_center
 			}
 			# PHANON
 			if = {
 				limit = {
 					event_target:terraforming_emissary.owner = {
-						is_regular_empire = yes
+						is_individualistic_empire = yes
 					}
 					event_target:terraforming_emissary = {
 						any_owned_ship = {
@@ -218,7 +107,7 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary.owner = {
-						is_regular_empire = yes
+						is_individualistic_empire = yes
 					}
 					event_target:terraforming_emissary = {
 						any_owned_ship = {
@@ -268,15 +157,14 @@ planet_event = {
 				while = {
 					count = 5
 					create_pop = {
-						species = event_target:terraforming_emissary.owner.species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
-			### ALPHA	
+			### ALPHA
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_alpha		
 						any_owned_ship = {
 							has_component = EMISSARY_ALPHA_COMPUTER
 						}
@@ -285,11 +173,11 @@ planet_event = {
 				while = {
 					count = 10
 					create_pop = {
-						species = event_target:terraforming_emissary.owner.species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
-			#### PHANON	
+			#### PHANON
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
@@ -301,15 +189,14 @@ planet_event = {
 				while = {
 					count = 15
 					create_pop = {
-						species = event_target:terraforming_emissary.owner.species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
-			#### SUGNA	
+			#### SUGNA
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_sigma		
 						any_owned_ship = {
 							has_component = EMISSARY_SIGMA_COMPUTER
 						}
@@ -318,7 +205,7 @@ planet_event = {
 				while = {
 					count = 20
 					create_pop = {
-						species = event_target:terraforming_emissary.owner.species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
@@ -326,7 +213,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_omega		
 						any_owned_ship = {
 							has_component = EMISSARY_OMEGA_COMPUTER
 						}
@@ -335,7 +221,7 @@ planet_event = {
 				while = {
 					count = 25
 					create_pop = {
-						species = event_target:terraforming_emissary.owner.species
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
@@ -343,7 +229,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_pop
 						any_owned_ship = {
 							has_component = ACOT_EMISSART_EXTRA_POP
 						}
@@ -352,7 +237,37 @@ planet_event = {
 				while = {
 					count = 10
 					create_pop = {
-						species = event_target:terraforming_emissary.owner.species
+						species = event_target:terraforming_emissary.owner_main_species
+					}
+				}
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_POP
+						}
+					}
+				}
+				while = {
+					count = 15
+					create_pop = {
+						species = event_target:terraforming_emissary.owner_main_species
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_POP
+						}
+					}
+				}
+				while = {
+					count = 20
+					create_pop = {
+						species = event_target:terraforming_emissary.owner_main_species
 					}
 				}
 			}
@@ -360,29 +275,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_giga		
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_GIGA
-						}
-					}
-				}
-				add_building = building_giga_fortress
-			}
-			if = {
-				limit = {
-					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_giga		
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_GIGA
-						}
-					}
-				}
-				add_building = building_phanon_giga_fortress_obelisk
-			}
-			if = {
-				limit = {
-					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_giga		
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_STELLARITE_EXTRA_GIGA
 						}
@@ -390,22 +282,40 @@ planet_event = {
 				}
 				add_building = building_stellarite_giga_fortress_obelisk
 			}
+			else_if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_GIGA
+						}
+					}
+				}
+				add_building = building_phanon_giga_fortress_obelisk
+			}
+			else_if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_GIGA
+						}
+					}
+				 }
+				 add_building = building_acot_giga_fortress
+			}
 			# LABS
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_lab
 						any_owned_ship = {
 							has_component = ACOT_EMISSART_EXTRA_LAB
 						}
 					}
-				}
-				add_building = building_ae_enigmatic_lab
+				 }
+				 add_building = building_acot_ae_enigmatic_lab
 			}
-			if = {
+			else_if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_lab
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_PHANON_EXTRA_LAB
 						}
@@ -413,10 +323,9 @@ planet_event = {
 				}
 				add_building = building_phanon_enigmatic_lab
 			}
-			if = {
+			else_if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_lab
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_STELLARITE_EXTRA_LAB
 						}
@@ -428,29 +337,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_skyshield	
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_SKYSHIELD
-						}
-					}
-				}
-				add_building = building_ae_dark_energy_psg
-			}
-			if = {
-				limit = {
-					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_skyshield	
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_SKYSHIELD
-						}
-					}
-				}
-				add_building = building_phanon_psg
-			}
-			if = {
-				limit = {
-					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_skyshield	
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_STELLARITE_EXTRA_SKYSHIELD
 						}
@@ -458,97 +344,81 @@ planet_event = {
 				}
 				add_building = building_stellarite_psg
 			}
+			else_if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_SKYSHIELD
+						}
+					}
+				}
+				add_building = building_phanon_psg
+			}
+			else_if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_SKYSHIELD
+						}
+					}
+				 }
+				 add_building = building_acot_ae_psg
+			}
 			# Synthesizer
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_nexus		
 						any_owned_ship = {
 							has_component = ACOT_EMISSART_EXTRA_NEXUS
 						}
 					}
-				}
-				add_building = building_ae_dark_matter_synthersizer
+				 }
+				 add_building = building_acot_ae_dark_matter_synthersizer
 			}
-			if = {
+			else_if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_nexus		
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_NEXUS
-						}
-					}
-				}
-				add_building = building_phanon_stellarite_nexus
-			}
-			if = {
-				limit = {
-					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_nexus		
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_STELLARITE_EXTRA_NEXUS
 						}
 					}
 				}
+				add_building = building_stellarite_synthersizer
+			}
+			else_if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_NEXUS
+						}
+					}
+				}
+				add_building = building_phanon_synthersizer
+			}
+			if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_STELLARITE_EXTRA_CONDUIT
+						}
+					}
+				}
 				add_building = building_stellarite_nexus
+			}
+			else_if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_CONDUIT
+						}
+					}
+				}
+				add_building = building_phanon_stellarite_nexus
 			}
 			# Robot assembly
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_assembly	
-						any_owned_ship = {
-							has_component = ACOT_EMISSART_EXTRA_ASSEMBLY
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:terraforming_emissary.owner = {
-							is_machine_empire = no
-						}
-					}
-					add_building = building_ae_super_assembly
-				}
-				if = {
-					limit = {
-						event_target:terraforming_emissary.owner = {
-							is_machine_empire = yes
-						}
-					}
-					add_building = building_ae_super_assembly_machine
-				}
-			}
-			if = {
-				limit = {
-					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_assembly	
-						any_owned_ship = {
-							has_component = AOT_EMISSARY_PHANON_EXTRA_ASSEMBLY
-						}
-					}
-				}
-				if = {
-					limit = {
-						event_target:terraforming_emissary.owner = {
-							is_machine_empire = no
-						}
-					}
-					add_building = building_phanon_super_assembly
-				}
-				if = {
-					limit = {
-						event_target:terraforming_emissary.owner = {
-							is_machine_empire = yes
-						}
-					}
-					add_building = building_phanon_super_assembly_machine
-				}
-			}
-			if = {
-				limit = {
-					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_assembly	
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_STELLARITE_EXTRA_ASSEMBLY
 						}
@@ -571,17 +441,67 @@ planet_event = {
 					add_building = building_stellarite_super_assembly_machine
 				}
 			}
-		}
-		############## ATTACK #############################
-		IF = {
-			limit = {
-				planet_is_hostile = yes
+			else_if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = AOT_EMISSARY_PHANON_EXTRA_ASSEMBLY
+						}
+					}
+				}
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = no
+						}
+					}
+					add_building = building_phanon_super_assembly
+				}
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = yes
+						}
+					}
+					add_building = building_phanon_super_assembly_machine
+				}
 			}
+			else_if = {
+				limit = {
+					event_target:terraforming_emissary = {
+						any_owned_ship = {
+							has_component = ACOT_EMISSART_EXTRA_ASSEMBLY
+						}
+					}
+				}
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = no
+						}
+					}
+					add_building = building_acot_ae_super_assembly
+				}
+				if = {
+					limit = {
+						event_target:terraforming_emissary.owner = {
+							is_machine_empire = yes
+						}
+					 }
+					 add_building = building_acot_ae_super_assembly_machine
+				 }
+			}
+		}
+	############## ATTACK #############################
+			if = {
+				limit = {
+					planet_is_hostile = yes
+				}
+				set_planet_flag = acot_emissary_planet_attack
 			### DELTA ###
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_delta
 						any_owned_ship = {
 							has_component = EMISSARY_DELTA_COMPUTER
 						}
@@ -590,39 +510,38 @@ planet_event = {
 				if = {
 					limit = {
 						event_target:terraforming_emissary.owner = {
-							is_machine_empire = no
-						}
-					}
-					while = {
-						count = 10
-						create_army = {
-							owner = event_target:terraforming_emissary.owner
-							type = acot_garrison_army
-							species = event_target:terraforming_emissary.owner.species
-						}
-					}
-				}
-				if = {
-					limit = {
+							 is_machine_empire = no
+						 }
+					  }
+					  while ={
+						 count = 10
+						 create_army = {
+							 owner = event_target:terraforming_emissary.owner
+							 type = acot_garrison_army
+							 species = event_target:terraforming_emissary.owner_main_species
+						 }
+					 }
+				 }
+				 if = {
+					 limit = {
 						event_target:terraforming_emissary.owner = {
-							is_machine_empire = yes
-						}
-					}
-					while = {
-						count = 10
-						create_army = {
-							owner = event_target:terraforming_emissary.owner
-							type = acot_garrison_army_droid
-							species = event_target:terraforming_emissary.owner.species
-						}
-					}
-				}
+							 is_machine_empire = yes
+						 }
+					  }
+					  while ={
+						 count = 10
+						 create_army = {
+							 owner = event_target:terraforming_emissary.owner
+							 type = acot_garrison_army_droid
+							 species = event_target:terraforming_emissary.owner_main_species
+						 }
+					 }
+				 }
 			}
 			### ALPHA ###
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_alpha
 						any_owned_ship = {
 							has_component = EMISSARY_ALPHA_COMPUTER
 						}
@@ -631,16 +550,16 @@ planet_event = {
 				if = {
 					limit = {
 						event_target:terraforming_emissary.owner = {
-							is_machine_empire = no
-						}
-					}
-					while = {
-						count = 15
-						create_army = {
-							owner = event_target:terraforming_emissary.owner
-							type = acot_garrison_army
-							species = event_target:terraforming_emissary.owner.species
-							effect = {
+							 is_machine_empire = no
+						 }
+					  }
+					  while ={
+						 count = 15
+						 create_army = {
+							 owner = event_target:terraforming_emissary.owner
+							 type = acot_garrison_army
+							 species = event_target:terraforming_emissary.owner_main_species
+							 effect = {
 								set_army_flag = acot_emissary_army
 							}
 						}
@@ -657,7 +576,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army_droid
-							species = event_target:terraforming_emissary.owner.species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -669,9 +588,8 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_sigma
 						any_owned_ship = {
-							has_component = EMISSARY_SIGMA_COMPUTER
+							has_component = EMISSARY_PHANON_COMPUTER
 						}
 					}
 				}
@@ -686,7 +604,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army
-							species = event_target:terraforming_emissary.owner.species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -704,7 +622,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army_droid
-							species = event_target:terraforming_emissary.owner.species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -716,7 +634,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_sigma
 						any_owned_ship = {
 							has_component = EMISSARY_SIGMA_COMPUTER
 						}
@@ -733,7 +650,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army
-							species = event_target:terraforming_emissary.owner.species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -751,7 +668,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army_droid
-							species = event_target:terraforming_emissary.owner.species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -763,7 +680,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_omega
 						any_owned_ship = {
 							has_component = EMISSARY_OMEGA_COMPUTER
 						}
@@ -780,7 +696,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army
-							species = event_target:terraforming_emissary.owner.species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -798,7 +714,7 @@ planet_event = {
 						create_army = {
 							owner = event_target:terraforming_emissary.owner
 							type = acot_garrison_army_droid
-							species = event_target:terraforming_emissary.owner.species
+							species = event_target:terraforming_emissary.owner_main_species
 							effect = {
 								set_army_flag = acot_emissary_army
 							}
@@ -810,7 +726,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_troop	
 						any_owned_ship = {
 							has_component = ACOT_EMISSART_EXTRA_TROOPS
 						}
@@ -821,7 +736,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army
-						species = from.owner.species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -831,7 +746,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_troop	
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_PHANON_EXTRA_TROOPS
 						}
@@ -842,7 +756,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army
-						species = from.owner.species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -852,7 +766,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_troop	
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_STELLARITE_EXTRA_TROOPS
 						}
@@ -863,7 +776,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army
-						species = from.owner.species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -873,7 +786,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_droid	
 						any_owned_ship = {
 							has_component = ACOT_EMISSART_EXTRA_DROIDS
 						}
@@ -884,7 +796,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_droid
-						species = from.owner.species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -894,7 +806,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_droid	
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_PHANON_EXTRA_DROIDS
 						}
@@ -905,7 +816,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_droid
-						species = from.owner.species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -915,7 +826,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_droid	
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_STELLARITE_EXTRA_DROIDS
 						}
@@ -926,7 +836,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_droid
-						species = from.owner.species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -936,7 +846,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_giga		
 						any_owned_ship = {
 							has_component = ACOT_EMISSART_EXTRA_GIGA
 						}
@@ -947,7 +856,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_giga
-						species = from.owner.species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -957,7 +866,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_giga		
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_PHANON_EXTRA_GIGA
 						}
@@ -968,7 +876,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_giga
-						species = from.owner.species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}
@@ -978,7 +886,6 @@ planet_event = {
 			if = {
 				limit = {
 					event_target:terraforming_emissary = {
-						#has_fleet_flag = precursor_colonizer_extra_giga		
 						any_owned_ship = {
 							has_component = AOT_EMISSARY_STELLARITE_EXTRA_GIGA
 						}
@@ -989,7 +896,7 @@ planet_event = {
 					create_army = {
 						owner = from.owner
 						type = acot_garrison_army_giga
-						species = from.owner.species
+						species = from.owner_main_species
 						effect = {
 							set_army_flag = acot_emissary_army
 						}

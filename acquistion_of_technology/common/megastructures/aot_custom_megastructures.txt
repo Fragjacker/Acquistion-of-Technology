@@ -4,8 +4,8 @@ dimensional_mirror_0 = {
 	construction_entity = "acot_pmc_portal_disabled_entity"
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = no
-	build_outside_gravity_well = yes    # indicates this will use "free" placement between the system's inner and outer ring
-	# if this option is active, the placement_rules will be completely ignored
+	build_outside_gravity_well = yes	# Indicates this will use "free" placement between the system's inner and outer ring
+	# If this option is active, the placement_rules will be completely ignored
 	show_galactic_map_icon = yes
 	build_time = 1800
 	resources = {
@@ -52,7 +52,7 @@ dimensional_mirror_0 = {
 		}
 	}
 	placement_rules = {
-		# those would be ignored since the gateway is being "free-placed" between the inner and outer radius of the system
+		# Those would be ignored since the gateway is being "free-placed" between the inner and outer radius of the system
 	}
 	# root = system
 	# from = country
@@ -120,8 +120,8 @@ dimensional_mirror_final = {
 	construction_entity = "acot_pmc_portal_entity"
 	portrait = "GFX_evt_dimensional_mirror"
 	place_entity_on_planet_plane = no
-	# build_outside_gravity_well = yes 						# indicates this will use "free" placement between the system's inner and outer ring
-	# if this option is active, the placement_rules will be completely ignored
+	# build_outside_gravity_well = yes 						# Indicates this will use "free" placement between the system's inner and outer ring
+	# If this option is active, the placement_rules will be completely ignored
 	show_galactic_map_icon = yes
 	potential = {
 		has_technology = tech_phanon_dimensional_mirror
@@ -1077,7 +1077,7 @@ sigma_star_imploder_3 = {
 	}
 }
 
-#Phanon MacR.I.P.P.
+# Phanon MacR.I.P.P.
 solaripp_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -1387,7 +1387,7 @@ solaripp_3 = {
 				}
 				set_surveyed = {
 					surveyed = yes
-					surveyor = FROM
+					surveyor = from
 				}
 				set_all_comms_surveyed = yes
 				clear_blockers = yes
@@ -2074,7 +2074,7 @@ phanon_megaturret_destroyed_1 = {
 
 aot_macripp_dark_matter_obelisk_core_pe = {
 	entity = "phanon_aot_enigmalith_entity"
-	construction_entity = "phanon_aot_enigmalith_entity"
+	construction_entity = "pe_aot_enigmalith_construction_entity"
 	portrait = "GFX_acot_dark_obelisk_background"
 	place_entity_on_planet_plane = yes
 	show_in_outliner = no
@@ -2082,17 +2082,21 @@ aot_macripp_dark_matter_obelisk_core_pe = {
 		x = 0
 		y = 0
 	}
-	# used from script only
-	#upgrade_desc = hide
+	# Used from script only
+	# upgrade_desc = hide
 	potential = {
 		always = no
 	}
 	country_modifier = {
+		country_resource_max_aot_sr_runic_power_add = 10000
 	}
 	prerequisites = {
 		tech_precursor_enigmalith_pe
 	}
 	upgrade_from = {
+	}
+	dismantle_potential = {
+		always = no
 	}
 	construction_blocks_and_blocked_by = none
 	build_time = 360
@@ -2100,15 +2104,11 @@ aot_macripp_dark_matter_obelisk_core_pe = {
 		category = megastructures
 		cost = {
 			alloys = 10000
-			sr_dark_matter = 20000
-			acot_sr_dark_energy = 20000
-			aot_sr_runic_power = 5000
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+			aot_sr_runic_power = 2500
 		}
 		upkeep = {
-		}
-		produces = {
-			energy = 2000
-			alloys = 2000
 		}
 		produces = {
 			trigger = {
@@ -2117,7 +2117,7 @@ aot_macripp_dark_matter_obelisk_core_pe = {
 					has_technology = tech_mine_dark_matter
 				}
 			}
-			sr_dark_matter = 2500
+			sr_dark_matter = 250
 		}
 		produces = {
 			trigger = {
@@ -2126,7 +2126,7 @@ aot_macripp_dark_matter_obelisk_core_pe = {
 					has_technology = tech_mine_dark_energy
 				}
 			}
-			acot_sr_dark_energy = 2500
+			acot_sr_dark_energy = 250
 		}
 		produces = {
 			trigger = {
@@ -2143,7 +2143,7 @@ aot_macripp_dark_matter_obelisk_core_pe = {
 # Special version of the obelisk to reside on the planet plane
 aot_macripp_dark_matter_obelisk_core_se = {
 	entity = "sigma_aot_enigmalith_entity"
-	construction_entity = "sigma_aot_enigmalith_entity"
+	construction_entity = "se_aot_enigmalith_construction_entity"
 	portrait = "GFX_acot_dark_obelisk_se_background"
 	show_in_outliner = no
 	prerequisites = {
@@ -2157,46 +2157,26 @@ aot_macripp_dark_matter_obelisk_core_se = {
 		x = 0
 		y = 0
 	}
-	# used from script only
-	#upgrade_desc = hide
+	# Used from script only
+	# upgrade_desc = hide
 	potential = {
 	}
 	construction_blocks_and_blocked_by = none
 	country_modifier = {
+		country_resource_max_acot_sr_stellarite_add = 10000
+	}
+	dismantle_potential = {
+		always = no
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
 		cost = {
 			alloys = 10000
-			sr_dark_matter = 20000
-			acot_sr_dark_energy = 20000
-			aot_sr_runic_power = 20000
-			acot_sr_stellarite = 10000
+			aot_sr_runic_power = 5000
+			acot_sr_stellarite = 2500
 		}
 		upkeep = {
-		}
-		produces = {
-			energy = 2500
-			alloys = 2500
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_mine_dark_matter
-				}
-			}
-			sr_dark_matter = 2500
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_mine_dark_energy
-				}
-			}
-			acot_sr_dark_energy = 2500
 		}
 		produces = {
 			trigger = {
@@ -2205,16 +2185,10 @@ aot_macripp_dark_matter_obelisk_core_se = {
 					has_technology = tech_dark_matter_power_core_re
 				}
 			}
-			aot_sr_runic_power = 2000
+			aot_sr_runic_power = 250
 		}
 		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_dark_matter_power_core_se
-				}
-			}
-			acot_sr_stellarite = 500
+			acot_sr_stellarite = 1000
 		}
 		# Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
 		produces = {
@@ -2254,26 +2228,8 @@ aot_macripp_dark_matter_obelisk_core_se = {
 			factor = 2
 			owner = {
 				has_monthly_income = {
-					resource = energy
-					value < 5000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 5000
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			owner = {
-				has_monthly_income = {
 					resource = aot_sr_runic_power
-					value < 5000
+					value < 500
 				}
 			}
 		}
@@ -2291,7 +2247,7 @@ aot_macripp_dark_matter_obelisk_core_se = {
 
 aot_macripp_dark_matter_obelisk_core_oe = {
 	entity = "precursor_dark_obelisk_oe_entity"
-	construction_entity = "precursor_dark_obelisk_oe_entity"
+	construction_entity = "oe_aot_enigmalith_construction_entity"
 	portrait = "GFX_acot_dark_obelisk_oe_background"
 	show_in_outliner = no
 	prerequisites = {
@@ -2305,14 +2261,18 @@ aot_macripp_dark_matter_obelisk_core_oe = {
 	upgrade_from = {
 		aot_macripp_dark_matter_obelisk_core_se
 	}
-	# used from script only
-	#upgrade_desc = hide
+	# Used from script only
+	# upgrade_desc = hide
 	potential = {
 	}
 	construction_blocks_and_blocked_by = none
 	country_modifier = {
+		country_resource_max_acot_sr_light_matter_add = 10000
 	}
 	build_time = 360
+	dismantle_potential = {
+		always = no
+	}
 	resources = {
 		category = megastructures
 		cost = {
@@ -2514,7 +2474,7 @@ dm_habitat_0 = {
 			custom_tooltip = {
 				fail_text = "requires_surveyed_planet"
 				is_surveyed = {
-					# prevent leaking habitability information
+					# Prevent leaking habitability information
 					who = prev.from
 					status = yes
 				}
@@ -2527,7 +2487,7 @@ dm_habitat_0 = {
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_existing_megastructure"
-				#can_build_megastructure_on_planet = yes
+				# can_build_megastructure_on_planet = yes
 				NOR = {
 					has_planet_flag = megastructure
 					has_planet_flag = has_megastructure
@@ -2537,17 +2497,17 @@ dm_habitat_0 = {
 							has_star_flag = ithomes_gate
 						}
 					}
-					is_planet_class = pc_ringworld_habitable
+					merg_is_hab_ringworld = yes
 					is_planet_class = pc_ringworld_habitable_damaged
 					is_planet_class = pc_ringworld_tech
 					is_planet_class = pc_ringworld_tech_damaged
 					is_planet_class = pc_ringworld_seam
 					is_planet_class = pc_ringworld_seam_damaged
-					is_planet_class = pc_habitat
+					merg_is_habitat = yes
 					is_aot_habitat = yes
 				}
 			}
-			# balance for habitats
+			# Balance for habitats
 			custom_tooltip = {
 				fail_text = "requires_not_minor_planetary_body"
 				NOR = {
@@ -2569,18 +2529,44 @@ dm_habitat_0 = {
 						is_ai = yes
 					}
 				}
-				or = {
+				OR = {
 					has_deposit_for = shipclass_mining_station
 					has_deposit_for = shipclass_research_station
 				}
 			}
 		}
-		# use these for all non-star megastructures
+		# Use these for all non-star megastructures
 	}
 	# root = system
 	# from = country
 	ai_weight = {
 		factor = 5
+		modifier = {
+			# AI shouldn't build habitats if they have any uncolonised habitats.
+			factor = 0
+			owner = {
+				any_planet_within_border = {
+					OR = {
+						merg_is_habitat = yes
+						is_aot_habitat = yes
+					}
+					is_colony = no
+				}
+			}
+		}
+		modifier = {
+			# AI shouldn't build habitats if they don't have starports in the system
+			# Unless they have either the Void Dwellers origin or Voidborn AP.
+			factor = 0
+			owner = {
+				is_void_dweller_empire = no
+			}
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starport
+				}
+			}
+		}
 		modifier = {
 			factor = 5
 			exists = sector
@@ -2620,7 +2606,7 @@ dm_habitat_0 = {
 				}
 				set_surveyed = {
 					surveyed = yes
-					surveyor = FROM
+					surveyor = from
 				}
 				save_event_target_as = target_habitat
 				add_aot_habitat_deposits = yes
@@ -2720,7 +2706,7 @@ ae_habitat_0 = {
 			custom_tooltip = {
 				fail_text = "requires_surveyed_planet"
 				is_surveyed = {
-					# prevent leaking habitability information
+					# Prevent leaking habitability information
 					who = prev.from
 					status = yes
 				}
@@ -2733,7 +2719,7 @@ ae_habitat_0 = {
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_existing_megastructure"
-				#can_build_megastructure_on_planet = yes
+				# can_build_megastructure_on_planet = yes
 				NOR = {
 					has_planet_flag = megastructure
 					has_planet_flag = has_megastructure
@@ -2743,17 +2729,17 @@ ae_habitat_0 = {
 							has_star_flag = ithomes_gate
 						}
 					}
-					is_planet_class = pc_ringworld_habitable
+					merg_is_hab_ringworld = yes
 					is_planet_class = pc_ringworld_habitable_damaged
 					is_planet_class = pc_ringworld_tech
 					is_planet_class = pc_ringworld_tech_damaged
 					is_planet_class = pc_ringworld_seam
 					is_planet_class = pc_ringworld_seam_damaged
-					is_planet_class = pc_habitat
+					merg_is_habitat = yes
 					is_aot_habitat = yes
 				}
 			}
-			# balance for habitats
+			# Balance for habitats
 			custom_tooltip = {
 				fail_text = "requires_not_minor_planetary_body"
 				NOR = {
@@ -2775,18 +2761,44 @@ ae_habitat_0 = {
 						is_ai = yes
 					}
 				}
-				or = {
+				OR = {
 					has_deposit_for = shipclass_mining_station
 					has_deposit_for = shipclass_research_station
 				}
 			}
 		}
-		# use these for all non-star megastructures
+		# Use these for all non-star megastructures
 	}
 	# root = system
 	# from = country
 	ai_weight = {
 		factor = 5
+		modifier = {
+			# AI shouldn't build habitats if they have any uncolonised habitats.
+			factor = 0
+			owner = {
+				any_planet_within_border = {
+					OR = {
+						merg_is_habitat = yes
+						is_aot_habitat = yes
+					}
+					is_colony = no
+				}
+			}
+		}
+		modifier = {
+			# AI shouldn't build habitats if they don't have starports in the system
+			# Unless they have either the Void Dwellers origin or Voidborn AP.
+			factor = 0
+			owner = {
+				is_void_dweller_empire = no
+			}
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starport
+				}
+			}
+		}
 		modifier = {
 			factor = 5
 			exists = sector
@@ -2826,7 +2838,7 @@ ae_habitat_0 = {
 				}
 				set_surveyed = {
 					surveyed = yes
-					surveyor = FROM
+					surveyor = from
 				}
 				save_event_target_as = target_habitat
 				add_aot_habitat_deposits = yes
@@ -2926,7 +2938,7 @@ phanon_habitat_0 = {
 			custom_tooltip = {
 				fail_text = "requires_surveyed_planet"
 				is_surveyed = {
-					# prevent leaking habitability information
+					# Prevent leaking habitability information
 					who = prev.from
 					status = yes
 				}
@@ -2939,7 +2951,7 @@ phanon_habitat_0 = {
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_existing_megastructure"
-				#can_build_megastructure_on_planet = yes
+				# can_build_megastructure_on_planet = yes
 				NOR = {
 					has_planet_flag = megastructure
 					has_planet_flag = has_megastructure
@@ -2949,17 +2961,17 @@ phanon_habitat_0 = {
 							has_star_flag = ithomes_gate
 						}
 					}
-					is_planet_class = pc_ringworld_habitable
+					merg_is_hab_ringworld = yes
 					is_planet_class = pc_ringworld_habitable_damaged
 					is_planet_class = pc_ringworld_tech
 					is_planet_class = pc_ringworld_tech_damaged
 					is_planet_class = pc_ringworld_seam
 					is_planet_class = pc_ringworld_seam_damaged
-					is_planet_class = pc_habitat
+					merg_is_habitat = yes
 					is_aot_habitat = yes
 				}
 			}
-			# balance for habitats
+			# Balance for habitats
 			custom_tooltip = {
 				fail_text = "requires_not_minor_planetary_body"
 				NOR = {
@@ -2981,18 +2993,44 @@ phanon_habitat_0 = {
 						is_ai = yes
 					}
 				}
-				or = {
+				OR = {
 					has_deposit_for = shipclass_mining_station
 					has_deposit_for = shipclass_research_station
 				}
 			}
 		}
-		# use these for all non-star megastructures
+		# Use these for all non-star megastructures
 	}
 	# root = system
 	# from = country
 	ai_weight = {
 		factor = 5
+		modifier = {
+			# AI shouldn't build habitats if they have any uncolonised habitats.
+			factor = 0
+			owner = {
+				any_planet_within_border = {
+					OR = {
+						merg_is_habitat = yes
+						is_aot_habitat = yes
+					}
+					is_colony = no
+				}
+			}
+		}
+		modifier = {
+			# AI shouldn't build habitats if they don't have starports in the system
+			# Unless they have either the Void Dwellers origin or Voidborn AP.
+			factor = 0
+			owner = {
+				is_void_dweller_empire = no
+			}
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starport
+				}
+			}
+		}
 		modifier = {
 			factor = 5
 			exists = sector
@@ -3032,7 +3070,7 @@ phanon_habitat_0 = {
 				}
 				set_surveyed = {
 					surveyed = yes
-					surveyor = FROM
+					surveyor = from
 				}
 				save_event_target_as = target_habitat
 				add_aot_habitat_deposits = yes
@@ -3132,7 +3170,7 @@ stellarite_habitat_0 = {
 			custom_tooltip = {
 				fail_text = "requires_surveyed_planet"
 				is_surveyed = {
-					# prevent leaking habitability information
+					# Prevent leaking habitability information
 					who = prev.from
 					status = yes
 				}
@@ -3145,7 +3183,7 @@ stellarite_habitat_0 = {
 			}
 			custom_tooltip = {
 				fail_text = "requires_no_existing_megastructure"
-				#can_build_megastructure_on_planet = yes
+				# can_build_megastructure_on_planet = yes
 				NOR = {
 					has_planet_flag = megastructure
 					has_planet_flag = has_megastructure
@@ -3155,17 +3193,17 @@ stellarite_habitat_0 = {
 							has_star_flag = ithomes_gate
 						}
 					}
-					is_planet_class = pc_ringworld_habitable
+					merg_is_hab_ringworld = yes
 					is_planet_class = pc_ringworld_habitable_damaged
 					is_planet_class = pc_ringworld_tech
 					is_planet_class = pc_ringworld_tech_damaged
 					is_planet_class = pc_ringworld_seam
 					is_planet_class = pc_ringworld_seam_damaged
-					is_planet_class = pc_habitat
+					merg_is_habitat = yes
 					is_aot_habitat = yes
 				}
 			}
-			# balance for habitats
+			# Balance for habitats
 			custom_tooltip = {
 				fail_text = "requires_not_minor_planetary_body"
 				NOR = {
@@ -3187,18 +3225,44 @@ stellarite_habitat_0 = {
 						is_ai = yes
 					}
 				}
-				or = {
+				OR = {
 					has_deposit_for = shipclass_mining_station
 					has_deposit_for = shipclass_research_station
 				}
 			}
 		}
-		# use these for all non-star megastructures
+		# Use these for all non-star megastructures
 	}
 	# root = system
 	# from = country
 	ai_weight = {
 		factor = 5
+		modifier = {
+			# AI shouldn't build habitats if they have any uncolonised habitats.
+			factor = 0
+			owner = {
+				any_planet_within_border = {
+					OR = {
+						merg_is_habitat = yes
+						is_aot_habitat = yes
+					}
+					is_colony = no
+				}
+			}
+		}
+		modifier = {
+			# AI shouldn't build habitats if they don't have starports in the system
+			# Unless they have either the Void Dwellers origin or Voidborn AP.
+			factor = 0
+			owner = {
+				is_void_dweller_empire = no
+			}
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starport
+				}
+			}
+		}
 		modifier = {
 			factor = 5
 			exists = sector
@@ -3238,7 +3302,7 @@ stellarite_habitat_0 = {
 				}
 				set_surveyed = {
 					surveyed = yes
-					surveyor = FROM
+					surveyor = from
 				}
 				save_event_target_as = target_habitat
 				add_aot_habitat_deposits = yes
@@ -3280,15 +3344,14 @@ stellarite_habitat_0 = {
 }
 
 # Enigmatic lock to keep those pesky hordes outside
-
 enigmatic_lock_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
 	portrait = "GFX_megastructure_construction_background"
 	construction_blocks_and_blocked_by = none
 	place_entity_on_planet_plane = no
-	build_outside_gravity_well = yes    # indicates this will use "free" placement between the system's inner and outer ring
-	# if this option is active, the placement_rules will be completely ignored
+	build_outside_gravity_well = yes	# Indicates this will use "free" placement between the system's inner and outer ring
+	# If this option is active, the placement_rules will be completely ignored
 	show_galactic_map_icon = yes
 	build_time = 1800
 	resources = {
@@ -3328,7 +3391,7 @@ enigmatic_lock_0 = {
 				solar_system = {
 					has_owner = yes
 					owner = {
-						is_same_value = root.owner
+						is_same_empire = root.owner
 					}
 				}
 				is_valid_bypass_for_lock = yes
@@ -3343,7 +3406,7 @@ enigmatic_lock_0 = {
 		}
 	}
 	placement_rules = {
-		# those would be ignored since the gateway is being "free-placed" between the inner and outer radius of the system
+		# Those would be ignored since the gateway is being "free-placed" between the inner and outer radius of the system
 	}
 	# root = system
 	# from = country
@@ -3391,7 +3454,7 @@ enigmatic_lock_0 = {
 	on_build_cancel = {
 	}
 	on_build_complete = {
-		#from = {
+		# from = {
 		#	country_event = {
 		#		id = aot_phanon_events.3
 		#	}
@@ -3405,8 +3468,8 @@ enigmatic_lock_1 = {
 	portrait = "GFX_megastructure_construction_background"
 	construction_blocks_and_blocked_by = none
 	place_entity_on_planet_plane = no
-	build_outside_gravity_well = yes    # indicates this will use "free" placement between the system's inner and outer ring
-	# if this option is active, the placement_rules will be completely ignored
+	build_outside_gravity_well = yes	# Indicates this will use "free" placement between the system's inner and outer ring
+	# If this option is active, the placement_rules will be completely ignored
 	show_galactic_map_icon = yes
 	build_time = 1800
 	resources = {

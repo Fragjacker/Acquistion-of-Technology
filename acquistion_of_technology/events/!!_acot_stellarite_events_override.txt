@@ -1,6 +1,30 @@
-############DARK MATTER EVENTS
+############ DARK MATTER EVENTS
 namespace = stellarite_events
-#Stellar
+# Stellar
+country_event = {
+	id = stellarite_events.0
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		always = no # We use the AoT way to do the stellarite events instead, found in aot_tech_events.txt
+	}
+
+	immediate = {
+		set_country_flag = hear_stellarite
+		if = {
+			limit = {
+				is_ai = no
+			}
+			country_event = {
+				id = stellarite_events.1
+				days = 1800
+				random = 900
+			}
+		}
+	}
+}
+
 country_event = {
 	id = stellarite_events.1
 	title = stellarite_events.1.name
@@ -9,7 +33,7 @@ country_event = {
 		text = stellarite_events.1.desc.a
 		trigger = {
 			NOR = {
-				has_country_flag = hear_stellarite
+				has_country_flag = guardians_stellarite_encountered
 				has_country_flag = learned_stellarite_from_outergate_ask
 			}
 		}
@@ -17,35 +41,41 @@ country_event = {
 	desc = {
 		text = stellarite_events.1.desc.b
 		trigger = {
-			has_country_flag = hear_stellarite
+			has_country_flag = guardians_stellarite_encountered
 			NOT = {
 				has_country_flag = learned_stellarite_from_outergate_ask
 			}
 		}
 	}
 	desc = {
-		text = stellarite_events.1.desc.b
+		text = stellarite_events.1.desc.c
 		trigger = {
 			has_country_flag = learned_stellarite_from_outergate_ask
 		}
 	}
 	picture = GFX_evt_physics_research
-	show_sound = event_mystic_reveal
-	# trigger = {
-	# 	is_ai = no
-	# 	NOR = {
-	# 		has_global_flag = acot_sigma_forbidden
-	# 		has_country_flag = acot_stellarite_project_begin
-	# 		has_technology = tech_dark_matter_power_core_se
-	# 		has_tech_option = tech_dark_matter_power_core_se
-	# 	}
-	# 	is_fallen_empire = no
-	# 	is_playable_country = yes
-	# 	has_technology = tech_dark_matter_power_core_re
-	# 	has_established_contact = event_target:acot_precursor_databank_country
-	# }
+	show_sound = event_acot_empire_event_start
+	trigger = {
+		is_ai = no
+		NOR = {
+			has_global_flag = acot_sigma_forbidden
+			has_country_flag = acot_stellarite_project_begin
+			has_technology = tech_dark_matter_power_core_se
+			has_tech_option = tech_dark_matter_power_core_se
+		}
+		is_playable_country = yes
+		is_fallen_empire = no
+	}
+	is_triggered_only = yes
 	immediate = {
-		set_country_flag = hear_stellarite
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = hear_stellarite
+				}
+			}
+			set_country_flag = hear_stellarite
+		}
 		set_country_flag = acot_stellarite_project_begin
 	}
 	option = {
@@ -59,13 +89,14 @@ country_event = {
 				id = stellarite_events.100
 			}
 		}
+		ai_chance = {
+			factor = 10
+		}
 	}
 	option = {
 		name = stellarite_events.1.b
 		trigger = {
-			NOT = {
-				has_global_flag = sofe_activated
-			}
+			is_sbtg_activated = no
 		}
 		ai_chance = {
 			factor = 0
@@ -107,7 +138,7 @@ planet_event = {
 			if = {
 				limit = {
 					num_buildings = {
-						type = building_stellarite_generator
+						type = building_acot_stellarite_generator
 						value = 1
 					}
 				}
@@ -121,7 +152,7 @@ planet_event = {
 							}
 						}
 						every_owned_ship = {
-							reduce_hp = 10000
+							reduce_hp = 15000
 						}
 					}
 				}
@@ -129,30 +160,8 @@ planet_event = {
 			if = {
 				limit = {
 					num_buildings = {
-						type = building_stellarite_generator
+						type = building_acot_stellarite_generator
 						value = 2
-					}
-				}
-				save_event_target_as = imminent_bombing
-				solar_system = {
-					every_fleet_in_system = {
-						limit = {
-							exists = orbit
-							orbit = {
-								is_planet = event_target:imminent_bombing
-							}
-						}
-						every_owned_ship = {
-							reduce_hp = 20000
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator
-						value >= 3
 					}
 				}
 				save_event_target_as = imminent_bombing
@@ -173,97 +182,30 @@ planet_event = {
 			if = {
 				limit = {
 					num_buildings = {
-						type = building_stellarite_generator
-						value = 4
-					}
-				}
-				save_event_target_as = imminent_bombing
-				solar_system = {
-					every_fleet_in_system = {
-						limit = {
-							exists = orbit
-							orbit = {
-								is_planet = event_target:imminent_bombing
-							}
-						}
-						every_owned_ship = {
-							reduce_hp = 40000
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator
-						value >= 5
-					}
-				}
-				save_event_target_as = imminent_bombing
-				solar_system = {
-					every_fleet_in_system = {
-						limit = {
-							exists = orbit
-							orbit = {
-								is_planet = event_target:imminent_bombing
-							}
-						}
-						every_owned_ship = {
-							reduce_hp = 50000
-						}
-					}
-				}
-			}
-			######### STELLARITE UPGRADED
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator_ae
-						value = 1
-					}
-				}
-				save_event_target_as = imminent_bombing
-				solar_system = {
-					every_fleet_in_system = {
-						limit = {
-							exists = orbit
-							orbit = {
-								is_planet = event_target:imminent_bombing
-							}
-						}
-						every_owned_ship = {
-							reduce_hp = 20000
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator_ae
-						value = 2
-					}
-				}
-				save_event_target_as = imminent_bombing
-				solar_system = {
-					every_fleet_in_system = {
-						limit = {
-							exists = orbit
-							orbit = {
-								is_planet = event_target:imminent_bombing
-							}
-						}
-						every_owned_ship = {
-							reduce_hp = 40000
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					num_buildings = {
-						type = building_stellarite_generator_ae
+						type = building_acot_stellarite_generator
 						value >= 3
+					}
+				}
+				save_event_target_as = imminent_bombing
+				solar_system = {
+					every_fleet_in_system = {
+						limit = {
+							exists = orbit
+							orbit = {
+								is_planet = event_target:imminent_bombing
+							}
+						}
+						every_owned_ship = {
+							reduce_hp = 45000
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					num_buildings = {
+						type = building_acot_stellarite_generator
+						value = 4
 					}
 				}
 				save_event_target_as = imminent_bombing
@@ -281,11 +223,12 @@ planet_event = {
 					}
 				}
 			}
+			######### STELLARITE UPGRADED
 			if = {
 				limit = {
 					num_buildings = {
-						type = building_stellarite_generator_ae
-						value = 4
+						type = building_acot_stellarite_generator_ae
+						value = 1
 					}
 				}
 				save_event_target_as = imminent_bombing
@@ -298,7 +241,7 @@ planet_event = {
 							}
 						}
 						every_owned_ship = {
-							reduce_hp = 80000
+							reduce_hp = 25000
 						}
 					}
 				}
@@ -306,8 +249,52 @@ planet_event = {
 			if = {
 				limit = {
 					num_buildings = {
-						type = building_stellarite_generator_ae
-						value >= 5
+						type = building_acot_stellarite_generator_ae
+						value = 2
+					}
+				}
+				save_event_target_as = imminent_bombing
+				solar_system = {
+					every_fleet_in_system = {
+						limit = {
+							exists = orbit
+							orbit = {
+								is_planet = event_target:imminent_bombing
+							}
+						}
+						every_owned_ship = {
+							reduce_hp = 50000
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					num_buildings = {
+						type = building_acot_stellarite_generator_ae
+						value >= 3
+					}
+				}
+				save_event_target_as = imminent_bombing
+				solar_system = {
+					every_fleet_in_system = {
+						limit = {
+							exists = orbit
+							orbit = {
+								is_planet = event_target:imminent_bombing
+							}
+						}
+						every_owned_ship = {
+							reduce_hp = 75000
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					num_buildings = {
+						type = building_acot_stellarite_generator_ae
+						value = 4
 					}
 				}
 				save_event_target_as = imminent_bombing
@@ -393,7 +380,7 @@ planet_event = {
 			if = {
 				limit = {
 					num_buildings = {
-						type = building_stellarite_nexus
+						type = building_acot_stellarite_nexus
 						value >= 1
 					}
 				}
@@ -408,6 +395,50 @@ planet_event = {
 						}
 						every_owned_ship = {
 							reduce_hp = 50000
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					num_buildings = {
+						type = building_phanon_stellarite_nexus
+						value >= 1
+					}
+				}
+				save_event_target_as = imminent_bombing
+				solar_system = {
+					every_fleet_in_system = {
+						limit = {
+							exists = orbit
+							orbit = {
+								is_planet = event_target:imminent_bombing
+							}
+						}
+						every_owned_ship = {
+							reduce_hp = 60000
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					num_buildings = {
+						type = building_stellarite_nexus
+						value >= 1
+					}
+				}
+				save_event_target_as = imminent_bombing
+				solar_system = {
+					every_fleet_in_system = {
+						limit = {
+							exists = orbit
+							orbit = {
+								is_planet = event_target:imminent_bombing
+							}
+						}
+						every_owned_ship = {
+							reduce_hp = 70000
 						}
 					}
 				}

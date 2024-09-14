@@ -1,5 +1,5 @@
 namespace = planet_destruction
-#planet_event = {
+# planet_event = {
 #	id = planet_destruction.1
 #	is_triggered_only = yes
 #	hide_window = yes
@@ -10,9 +10,9 @@ namespace = planet_destruction
 #}
 # Add static war exhaustion for these planet destruction events with:
 # add_static_war_exhaustion = {
-#				attacker = <country>		 				# attacker in this battle
-#				location = <planet>							# location for battle
-#				value_for_planet_destruction = <0.0-1.0>	# scale amount of WE added to this battle
+#				attacker = <country>		 				# Attacker in this battle
+#				location = <planet>							# Location for battle
+#				value_for_planet_destruction = <0.0-1.0>	# Scale amount of WE added to this battle
 #			}
 # Cracked
 planet_event = {
@@ -42,7 +42,7 @@ planet_event = {
 				}
 			}
 		}
-		#Dismantle observation post
+		# Dismantle observation post
 		if = {
 			limit = {
 				has_observation_outpost = yes
@@ -92,7 +92,7 @@ planet_event = {
 					is_country_type = swarm
 				}
 			}
-			every_playable_country = {
+			every_country = {
 				limit = {
 					has_event_chain = "prethoryn_scourge_chain"
 				}
@@ -120,7 +120,7 @@ planet_event = {
 			from.owner = {
 				set_timed_country_flag = {
 					flag = resolution_breached_fired_cracker
-					days = 3600
+					years = 10
 				}
 			}
 		}
@@ -138,7 +138,12 @@ planet_event = {
 				exists = owner
 				owner = {
 					NOT = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
+					}
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
 					}
 					is_playable_country = yes
 				}
@@ -152,12 +157,12 @@ planet_event = {
 					who = from.owner
 					amount = 3
 				}
-				# modifier for allies + those upset by genocide
+				# Modifier for allies + those upset by genocide
 				every_country = {
 					limit = {
 						NOR = {
-							is_same_empire = from.owner
-							is_same_empire = root.owner
+							is_same_value = from.owner
+							is_same_value = root.owner
 							AND = {
 								has_federation = yes
 								is_in_federation_with = from.owner
@@ -207,7 +212,7 @@ planet_event = {
 					amount = 1
 				}
 			}
-			# modifiers for victim
+			# Modifiers for victim
 			owner = {
 				if = {
 					limit = {
@@ -234,7 +239,7 @@ planet_event = {
 					}
 					add_modifier = {
 						modifier = colossus_victim
-						days = 10800                        # 30 years
+						days = 10800						# 30 years
 					}
 				}
 			}
@@ -245,11 +250,11 @@ planet_event = {
 						is_country_type = primitive
 					}
 				}
-				# modifier for allies + those upset by genocide
+				# Modifier for allies + those upset by genocide
 				every_country = {
 					limit = {
 						NOT = {
-							is_same_empire = from.owner
+							is_same_value = from.owner
 						}
 						OR = {
 							has_communications = from.owner
@@ -275,7 +280,7 @@ planet_event = {
 				every_country = {
 					limit = {
 						NOT = {
-							is_same_empire = from.owner
+							is_same_value = from.owner
 						}
 						OR = {
 							has_communications = from.owner
@@ -302,24 +307,41 @@ planet_event = {
 				exists = owner
 			}
 			owner = {
-				add_static_war_exhaustion = {
-					attacker = from.fleet.owner
-					location = root
-					value_for_planet_destruction = 1
+				if = {
+					limit = {
+						#isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1
+					}
 				}
 			}
 		}
 		every_owned_pop = {
 			kill_pop = yes
 		}
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
 		remove_all_buildings = yes
-		# destroy habitats and ringworlds
+		# Destroy habitats and ringworlds
 		if = {
 			limit = {
 				is_memeable_space_habitat = yes
 			}
 			spawn_habitat_cracker_effect = yes
-			remove_planet = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_cracker_effect = yes
 		}
 		else_if = {
 			limit = {
@@ -336,19 +358,15 @@ planet_event = {
 			clear_deposits = yes
 			random_list = {
 				1 = {
-					add_deposit = d_minerals_4
-					add_deposit = d_minerals_4
-					add_deposit = d_minerals_4
-					add_deposit = d_minerals_4
+					add_deposit = d_minerals_10
+					add_deposit = d_minerals_6
 				}
 				1 = {
-					add_deposit = d_minerals_4
-					add_deposit = d_minerals_4
-					add_deposit = d_minerals_4
+					add_deposit = d_minerals_10
+					add_deposit = d_minerals_2
 				}
 				1 = {
-					add_deposit = d_minerals_4
-					add_deposit = d_minerals_4
+					add_deposit = d_minerals_8
 				}
 				1 = {
 					add_deposit = d_minerals_4
@@ -421,7 +439,7 @@ planet_event = {
 				exists = owner
 				owner = {
 					NOT = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 				}
 				NOT = {
@@ -434,7 +452,7 @@ planet_event = {
 				}
 			}
 		}
-		#Dismantle observation post
+		# Dismantle observation post
 		if = {
 			limit = {
 				has_observation_outpost = yes
@@ -484,7 +502,7 @@ planet_event = {
 					is_country_type = swarm
 				}
 			}
-			every_playable_country = {
+			every_country = {
 				limit = {
 					has_event_chain = "prethoryn_scourge_chain"
 				}
@@ -505,7 +523,7 @@ planet_event = {
 				exists = owner
 				owner = {
 					NOT = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 					is_playable_country = yes
 				}
@@ -515,12 +533,12 @@ planet_event = {
 				who = from.owner
 				amount = 3
 			}
-			# modifier for allies + those upset by the shield
+			# Modifier for allies + those upset by the shield
 			every_country = {
 				limit = {
 					NOR = {
-						is_same_empire = from.owner
-						is_same_empire = root.owner
+						is_same_value = from.owner
+						is_same_value = root.owner
 						AND = {
 							has_federation = yes
 							is_in_federation_with = from.owner
@@ -551,7 +569,7 @@ planet_event = {
 					who = from.owner
 				}
 			}
-			# modifiers for victim
+			# Modifiers for victim
 			owner = {
 				add_opinion_modifier = {
 					modifier = opinion_shielded_my_world
@@ -565,7 +583,7 @@ planet_event = {
 					}
 					add_modifier = {
 						modifier = colossus_victim
-						days = 10800                        # 30 years
+						days = 10800						# 30 years
 					}
 				}
 			}
@@ -577,11 +595,23 @@ planet_event = {
 			}
 		}
 		# Add war exhaustion to planet owner
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			destroy_fleet = orbital_defence
+		}
 		owner = {
-			add_static_war_exhaustion = {
-				attacker = from.fleet.owner
-				location = root
-				value_for_planet_destruction = 1
+			if = {
+				limit = {
+					#isn't the case when the crisis bombards planets, for instance
+					is_at_war_with = from.fleet.owner
+				}
+				add_static_war_exhaustion = {
+					attacker = from.fleet.owner
+					location = root
+					value_for_planet_destruction = 1
+				}
 			}
 		}
 		if = {
@@ -589,6 +619,16 @@ planet_event = {
 				is_memeable_space_habitat = yes
 			}
 			spawn_habitat_pacifier_effect = yes
+			change_pc = {
+				class = pc_habitat_shielded
+				inherit_entity = yes
+			}
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_pacifier_effect = yes
 			change_pc = {
 				class = pc_habitat_shielded
 				inherit_entity = yes
@@ -611,10 +651,7 @@ planet_event = {
 			}
 		}
 		clear_deposits = yes
-		add_deposit = d_society_3
-		add_deposit = d_society_3
-		add_deposit = d_society_3
-		add_deposit = d_society_1
+		add_deposit = d_society_10
 	}
 }
 
@@ -629,7 +666,7 @@ planet_event = {
 				exists = owner
 				owner = {
 					NOT = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 				}
 			}
@@ -639,7 +676,7 @@ planet_event = {
 				}
 			}
 		}
-		#Dismantle observation post
+		# Dismantle observation post
 		if = {
 			limit = {
 				has_observation_outpost = yes
@@ -659,7 +696,7 @@ planet_event = {
 					is_country_type = swarm
 				}
 			}
-			every_playable_country = {
+			every_country = {
 				limit = {
 					has_event_chain = "prethoryn_scourge_chain"
 				}
@@ -686,7 +723,7 @@ planet_event = {
 			from.owner = {
 				set_timed_country_flag = {
 					flag = resolution_breached_fired_neutron
-					days = 3600
+					years = 10
 				}
 			}
 		}
@@ -695,7 +732,7 @@ planet_event = {
 				exists = owner
 				owner = {
 					NOT = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 					is_playable_country = yes
 				}
@@ -705,12 +742,12 @@ planet_event = {
 				who = from.owner
 				amount = 3
 			}
-			# modifier for allies + those upset by genocide
+			# Modifier for allies + those upset by genocide
 			every_country = {
 				limit = {
 					NOR = {
-						is_same_empire = from.owner
-						is_same_empire = root.owner
+						is_same_value = from.owner
+						is_same_value = root.owner
 						AND = {
 							has_federation = yes
 							is_in_federation_with = from.owner
@@ -741,7 +778,7 @@ planet_event = {
 					who = from.owner
 				}
 			}
-			# modifiers for victim
+			# Modifiers for victim
 			owner = {
 				add_opinion_modifier = {
 					modifier = opinion_swept_my_world
@@ -755,7 +792,7 @@ planet_event = {
 					}
 					add_modifier = {
 						modifier = colossus_victim
-						days = 10800                        # 30 years
+						days = 10800						# 30 years
 					}
 				}
 			}
@@ -767,11 +804,11 @@ planet_event = {
 					is_country_type = primitive
 				}
 			}
-			# modifier for allies + those upset by genocide
+			# Modifier for allies + those upset by genocide
 			every_country = {
 				limit = {
 					NOT = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 					OR = {
 						has_communications = from.owner
@@ -792,7 +829,7 @@ planet_event = {
 			every_country = {
 				limit = {
 					NOT = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 					OR = {
 						has_communications = from.owner
@@ -814,16 +851,32 @@ planet_event = {
 		}
 		# Add war exhaustion to planet owner
 		owner = {
-			add_static_war_exhaustion = {
-				attacker = from.fleet.owner
-				location = root
-				value_for_planet_destruction = 1
+			if = {
+				limit = {
+					#isn't the case when the crisis bombards planets, for instance
+					is_at_war_with = from.fleet.owner
+				}
+				add_static_war_exhaustion = {
+					attacker = from.fleet.owner
+					location = root
+					value_for_planet_destruction = 1
+				}
+			}
+		}
+		every_owned_pop = {
+			from.owner = {
+				if = {
+					limit = {
+						has_ascension_perk = ap_become_the_crisis
+					}
+					complete_crisis_objective = crisobj_purge_pops
+				}
 			}
 		}
 		destroy_colony = yes
 		add_modifier = {
 			modifier = neutron_bombarded
-			days = 3600
+			years = 10
 		}
 		# Special graphics for Habitats and Ring Worlds
 		if = {
@@ -834,236 +887,18 @@ planet_event = {
 		}
 		else_if = {
 			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_neutron_effect = yes
+		}
+		else_if = {
+			limit = {
 				is_memeable_ringworld = yes
 			}
 			spawn_ringworld_neutron_effect = yes
 		}
 		else = {
-			switch = {
-				trigger = is_planet_class
-				pc_desert = {
-					change_pc = pc_desert
-				}
-				pc_arid = {
-					change_pc = pc_arid
-				}
-				pc_savannah = {
-					change_pc = pc_savannah
-				}
-				pc_ocean = {
-					change_pc = pc_ocean
-				}
-				pc_continental = {
-					change_pc = pc_continental
-				}
-				pc_tropical = {
-					change_pc = pc_tropical
-				}
-				pc_tundra = {
-					change_pc = pc_tundra
-				}
-				pc_arctic = {
-					change_pc = pc_arctic
-				}
-				pc_alpine = {
-					change_pc = pc_alpine
-				}
-				pc_snow = {
-					change_pc = pc_snow
-				}
-				pc_highland = {
-					change_pc = pc_highland
-				}
-				pc_tidallylocked = {
-					change_pc = pc_tidallylocked
-				}
-				pc_mangrove = {
-					change_pc = pc_mangrove
-				}
-				pc_wetswamp = {
-					change_pc = pc_wetswamp
-				}
-				pc_desertislands = {
-					change_pc = pc_desertislands
-				}
-				pc_hajungle = {
-					change_pc = pc_hajungle
-				}
-				pc_cascadian = {
-					change_pc = pc_cascadian
-				}
-				pc_swamp = {
-					change_pc = pc_swamp
-				}
-				pc_mud = {
-					change_pc = pc_mud
-				}
-				pc_subarctic = {
-					change_pc = pc_subarctic
-				}
-				pc_glacial = {
-					change_pc = pc_glacial
-				}
-				pc_geothermal = {
-					change_pc = pc_geothermal
-				}
-				pc_sandsea = {
-					change_pc = pc_sandsea
-				}
-				pc_mesa = {
-					change_pc = pc_mesa
-				}
-				pc_outback = {
-					change_pc = pc_outback
-				}
-				pc_oasis = {
-					change_pc = pc_oasis
-				}
-				pc_hadesert = {
-					change_pc = pc_hadesert
-				}
-				pc_steppe = {
-					change_pc = pc_steppe
-				}
-				pc_frozen_desert = {
-					change_pc = pc_frozen_desert
-				}
-				pc_boreal = {
-					change_pc = pc_boreal
-				}
-				pc_ammonia = {
-					change_pc = pc_ammonia
-				}
-				pc_sulfur = {
-					change_pc = pc_sulfur
-				}
-				pc_acid = {
-					change_pc = pc_acid
-				}
-				pc_methane = {
-					change_pc = pc_methane
-				}
-				pc_crystal = {
-					change_pc = pc_crystal
-				}
-				pc_floating = {
-					change_pc = pc_floating
-				}
-				pc_graveyard = {
-					change_pc = pc_graveyard
-				}
-				pc_mushroom = {
-					change_pc = pc_mushroom
-				}
-				pc_superhabitable = {
-					change_pc = pc_superhabitable
-				}
-				pc_retinal = {
-					change_pc = pc_retinal
-				}
-				pc_forest = {
-					change_pc = pc_forest
-				}
-				pc_lake = {
-					change_pc = pc_lake
-				}
-				pc_tepid = {
-					change_pc = pc_tepid
-				}
-				pc_ecocity = {
-					change_pc = pc_ecocity
-				}
-				pc_prairie = {
-					change_pc = pc_prairie
-				}
-				pc_veld = {
-					change_pc = pc_veld
-				}
-				pc_semiarid = {
-					change_pc = pc_semiarid
-				}
-				pc_med = {
-					change_pc = pc_med
-				}
-				pc_machine_factory = {
-					change_pc = pc_machine_factory
-				}
-				pc_bioforge = {
-					change_pc = pc_bioforge
-				}
-				pc_irradiated = {
-					change_pc = pc_irradiated
-				}
-				pc_karst = {
-					change_pc = pc_karst
-				}
-				pc_ash = {
-					change_pc = pc_ash
-				}
-				pc_primal = {
-					change_pc = pc_primal
-				}
-				pc_salt = {
-					change_pc = pc_salt
-				}
-				pc_coral = {
-					change_pc = pc_coral
-				}
-				pc_storm = {
-					change_pc = pc_storm
-				}
-				pc_rogue = {
-					change_pc = pc_rogue
-				}
-				pc_eyeball = {
-					change_pc = pc_eyeball
-				}
-				pc_glacio = {
-					change_pc = pc_glacio
-				}
-				pc_megaflora = {
-					change_pc = pc_megaflora
-				}
-				pc_megafloratol = {
-					change_pc = pc_megafloratol
-				}
-				pc_pdhive1 = {
-					change_pc = pc_pdhive1
-				}
-				pc_pdhive2 = {
-					change_pc = pc_pdhive2
-				}
-				pc_aquatic = {
-					change_pc = pc_aquatic
-				}
-				pc_pd_barren_hab = {
-					change_pc = pc_pd_barren_hab
-				}
-				pc_pd_barren_cold_hab = {
-					change_pc = pc_pd_barren_cold_hab
-				}
-				pc_pd_gas_giant_hab = {
-					change_pc = pc_pd_gas_giant_hab
-				}
-				pc_pd_molten_hab = {
-					change_pc = pc_pd_molten_hab
-				}
-				pc_pd_frozen_hab = {
-					change_pc = pc_pd_frozen_hab
-				}
-				pc_pd_toxic_hab = {
-					change_pc = pc_pd_toxic_hab
-				}
-				pc_pd_hothouse_hab = {
-					change_pc = pc_pd_hothouse_hab
-				}
-				pc_pd_asteroid_hab = {
-					change_pc = pc_pd_asteroid_hab
-				}
-				pc_pdshroud = {
-					change_pc = pc_pdshroud
-				}
-			}
+			change_pc = this
 		}
 		# For Infested worlds
 		if = {
@@ -1100,7 +935,7 @@ planet_event = {
 				exists = owner
 				owner = {
 					NOT = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 				}
 			}
@@ -1179,7 +1014,7 @@ planet_event = {
 			from.owner = {
 				set_timed_country_flag = {
 					flag = resolution_breached_fired_godray
-					days = 3600
+					years = 10
 				}
 			}
 		}
@@ -1191,7 +1026,7 @@ planet_event = {
 				exists = owner
 				owner = {
 					NOT = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 					is_playable_country = yes
 				}
@@ -1201,12 +1036,12 @@ planet_event = {
 				who = from.owner
 				amount = 3
 			}
-			# modifier for allies + those upset by conversion
+			# Modifier for allies + those upset by conversion
 			every_country = {
 				limit = {
 					NOR = {
-						is_same_empire = from.owner
-						is_same_empire = root.owner
+						is_same_value = from.owner
+						is_same_value = root.owner
 						AND = {
 							has_federation = yes
 							is_in_federation_with = from.owner
@@ -1237,7 +1072,7 @@ planet_event = {
 					who = from.owner
 				}
 			}
-			# modifiers for victim
+			# Modifiers for victim
 			owner = {
 				add_opinion_modifier = {
 					modifier = opinion_converted_my_world
@@ -1251,16 +1086,22 @@ planet_event = {
 					}
 					add_modifier = {
 						modifier = colossus_victim
-						days = 10800                        # 30 years
+						days = 10800						# 30 years
 					}
 				}
 			}
 			# Add war exhaustion to planet owner
 			owner = {
-				add_static_war_exhaustion = {
-					attacker = from.fleet.owner
-					location = root
-					value_for_planet_destruction = 1
+				if = {
+					limit = {
+						#isn't the case when the crisis bombards planets, for instance
+						is_at_war_with = from.fleet.owner
+					}
+					add_static_war_exhaustion = {
+						attacker = from.fleet.owner
+						location = root
+						value_for_planet_destruction = 1
+					}
 				}
 			}
 		}
@@ -1278,6 +1119,14 @@ planet_event = {
 				}
 			}
 			kill_pop = yes
+			from.owner = {
+				if = {
+					limit = {
+						has_ascension_perk = ap_become_the_crisis
+					}
+					complete_crisis_objective = crisobj_purge_pops
+				}
+			}
 		}
 		every_owned_pop = {
 			limit = {
@@ -1302,252 +1151,34 @@ planet_event = {
 		}
 		else_if = {
 			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_divine_effect = yes
+		}
+		else_if = {
+			limit = {
 				is_memeable_ringworld = yes
 			}
 			spawn_ringworld_divine_effect = yes
 		}
 		else = {
-			switch = {
-				trigger = is_planet_class
-				pc_desert = {
-					change_pc = pc_desert
-				}
-				pc_arid = {
-					change_pc = pc_arid
-				}
-				pc_savannah = {
-					change_pc = pc_savannah
-				}
-				pc_ocean = {
-					change_pc = pc_ocean
-				}
-				pc_continental = {
-					change_pc = pc_continental
-				}
-				pc_tropical = {
-					change_pc = pc_tropical
-				}
-				pc_tundra = {
-					change_pc = pc_tundra
-				}
-				pc_arctic = {
-					change_pc = pc_arctic
-				}
-				pc_alpine = {
-					change_pc = pc_alpine
-				}
-				pc_snow = {
-					change_pc = pc_snow
-				}
-				pc_highland = {
-					change_pc = pc_highland
-				}
-				pc_tidallylocked = {
-					change_pc = pc_tidallylocked
-				}
-				pc_mangrove = {
-					change_pc = pc_mangrove
-				}
-				pc_wetswamp = {
-					change_pc = pc_wetswamp
-				}
-				pc_desertislands = {
-					change_pc = pc_desertislands
-				}
-				pc_hajungle = {
-					change_pc = pc_hajungle
-				}
-				pc_cascadian = {
-					change_pc = pc_cascadian
-				}
-				pc_swamp = {
-					change_pc = pc_swamp
-				}
-				pc_mud = {
-					change_pc = pc_mud
-				}
-				pc_subarctic = {
-					change_pc = pc_subarctic
-				}
-				pc_glacial = {
-					change_pc = pc_glacial
-				}
-				pc_geothermal = {
-					change_pc = pc_geothermal
-				}
-				pc_sandsea = {
-					change_pc = pc_sandsea
-				}
-				pc_mesa = {
-					change_pc = pc_mesa
-				}
-				pc_outback = {
-					change_pc = pc_outback
-				}
-				pc_oasis = {
-					change_pc = pc_oasis
-				}
-				pc_hadesert = {
-					change_pc = pc_hadesert
-				}
-				pc_steppe = {
-					change_pc = pc_steppe
-				}
-				pc_frozen_desert = {
-					change_pc = pc_frozen_desert
-				}
-				pc_boreal = {
-					change_pc = pc_boreal
-				}
-				pc_ammonia = {
-					change_pc = pc_ammonia
-				}
-				pc_sulfur = {
-					change_pc = pc_sulfur
-				}
-				pc_acid = {
-					change_pc = pc_acid
-				}
-				pc_methane = {
-					change_pc = pc_methane
-				}
-				pc_crystal = {
-					change_pc = pc_crystal
-				}
-				pc_floating = {
-					change_pc = pc_floating
-				}
-				pc_graveyard = {
-					change_pc = pc_graveyard
-				}
-				pc_mushroom = {
-					change_pc = pc_mushroom
-				}
-				pc_superhabitable = {
-					change_pc = pc_superhabitable
-				}
-				pc_retinal = {
-					change_pc = pc_retinal
-				}
-				pc_forest = {
-					change_pc = pc_forest
-				}
-				pc_lake = {
-					change_pc = pc_lake
-				}
-				pc_tepid = {
-					change_pc = pc_tepid
-				}
-				pc_ecocity = {
-					change_pc = pc_ecocity
-				}
-				pc_prairie = {
-					change_pc = pc_prairie
-				}
-				pc_veld = {
-					change_pc = pc_veld
-				}
-				pc_semiarid = {
-					change_pc = pc_semiarid
-				}
-				pc_med = {
-					change_pc = pc_med
-				}
-				pc_machine_factory = {
-					change_pc = pc_machine_factory
-				}
-				pc_bioforge = {
-					change_pc = pc_bioforge
-				}
-				pc_irradiated = {
-					change_pc = pc_irradiated
-				}
-				pc_karst = {
-					change_pc = pc_karst
-				}
-				pc_ash = {
-					change_pc = pc_ash
-				}
-				pc_primal = {
-					change_pc = pc_primal
-				}
-				pc_salt = {
-					change_pc = pc_salt
-				}
-				pc_coral = {
-					change_pc = pc_coral
-				}
-				pc_storm = {
-					change_pc = pc_storm
-				}
-				pc_rogue = {
-					change_pc = pc_rogue
-				}
-				pc_eyeball = {
-					change_pc = pc_eyeball
-				}
-				pc_glacio = {
-					change_pc = pc_glacio
-				}
-				pc_megaflora = {
-					change_pc = pc_megaflora
-				}
-				pc_megafloratol = {
-					change_pc = pc_megafloratol
-				}
-				pc_pdhive1 = {
-					change_pc = pc_pdhive1
-				}
-				pc_pdhive2 = {
-					change_pc = pc_pdhive2
-				}
-				pc_aquatic = {
-					change_pc = pc_aquatic
-				}
-				pc_pd_barren_hab = {
-					change_pc = pc_pd_barren_hab
-				}
-				pc_pd_barren_cold_hab = {
-					change_pc = pc_pd_barren_cold_hab
-				}
-				pc_pd_gas_giant_hab = {
-					change_pc = pc_pd_gas_giant_hab
-				}
-				pc_pd_molten_hab = {
-					change_pc = pc_pd_molten_hab
-				}
-				pc_pd_frozen_hab = {
-					change_pc = pc_pd_frozen_hab
-				}
-				pc_pd_toxic_hab = {
-					change_pc = pc_pd_toxic_hab
-				}
-				pc_pd_hothouse_hab = {
-					change_pc = pc_pd_hothouse_hab
-				}
-				pc_pd_asteroid_hab = {
-					change_pc = pc_pd_asteroid_hab
-				}
-				pc_pdshroud = {
-					change_pc = pc_pdshroud
-				}
-			}
+			change_pc = this
 		}
 		add_modifier = {
 			modifier = god_rayed
-			days = 3600
+			years = 10
 		}
 		# self-raying
 		if = {
 			limit = {
 				exists = owner
 				owner = {
-					is_same_empire = from.owner
+					is_same_value = from.owner
 				}
 			}
 			add_modifier = {
 				modifier = uneasy_faith
-				days = 3600
+				years = 10
 			}
 		}
 	}
@@ -1559,7 +1190,7 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
-		# remove hive mind?
+		# Remove hive mind?
 		from.owner = {
 			country_event = {
 				id = planet_destruction.501
@@ -1576,7 +1207,7 @@ planet_event = {
 			from.owner = {
 				set_timed_country_flag = {
 					flag = resolution_breached_fired_assimilator
-					days = 3600
+					years = 10
 				}
 			}
 		}
@@ -1585,7 +1216,7 @@ planet_event = {
 				exists = owner
 				owner = {
 					NOT = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 					is_playable_country = yes
 				}
@@ -1595,12 +1226,12 @@ planet_event = {
 				who = from.owner
 				amount = 3
 			}
-			# modifier for allies + those upset by robots
+			# Modifier for allies + those upset by robots
 			every_country = {
 				limit = {
 					NOR = {
-						is_same_empire = from.owner
-						is_same_empire = root.owner
+						is_same_value = from.owner
+						is_same_value = root.owner
 						AND = {
 							has_federation = yes
 							is_in_federation_with = from.owner
@@ -1630,7 +1261,7 @@ planet_event = {
 					who = from.owner
 				}
 			}
-			# modifiers for victim
+			# Modifiers for victim
 			owner = {
 				add_opinion_modifier = {
 					modifier = opinion_assimilated_my_world
@@ -1644,7 +1275,7 @@ planet_event = {
 					}
 					add_modifier = {
 						modifier = colossus_victim
-						days = 10800                        # 30 years
+						days = 10800						# 30 years
 					}
 				}
 			}
@@ -1656,11 +1287,11 @@ planet_event = {
 					is_country_type = primitive
 				}
 			}
-			# modifier for allies + those upset by genocide
+			# Modifier for allies + those upset by genocide
 			every_country = {
 				limit = {
 					NOR = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 					OR = {
 						has_communications = from.owner
@@ -1681,7 +1312,7 @@ planet_event = {
 			every_country = {
 				limit = {
 					NOR = {
-						is_same_empire = from.owner
+						is_same_value = from.owner
 					}
 					OR = {
 						has_communications = from.owner
@@ -1703,20 +1334,26 @@ planet_event = {
 		}
 		# Add war exhaustion to planet owner
 		owner = {
-			add_static_war_exhaustion = {
-				attacker = from.fleet.owner
-				location = root
-				value_for_planet_destruction = 1
+			if = {
+				limit = {
+					#isn't the case when the crisis bombards planets, for instance
+					is_at_war_with = from.fleet.owner
+				}
+				add_static_war_exhaustion = {
+					attacker = from.fleet.owner
+					location = root
+					value_for_planet_destruction = 1
+				}
 			}
 		}
 		if = {
 			limit = {
 				exists = owner
 				owner = {
-					is_same_empire = from.owner
+					is_same_value = from.owner
 				}
 			}
-			# already owned
+			# Already owned
 		}
 		else = {
 			set_owner = from.owner
@@ -1763,236 +1400,18 @@ planet_event = {
 		}
 		else_if = {
 			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_nanobot_effect = yes
+		}
+		else_if = {
+			limit = {
 				is_memeable_ringworld = yes
 			}
 			spawn_ringworld_nanobot_effect = yes
 		}
 		else = {
-			switch = {
-				trigger = is_planet_class
-				pc_desert = {
-					change_pc = pc_desert
-				}
-				pc_arid = {
-					change_pc = pc_arid
-				}
-				pc_savannah = {
-					change_pc = pc_savannah
-				}
-				pc_ocean = {
-					change_pc = pc_ocean
-				}
-				pc_continental = {
-					change_pc = pc_continental
-				}
-				pc_tropical = {
-					change_pc = pc_tropical
-				}
-				pc_tundra = {
-					change_pc = pc_tundra
-				}
-				pc_arctic = {
-					change_pc = pc_arctic
-				}
-				pc_alpine = {
-					change_pc = pc_alpine
-				}
-				pc_snow = {
-					change_pc = pc_snow
-				}
-				pc_highland = {
-					change_pc = pc_highland
-				}
-				pc_tidallylocked = {
-					change_pc = pc_tidallylocked
-				}
-				pc_mangrove = {
-					change_pc = pc_mangrove
-				}
-				pc_wetswamp = {
-					change_pc = pc_wetswamp
-				}
-				pc_desertislands = {
-					change_pc = pc_desertislands
-				}
-				pc_hajungle = {
-					change_pc = pc_hajungle
-				}
-				pc_cascadian = {
-					change_pc = pc_cascadian
-				}
-				pc_swamp = {
-					change_pc = pc_swamp
-				}
-				pc_mud = {
-					change_pc = pc_mud
-				}
-				pc_subarctic = {
-					change_pc = pc_subarctic
-				}
-				pc_glacial = {
-					change_pc = pc_glacial
-				}
-				pc_geothermal = {
-					change_pc = pc_geothermal
-				}
-				pc_sandsea = {
-					change_pc = pc_sandsea
-				}
-				pc_mesa = {
-					change_pc = pc_mesa
-				}
-				pc_outback = {
-					change_pc = pc_outback
-				}
-				pc_oasis = {
-					change_pc = pc_oasis
-				}
-				pc_hadesert = {
-					change_pc = pc_hadesert
-				}
-				pc_steppe = {
-					change_pc = pc_steppe
-				}
-				pc_frozen_desert = {
-					change_pc = pc_frozen_desert
-				}
-				pc_boreal = {
-					change_pc = pc_boreal
-				}
-				pc_ammonia = {
-					change_pc = pc_ammonia
-				}
-				pc_sulfur = {
-					change_pc = pc_sulfur
-				}
-				pc_acid = {
-					change_pc = pc_acid
-				}
-				pc_methane = {
-					change_pc = pc_methane
-				}
-				pc_crystal = {
-					change_pc = pc_crystal
-				}
-				pc_floating = {
-					change_pc = pc_floating
-				}
-				pc_graveyard = {
-					change_pc = pc_graveyard
-				}
-				pc_mushroom = {
-					change_pc = pc_mushroom
-				}
-				pc_superhabitable = {
-					change_pc = pc_superhabitable
-				}
-				pc_retinal = {
-					change_pc = pc_retinal
-				}
-				pc_forest = {
-					change_pc = pc_forest
-				}
-				pc_lake = {
-					change_pc = pc_lake
-				}
-				pc_tepid = {
-					change_pc = pc_tepid
-				}
-				pc_ecocity = {
-					change_pc = pc_ecocity
-				}
-				pc_prairie = {
-					change_pc = pc_prairie
-				}
-				pc_veld = {
-					change_pc = pc_veld
-				}
-				pc_semiarid = {
-					change_pc = pc_semiarid
-				}
-				pc_med = {
-					change_pc = pc_med
-				}
-				pc_machine_factory = {
-					change_pc = pc_machine_factory
-				}
-				pc_bioforge = {
-					change_pc = pc_bioforge
-				}
-				pc_irradiated = {
-					change_pc = pc_irradiated
-				}
-				pc_karst = {
-					change_pc = pc_karst
-				}
-				pc_ash = {
-					change_pc = pc_ash
-				}
-				pc_primal = {
-					change_pc = pc_primal
-				}
-				pc_salt = {
-					change_pc = pc_salt
-				}
-				pc_coral = {
-					change_pc = pc_coral
-				}
-				pc_storm = {
-					change_pc = pc_storm
-				}
-				pc_rogue = {
-					change_pc = pc_rogue
-				}
-				pc_eyeball = {
-					change_pc = pc_eyeball
-				}
-				pc_glacio = {
-					change_pc = pc_glacio
-				}
-				pc_megaflora = {
-					change_pc = pc_megaflora
-				}
-				pc_megafloratol = {
-					change_pc = pc_megafloratol
-				}
-				pc_pdhive1 = {
-					change_pc = pc_pdhive1
-				}
-				pc_pdhive2 = {
-					change_pc = pc_pdhive2
-				}
-				pc_aquatic = {
-					change_pc = pc_aquatic
-				}
-				pc_pd_barren_hab = {
-					change_pc = pc_pd_barren_hab
-				}
-				pc_pd_barren_cold_hab = {
-					change_pc = pc_pd_barren_cold_hab
-				}
-				pc_pd_gas_giant_hab = {
-					change_pc = pc_pd_gas_giant_hab
-				}
-				pc_pd_molten_hab = {
-					change_pc = pc_pd_molten_hab
-				}
-				pc_pd_frozen_hab = {
-					change_pc = pc_pd_frozen_hab
-				}
-				pc_pd_toxic_hab = {
-					change_pc = pc_pd_toxic_hab
-				}
-				pc_pd_hothouse_hab = {
-					change_pc = pc_pd_hothouse_hab
-				}
-				pc_pd_asteroid_hab = {
-					change_pc = pc_pd_asteroid_hab
-				}
-				pc_pdshroud = {
-					change_pc = pc_pdshroud
-				}
-			}
+			change_pc = this
 		}
 	}
 }

@@ -1,3 +1,7 @@
+@dm_job_mult = 0.005
+@ae_job_mult = 0.006
+@pe_job_mult = 0.007
+@se_job_mult = 0.008
 ###################
 # Basic Jobs
 ###################
@@ -13,59 +17,162 @@ dm_clerk = {
 		is_sapient = yes
 	}
 	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_clerks
+	}
+
 	planet_modifier = {
 		planet_amenities_add = 6
 		trade_value_add = 6
 	}
+
 	triggered_planet_modifier = {
 		potential = {
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_production
 			}
 		}
-		modifier = {
-			planet_amenities_add = 0.6
+		planet_jobs_alloys_produces_mult = @dm_job_mult
+		planet_jobs_consumer_goods_produces_mult = @dm_job_mult
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_stability
+			}
 		}
+		planet_jobs_unity_produces_mult = @dm_job_mult
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_research
+			}
+		}
+		planet_jobs_physics_research_produces_mult = @dm_job_mult
+		planet_jobs_society_research_produces_mult = @dm_job_mult
+		planet_jobs_engineering_research_produces_mult = @dm_job_mult
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				NOT = { has_planet_flag = has_franchise_headquarters }
+			}
+		}
+		trade_value_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				has_planet_flag = has_franchise_headquarters
+			}
+		}
+		trade_value_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+	}
+
+	overlord_resources = {
+		category = planet_corporate_franchising_meddling
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_franchise_headquarters
+				}
+			}
+			unity = 0.25
+		}
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_ii }
+		}
+		pop_political_power = 0.25
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		pop_political_power = 0.50
+	}
+
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				exists = orbital_defence
+				orbital_defence = {
+					exists = starbase
+					starbase = {
+						has_starbase_building = ring_trade_hub
+					}
+				}
+			}
+		}
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_mercantile_trickle_up_economics }
+		}
+		trade_value_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
 	}
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_repugnant
+			exists = owner
+			owner = { has_tradition = tr_mercantile_trickle_up_economics }
 		}
-		modifier = {
-			planet_amenities_add = -0.6
-		}
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		country_edict_fund_add = 1
+	}
+
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_thrifty
+			exists = owner
+			owner = { has_active_tradition = tr_virtuality_5 }
 		}
+
 		modifier = {
-			trade_value_add = 0.7
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_nuumismatic_administration
-		}
-		modifier = {
-			trade_value_add = 0.7
+			planet_virtual_jobs_produces_mult = 0.01
 		}
 	}
 	weight = {
 		weight = @clerk_job_weight
-		modifier = {
-			factor = 5
-			has_job = dm_clerk
-		}
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
 		modifier = {
 			factor = 0.25
 			is_enslaved = yes
 			can_take_servant_job = no
-			NOR = {
-				has_trait = trait_nuumismatic_administration
-				has_trait = trait_thrifty
-			}
 		}
 		modifier = {
 			factor = 2
@@ -76,35 +183,31 @@ dm_clerk = {
 			can_take_servant_job = no
 		}
 		modifier = {
-			factor = 1.5
+			factor = 10
 			OR = {
-				has_trait = trait_thrifty
-				has_trait = trait_nuumismatic_administration
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
 			}
+			can_take_servant_job = no
+			can_fill_specialist_job_trigger = no
 		}
 		modifier = {
 			factor = 0.1
 			can_take_servant_job = yes
 		}
 		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
+			factor = 1.1
+			exists = owner
+			owner = { is_megacorp = yes }
 		}
 		modifier = {
 			factor = 0.5
 			exists = owner
-			owner = {
-				is_fallen_empire = yes
-			}
+			owner = { is_fallen_empire = yes }
 		}
 	}
+
+	inline_script = "jobs/automodding_priority_trade"
 }
 
 ae_clerk = {
@@ -119,59 +222,160 @@ ae_clerk = {
 		is_sapient = yes
 	}
 	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_clerks
+	}
+
 	planet_modifier = {
 		planet_amenities_add = 12
 		trade_value_add = 12
 	}
 	triggered_planet_modifier = {
 		potential = {
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_production
 			}
 		}
-		modifier = {
-			planet_amenities_add = 1
+		planet_jobs_alloys_produces_mult = @ae_job_mult
+		planet_jobs_consumer_goods_produces_mult = @ae_job_mult
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_stability
+			}
 		}
+		planet_jobs_unity_produces_mult = @ae_job_mult
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_research
+			}
+		}
+		planet_jobs_physics_research_produces_mult = @ae_job_mult
+		planet_jobs_society_research_produces_mult = @ae_job_mult
+		planet_jobs_engineering_research_produces_mult = @ae_job_mult
 	}
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_repugnant
+			planet = {
+				NOT = { has_planet_flag = has_franchise_headquarters }
+			}
 		}
-		modifier = {
-			planet_amenities_add = -1
+		trade_value_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				has_planet_flag = has_franchise_headquarters
+			}
 		}
+		trade_value_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+	}
+
+	overlord_resources = {
+		category = planet_corporate_franchising_meddling
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_franchise_headquarters
+				}
+			}
+			unity = 0.25
+		}
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_ii }
+		}
+		pop_political_power = 0.25
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		pop_political_power = 0.50
+	}
+
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				exists = orbital_defence
+				orbital_defence = {
+					exists = starbase
+					starbase = {
+						has_starbase_building = ring_trade_hub
+					}
+				}
+			}
+		}
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_mercantile_trickle_up_economics }
+		}
+		trade_value_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
 	}
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_thrifty
+			exists = owner
+			owner = { has_tradition = tr_mercantile_trickle_up_economics }
 		}
-		modifier = {
-			trade_value_add = 1
-		}
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		country_edict_fund_add = 1
+	}
+
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_nuumismatic_administration
+			exists = owner
+			owner = { has_active_tradition = tr_virtuality_5 }
 		}
+
 		modifier = {
-			trade_value_add = 1
+			planet_virtual_jobs_produces_mult = 0.01
 		}
 	}
 	weight = {
 		weight = @clerk_job_weight
-		modifier = {
-			factor = 5
-			has_job = ae_clerk
-		}
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
 		modifier = {
 			factor = 0.25
 			is_enslaved = yes
 			can_take_servant_job = no
-			NOR = {
-				has_trait = trait_nuumismatic_administration
-				has_trait = trait_thrifty
-			}
 		}
 		modifier = {
 			factor = 2
@@ -182,35 +386,31 @@ ae_clerk = {
 			can_take_servant_job = no
 		}
 		modifier = {
-			factor = 1.5
+			factor = 10
 			OR = {
-				has_trait = trait_thrifty
-				has_trait = trait_nuumismatic_administration
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
 			}
+			can_take_servant_job = no
+			can_fill_specialist_job_trigger = no
 		}
 		modifier = {
 			factor = 0.1
 			can_take_servant_job = yes
 		}
 		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
+			factor = 1.1
+			exists = owner
+			owner = { is_megacorp = yes }
 		}
 		modifier = {
 			factor = 0.5
 			exists = owner
-			owner = {
-				is_fallen_empire = yes
-			}
+			owner = { is_fallen_empire = yes }
 		}
 	}
+
+	inline_script = "jobs/automodding_priority_trade"
 }
 
 phanon_clerk = {
@@ -226,59 +426,160 @@ phanon_clerk = {
 		is_sapient = yes
 	}
 	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_clerks
+	}
+
 	planet_modifier = {
 		planet_amenities_add = 25
 		trade_value_add = 25
 	}
 	triggered_planet_modifier = {
 		potential = {
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_production
 			}
 		}
-		modifier = {
-			planet_amenities_add = 2
+		planet_jobs_alloys_produces_mult = @pe_job_mult
+		planet_jobs_consumer_goods_produces_mult = @pe_job_mult
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_stability
+			}
 		}
+		planet_jobs_unity_produces_mult = @pe_job_mult
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_research
+			}
+		}
+		planet_jobs_physics_research_produces_mult = @pe_job_mult
+		planet_jobs_society_research_produces_mult = @pe_job_mult
+		planet_jobs_engineering_research_produces_mult = @pe_job_mult
 	}
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_repugnant
+			planet = {
+				NOT = { has_planet_flag = has_franchise_headquarters }
+			}
 		}
-		modifier = {
-			planet_amenities_add = -2
+		trade_value_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				has_planet_flag = has_franchise_headquarters
+			}
 		}
+		trade_value_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+	}
+
+	overlord_resources = {
+		category = planet_corporate_franchising_meddling
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_franchise_headquarters
+				}
+			}
+			unity = 0.25
+		}
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_ii }
+		}
+		pop_political_power = 0.25
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		pop_political_power = 0.50
+	}
+
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				exists = orbital_defence
+				orbital_defence = {
+					exists = starbase
+					starbase = {
+						has_starbase_building = ring_trade_hub
+					}
+				}
+			}
+		}
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_mercantile_trickle_up_economics }
+		}
+		trade_value_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
 	}
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_thrifty
+			exists = owner
+			owner = { has_tradition = tr_mercantile_trickle_up_economics }
 		}
-		modifier = {
-			trade_value_add = 1.5
-		}
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		country_edict_fund_add = 1
+	}
+
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_nuumismatic_administration
+			exists = owner
+			owner = { has_active_tradition = tr_virtuality_5 }
 		}
+
 		modifier = {
-			trade_value_add = 1.5
+			planet_virtual_jobs_produces_mult = 0.01
 		}
 	}
 	weight = {
 		weight = @clerk_job_weight
-		modifier = {
-			factor = 5
-			has_job = phanon_clerk
-		}
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
 		modifier = {
 			factor = 0.25
 			is_enslaved = yes
 			can_take_servant_job = no
-			NOR = {
-				has_trait = trait_nuumismatic_administration
-				has_trait = trait_thrifty
-			}
 		}
 		modifier = {
 			factor = 2
@@ -289,35 +590,31 @@ phanon_clerk = {
 			can_take_servant_job = no
 		}
 		modifier = {
-			factor = 1.5
+			factor = 10
 			OR = {
-				has_trait = trait_thrifty
-				has_trait = trait_nuumismatic_administration
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
 			}
+			can_take_servant_job = no
+			can_fill_specialist_job_trigger = no
 		}
 		modifier = {
 			factor = 0.1
 			can_take_servant_job = yes
 		}
 		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
+			factor = 1.1
+			exists = owner
+			owner = { is_megacorp = yes }
 		}
 		modifier = {
 			factor = 0.5
 			exists = owner
-			owner = {
-				is_fallen_empire = yes
-			}
+			owner = { is_fallen_empire = yes }
 		}
 	}
+
+	inline_script = "jobs/automodding_priority_trade"
 }
 
 stellarite_clerk = {
@@ -332,59 +629,161 @@ stellarite_clerk = {
 		is_sapient = yes
 	}
 	possible_precalc = can_fill_worker_job
+
+	resources = {
+		category = planet_clerks
+	}
+
 	planet_modifier = {
 		planet_amenities_add = 50
 		trade_value_add = 50
 	}
 	triggered_planet_modifier = {
 		potential = {
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_production
 			}
 		}
-		modifier = {
-			planet_amenities_add = 4
+		planet_jobs_alloys_produces_mult = @se_job_mult
+		planet_jobs_consumer_goods_produces_mult = @se_job_mult
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_stability
+			}
 		}
+		planet_jobs_unity_produces_mult = @se_job_mult
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = computation_core_research
+			}
+		}
+		planet_jobs_physics_research_produces_mult = @se_job_mult
+		planet_jobs_society_research_produces_mult = @se_job_mult
+		planet_jobs_engineering_research_produces_mult = @se_job_mult
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				NOT = { has_planet_flag = has_franchise_headquarters }
+			}
+		}
+		trade_value_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				has_planet_flag = has_franchise_headquarters
+			}
+		}
+		trade_value_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+	}
+
+	overlord_resources = {
+		category = planet_corporate_franchising_meddling
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_franchise_headquarters
+				}
+			}
+			unity = 0.25
+		}
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_ii }
+		}
+		pop_political_power = 0.25
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		pop_political_power = 0.50
+	}
+
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				exists = orbital_defence
+				orbital_defence = {
+					exists = starbase
+					starbase = {
+						has_starbase_building = ring_trade_hub
+					}
+				}
+			}
+		}
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_mercantile_trickle_up_economics }
+		}
+		trade_value_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
 	}
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_repugnant
+			exists = owner
+			owner = { has_tradition = tr_mercantile_trickle_up_economics }
 		}
-		modifier = {
-			planet_amenities_add = -4
-		}
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_modifier = paragon_origin_strengthened_government_iii }
+		}
+		country_edict_fund_add = 1
+	}
+
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_thrifty
+			exists = owner
+			owner = { has_active_tradition = tr_virtuality_5 }
 		}
+
 		modifier = {
-			trade_value_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_nuumismatic_administration
-		}
-		modifier = {
-			trade_value_add = 3
+			planet_virtual_jobs_produces_mult = 0.01
 		}
 	}
 	weight = {
 		weight = @clerk_job_weight
-		modifier = {
-			factor = 5
-			has_job = stellarite_clerk
-		}
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
 		modifier = {
 			factor = 0.25
 			is_enslaved = yes
 			can_take_servant_job = no
-			NOR = {
-				has_trait = trait_nuumismatic_administration
-				has_trait = trait_thrifty
-			}
 		}
 		modifier = {
 			factor = 2
@@ -395,33 +794,29 @@ stellarite_clerk = {
 			can_take_servant_job = no
 		}
 		modifier = {
-			factor = 1.5
+			factor = 10
 			OR = {
-				has_trait = trait_thrifty
-				has_trait = trait_nuumismatic_administration
+				is_non_sapient_robot = yes
+				is_shackled_robot = yes
 			}
+			can_take_servant_job = no
+			can_fill_specialist_job_trigger = no
 		}
 		modifier = {
 			factor = 0.1
 			can_take_servant_job = yes
 		}
 		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
+			factor = 1.1
+			exists = owner
+			owner = { is_megacorp = yes }
 		}
 		modifier = {
 			factor = 0.5
 			exists = owner
-			owner = {
-				is_fallen_empire = yes
-			}
+			owner = { is_fallen_empire = yes }
 		}
 	}
+
+	inline_script = "jobs/automodding_priority_trade"
 }
