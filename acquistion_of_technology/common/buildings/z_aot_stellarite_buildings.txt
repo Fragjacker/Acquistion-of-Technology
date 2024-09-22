@@ -3929,7 +3929,7 @@ building_acot_stellarite_generator_ae = {
 		}
 		produces = {
 			trigger = {
-				has_building = building_stellarite_nexus
+				has_building = building_acot_stellarite_nexus
 			}
 			acot_sr_stellarite = 10
 		}
@@ -4059,7 +4059,7 @@ building_stellarite_generator_lvl3 = {
 		}
 		produces = {
 			trigger = {
-				has_building = building_stellarite_nexus
+				has_building = building_acot_stellarite_nexus
 			}
 			acot_sr_stellarite = 2000
 		}
@@ -4226,7 +4226,7 @@ building_stellarite_synthersizer = {
 	}
 }
 
-building_stellarite_nexus = {
+building_acot_stellarite_nexus = {
 	icon = building_stellarite_nexus
 	base_buildtime = 900
 	category = manufacturing
@@ -4234,11 +4234,15 @@ building_stellarite_nexus = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			has_technology = tech_stellarite_nexus
+			has_technology = tech_acot_stellarite_nexus
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
 		}
 	}
 	allow = {
-		has_phanon_capital = yes
+		has_stellarite_capital = yes
 	}
 	resources = {
 		category = planet_buildings
@@ -4263,7 +4267,7 @@ building_stellarite_nexus = {
 		planet_jobs_acot_sr_stellarite_produces_mult = 1
 	}
 	prerequisites = {
-		tech_stellarite_nexus
+		tech_acot_stellarite_nexus
 	}
 	ai_weight = {
 		weight = 10
@@ -4286,7 +4290,7 @@ building_stellarite_nexus = {
 			factor = 0
 			num_buildings = {
 				type = building_phanon_stellarite_nexus
-				value >= 2
+				value >= 0
 			}
 		}
 	}
@@ -4295,13 +4299,6 @@ building_stellarite_nexus = {
 		trigger = {
 			always = yes
 		}
-	}
-}
-
-# Override to disable this building, since we have our own.
-building_acot_stellarite_nexus = {
-	potential = {
-		always = no
 	}
 }
 

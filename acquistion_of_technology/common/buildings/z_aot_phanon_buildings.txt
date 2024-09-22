@@ -4093,23 +4093,25 @@ building_phanon_stellarite_nexus = {
 	category = manufacturing
 	base_cap_amount = 1
 	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
 		exists = planet_owner
 		planet_owner = {
 			has_technology = tech_phanon_stellarite_nexus
+		}
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			has_modifier = resort_colony
+			has_modifier = slave_colony
 		}
 	}
 	allow = {
 		has_phanon_capital = yes
 		NOR = {
-			has_building = building_stellarite_nexus
+			has_building = building_acot_stellarite_nexus
 			has_building = building_phanon_stellarite_nexus
 		}
 	}
 	upgrades = {
-		building_stellarite_nexus
+		building_acot_stellarite_nexus
 	}
 	resources = {
 		category = planet_buildings
@@ -4159,7 +4161,7 @@ building_phanon_stellarite_nexus = {
 		modifier = {
 			factor = 0
 			num_buildings = {
-				type = building_stellarite_nexus
+				type = building_acot_stellarite_nexus
 				value >= 2
 			}
 		}
