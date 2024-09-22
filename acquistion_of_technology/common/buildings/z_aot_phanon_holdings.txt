@@ -1,0 +1,1418 @@
+#2 levels of cost:
+#	almost all holdings
+#	special holdings
+#3 levels of upkeep
+#	multi build
+#	single build
+#	special holdings
+
+# base_buildtime = 480
+# big ones are 900
+
+### REGULAR CORP
+##########################################################
+
+building_phanon_mineral_corp = {
+	icon = building_phanon_mineral_processing_plant
+	base_buildtime = 480
+	owner_type = corporate
+	category = resource
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		job_phanon_mineralman_add = 1
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			minerals = 200
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_mineral_processing_plant
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_mineral_corp
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+building_phanon_food_corp = {
+	icon = building_phanon_food_processing_complex
+	base_buildtime = 480
+	owner_type = corporate
+	category = resource
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		job_phanon_foodman_add = 1
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			food = 200
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_food_processing
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_food_corp
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+building_phanon_consumer_corp = {
+	icon = building_phanon_civilian_factory
+	base_buildtime = 480
+	owner_type = corporate
+	category = manufacturing
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		job_phanon_clerk_add = 2
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			consumer_goods = 120
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_civilian_factory
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_consumer_corp
+	}
+
+	ai_weight = {
+		weight = 15
+		modifier = {
+			factor = 5
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value < 0
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value >= 10
+				}
+			}
+		}
+	}
+}
+
+building_phanon_alloy_corp = {
+	icon = building_phanon_alloy_forge
+	base_buildtime = 480
+	owner_type = corporate
+	category = manufacturing
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		job_phanon_clerk_add = 2
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			alloys = 80
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_alloy_foundry
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_alloy_corp
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+building_phanon_army_corp = {
+	icon = building_phanon_stronghold
+	base_buildtime = 480
+	owner_type = corporate
+	category = army
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 300
+	}
+	army_modifier = {
+		army_starting_experience_add = 750
+	}
+	planet_modifier = {
+		job_phanon_soldier_add = 1
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_stronghold
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_army_corp
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+# below are restricted to 1 per branch
+building_phanon_unity_corp = {
+	icon = building_phanon_bureaucratic
+	base_buildtime = 480
+	owner_type = corporate
+	category = unity
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		job_phanon_clerk_add = 2
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			unity = 120
+		}
+		upkeep = {
+			energy = 30
+			aot_sr_runic_power = 3
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_bureau
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_unity_corp
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+building_phanon_research_corp = {
+	icon = building_phanon_enigmatic_lab
+	base_buildtime = 480
+	owner_type = corporate
+	category = research
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		job_phanon_clerk_add = 2
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			physics_research = 120
+			engineering_research = 120
+			society_research = 120
+		}
+		upkeep = {
+			energy = 30
+			aot_sr_runic_power = 3
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_enigmatic_lab
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_research_corp
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+building_phanon_amenity_corp = {
+	icon = building_phanon_sky_dome
+	base_buildtime = 480
+	owner_type = corporate
+	category = amenity
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_add = 60
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			energy = 175
+		}
+		upkeep = {
+			aot_sr_runic_power = 3
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_mansion
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_amenity_corp
+	}
+
+	ai_weight = {
+		weight = 10
+
+		modifier = {
+			weight = 0.5
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = energy
+					value > 50
+				}
+			}
+		}
+	}
+}
+
+building_phanon_trade_corp = {
+	icon = building_phanon_commercial_megaplex
+	base_buildtime = 480
+	owner_type = corporate
+	category = trade
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		branch_office_value_mult = 1.5
+		job_phanon_clerk_add = 4
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		upkeep = {
+			energy = 30
+			aot_sr_runic_power = 3
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_commercial_megaplex
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_trade_corp
+	}
+
+	ai_weight = {
+		weight = 50
+	}
+}
+
+building_phanon_embassy_corp = {
+	icon = building_phanon_embassy
+	base_buildtime = 480
+	owner_type = corporate
+	category = government
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+		}
+	}
+
+	country_modifier = {
+		diplo_weight_economy_mult = 0.25
+	}
+	planet_modifier = {
+		job_phanon_clerk_add = 2
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		upkeep = {
+			energy = 30
+			aot_sr_runic_power = 3
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_embassy
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_embassy_corp
+	}
+
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 10
+			branch_office_owner = {
+				is_galactic_community_member = yes
+			}
+		}
+	}
+}
+
+building_phanon_gospel_corp = {
+	icon = building_phanon_empyrean_shrine
+	base_buildtime = 480
+	owner_type = corporate
+	category = unity
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no
+			has_valid_civic = civic_gospel_of_the_masses
+		}
+	}
+
+	planet_modifier = {
+		pop_ethic_spiritualist_attraction_mult = 1.05
+		job_phanon_priest_add = 1
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_bureau
+		# the phanon shrine is locked to fanatic spiritualist,
+		# moved to bureau so that normal spiritualist can get it too
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	upgrades = {
+		building_stellarite_gospel_corp
+	}
+
+	ai_weight = {
+		weight = 250
+	}
+}
+
+### CRIMINAL CORP
+##########################################################
+
+building_phanon_mineral_crim = {
+	icon = building_phanon_mineral_processing_plant
+	base_buildtime = 480
+	owner_type = corporate
+	category = resource
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_add = 150
+		trade_value_add = 75
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			minerals = 200
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_mineral_processing_plant
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_mineral_crim
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+building_phanon_food_crim = {
+	icon = building_phanon_food_processing_complex
+	base_buildtime = 480
+	owner_type = corporate
+	category = resource
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_add = 150
+		trade_value_add = 75
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			food = 200
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_food_processing
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_food_crim
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+building_phanon_consumer_crim = {
+	icon = building_phanon_civilian_factory
+	base_buildtime = 480
+	owner_type = corporate
+	category = manufacturing
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_add = 150
+		trade_value_add = 75
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			consumer_goods = 120
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_civilian_factory
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_consumer_crim
+	}
+
+	ai_weight = {
+		weight = 15
+		modifier = {
+			factor = 5
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value < 0
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value >= 10
+				}
+			}
+		}
+	}
+}
+
+building_phanon_alloy_crim = {
+	icon = building_phanon_alloy_forge
+	base_buildtime = 480
+	owner_type = corporate
+	category = manufacturing
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_add = 150
+		trade_value_add = 75
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			alloys = 80
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_alloy_foundry
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_alloy_crim
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+building_phanon_army_crim = {
+	icon = building_phanon_stronghold
+	base_buildtime = 480
+	owner_type = corporate
+	category = army
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 300
+	}
+	army_modifier = {
+		army_starting_experience_add = 750
+	}
+	planet_modifier = {
+		job_phanon_soldier_add = 1
+		planet_crime_add = 150
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_stronghold
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_army_crim
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+# below are restricted to 1 per branch
+building_phanon_unity_crim = {
+	icon = building_phanon_bureaucratic
+	base_buildtime = 480
+	owner_type = corporate
+	category = unity
+	can_build = no
+	
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	planet_modifier = {
+		job_phanon_clerk_add = 2
+		planet_crime_add = 200
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			unity = 120
+		}
+		upkeep = {
+			energy = 30
+			aot_sr_runic_power = 3
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_bureau
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_unity_crim
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+building_phanon_research_crim = {
+	icon = building_phanon_enigmatic_lab
+	base_buildtime = 480
+	owner_type = corporate
+	category = research
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	planet_modifier = {
+		job_phanon_clerk_add = 2
+		planet_crime_add = 200
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			physics_research = 120
+			engineering_research = 120
+			society_research = 120
+		}
+		upkeep = {
+			energy = 30
+			aot_sr_runic_power = 3
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_enigmatic_lab
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_research_crim
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+building_phanon_amenity_crim = {
+	icon = building_phanon_sky_dome
+	base_buildtime = 480
+	owner_type = corporate
+	category = amenity
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_add = 60
+		planet_crime_add = 200
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		produces = {
+			energy = 175
+		}
+		upkeep = {
+			aot_sr_runic_power = 3
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_mansion
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_amenity_crim
+	}
+
+	ai_weight = {
+		weight = 10
+
+		modifier = {
+			weight = 0.5
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = energy
+					value > 50
+				}
+			}
+		}
+	}
+}
+
+building_phanon_trade_crim = {
+	icon = building_phanon_commercial_megaplex
+	base_buildtime = 480
+	owner_type = corporate
+	category = trade
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	planet_modifier = {
+		branch_office_value_mult = 1.5
+		job_phanon_clerk_add = 4
+		planet_crime_add = 200
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		upkeep = {
+			energy = 30
+			aot_sr_runic_power = 3
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_commercial_megaplex
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_trade_crim
+	}
+
+	ai_weight = {
+		weight = 50
+	}
+}
+
+building_phanon_embassy_crim = {
+	icon = building_phanon_embassy
+	base_buildtime = 480
+	owner_type = corporate
+	category = government
+	can_build = no
+	
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	country_modifier = {
+		spy_network_levels_add = 15
+	}
+	planet_modifier = {
+		job_phanon_clerk_add = 2
+		planet_crime_add = 200
+		pop_government_ethic_attraction = -0.8
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		upkeep = {
+			energy = 30
+			aot_sr_runic_power = 3
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_embassy
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_embassy_crim
+	}
+
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 10
+			branch_office_owner = {
+				is_galactic_community_member = yes
+			}
+		}
+	}
+}
+
+# uses same upkeep as the multi build, while being single build
+building_phanon_gospel_crim = {
+	icon = building_phanon_temple
+	base_buildtime = 480
+	owner_type = corporate
+	category = unity
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+			has_valid_civic = civic_gospel_of_the_masses
+		}
+	}
+
+	planet_modifier = {
+		pop_ethic_spiritualist_attraction_mult = 1.05
+		job_phanon_priest_add = 1
+		planet_crime_add = 150
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 800
+			aot_sr_runic_power = 800
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 2
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_temple
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	upgrades = {
+		building_stellarite_gospel_crim
+	}
+
+	ai_weight = {
+		weight = 250
+	}
+}
+
+### SPECIAL
+##########################################################
+
+building_phanon_exretreat_branch = {
+	icon = building_phanon_mansion
+	base_buildtime = 900
+	
+	owner_type = corporate
+	category = amenity
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+	}
+
+	country_modifier = {
+		planet_amenities_mult = 1
+	}
+
+	allow = {
+		num_pops >= 25
+	}
+
+	planet_modifier = {
+		trade_value_mult = 0.65
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 1600
+			aot_sr_runic_power = 1200
+		}
+		upkeep = {
+			energy = 40
+			aot_sr_runic_power = 8
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_mansion
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+	}
+
+	upgrades = {
+		building_stellarite_exretreat_branch
+	}
+
+	ai_weight = {
+		weight = 50
+	}
+}
+
+building_phanon_xenotour_branch = {
+	icon = building_phanon_affluence_center
+	base_buildtime = 900
+	
+	owner_type = corporate
+	category = government
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+	}
+
+	country_modifier = {
+		planet_immigration_pull_mult = 1.3
+	}
+
+	allow = {
+		num_pops >= 25
+	}
+
+	planet_modifier = {
+		trade_value_mult = 0.65
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 1600
+			aot_sr_runic_power = 1200
+		}
+		upkeep = {
+			energy = 40
+			aot_sr_runic_power = 8
+		}
+	}
+
+	prerequisites = {
+		tech_phanon_commercial_megaplex
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+	}
+
+	upgrades = {
+		building_stellarite_xenotour_branch
+	}
+
+	ai_weight = {
+		weight = 50
+	}
+}
+
+building_phanon_clinic_branch = {
+	icon = building_phanon_hospital
+	base_buildtime = 900
+	
+	owner_type = corporate
+	category = resource
+	can_build = no
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = { has_valid_civic = civic_private_healthcare_corporate }
+	}
+
+	on_built = {
+		planet = {
+			set_planet_flag = has_private_clinics
+		}
+	}
+
+	on_destroy = {
+		planet = {
+			remove_planet_flag = has_private_clinics
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			branch_office_owner = { is_criminal_syndicate = yes }
+		}
+		planet_crime_add = 200
+	}
+	planet_modifier = {
+		job_phanon_apothecary_add = 1
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 1600
+			aot_sr_runic_power = 1200
+		}
+		produces = {
+			energy = 160
+			unity = 40
+		}
+		upkeep = {
+			energy = 40
+			aot_sr_runic_power = 8
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = planet.owner
+		}
+		text = building_corporate_clinics_effect
+	}
+
+	prerequisites = {
+		tech_phanon_hospital
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		has_valid_civic = civic_private_healthcare_corporate
+	}
+
+	upgrades = {
+		building_stellarite_clinic_branch
+	}
+
+	ai_weight = {
+		weight = 120
+	}
+}
