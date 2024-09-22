@@ -46,3 +46,28 @@ AoT_RecurringMTTH = {
 		}
 	}
 }
+
+AoT_add_phanon_vault_tracker = {
+	if = {
+		limit = {
+			$COUNTRY$ = {
+				NOT = {
+					has_event_chain = phanon_vault_track_list
+				}
+			}
+		}
+		begin_event_chain = {
+			event_chain = phanon_vault_track_list
+			target = $COUNTRY$
+		}
+		owner = {
+			create_point_of_interest = {
+				id = phanon_vault.$ID$
+				name = "pc_acot_pmc_vault"
+				desc = "pc_acot_pmc_vault_desc"
+				event_chain = phanon_vault_track_list
+				location = $LOCATION$
+			}
+		}
+	}
+}
