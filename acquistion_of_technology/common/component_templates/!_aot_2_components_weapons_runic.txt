@@ -27,7 +27,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 0.75
 	tracking = 0.8
-	upgrades_to = "ACOT_LASER_SE"
+	upgrades_to = ACOT_LASER_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -93,7 +93,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 0.75
 	tracking = 0.4
-	upgrades_to = "MEDIUM_ACOT_LASER_SE"
+	upgrades_to = MEDIUM_ACOT_LASER_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -159,7 +159,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 0.75
 	tracking = 0.2
-	upgrades_to = "LARGE_ACOT_LASER_SE"
+	upgrades_to = LARGE_ACOT_LASER_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -226,7 +226,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 0.5
 	tracking = 0.4
-	upgrades_to = "SMALL_ACOT_PLASMA_SE"
+	upgrades_to = SMALL_ACOT_PLASMA_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -292,7 +292,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 0.5
 	tracking = 0.2
-	upgrades_to = "ACOT_PLASMA_SE"
+	upgrades_to = ACOT_PLASMA_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -359,7 +359,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 0.5
 	tracking = 0.1
-	upgrades_to = "LARGE_ACOT_PLASMA_SE"
+	upgrades_to = LARGE_ACOT_PLASMA_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -426,7 +426,7 @@ weapon_component_template = {
 	shield_penetration = 1
 	shield_damage = 1
 	tracking = 0.6
-	upgrades_to = "SMALL_ACOT_DISRUPTOR_SE"
+	upgrades_to = SMALL_ACOT_DISRUPTOR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -494,7 +494,7 @@ weapon_component_template = {
 	shield_penetration = 1
 	shield_damage = 1
 	tracking = 0.3
-	upgrades_to = "MEDIUM_ACOT_DISRUPTOR_SE"
+	upgrades_to = MEDIUM_ACOT_DISRUPTOR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -562,7 +562,7 @@ weapon_component_template = {
 	shield_penetration = 1
 	shield_damage = 1
 	tracking = 0.15
-	upgrades_to = "LARGE_ACOT_DISRUPTOR_SE"
+	upgrades_to = LARGE_ACOT_DISRUPTOR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -631,11 +631,11 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 0.75
 	tracking = 0.1
-	upgrades_to = ACOT_ENERGY_TORPEDO_SE
+	upgrades_to = ACOT_ENERGY_CANNON_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @l_re_cost
+			alloys = @al_re_cost
 			aot_sr_runic_power = @l_pleb_re_runic_cost
 		}
 		upkeep = {
@@ -700,12 +700,80 @@ weapon_component_template = {
 	shield_damage = 0.75
 	tracking = 0.05
 	size_damage_factor = 1
-	upgrades_to = ACOT_PLASMA_SE
+	upgrades_to = ACOT_ENERGY_TORPEDO_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @al_re_cost
+			alloys = @m_re_cost
 			aot_sr_runic_power = @l_pleb_re_runic_cost
+		}
+		upkeep = {
+			energy = @m_re_upkeep_energy
+			alloys = @m_re_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_energy_torpedo_re"
+	}
+	component_set = "ACOT_ENERGY_TORPEDO_RE"
+	projectile_gfx = "acot_energy_torpedoes_re"
+	tags = {
+		weapon_type_energy
+		weapon_type_acot_runic
+		m_slot
+	}
+	ai_tags = {
+		weapon_role_anti_shield
+		weapon_role_artillery
+	}
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "ACOT_ENERGY_TORPEDO_MEDIUM_RE"
+	size = medium
+	icon = "GFX_ship_part_energy_torpedo_re"
+	icon_frame = 1
+	type = instant
+	damage = {
+		min = 202
+		max = 434
+	}
+	windup = {
+		min = 25
+		max = 100
+	}
+	total_fire_time = 150
+	range = 130
+	min_range = 45
+	accuracy = 0.9
+	power = @m_re_power_cost
+	hull_damage = 1.75
+	armor_penetration = 0
+	armor_damage = 1.5
+	shield_penetration = 0
+	shield_damage = 0.75
+	tracking = 0.05
+	size_damage_factor = 1
+	upgrades_to = ACOT_ENERGY_TORPEDO_MEDIUM_SE
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_re_cost
+			aot_sr_runic_power = @m_re_runic_cost
 		}
 		upkeep = {
 			energy = @m_re_upkeep_energy
@@ -767,7 +835,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 0.25
 	tracking = 0.7
-	upgrades_to = "ACOT_POINT_DEFENSE_SE"
+	upgrades_to = ACOT_POINT_DEFENSE_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -807,6 +875,10 @@ weapon_component_template = {
 			}
 		}
 	}
+	point_defence_targets = {
+		"missile"
+		"strike_craft"
+	}
 }
 
 weapon_component_template = {
@@ -833,7 +905,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 0.25
 	tracking = 0.7
-	upgrades_to = "SMALL_ACOT_POINT_DEFENSE_SE"
+	upgrades_to = SMALL_ACOT_POINT_DEFENSE_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -874,6 +946,9 @@ weapon_component_template = {
 			}
 		}
 	}
+	point_defence_targets = {
+		"missile"
+	}
 }
 
 weapon_component_template = {
@@ -902,7 +977,7 @@ weapon_component_template = {
 	shield_damage = 0.25
 	tracking = 0.7
 	size_damage_factor = -0.25
-	upgrades_to = "MEDIUM_ACOT_POINT_DEFENSE_SE"
+	upgrades_to = MEDIUM_ACOT_POINT_DEFENSE_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -943,6 +1018,10 @@ weapon_component_template = {
 			}
 		}
 	}
+	point_defence_targets = {
+		"missile"
+		"strike_craft"
+	}
 }
 
 #####################################################
@@ -974,7 +1053,7 @@ weapon_component_template = {
 	shield_penetration = 0.25
 	shield_damage = 1.5
 	tracking = 0.6
-	upgrades_to = "SMALL_ACOT_MASS_DRIVER_SE"
+	upgrades_to = SMALL_ACOT_MASS_DRIVER_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1040,7 +1119,7 @@ weapon_component_template = {
 	shield_penetration = 0.25
 	shield_damage = 1.5
 	tracking = 0.3
-	upgrades_to = "ACOT_MASS_DRIVER_SE"
+	upgrades_to = ACOT_MASS_DRIVER_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1106,7 +1185,7 @@ weapon_component_template = {
 	shield_penetration = 0.25
 	shield_damage = 1.5
 	tracking = 0.15
-	upgrades_to = "LARGE_ACOT_MASS_DRIVER_SE"
+	upgrades_to = LARGE_ACOT_MASS_DRIVER_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1173,7 +1252,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 1.5
 	tracking = 0.75
-	upgrades_to = "ACOT_AUTOCANNON_SE"
+	upgrades_to = ACOT_AUTOCANNON_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1240,7 +1319,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 1.5
 	tracking = 0.5
-	upgrades_to = "MEDIUM_ACOT_AUTOCANNON_SE"
+	upgrades_to = MEDIUM_ACOT_AUTOCANNON_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1307,7 +1386,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 1.5
 	tracking = 0.25
-	upgrades_to = "LARGE_ACOT_AUTOCANNON_SE"
+	upgrades_to = LARGE_ACOT_AUTOCANNON_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1375,6 +1454,7 @@ weapon_component_template = {
 	shield_damage = 2
 	tracking = 0.5
 	size_damage_factor = 0.5
+	upgrades_to = ACOT_MACROCANNON_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1442,6 +1522,7 @@ weapon_component_template = {
 	shield_damage = 2
 	tracking = 0.5
 	size_damage_factor = 0.5
+	upgrades_to = ACOT_MACROCANNON_SE_MEDIUM
 	resources = {
 		category = ship_components
 		cost = {
@@ -1500,7 +1581,7 @@ weapon_component_template = {
 		max = 25
 	}
 	total_fire_time = 50
-	range = 135
+	range = 145
 	min_range = 45
 	accuracy = 0.75
 	power = @al_re_power_cost
@@ -1577,6 +1658,7 @@ weapon_component_template = {
 	shield_penetration = 0.25
 	shield_damage = 2
 	tracking = 0.9
+	upgrades_to = ACOT_FLAK_CANNON_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1620,10 +1702,6 @@ weapon_component_template = {
 		"missile"
 		"strike_craft"
 	}
-	point_defence_targets = {
-		"missile"
-		"strike_craft"
-	}
 }
 
 weapon_component_template = {
@@ -1650,7 +1728,7 @@ weapon_component_template = {
 	shield_penetration = 0.25
 	shield_damage = 2
 	tracking = 0.9
-	upgrades_to = "SMALL_ACOT_FLAK_CANNON_SE"
+	upgrades_to = SMALL_ACOT_FLAK_CANNON_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1694,9 +1772,6 @@ weapon_component_template = {
 	point_defence_targets = {
 		"strike_craft"
 	}
-	point_defence_targets = {
-		"strike_craft"
-	}
 }
 
 weapon_component_template = {
@@ -1724,7 +1799,7 @@ weapon_component_template = {
 	shield_penetration = 0.25
 	shield_damage = 2
 	tracking = 0.9
-	upgrades_to = "MEDIUM_ACOT_FLAK_CANNON_SE"
+	upgrades_to = MEDIUM_ACOT_FLAK_CANNON_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1768,9 +1843,6 @@ weapon_component_template = {
 	point_defence_targets = {
 		"strike_craft"
 	}
-	point_defence_targets = {
-		"strike_craft"
-	}
 }
 
 #####################################################
@@ -1806,7 +1878,7 @@ weapon_component_template = {
 	shield_damage = 1.25
 	shield_penetration = 1
 	tracking = 0.35
-	upgrades_to = "ACOT_MISSILE_SE"
+	upgrades_to = ACOT_MISSILE_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1878,7 +1950,7 @@ weapon_component_template = {
 	shield_damage = 1.25
 	shield_penetration = 1
 	tracking = 0.35
-	upgrades_to = "MEDIUM_ACOT_MISSILE_SE"
+	upgrades_to = MEDIUM_ACOT_MISSILE_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -1952,11 +2024,11 @@ weapon_component_template = {
 	shield_penetration = 1
 	tracking = 0.1
 	size_damage_factor = 1
-	upgrades_to = "ACOT_TORPEDO_SE"
+	upgrades_to = ACOT_TORPEDO_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @m_re_cost
+			alloys = @m_ae_cost
 			aot_sr_runic_power = @m_re_runic_cost
 		}
 		upkeep = {
@@ -1989,6 +2061,89 @@ weapon_component_template = {
 			has_resource = {
 				type = aot_sr_runic_power
 				amount <= 5
+			}
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "ACOT_TORPEDO_MEDIUM_RE"
+	size = medium
+	icon = "GFX_ship_part_torpedo_re"
+	icon_frame = 1
+	type = missile
+	damage = {
+		min = 560
+		max = 841
+	}
+	windup = {
+		min = 5
+		max = 10
+	}
+	total_fire_time = 200
+	range = 60
+	accuracy = 1
+	missile_speed = 17	# 300 -- apparently, the game doesn't auto-convert speed for non-vanilla components
+	missile_evasion = 0
+	missile_health = 21
+	missile_armor = 21
+	missile_retarget_range = 100
+	power = @m_ae_power_cost
+	hull_damage = 1.25
+	armor_damage = 1.5
+	armor_penetration = 0
+	shield_damage = 1
+	shield_penetration = 1
+	tracking = 0.1
+	size_damage_factor = 1
+	upgrades_to = ACOT_TORPEDO_MEDIUM_SE
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_ae_cost
+			aot_sr_runic_power = @m_re_runic_cost
+		}
+		upkeep = {
+			energy = @m_ae_upkeep_energy
+			alloys = @m_ae_upkeep_alloys
+		}
+	}
+	prerequisites = {
+		"tech_torpedo_re"
+	}
+	component_set = "ACOT_TORPEDO_RE"
+	projectile_gfx = "acot_missile_small_re"
+	tags = {
+		weapon_type_explosive
+		weapon_type_acot_runic
+		g_slot
+	}
+	ai_tags = {
+		weapon_role_anti_shield
+		explosive
+	}
+	ai_weight = {
+		weight = 30
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = sr_dark_matter
+				value <= 2
+			}
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_dark_energy
+				value <= 2
 			}
 		}
 	}
@@ -2068,7 +2223,7 @@ weapon_component_template = {
 	}
 }
 
-###  DM Missiles
+###  RE Missiles
 weapon_component_template = {
 	key = "ACOT_MISSILE_XL_RE"
 	size = extra_large
@@ -2099,7 +2254,7 @@ weapon_component_template = {
 	shield_penetration = 1
 	tracking = 0.2
 	firing_arc = 135
-	upgrades_to = "ACOT_MISSILE_XL_SE"
+	upgrades_to = ACOT_MISSILE_XL_SE
 	target_weights = {
 		battleship = 2
 		offspring_battleship = 2
@@ -2153,7 +2308,7 @@ weapon_component_template = {
 	}
 }
 
-###  DM Missiles
+###  RE Nuke
 weapon_component_template = {
 	key = "ACOT_MISSILE_NUKE_RE"
 	size = titanic
@@ -2185,16 +2340,17 @@ weapon_component_template = {
 	tracking = 0
 	size_damage_factor = 3
 	firing_arc = 90
-	upgrades_to = "ACOT_MISSILE_NUKE_SE"
+	upgrades_to = ACOT_MISSILE_NUKE_SE
 	target_weights = {
 		battleship = 2
+		offspring_battleship = 2
 		precursor_battlecruiser = 2
-		fallen_empire_large_warship = 2
+		large_ship_fallen_empire = 2
 		titan = 3
 		juggernaut = 3
 		precursor_assault_carrier = 3
 		precursor_titan = 3
-		fallen_empire_massive_warship = 3
+		massive_ship_fallen_empire = 3
 	}
 	resources = {
 		category = ship_components
@@ -2215,6 +2371,7 @@ weapon_component_template = {
 	tags = {
 		weapon_type_explosive
 		weapon_type_acot_runic
+		t_slot
 	}
 	ai_tags = {
 		weapon_role_artillery
@@ -2245,6 +2402,7 @@ weapon_component_template = {
 @count = 8
 @regen = 0.15
 ###########################################################
+### AE FIghter
 strike_craft_component_template = {
 	key = "ACOT_SCOUT_HANGAR_RE"
 	size = LARGE
@@ -2279,6 +2437,7 @@ strike_craft_component_template = {
 	armor_damage = 0.5
 	shield_penetration = 1
 	shield_damage = 0.5
+	upgrades_to = ACOT_SCOUT_HANGAR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -2358,7 +2517,7 @@ strike_craft_component_template = {
 	armor_damage = 1.5
 	shield_penetration = 1
 	shield_damage = 1.5
-	upgrades_to = "ACOT_FIGHTERS_HANGAR_SE"
+	upgrades_to = ACOT_FIGHTERS_HANGAR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -2436,7 +2595,7 @@ strike_craft_component_template = {
 	armor_damage = 1.5
 	shield_penetration = 0.25
 	shield_damage = 1.5
-	upgrades_to = "ACOT_BOMBERS_HANGAR_SE"
+	upgrades_to = ACOT_BOMBERS_HANGAR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -2488,7 +2647,7 @@ strike_craft_component_template = {
 	weapon_type = instant
 	projectile_gfx = "acot_energy_lance_re"
 	power = @al_re_power_cost
-	upgrades_to = "ACOT_GUNSHIP_HANGAR_SE"
+	upgrades_to = ACOT_GUNSHIP_HANGAR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -2523,9 +2682,8 @@ strike_craft_component_template = {
 	armor_damage = 1
 	shield_damage = 1
 	shield_penetration = 0
-	ship_behavior = "origin_gunship_behavior"
+	ship_behavior = "acot_gunship_behavior"
 	component_set = "ACOT_GUNSHIP_HANGAR_RE"
-	upgrades_to = "ACOT_GUNSHIP_HANGAR_SE"
 	prerequisites = {
 		"tech_strike_craft_gunship_re"
 	}
@@ -2557,7 +2715,7 @@ strike_craft_component_template = {
 ####  XL/TITANIC
 #####################################################
 ### Components that are shown in the ship designer :: x-slot weapons
-### AE Lance
+### RE Lance
 weapon_component_template = {
 	key = "ACOT_PARTICLE_LANCE_RE"
 	size = extra_large
@@ -2582,7 +2740,7 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 0.5
 	tracking = 0
-	upgrades_to = "ACOT_PARTICLE_LANCE_SE"
+	upgrades_to = ACOT_PARTICLE_LANCE_SE
 	target_weights = {
 		battleship = 2
 		offspring_battleship = 2
@@ -2637,7 +2795,7 @@ weapon_component_template = {
 	}
 }
 
-### AE Emitter
+### RE Emitter
 weapon_component_template = {
 	key = "ACOT_ARC_EMITTER_RE"
 	size = extra_large
@@ -2665,7 +2823,7 @@ weapon_component_template = {
 	firing_arc = 25
 	min_range = 10
 	use_ship_kill_target = no
-	upgrades_to = "ACOT_ARC_EMITTER_SE"
+	upgrades_to = ACOT_ARC_EMITTER_SE
 	target_weights = {
 		battleship = 2
 		offspring_battleship = 2
@@ -2718,7 +2876,7 @@ weapon_component_template = {
 	}
 }
 
-### AE Giga
+### RE Giga
 weapon_component_template = {
 	key = "ACOT_MASS_ACCELERATOR_RE"
 	size = extra_large
@@ -2746,7 +2904,7 @@ weapon_component_template = {
 	firing_arc = 45
 	min_range = 45
 	use_ship_kill_target = no
-	upgrades_to = "ACOT_MASS_ACCELERATOR_SE"
+	upgrades_to = ACOT_MASS_ACCELERATOR_SE
 	target_weights = {
 		battleship = 2
 		offspring_battleship = 2
@@ -2827,7 +2985,7 @@ weapon_component_template = {
 	shield_damage = 0.75
 	tracking = 0
 	power = @titanic_re_power_cost
-	upgrades_to = "ACOT_PERDITION_BEAM_SE"
+	upgrades_to = ACOT_PERDITION_BEAM_SE
 	target_weights = {
 		battleship = 2
 		offspring_battleship = 2
@@ -2901,7 +3059,6 @@ weapon_component_template = {
 	total_fire_time = 80
 	range = 275
 	accuracy = 1
-	power = -300
 	hull_damage = 2
 	armor_penetration = 1
 	armor_damage = 1
@@ -2909,7 +3066,7 @@ weapon_component_template = {
 	shield_damage = 1
 	tracking = 0
 	power = @titanic_re_power_cost
-	upgrades_to = "ACOT_ARC_EMITTER_SE_TITAN"
+	upgrades_to = ACOT_ARC_EMITTER_SE_TITAN
 	target_weights = {
 		battleship = 2
 		offspring_battleship = 2
@@ -2990,7 +3147,7 @@ weapon_component_template = {
 	shield_penetration = 0.5
 	shield_damage = 2
 	tracking = 0
-	upgrades_to = "ACOT_TITAN_CANNON_SE"
+	upgrades_to = ACOT_TITAN_CANNON_SE
 	target_weights = {
 		battleship = 2
 		offspring_battleship = 2
@@ -3069,7 +3226,7 @@ weapon_component_template = {
 	armor_damage = 2
 	tracking = 1
 	power = -8000
-	upgrades_to = "ACOT_PERDITION_BEAM_SE"
+	upgrades_to = ACOT_PERDITION_BEAM_SE
 	target_weights = {
 		battleship = 2
 		offspring_battleship = 2
@@ -3108,7 +3265,18 @@ weapon_component_template = {
 		artillery
 	}
 	ai_weight = {
-		weight = 10
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
 	}
 }
 
@@ -3149,7 +3317,7 @@ weapon_component_template = {
 		precursor_titan = 3
 		massive_ship_fallen_empire = 3
 	}
-	upgrades_to = "ACOT_PERDITION_BEAM_SE"
+	upgrades_to = ACOT_PERDITION_BEAM_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3177,7 +3345,18 @@ weapon_component_template = {
 		artillery
 	}
 	ai_weight = {
-		weight = 0
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
 	}
 }
 
@@ -3200,7 +3379,7 @@ utility_component_template = {
 		ship_armor_add = 250
 		ship_shield_add = 250
 	}
-	upgrades_to = "SMALL_ACOT_ARMOR_SE"
+	upgrades_to = SMALL_ACOT_ARMOR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3243,7 +3422,7 @@ utility_component_template = {
 		ship_armor_add = 625
 		ship_shield_add = 625
 	}
-	upgrades_to = "MEDIUM_ACOT_ARMOR_SE"
+	upgrades_to = MEDIUM_ACOT_ARMOR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3286,7 +3465,7 @@ utility_component_template = {
 		ship_armor_add = 1500
 		ship_shield_add = 1500
 	}
-	upgrades_to = "LARGE_ACOT_ARMOR_SE"
+	upgrades_to = LARGE_ACOT_ARMOR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3328,7 +3507,7 @@ utility_component_template = {
 		ship_armor_add = 1250
 		ship_armor_regen_add_static = 125
 	}
-	upgrades_to = "SMALL_ACOT_ARMOR_SE"
+	upgrades_to = SMALL_ACOT_ARMOR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3370,7 +3549,7 @@ utility_component_template = {
 		ship_armor_add = 3125
 		ship_armor_regen_add_static = 312.5
 	}
-	upgrades_to = "MEDIUM_ACOT_ARMOR_SE"
+	upgrades_to = MEDIUM_ACOT_ARMOR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3412,7 +3591,7 @@ utility_component_template = {
 		ship_armor_add = 7500
 		ship_armor_regen_add_static = 750
 	}
-	upgrades_to = "LARGE_ACOT_ARMOR_SE"
+	upgrades_to = LARGE_ACOT_ARMOR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3453,7 +3632,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_dark_matter_shield_re"
 	icon_frame = 1
 	power = @shield_s_re_power_cost
-	upgrades_to = "SMALL_ACOT_ENIGMATIC_SHIELD_SE"
+	upgrades_to = SMALL_ACOT_ENIGMATIC_SHIELD_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3475,6 +3654,17 @@ utility_component_template = {
 	component_set = "ACOT_ENIGMATIC_SHIELD_RE"
 	ai_weight = {
 		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
 	}
 }
 
@@ -3488,6 +3678,7 @@ utility_component_template = {
 		ship_shield_add = 3125
 		ship_shield_regen_add_static = 312.5
 	}
+	upgrades_to = MEDIUM_ACOT_ENIGMATIC_SHIELD_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3525,6 +3716,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_dark_matter_shield_re"
 	icon_frame = 1
 	power = @shield_l_re_power_cost
+	upgrades_to = LARGE_ACOT_ENIGMATIC_SHIELD_SE
 	modifier = {
 		ship_shield_add = 7500
 		ship_shield_regen_add_static = 750
@@ -3569,9 +3761,10 @@ utility_component_template = {
 	icon = "GFX_ship_part_hull_power_re"
 	icon_frame = 1
 	power = @hull_s_re_power_cost
+	upgrades_to = SMALL_ACOT_HULL_POWER_SE
 	modifier = {
-		ship_hull_add = 2500
-		ship_hull_regen_add_static = 50
+		ship_hull_add = 1420
+		ship_hull_regen_add_static = 14.2
 	}
 	resources = {
 		category = ship_components
@@ -3610,9 +3803,10 @@ utility_component_template = {
 	icon = "GFX_ship_part_hull_power_re"
 	icon_frame = 1
 	power = @hull_m_re_power_cost
+	upgrades_to = MEDIUM_ACOT_HULL_POWER_SE
 	modifier = {
-		ship_hull_add = 6750
-		ship_hull_regen_add_static = 135
+		ship_hull_add = 3550
+		ship_hull_regen_add_static = 35.5
 	}
 	resources = {
 		category = ship_components
@@ -3651,9 +3845,10 @@ utility_component_template = {
 	icon = "GFX_ship_part_hull_power_re"
 	icon_frame = 1
 	power = @hull_l_re_power_cost
+	upgrades_to = LARGE_ACOT_HULL_POWER_SE
 	modifier = {
-		ship_hull_add = 16200
-		ship_hull_regen_add_static = 324
+		ship_hull_add = 8520
+		ship_hull_regen_add_static = 85.2
 	}
 	resources = {
 		category = ship_components
@@ -3694,11 +3889,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_sensor_re"
 	icon_frame = 1
 	power = -75
-	upgrades_to = "SE_SENSOR_SHIP"
+	upgrades_to = ACOT_SENSOR_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = @s_re_runic_cost
 		}
 	}
@@ -3745,7 +3940,7 @@ utility_component_template = {
 		ship_disengage_chance_reduction = -1
 		ship_emergency_ftl_min_days_mult = -1
 	}
-	upgrades_to = "STELLARITE_DRIVE_SE"
+	upgrades_to = ACOT_ENIGMATIC_DRIVE_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3789,7 +3984,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_thruster_re"
 	icon_frame = 1
 	power = -250
-	upgrades_to = "SHIP_THRUSTER_SE"
+	upgrades_to = ACOT_SHIP_THRUSTER_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -3821,16 +4016,6 @@ utility_component_template = {
 	}
 }
 
-#####################################################
-####  OTHERS
-#####################################################
-@cost1 = 5
-@armor_s_re_cost = 15
-@armor_m_re_cost = 20
-@power1 = -10
-@power2 = -15
-@power3 = -20
-@power4 = -30
 ####################
 # Engimatic Reactors AE
 ####################
@@ -3840,16 +4025,16 @@ utility_component_template = {
 	icon = "GFX_ship_part_dark_matter_power_core_re"
 	icon_frame = 1
 	power = 4800
-	upgrades_to = "CORVETTE_DARK_MATTER_REACTOR_SE"
+	upgrades_to = CORVETTE_DARK_MATTER_REACTOR_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 160
 			aot_sr_runic_power = @s_re_runic_cost
 		}
 		upkeep = {
-			energy = @armor_s_re_upkeep_alloy
-			alloys = @armor_s_re_upkeep_alloy
+			energy = 0.8
+			alloys = 0.8
 		}
 	}
 	modifier = {
@@ -3860,7 +4045,6 @@ utility_component_template = {
 	}
 	ship_modifier = {
 		ship_shield_reduction = -1.5
-		ship_armor_reduction = -1.5
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_re"
@@ -3905,11 +4089,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_dark_matter_power_core_re"
 	icon_frame = 1
 	power = 9600
-	upgrades_to = "DESTROYER_DARK_MATTER_REACTOR_SE"
+	upgrades_to = DESTROYER_DARK_MATTER_REACTOR_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 320
 			aot_sr_runic_power = @s_re_runic_cost
 		}
 		upkeep = {
@@ -3925,7 +4109,6 @@ utility_component_template = {
 	}
 	ship_modifier = {
 		ship_shield_reduction = -1.5
-		ship_armor_reduction = -1.5
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_re"
@@ -3935,7 +4118,6 @@ utility_component_template = {
 		destroyer
 		offspring_destroyer
 		crisis_destroyer
-		fe_escort
 		ag_alpha_psionic_corvette
 		ag_eta_titan_starbase_hostile		# ANCIENT EMPIRE STUFFS
 	}
@@ -3961,16 +4143,16 @@ utility_component_template = {
 	icon = "GFX_ship_part_dark_matter_power_core_re"
 	icon_frame = 1
 	power = 19200
-	upgrades_to = "CRUISER_DARK_MATTER_REACTOR_SE"
+	upgrades_to = CRUISER_DARK_MATTER_REACTOR_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_m_re_cost
+			alloys = 640
 			aot_sr_runic_power = @m_re_runic_cost
 		}
 		upkeep = {
-			energy = @armor_m_re_upkeep_alloy
-			alloys = @armor_m_re_upkeep_alloy
+			energy = 3.2
+			alloys = 3.2
 		}
 	}
 	modifier = {
@@ -3981,7 +4163,6 @@ utility_component_template = {
 	}
 	ship_modifier = {
 		ship_shield_reduction = -1.5
-		ship_armor_reduction = -1.5
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_re"
@@ -3992,6 +4173,8 @@ utility_component_template = {
 		crisis_cruiser
 		cosmo_crisis_destroyer
 		offspring_cruiser
+		small_ship_fallen_empire
+		fe_escort
 		precursor_escort
 		precursor_platform_m
 		precursor_science
@@ -3999,7 +4182,6 @@ utility_component_template = {
 		precursor_colonizer
 		precursor_world_shaper
 		military_station_small
-		military_station_medium
 		StrikeCruiser
 		supportship
 		rs_support_cruiser
@@ -4030,7 +4212,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_dark_matter_power_core_re"
 	icon_frame = 1
 	power = 38400
-	upgrades_to = "BATTLESHIP_DARK_MATTER_REACTOR_SE"
+	upgrades_to = BATTLESHIP_DARK_MATTER_REACTOR_SE
 	resources = {
 		category = ship_components
 		cost = {
@@ -4050,7 +4232,6 @@ utility_component_template = {
 	}
 	ship_modifier = {
 		ship_shield_reduction = -1.5
-		ship_armor_reduction = -1.5
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_re"
@@ -4060,9 +4241,11 @@ utility_component_template = {
 		battleship
 		payback_warship
 		cosmo_crisis_battlecruiser
-		military_station_large
+		military_station_medium
+		nanite_interdictor
 		precursor_platform_l
 		precursor_battlecruiser
+		large_ship_fallen_empire
 		fe_battlecruiser
 		SCX_Carrier
 		Battlecruiser
@@ -4100,11 +4283,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_dark_matter_power_core_re"
 	icon_frame = 1
 	power = 76800
-	upgrades_to = "TITAN_DARK_MATTER_REACTOR_SE"
+	upgrades_to = TITAN_DARK_MATTER_REACTOR_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_l_re_cost
+			alloys = 2560
 			aot_sr_runic_power = @l_true_re_runic_cost
 		}
 		upkeep = {
@@ -4120,7 +4303,6 @@ utility_component_template = {
 	}
 	ship_modifier = {
 		ship_shield_reduction = -1.5
-		ship_armor_reduction = -1.5
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_re"
@@ -4133,7 +4315,11 @@ utility_component_template = {
 		precursor_juggernaut
 		aot_gatekeeper
 		cosmo_crisis_titan
+		massive_ship_fallen_empire
+		acot_fe_assault_carrier
+		acot_fe_titan
 		ion_cannon
+		military_station_large
 		precursor_titan
 		precursor_assault_carrier
 		progenitor_carrier
@@ -4171,11 +4357,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_dark_matter_power_core_re"
 	icon_frame = 1
 	power = 153600
-	upgrades_to = "COLOSSUS_DARK_MATTER_REACTOR_SE"
+	upgrades_to = COLOSSUS_DARK_MATTER_REACTOR_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_l_re_cost
+			alloys = 5120
 			aot_sr_runic_power = @l_true_re_runic_cost
 		}
 		upkeep = {
@@ -4191,7 +4377,6 @@ utility_component_template = {
 	}
 	ship_modifier = {
 		ship_shield_reduction = -1.5
-		ship_armor_reduction = -1.5
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_re"
@@ -4228,7 +4413,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_dark_matter_power_core_re"
 	icon_frame = 1
 	power = 160000
-	upgrades_to = "STARBASE_DARK_MATTER_REACTOR_SE"
+	upgrades_to = STARBASE_DARK_MATTER_REACTOR_SE
 	prerequisites = {
 		"tech_dark_matter_power_core_re"
 	}
@@ -4246,7 +4431,6 @@ utility_component_template = {
 	}
 	ship_modifier = {
 		ship_shield_reduction = -1.5
-		ship_armor_reduction = -1.5
 	}
 	ai_weight = {
 		weight = 40
@@ -4273,11 +4457,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_offense"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_OFFENSIVE_COMBAT_COMPUTER"
+	upgrades_to = SE_OFFENSIVE_COMBAT_COMPUTER
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -4303,9 +4487,7 @@ utility_component_template = {
 		ship_fire_rate_mult = 0.25
 		ship_weapon_range_mult = 0.25
 		ship_tracking_add = 25
-		ship_weapon_damage = 0.25
 		ship_accuracy_mult = 0.25
-		ship_evasion_mult = 0.25
 	}
 	prerequisites = {
 		"tech_computer_runic"
@@ -4332,11 +4514,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_balanced"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_BALANCE_COMBAT_COMPUTER"
+	upgrades_to = SE_BALANCE_COMBAT_COMPUTER
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -4362,9 +4544,7 @@ utility_component_template = {
 		ship_fire_rate_mult = 0.25
 		ship_weapon_range_mult = 0.25
 		ship_tracking_add = 25
-		ship_weapon_damage = 0.25
 		ship_accuracy_mult = 0.25
-		ship_evasion_mult = 0.25
 	}
 	prerequisites = {
 		"tech_computer_runic"
@@ -4391,11 +4571,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_defensive"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_DEFENSIVE_COMBAT_COMPUTER"
+	upgrades_to = SE_DEFENSIVE_COMBAT_COMPUTER
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -4421,9 +4601,7 @@ utility_component_template = {
 		ship_fire_rate_mult = 0.25
 		ship_weapon_range_mult = 0.25
 		ship_tracking_add = 25
-		ship_weapon_damage = 0.25
 		ship_accuracy_mult = 0.25
-		ship_evasion_mult = 0.25
 	}
 	prerequisites = {
 		"tech_computer_runic"
@@ -4450,11 +4628,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_offense"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_OFFENSIVE_COMBAT_COMPUTER_BATTLECRUISER"
+	upgrades_to = SE_OFFENSIVE_COMBAT_COMPUTER_BATTLECRUISER
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -4464,10 +4642,14 @@ utility_component_template = {
 	size_restriction = {
 		explorationship
 		precursor_escort
+		cosmo_crisis_destroyer
 		precursor_battlecruiser
+		large_ship_fallen_empire
+		nanite_interdictor
 		fe_battlecruiser
 		offspring_precursor_escort
 		offspring_precursor_battlecruiser
+		cosmo_crisis_battlecruiser
 		sofe_ancient_escort
 		cruiser
 		Battlecruiser
@@ -4515,11 +4697,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_balanced"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_BALANCE_COMBAT_COMPUTER_BATTLECRUISER"
+	upgrades_to = SE_BALANCE_COMBAT_COMPUTER_BATTLECRUISER
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -4529,10 +4711,14 @@ utility_component_template = {
 	size_restriction = {
 		explorationship
 		precursor_escort
+		cosmo_crisis_destroyer
 		precursor_battlecruiser
+		large_ship_fallen_empire
+		nanite_interdictor
 		fe_battlecruiser
 		offspring_precursor_escort
 		offspring_precursor_battlecruiser
+		cosmo_crisis_battlecruiser
 		sofe_ancient_escort
 		cruiser
 		Battlecruiser
@@ -4580,11 +4766,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_defensive"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_DEFENSIVE_COMBAT_COMPUTER_BATTLECRUISER"
+	upgrades_to = SE_DEFENSIVE_COMBAT_COMPUTER_BATTLECRUISER
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -4594,10 +4780,14 @@ utility_component_template = {
 	size_restriction = {
 		explorationship
 		precursor_escort
+		cosmo_crisis_destroyer
 		precursor_battlecruiser
+		large_ship_fallen_empire
+		nanite_interdictor
 		fe_battlecruiser
 		offspring_precursor_escort
 		offspring_precursor_battlecruiser
+		cosmo_crisis_battlecruiser
 		sofe_ancient_escort
 		cruiser
 		Battlecruiser
@@ -4645,11 +4835,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_offense"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_OFFENSIVE_COMBAT_COMPUTER_TITAN"
+	upgrades_to = SE_OFFENSIVE_COMBAT_COMPUTER_TITAN
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -4713,11 +4903,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_balanced"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_BALANCE_COMBAT_COMPUTER_TITAN"
+	upgrades_to = SE_BALANCE_COMBAT_COMPUTER_TITAN
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -4781,11 +4971,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_defensive"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_DEFENSIVE_COMBAT_COMPUTER_TITAN"
+	upgrades_to = SE_DEFENSIVE_COMBAT_COMPUTER_TITAN
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -4849,6 +5039,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_offense"
 	icon_frame = 1
 	power = -80
+	upgrades_to = SE_OFFENSIVE_COMBAT_COMPUTER_GOLIATH
 	resources = {
 		category = ship_components
 		cost = {
@@ -4887,9 +5078,7 @@ utility_component_template = {
 		ship_fire_rate_mult = 0.25
 		ship_weapon_range_mult = 0.25
 		ship_tracking_add = 25
-		ship_weapon_damage = 0.25
 		ship_accuracy_mult = 0.25
-		ship_evasion_mult = 0.25
 	}
 	prerequisites = {
 		"tech_computer_runic"
@@ -4916,6 +5105,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_balanced"
 	icon_frame = 1
 	power = -80
+	upgrades_to = SE_BALANCE_COMBAT_COMPUTER_GOLIATH
 	resources = {
 		category = ship_components
 		cost = {
@@ -4981,6 +5171,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_defensive"
 	icon_frame = 1
 	power = -80
+	upgrades_to = SE_DEFENSIVE_COMBAT_COMPUTER_GOLIATH
 	resources = {
 		category = ship_components
 		cost = {
@@ -5046,11 +5237,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_defensive"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_STARBASE_DEFENSIVE_COMBAT_COMPUTER"
+	upgrades_to = SE_STARBASE_DEFENSIVE_COMBAT_COMPUTER
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -5115,11 +5306,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_phi_defensive"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "SE_PLATFORM_DEFENSIVE_COMBAT_COMPUTER"
+	upgrades_to = SE_PLATFORM_DEFENSIVE_COMBAT_COMPUTER
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -5164,11 +5355,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_attack_colossus_re"
 	icon_frame = 1
 	power = -200
-	upgrades_to = "BASE_COMBAT_COMPUTER_COLOSSUS_SE"
+	upgrades_to = BASE_COMBAT_COMPUTER_COLOSSUS_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -5212,7 +5403,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_defense_colossus_re"
 	icon_frame = 1
 	power = -200
-	upgrades_to = "HERCULEAN_COMBAT_COMPUTER_SE"
+	upgrades_to = HERCULEAN_COMBAT_COMPUTER_SE
 	size_restriction = {
 		precursor_colossus
 	}
@@ -5224,7 +5415,7 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 80
 			aot_sr_runic_power = 25
 		}
 	}
@@ -5262,7 +5453,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_carrier_defense_re"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "PAC_COMBAT_COMPUTER_DEFENSE_SE"
+	upgrades_to = PAC_COMBAT_COMPUTER_DEFENSE_SE
 	class_restriction = {
 		shipclass_military
 	}
@@ -5312,7 +5503,7 @@ utility_component_template = {
 	icon = "GFX_ship_part_computer_carrier_offense_re"
 	icon_frame = 1
 	power = -80
-	upgrades_to = "PAC_COMBAT_COMPUTER_OFFENSE_SE"
+	upgrades_to = PAC_COMBAT_COMPUTER_OFFENSE_SE
 	class_restriction = {
 		shipclass_military
 	}
@@ -5365,11 +5556,11 @@ utility_component_template = {
 	icon = "GFX_ship_part_darkmatter_afterburners_re"
 	icon_frame = 1
 	power = -160
-	upgrades_to = "ACOT_AFTERBURNERS_SE"
+	upgrades_to = ACOT_AFTERBURNERS_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 100
 			aot_sr_runic_power = 10
 		}
 	}
@@ -5406,11 +5597,11 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 60
 			aot_sr_runic_power = 10
 		}
 	}
-	upgrades_to = "ACOT_REPAIR_COUNTERMEASURES_SE"
+	upgrades_to = ACOT_REPAIR_COUNTERMEASURES_SE
 	modifier = {
 		ship_hull_mult = 0.5
 		ship_hull_regen_add_perc = 0.05
@@ -5446,11 +5637,11 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 60
 			aot_sr_runic_power = 10
 		}
 	}
-	upgrades_to = "ACOT_REACTOR_BOOSTER_SE"
+	upgrades_to = ACOT_REACTOR_BOOSTER_SE
 	ship_modifier = {
 		ship_shield_regen_add_perc = 0.05
 		ship_weapon_damage = 0.08
@@ -5478,6 +5669,36 @@ utility_component_template = {
 }
 
 utility_component_template = {
+	key = "ACOT_REACTOR_BOOSTER_AURA_RE"
+	size = medium
+	icon = "GFX_ship_part_darkmatter_reactor_booster_re"
+	icon_frame = 1
+	power = 60000
+	upgrades_to = ACOT_REACTOR_BOOSTER_AURA_SE
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 120
+			aot_sr_runic_power = 30
+		}
+	}
+	ship_modifier = {
+		ship_shield_regen_add_perc = 0.16
+		ship_weapon_damage = 0.16
+		ship_fire_rate_mult = 0.16
+		ship_speed_mult = 0.16
+	}
+	prerequisites = {
+		"tech_darkmatter_reactor_booster_re"
+	}
+	component_set = "ship_aura_components"
+	ai_weight = {
+		weight = 35
+	}
+}
+
+#################################
+utility_component_template = {
 	key = "ACOT_SHIELD_BOOSTER_RE"
 	size = aux
 	icon = "GFX_ship_part_darkmatter_shield_supercharger_re"
@@ -5486,11 +5707,11 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 60
 			aot_sr_runic_power = 15
 		}
 	}
-	upgrades_to = "ACOT_SHIELD_BOOSTER_SE"
+	upgrades_to = ACOT_SHIELD_BOOSTER_SE
 	prerequisites = {
 		"tech_darkmatter_shield_supercharger_re"
 	}
@@ -5518,6 +5739,64 @@ utility_component_template = {
 }
 
 utility_component_template = {
+	key = "ACOT_SHIELD_BOOSTER_AURA_RE"
+	size = medium
+	icon = "GFX_ship_part_darkmatter_shield_supercharger_re"
+	icon_frame = 1
+	power = -4000
+	upgrades_to = ACOT_SHIELD_BOOSTER_AURA_SE
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 600
+			aot_sr_runic_power = 40
+		}
+	}
+	prerequisites = {
+		"tech_darkmatter_shield_supercharger_re"
+	}
+	component_set = "ship_aura_components"
+	friendly_aura = {
+		name = "friendly_acot_shield_booster_aura"
+		system_wide = yes
+		apply_on = ships
+		stack_info = {
+			id = friendly_acot_shield_booster_aura
+			priority = 4
+		}
+		modifier = {
+			ship_shield_mult = 0.25
+			ship_shield_hardening_add = 0.25
+		}
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = yes
+			}
+			ship_effect = {
+				entity = "ship_aura_positive_entity"
+				dynamic_scale = no
+			}
+		}
+	}
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+	}
+}
+
+#################################
+utility_component_template = {
 	key = "ACOT_ARMOR_BOOSTER_RE"
 	size = aux
 	icon = "GFX_ship_part_darkmatter_armor_supercharger_re"
@@ -5530,7 +5809,7 @@ utility_component_template = {
 			aot_sr_runic_power = 15
 		}
 	}
-	upgrades_to = "ACOT_ARMOR_BOOSTER_SE"
+	upgrades_to = ACOT_ARMOR_BOOSTER_SE
 	prerequisites = {
 		"tech_darkmatter_armor_supercharger_re"
 	}
@@ -5558,6 +5837,64 @@ utility_component_template = {
 }
 
 utility_component_template = {
+	key = "ACOT_ARMOR_BOOSTER_AURA_RE"
+	size = medium
+	icon = "GFX_ship_part_darkmatter_armor_supercharger_re"
+	icon_frame = 1
+	power = -4000
+	upgrades_to = ACOT_ARMOR_BOOSTER_AURA_SE
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 600
+			aot_sr_runic_power = 30
+		}
+	}
+	prerequisites = {
+		"tech_darkmatter_armor_supercharger_re"
+	}
+	component_set = "ship_aura_components"
+	friendly_aura = {
+		name = "friendly_acot_armor_booster_aura"
+		system_wide = yes
+		apply_on = ships
+		stack_info = {
+			id = friendly_acot_armor_booster_aura
+			priority = 4
+		}
+		modifier = {
+			ship_armor_mult = 0.25
+			ship_armor_hardening_add = 0.25
+		}
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = yes
+			}
+			ship_effect = {
+				entity = "ship_aura_positive_entity"
+				dynamic_scale = no
+			}
+		}
+	}
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+	}
+}
+
+#################################
+utility_component_template = {
 	key = "ACOT_STARCHARTER_RE"
 	size = aux
 	icon = "GFX_ship_part_darkmatter_star_charter_re"
@@ -5566,11 +5903,11 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 100
 			aot_sr_runic_power = 15
 		}
 	}
-	upgrades_to = "ACOT_STARCHARTER_SE"
+	upgrades_to = ACOT_STARCHARTER_SE
 	hyperlane_range = 12
 	ship_modifier = {
 		ship_sensor_range_add = 6
@@ -5598,27 +5935,50 @@ utility_component_template = {
 }
 
 utility_component_template = {
-	key = "ACOT_HYPERCHARGED_JUMPER_RE"
-	size = aux
-	icon = "GFX_ship_part_darkmatter_hyper_jump_drive_re"
+	key = "ACOT_STARCHARTER_AURA_RE"
+	size = medium
+	icon = "GFX_ship_part_darkmatter_star_charter_re"
 	icon_frame = 1
-	power = -80
+	power = -1600
+	upgrades_to = ACOT_STARCHARTER_AURA_SE
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
-			aot_sr_runic_power = @s_re_runic_cost
+			alloys = 1000
+			aot_sr_runic_power = 30
 		}
 	}
+	hyperlane_range = 6
 	ship_modifier = {
-		ship_ftl_jumpdrive_range_mult = 0.4
-		ship_jumpdrive_cooldown_mult = -0.4
+		ship_sensor_range_add = 3
+	}
+	friendly_aura = {
+		name = "friendly_acot_charter_booster_aura"
+		system_wide = yes
+		apply_on = ships
+		stack_info = {
+			id = friendly_acot_charter_booster_aura
+			priority = 4
+		}
+		modifier = {
+			ship_tracking_add = 15
+			ship_accuracy_mult = 0.15
+		}
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = yes
+			}
+			ship_effect = {
+				entity = "ship_aura_positive_entity"
+				dynamic_scale = no
+			}
+		}
 	}
 	prerequisites = {
-		"tech_darkmatter_hyper_jump_drive_re"
+		tech_darkmatter_star_charter_re
 	}
-	upgrades_to = "ACOT_HYPERCHARGED_JUMPER_SE"
-	component_set = "ACOT_HYPERCHARGED_JUMPER_RE"
+	component_set = "ship_aura_components"
 	ai_weight = {
 		weight = 40
 		modifier = {
@@ -5635,6 +5995,106 @@ utility_component_template = {
 	}
 }
 
+#################################
+utility_component_template = {
+	key = "ACOT_HYPERCHARGED_JUMPER_RE"
+	size = aux
+	icon = "GFX_ship_part_darkmatter_hyper_jump_drive_re"
+	icon_frame = 1
+	power = -80
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 300
+			aot_sr_runic_power = @s_re_runic_cost
+		}
+	}
+	ship_modifier = {
+		ship_ftl_jumpdrive_range_mult = 0.4
+		ship_jumpdrive_cooldown_mult = -0.4
+	}
+	prerequisites = {
+		"tech_darkmatter_hyper_jump_drive_re"
+	}
+	upgrades_to = ACOT_HYPERCHARGED_JUMPER_SE
+	component_set = ACOT_HYPERCHARGED_JUMPER_RE
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_HYPERCHARGED_JUMPER_AURA_RE"
+	size = medium
+	icon = "GFX_ship_part_darkmatter_hyper_jump_drive_re"
+	icon_frame = 1
+	power = -1600
+	upgrades_to = ACOT_HYPERCHARGED_JUMPER_AURA_SE
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 3000
+			aot_sr_runic_power = 60
+		}
+	}
+	ftl = yes
+	jumpdrive = yes
+	friendly_aura = {
+		name = "friendly_jumpdrive_aura"
+		system_wide = yes
+		apply_on = ships
+		stack_info = {
+			# A ship can only be affected by one aura of a certain id. If multiple auras have the same ID the one with the highest priority will be applied.
+			id = friendly_jumpdrive_aura
+			priority = 4
+		}
+		modifier = {
+			ship_ftl_jumpdrive_range_mult = 0.2
+			ship_jumpdrive_cooldown_mult = -0.2
+		}
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = yes
+			}
+			ship_effect = {
+				entity = "ship_aura_positive_entity"
+				dynamic_scale = no
+			}
+		}
+	}
+	prerequisites = {
+		tech_darkmatter_hyper_jump_drive_re
+	}
+	component_set = "ship_aura_components"
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+	}
+}
+
+#################################
 # Dark Matter Cloaking Device
 utility_component_template = {
 	key = "ACOT_CLOAKING_LIGHT_RE"
@@ -5652,7 +6112,7 @@ utility_component_template = {
 	modifier = {
 		ship_cloaking_strength_add = 4
 	}
-	upgrades_to = "ACOT_CLOAKING_LIGHT_SE"
+	upgrades_to = ACOT_CLOAKING_LIGHT_SE
 	triggered_ship_modifier = {
 		potential = {
 			is_cloaked = yes
@@ -5739,7 +6199,7 @@ utility_component_template = {
 			aot_sr_runic_power = 25
 		}
 	}
-	upgrades_to = "ACOT_CLOAKING_FULL_SE"
+	upgrades_to = ACOT_CLOAKING_FULL_SE
 	modifier = {
 		ship_cloaking_strength_add = 7
 	}
@@ -5845,6 +6305,9 @@ utility_component_template = {
 		cost = {
 			alloys = 200
 			aot_sr_runic_power = @s_re_runic_cost
+			exotic_gases = 20
+			rare_crystals = 20
+			volatile_motes = 20
 		}
 		upkeep = {
 			energy = 1
@@ -5861,143 +6324,8 @@ utility_component_template = {
 	prerequisites = {
 		tech_weapon_core_re
 	}
-	component_set = "ACOT_WEAPON_CORE_RE"
-	upgrades_to = "ACOT_WEAPON_CORE_SE"
-	ai_weight = {
-		weight = 35
-		modifier = {
-			factor = 0
-			has_monthly_income = {
-				resource = aot_sr_runic_power
-				value <= 2
-			}
-			has_resource = {
-				type = aot_sr_runic_power
-				amount <= 5
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "ACOT_WEAPON_EXPLOSIVE_CORE_RE"
-	size = aux
-	icon = "GFX_ship_part_missile_core_re"
-	icon_frame = 1
-	power = -1000
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @armor_m_re_cost
-			aot_sr_runic_power = 30
-		}
-		upkeep = {
-			energy = 1
-			alloys = 0.1
-		}
-	}
-	ship_modifier = {
-		weapon_type_explosive_weapon_fire_rate_mult = 0.4
-		weapon_type_explosive_weapon_damage_mult = 0.4
-		weapon_type_explosive_speed_mult = 0.4
-	}
-	prerequisites = {
-		"tech_missile_core_re"
-	}
-	component_set = "ACOT_WEAPON_EXPLOSIVE_CORE_RE"
-	upgrades_to = "ACOT_WEAPON_EXPLOSIVE_CORE_SE"
-	ai_weight = {
-		weight = 40
-		modifier = {
-			factor = 3
-			is_preferred_weapons = weapon_type_explosive
-		}
-		modifier = {
-			factor = 0
-			has_monthly_income = {
-				resource = aot_sr_runic_power
-				value <= 2
-			}
-			has_resource = {
-				type = aot_sr_runic_power
-				amount <= 5
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "ACOT_WEAPON_KINETIC_CORE_RE"
-	size = aux
-	icon = "GFX_ship_part_kinetic_core_re"
-	icon_frame = 1
-	power = -1000
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @armor_m_re_cost
-			aot_sr_runic_power = 25
-		}
-		upkeep = {
-			energy = 1
-			alloys = 0.1
-		}
-	}
-	ship_modifier = {
-		weapon_type_kinetic_weapon_fire_rate_mult = 0.4
-		weapon_type_kinetic_weapon_damage_mult = 0.4
-	}
-	prerequisites = {
-		"tech_kinetic_core_re"
-	}
-	component_set = "ACOT_WEAPON_KINETIC_CORE_RE"
-	upgrades_to = "ACOT_WEAPON_KINETIC_CORE_SE"
-	ai_weight = {
-		weight = 40
-		modifier = {
-			factor = 3
-			is_preferred_weapons = weapon_type_kinetic
-		}
-		modifier = {
-			factor = 0
-			has_monthly_income = {
-				resource = aot_sr_runic_power
-				value <= 2
-			}
-			has_resource = {
-				type = aot_sr_runic_power
-				amount <= 5
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "ACOT_WEAPON_ENERGY_CORE_RE"
-	size = aux
-	icon = "GFX_ship_part_energy_core_re"
-	icon_frame = 1
-	power = -1000
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @armor_m_re_cost
-			aot_sr_runic_power = 35
-		}
-		upkeep = {
-			energy = 1
-			alloys = 0.1
-		}
-	}
-	ship_modifier = {
-		weapon_type_energy_weapon_fire_rate_mult = 0.4
-		weapon_type_energy_weapon_damage_mult = 0.4
-	}
-	upgrades_to = "ACOT_WEAPON_ENERGY_CORE_SE"
-	prerequisites = {
-		"tech_energy_core_re"
-	}
-	component_set = "ACOT_WEAPON_ENERGY_CORE_RE"
+	component_set = ACOT_WEAPON_CORE_RE
+	upgrades_to = ACOT_WEAPON_CORE_SE
 	ai_weight = {
 		weight = 40
 		modifier = {
@@ -6015,6 +6343,226 @@ utility_component_template = {
 				amount <= 5
 			}
 		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = exotic_gases
+				amount <= 20
+			}
+			has_monthly_income = {
+				resource = exotic_gases
+				value <= 2
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = volatile_motes
+				amount <= 20
+			}
+			has_monthly_income = {
+				resource = volatile_motes
+				value <= 2
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = rare_crystals
+				amount <= 20
+			}
+			has_monthly_income = {
+				resource = rare_crystals
+				value <= 2
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_WEAPON_EXPLOSIVE_CORE_RE"
+	size = aux
+	icon = "GFX_ship_part_missile_core_re"
+	icon_frame = 1
+	power = -1000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 400
+			aot_sr_runic_power = 30
+			volatile_motes = 20
+		}
+		upkeep = {
+			energy = 1
+			alloys = 0.1
+		}
+	}
+	ship_modifier = {
+		weapon_type_explosive_weapon_fire_rate_mult = 0.4
+		weapon_type_explosive_weapon_damage_mult = 0.4
+		weapon_type_explosive_speed_mult = 0.4
+	}
+	prerequisites = {
+		"tech_missile_core_re"
+	}
+	component_set = ACOT_WEAPON_EXPLOSIVE_CORE_RE
+	upgrades_to = ACOT_WEAPON_EXPLOSIVE_CORE_SE
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_explosive
+		}
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = volatile_motes
+				amount <= 25
+			}
+			has_monthly_income = {
+				resource = volatile_motes
+				value <= 2
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_WEAPON_KINETIC_CORE_RE"
+	size = aux
+	icon = "GFX_ship_part_kinetic_core_re"
+	icon_frame = 1
+	power = -1000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 400
+			aot_sr_runic_power = 25
+			volatile_motes = 20
+		}
+		upkeep = {
+			energy = 1
+			alloys = 0.1
+		}
+	}
+	ship_modifier = {
+		weapon_type_kinetic_weapon_fire_rate_mult = 0.4
+		weapon_type_kinetic_weapon_damage_mult = 0.4
+	}
+	prerequisites = {
+		"tech_kinetic_core_re"
+	}
+	component_set = ACOT_WEAPON_KINETIC_CORE_RE
+	upgrades_to = ACOT_WEAPON_KINETIC_CORE_SE
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_kinetic
+		}
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = volatile_motes
+				amount <= 25
+			}
+			has_monthly_income = {
+				resource = volatile_motes
+				value <= 2
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "ACOT_WEAPON_ENERGY_CORE_RE"
+	size = aux
+	icon = "GFX_ship_part_energy_core_re"
+	icon_frame = 1
+	power = -1000
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 400
+			aot_sr_runic_power = 35
+			exotic_gases = 10
+			rare_crystals = 10
+		}
+		upkeep = {
+			energy = 1
+			alloys = 0.1
+		}
+	}
+	ship_modifier = {
+		weapon_type_energy_weapon_fire_rate_mult = 0.4
+		weapon_type_energy_weapon_damage_mult = 0.4
+	}
+	upgrades_to = ACOT_WEAPON_ENERGY_CORE_SE
+	prerequisites = {
+		"tech_energy_core_re"
+	}
+	component_set = ACOT_WEAPON_ENERGY_CORE_RE
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 3
+			is_preferred_weapons = weapon_type_energy
+		}
+		modifier = {
+			factor = 0
+			has_monthly_income = {
+				resource = aot_sr_runic_power
+				value <= 2
+			}
+			has_resource = {
+				type = aot_sr_runic_power
+				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = exotic_gases
+				amount <= 25
+			}
+			has_monthly_income = {
+				resource = exotic_gases
+				value <= 2
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = rare_crystals
+				amount <= 25
+			}
+			has_monthly_income = {
+				resource = rare_crystals
+				value <= 2
+			}
+		}
 	}
 }
 
@@ -6023,12 +6571,14 @@ utility_component_template = {
 	size = aux
 	icon = "GFX_ship_part_fighter_core_re"
 	icon_frame = 1
-	power = 0
+	power = -1000
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_m_re_cost
+			alloys = 400
 			aot_sr_runic_power = 45
+			exotic_gases = 10
+			volatile_motes = 10
 		}
 		upkeep = {
 			energy = 1
@@ -6040,11 +6590,11 @@ utility_component_template = {
 		weapon_type_strike_craft_weapon_damage_mult = 0.4
 		weapon_type_strike_craft_speed_mult = 0.4
 	}
-	upgrades_to = "ACOT_WEAPON_FIGHTER_CORE_SE"
+	upgrades_to = ACOT_WEAPON_FIGHTER_CORE_SE
 	prerequisites = {
 		"tech_fighter_core_re"
 	}
-	component_set = "ACOT_WEAPON_FIGHTER_CORE_RE"
+	component_set = ACOT_WEAPON_FIGHTER_CORE_RE
 	ai_weight = {
 		weight = 40
 		modifier = {
@@ -6060,6 +6610,28 @@ utility_component_template = {
 			has_resource = {
 				type = aot_sr_runic_power
 				amount <= 5
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = exotic_gases
+				amount <= 10
+			}
+			has_monthly_income = {
+				resource = exotic_gases
+				value <= 2
+			}
+		}
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = volatile_motes
+				amount <= 10
+			}
+			has_monthly_income = {
+				resource = volatile_motes
+				value <= 2
 			}
 		}
 	}
@@ -6084,11 +6656,11 @@ utility_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @armor_s_re_cost
+			alloys = 1000
 			aot_sr_runic_power = 25
 		}
 	}
-	upgrades_to = "ACOT_AURA_TECH_INHIBITOR_SE"
+	upgrades_to = ACOT_AURA_TECH_INHIBITOR_SE
 	custom_tooltip = acot_inhibitor_tooltip
 	friendly_aura = {
 		name = "friendly_tech_inhibitor_aura"
