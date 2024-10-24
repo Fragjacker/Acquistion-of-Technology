@@ -1,0 +1,269 @@
+# Theta Star Imploder Pylon creator.
+theta_star_imploder_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -7
+		y = -7
+	}
+	construction_blocks_and_blocked_by = none
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			influence = 300
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	potential = {
+		NOT = {
+			has_global_flag = aot_phanon_content_OFF
+		}
+		has_technology = tech_phanon_stellar_converter
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					AND = {
+						colonizable_planet = yes
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole_neutron_star_pulsar"
+			NOT = {
+				is_star_class = sc_black_hole
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_phanon_pylon"
+			NOT = {
+				is_star_class = sc_phanon_pylon
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_theta_star_imploder"
+			NOT = {
+				has_star_flag = theta_star_imploder_built
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0.1
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					is_owned_by = from
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		enable_special_project = {
+			name = PHANON_PYLON_LIST_ENTRY
+			location = fromfrom
+		}
+		from = {
+			abort_special_project = {
+				type = PHANON_PYLON_LIST_ENTRY
+				location = fromfrom
+			}
+		}
+		set_star_flag = theta_star_imploder_built
+		from = {
+			set_country_flag = built_theta_star_imploder
+		}
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+		fromfrom.planet = {
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+}
+
+theta_star_imploder_1 = {
+	entity = "theta_star_imploder_stage_1_entity"
+	construction_entity = "theta_star_imploder_stage_1_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			acot_sr_stellarite = 20000
+		}
+		upkeep = {
+			energy = 2000
+		}
+	}
+	upgrade_from = {
+		theta_star_imploder_0
+	}
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+	}
+}
+
+theta_star_imploder_2 = {
+	entity = "theta_star_imploder_stage_2_entity"
+	construction_entity = "theta_star_imploder_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			acot_sr_stellarite = 20000
+		}
+		upkeep = {
+			energy = 4000
+		}
+	}
+	upgrade_from = {
+		theta_star_imploder_1
+	}
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+	}
+}
+
+theta_star_imploder_3 = {
+	entity = "theta_star_imploder_stage_3_entity"
+	construction_entity = "theta_star_imploder_stage_3_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			acot_sr_stellarite = 20000
+		}
+		upkeep = {
+			energy = 6000
+		}
+		produces = {
+			aot_sr_runic_power = 1000
+		}
+	}
+	upgrade_from = {
+		theta_star_imploder_2
+	}
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		theta_destroy_solar_system = yes
+	}
+}
