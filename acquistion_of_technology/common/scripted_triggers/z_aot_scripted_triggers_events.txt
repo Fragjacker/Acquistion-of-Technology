@@ -157,6 +157,7 @@ has_enough_dark_matter_to_increase_reactor_intensity = {
 # ------------------------------------------------------------------------------------------------ #
 is_viable_phanon_research_candidate = {
 	is_playable_country = yes
+	has_significant_alpha_economy = yes
 	has_technology = tech_dark_matter_power_core_ae
 	NOR = {
 		has_global_flag = aot_phanon_content_OFF
@@ -170,17 +171,66 @@ is_viable_phanon_research_candidate = {
 	}
 }
 
+has_significant_alpha_economy = {
+	OR = {
+		any_owned_megastructure = {
+			OR = {
+				is_megastructure_type = acot_dark_matter_obelisk_core_ae
+				is_megastructure_type = acot_dark_matter_obelisk_core_advanced_ae
+				is_megastructure_type = acot_dark_matter_obelisk_core_super_ae
+			}
+		}
+		any_owned_planet = {
+			OR = {
+				has_active_building = building_acot_ae_alloy_forge
+				has_active_building = building_acot_ae_dark_matter_generator
+				has_active_building = building_acot_ae_dark_energy_pylon
+				has_active_building = building_acot_ae_dark_matter_synthersizer
+				has_active_building = building_acot_ae_factory
+				has_active_building = building_acot_ae_food_processing_complex
+				has_active_building = building_acot_ae_mineral_processing_plant
+			}
+		}
+	}
+}
+
 is_viable_sigma_research_candidate = {
 	is_ai = no
+	is_playable_country = yes
+	has_significant_phanon_economy = yes
+	has_technology = tech_dark_matter_power_core_re
+	has_established_contact = event_target:acot_precursor_databank_country
 	NOR = {
 		has_global_flag = acot_sigma_forbidden
 		has_country_flag = acot_stellarite_project_begin
 		has_technology = tech_dark_matter_power_core_se
 		has_tech_option = tech_dark_matter_power_core_se
 	}
-	is_playable_country = yes
-	has_technology = tech_dark_matter_power_core_re
-	has_established_contact = event_target:acot_precursor_databank_country
+}
+
+has_significant_phanon_economy = {
+	any_owned_megastructure = {
+		OR = {
+			is_megastructure_type = aot_dark_matter_obelisk_core_pe
+			is_megastructure_type = aot_dark_matter_obelisk_core_advanced_pe
+			is_megastructure_type = aot_dark_matter_obelisk_core_super_pe
+			is_megastructure_type = star_imploder_3
+			is_megastructure_type = phanon_great_wall_2
+			is_megastructure_type = phanon_great_wall_3
+			is_megastructure_type = phanon_great_wall_4
+		}
+	}
+	any_owned_planet = {
+		OR = {
+			has_active_building = building_phanon_alloy_forge
+			has_active_building = building_phanon_stellarite_nexus
+			has_active_building = building_phanon_runic_generator
+			has_active_building = building_phanon_synthersizer
+			has_active_building = building_phanon_civilian_factory
+			has_active_building = building_phanon_food_processing_complex
+			has_active_building = building_phanon_mineral_processing_plant
+		}
+	}
 }
 
 is_eligible_production_core_country = {
