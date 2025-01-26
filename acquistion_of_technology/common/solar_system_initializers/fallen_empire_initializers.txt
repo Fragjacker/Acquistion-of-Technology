@@ -128,11 +128,9 @@ fallen_1 = {
 				radius = 120
 				center = this.solar_system
 			}
-
 			set_planet_entity = {
 				entity = "fallen_empire_01_city_planet_entity"
 			}
-
 			set_planet_flag = fallen_empire_world
 			set_planet_flag = fallen_empire_capital
 			prevent_anomaly = yes
@@ -159,7 +157,6 @@ fallen_1 = {
 			add_building = building_fe_lab_2
 			add_building = building_fe_clinic_2
 			add_building = building_fe_dark_matter_synthesizer
-
 			while = {
 				count = 40
 				add_district = district_arcology_housing
@@ -789,7 +786,6 @@ fallen_2 = {
 			orbit_distance = 5
 		}
 	}
-
 	neighbor_system = {
 		distance = {
 			min = 0
@@ -1183,7 +1179,6 @@ fallen_3 = {
 			}
 		}
 	}
-
 	neighbor_system = {
 		distance = {
 			min = 0
@@ -1206,7 +1201,7 @@ fallen_3 = {
 		initializer = "fallen_orbitals_2"
 	}
 	init_effect = {
-		acot_create_fe_home_citadel = yes
+		create_citadel_with_enigmatic_fortress_platform = yes
 		spawn_megastructure = {
 			type = acot_precursor_dyson_sphere_stage_two
 			orbit_angle = 0
@@ -1261,56 +1256,73 @@ fallen_4 = {
 		type = rocky_asteroid_belt
 		radius = 50
 	}
-
 	planet = {
 		count = 1
 		class = star
 		orbit_distance = 0
 		orbit_angle = 1
-		size = { min = 20 max = 30 }
+		size = {
+			min = 20
+			max = 30
+		}
 		has_ring = no
 	}
-
 	change_orbit = 50
-
 	planet = {
-		count = { min = 0 max = 3 }
+		count = {
+			min = 0
+			max = 3
+		}
 		class = pc_asteroid
 		orbit_distance = 0
-		orbit_angle = { min = 40 max = 100 }
+		orbit_angle = {
+			min = 40
+			max = 100
+		}
 	}
 	planet = {
-		count = { min = 0 max = 3 }
+		count = {
+			min = 0
+			max = 3
+		}
 		orbit_distance = 20
 		class = random_non_colonizable
-		orbit_angle = { min = 90 max = 270 }
-
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
 		change_orbit = @base_moon_distance
 		moon = {
-			count = { min = 0 max = 1 }
+			count = {
+				min = 0
+				max = 1
+			}
 			class = random_non_colonizable
-			orbit_angle = { min = 90 max = 270 }
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
 			orbit_distance = 5
 		}
 	}
-
 	planet = {
 		name = "NAME_The_Core"
 		orbit_distance = 20
 		class = pc_gaia
-		orbit_angle = { min = 90 max = 270 }
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
 		size = 35
 		deposit_blockers = none
 		modifiers = none
 		has_ring = no
-
 		init_effect = {
 			create_cluster = {
 				id = fe4_cluster
 				radius = 100
 				center = this.solar_system
 			}
-
 			set_planet_flag = fallen_empire_world
 			set_planet_flag = fallen_empire_capital
 			set_planet_flag = xenophobe_fe_capital
@@ -1318,7 +1330,6 @@ fallen_4 = {
 			set_owner = root
 			set_controller = root
 			set_capital = yes
-
 			add_building = building_ancient_palace
 			add_building = building_fe_assembly_2
 			add_building = building_fe_giga_fortress
@@ -1348,8 +1359,12 @@ fallen_4 = {
 					species = owner_main_species
 				}
 			}
-			root = { create_fe_servant_species = yes }
-			last_created_species = { save_event_target_as = fe_servants }
+			root = {
+				create_fe_servant_species = yes
+			}
+			last_created_species = {
+				save_event_target_as = fe_servants
+			}
 			while = {
 				count = 35
 				create_pop = {
@@ -1357,7 +1372,6 @@ fallen_4 = {
 				}
 			}
 			create_fallen_empire_starting_navy = yes
-
 			while = {
 				count = 45
 				create_army = {
@@ -1479,52 +1493,88 @@ fallen_4 = {
 		}
 	}
 	planet = {
-		count = { min = 2 max = 4 }
+		count = {
+			min = 2
+			max = 4
+		}
 		orbit_distance = 20
 		class = random_non_colonizable
-		orbit_angle = { min = 90 max = 270 }
-
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
 		change_orbit = @base_moon_distance
 		moon = {
-			count = { min = 0 max = 1 }
+			count = {
+				min = 0
+				max = 1
+			}
 			class = random_non_colonizable
-			orbit_angle = { min = 90 max = 270 }
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
 			orbit_distance = 5
 		}
 	}
 	planet = {
-		count = { min = 1 max = 2 }
+		count = {
+			min = 1
+			max = 2
+		}
 		orbit_distance = 20
 		class = pc_gas_giant
-		orbit_angle = { min = 90 max = 270 }
-
+		orbit_angle = {
+			min = 90
+			max = 270
+		}
 		change_orbit = @base_moon_distance
 		moon = {
-			count = { min = 0 max = 3 }
+			count = {
+				min = 0
+				max = 3
+			}
 			class = random_non_colonizable
-			orbit_angle = { min = 90 max = 270 }
+			orbit_angle = {
+				min = 90
+				max = 270
+			}
 			orbit_distance = 5
 		}
 	}
-
 	neighbor_system = {
-		distance = { min = 0 max = 50 }
+		distance = {
+			min = 0
+			max = 50
+		}
 		initializer = "fallen_orbitals_1"
 	}
 	neighbor_system = {
-		distance = { min = 0 max = 50 }
+		distance = {
+			min = 0
+			max = 50
+		}
 		initializer = "fallen_orbitals_2"
 	}
 	neighbor_system = {
-		distance = { min = 0 max = 50 }
+		distance = {
+			min = 0
+			max = 50
+		}
 		initializer = "fallen_shielded_1"
 	}
 	neighbor_system = {
-		distance = { min = 0 max = 50 }
+		distance = {
+			min = 0
+			max = 50
+		}
 		initializer = "fallen_shielded_2"
 	}
 	neighbor_system = {
-		distance = { min = 0 max = 50 }
+		distance = {
+			min = 0
+			max = 50
+		}
 		initializer = "fallen_shielded_3"
 	}
 	init_effect = {
@@ -2187,7 +2237,6 @@ fallen_shrouded = {
 		every_system_planet = {
 			clear_deposits = yes
 		}
-
 		acot_create_fe_outpost = yes
 	}
 }
@@ -3015,7 +3064,6 @@ fallen_machine = {
 	usage = fallen_empire_init
 	name = "NAME_Alpha_Refuge"
 	class = sc_g
-
 	planet = {
 		class = star
 		orbit_distance = 0
@@ -3034,11 +3082,9 @@ fallen_machine = {
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_fe_stronghold
@@ -3084,17 +3130,14 @@ fallen_machine = {
 		orbit_distance = 0
 		deposit_blockers = none
 		modifiers = none
-
 		init_effect = {
 			set_planet_flag = fallen_empire_world
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_fe_stronghold
@@ -3155,11 +3198,9 @@ fallen_machine = {
 			set_owner = root
 			set_controller = root
 			set_capital = yes
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_fe_giga_fortress
@@ -3279,11 +3320,9 @@ fallen_machine = {
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_fe_administration_machine_2
@@ -3333,11 +3372,9 @@ fallen_machine = {
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_fe_administration_machine_2
@@ -3388,11 +3425,9 @@ fallen_machine = {
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_fe_administration_machine_2
@@ -3444,11 +3479,9 @@ fallen_machine = {
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_fe_stronghold
@@ -3463,7 +3496,6 @@ fallen_machine = {
 			add_building = building_fe_dark_matter_synthesizer
 			add_building = building_fe_dark_matter_synthesizer
 			add_building = building_fe_dark_matter_synthesizer
-
 			while = {
 				count = 10
 				add_district = district_rw_generator
@@ -3499,11 +3531,9 @@ fallen_machine = {
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_fe_stronghold
@@ -3518,7 +3548,6 @@ fallen_machine = {
 			add_building = building_fe_dark_matter_synthesizer
 			add_building = building_fe_dark_matter_synthesizer
 			add_building = building_fe_dark_matter_synthesizer
-
 			while = {
 				count = 10
 				add_district = district_rw_generator
@@ -3554,11 +3583,9 @@ fallen_machine = {
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_fe_stronghold
@@ -3573,7 +3600,6 @@ fallen_machine = {
 			add_building = building_fe_dark_matter_synthesizer
 			add_building = building_fe_dark_matter_synthesizer
 			add_building = building_fe_dark_matter_synthesizer
-
 			while = {
 				count = 10
 				add_district = district_rw_generator
@@ -3609,11 +3635,9 @@ fallen_machine = {
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_fe_stronghold
@@ -3628,7 +3652,6 @@ fallen_machine = {
 			add_building = building_fe_dark_matter_synthesizer
 			add_building = building_fe_dark_matter_synthesizer
 			add_building = building_fe_dark_matter_synthesizer
-
 			while = {
 				count = 10
 				add_district = district_rw_generator
@@ -3664,11 +3687,9 @@ fallen_machine = {
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_class_4_singularity
@@ -3720,11 +3741,9 @@ fallen_machine = {
 			set_planet_flag = fallen_empire_machine_doomed_ringworld
 			prevent_anomaly = yes
 			set_owner = root
-
 			set_planet_entity = {
 				entity = "fallen_machine_empire_01_ringworld_habitable_entity_01_entity"
 			}
-
 			add_building = building_ancient_control_center
 			add_building = building_fe_psg
 			add_building = building_class_4_singularity
@@ -3944,7 +3963,6 @@ fallen_machine_2 = {
 			type = "small_debris_object"
 			location = solar_system
 		}
-
 		acot_create_fe_outpost = yes
 	}
 }
@@ -4077,7 +4095,6 @@ fallen_machine_3 = {
 			type = "small_debris_object"
 			location = solar_system
 		}
-
 		acot_create_fe_outpost = yes
 	}
 	change_orbit = 45
@@ -4197,7 +4214,6 @@ fallen_machine_4 = {
 				location = solar_system
 			}
 		}
-
 		acot_create_fe_outpost = yes
 	}
 }
@@ -4317,7 +4333,6 @@ fallen_machine_5 = {
 				location = solar_system
 			}
 		}
-
 		acot_create_fe_outpost = yes
 	}
 }
