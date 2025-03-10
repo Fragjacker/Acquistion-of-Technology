@@ -1,15 +1,10 @@
 Includes = {
 	"constants.fxh"
-    "pdxmesh_astral_rift.fxh"
-    "pdxmesh_samplers.fxh"
-    "pdxmesh_ship.fxh"
-    "shadow.fxh"
-    "standard_vertex.fxh"
-    "standardfuncsgfx.fxh"
-    "shadow.fxh"
-    "tiled_pointlights.fxh"
-    "vertex_structs.fxh"
-    "utils.fxh"
+	"pdxmesh_samplers.fxh"
+	"shadow.fxh"
+	"standardfuncsgfx.fxh"
+	"tiled_pointlights.fxh"
+	"vertex_structs.fxh"
 }
 
 MainCode PixelAotPlanetShieldDM

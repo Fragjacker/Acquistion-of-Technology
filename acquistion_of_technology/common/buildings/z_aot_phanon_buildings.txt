@@ -1935,8 +1935,7 @@ building_phanon_power_hub = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		modifier = {
@@ -2032,7 +2031,6 @@ building_phanon_food_processing_complex = {
 			exists = planet_owner
 			planet_owner = {
 				is_regular_empire = yes
-				is_individual_machine = yes
 			}
 		}
 		modifier = {
@@ -2162,8 +2160,7 @@ building_phanon_civilian_factory = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		modifier = {
@@ -2211,8 +2208,7 @@ building_phanon_civilian_factory = {
 		trigger = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		text = job_artisan_effect_desc
@@ -2275,8 +2271,7 @@ building_phanon_enigmatic_lab = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		modifier = {
@@ -2299,8 +2294,7 @@ building_phanon_enigmatic_lab = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 				is_galactic_community_member = yes
 			}
 			is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
@@ -2442,8 +2436,7 @@ building_phanon_institute = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		modifier = {
@@ -2492,7 +2485,6 @@ building_phanon_hospital = {
 		exists = planet_owner
 		planet_owner = {
 			is_regular_empire = yes
-			is_individual_machine = yes
 			has_technology = tech_phanon_hospital
 		}
 	}
@@ -3354,8 +3346,9 @@ building_phanon_psg = {
 	upgrades = {
 		building_stellarite_psg
 	}
-	planet_modifier = {
-		planet_orbital_bombardment_damage = -0.99
+	inline_script = {
+		script = buildings/psg_shield_gen
+		REDUCTION_FACTOR = -0.99
 	}
 	potential = {
 		NOT = {
@@ -3619,7 +3612,7 @@ building_phanon_giga_fortress_lab = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
+				is_individualistic_empire = yes
 			}
 		}
 		job_phanon_giga_fortress_operator_add = 2		# Mod Pack: reduced from 6
@@ -4101,23 +4094,25 @@ building_phanon_stellarite_nexus = {
 	category = manufacturing
 	base_cap_amount = 1
 	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
 		exists = planet_owner
 		planet_owner = {
 			has_technology = tech_phanon_stellarite_nexus
+		}
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			has_modifier = resort_colony
+			has_modifier = slave_colony
 		}
 	}
 	allow = {
 		has_phanon_capital = yes
 		NOR = {
-			has_building = building_stellarite_nexus
+			has_building = building_acot_stellarite_nexus
 			has_building = building_phanon_stellarite_nexus
 		}
 	}
 	upgrades = {
-		building_stellarite_nexus
+		building_acot_stellarite_nexus
 	}
 	resources = {
 		category = planet_buildings
@@ -4167,7 +4162,7 @@ building_phanon_stellarite_nexus = {
 		modifier = {
 			factor = 0
 			num_buildings = {
-				type = building_stellarite_nexus
+				type = building_acot_stellarite_nexus
 				value >= 2
 			}
 		}
@@ -4190,7 +4185,7 @@ building_phanon_mansion = {
 	potential = {
 		planet_owner = {
 			has_technology = tech_phanon_mansion
-			is_regular_empire = yes
+			is_individualistic_empire = yes
 			is_spiritualist = no
 			has_make_spiritualist_perk = no
 			NOT = {
@@ -4292,7 +4287,7 @@ building_phanon_hive_depot = {
 		has_phanon_capital = yes
 	}
 	show_tech_unlock_if = {
-		planet_owner = {
+		owner = {
 			is_hive_empire = yes
 		}
 	}
@@ -4431,7 +4426,7 @@ building_phanon_commercial_megaplex = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			is_regular_empire = yes
+			is_individualistic_empire = yes
 			has_technology = tech_phanon_commercial_megaplex
 		}
 		NOR = {
@@ -4468,9 +4463,6 @@ building_phanon_commercial_megaplex = {
 	}
 	prerequisites = {
 		tech_phanon_commercial_megaplex
-	}
-	show_tech_unlock_if = {
-		is_regular_empire = yes
 	}
 	triggered_desc = {
 		text = job_phanon_clerk_effect_desc
@@ -4515,7 +4507,7 @@ building_phanon_bureaucratic = {
 		}
 		exists = planet_owner
 		planet_owner = {
-			is_regular_empire = yes
+			is_individualistic_empire = yes
 			has_technology = tech_phanon_bureau
 		}
 	}
@@ -4554,9 +4546,6 @@ building_phanon_bureaucratic = {
 	}
 	prerequisites = {
 		tech_phanon_bureau
-	}
-	show_tech_unlock_if = {
-		is_regular_empire = yes
 	}
 	triggered_desc = {
 		text = job_phanon_bureaucrat_effect_desc
@@ -4615,7 +4604,7 @@ building_phanon_embassy = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			is_regular_empire = yes
+			is_individualistic_empire = yes
 			has_technology = tech_phanon_embassy
 		}
 		planet = {
@@ -4666,9 +4655,6 @@ building_phanon_embassy = {
 	}
 	prerequisites = {
 		tech_phanon_embassy
-	}
-	show_tech_unlock_if = {
-		is_regular_empire = yes
 	}
 	ai_weight = {
 		weight = 10

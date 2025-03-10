@@ -541,7 +541,7 @@ building_stellarite_affluence_center = {
 			exists = planet_owner
 			planet_owner = {
 				is_fallen_empire = no
-				iis_individualistic_empire = yes
+				is_individualistic_empire = yes
 				is_crafter_empire = no
 			}
 		}
@@ -1866,8 +1866,7 @@ building_stellarite_power_hub = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		modifier = {
@@ -1954,8 +1953,7 @@ building_stellarite_food_processing_complex = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		modifier = {
@@ -2080,8 +2078,7 @@ building_stellarite_civilian_factory = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		modifier = {
@@ -2127,8 +2124,7 @@ building_stellarite_civilian_factory = {
 		trigger = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		text = job_artisan_effect_desc
@@ -2194,8 +2190,7 @@ building_stellarite_enigmatic_lab = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		modifier = {
@@ -2218,8 +2213,7 @@ building_stellarite_enigmatic_lab = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 				is_galactic_community_member = yes
 			}
 			is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
@@ -2357,8 +2351,7 @@ building_stellarite_institute = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		modifier = {
@@ -2404,7 +2397,6 @@ building_stellarite_hospital = {
 		exists = planet_owner
 		planet_owner = {
 			is_regular_empire = yes
-			is_individual_machine = yes
 			has_technology = tech_stellarite_hospital
 		}
 	}
@@ -2462,10 +2454,6 @@ building_stellarite_hospital = {
 	}
 	prerequisites = {
 		tech_stellarite_hospital
-	}
-	show_tech_unlock_if = {
-		is_regular_empire = yes
-		is_individual_machine = yes
 	}
 	triggered_desc = {
 		text = job_healthcare_effect_desc
@@ -3203,8 +3191,9 @@ building_stellarite_psg = {
 	allow = {
 		has_stellarite_capital = yes
 	}
-	planet_modifier = {
-		planet_orbital_bombardment_damage = -1
+	inline_script = {
+		script = buildings/psg_shield_gen
+		REDUCTION_FACTOR = -1.0
 	}
 	resources = {
 		category = planet_buildings
@@ -3446,8 +3435,7 @@ building_stellarite_giga_fortress_lab = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		job_stellarite_giga_fortress_operator_add = 2		# Mod Pack: reduced from 6
@@ -3763,11 +3751,14 @@ building_acot_stellarite_generator = {
 		exists = planet_owner
 		planet_owner = {
 			has_technology = tech_dark_matter_power_core_se
-			advanced_resource_generation_building_regulation = yes
 		}
+		advanced_resource_generation_building_regulation = yes
 	}
 	allow = {
 		has_major_upgraded_capital = yes
+	}
+	country_modifier = {
+		country_resource_max_acot_sr_stellarite_add = 500
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -3805,6 +3796,19 @@ building_acot_stellarite_generator = {
 			}
 			acot_sr_stellarite = 100
 			energy = 200
+		}
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_supercharged_reactor_stellarite
+			}
+			acot_sr_stellarite = 10
+		}
+		upkeep = {
+			trigger = {
+				has_modifier = acot_modifier_supercharged_reactor_stellarite
+			}
+			sr_dark_matter = 15
+			acot_sr_dark_energy = 15
 		}
 		upkeep = {
 			trigger = {
@@ -3859,14 +3863,17 @@ building_acot_stellarite_generator_ae = {
 		exists = planet_owner
 		planet_owner = {
 			has_technology = tech_acot_stellarite_generator_ae
-			advanced_resource_generation_building_regulation = yes
 		}
+		advanced_resource_generation_building_regulation = yes
 	}
 	prerequisites = {
 		"tech_acot_stellarite_generator_ae"
 	}
 	allow = {
 		has_stellarite_capital = yes
+	}
+	country_modifier = {
+		country_resource_max_acot_sr_stellarite_add = 1000
 	}
 	upgrades = {
 		building_stellarite_generator_lvl3
@@ -3893,13 +3900,36 @@ building_acot_stellarite_generator_ae = {
 			job_aot_ae_stellariteman_add = 2
 		}
 	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				is_gestalt = yes
+				has_technology = tech_acot_stellarite_mastery
+			}
+		}
+		modifier = {
+			job_aot_ae_stellaritedrone_add = 1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				is_gestalt = no
+				has_technology = tech_acot_stellarite_mastery
+			}
+		}
+		modifier = {
+			job_aot_ae_stellariteman_add = 1
+		}
+	}
 	triggered_desc = {
 		trigger = {
 			uses_district_set = sigma_habitat
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		text = building_acot_stellarite_generator_ae_effect_desc
@@ -3927,6 +3957,7 @@ building_acot_stellarite_generator_ae = {
 	resources = {
 		category = planet_buildings
 		cost = {
+			alloys = 1250
 			minerals = 850
 			energy = 850
 			acot_sr_dark_energy = 500
@@ -3943,7 +3974,7 @@ building_acot_stellarite_generator_ae = {
 		}
 		produces = {
 			trigger = {
-				has_building = building_stellarite_nexus
+				has_building = building_acot_stellarite_nexus
 			}
 			acot_sr_stellarite = 10
 		}
@@ -3989,11 +4020,14 @@ building_stellarite_generator_lvl3 = {
 		exists = planet_owner
 		planet_owner = {
 			has_technology = tech_stellarite_generator_lvl3
-			advanced_resource_generation_building_regulation = yes
 		}
+		advanced_resource_generation_building_regulation = yes
 	}
 	allow = {
 		has_stellarite_capital = yes
+	}
+	country_modifier = {
+		country_resource_max_acot_sr_stellarite_add = 2500
 	}
 	upgrades = {
 	}
@@ -4019,13 +4053,36 @@ building_stellarite_generator_lvl3 = {
 			job_sun_master_add = 2
 		}
 	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				is_gestalt = yes
+				has_technology = tech_acot_stellarite_mastery
+			}
+		}
+		modifier = {
+			job_sun_masterdrone_add = 1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = {
+				is_gestalt = no
+				has_technology = tech_acot_stellarite_mastery
+			}
+		}
+		modifier = {
+			job_sun_master_add = 1
+		}
+	}
 	triggered_desc = {
 		trigger = {
 			uses_district_set = sigma_habitat
 			exists = planet_owner
 			planet_owner = {
-				is_regular_empire = yes
-				is_individual_machine = yes
+				is_individualistic_empire = yes
 			}
 		}
 		text = building_stellarite_generator_lvl3_effect_desc
@@ -4053,9 +4110,11 @@ building_stellarite_generator_lvl3 = {
 	resources = {
 		category = planet_buildings
 		cost = {
+			alloys = 4500
 			minerals = 2500
 			energy = 2500
-			acot_sr_stellarite = 2500
+			acot_sr_dark_energy = 2500
+			sr_dark_matter = 2500
 		}
 		produces = {
 			trigger = {
@@ -4074,9 +4133,22 @@ building_stellarite_generator_lvl3 = {
 		}
 		produces = {
 			trigger = {
-				has_building = building_stellarite_nexus
+				has_building = building_acot_stellarite_nexus
 			}
 			acot_sr_stellarite = 2000
+		}
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_supercharged_reactor_stellarite
+			}
+			acot_sr_stellarite = 30
+		}
+		upkeep = {
+			trigger = {
+				has_modifier = acot_modifier_supercharged_reactor_stellarite
+			}
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
 		}
 		upkeep = {
 			energy = 800
@@ -4103,6 +4175,12 @@ building_stellarite_generator_lvl3 = {
 			num_buildings = {
 				type = building_stellarite_generator_lvl3
 				value >= 2
+			}
+		}
+		modifier = {
+			factor = 0
+			planet_owner = {
+				merg_is_awakened_fe = yes
 			}
 		}
 	}
@@ -4241,18 +4319,23 @@ building_stellarite_synthersizer = {
 	}
 }
 
-building_stellarite_nexus = {
+building_acot_stellarite_nexus = {
+	icon = building_stellarite_nexus
 	base_buildtime = 900
 	category = manufacturing
 	can_build = no
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			has_technology = tech_stellarite_nexus
+			has_technology = tech_acot_stellarite_nexus
 		}
+		advanced_resource_generation_building_regulation = yes
 	}
 	allow = {
-		has_phanon_capital = yes
+		has_stellarite_capital = yes
+	}
+	country_modifier = {
+		country_resource_max_acot_sr_stellarite_add = 10000
 	}
 	resources = {
 		category = planet_buildings
@@ -4277,7 +4360,7 @@ building_stellarite_nexus = {
 		planet_jobs_acot_sr_stellarite_produces_mult = 1
 	}
 	prerequisites = {
-		tech_stellarite_nexus
+		tech_acot_stellarite_nexus
 	}
 	ai_weight = {
 		weight = 10
@@ -4300,7 +4383,7 @@ building_stellarite_nexus = {
 			factor = 0
 			num_buildings = {
 				type = building_phanon_stellarite_nexus
-				value >= 2
+				value >= 0
 			}
 		}
 	}
@@ -4323,8 +4406,7 @@ building_stellarite_mansion = {
 		exists = planet_owner
 		planet_owner = {
 			has_technology = tech_stellarite_mansion
-			is_regular_empire = yes
-			is_individual_machine = yes
+			is_individualistic_empire = yes
 			is_spiritualist = no
 			has_make_spiritualist_perk = no
 		}
@@ -4544,8 +4626,7 @@ building_stellarite_commercial_megaplex = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			is_regular_empire = yes
-			is_individual_machine = yes
+			is_individualistic_empire = yes
 			has_technology = tech_stellarite_commercial_megaplex
 		}
 		NOT = {
@@ -4579,10 +4660,6 @@ building_stellarite_commercial_megaplex = {
 	}
 	prerequisites = {
 		tech_stellarite_commercial_megaplex
-	}
-	show_tech_unlock_if = {
-		is_regular_empire = yes
-		is_individual_machine = yes
 	}
 	triggered_desc = {
 		text = job_stellarite_clerk_effect_desc
@@ -4624,8 +4701,7 @@ building_stellarite_bureaucratic = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			is_regular_empire = yes
-			is_individual_machine = yes
+			is_individualistic_empire = yes
 			has_technology = tech_stellarite_bureau
 		}
 	}
@@ -4717,8 +4793,7 @@ building_stellarite_embassy = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			is_regular_empire = yes
-			is_individual_machine = yes
+			is_individualistic_empire = yes
 			has_technology = tech_stellarite_embassy
 		}
 		planet = {

@@ -19,7 +19,7 @@ acot_army_machine_special = {
 			unity = 3.5
 		}
 		upkeep = {
-			energy = 3.5
+			energy = 2.5
 		}
 	}
 	allow = {
@@ -31,12 +31,12 @@ acot_army_machine_special = {
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
+	potential_country = {
+		is_machine_empire = yes
+	}
 	potential = {
 		NOT = {
 			has_global_flag = acot_army_forbidden
-		}
-		owner = {
-			is_machine_empire = yes
 		}
 		from = {
 			has_trait = "trait_machine_unit"
@@ -46,9 +46,6 @@ acot_army_machine_special = {
 				has_technology = tech_acot_army_machine_se
 			}
 		}
-	}
-	show_tech_unlock_if = {
-		is_machine_empire = yes
 	}
 	prerequisites = {
 		"tech_acot_army_machine_special"
@@ -76,7 +73,7 @@ acot_army_machine_special_se = {
 			unity = 3.75
 		}
 		upkeep = {
-			energy = 3.75
+			energy = 2.5
 		}
 	}
 	allow = {
@@ -88,6 +85,9 @@ acot_army_machine_special_se = {
 			has_district = district_acot_enigmapolis_fortress
 		}
 	}
+	potential_country = {
+		is_machine_empire = yes
+	}
 	show_tech_unlock_if = {
 		owner = {
 			has_technology = tech_acot_army_machine_se
@@ -96,9 +96,6 @@ acot_army_machine_special_se = {
 	potential = {
 		NOT = {
 			has_global_flag = acot_army_forbidden
-		}
-		owner = {
-			is_machine_empire = yes
 		}
 		from = {
 			has_trait = "trait_machine_unit"
@@ -140,27 +137,20 @@ acot_army_machine_hero = {
 			has_building = building_acot_ae_machine_dome
 			has_district = district_acot_enigmapolis_fortress
 		}
-		owner = {
-			NOT = {
-				any_owned_army = {
-					army_type = acot_army_machine_hero
-				}
-			}
-		}
+	}
+	potential_country = {
+		is_machine_empire = yes
 	}
 	potential = {
 		NOT = {
 			has_global_flag = acot_army_forbidden
-		}
-		owner = {
-			is_machine_empire = yes
 		}
 		from = {
 			has_trait = "trait_machine_unit"
 		}
 		owner = {
 			check_variable = {
-				which = godmech_count
+				which = ethic_hero_count
 				value >= 1
 			}
 		}
@@ -171,7 +161,7 @@ acot_army_machine_hero = {
 	on_queued = {
 		owner = {
 			subtract_variable = {
-				which = "godmech_count"
+				which = ethic_hero_count
 				value = 1
 			}
 		}
@@ -179,7 +169,7 @@ acot_army_machine_hero = {
 	on_unqueued = {
 		owner = {
 			change_variable = {
-				which = "godmech_count"
+				which = ethic_hero_count
 				value = 1
 			}
 		}
@@ -224,6 +214,11 @@ acot_army_hive_control = {
 		}
 		from = {
 			has_trait = trait_hive_mind
+		}
+		owner = {
+			NOT = {
+				has_technology = tech_acot_army_hive_se
+			}
 		}
 	}
 	prerequisites = {
@@ -311,13 +306,6 @@ acot_army_hive_hero = {
 			has_building = building_phanon_hive_evochamber
 			has_building = building_stellarite_hive_evochamber
 		}
-		owner = {
-			NOT = {
-				any_owned_army = {
-					army_type = acot_army_hive_hero
-				}
-			}
-		}
 	}
 	potential = {
 		NOT = {
@@ -340,7 +328,7 @@ acot_army_hive_hero = {
 		}
 		owner = {
 			check_variable = {
-				which = terror_count
+				which = ethic_hero_count
 				value >= 1
 			}
 		}
@@ -351,7 +339,7 @@ acot_army_hive_hero = {
 	on_queued = {
 		owner = {
 			subtract_variable = {
-				which = "terror_count"
+				which = ethic_hero_count
 				value = 1
 			}
 		}
@@ -359,7 +347,7 @@ acot_army_hive_hero = {
 	on_unqueued = {
 		owner = {
 			change_variable = {
-				which = "terror_count"
+				which = ethic_hero_count
 				value = 1
 			}
 		}
@@ -368,15 +356,15 @@ acot_army_hive_hero = {
 
 # Synthetic Super Commando
 acot_army_synth_hero = {
-	damage = 35
-	health = 40
+	damage = 50
+	health = 50
 	morale = 12
-	morale_damage = 0.5
+	morale_damage = 10.5
 	collateral_damage = 1
 	war_exhaustion = 4.5
-	time = 1600
+	time = 2200
 	icon = GFX_army_type_hero
-	has_species = yes
+	has_species = no
 	resources = {
 		category = armies
 		cost = {
@@ -391,9 +379,6 @@ acot_army_synth_hero = {
 		NOT = {
 			has_global_flag = acot_army_forbidden
 		}
-		from = {
-			has_trait = "trait_mechanical"
-		}
 		owner = {
 			NOT = {
 				is_machine_empire = yes
@@ -401,10 +386,13 @@ acot_army_synth_hero = {
 		}
 		owner = {
 			check_variable = {
-				which = synthmando_count
+				which = ascension_hero_count
 				value >= 1
 			}
 		}
+	}
+	potential_country = {
+		is_regular_empire = yes
 	}
 	prerequisites = {
 		"tech_acot_army_synth_hero"
@@ -412,7 +400,7 @@ acot_army_synth_hero = {
 	on_queued = {
 		owner = {
 			subtract_variable = {
-				which = "synthmando_count"
+				which = ascension_hero_count
 				value = 1
 			}
 		}
@@ -420,7 +408,7 @@ acot_army_synth_hero = {
 	on_unqueued = {
 		owner = {
 			change_variable = {
-				which = "synthmando_count"
+				which = ascension_hero_count
 				value = 1
 			}
 		}
@@ -488,7 +476,7 @@ acot_army_psi_hero = {
 		}
 		owner = {
 			check_variable = {
-				which = psion_count
+				which = ascension_hero_count
 				value >= 1
 			}
 		}
@@ -496,7 +484,7 @@ acot_army_psi_hero = {
 	on_queued = {
 		owner = {
 			subtract_variable = {
-				which = "psion_count"
+				which = ascension_hero_count
 				value = 1
 			}
 		}
@@ -504,7 +492,7 @@ acot_army_psi_hero = {
 	on_unqueued = {
 		owner = {
 			change_variable = {
-				which = "psion_count"
+				which = ascension_hero_count
 				value = 1
 			}
 		}
@@ -568,7 +556,7 @@ acot_army_gene_hero = {
 		}
 		owner = {
 			check_variable = {
-				which = doomguy_count
+				which = ascension_hero_count
 				value >= 1
 			}
 		}
@@ -576,7 +564,7 @@ acot_army_gene_hero = {
 	on_queued = {
 		owner = {
 			subtract_variable = {
-				which = "doomguy_count"
+				which = ascension_hero_count
 				value = 1
 			}
 		}
@@ -584,7 +572,7 @@ acot_army_gene_hero = {
 	on_unqueued = {
 		owner = {
 			change_variable = {
-				which = "doomguy_count"
+				which = ascension_hero_count
 				value = 1
 			}
 		}
