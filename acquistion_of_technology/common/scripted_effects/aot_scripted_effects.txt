@@ -160,6 +160,76 @@ create_sigma_Star = {
 	}
 }
 
+# Theta Pylon blasts system to bits
+theta_destroy_solar_system = {
+	solar_system = {
+		set_star_class = sc_theta_pylon
+	}
+	every_system_planet = {
+		limit = {
+			is_star = yes
+		}
+		save_event_target_as = last_created_theta_pylon
+		create_ambient_object = {
+			type = "star_explosion"
+			play_animation_once = yes
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		change_pc = pc_theta_pylon_star
+		remove_modifier = giga_o_star_modifier
+		clear_planet_modifiers = yes
+	}
+	every_system_planet = {
+		limit = {
+			is_star = no
+		}
+		remove_planet = yes
+	}
+	set_asteroid_belt = {
+		radius = 0
+	}
+	every_system_planet = {
+		clear_deposits = yes
+		clear_planet_modifiers = yes
+		prevent_anomaly = yes
+	}
+	every_system_planet = {
+		limit = {
+			is_asteroid = yes
+		}
+		clear_deposits = yes
+	}
+	every_system_planet = {
+		limit = {
+			exists = orbital_station
+		}
+		orbital_station = {
+			dismantle = yes
+		}
+	}
+	event_target:last_created_theta_pylon = {
+		create_ambient_object = {
+			type = "theta_dimensional_rift_portal"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = theta_dimensional_rift_system_effect
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
 # ------------------------------------------------------------------------------------------------ #
 #									 Habitat creation effects									 #
 # ------------------------------------------------------------------------------------------------ #
