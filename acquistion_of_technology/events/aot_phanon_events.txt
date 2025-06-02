@@ -7,19 +7,6 @@ country_event = {
 	is_triggered_only = yes
 	picture = GFX_evt_dimensional_mirror
 	show_sound = event_phanon_discovery
-	# trigger = {
-	# 	is_playable_country = yes
-	# 	has_technology = tech_dark_matter_power_core_ae
-	# 	NOR = {
-	# 		has_global_flag = aot_phanon_content_OFF
-	# 		has_country_flag = offer_phanon_dimensional_mirror_chain
-	# 		has_country_flag = block_phanon_dimensional_mirror_chain
-	# 		has_country_flag = finished_phanon_dimensional_mirror_chain
-	# 		has_event_chain = phanon_dimensional_mirror_chain
-	# 		has_country_flag = attacked_phanon_property
-	# 		has_technology = tech_dark_matter_power_core_re
-	# 	}
-	# }
 	option = {
 		allow = {
 			NOT = {
@@ -99,6 +86,84 @@ country_event = {
 		ai_chance = {
 			factor = 1000
 		}
+	}
+}
+
+# Phanon - For AI
+country_event = {
+	id = aot_phanon_events.101
+	hide_window = yes
+	trigger = {
+		is_ai = yes
+		NOR = {
+			has_global_flag = acot_phanon_forbidden
+			has_country_flag = acot_phanon_tech_enabled
+			has_country_flag = offer_phanon_dimensional_mirror_chain
+			has_technology = tech_dark_matter_power_core_re
+			has_tech_option = tech_dark_matter_power_core_re
+		}
+		has_technology = tech_dark_matter_power_core_ae
+		has_established_contact = event_target:acot_precursor_databank_country
+		is_playable_country = yes
+		is_fallen_empire = no		# SIR NO SIR
+		OR = {
+			AND = {
+				NOT = {
+					has_global_flag = acot_ai_simple_event_forbidden
+				}
+				resource_stockpile_compare = {
+					resource = acot_sr_dark_energy
+					value >= 1000
+				}
+				resource_stockpile_compare = {
+					resource = sr_dark_matter
+					value >= 1000
+				}
+			}
+			AND = {
+				has_global_flag = acot_ai_simple_event_forbidden
+				resource_stockpile_compare = {
+					resource = acot_sr_dark_energy
+					value >= 10000
+				}
+				resource_stockpile_compare = {
+					resource = sr_dark_matter
+					value >= 10000
+				}
+			}
+			OR = {
+				end_game_years_passed >= 0
+				mid_game_years_passed >= 10
+			}
+		}
+	}
+	mean_time_to_happen = {
+		years = 20
+	}
+	immediate = {
+		set_country_flag = hear_stellarite
+		if = {
+			limit = {
+				NOT = {
+					has_global_flag = acot_ai_simple_event_forbidden
+				}
+			}
+			add_resource = {
+				sr_dark_matter = -1000
+				acot_sr_dark_energy = -1000
+			}
+		}
+		if = {
+			limit = {
+				has_global_flag = acot_ai_simple_event_forbidden
+			}
+			add_resource = {
+				sr_dark_matter = -10000
+				acot_sr_dark_energy = -10000
+			}
+		}
+		add_research_option = tech_dark_matter_power_core_re
+		set_country_flag = acot_phanon_tech_enabled
 	}
 }
 
@@ -549,7 +614,9 @@ country_event = {
 	}
 	option = {
 		trigger = {
-			NOT = { has_country_flag = defeated_wave_4 }
+			NOT = {
+				has_country_flag = defeated_wave_4
+			}
 		}
 		name = aot_enigmatic_lock_events.2.a
 		name = aot_enigmatic_lock_events.2.b
