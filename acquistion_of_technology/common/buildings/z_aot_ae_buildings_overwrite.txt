@@ -10,6 +10,9 @@ building_acot_ae_ancient_palace = {
 	can_build = no
 	position_priority = 0
 	category = government
+	building_sets = {
+		government
+	}
 	country_modifier = {
 		country_resource_max_add = 20000
 		country_resource_max_acot_sr_dark_energy_add = 5000
@@ -19,33 +22,45 @@ building_acot_ae_ancient_palace = {
 		exists = planet_owner
 		planet_owner = {
 			is_individualistic_empire = yes
+			is_fallen_empire = no
 			has_technology = tech_acot_ae_ancient_palace
 		}
 	}
+	custom_tooltip = acot_capital_building_storm_resistance_ae
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
+		building_ancient_hive_capital
 		building_acot_ae_ancient_control_center
 		building_acot_ae_ancient_hive_cluster
 	}
 	allow = {
-		num_sapient_pops >= 20
 	}
 	upgrades = {
 		building_phanon_palace
 	}
 	prerequisites = {
-		"tech_acot_ae_ancient_palace"
+		tech_acot_ae_ancient_palace
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 20
-		planet_amenities_add = 30		# Mod Pack: reduced from 50
-		planet_max_districts_add = 3		# Mod Pack: reduced from 4
-		planet_max_buildings_add = 8		# Mod Pack: reduced from 12
-		planet_max_branch_office_buildings_add = 3		# Mod Pack: reduced from 5
-		trade_value_add = 7.5		# Mod Pack: reduced from 15
-		trade_value_mult = 0.7		# Mod Pack: reduced from 1
-		planet_orbital_bombardment_damage = -0.2
-		pop_environment_tolerance = 0.2
-		defense_armies_add = @tier_4_capital_defense_armies
+		planet_housing_add = 12000
+		planet_amenities_add = 24000
+		planet_max_districts_add = 6
+		planet_max_branch_office_buildings_add = 6
+		job_acot_overlord_add = 100
+		job_acot_overseer_add = 800
+		job_acot_enforcer_add = @b3_time
+		planet_orbital_bombardment_damage = -0.20
+		pop_environment_tolerance = 0.30
+		planet_defense_armies_add = 20
+		planet_traders_trade_produces_add = 0.50
+	}
+	inline_script = {
+		script = buildings/genetic_ascension_effects
+		TIER = 4
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -57,7 +72,7 @@ building_acot_ae_ancient_palace = {
 				}
 			}
 		}
-		job_roboticist_add = 1
+		job_roboticist_add = 100
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -67,46 +82,17 @@ building_acot_ae_ancient_palace = {
 				has_technology = tech_acot_dm_super_assembly
 			}
 		}
-		job_acot_roboman_add = 1
+		job_acot_roboman_add = 100
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_fallen_empire = no
+				has_active_tradition = tr_domination_imperious_architecture
 			}
 		}
 		modifier = {
-			job_acot_overlord_add = 1
-			job_acot_overseer_add = 2			# Mod Pack: Reduced from 4
-			job_acot_enforcer_add = 2			# Mod Pack: Reduced from 4
-		}
-	}
-	##### FOR FE ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = no
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_overseer_add = 8
-			job_fe_protector_add = 8
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_sky_cardinal_add = 8
-			job_fe_protector_add = 8
+			planet_housing_add = 100
 		}
 	}
 	triggered_planet_modifier = {
@@ -117,8 +103,7 @@ building_acot_ae_ancient_palace = {
 			}
 		}
 		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
+			pop_bonus_workforce_mult = 0.1
 		}
 	}
 	triggered_planet_modifier = {
@@ -129,8 +114,7 @@ building_acot_ae_ancient_palace = {
 			}
 		}
 		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
+			pop_bonus_workforce_mult = 0.1
 		}
 	}
 	triggered_planet_modifier = {
@@ -141,8 +125,7 @@ building_acot_ae_ancient_palace = {
 			}
 		}
 		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
+			pop_bonus_workforce_mult = 0.1
 		}
 	}
 	resources = {
@@ -177,8 +160,8 @@ building_acot_ae_ancient_palace = {
 			acot_sr_dark_energy = 60
 		}
 		cost = {
-			minerals = 500
-			influence = 100
+			alloys = 1500
+			unity = 30000
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
 		}
@@ -197,6 +180,10 @@ building_acot_ae_ancient_control_center = {
 	can_be_disabled = no
 	position_priority = 0
 	category = government
+	building_sets = {
+		government
+	}
+	custom_tooltip = acot_capital_building_storm_resistance_ae
 	country_modifier = {
 		country_resource_max_add = 20000
 		country_resource_max_acot_sr_dark_energy_add = 5000
@@ -205,11 +192,17 @@ building_acot_ae_ancient_control_center = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			is_machine_empire = yes
+			OR = {
+				is_machine_empire = yes
+				is_country_type = ai_empire
+			}
 			has_technology = tech_acot_ae_ancient_control_center
+			is_fallen_empire = no
 		}
 	}
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
 		building_acot_ae_ancient_palace
 		building_acot_ae_ancient_hive_cluster
 	}
@@ -217,22 +210,28 @@ building_acot_ae_ancient_control_center = {
 		building_phanon_control_center
 	}
 	allow = {
-		num_sapient_pops >= 20
 	}
 	prerequisites = {
-		"tech_acot_ae_ancient_control_center"
+		tech_acot_ae_ancient_control_center
 	}
 	show_tech_unlock_if = {
 		is_machine_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 20		# Mod Pack: reduced from 20
-		planet_amenities_add = 20		# Mod Pack: reduced from 50
-		planet_max_districts_add = 2		# Mod Pack: reduced from 4
-		planet_max_buildings_add = 8		# Mod Pack: reduced from 12
-		planet_orbital_bombardment_damage = -0.2
-		pop_environment_tolerance = 0.2
-		defense_armies_add = @tier_4_capital_defense_armies
+		planet_housing_add = 12000
+		planet_amenities_add = 24000
+		planet_max_districts_add = 6
+		job_acot_overlord_droid_add = 100
+		job_acot_overseer_droid_add = 800
+		job_acot_enforcer_drone_add = 400
+		planet_orbital_bombardment_damage = -0.20
+		pop_environment_tolerance = 0.30
+		planet_defense_armies_add = 20
+		planet_traders_trade_produces_add = 0.5
+	}
+	inline_script = {
+		script = buildings/genetic_ascension_effects
+		TIER = 4
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -243,7 +242,7 @@ building_acot_ae_ancient_control_center = {
 				}
 			}
 		}
-		job_replicator_add = 1
+		job_replicator_add = 100
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -252,32 +251,16 @@ building_acot_ae_ancient_control_center = {
 				has_technology = tech_acot_dm_super_assembly
 			}
 		}
-		job_acot_robodrone_add = 1
+		job_acot_robodrone_add = 100
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_fallen_empire_machine = no
+				has_technology = tech_acot_dm_super_assembly
 			}
 		}
-		modifier = {
-			job_acot_overlord_droid_add = 1
-			job_acot_overseer_droid_add = 2			# Mod Pack: Reduced from 4
-			job_acot_enforcer_drone_add = 2			# Mod Pack: Reduced from 4
-		}
-	}
-	##### FOR FE ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_machine = yes
-			}
-		}
-		modifier = {
-			job_fe_guardian_bot_add = 20
-		}
+		job_acot_robodrone_add = 100
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -287,8 +270,7 @@ building_acot_ae_ancient_control_center = {
 			}
 		}
 		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
+			pop_bonus_workforce_mult = 0.1
 		}
 	}
 	triggered_planet_modifier = {
@@ -299,8 +281,7 @@ building_acot_ae_ancient_control_center = {
 			}
 		}
 		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
+			pop_bonus_workforce_mult = 0.1
 		}
 	}
 	triggered_planet_modifier = {
@@ -311,8 +292,7 @@ building_acot_ae_ancient_control_center = {
 			}
 		}
 		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
+			pop_bonus_workforce_mult = 0.1
 		}
 	}
 	resources = {
@@ -347,8 +327,8 @@ building_acot_ae_ancient_control_center = {
 			acot_sr_dark_energy = 60
 		}
 		cost = {
-			minerals = 500
-			influence = 100
+			alloys = 1500
+			unity = 30000
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
 		}
@@ -367,46 +347,58 @@ building_acot_ae_ancient_hive_cluster = {
 	can_be_ruined = no
 	can_be_disabled = no
 	position_priority = 0
+	category = government
+	building_sets = {
+		government
+	}
 	country_modifier = {
-		country_resource_max_add = 15000		# Mod Pack: Reduced from 20000
+		country_resource_max_add = 20000
 		country_resource_max_acot_sr_dark_energy_add = 5000
 		country_resource_max_sr_dark_matter_add = 5000
 	}
-	category = government
 	upgrades = {
 		building_phanon_hive_cluster
 	}
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			is_hive_empire = yes
+			OR = {
+				is_hive_empire = yes
+				is_country_type = swarm
+			}
+			is_fallen_empire = no
 			has_technology = tech_acot_ae_ancient_hive_cluster
 		}
 	}
+	custom_tooltip = acot_capital_building_storm_resistance_ae
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
+		building_ancient_hive_capital
 		building_acot_ae_ancient_control_center
 		building_acot_ae_ancient_palace
 	}
-	allow = {
-		num_sapient_pops >= 25
-	}
 	prerequisites = {
-		"tech_acot_ae_ancient_hive_cluster"
+		tech_acot_ae_ancient_hive_cluster
 	}
 	show_tech_unlock_if = {
 		is_hive_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 20
-		planet_amenities_add = 20		# Mod Pack: Reduced from 50
-		planet_max_districts_add = 2		# Mod Pack: Reduced from 4
-		planet_max_buildings_add = 8		# Mod Pack: Reduced from 12
-		job_acot_overlord_drone_add = 1
-		job_acot_overseer_drone_add = 2		# Mod Pack: Reduced from 4
-		job_acot_enforcer_drone_add = 2		# Mod Pack: Reduced from 4
-		planet_orbital_bombardment_damage = -0.2
-		pop_environment_tolerance = 0.2
-		defense_armies_add = @tier_4_capital_defense_armies
+		planet_housing_add = 12000
+		planet_amenities_add = 24000
+		planet_max_districts_add = 6
+		job_acot_overlord_drone_add = 100
+		job_acot_overseer_drone_add = 800
+		job_acot_enforcer_drone_add = 400
+		planet_orbital_bombardment_damage = -0.20
+		pop_environment_tolerance = 0.30
+		planet_defense_armies_add = 20
+		planet_traders_trade_produces_add = 0.50
+	}
+	inline_script = {
+		script = buildings/genetic_ascension_effects
+		TIER = 4
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -416,8 +408,7 @@ building_acot_ae_ancient_hive_cluster = {
 			}
 		}
 		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
+			pop_bonus_workforce_mult = 0.1
 		}
 	}
 	triggered_planet_modifier = {
@@ -428,8 +419,7 @@ building_acot_ae_ancient_hive_cluster = {
 			}
 		}
 		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
+			pop_bonus_workforce_mult = 0.1
 		}
 	}
 	triggered_planet_modifier = {
@@ -440,20 +430,8 @@ building_acot_ae_ancient_hive_cluster = {
 			}
 		}
 		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
+			pop_bonus_workforce_mult = 0.1
 		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_origin = origin_progenitor_hive
-			}
-			is_planet_class = pc_hive
-		}
-		job_spawning_drone_add = -1
-		job_offspring_drone_add = 1
 	}
 	resources = {
 		category = planet_buildings
@@ -487,8 +465,8 @@ building_acot_ae_ancient_hive_cluster = {
 			acot_sr_dark_energy = 60
 		}
 		cost = {
-			minerals = 500
-			influence = 100
+			alloys = 1500
+			unity = 30000
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
 		}
@@ -502,7 +480,7 @@ building_acot_ae_ancient_hive_cluster = {
 # Enigmatic Building
 #####################
 building_ae_affluence_center = {
-	base_buildtime = 600
+	base_buildtime = @b3_time
 	can_demolish = yes
 	can_build = no
 	category = manufacturing
@@ -517,76 +495,6 @@ building_ae_affluence_center = {
 	}
 	allow = {
 		has_ascended_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = no
-			}
-		}
-		modifier = {
-			job_acot_artisan_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = no
-			}
-		}
-		text = job_artisan_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = yes
-			}
-		}
-		modifier = {
-			job_artificer_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = yes
-			}
-		}
-		text = job_artificer_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_artisan_drone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		text = job_artisan_drone_effect_desc
 	}
 	planet_modifier = {
 		planet_amenities_add = 100
@@ -634,9 +542,8 @@ building_ae_affluence_center = {
 		}
 	}
 }
-
 building_ae_nourishment_center = {
-	base_buildtime = 600
+	base_buildtime = @b3_time
 	can_demolish = yes
 	can_build = no
 	category = resource
@@ -647,157 +554,10 @@ building_ae_nourishment_center = {
 		}
 	}
 	prerequisites = {
-		"tech_aot_ae_nourishment_center"
+		tech_aot_ae_nourishment_center
 	}
 	allow = {
 		has_ascended_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_fe_farmer_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_farm_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
-				OR = {
-					is_anglers_empire = no
-					AND = {
-						is_anglers_empire = yes
-						NOT = {
-							PREV = {
-								planet = {
-									is_wet = yes
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		modifier = {
-			job_acot_foodman_add = 6
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_farm_add = @fe_jobs
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_fooddrone_add = 6
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
-				is_anglers_empire = yes
-				PREV = {
-					planet = {
-						is_wet = yes
-					}
-				}
-			}
-		}
-		modifier = {
-			job_angler_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		text = job_agri_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-				is_fallen_empire = no
-				OR = {
-					is_anglers_empire = no
-					AND = {
-						is_anglers_empire = yes
-						NOT = {
-							PREV = {
-								planet = {
-									is_wet = yes
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		text = job_farmer_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		text = job_fe_acolyte_farm_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_anglers_empire = yes
-				PREV = {
-					planet = {
-						is_wet = yes
-					}
-				}
-			}
-		}
-		text = job_aqu_angler_effect_desc
 	}
 	planet_modifier = {
 		biological_pop_happiness = 0.4
@@ -840,9 +600,8 @@ building_ae_nourishment_center = {
 		}
 	}
 }
-
 building_ae_dimensional_fabricator = {
-	base_buildtime = 600
+	base_buildtime = @b3_time
 	can_demolish = yes
 	can_build = no
 	category = resource
@@ -853,7 +612,7 @@ building_ae_dimensional_fabricator = {
 		}
 	}
 	prerequisites = {
-		"tech_aot_ae_dimensional_fabricator"
+		tech_aot_ae_dimensional_fabricator
 	}
 	allow = {
 		has_ascended_capital = yes
@@ -877,7 +636,7 @@ building_ae_dimensional_fabricator = {
 			sr_living_metal = @auto_sr_ae
 		}
 		upkeep = {
-			energy = 30			# Mod Pack: added
+			energy = 30            # Mod Pack: added
 			acot_sr_dark_energy = 30
 		}
 	}
@@ -907,14 +666,13 @@ building_ae_dimensional_fabricator = {
 		}
 	}
 }
-
 building_ae_class_4_singularity = {
-	base_buildtime = 600
+	base_buildtime = @b3_time
 	can_demolish = yes
 	can_build = no
 	category = resource
 	prerequisites = {
-		"tech_aot_ae_class_4_singularity"
+		tech_aot_ae_class_4_singularity
 	}
 	potential = {
 		exists = planet_owner
@@ -924,84 +682,6 @@ building_ae_class_4_singularity = {
 	}
 	allow = {
 		has_ascended_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_fe_generator_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_generator_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_energyman_add = @fe_jobs
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_energydrone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-				is_fallen_empire = no
-			}
-		}
-		text = job_technician_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-				is_fallen_empire = no
-			}
-		}
-		text = job_technician_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		text = job_fe_acolyte_generator_effect_desc
 	}
 	resources = {
 		category = planet_buildings
@@ -1042,14 +722,13 @@ building_ae_class_4_singularity = {
 		}
 	}
 }
-
 building_ae_nano_forge = {
-	base_buildtime = 600
+	base_buildtime = @b3_time
 	can_demolish = yes
 	can_build = no
 	category = manufacturing
 	prerequisites = {
-		"tech_aot_ae_nano_forge"
+		tech_aot_ae_nano_forge
 	}
 	potential = {
 		exists = planet_owner
@@ -1059,150 +738,6 @@ building_ae_nano_forge = {
 	}
 	allow = {
 		has_ascended_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_fe_foundry_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_acot_fe_acolyte_foundry_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			job_acot_alloyman_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		text = job_foundry_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = yes
-			}
-		}
-		modifier = {
-			job_catalytic_technician_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = yes
-			}
-		}
-		text = job_catalytic_technician_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_hive_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			job_acot_alloydrone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_hive_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		text = job_alloy_drone_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_machine_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			job_acot_alloydrone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_machine_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		text = job_fabricator_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-				is_catalytic_empire = yes
-			}
-		}
-		modifier = {
-			job_catalytic_drone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-				is_catalytic_empire = yes
-			}
-		}
-		text = job_catalytic_drone_effect_desc
 	}
 	planet_modifier = {
 		planet_building_build_speed_mult = 0.1
@@ -1245,14 +780,13 @@ building_ae_nano_forge = {
 		}
 	}
 }
-
 building_ae_master_archive = {
-	base_buildtime = 600
+	base_buildtime = @b3_time
 	can_demolish = yes
 	can_build = no
 	category = research
 	prerequisites = {
-		"tech_aot_ae_master_archive"
+		tech_aot_ae_master_archive
 	}
 	potential = {
 		exists = planet_owner
@@ -1267,34 +801,41 @@ building_ae_master_archive = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_individualistic_empire = yes
+				is_regular_empire = yes
 				is_fallen_empire = no
 			}
 		}
 		modifier = {
-			job_acot_researcher_add = 6
+			job_acot_researcher_add = 600
 		}
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_gestalt = yes
+				is_hive_empire = yes
 				is_fallen_empire = no
 			}
 		}
 		modifier = {
-			job_acot_researcher_drone_add = 8
+			job_acot_researcher_add = 400
 		}
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = yes
-			}
+			planet_owner = { is_machine_empire = yes }
 		}
-		job_fe_archivist_add = 15
+		modifier = {
+			job_acot_researcher_add = 400
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = { is_fallen_empire = yes }
+		}
+		job_fe_archivist_add = 1500
 	}
 	resources = {
 		category = planet_buildings
@@ -1312,7 +853,7 @@ building_ae_master_archive = {
 		upkeep = {
 			acot_sr_dark_energy = 15
 			sr_dark_matter = 15
-			energy = 20			# Mod Pack: added
+			energy = 20            # Mod Pack: added
 		}
 	}
 	upgrades = {
@@ -1330,14 +871,13 @@ building_ae_master_archive = {
 		}
 	}
 }
-
 building_ae_empyrean_shrine = {
-	base_buildtime = 600
+	base_buildtime = @b3_time
 	can_demolish = yes
 	can_build = no
 	category = unity
 	prerequisites = {
-		"tech_aot_ae_empyrean_shrine"
+		tech_aot_ae_empyrean_shrine
 	}
 	potential = {
 		exists = planet_owner
@@ -1355,7 +895,7 @@ building_ae_empyrean_shrine = {
 				is_fallen_empire = yes
 			}
 		}
-		job_fe_augur_add = 8
+		job_fe_augur_add = 800
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1365,7 +905,7 @@ building_ae_empyrean_shrine = {
 				is_spiritualist = yes
 			}
 		}
-		job_acot_priest_add = 4
+		job_acot_priest_add = 400
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1375,14 +915,14 @@ building_ae_empyrean_shrine = {
 				is_spiritualist = no
 			}
 		}
-		job_researcher_add = 4
+		job_researcher_add = 400
 	}
 	resources = {
 		category = planet_buildings
 		cost = {
 			minerals = 150
-			sr_dark_matter = 600
-			acot_sr_dark_energy = 600
+			sr_dark_matter = @b3_time
+			acot_sr_dark_energy = @b3_time
 		}
 		produces = {
 			society_research = 200
@@ -1408,13 +948,12 @@ building_ae_empyrean_shrine = {
 		}
 	}
 }
-
 building_ae_sky_dome = {
-	base_buildtime = 600
+	base_buildtime = @b3_time
 	can_build = no
 	category = amenity
 	prerequisites = {
-		"tech_aot_ae_sky_dome"
+		tech_aot_ae_sky_dome
 	}
 	potential = {
 		exists = planet_owner
@@ -1424,15 +963,6 @@ building_ae_sky_dome = {
 	}
 	allow = {
 		has_ascended_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_valid_civic = civic_machine_servitor
-			}
-		}
-		job_bio_trophy_add = 50
 	}
 	planet_modifier = {
 		planet_housing_add = @auto_housing_ae
@@ -1472,13 +1002,18 @@ building_ae_sky_dome = {
 		}
 	}
 }
-
 building_acot_ae_ancient_cryo_chamber = {
-	base_buildtime = 450
+	base_buildtime = @b3_time
 	can_demolish = yes
 	can_build = no
-	category = amenity
+	category = unity
+	building_sets = {
+		government
+		urban
+		unity
+	}
 	potential = {
+		exists = planet_owner
 		planet_owner = {
 			is_machine_empire = yes
 			has_technology = tech_acot_ae_ancient_cryo_chamber
@@ -1488,7 +1023,7 @@ building_acot_ae_ancient_cryo_chamber = {
 		building_phanon_ancient_cryo_chamber
 	}
 	allow = {
-		has_ascended_capital = yes
+		has_enigmatic_capital = yes
 	}
 	convert_to = {
 		building_acot_ae_mansion
@@ -1496,9 +1031,9 @@ building_acot_ae_ancient_cryo_chamber = {
 		building_acot_ae_hive_depot
 	}
 	planet_modifier = {
-		planet_housing_add = 50
-		planet_amenities_add = 50
-		job_acot_entertainer_droid_add = 4
+		planet_housing_add = 8000
+		planet_amenities_no_happiness_add = 15000
+		job_acot_entertainer_droid_add = 400
 	}
 	resources = {
 		category = planet_buildings
@@ -1509,9 +1044,9 @@ building_acot_ae_ancient_cryo_chamber = {
 			unity = 30
 		}
 		cost = {
-			minerals = 550
-			sr_dark_matter = 225
-			acot_sr_dark_energy = 225
+			minerals = 400
+			sr_dark_matter = 300
+			acot_sr_dark_energy = 300
 		}
 		upkeep = {
 			energy = 10
@@ -1520,7 +1055,7 @@ building_acot_ae_ancient_cryo_chamber = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_ancient_cryo_chamber"
+		tech_acot_ae_ancient_cryo_chamber
 	}
 	ai_weight = {
 		weight = 10
@@ -1538,19 +1073,39 @@ building_acot_ae_ancient_cryo_chamber = {
 		}
 	}
 }
-
 building_acot_ae_mansion = {
-	base_buildtime = 520
+	base_buildtime = @b3_time
 	can_build = no
-	category = amenity
+	category = unity
+	building_sets = {
+		government
+		urban
+		entertainment
+	}
 	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_individualistic_empire = yes
-			is_spiritualist = no
-			has_make_spiritualist_perk = no
+		NOR = {
+			has_modifier = slave_colony
+			has_modifier = penal_colony
 		}
-		NOT = {
+		planet_owner = {
+			is_regular_empire = yes
+		}
+		NOT = { has_building = building_low_tech_capital }
+		OR = {
+			has_planet_flag = ignore_ai_building_limitations
+			planet_owner = {
+				NOT = { is_ai = yes }
+			}
+			AND = {
+				NOT = { has_available_jobs = acot_entertainer }
+				NOT = { has_forbidden_jobs = acot_entertainer }
+			}
+		}
+	}
+	destroy_trigger = {
+		exists = planet_owner
+		OR = {
+			planet_owner = { is_regular_empire = no }
 			has_modifier = slave_colony
 		}
 	}
@@ -1565,20 +1120,10 @@ building_acot_ae_mansion = {
 	upgrades = {
 		building_phanon_mansion
 	}
-	destroy_trigger = {
-		exists = planet_owner
-		planet_owner = {
-			OR = {
-				is_regular_empire = no
-				is_spiritualist = yes
-				has_make_spiritualist_perk = yes
-			}
-		}
-	}
 	planet_modifier = {
-		planet_housing_add = 30
-		planet_amenities_add = 30
-		job_acot_entertainer_add = 4
+		planet_housing_add = @auto_housing_ae
+		planet_amenities_add = @auto_amenities_ae
+		job_acot_entertainer_add = 400
 	}
 	resources = {
 		category = planet_buildings
@@ -1586,24 +1131,25 @@ building_acot_ae_mansion = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
-			unity = 30
+			unity = 24
+			trade = 48
 		}
 		cost = {
-			minerals = 400
-			sr_dark_matter = 450
-			acot_sr_dark_energy = 450
+			alloys = 400
+			sr_dark_matter = 300
+			acot_sr_dark_energy = 300
 		}
 		upkeep = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
-			energy = 10			# Mod Pack: added upkeep
+			energy = 10            # Mod Pack: added upkeep
 			acot_sr_dark_energy = 4
 			sr_dark_matter = 4
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_mansion"
+		tech_acot_ae_mansion
 	}
 	ai_weight = {
 		weight = 100
@@ -1617,16 +1163,21 @@ building_acot_ae_mansion = {
 		}
 	}
 }
-
 building_acot_ae_hive_depot = {
-	base_buildtime = 520
+	base_buildtime = @b3_time
 	can_build = no
-	category = amenity
+	category = unity
+	building_sets = {
+		government
+		urban
+	}
 	potential = {
 		exists = planet_owner
-		planet_owner = {
-			is_hive_empire = yes
-		}
+		planet_owner = { is_hive_empire = yes }
+	}
+	destroy_trigger = {
+		exists = planet_owner
+		planet_owner = { is_hive_empire = no }
 	}
 	allow = {
 		has_ascended_capital = yes
@@ -1640,9 +1191,9 @@ building_acot_ae_hive_depot = {
 		building_acot_ae_ancient_cryo_chamber
 	}
 	planet_modifier = {
-		planet_housing_add = 50
-		planet_amenities_add = 50
-		job_acot_entertainer_drone_add = 4
+		planet_housing_add = 8000
+		planet_amenities_add = 15000
+		job_acot_entertainer_drone_add = 400
 	}
 	resources = {
 		category = planet_buildings
@@ -1650,12 +1201,12 @@ building_acot_ae_hive_depot = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
-			unity = 30
+			unity = 24
 		}
 		cost = {
-			minerals = 400
-			sr_dark_matter = 450
-			acot_sr_dark_energy = 450
+			alloys = 400
+			sr_dark_matter = 300
+			acot_sr_dark_energy = 300
 		}
 		upkeep = {
 			trigger = {
@@ -1685,10 +1236,16 @@ building_acot_ae_hive_depot = {
 # Military
 #####################
 building_acot_ae_psg = {
-	base_buildtime = 500
+	base_buildtime = @b3_time
 	can_build = no
 	position_priority = 100
+	can_be_ruined = no
 	category = army
+	building_sets = {
+		government
+		fortress
+	}
+	custom_tooltip = building_acot_ae_psg_tooltip
 	allow = {
 		has_ascended_capital = yes
 	}
@@ -1725,35 +1282,36 @@ building_acot_ae_psg = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_psg"
+		tech_acot_ae_psg
 	}
 	ai_weight = {
 		weight = 15000
 	}
 }
-
 building_acot_ae_stronghold = {
 	base_buildtime = 400
 	planetary_ftl_inhibitor = yes
 	can_build = no
 	position_priority = 100
+	can_be_ruined = no
 	category = army
+	building_sets = {
+		government
+		fortress
+	}
 	allow = {
 		has_ascended_capital = yes
 	}
 	potential = {
-		NOT = {
-			has_modifier = resort_colony
-		}
-	}
-	planet_modifier = {
-		planet_housing_add = 10
-	}
-	potential = {
 		exists = planet_owner
+		NOT = { has_modifier = resort_colony }
 		planet_owner = {
 			has_technology = tech_acot_ae_stronghold
 		}
+	}
+	custom_tooltip = building_acot_ae_stronghold_tooltip
+	planet_modifier = {
+		planet_housing_add = 1000
 	}
 	upgrades = {
 		building_phanon_stronghold
@@ -1767,7 +1325,7 @@ building_acot_ae_stronghold = {
 			}
 		}
 		modifier = {
-			job_acot_soldier_add = 4
+			job_acot_soldier_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -1779,7 +1337,7 @@ building_acot_ae_stronghold = {
 			}
 		}
 		modifier = {
-			job_acot_soldier_drone_add = 4
+			job_acot_soldier_drone_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -1790,15 +1348,15 @@ building_acot_ae_stronghold = {
 			}
 		}
 		modifier = {
-			job_fe_protector_add = 5
+			job_fe_protector_add = 500
 		}
 	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 400
-			sr_dark_matter = 400
-			acot_sr_dark_energy = 400
+			alloys = 400
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 375
 		}
 		upkeep = {
 			trigger = {
@@ -1813,7 +1371,7 @@ building_acot_ae_stronghold = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_stronghold"
+		tech_acot_ae_stronghold
 	}
 	ai_weight = {
 		weight = 0
@@ -1835,26 +1393,29 @@ building_acot_ae_stronghold = {
 		}
 	}
 }
-
 building_acot_giga_fortress = {
-	base_buildtime = 900
-	add_to_first_building_slot = yes
+	base_buildtime = 1200
 	can_be_ruined = no
 	can_be_disabled = no
-	can_demolish = no
 	can_build = no
 	position_priority = 100
 	planetary_ftl_inhibitor = yes
 	category = army
+	building_sets = {
+		government
+		fortress
+	}
+	allow = {
+		has_enigmatic_capital = yes
+	}
 	potential = {
 		exists = planet_owner
 		planet_owner = {
 			has_technology = tech_acot_giga_fortress
 		}
+		NOT = { has_modifier = resort_colony }
 	}
-	allow = {
-		has_ascended_capital = yes
-	}
+	custom_tooltip = building_acot_giga_fortress_tooltip
 	on_built = {
 		if = {
 			limit = {
@@ -1883,19 +1444,16 @@ building_acot_giga_fortress = {
 			}
 		}
 	}
-	country_modifier = {
-		country_naval_cap_add = 100
-	}
 	planet_modifier = {
-		planet_amenities_add = 20
-		planet_housing_add = 20
-		planet_stability_add = 5		# Mod Pack; reduced from 50
+		planet_amenities_add = 2000
+		planet_housing_add = 2000
+		planet_stability_add = 5
 	}
 	triggered_planet_modifier = {
 		potential = {
 			has_ground_combat = yes
 		}
-		pop_defense_armies_add = 1
+		defense_armies_add = 20
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1904,8 +1462,7 @@ building_acot_giga_fortress = {
 				is_gestalt = no
 			}
 		}
-		job_acot_giga_fortress_operator_add = 1		# Mod Pack; reduced from 3
-		job_acot_soldier_add = 2
+		job_acot_giga_fortress_operator_add = 100
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1914,8 +1471,7 @@ building_acot_giga_fortress = {
 				is_gestalt = yes
 			}
 		}
-		job_acot_giga_fortress_operator_drone_add = 1		# Mod Pack: reduced from 3
-		job_acot_soldier_drone_add = 1
+		job_acot_giga_fortress_operator_drone_add = 100
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1924,12 +1480,12 @@ building_acot_giga_fortress = {
 				is_fallen_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_ancient_add = 3
+		job_acot_giga_fortress_operator_ancient_add = 300
 	}
 	army_modifier = {
-		army_defense_morale_mult = 1
-		army_defense_health_mult = 0.5
-		army_defense_damage_mult = 0.5
+		army_defense_morale_mult = 5
+		army_defense_health_mult = 2
+		army_defense_damage_mult = 2
 	}
 	resources = {
 		category = planet_buildings
@@ -1955,7 +1511,7 @@ building_acot_giga_fortress = {
 		}
 		cost = {
 			minerals = 35000
-			influence = 50
+			influence = 150
 			sr_dark_matter = 500
 			acot_sr_dark_energy = 500
 		}
@@ -2001,16 +1557,18 @@ building_acot_giga_fortress = {
 		building_acot_giga_fortress_obelisk
 	}
 }
-
 building_acot_giga_fortress_array = {
 	base_buildtime = 1200
-	add_to_first_building_slot = yes
 	can_be_ruined = no
 	can_be_disabled = no
 	can_build = no
+	position_priority = 100
 	planetary_ftl_inhibitor = yes
 	category = army
-	position_priority = 100
+	building_sets = {
+		government
+		fortress
+	}
 	potential = {
 		exists = planet_owner
 		planet_owner = {
@@ -2020,6 +1578,7 @@ building_acot_giga_fortress_array = {
 			has_modifier = resort_colony
 		}
 	}
+	custom_tooltip = building_acot_giga_fortress_tooltip
 	on_built = {
 		if = {
 			limit = {
@@ -2054,21 +1613,20 @@ building_acot_giga_fortress_array = {
 	upgrades = {
 		building_phanon_giga_fortress_array
 	}
+	country_modifier = {
+		country_naval_cap_add = 100
+		starbase_shipyard_build_speed_mult = 0.10
+	}
 	planet_modifier = {
-		planet_amenities_add = 10		# Mod Pack; reduced from 20
-		planet_housing_add = 10		# Mod Pack; reduced from 20
-		planet_stability_add = 10		# Mod Pack; reduced from 50
+		planet_amenities_add = 2000
+		planet_housing_add = 2000
+		planet_stability_add = 10
 	}
 	triggered_planet_modifier = {
 		potential = {
 			has_ground_combat = yes
 		}
-		pop_defense_armies_add = 1
-	}
-	army_modifier = {
-		army_defense_morale_mult = 5
-		army_defense_health_mult = 2.5
-		army_defense_damage_mult = 2.5
+		defense_armies_add = 20
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2077,8 +1635,8 @@ building_acot_giga_fortress_array = {
 				is_gestalt = no
 			}
 		}
-		job_acot_giga_fortress_operator_add = 1		# Mod Pack; reduced from 3
-		job_acot_giga_fortress_operator_mentat_add = 1
+		job_acot_giga_fortress_operator_add = 100
+		job_acot_giga_fortress_operator_mentat_add = 100
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2087,8 +1645,8 @@ building_acot_giga_fortress_array = {
 				is_gestalt = yes
 			}
 		}
-		job_acot_giga_fortress_operator_drone_add = 1		# Mod Pack; reduced from 3
-		job_aot_ae_giga_fortress_operator_mentat_drone_add = 1
+		job_acot_giga_fortress_operator_drone_add = 100
+		job_acot_giga_fortress_operator_mentat_drone_add = 100
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2097,11 +1655,12 @@ building_acot_giga_fortress_array = {
 				is_fallen_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_ancient_add = 1		# Mod Pack; reduced from 3
+		job_acot_giga_fortress_operator_ancient_add = 100
 	}
-	country_modifier = {
-		country_naval_cap_add = 200
-		starbase_shipyard_build_speed_mult = 0.1
+	army_modifier = {
+		army_defense_morale_mult = 5
+		army_defense_health_mult = 2
+		army_defense_damage_mult = 2
 	}
 	resources = {
 		category = planet_buildings
@@ -2141,23 +1700,25 @@ building_acot_giga_fortress_array = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_giga_fortress"
+		tech_acot_giga_fortress
 	}
 	ai_weight = {
 		weight = 150000
 	}
 }
-
 building_acot_giga_fortress_lab = {
 	base_buildtime = 1200
-	add_to_first_building_slot = yes
 	can_be_ruined = no
 	can_be_disabled = no
-	can_demolish = no
 	can_build = no
+	position_priority = 100
 	planetary_ftl_inhibitor = yes
 	category = army
-	position_priority = 100
+	building_sets = {
+		government
+		fortress
+		research
+	}
 	potential = {
 		exists = planet_owner
 		planet_owner = {
@@ -2167,6 +1728,7 @@ building_acot_giga_fortress_lab = {
 			has_modifier = resort_colony
 		}
 	}
+	custom_tooltip = building_acot_giga_fortress_tooltip
 	on_built = {
 		if = {
 			limit = {
@@ -2198,23 +1760,24 @@ building_acot_giga_fortress_lab = {
 	allow = {
 		has_ascended_capital = yes
 	}
-	upgrades = {
-		building_phanon_giga_fortress_lab
+	country_modifier = {
+		country_naval_cap_add = 200
+		starbase_shipyard_build_speed_mult = 0.10
 	}
 	planet_modifier = {
-		planet_amenities_add = 15		# Mod Pack: reduced from 100
-		planet_housing_add = 15		# Mod Pack: reduced from 100
-		planet_stability_add = 10		# Mod Pack: reduced from 50
+		planet_amenities_add = 4000
+		planet_housing_add = 4000
+		planet_stability_add = 10
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_individualistic_empire = yes
+				is_regular_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_add = 2		# Mod Pack; reduced from 3
-		job_acot_overseer_add = 3
+		job_acot_giga_fortress_operator_add = 200
+		job_acot_overseer_add = 300
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2223,8 +1786,8 @@ building_acot_giga_fortress_lab = {
 				is_machine_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_drone_add = 2
-		job_acot_overseer_droid_add = 2
+		job_acot_giga_fortress_operator_drone_add = 200
+		job_acot_overseer_droid_add = 200
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2233,8 +1796,8 @@ building_acot_giga_fortress_lab = {
 				is_hive_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_drone_add = 2		# Mod Pack; reduced from 3
-		job_acot_overseer_droid_add = 2
+		job_acot_giga_fortress_operator_drone_add = 200
+		job_acot_overseer_droid_add = 200
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2243,15 +1806,12 @@ building_acot_giga_fortress_lab = {
 				is_fallen_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_ancient_add = 3
+		job_acot_giga_fortress_operator_ancient_add = 300
 	}
 	army_modifier = {
-		army_defense_morale_mult = 1		# Mod Pack: reduced from 10
-		army_defense_health_mult = 1		# Mod Pack: reduced from 5
-		army_defense_damage_mult = 1		# Mod Pack: reduced from 5
-	}
-	country_modifier = {
-		country_naval_cap_add = 100
+		army_defense_morale_mult = 5
+		army_defense_health_mult = 2
+		army_defense_damage_mult = 2
 	}
 	resources = {
 		category = planet_buildings
@@ -2291,23 +1851,24 @@ building_acot_giga_fortress_lab = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_giga_fortress"
+		tech_acot_giga_fortress
 	}
 	ai_weight = {
 		weight = 15
 	}
 }
-
 building_acot_giga_fortress_obelisk = {
 	base_buildtime = 1200
-	add_to_first_building_slot = yes
 	can_be_ruined = no
 	can_be_disabled = no
-	can_demolish = no
 	can_build = no
+	position_priority = 100
 	planetary_ftl_inhibitor = yes
 	category = army
-	position_priority = 100
+	building_sets = {
+		government
+		fortress
+	}
 	potential = {
 		exists = planet_owner
 		planet_owner = {
@@ -2317,6 +1878,7 @@ building_acot_giga_fortress_obelisk = {
 			has_modifier = resort_colony
 		}
 	}
+	custom_tooltip = building_acot_giga_fortress_obelisk_tooltip
 	on_built = {
 		if = {
 			limit = {
@@ -2352,9 +1914,9 @@ building_acot_giga_fortress_obelisk = {
 		building_phanon_giga_fortress_obelisk
 	}
 	planet_modifier = {
-		planet_amenities_add = 20
-		planet_housing_add = 20
-		planet_stability_add = 5		# Mod Pack; reduced from 100
+		planet_amenities_add = 4000
+		planet_housing_add = 4000
+		planet_stability_add = 5
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2363,8 +1925,8 @@ building_acot_giga_fortress_obelisk = {
 				is_gestalt = no
 			}
 		}
-		job_acot_giga_fortress_operator_add = 2		# Mod Pack: reduced from 5
-		job_acot_enforcer_add = 5		# Mod Pack: reduced from 15
+		job_acot_giga_fortress_operator_add = 200
+		job_acot_enforcer_add = 500
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2373,8 +1935,8 @@ building_acot_giga_fortress_obelisk = {
 				is_gestalt = yes
 			}
 		}
-		job_acot_giga_fortress_operator_drone_add = 2		# Mod Pack: reduced from 5
-		job_acot_enforcer_drone_add = 5		# Mod Pack: reduced from 15
+		job_acot_giga_fortress_operator_drone_add = 300
+		job_acot_enforcer_drone_add = 500
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2383,14 +1945,14 @@ building_acot_giga_fortress_obelisk = {
 				is_fallen_empire = yes
 			}
 		}
-		job_acot_giga_fortress_operator_ancient_add = 2		# Mod Pack: reduced from 5
-		job_fe_protector_add = 3
+		job_acot_giga_fortress_operator_ancient_add = 200
+		job_fe_protector_add = 300
 	}
 	army_modifier = {
-		army_defense_morale_mult = 20
-		army_defense_health_mult = 10
-		army_defense_damage_mult = 10
-		army_starting_experience_add = 10000
+		army_defense_morale_mult = 10
+		army_defense_health_mult = 5
+		army_defense_damage_mult = 5
+		army_starting_experience_add = 2500
 	}
 	resources = {
 		category = planet_buildings
@@ -2432,7 +1994,7 @@ building_acot_giga_fortress_obelisk = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_giga_fortress"
+		tech_acot_giga_fortress
 	}
 	ai_weight = {
 		weight = 150000
@@ -2443,13 +2005,27 @@ building_acot_giga_fortress_obelisk = {
 # Training Building
 #####################
 building_acot_ae_hospital = {
-	base_buildtime = 520
+	base_buildtime = @acot_building_advanced_build_time
 	can_build = no
 	category = amenity
+	building_sets = {
+		government
+		urban
+	}
 	potential = {
 		exists = planet_owner
 		planet_owner = {
 			is_regular_empire = yes
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			AND = {
+				buildings_stop_pop = yes
+				owner = { is_ai = yes }
+			}
 		}
 	}
 	allow = {
@@ -2458,14 +2034,12 @@ building_acot_ae_hospital = {
 	upgrades = {
 		building_phanon_hospital
 	}
-	destroy_trigger = {
-		planet_owner = {
-			is_regular_empire = no
-		}
-	}
 	planet_modifier = {
-		job_acot_apothecary_add = 4
+		planet_doctors_upkeep_mult = -0.40
+		pop_amenities_usage_organic_mult = -0.40
+		job_acot_apothecary_add = 400
 		pop_happiness = 0.4
+		pop_environment_tolerance = 0.4
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2473,34 +2047,59 @@ building_acot_ae_hospital = {
 			planet_owner = {
 				has_technology = tech_gene_tailoring
 			}
-			any_owned_pop = {
+			any_owned_pop_group = {
 				has_auto_modding_trait = yes
 			}
 		}
 		modifier = {
-			auto_mod_monthly_add = 4
+			auto_mod_monthly_add = 800
 		}
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				has_origin = origin_overtuned
+				game_start_auto_mod_empire = yes
 			}
-			any_owned_pop = {
+			any_owned_pop_group = {
 				has_auto_modding_trait = yes
 			}
 		}
 		modifier = {
-			auto_mod_monthly_add = 4
+			auto_mod_monthly_add = 800
 		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_country_flag = clone_army_full_potential
+				has_active_tradition = tr_cloning_artificial_population_clone_army
+			}
+		}
+		clone_soldiers_sustained = @clones_sustained_low
+		mult = 3
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_purity_heightened_attributes_tradition = yes
+					has_cloning_artificial_population_tradition = yes
+					has_mutation_somatic_subversiveness_tradition = yes
+				}
+			}
+		}
+		pop_bonus_workforce_mult = @medical_workforce_mult
+		mult = 3
 	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 200
-			sr_dark_matter = 400
-			acot_sr_dark_energy = 400
+			alloys = @acot_building_advanced_alloy_cost
+			sr_dark_matter = @acot_building_advanced_dm_cost
+			acot_sr_dark_energy = @acot_building_advanced_de_cost
 		}
 		upkeep = {
 			trigger = {
@@ -2515,33 +2114,19 @@ building_acot_ae_hospital = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_hospital"
+		tech_acot_ae_hospital
 	}
-	triggered_desc = {
-		text = job_healthcare_effect_desc
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			free_amenities < 2
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
 	}
 }
-
 building_acot_ae_hive_pool = {
 	base_buildtime = 520
 	can_build = no
-	category = amenity
-	allow = {
-		has_ascended_capital = yes
+	category = pop_assembly
+	building_sets = {
+		government
+		urban
 	}
 	potential = {
 		exists = planet_owner
@@ -2553,9 +2138,16 @@ building_acot_ae_hive_pool = {
 		building_phanon_hive_pool
 	}
 	destroy_trigger = {
+		exists = planet_owner
 		planet_owner = {
 			is_hive_empire = no
 		}
+	}
+	convert_to = {
+		building_offspring_nest
+	}
+	allow = {
+		has_ascended_capital = yes
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2566,7 +2158,7 @@ building_acot_ae_hive_pool = {
 				}
 			}
 		}
-		job_acot_broodmother_add = 2
+		job_acot_broodmother_add = 200
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2575,7 +2167,7 @@ building_acot_ae_hive_pool = {
 				has_origin = origin_progenitor_hive
 			}
 		}
-		job_acot_offspring_add = 2
+		job_acot_offspring_add = 200
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2583,12 +2175,12 @@ building_acot_ae_hive_pool = {
 			planet_owner = {
 				has_technology = tech_gene_tailoring
 			}
-			any_owned_pop = {
+			any_owned_pop_group = {
 				has_auto_modding_trait = yes
 			}
 		}
 		modifier = {
-			auto_mod_monthly_add = 8
+			auto_mod_monthly_add = 800
 		}
 	}
 	triggered_planet_modifier = {
@@ -2597,12 +2189,21 @@ building_acot_ae_hive_pool = {
 			planet_owner = {
 				has_origin = origin_overtuned
 			}
-			any_owned_pop = {
+			any_owned_pop_group = {
 				has_auto_modding_trait = yes
 			}
 		}
 		modifier = {
-			auto_mod_monthly_add = 8
+			auto_mod_monthly_add = 800
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet_owner
+			planet_owner = { has_active_tradition = tr_cybernetics_synaptic_sub_processing }
+		}
+		modifier = {
+			job_augmentor_drone_add = 400
 		}
 	}
 	prerequisites = {
@@ -2611,18 +2212,46 @@ building_acot_ae_hive_pool = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 300
+			trigger = {
+				planet_owner = {
+					is_wilderness_empire = no
+				}
+			}
+			alloys = 500
+		}
+		cost = {
+			trigger = {
+				planet_owner = {
+					is_wilderness_empire = yes
+				}
+			}
+			alloys = 200
+			food = 100
+			biomass = 200
+		}
+		cost = {
 			acot_sr_dark_energy = 300
 			sr_dark_matter = 300
 		}
 		upkeep = {
 			trigger = {
 				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
-					}
+					is_wilderness_empire = no
+					NOT = { has_technology = tech_acot_fractured_autoharvesting }
 				}
 			}
+			energy = 2
+			sr_dark_matter = 4
+			acot_sr_dark_energy = 4
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					is_wilderness_empire = yes
+					NOT = { has_technology = tech_acot_fractured_autoharvesting }
+				}
+			}
+			food = 2
 			sr_dark_matter = 4
 			acot_sr_dark_energy = 4
 		}
@@ -2639,11 +2268,14 @@ building_acot_ae_hive_pool = {
 		}
 	}
 }
-
 building_acot_ae_super_assembly = {
-	base_buildtime = 520
+	base_buildtime = @acot_building_advanced_build_time
 	can_build = no
 	category = pop_assembly
+	building_sets = {
+		government
+		urban
+	}
 	potential = {
 		exists = planet_owner
 		OR = {
@@ -2665,13 +2297,24 @@ building_acot_ae_super_assembly = {
 			}
 			OR = {
 				is_ai = no
-				has_genetic_ascension = no
+				NOT = { has_ascension_perk = ap_engineered_evolution }
 				is_materialist = yes
 			}
 		}
-		NOR = {
-			has_modifier = slave_colony
-			has_modifier = resort_colony
+		NOT = { has_modifier = resort_colony }
+	}
+	allow = {
+		has_ascended_capital = yes
+		hidden_trigger = {
+			OR = {
+				owner = { is_ai = no }
+				NAND = {
+					free_district_slots = 0
+					free_building_slots <= 1
+					free_housing <= 0
+					free_jobs <= 0
+				}
+			}
 		}
 	}
 	destroy_trigger = {
@@ -2683,7 +2326,6 @@ building_acot_ae_super_assembly = {
 					has_policy_flag = robots_outlawed
 				}
 			}
-			has_modifier = slave_colony
 			AND = {
 				planet_owner = {
 					is_ai = yes
@@ -2695,7 +2337,7 @@ building_acot_ae_super_assembly = {
 			}
 			planet_owner = {
 				is_ai = yes
-				has_genetic_ascension = yes
+				has_ascension_perk = ap_engineered_evolution
 				is_materialist = no
 			}
 		}
@@ -2703,14 +2345,11 @@ building_acot_ae_super_assembly = {
 	convert_to = {
 		building_acot_ae_super_assembly_machine
 	}
-	allow = {
-		has_ascended_capital = yes
-	}
 	upgrades = {
 		building_phanon_super_assembly
 	}
 	planet_modifier = {
-		job_acot_roboman_add = 4
+		job_acot_roboman_add = 400
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2727,7 +2366,69 @@ building_acot_ae_super_assembly = {
 			}
 		}
 		modifier = {
-			auto_mod_monthly_add = 8
+			auto_mod_monthly_add = 800
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_country_flag = synth_safe_updates
+			}
+		}
+		modifier = {
+			planet_pop_assembly_mult = -0.1
+			planet_stability_add = 5
+		}
+	}
+
+	### JOB STRATA FOCUS MODIFIERS ###
+	triggered_planet_modifier = {
+		# Synth ruler focus
+		potential = {
+			exists = owner
+			owner = {
+				has_country_flag = synth_focus_rulers
+			}
+		}
+		modifier = {
+			planet_jobs_ruler_produces_mult = 0.15
+		}
+	}
+	triggered_planet_modifier = {
+		# Synth specialist focus
+		potential = {
+			exists = owner
+			owner = {
+				has_country_flag = synth_focus_specialists
+			}
+		}
+		modifier = {
+			planet_jobs_specialist_produces_mult = 0.05
+		}
+	}
+	triggered_planet_modifier = {
+		# Synth worker focus
+		potential = {
+			exists = owner
+			owner = {
+				has_country_flag = synth_focus_workers
+			}
+		}
+		modifier = {
+			planet_jobs_worker_produces_mult = 0.10
+		}
+	}
+	triggered_planet_modifier = {
+		# Synth upkeep focus
+		potential = {
+			exists = owner
+			owner = {
+				has_country_flag = synth_focus_upkeep
+			}
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = -0.05
 		}
 	}
 	resources = {
@@ -2750,7 +2451,7 @@ building_acot_ae_super_assembly = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_super_assembly"
+		tech_acot_ae_super_assembly
 	}
 	ai_weight = {
 		weight = 10
@@ -2763,14 +2464,14 @@ building_acot_ae_super_assembly = {
 		}
 	}
 }
-
 building_acot_ae_super_assembly_machine = {
 	icon = building_acot_ae_super_assembly
-	base_buildtime = 520
+	base_buildtime = @acot_building_advanced_build_time
 	can_build = no
 	category = pop_assembly
-	allow = {
-		has_ascended_capital = yes
+	building_sets = {
+		government
+		urban
 	}
 	potential = {
 		exists = planet_owner
@@ -2780,8 +2481,38 @@ building_acot_ae_super_assembly_machine = {
 				is_individual_machine = yes
 			}
 		}
-		NOT = {
+		NOR = {
 			has_modifier = gestation_colony
+			has_modifier = resort_colony
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				is_robot_empire = no
+			}
+			AND = {
+				owner = { is_ai = yes }
+				free_district_slots = 0
+				free_building_slots = 0
+				free_housing <= 0
+				free_jobs <= 0
+			}
+		}
+	}
+	allow = {
+		has_ascended_capital = yes
+		hidden_trigger = {
+			OR = {
+				owner = { is_ai = no }
+				NAND = {
+					free_district_slots = 0
+					free_building_slots <= 1
+					free_housing <= 0
+					free_jobs <= 0
+				}
+			}
 		}
 	}
 	convert_to = {
@@ -2794,7 +2525,7 @@ building_acot_ae_super_assembly_machine = {
 				is_machine_empire = yes
 			}
 		}
-		job_acot_robodrone_add = 6
+		job_acot_robodrone_add = 600
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2803,7 +2534,7 @@ building_acot_ae_super_assembly_machine = {
 				is_individual_machine = yes
 			}
 		}
-		job_acot_roboman_add = 4
+		job_acot_roboman_add = 400
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2814,7 +2545,7 @@ building_acot_ae_super_assembly_machine = {
 					is_individual_machine = yes
 				}
 			}
-			any_owned_pop = {
+			any_owned_pop_group = {
 				has_auto_modding_trait = yes
 			}
 		}
@@ -2826,7 +2557,7 @@ building_acot_ae_super_assembly_machine = {
 		building_phanon_super_assembly_machine
 	}
 	prerequisites = {
-		"tech_acot_ae_super_assembly"
+		tech_acot_ae_super_assembly
 	}
 	resources = {
 		category = planet_buildings
@@ -2861,9 +2592,13 @@ building_acot_ae_super_assembly_machine = {
 
 ### SOECIAL POP BUILDINGER
 building_acot_ae_clone_vats = {
-	base_buildtime = 360
+	base_buildtime = @acot_building_advanced_build_time
 	can_build = no
 	category = pop_assembly
+	building_sets = {
+		government
+		urban
+	}
 	prerequisites = {
 		tech_acot_ae_clone_vats
 	}
@@ -2880,9 +2615,8 @@ building_acot_ae_clone_vats = {
 	}
 	inline_script = {
 		script = buildings/clone_vats_and_evochambers
-		POP_GROWTH = 2
-		POP_ASSEMBLY = 20
-		POP_ASSEMBLY_GENETIC_TRADITION = 8
+		POP_GROWTH = 6
+		POP_ASSEMBLY_GENETIC_TRADITION = 800
 	}
 	resources = {
 		category = planet_buildings
@@ -2937,6 +2671,10 @@ building_acot_ae_synt_center = {
 	base_buildtime = 360
 	can_build = no
 	category = government
+	building_sets = {
+		government
+		urban
+	}
 	planet_modifier = {
 		planet_jobs_specialist_produces_mult = 0.2
 	}
@@ -3015,8 +2753,12 @@ building_acot_ae_psi_altar = {
 	base_buildtime = 360
 	can_build = no
 	category = government
+	building_sets = {
+		government
+		urban
+	}
 	planet_modifier = {
-		pop_growth_speed = 0.5
+		bonus_pop_growth_mult = 0.2
 	}
 	allow = {
 		has_ascended_capital = yes
@@ -3068,6 +2810,10 @@ building_acot_ae_machine_dome = {
 	category = government
 	upgrades = {
 		building_phanon_machine_dome
+	}
+	building_sets = {
+		government
+		urban
 	}
 	planet_modifier = {
 		planet_jobs_complex_drone_produces_mult = 0.05
@@ -3188,6 +2934,14 @@ building_acot_ae_hive_evochamber = {
 	base_buildtime = 360
 	can_build = no
 	category = pop_assembly
+	building_sets = {
+		government
+		urban
+	}
+	planet_modifier = {
+		logistic_growth_mult = 0.20
+		bonus_pop_growth_mult = 1.0
+	}
 	allow = {
 		has_ascended_capital = yes
 	}
@@ -3202,8 +2956,7 @@ building_acot_ae_hive_evochamber = {
 	inline_script = {
 		script = buildings/clone_vats_and_evochambers
 		POP_GROWTH = 2
-		POP_ASSEMBLY = 20
-		POP_ASSEMBLY_GENETIC_TRADITION = 8
+		POP_ASSEMBLY_GENETIC_TRADITION = 800
 	}
 	resources = {
 		category = planet_buildings
@@ -3244,9 +2997,13 @@ building_acot_ae_hive_evochamber = {
 
 #########################  VANILLA RESOURCES  ######################################
 building_acot_ae_alloy_forge = {
-	base_buildtime = 450
+	base_buildtime = @acot_building_advanced_build_time
 	can_build = no
 	category = manufacturing
+	building_sets = {
+		industrial
+		foundry
+	}
 	allow = {
 		has_ascended_capital = yes
 	}
@@ -3263,7 +3020,7 @@ building_acot_ae_alloy_forge = {
 			}
 		}
 		modifier = {
-			job_acot_alloydrone_add = 4
+			job_acot_alloydrone_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -3274,7 +3031,7 @@ building_acot_ae_alloy_forge = {
 			}
 		}
 		modifier = {
-			job_acot_alloydrone_add = 4
+			job_acot_alloydrone_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -3285,7 +3042,7 @@ building_acot_ae_alloy_forge = {
 			}
 		}
 		modifier = {
-			job_acot_alloyman_add = 4
+			job_acot_alloyman_add = 400
 		}
 	}
 	resources = {
@@ -3351,11 +3108,15 @@ building_acot_ae_alloy_forge = {
 		}
 	}
 }
-
 building_acot_ae_transmutor = {
-	base_buildtime = 450
+	base_buildtime = @acot_building_basic_build_time
 	can_build = no
 	category = manufacturing
+	building_sets = {
+		industrial
+		factory
+		foundry
+	}
 	potential = {
 	}
 	allow = {
@@ -3372,7 +3133,7 @@ building_acot_ae_transmutor = {
 			}
 		}
 		modifier = {
-			job_acot_transmute_man_add = 4
+			job_acot_transmute_man_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -3383,7 +3144,7 @@ building_acot_ae_transmutor = {
 			}
 		}
 		modifier = {
-			job_acot_transmute_drone_add = 4
+			job_acot_transmute_drone_add = 400
 		}
 	}
 	resources = {
@@ -3509,7 +3270,7 @@ building_acot_ae_transmutor = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_transmutor"
+		tech_acot_ae_transmutor
 	}
 	ai_weight = {
 		weight = 20000
@@ -3556,11 +3317,13 @@ building_acot_ae_transmutor = {
 		}
 	}
 }
-
 building_acot_ae_mineral_processing_plant = {
-	base_buildtime = 540
+	base_buildtime = @acot_building_basic_build_time
 	category = resource
 	can_build = no
+	building_sets = {
+		mining
+	}
 	allow = {
 		has_ascended_capital = yes
 	}
@@ -3575,7 +3338,7 @@ building_acot_ae_mineral_processing_plant = {
 			}
 		}
 		modifier = {
-			job_acot_mineralman_add = 4
+			job_acot_mineralman_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -3586,7 +3349,7 @@ building_acot_ae_mineral_processing_plant = {
 			}
 		}
 		modifier = {
-			job_acot_mineraldrone_add = 4
+			job_acot_mineraldrone_add = 400
 		}
 	}
 	resources = {
@@ -3647,9 +3410,12 @@ building_acot_ae_mineral_processing_plant = {
 
 ########## ENERGY NEXOUS
 building_acot_ae_power_hub = {
-	base_buildtime = 520
+	base_buildtime = @acot_building_basic_build_time
 	category = resource
 	can_build = no
+	building_sets = {
+		generator
+	}
 	allow = {
 		has_ascended_capital = yes
 	}
@@ -3664,7 +3430,7 @@ building_acot_ae_power_hub = {
 			}
 		}
 		modifier = {
-			job_acot_energyman_add = 4
+			job_acot_energyman_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -3675,7 +3441,7 @@ building_acot_ae_power_hub = {
 			}
 		}
 		modifier = {
-			job_acot_energydrone_add = 4
+			job_acot_energydrone_add = 400
 		}
 	}
 	resources = {
@@ -3734,9 +3500,12 @@ building_acot_ae_power_hub = {
 
 ### FOOOD FIDDLEEE ###
 building_acot_ae_food_processing_complex = {
-	base_buildtime = 520
+	base_buildtime = @acot_building_basic_build_time
 	category = resource
 	can_build = no
+	building_sets = {
+		farming
+	}
 	allow = {
 		has_ascended_capital = yes
 	}
@@ -3751,7 +3520,7 @@ building_acot_ae_food_processing_complex = {
 			}
 		}
 		modifier = {
-			job_acot_foodman_add = 4
+			job_acot_foodman_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -3762,7 +3531,7 @@ building_acot_ae_food_processing_complex = {
 			}
 		}
 		modifier = {
-			job_acot_fooddrone_add = 4
+			job_acot_fooddrone_add = 400
 		}
 	}
 	resources = {
@@ -3790,7 +3559,7 @@ building_acot_ae_food_processing_complex = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_food_processing"
+		tech_acot_ae_food_processing
 	}
 	ai_weight = {
 		weight = 2
@@ -3840,11 +3609,14 @@ building_acot_ae_food_processing_complex = {
 		}
 	}
 }
-
 building_acot_ae_factory = {
-	base_buildtime = 520
+	base_buildtime = @acot_building_advanced_build_time
 	can_build = no
 	category = manufacturing
+	building_sets = {
+		industrial
+		factory
+	}
 	allow = {
 		has_ascended_capital = yes
 	}
@@ -3868,7 +3640,7 @@ building_acot_ae_factory = {
 			}
 		}
 		modifier = {
-			job_acot_artisan_add = 4
+			job_acot_artisan_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -3879,7 +3651,7 @@ building_acot_ae_factory = {
 			}
 		}
 		modifier = {
-			job_acot_artisan_add = 4
+			job_acot_artisan_add = 400
 		}
 	}
 	resources = {
@@ -3967,21 +3739,37 @@ building_acot_ae_enigmatic_lab = {
 	can_build = no
 	can_demolish = yes
 	category = research
+	building_sets = {
+		research
+	}
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = penal_colony
+		}
+		is_special_colony_type = no
+	}
 	allow = {
 		has_ascended_capital = yes
 	}
 	upgrades = {
 		building_phanon_enigmatic_lab
 	}
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = penal_colony
+		}
+	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
+			planet_owner = { is_regular_empire = yes }
 		}
 		modifier = {
-			job_acot_researcher_add = 4
+			job_acot_researcher_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -3992,15 +3780,15 @@ building_acot_ae_enigmatic_lab = {
 			}
 		}
 		modifier = {
-			job_acot_researcher_drone_add = 4
+			job_acot_researcher_drone_add = 400
 		}
 	}
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 200
-			sr_dark_matter = 200
-			acot_sr_dark_energy = 300
+			alloys = 600
+			sr_dark_matter = 400
+			acot_sr_dark_energy = 400
 		}
 		produces = {
 			trigger = {
@@ -4019,7 +3807,7 @@ building_acot_ae_enigmatic_lab = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_enigmatic_lab"
+		tech_acot_ae_enigmatic_lab
 	}
 	ai_weight = {
 		weight = 50
@@ -4041,21 +3829,44 @@ building_acot_ae_enigmatic_lab = {
 				}
 			}
 		}
+		modifier = {
+			factor = 0
+			planet_owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value <= 10
+				}
+			}
+		}
 	}
 }
-
 building_acot_ae_institute = {
 	base_buildtime = 520
 	can_build = no
 	category = research
+	building_sets = {
+		research
+	}
+	allow = {
+		has_ascended_capital = yes
+	}
 	potential = {
 		exists = planet_owner
 		planet_owner = {
 			has_technology = tech_acot_ae_institute
 		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = penal_colony
+		}
 	}
-	allow = {
-		has_ascended_capital = yes
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = penal_colony
+		}
 	}
 	upgrades = {
 		building_phanon_institute
@@ -4070,8 +3881,8 @@ building_acot_ae_institute = {
 		}
 		cost = {
 			alloys = 400
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
+			sr_dark_matter = 300
+			acot_sr_dark_energy = 450
 		}
 		upkeep = {
 			trigger = {
@@ -4085,11 +3896,6 @@ building_acot_ae_institute = {
 			acot_sr_dark_energy = 50
 		}
 	}
-	planet_modifier = {
-		planet_jobs_society_research_produces_mult = 0.5
-		planet_jobs_engineering_research_produces_mult = 0.5
-		planet_jobs_physics_research_produces_mult = 0.5
-	}
 	country_modifier = {
 		country_scientist_cap_add = 2
 		physics_tech_cost_mult = -0.2
@@ -4101,11 +3907,11 @@ building_acot_ae_institute = {
 		potential = {
 			exists = planet_owner
 			planet_owner = {
-				is_individualistic_empire = yes
+				is_regular_empire = yes
 			}
 		}
 		modifier = {
-			job_acot_researcher_add = 2
+			job_acot_researcher_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -4116,11 +3922,11 @@ building_acot_ae_institute = {
 			}
 		}
 		modifier = {
-			job_acot_researcher_drone_add = 2
+			job_acot_researcher_drone_add = 400
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_institute"
+		tech_acot_ae_institute
 	}
 	show_tech_unlock_if = {
 	}
@@ -4140,9 +3946,14 @@ building_acot_ae_institute = {
 # DM and Dark Energy Resources
 #####################
 building_acot_ae_dark_matter_synthersizer = {
-	base_buildtime = 400
+	base_buildtime = @acot_building_basic_build_time
 	can_build = no
 	category = manufacturing
+	building_sets = {
+		industrial
+		factory
+		foundry
+	}
 	potential = {
 	}
 	country_modifier = {
@@ -4159,6 +3970,8 @@ building_acot_ae_dark_matter_synthersizer = {
 		category = planet_buildings
 		cost = {
 			alloys = 1250
+			sr_dark_matter = 625
+			acot_sr_dark_energy = 625
 		}
 		produces = {
 			sr_dark_matter = 20
@@ -4287,7 +4100,7 @@ building_acot_ae_dark_matter_synthersizer = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_dark_matter_synthersizer"
+		tech_acot_ae_dark_matter_synthersizer
 	}
 	ai_weight = {
 		weight = 25000
@@ -4300,12 +4113,16 @@ building_acot_ae_dark_matter_synthersizer = {
 		}
 	}
 }
-
 building_acot_ae_dark_energy_pylon = {
-	base_buildtime = 600
+	base_buildtime = @acot_building_basic_build_time
 	can_demolish = yes
 	can_build = no
 	category = manufacturing
+	building_sets = {
+		industrial
+		factory
+		foundry
+	}
 	potential = {
 	}
 	allow = {
@@ -4319,7 +4136,7 @@ building_acot_ae_dark_energy_pylon = {
 			}
 		}
 		modifier = {
-			job_acot_dark_energy_man_add = 4
+			job_acot_dark_energy_man_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -4330,7 +4147,7 @@ building_acot_ae_dark_energy_pylon = {
 			}
 		}
 		modifier = {
-			job_acot_dark_energy_drone_add = 4
+			job_acot_dark_energy_drone_add = 400
 		}
 	}
 	resources = {
@@ -4358,7 +4175,7 @@ building_acot_ae_dark_energy_pylon = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_dark_energy_pylon"
+		tech_acot_ae_dark_energy_pylon
 	}
 	ai_weight = {
 		weight = 15
@@ -4382,12 +4199,16 @@ building_acot_ae_dark_energy_pylon = {
 		}
 	}
 }
-
 building_acot_ae_dark_matter_generator = {
-	base_buildtime = 600
+	base_buildtime = @acot_building_basic_build_time
 	can_demolish = yes
 	can_build = no
 	category = manufacturing
+	building_sets = {
+		industrial
+		factory
+		foundry
+	}
 	potential = {
 	}
 	allow = {
@@ -4401,7 +4222,7 @@ building_acot_ae_dark_matter_generator = {
 			}
 		}
 		modifier = {
-			job_acot_dark_matter_man_add = 4
+			job_acot_dark_matter_man_add = 400
 		}
 	}
 	triggered_planet_modifier = {
@@ -4412,7 +4233,7 @@ building_acot_ae_dark_matter_generator = {
 			}
 		}
 		modifier = {
-			job_acot_dark_matter_drone_add = 4
+			job_acot_dark_matter_drone_add = 400
 		}
 	}
 	resources = {
@@ -4440,7 +4261,7 @@ building_acot_ae_dark_matter_generator = {
 		}
 	}
 	prerequisites = {
-		"tech_acot_ae_dark_matter_generator"
+		tech_acot_ae_dark_matter_generator
 	}
 	ai_weight = {
 		weight = 15
@@ -4498,8 +4319,8 @@ building_ae_commercial_megaplex = {
 		}
 	}
 	planet_modifier = {
-		job_merchant_add = 2
-		job_ae_clerk_add = 20
+		job_merchant_add = 200
+		job_ae_clerk_add = 2000
 	}
 	resources = {
 		category = planet_buildings
@@ -4557,7 +4378,6 @@ building_ae_commercial_megaplex = {
 		}
 	}
 }
-
 building_ae_bureaucratic = {
 	base_buildtime = 900
 	can_build = no
@@ -4597,7 +4417,7 @@ building_ae_bureaucratic = {
 		}
 	}
 	planet_modifier = {
-		job_ae_bureaucrat_add = 8
+		job_ae_bureaucrat_add = 800
 	}
 	country_modifier = {
 		empire_size_mult = -0.02
@@ -4654,7 +4474,6 @@ building_ae_bureaucratic = {
 		}
 	}
 }
-
 building_ae_embassy = {
 	base_buildtime = 1000
 	can_build = no
