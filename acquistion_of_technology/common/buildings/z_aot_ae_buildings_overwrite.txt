@@ -2,16 +2,9 @@
 # Government Building
 #####################
 building_acot_ae_ancient_palace = {
-	base_buildtime = 900
-	capital = yes
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	can_build = no
-	position_priority = 0
-	category = government
-	building_sets = {
-		government
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		BUILD_TIME = 900
 	}
 	country_modifier = {
 		country_resource_max_add = 20000
@@ -26,7 +19,6 @@ building_acot_ae_ancient_palace = {
 			has_technology = tech_acot_ae_ancient_palace
 		}
 	}
-	custom_tooltip = acot_capital_building_storm_resistance_ae
 	convert_to = {
 		building_ancient_control_center
 		building_ancient_palace
@@ -52,7 +44,7 @@ building_acot_ae_ancient_palace = {
 		planet_max_branch_office_buildings_add = 6
 		job_acot_overlord_add = 100
 		job_acot_overseer_add = 800
-		job_acot_enforcer_add = @b3_time
+		job_acot_enforcer_add = 600
 		planet_orbital_bombardment_damage = -0.20
 		pop_environment_tolerance = 0.30
 		planet_defense_armies_add = 20
@@ -61,72 +53,6 @@ building_acot_ae_ancient_palace = {
 	inline_script = {
 		script = buildings/genetic_ascension_effects
 		TIER = 4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_individual_machine = yes
-				NOT = {
-					has_technology = tech_acot_dm_super_assembly
-				}
-			}
-		}
-		job_roboticist_add = 100
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_individual_machine = yes
-				has_technology = tech_acot_dm_super_assembly
-			}
-		}
-		job_acot_roboman_add = 100
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_active_tradition = tr_domination_imperious_architecture
-			}
-		}
-		modifier = {
-			planet_housing_add = 100
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			pop_bonus_workforce_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			pop_bonus_workforce_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			pop_bonus_workforce_mult = 0.1
-		}
 	}
 	resources = {
 		category = planet_buildings
@@ -166,24 +92,14 @@ building_acot_ae_ancient_palace = {
 			acot_sr_dark_energy = 5000
 		}
 	}
-	ai_weight = {
-		weight = 100
-	}
 }
 
 # Supra Nexus
 building_acot_ae_ancient_control_center = {
-	base_buildtime = 900
-	capital = yes
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	position_priority = 0
-	category = government
-	building_sets = {
-		government
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		BUILD_TIME = 900
 	}
-	custom_tooltip = acot_capital_building_storm_resistance_ae
 	country_modifier = {
 		country_resource_max_add = 20000
 		country_resource_max_acot_sr_dark_energy_add = 5000
@@ -233,68 +149,6 @@ building_acot_ae_ancient_control_center = {
 		script = buildings/genetic_ascension_effects
 		TIER = 4
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				NOT = {
-					has_technology = tech_acot_dm_super_assembly
-				}
-			}
-		}
-		job_replicator_add = 100
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_technology = tech_acot_dm_super_assembly
-			}
-		}
-		job_acot_robodrone_add = 100
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_acot_dm_super_assembly
-			}
-		}
-		job_acot_robodrone_add = 100
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			pop_bonus_workforce_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			pop_bonus_workforce_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			pop_bonus_workforce_mult = 0.1
-		}
-	}
 	resources = {
 		category = planet_buildings
 		produces = {
@@ -333,23 +187,13 @@ building_acot_ae_ancient_control_center = {
 			acot_sr_dark_energy = 5000
 		}
 	}
-	ai_weight = {
-		weight = 100
-	}
 }
 
 # Hive Nexus
 building_acot_ae_ancient_hive_cluster = {
-	base_buildtime = 900
-	capital = yes
-	can_build = no
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	position_priority = 0
-	category = government
-	building_sets = {
-		government
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		BUILD_TIME = 900
 	}
 	country_modifier = {
 		country_resource_max_add = 20000
@@ -370,7 +214,6 @@ building_acot_ae_ancient_hive_cluster = {
 			has_technology = tech_acot_ae_ancient_hive_cluster
 		}
 	}
-	custom_tooltip = acot_capital_building_storm_resistance_ae
 	convert_to = {
 		building_ancient_control_center
 		building_ancient_palace
@@ -400,39 +243,6 @@ building_acot_ae_ancient_hive_cluster = {
 		script = buildings/genetic_ascension_effects
 		TIER = 4
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			pop_bonus_workforce_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			pop_bonus_workforce_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			pop_bonus_workforce_mult = 0.1
-		}
-	}
 	resources = {
 		category = planet_buildings
 		produces = {
@@ -470,9 +280,6 @@ building_acot_ae_ancient_hive_cluster = {
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
 		}
-	}
-	ai_weight = {
-		weight = 100
 	}
 }
 
