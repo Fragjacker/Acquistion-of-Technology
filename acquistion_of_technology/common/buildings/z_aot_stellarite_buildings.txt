@@ -2,14 +2,10 @@
 # Government Building
 ###############################################################
 building_stellarite_palace = {
-	base_buildtime = 900
-	capital = yes
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	can_build = no
-	position_priority = 0
-	category = government
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		BUILD_TIME = 900
+	}
 	country_modifier = {
 		country_resource_max_add = 30000
 		country_resource_max_acot_sr_dark_energy_add = 5000
@@ -29,138 +25,33 @@ building_stellarite_palace = {
 		}
 	}
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
+		building_ancient_hive_capital
 		building_stellarite_control_center
 		building_stellarite_hive_cluster
-	}
-	allow = {
-		num_sapient_pops >= 60
-	}
-	upgrades = {
 	}
 	prerequisites = {
 		tech_stellarite_palace
 	}
 	planet_modifier = {
-		planet_housing_add = 40		# Mod Pack: Reduced from 80
-		planet_amenities_add = 60		# Mod Pack: Reduced from 200
-		planet_max_districts_add = 5		# Mod Pack: Reduced from 16
-		planet_max_buildings_add = 16		# Mod Pack: Reduced from 48
-		planet_max_branch_office_buildings_add = 5		# Mod Pack: Reduced from 20
-		trade_value_add = 12.5		# Mod Pack: Reduced from 60
-		trade_value_mult = 1.3		# Mod Pack: Reduced from 4
+		planet_housing_add = 40000
+		planet_amenities_add = 60000
+		planet_max_districts_add = 6
+		planet_max_branch_office_buildings_add = 6
+		job_stellarite_overlord_add = 100
+		job_stellarite_overseer_add = 800
+		job_stellarite_enforcer_add = 600
 		planet_orbital_bombardment_damage = -0.2
-		pop_environment_tolerance = 0.2
-		defense_armies_add = @tier_4_capital_defense_armies
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_individual_machine = yes
-				NOT = {
-					has_technology = tech_acot_dm_super_assembly
-				}
-			}
-		}
-		job_roboticist_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_individual_machine = yes
-				has_technology = tech_acot_dm_super_assembly
-			}
-		}
-		job_stellarite_roboman_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_stellarite_overlord_add = 1
-			job_stellarite_overseer_add = 2			# Mod Pack: Reduced from 4
-			job_stellarite_enforcer_add = 2			# Mod Pack: Reduced from 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_mechanical_empire = yes
-			}
-		}
-		job_stellarite_roboman_add = 1
+		pop_environment_tolerance = 0.3
+		planet_defense_armies_add = 20
+		planet_traders_trade_produces_add = 0.5
 	}
 	resources = {
 		category = planet_buildings
 		produces = {
 			energy = 80
 			acot_sr_stellarite = 10
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 20
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
-			energy = 40
-			sr_dark_matter = 20
-			acot_sr_dark_energy = 20
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_acot_enigmopolis
-			}
-			energy = 120
-			sr_dark_matter = 60
-			acot_sr_dark_energy = 60
 		}
 		cost = {
 			unity = 200
@@ -169,55 +60,20 @@ building_stellarite_palace = {
 			acot_sr_stellarite = 5000
 		}
 	}
-	##### FOR FE ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = no
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_overseer_add = 4
-			job_fe_protector_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_sky_cardinal_add = 4
-			job_fe_protector_add = 4
-		}
-	}
-	ai_weight = {
-		weight = 100
-	}
 }
 
 # Supra Nexus
 building_stellarite_control_center = {
-	base_buildtime = 900
-	capital = yes
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	position_priority = 0
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		BUILD_TIME = 900
+	}
 	country_modifier = {
 		country_resource_max_add = 30000
 		country_resource_max_acot_sr_dark_energy_add = 5000
 		country_resource_max_sr_dark_matter_add = 5000
 		country_resource_max_aot_sr_runic_power_add = 10000
 		country_resource_max_acot_sr_stellarite_add = 10000
-	}
-	category = government
-	upgrades = {
 	}
 	potential = {
 		exists = planet_owner
@@ -227,98 +83,30 @@ building_stellarite_control_center = {
 		}
 	}
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
+		building_ancient_hive_capital
 		building_stellarite_palace
 		building_stellarite_hive_cluster
 	}
-	allow = {
-		num_sapient_pops >= 60
-	}
 	prerequisites = {
-		"tech_stellarite_control_center"
+		tech_stellarite_control_center
 	}
 	show_tech_unlock_if = {
 		is_machine_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 40		# Mod Pack: Reduced from 80
-		planet_amenities_add = 40		# Mod Pack: Reduced from 200
-		planet_max_districts_add = 4		# Mod Pack: Reduced from 16
-		planet_max_buildings_add = 16		# Mod Pack: Reduced from 48
-		#		planet_max_branch_office_buildings_add = 20 # Mod Pack: removed
+		planet_housing_add = 40000
+		planet_amenities_add = 60000
+		planet_max_districts_add = 6
+		planet_max_branch_office_buildings_add = 6
+		job_stellarite_overlord_add = 100
+		job_stellarite_overseer_add = 800
+		job_stellarite_enforcer_add = 600
 		planet_orbital_bombardment_damage = -0.2
-		pop_environment_tolerance = 0.2
-		defense_armies_add = @tier_4_capital_defense_armies
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				NOT = {
-					has_technology = tech_acot_dm_super_assembly
-				}
-			}
-		}
-		job_replicator_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_technology = tech_acot_dm_super_assembly
-			}
-		}
-		job_stellarite_robodrone_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	##### FOR DEFEARTHH ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_machine = no
-			}
-		}
-		modifier = {
-			job_stellarite_overlord_droid_add = 1
-			job_stellarite_overseer_droid_add = 2			# Mod Pack: Reduced from 4
-			job_stellarite_enforcer_drone_add = 2			# Mod Pack: Reduced from 4
-			job_stellarite_robodrone_add = 1
-		}
+		pop_environment_tolerance = 0.3
+		planet_defense_armies_add = 20
+		planet_traders_trade_produces_add = 0.5
 	}
 	resources = {
 		category = planet_buildings
@@ -332,66 +120,21 @@ building_stellarite_control_center = {
 			minerals = 10000
 			acot_sr_stellarite = 1000
 		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 20
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
-			energy = 40
-			sr_dark_matter = 20
-			acot_sr_dark_energy = 20
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_acot_enigmopolis
-			}
-			energy = 120
-			sr_dark_matter = 60
-			acot_sr_dark_energy = 60
-		}
-	}
-	##### FOR FE ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_machine = yes
-			}
-		}
-		modifier = {
-			job_fe_guardian_bot_add = 10
-		}
-	}
-	ai_weight = {
-		weight = 100
 	}
 }
 
 # Hive Nexus
 building_stellarite_hive_cluster = {
-	base_buildtime = 900
-	capital = yes
-	can_build = no
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	position_priority = 0
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		BUILD_TIME = 900
+	}
 	country_modifier = {
-		country_resource_max_add = 25000		# Mod Pack: Reduced from 30000
+		country_resource_max_add = 25000        # Mod Pack: Reduced from 30000
 		country_resource_max_acot_sr_dark_energy_add = 5000
 		country_resource_max_sr_dark_matter_add = 5000
 		country_resource_max_aot_sr_runic_power_add = 10000
 		country_resource_max_acot_sr_stellarite_add = 10000
-	}
-	category = government
-	upgrades = {
 	}
 	potential = {
 		exists = planet_owner
@@ -401,65 +144,30 @@ building_stellarite_hive_cluster = {
 		}
 	}
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
+		building_ancient_hive_capital
 		building_stellarite_control_center
 		building_stellarite_palace
 	}
-	allow = {
-		num_sapient_pops >= 60
-	}
 	prerequisites = {
-		"tech_stellarite_hive_cluster"
+		tech_stellarite_hive_cluster
 	}
 	show_tech_unlock_if = {
 		is_hive_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 40		# Mod Pack: Reduced from 80
-		planet_amenities_add = 40		# Mod Pack: Reduced from 200
-		planet_max_districts_add = 4		# Mod Pack: Reduced from 16
-		planet_max_buildings_add = 16		# Mod Pack: Reduced from 48
-		job_stellarite_overlord_drone_add = 1
-		job_stellarite_overseer_drone_add = 4		# Mod Pack: Reduced from 4
-		job_stellarite_enforcer_drone_add = 4		# Mod Pack: Reduced from 4
+		planet_housing_add = 40000
+		planet_amenities_add = 60000
+		planet_max_districts_add = 6
+		planet_max_branch_office_buildings_add = 6
+		job_stellarite_overlord_drone_add = 100
+		job_stellarite_overseer_drone_add = 800
+		job_stellarite_enforcer_drone_add = 600
 		planet_orbital_bombardment_damage = -0.2
-		pop_environment_tolerance = 0.2
-		defense_armies_add = @tier_4_capital_defense_armies
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
+		pop_environment_tolerance = 0.3
+		planet_defense_armies_add = 20
+		planet_traders_trade_produces_add = 0.5
 	}
 	resources = {
 		category = planet_buildings
@@ -467,39 +175,12 @@ building_stellarite_hive_cluster = {
 			energy = 80
 			acot_sr_stellarite = 10
 		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 20
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
-			energy = 40
-			sr_dark_matter = 20
-			acot_sr_dark_energy = 20
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_acot_enigmopolis
-			}
-			energy = 120
-			sr_dark_matter = 60
-			acot_sr_dark_energy = 60
-		}
 		cost = {
 			unity = 100
 			energy = 5000
 			minerals = 10000
 			acot_sr_stellarite = 1000
 		}
-	}
-	ai_weight = {
-		weight = 100
 	}
 }
 
@@ -634,7 +315,6 @@ building_stellarite_affluence_center = {
 		}
 	}
 }
-
 building_stellarite_nourishment_center = {
 	base_buildtime = 900
 	can_demolish = yes
@@ -839,7 +519,6 @@ building_stellarite_nourishment_center = {
 		}
 	}
 }
-
 building_stellarite_dimensional_fabricator = {
 	base_buildtime = 900
 	can_demolish = yes
@@ -872,8 +551,8 @@ building_stellarite_dimensional_fabricator = {
 			sr_zro = @auto_sr_se
 			nanites = @auto_sr_se
 			sr_living_metal = @auto_sr_se
-			sr_dark_matter = @auto_sr_se			# Mod Pack: added production
-			acot_sr_dark_energy = @auto_sr_se			# Mod Pack: added production
+			sr_dark_matter = @auto_sr_se            # Mod Pack: added production
+			acot_sr_dark_energy = @auto_sr_se            # Mod Pack: added production
 		}
 		upkeep = {
 			energy = 200
@@ -905,7 +584,6 @@ building_stellarite_dimensional_fabricator = {
 		}
 	}
 }
-
 building_stellarite_class_11_singularity = {
 	base_buildtime = 900
 	can_demolish = yes
@@ -1040,7 +718,6 @@ building_stellarite_class_11_singularity = {
 		}
 	}
 }
-
 building_stellarite_nano_forge = {
 	base_buildtime = 900
 	can_demolish = yes
@@ -1243,7 +920,6 @@ building_stellarite_nano_forge = {
 		}
 	}
 }
-
 building_stellarite_master_archive = {
 	base_buildtime = 900
 	can_demolish = yes
@@ -1317,7 +993,6 @@ building_stellarite_master_archive = {
 		}
 	}
 }
-
 building_stellarite_empyrean_shrine = {
 	base_buildtime = 900
 	can_demolish = yes
@@ -1385,7 +1060,6 @@ building_stellarite_empyrean_shrine = {
 		}
 	}
 }
-
 building_stellarite_sky_dome = {
 	base_buildtime = 900
 	can_build = no
@@ -1558,7 +1232,6 @@ building_stellarite_alloy_forge = {
 		}
 	}
 }
-
 building_stellarite_transmutor = {
 	base_buildtime = 900
 	can_build = no
@@ -1711,7 +1384,7 @@ building_stellarite_transmutor = {
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_transmutor"
+		tech_stellarite_transmutor
 	}
 	ai_weight = {
 		weight = 20000
@@ -1758,7 +1431,6 @@ building_stellarite_transmutor = {
 		}
 	}
 }
-
 building_stellarite_mineral_processing_plant = {
 	base_buildtime = 900
 	category = resource
@@ -1993,7 +1665,7 @@ building_stellarite_food_processing_complex = {
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_food_processing"
+		tech_stellarite_food_processing
 	}
 	ai_weight = {
 		weight = 2
@@ -2056,7 +1728,6 @@ building_stellarite_food_processing_complex = {
 		}
 	}
 }
-
 building_stellarite_civilian_factory = {
 	base_buildtime = 900
 	can_build = no
@@ -2257,8 +1928,8 @@ building_stellarite_enigmatic_lab = {
 			energy = 500
 			acot_sr_stellarite = 10
 			aot_sr_runic_power = 20
-			sr_dark_matter = 10			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 10			# Mod Pack: added upkeep
+			sr_dark_matter = 10            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 10            # Mod Pack: added upkeep
 		}
 		upkeep = {
 			# Mod Pack; added upkeep from Vanilla, missed detail by A.o.T.
@@ -2275,7 +1946,7 @@ building_stellarite_enigmatic_lab = {
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_enigmatic_lab"
+		tech_stellarite_enigmatic_lab
 	}
 	ai_weight = {
 		weight = 50
@@ -2299,7 +1970,6 @@ building_stellarite_enigmatic_lab = {
 		}
 	}
 }
-
 building_stellarite_institute = {
 	base_buildtime = 900
 	can_build = no
@@ -2370,7 +2040,7 @@ building_stellarite_institute = {
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_institute"
+		tech_stellarite_institute
 	}
 	show_tech_unlock_if = {
 	}
@@ -2470,7 +2140,6 @@ building_stellarite_hospital = {
 		}
 	}
 }
-
 building_stellarite_hive_pool = {
 	base_buildtime = 900
 	can_build = no
@@ -2565,7 +2234,6 @@ building_stellarite_hive_pool = {
 		}
 	}
 }
-
 building_stellarite_super_assembly = {
 	base_buildtime = 900
 	can_build = no
@@ -2679,7 +2347,6 @@ building_stellarite_super_assembly = {
 		}
 	}
 }
-
 building_stellarite_super_assembly_machine = {
 	icon = building_stellarite_super_assembly
 	base_buildtime = 900
@@ -3224,13 +2891,12 @@ building_stellarite_psg = {
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_psg"
+		tech_stellarite_psg
 	}
 	ai_weight = {
 		weight = 15000
 	}
 }
-
 building_stellarite_giga_fortress_array = {
 	base_buildtime = 1200
 	add_to_first_building_slot = yes
@@ -3282,9 +2948,9 @@ building_stellarite_giga_fortress_array = {
 		has_stellarite_capital = yes
 	}
 	planet_modifier = {
-		planet_amenities_add = 30		# Mod Pack; reduced from 80
-		planet_housing_add = 20		# Mod Pack; reduced from 80
-		planet_stability_add = 20		# Mod Pack; reduced from 80
+		planet_amenities_add = 30        # Mod Pack; reduced from 80
+		planet_housing_add = 20        # Mod Pack; reduced from 80
+		planet_stability_add = 20        # Mod Pack; reduced from 80
 		#		planet_crime_add = -200 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
 	}
 	triggered_planet_modifier = {
@@ -3294,9 +2960,9 @@ building_stellarite_giga_fortress_array = {
 		pop_defense_armies_add = 1
 	}
 	army_modifier = {
-		army_defense_damage_mult = 10		# Mod Pack; reduced from 20
-		army_defense_health_mult = 7		# Mod Pack; reduced from 20
-		army_defense_morale_mult = 7		# Mod Pack; reduced from 20
+		army_defense_damage_mult = 10        # Mod Pack; reduced from 20
+		army_defense_health_mult = 7        # Mod Pack; reduced from 20
+		army_defense_morale_mult = 7        # Mod Pack; reduced from 20
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -3305,9 +2971,9 @@ building_stellarite_giga_fortress_array = {
 				is_gestalt = no
 			}
 		}
-		job_stellarite_giga_fortress_operator_add = 2		# Mod Pack; reduced from 6
+		job_stellarite_giga_fortress_operator_add = 2        # Mod Pack; reduced from 6
 		#		job_stellarite_enforcer_add = 20 # Mod Pack; removed for making this have a more unique purpose
-		job_stellarite_giga_fortress_operator_mentat_add = 1		# Mod Pack; reduced from 2
+		job_stellarite_giga_fortress_operator_mentat_add = 1        # Mod Pack; reduced from 2
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -3316,9 +2982,9 @@ building_stellarite_giga_fortress_array = {
 				is_gestalt = yes
 			}
 		}
-		job_stellarite_giga_fortress_operator_drone_add = 2		# Mod Pack; reduced from 6
+		job_stellarite_giga_fortress_operator_drone_add = 2        # Mod Pack; reduced from 6
 		#		job_stellarite_enforcer_drone_add = 20 # Mod Pack; removed for making this have a more unique purpose
-		job_stellarite_giga_fortress_operator_mentat_drone_add = 1		# Mod Pack; reduced from 2
+		job_stellarite_giga_fortress_operator_mentat_drone_add = 1        # Mod Pack; reduced from 2
 	}
 	country_modifier = {
 		country_naval_cap_add = 800
@@ -3363,13 +3029,12 @@ building_stellarite_giga_fortress_array = {
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_giga_fortress"
+		tech_stellarite_giga_fortress
 	}
 	ai_weight = {
 		weight = 150000
 	}
 }
-
 building_stellarite_giga_fortress_lab = {
 	base_buildtime = 1200
 	add_to_first_building_slot = yes
@@ -3421,15 +3086,15 @@ building_stellarite_giga_fortress_lab = {
 		has_stellarite_capital = yes
 	}
 	planet_modifier = {
-		planet_amenities_add = 35		# Mod Pack: reduced from 400
-		planet_housing_add = 35		# Mod Pack: reduced from 400
-		planet_stability_add = 25		# Mod Pack: reduced from 200
+		planet_amenities_add = 35        # Mod Pack: reduced from 400
+		planet_housing_add = 35        # Mod Pack: reduced from 400
+		planet_stability_add = 25        # Mod Pack: reduced from 200
 		#		planet_crime_add = -200 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
 	}
 	army_modifier = {
-		army_defense_damage_mult = 3.5		# Mod Pack: reduced from 40
-		army_defense_health_mult = 3.5		# Mod Pack: reduced from 40
-		army_defense_morale_mult = 3.5		# Mod Pack: reduced from 40
+		army_defense_damage_mult = 3.5        # Mod Pack: reduced from 40
+		army_defense_health_mult = 3.5        # Mod Pack: reduced from 40
+		army_defense_morale_mult = 3.5        # Mod Pack: reduced from 40
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -3438,9 +3103,9 @@ building_stellarite_giga_fortress_lab = {
 				is_individualistic_empire = yes
 			}
 		}
-		job_stellarite_giga_fortress_operator_add = 2		# Mod Pack: reduced from 6
-		job_stellarite_soldier_add = 2		# Mod Pack: reduced from 20
-		job_acot_overseer_add = 2		# Mod Pack: reduced from 4
+		job_stellarite_giga_fortress_operator_add = 2        # Mod Pack: reduced from 6
+		job_stellarite_soldier_add = 2        # Mod Pack: reduced from 20
+		job_acot_overseer_add = 2        # Mod Pack: reduced from 4
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -3512,7 +3177,6 @@ building_stellarite_giga_fortress_lab = {
 		weight = 15
 	}
 }
-
 building_stellarite_giga_fortress_obelisk = {
 	base_buildtime = 1200
 	add_to_first_building_slot = yes
@@ -3564,16 +3228,16 @@ building_stellarite_giga_fortress_obelisk = {
 		has_stellarite_capital = yes
 	}
 	planet_modifier = {
-		planet_amenities_add = 35		# Mod Pack: reduced from 80
-		planet_housing_add = 35		# Mod Pack: reduced from 80
-		planet_stability_add = 20		# Mod Pack: reduced from 400
+		planet_amenities_add = 35        # Mod Pack: reduced from 80
+		planet_housing_add = 35        # Mod Pack: reduced from 80
+		planet_stability_add = 20        # Mod Pack: reduced from 400
 		#		planet_crime_add = -400 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
 	}
 	army_modifier = {
-		army_defense_morale_mult = 60		# Mod Pack: reduced from 100
-		army_defense_health_mult = 30		# Mod Pack: reduced from 100
-		army_defense_damage_mult = 30		# Mod Pack: reduced from 100
-		army_starting_experience_add = 30000		# Mod Pack: reduced from 100000
+		army_defense_morale_mult = 60        # Mod Pack: reduced from 100
+		army_defense_health_mult = 30        # Mod Pack: reduced from 100
+		army_defense_damage_mult = 30        # Mod Pack: reduced from 100
+		army_starting_experience_add = 30000        # Mod Pack: reduced from 100000
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -3582,8 +3246,8 @@ building_stellarite_giga_fortress_obelisk = {
 				is_gestalt = no
 			}
 		}
-		job_stellarite_giga_fortress_operator_add = 3		# Mod Pack: reduced from 10
-		job_stellarite_soldier_add = 10		# Mod Pack: reduced from 30
+		job_stellarite_giga_fortress_operator_add = 3        # Mod Pack: reduced from 10
+		job_stellarite_soldier_add = 10        # Mod Pack: reduced from 30
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -3592,8 +3256,8 @@ building_stellarite_giga_fortress_obelisk = {
 				is_gestalt = yes
 			}
 		}
-		job_stellarite_giga_fortress_operator_drone_add = 3		# Mod Pack: reduced from 10
-		job_stellarite_soldier_drone_add = 10		# Mod Pack: reduced from 30
+		job_stellarite_giga_fortress_operator_drone_add = 3        # Mod Pack: reduced from 10
+		job_stellarite_soldier_drone_add = 10        # Mod Pack: reduced from 30
 	}
 	resources = {
 		category = planet_buildings
@@ -3637,13 +3301,12 @@ building_stellarite_giga_fortress_obelisk = {
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_giga_fortress"
+		tech_stellarite_giga_fortress
 	}
 	ai_weight = {
 		weight = 150000
 	}
 }
-
 building_stellarite_stronghold = {
 	base_buildtime = 900
 	planetary_ftl_inhibitor = yes
@@ -3717,7 +3380,7 @@ building_stellarite_stronghold = {
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_stronghold"
+		tech_stellarite_stronghold
 	}
 	ai_weight = {
 		weight = 0
@@ -3817,12 +3480,12 @@ building_acot_stellarite_generator = {
 				}
 			}
 			energy = 25
-			acot_sr_dark_energy = 10			# Mod Pack: added upkeep
+			acot_sr_dark_energy = 10            # Mod Pack: added upkeep
 			sr_dark_matter = 10
 		}
 	}
 	prerequisites = {
-		"tech_dark_matter_power_core_se"
+		tech_dark_matter_power_core_se
 	}
 	upgrades = {
 		building_acot_stellarite_generator_ae
@@ -3853,7 +3516,6 @@ building_acot_stellarite_generator = {
 		}
 	}
 }
-
 building_acot_stellarite_generator_ae = {
 	base_buildtime = 750
 	can_demolish = yes
@@ -3867,7 +3529,7 @@ building_acot_stellarite_generator_ae = {
 		advanced_resource_generation_building_regulation = yes
 	}
 	prerequisites = {
-		"tech_acot_stellarite_generator_ae"
+		tech_acot_stellarite_generator_ae
 	}
 	allow = {
 		has_stellarite_capital = yes
@@ -3979,8 +3641,8 @@ building_acot_stellarite_generator_ae = {
 			acot_sr_stellarite = 10
 		}
 		upkeep = {
-			energy = 100			# Mod Pack: kept at 100
-			acot_sr_dark_energy = 50			# Mod Pack: added upkeep
+			energy = 100            # Mod Pack: kept at 100
+			acot_sr_dark_energy = 50            # Mod Pack: added upkeep
 			sr_dark_matter = 50
 		}
 	}
@@ -4010,7 +3672,6 @@ building_acot_stellarite_generator_ae = {
 		}
 	}
 }
-
 building_stellarite_generator_lvl3 = {
 	base_buildtime = 900
 	can_demolish = yes
@@ -4152,12 +3813,12 @@ building_stellarite_generator_lvl3 = {
 		}
 		upkeep = {
 			energy = 800
-			acot_sr_dark_energy = 100			# Mod Pack: added upkeep
+			acot_sr_dark_energy = 100            # Mod Pack: added upkeep
 			sr_dark_matter = 100
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_generator_lvl3"
+		tech_stellarite_generator_lvl3
 	}
 	ai_weight = {
 		weight = 150000
@@ -4185,7 +3846,6 @@ building_stellarite_generator_lvl3 = {
 		}
 	}
 }
-
 building_stellarite_synthersizer = {
 	base_buildtime = 900
 	can_build = no
@@ -4206,7 +3866,7 @@ building_stellarite_synthersizer = {
 		has_stellarite_capital = yes
 	}
 	prerequisites = {
-		"tech_stellarite_synthersizer"
+		tech_stellarite_synthersizer
 	}
 	resources = {
 		category = planet_buildings
@@ -4318,7 +3978,6 @@ building_stellarite_synthersizer = {
 		}
 	}
 }
-
 building_acot_stellarite_nexus = {
 	icon = building_stellarite_nexus
 	base_buildtime = 900
@@ -4457,7 +4116,7 @@ building_stellarite_mansion = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
-			energy = 10			# Mod Pack: added upkeep
+			energy = 10            # Mod Pack: added upkeep
 			acot_sr_dark_energy = 4
 			sr_dark_matter = 4
 		}
@@ -4481,7 +4140,6 @@ building_stellarite_mansion = {
 		}
 	}
 }
-
 building_stellarite_hive_depot = {
 	base_buildtime = 900
 	can_build = no
@@ -4554,7 +4212,6 @@ building_stellarite_hive_depot = {
 		}
 	}
 }
-
 building_stellarite_ancient_cryo_chamber = {
 	base_buildtime = 900
 	can_demolish = yes
@@ -4615,7 +4272,6 @@ building_stellarite_ancient_cryo_chamber = {
 		}
 	}
 }
-
 building_stellarite_commercial_megaplex = {
 	base_buildtime = 900
 	can_build = no
@@ -4693,7 +4349,6 @@ building_stellarite_commercial_megaplex = {
 		}
 	}
 }
-
 building_stellarite_bureaucratic = {
 	base_buildtime = 900
 	can_build = no
@@ -4734,7 +4389,7 @@ building_stellarite_bureaucratic = {
 		empire_size_mult = -0.04
 	}
 	prerequisites = {
-		"tech_stellarite_bureau"
+		tech_stellarite_bureau
 	}
 	triggered_desc = {
 		text = job_stellarite_bureaucrat_effect_desc
@@ -4785,7 +4440,6 @@ building_stellarite_bureaucratic = {
 		}
 	}
 }
-
 building_stellarite_embassy = {
 	base_buildtime = 1200
 	can_build = no
@@ -4822,7 +4476,7 @@ building_stellarite_embassy = {
 	}
 	country_modifier = {
 		envoys_add = 10
-		diplo_weight_mult = 0.4		# Mod Pack: reduced from 40
+		diplo_weight_mult = 0.4        # Mod Pack: reduced from 40
 	}
 	resources = {
 		category = planet_buildings
@@ -4837,7 +4491,7 @@ building_stellarite_embassy = {
 		}
 	}
 	prerequisites = {
-		"tech_stellarite_embassy"
+		tech_stellarite_embassy
 	}
 	ai_weight = {
 		weight = 10

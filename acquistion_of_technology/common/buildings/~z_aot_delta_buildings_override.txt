@@ -2,13 +2,10 @@
 # Government Building
 ###############################################################
 building_acot_dm_ancient_palace = {
-	base_buildtime = 900
-	capital = yes
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	can_build = no
-	position_priority = 0
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		BUILD_TIME = 900
+	}
 	country_modifier = {
 		country_resource_max_add = 10000
 		country_resource_max_acot_sr_dark_energy_add = 2500
@@ -17,114 +14,38 @@ building_acot_dm_ancient_palace = {
 	upgrades = {
 		building_acot_ae_ancient_palace
 	}
-	category = government
 	potential = {
 		exists = planet_owner
 		planet_owner = {
 			is_individualistic_empire = yes
 			has_technology = tech_acot_dm_ancient_palace
 		}
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-		}
 	}
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
+		building_ancient_hive_capital
 		building_acot_dm_ancient_control_center
 		building_acot_dm_ancient_hive_cluster
 	}
-	allow = {
-	}
 	prerequisites = {
-		"tech_acot_dm_ancient_palace"
+		tech_acot_dm_ancient_palace
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 10		# Mod Pack: reduced from 30
-		planet_amenities_add = 15		# Mod Pack: reduced from 30
-		planet_max_districts_add = 2
-		planet_max_buildings_add = 4		# Mod Pack: reduced from 8
-		planet_max_branch_office_buildings_add = 2		# Mod Pack: reduced from 4
-		trade_value_add = 5
-		trade_value_mult = 0.4		# Mod Pack: reduced from 0.5
-		planet_orbital_bombardment_damage = -0.1
-		pop_environment_tolerance = 0.1
-		defense_armies_add = @tier_4_capital_defense_armies
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_overlord_add = 1
-			job_acot_overseer_add = 1			# Mod Pack: reduced from 4
-			job_aot_dm_enforcer_add = 1			# Mod Pack: reduced from 4
-		}
-	}
-	##### FOR FE ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = no
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_overseer_add = 4
-			job_fe_protector_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_sky_cardinal_add = 4
-			job_fe_protector_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
+		planet_housing_add = 6000
+		planet_amenities_add = 12000
+		planet_max_districts_add = 3
+		planet_max_branch_office_buildings_add = 4
+		job_acot_overlord_add = 100
+		job_acot_overseer_add = 400
+		job_aot_dm_enforcer_add = 300
+		planet_orbital_bombardment_damage = -0.10
+		pop_environment_tolerance = 0.15
+		planet_defense_armies_add = 18
+		planet_traders_trade_produces_add = 0.25
 	}
 	resources = {
 		category = planet_buildings
@@ -133,54 +54,24 @@ building_acot_dm_ancient_palace = {
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 10
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
-			energy = 20
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_acot_enigmopolis
-			}
-			energy = 60
-			sr_dark_matter = 30
-			acot_sr_dark_energy = 30
-		}
 		cost = {
 			minerals = 1000
 			sr_dark_matter = 100
 		}
 	}
-	ai_weight = {
-		weight = 100
-	}
 }
 
 # Supra Nexus
 building_acot_dm_ancient_control_center = {
-	base_buildtime = 900
-	capital = yes
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	position_priority = 0
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		BUILD_TIME = 900
+	}
 	country_modifier = {
 		country_resource_max_add = 10000
 		country_resource_max_acot_sr_dark_energy_add = 2500
 		country_resource_max_sr_dark_matter_add = 2500
 	}
-	category = government
 	upgrades = {
 		building_acot_ae_ancient_control_center
 	}
@@ -191,108 +82,30 @@ building_acot_dm_ancient_control_center = {
 		}
 	}
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
+		building_ancient_hive_capital
 		building_acot_dm_ancient_palace
 		building_acot_dm_ancient_hive_cluster
 	}
-	allow = {
-		num_sapient_pops >= 25
-	}
 	prerequisites = {
-		"tech_acot_dm_ancient_control_center"
+		tech_acot_dm_ancient_control_center
 	}
 	show_tech_unlock_if = {
 		is_machine_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 10		# Mod Pack: reduced from 30
-		planet_amenities_add = 10		# Mod Pack: reduced from 30
-		planet_max_districts_add = 1		# Mod Pack: reduced from 2
-		planet_max_buildings_add = 4		# Mod Pack: reduced from 8
-		planet_orbital_bombardment_damage = -0.1
-		pop_environment_tolerance = 0.1
-		defense_armies_add = @tier_4_capital_defense_armies
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				NOT = {
-					has_technology = tech_acot_dm_super_assembly
-				}
-			}
-		}
-		job_replicator_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_technology = tech_acot_dm_super_assembly
-			}
-		}
-		job_acot_robodrone_add = 1
-	}
-	##### FOR DEFEARTHH ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_machine = no
-			}
-		}
-		modifier = {
-			job_acot_overlord_droid_add = 1
-			job_acot_overseer_droid_add = 1			# Mod Pack: reduced from 4
-			job_aot_dm_enforcer_drone_add = 1			# Mod Pack: reduced from 4
-		}
-	}
-	##### FOR FE ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_machine = yes
-			}
-		}
-		modifier = {
-			job_fe_guardian_bot_add = 10
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
+		planet_housing_add = 6000
+		planet_amenities_add = 12000
+		planet_max_districts_add = 3
+		planet_max_branch_office_buildings_add = 4
+		job_acot_overlord_add = 100
+		job_acot_overseer_add = 400
+		job_aot_dm_enforcer_add = 300
+		planet_orbital_bombardment_damage = -0.10
+		pop_environment_tolerance = 0.15
+		planet_defense_armies_add = 18
+		planet_traders_trade_produces_add = 0.25
 	}
 	resources = {
 		category = planet_buildings
@@ -301,55 +114,24 @@ building_acot_dm_ancient_control_center = {
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 10
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
-			energy = 20
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_acot_enigmopolis
-			}
-			energy = 60
-			sr_dark_matter = 30
-			acot_sr_dark_energy = 30
-		}
 		cost = {
 			minerals = 1000
 			sr_dark_matter = 100
 		}
 	}
-	ai_weight = {
-		weight = 100
-	}
 }
 
 # Hive Nexus
 building_acot_dm_ancient_hive_cluster = {
-	base_buildtime = 900
-	capital = yes
-	can_build = no
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	position_priority = 0
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		BUILD_TIME = 900
+	}
 	country_modifier = {
 		country_resource_max_add = 10000
 		country_resource_max_acot_sr_dark_energy_add = 2500
 		country_resource_max_sr_dark_matter_add = 2500
 	}
-	category = government
 	upgrades = {
 		building_acot_ae_ancient_hive_cluster
 	}
@@ -363,73 +145,24 @@ building_acot_dm_ancient_hive_cluster = {
 		building_acot_dm_ancient_control_center
 		building_acot_dm_ancient_palace
 	}
-	allow = {
-		num_sapient_pops >= 20
-	}
 	prerequisites = {
-		"tech_acot_dm_ancient_hive_cluster"
+		tech_acot_dm_ancient_hive_cluster
 	}
 	show_tech_unlock_if = {
 		is_hive_empire = yes
 	}
 	planet_modifier = {
-		planet_housing_add = 10		# Mod Pack: Reduced from 30
-		planet_amenities_add = 10		# Mod Pack: Reduced from 30
-		planet_max_districts_add = 2
-		planet_max_buildings_add = 4		# Mod Pack: Reduced from 8
-		job_acot_overlord_drone_add = 1
-		job_acot_overseer_drone_add = 1		# Mod Pack: Reduced from 4
-		job_aot_dm_enforcer_drone_add = 1		# Mod Pack: Reduced from 4
-		planet_orbital_bombardment_damage = -0.1
-		pop_environment_tolerance = 0.1
-		defense_armies_add = @tier_4_capital_defense_armies
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_origin = origin_progenitor_hive
-			}
-			is_planet_class = pc_hive
-		}
-		job_spawning_drone_add = -1
-		job_offspring_drone_add = 1
+		planet_housing_add = 6000
+		planet_amenities_add = 12000
+		planet_max_districts_add = 3
+		planet_max_branch_office_buildings_add = 4
+		job_acot_overlord_drone_add = 100
+		job_acot_overseer_drone_add = 400
+		job_aot_dm_enforcer_drone_add = 300
+		planet_orbital_bombardment_damage = -0.10
+		pop_environment_tolerance = 0.15
+		planet_defense_armies_add = 18
+		planet_traders_trade_produces_add = 0.25
 	}
 	resources = {
 		category = planet_buildings
@@ -438,37 +171,10 @@ building_acot_dm_ancient_hive_cluster = {
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 10
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
-			energy = 20
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_acot_enigmopolis
-			}
-			energy = 60
-			sr_dark_matter = 30
-			acot_sr_dark_energy = 30
-		}
 		cost = {
 			minerals = 1000
 			sr_dark_matter = 100
 		}
-	}
-	ai_weight = {
-		weight = 100
 	}
 }
 
@@ -634,7 +340,6 @@ building_class_4_singularity = {
 		}
 	}
 }
-
 building_aot_fe_empyrean_shrine = {
 	base_buildtime = 480
 	can_demolish = yes
@@ -787,7 +492,6 @@ building_aot_fe_empyrean_shrine = {
 		}
 	}
 }
-
 building_fe_nano_forge = {
 	base_buildtime = 360
 	can_build = yes
@@ -1456,7 +1160,6 @@ building_fe_sky_dome = {
 	}
 	show_in_tech = tech_fe_sky_dome
 }
-
 building_fe_master_archive = {
 	base_buildtime = 360
 	can_build = yes
@@ -1661,7 +1364,6 @@ building_acot_dm_clone_vats = {
 		}
 	}
 }
-
 building_acot_dm_hive_evochamber = {
 	base_buildtime = 360
 	base_cap_amount = 1
@@ -1826,7 +1528,6 @@ building_acot_dm_stronghold = {
 		}
 	}
 }
-
 building_giga_fortress_dm = {
 	base_buildtime = 1200
 	add_to_first_building_slot = yes
@@ -1850,9 +1551,9 @@ building_giga_fortress_dm = {
 		building_acot_giga_fortress
 	}
 	planet_modifier = {
-		planet_amenities_add = 5		# Mod Pack; reduced from 10
-		planet_housing_add = 5		# Mod Pack; reduced from 10
-		planet_stability_add = 5		# Mod Pack; reduced from 25
+		planet_amenities_add = 5        # Mod Pack; reduced from 10
+		planet_housing_add = 5        # Mod Pack; reduced from 10
+		planet_stability_add = 5        # Mod Pack; reduced from 25
 	}
 	army_modifier = {
 		army_defense_morale_mult = 0.25
@@ -1924,7 +1625,6 @@ building_giga_fortress_dm = {
 		}
 	}
 }
-
 building_acot_dm_psg = {
 	base_buildtime = 600
 	base_cap_amount = 1
@@ -2061,7 +1761,6 @@ building_dm_commercial_megaplex = {
 		}
 	}
 }
-
 building_dm_bureaucratic = {
 	base_buildtime = 900
 	can_build = yes
@@ -2156,7 +1855,6 @@ building_dm_bureaucratic = {
 		}
 	}
 }
-
 building_dm_embassy = {
 	base_buildtime = 1000
 	can_build = yes

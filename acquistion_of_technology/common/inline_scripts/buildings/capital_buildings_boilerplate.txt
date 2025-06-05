@@ -12,8 +12,8 @@ building_sets = {
 custom_tooltip = acot_capital_building_storm_resistance_ae
 triggered_planet_modifier = {
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_individual_machine = yes
 			NOT = {
 				has_technology = tech_acot_dm_super_assembly
@@ -24,13 +24,33 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
 	potential = {
-		exists = owner
-		owner = {
+		exists = planet_owner
+		planet_owner = {
 			is_individual_machine = yes
 			has_technology = tech_acot_dm_super_assembly
 		}
 	}
 	job_acot_roboman_add = 100
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_individual_machine = yes
+			has_technology = tech_phanon_super_assembly
+		}
+	}
+	job_phanon_roboman_add = 100
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_individual_machine = yes
+			has_technology = tech_stellarite_super_assembly
+		}
+	}
+	job_stellarite_roboman_add = 100
 }
 triggered_planet_modifier = {
 	potential = {
@@ -74,6 +94,33 @@ triggered_planet_modifier = {
 	}
 	modifier = {
 		pop_bonus_workforce_mult = 0.1
+	}
+}
+resources = {
+	category = planet_buildings
+	produces = {
+		trigger = {
+			is_planet_class = pc_dark_fractured
+		}
+		energy = 20
+		sr_dark_matter = 10
+		acot_sr_dark_energy = 10
+	}
+	produces = {
+		trigger = {
+			is_planet_class = pc_dark_fractured_ae
+		}
+		energy = 40
+		sr_dark_matter = 20
+		acot_sr_dark_energy = 20
+	}
+	produces = {
+		trigger = {
+			is_planet_class = pc_acot_enigmopolis
+		}
+		energy = 120
+		sr_dark_matter = 60
+		acot_sr_dark_energy = 60
 	}
 }
 ai_weight = {
