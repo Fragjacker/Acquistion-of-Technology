@@ -1,0 +1,97 @@
+inline_script = {
+	script = shared/automated_buildings_base
+	ALLOW = $ALLOW$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	PRODUCES = $PRODUCES$
+	COST = $COST$
+	UPKEEP = $UPKEEP$
+}
+category = manufacturing
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		OR = {
+			is_gestalt = no
+			has_valid_civic = civic_machine_servitor
+		}
+		has_technology = $PREREQUISITE$
+	}
+	NOR = {
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+	}
+}
+planet_modifier = {
+	planet_amenities_add = @[ 1000 * $TIER$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_individualistic_empire = yes
+			is_crafter_empire = no
+		}
+	}
+	modifier = {
+		job_$JOB$_add = @[ fe_jobs * $TIER$ ]
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_individualistic_empire = yes
+			is_crafter_empire = no
+		}
+	}
+	text = job_artisan_effect_desc
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_individualistic_empire = yes
+			is_crafter_empire = yes
+		}
+	}
+	modifier = {
+		job_artificer_add = @[ fe_jobs * $TIER$ ]
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_individualistic_empire = yes
+			is_crafter_empire = yes
+		}
+	}
+	text = job_artificer_effect_desc
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_gestalt = yes
+		}
+	}
+	modifier = {
+		job_$JOB$_drone_add = @fe_jobs
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_gestalt = yes
+		}
+	}
+	text = job_artisan_drone_effect_desc
+}

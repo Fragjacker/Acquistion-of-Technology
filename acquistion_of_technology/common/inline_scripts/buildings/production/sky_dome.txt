@@ -1,0 +1,39 @@
+inline_script = {
+	script = shared/automated_buildings_base
+	ALLOW = $ALLOW$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	PRODUCES = $PRODUCES$
+	COST = $COST$
+	UPKEEP = $UPKEEP$
+}
+category = amenity
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		is_individualistic_empire = yes
+		has_technology = tech_fe_sky_dome
+	}
+	NOT = {
+		has_modifier = slave_colony
+	}
+}
+convert_to = {
+	building_drone_megastorage
+	building_expanded_warren
+	building_communal_housing_large
+}
+planet_modifier = {
+	planet_housing_add = @[ auto_housing_dm * $TIER$ ]
+	planet_amenities_add = @[ auto_amenities_dm * $TIER$ ]
+	planet_pops_upkeep_mult = @[ - 0.05 * $TIER$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+	job_bio_trophy_add = @[ 5000 * $TIER$ ]
+}
