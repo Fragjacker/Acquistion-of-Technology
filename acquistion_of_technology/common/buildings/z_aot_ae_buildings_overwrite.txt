@@ -193,151 +193,67 @@ building_acot_ae_ancient_hive_cluster = {
 # Enigmatic Building
 #####################
 building_ae_affluence_center = {
-	base_buildtime = @b3_time
-	can_demolish = yes
-	can_build = no
-	category = manufacturing
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_aot_ae_affluence_center
-		}
-	}
-	prerequisites = {
-		tech_aot_ae_affluence_center
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	planet_modifier = {
-		planet_amenities_add = 100
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/affluence_center
+		TIER = 2
+		PREREQUISITE = tech_aot_ae_affluence_center
+		JOB = artisan
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_affluence_center
+		COST = "
 			minerals = 250
 			sr_dark_matter = 750
 			acot_sr_dark_energy = 750
-		}
-		produces = {
+			"
+		PRODUCES = "
 			consumer_goods = @auto_cg_ae
 			unity = @auto_unity_ae
 			society_research = 200
-		}
-		upkeep = {
-			acot_sr_dark_energy = 10
-			sr_dark_matter = 10
-		}
-	}
-	upgrades = {
-		building_phanon_affluence_center
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = consumer_goods
-					value < 10
-				}
-				has_monthly_income = {
-					resource = minerals
-					value > 12
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		consumer_goods = 6
-		trigger = {
-			always = yes
-		}
+			"
+		UPKEEP = "
+			acot_sr_dark_energy = 20
+			sr_dark_matter = 20
+			"
 	}
 }
 building_ae_nourishment_center = {
-	base_buildtime = @b3_time
-	can_demolish = yes
-	can_build = no
-	category = resource
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_aot_ae_nourishment_center
-		}
-	}
-	prerequisites = {
-		tech_aot_ae_nourishment_center
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	planet_modifier = {
-		biological_pop_happiness = 0.4
-		BIOLOGICAL_pop_growth_speed = 0.2
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/nourishment_center
+		TIER = 2
+		PREREQUISITE = tech_aot_ae_nourishment_center
+		JOB = farmer
+		JOB_DRONE = agri
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_nourishment_center
+		COST = "
 			minerals = 250
 			sr_dark_matter = 750
 			acot_sr_dark_energy = 750
-		}
-		produces = {
+			"
+		PRODUCES = "
 			food = @auto_food_ae
-		}
-		upkeep = {
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-	}
-	upgrades = {
-		building_phanon_nourishment_center
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = food
-					value < 10
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		food = 10
-		trigger = {
-			always = yes
-		}
+			"
+		UPKEEP = "
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
 	}
 }
 building_ae_dimensional_fabricator = {
-	base_buildtime = @b3_time
-	can_demolish = yes
-	can_build = no
-	category = resource
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_aot_ae_dimensional_fabricator
-		}
-	}
-	prerequisites = {
-		tech_aot_ae_dimensional_fabricator
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/dimensional_fabricator
+		PREREQUISITE = tech_aot_ae_dimensional_fabricator
+		UPGRADES_INTO = building_phanon_dimensional_fabricator
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		COST = "
 			minerals = 250
 			acot_sr_dark_energy = 750
 			sr_dark_matter = 750
-		}
-		produces = {
+			"
+		PRODUCES = "
 			minerals = @auto_minerals_ae
 			rare_crystals = @auto_sr_ae
 			exotic_gases = @auto_sr_ae
@@ -347,356 +263,153 @@ building_ae_dimensional_fabricator = {
 			sr_dark_matter = @auto_sr_ae
 			acot_sr_dark_energy = @auto_sr_ae
 			sr_living_metal = @auto_sr_ae
-		}
-		upkeep = {
-			energy = 30            # Mod Pack: added
+			"
+		UPKEEP = "
+			energy = 30
 			acot_sr_dark_energy = 30
-		}
-	}
-	upgrades = {
-		building_phanon_dimensional_fabricator
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = minerals
-					value < 10
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		minerals = 1000
-		rare_crystals = 50
-		exotic_gases = 50
-		volatile_motes = 50
-		sr_living_metal = 25
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 building_ae_class_4_singularity = {
-	base_buildtime = @b3_time
-	can_demolish = yes
-	can_build = no
-	category = resource
-	prerequisites = {
-		tech_aot_ae_class_4_singularity
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_aot_ae_class_4_singularity
-		}
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/class_x_singularity
+		TIER = 2
+		CAN_BUILD = no
+		PREREQUISITE = tech_aot_ae_class_4_singularity
+		ALLOW = "has_ascended_capital = yes"
+		UPGRADES_INTO = building_phanon_class_7_singularity
+		JOB = technician
+		COST = "
 			minerals = 250
 			acot_sr_dark_energy = 750
 			sr_dark_matter = 750
-		}
-		produces = {
+			"
+		PRODUCES = "
 			energy = @auto_energy_ae
 			acot_sr_dark_energy = 60
 			sr_dark_matter = 60
 			physics_research = 60
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			sr_dark_matter = 30
-		}
-	}
-	upgrades = {
-		building_phanon_class_7_singularity
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = energy
-					value < @auto_energy_ae
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		energy = 800
-		trigger = {
-			always = yes
-		}
+			acot_sr_dark_energy = 30
+			"
 	}
 }
 building_ae_nano_forge = {
-	base_buildtime = @b3_time
-	can_demolish = yes
-	can_build = no
-	category = manufacturing
-	prerequisites = {
-		tech_aot_ae_nano_forge
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_aot_ae_nano_forge
-		}
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	planet_modifier = {
-		planet_building_build_speed_mult = 0.1
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/nano_forge
+		TIER = 2
+		PREREQUISITE = tech_aot_ae_nano_forge
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_nano_forge
+		JOB = foundry
+		JOB_DRONE = alloy
+		JOB_MACHINE = fabricator
+		COST = "
 			minerals = 100
 			sr_dark_matter = 1000
 			acot_sr_dark_energy = 1000
-		}
-		produces = {
+			"
+		PRODUCES = "
 			alloys = @auto_alloy_ae
 			engineering_research = 40
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			acot_sr_dark_energy = 30
 			sr_dark_matter = 30
-		}
-	}
-	upgrades = {
-		building_phanon_nano_forge
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 30
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		alloys = 100
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 building_ae_master_archive = {
-	base_buildtime = @b3_time
-	can_demolish = yes
-	can_build = no
-	category = research
-	prerequisites = {
-		tech_aot_ae_master_archive
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_aot_ae_master_archive
-		}
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_regular_empire = yes
-				is_fallen_empire = no
+	inline_script = {
+		script = buildings/production/master_archive
+		TIER = 2
+		PREREQUISITE = tech_aot_ae_master_archive
+		ALLOW = "
+			has_ascended_capital = yes
+			NOR = {
+				has_building = building_stellarite_master_archive
+				has_building = building_phanon_master_archive
 			}
-		}
-		modifier = {
-			job_acot_researcher_add = 600
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_hive_empire = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_acot_researcher_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = { is_machine_empire = yes }
-		}
-		modifier = {
-			job_acot_researcher_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = { is_fallen_empire = yes }
-		}
-		job_fe_archivist_add = 1500
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+			"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_master_archive
+		JOB = head_researcher
+		JOB_DRONE = brain_drone
+		JOB_MACHINE = calculator
+		COST = "
 			minerals = 150
 			acot_sr_dark_energy = 1500
 			sr_dark_matter = 1500
-		}
-		produces = {
+			"
+		PRODUCES = "
 			physics_research = @auto_research_ae
 			society_research = @auto_research_ae
 			engineering_research = @auto_research_ae
 			minor_artifacts = 10
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			acot_sr_dark_energy = 15
 			sr_dark_matter = 15
-			energy = 20            # Mod Pack: added
-		}
-	}
-	upgrades = {
-		building_phanon_master_archive
-	}
-	ai_weight = {
-		weight = 100
-	}
-	ai_resource_production = {
-		physics_research = 400
-		society_research = 400
-		engineering_research = 400
-		trigger = {
-			always = yes
-		}
+			energy = 20
+			"
 	}
 }
 building_ae_empyrean_shrine = {
-	base_buildtime = @b3_time
-	can_demolish = yes
-	can_build = no
-	category = unity
-	prerequisites = {
-		tech_aot_ae_empyrean_shrine
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_aot_ae_empyrean_shrine
-		}
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
+	inline_script = {
+		script = buildings/production/empyrean_shrine
+		TIER = 2
+		CAN_BUILD = no
+		PREREQUISITE = tech_aot_ae_empyrean_shrine
+		UPGRADES_INTO = building_phanon_empyrean_shrine
+		ALLOW = "
+			has_ascended_capital = yes
 			planet_owner = {
-				is_fallen_empire = yes
+				is_machine_empire = no
 			}
-		}
-		job_fe_augur_add = 800
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_spiritualist = yes
+			NOT = {
+				has_modifier = slave_colony
 			}
-		}
-		job_acot_priest_add = 400
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_spiritualist = no
-			}
-		}
-		job_researcher_add = 400
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+			"
+		JOB = high_priest
+		COST = "
 			minerals = 150
-			sr_dark_matter = @b3_time
-			acot_sr_dark_energy = @b3_time
-		}
-		produces = {
+			sr_dark_matter = 1000
+			acot_sr_dark_energy = 1000
+			"
+		PRODUCES = "
 			society_research = 200
 			sr_zro = 100
 			unity = @auto_unity_ae
 			influence = 1
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			sr_dark_matter = 15
 			acot_sr_dark_energy = 15
-		}
-	}
-	upgrades = {
-		building_phanon_empyrean_shrine
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 0
-			planet_owner = {
-				is_spiritualist = no
-			}
-		}
+			"
 	}
 }
 building_ae_sky_dome = {
-	base_buildtime = @b3_time
-	can_build = no
-	category = amenity
-	prerequisites = {
-		tech_aot_ae_sky_dome
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_aot_ae_sky_dome
-		}
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	planet_modifier = {
-		planet_housing_add = @auto_housing_ae
-		planet_amenities_add = @auto_amenities_ae
-		planet_max_buildings_add = 4
-		planet_max_districts_add = 4
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/sky_dome
+		TIER = 2
+		PREREQUISITE = tech_aot_ae_sky_dome
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_sky_dome
+		ALLOW = "
+			has_ascended_capital = yes
+			"
+		COST = "
 			minerals = 150
 			sr_dark_matter = 750
 			acot_sr_dark_energy = 750
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
-		}
-	}
-	upgrades = {
-		building_phanon_sky_dome
+			"
 	}
 	# ---------------------------- Build only if we have no districts left --------------------------- #
 	ai_weight = {
