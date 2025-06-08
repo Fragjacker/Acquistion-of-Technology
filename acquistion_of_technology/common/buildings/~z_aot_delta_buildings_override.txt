@@ -141,6 +141,7 @@ building_class_4_singularity = {
 	inline_script = {
 		script = buildings/production/class_x_singularity
 		TIER = 1
+		CAN_BUILD = yes
 		PREREQUISITE = tech_fe_class_4_singularity
 		ALLOW = "has_enigmatic_capital = yes"
 		UPGRADES_INTO = building_ae_class_4_singularity
@@ -158,155 +159,35 @@ building_class_4_singularity = {
 	}
 }
 building_aot_fe_empyrean_shrine = {
-	base_buildtime = 480
-	can_demolish = yes
-	category = unity
 	icon = building_empyrean_shrine
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_aot_fe_empyrean_shrine
-		}
-	}
-	allow = {
-		has_enigmatic_capital = yes
-		planet_owner = {
-			is_machine_empire = no
-		}
-		NOT = {
-			has_modifier = slave_colony
-		}
-	}
-	destroy_trigger = {
-		exists = planet_owner
-		planet_owner = {
-			is_spiritualist = no
-		}
-	}
-	convert_to = {
-		building_fe_administration_2
-		building_fe_administration_machine_2
-		building_fe_administration_hive_2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
+	inline_script = {
+		script = buildings/production/empyrean_shrine
+		TIER = 1
+		CAN_BUILD = yes
+		PREREQUISITE = tech_aot_fe_empyrean_shrine
+		UPGRADES_INTO = building_ae_empyrean_shrine
+		ALLOW = "
+			has_enigmatic_capital = yes
 			planet_owner = {
-				is_fallen_empire_spiritualist = yes
+				is_machine_empire = no
 			}
-		}
-		job_acot_fe_priest_add = 3
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_spiritualist = yes
+			NOT = {
+				has_modifier = slave_colony
 			}
-		}
-		job_priest_add = 10
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_spiritualist = no
-			}
-		}
-		job_culture_worker_add = 10
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = no
-				is_megacorp = yes
-				NOT = {
-					has_origin = origin_cybernetic_creed
-				}
-			}
-		}
-		modifier = {
-			job_preacher_add = @fe2_jobs
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+			"
+		JOB = high_priest
+		COST = "
 			minerals = 750
 			sr_dark_matter = 50
 			sr_zro = 50
-		}
-		produces = {
+			"
+		PRODUCES = "
 			unity = @auto_unity_dm
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			sr_dark_matter = 2
 			acot_sr_dark_energy = 1
-		}
-	}
-	prerequisites = {
-		tech_aot_fe_empyrean_shrine
-	}
-	upgrades = {
-		building_ae_empyrean_shrine
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = no
-				is_megacorp = yes
-				NOT = {
-					has_origin = origin_cybernetic_creed
-				}
-			}
-		}
-		text = job_preacher_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = no
-				has_origin = origin_cybernetic_creed
-			}
-		}
-		modifier = {
-			job_haruspex_add = @fe2_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = no
-				has_origin = origin_cybernetic_creed
-			}
-		}
-		text = job_haruspex_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = no
-				is_megacorp = no
-				NOT = {
-					has_origin = origin_cybernetic_creed
-				}
-			}
-		}
-		text = job_priest_effect_desc
-	}
-	show_in_tech = tech_fe_administration_2
-	show_tech_unlock_if = {
-		OR = {
-			is_spiritualist = yes
-			has_make_spiritualist_perk = yes
-		}
+			"
 	}
 }
 building_fe_nano_forge = {
@@ -316,6 +197,7 @@ building_fe_nano_forge = {
 		TIER = 1
 		PREREQUISITE = tech_fe_nano_forge
 		ALLOW = "has_enigmatic_capital = yes"
+		CAN_BUILD = yes
 		UPGRADES_INTO = building_ae_nano_forge
 		JOB = foundry
 		JOB_DRONE = alloy
@@ -342,6 +224,7 @@ building_fe_dimensional_fabricator = {
 		PREREQUISITE = tech_fe_dimensional_fabricator
 		UPGRADES_INTO = building_ae_dimensional_fabricator
 		ALLOW = "has_enigmatic_capital = yes"
+		CAN_BUILD = yes
 		COST = "
 			minerals = 1000
 			alloys = 250
@@ -374,6 +257,7 @@ building_fe_nourishment_center = {
 		JOB = farmer
 		JOB_DRONE = agri
 		ALLOW = "has_enigmatic_capital = yes"
+		CAN_BUILD = yes
 		UPGRADES_INTO = building_ae_nourishment_center
 		COST = "
 			minerals = 1000
@@ -398,6 +282,7 @@ building_fe_affluence_center = {
 		PREREQUISITE = tech_fe_affluence_center
 		JOB = artisan
 		ALLOW = "has_enigmatic_capital = yes"
+		CAN_BUILD = yes
 		UPGRADES_INTO = building_ae_affluence_center
 		COST = "
 			minerals = 1000
@@ -420,7 +305,11 @@ building_fe_sky_dome = {
 		script = buildings/production/sky_dome
 		TIER = 1
 		PREREQUISITE = tech_fe_sky_dome
+		CAN_BUILD = yes
 		UPGRADES_INTO = building_ae_sky_dome
+		ALLOW = "
+			has_enigmatic_capital = yes
+			"
 		COST = "
 			minerals = 750
 			rare_crystals = 100
@@ -437,6 +326,15 @@ building_fe_master_archive = {
 		script = buildings/production/master_archive
 		TIER = 1
 		PREREQUISITE = tech_fe_master_archive
+		ALLOW = "
+			has_enigmatic_capital = yes
+			NOR = {
+				has_building = building_ae_master_archive
+				has_building = building_stellarite_master_archive
+				has_building = building_phanon_master_archive
+			}
+			"
+		CAN_BUILD = yes
 		UPGRADES_INTO = building_ae_master_archive
 		JOB = head_researcher
 		JOB_DRONE = brain_drone

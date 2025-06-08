@@ -1,0 +1,126 @@
+inline_script = {
+	script = shared/automated_buildings_base
+	ALLOW = $ALLOW$
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	PRODUCES = $PRODUCES$
+	COST = $COST$
+	UPKEEP = $UPKEEP$
+}
+category = unity
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		has_technology = tech_aot_fe_empyrean_shrine
+	}
+}
+destroy_trigger = {
+	exists = planet_owner
+	planet_owner = {
+		is_spiritualist = no
+	}
+}
+convert_to = {
+	building_fe_administration_2
+	building_fe_administration_machine_2
+	building_fe_administration_hive_2
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire_spiritualist = yes
+		}
+	}
+	job_acot_fe_priest_add = @[ fe_jobs * $TIER$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_spiritualist = yes
+		}
+	}
+	job_$JOB$_add = @[ fe2_jobs * $TIER$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_spiritualist = no
+		}
+	}
+	job_culture_worker_add = @[ fe_jobs * $TIER$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire_spiritualist = no
+			is_megacorp = yes
+			NOT = {
+				has_origin = origin_cybernetic_creed
+			}
+		}
+	}
+	modifier = {
+		job_preacher_add = @[ fe2_jobs * $TIER$ ]
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire_spiritualist = no
+			is_megacorp = yes
+			NOT = {
+				has_origin = origin_cybernetic_creed
+			}
+		}
+	}
+	text = job_preacher_effect_desc
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire_spiritualist = no
+			has_origin = origin_cybernetic_creed
+		}
+	}
+	modifier = {
+		job_haruspex_add = @[ fe2_jobs * $TIER$ ]
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire_spiritualist = no
+			has_origin = origin_cybernetic_creed
+		}
+	}
+	text = job_haruspex_effect_desc
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire_spiritualist = no
+			is_megacorp = no
+			NOT = {
+				has_origin = origin_cybernetic_creed
+			}
+		}
+	}
+	text = job_priest_effect_desc
+}
+show_tech_unlock_if = {
+	OR = {
+		is_spiritualist = yes
+		has_make_spiritualist_perk = yes
+	}
+}
