@@ -155,91 +155,28 @@ building_stellarite_hive_cluster = {
 # Automated Production
 #####################
 building_stellarite_affluence_center = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = manufacturing
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_stellarite_affluence_center
-		}
-	}
-	prerequisites = {
-		tech_stellarite_affluence_center
-	}
-	allow = {
-		has_stellarite_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = no
-			}
-		}
-		modifier = {
-			job_stellarite_artisan_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = no
-			}
-		}
-		text = job_artisan_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = yes
-			}
-		}
-		modifier = {
-			job_artificer_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = yes
-			}
-		}
-		text = job_artificer_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_stellarite_artisan_drone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		text = job_artisan_drone_effect_desc
+	inline_script = {
+		script = buildings/production/affluence_center
+		TIER = 4
+		PREREQUISITE = tech_stellarite_affluence_center
+		JOB = artisan
+		ALLOW = "has_stellarite_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = ""
+		COST = "
+			energy = 5000
+			minerals = 5000
+			acot_sr_stellarite = 750
+			"
+		PRODUCES = "
+			consumer_goods = @auto_cg_se
+			unity = @auto_unity_se
+			society_research = 400
+			"
+		UPKEEP = "
+			energy = 100
+			acot_sr_stellarite = 20
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -257,198 +194,29 @@ building_stellarite_affluence_center = {
 			acot_sr_stellarite = 20
 		}
 	}
-	upgrades = {
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = consumer_goods
-					value < 10
-				}
-				has_monthly_income = {
-					resource = minerals
-					value > 12
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		consumer_goods = 6
-		trigger = {
-			always = yes
-		}
-	}
 }
 building_stellarite_nourishment_center = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = resource
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_stellarite_nourishment_center
-		}
-	}
-	prerequisites = {
-		tech_stellarite_nourishment_center
-	}
-	allow = {
-		has_stellarite_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_fe_farmer_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_farm_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
-				OR = {
-					is_anglers_empire = no
-					AND = {
-						is_anglers_empire = yes
-						NOT = {
-							PREV = {
-								planet = {
-									is_wet = yes
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		modifier = {
-			job_stellarite_foodman_add = @fe_jobs
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_farm_add = @fe_jobs
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_stellarite_fooddrone_add = @fe_jobs
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
-				is_anglers_empire = yes
-				PREV = {
-					planet = {
-						is_wet = yes
-					}
-				}
-			}
-		}
-		modifier = {
-			job_angler_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		text = job_agri_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-				is_fallen_empire = no
-				OR = {
-					is_anglers_empire = no
-					AND = {
-						is_anglers_empire = yes
-						NOT = {
-							PREV = {
-								planet = {
-									is_wet = yes
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		text = job_farmer_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		text = job_fe_acolyte_farm_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_anglers_empire = yes
-				PREV = {
-					planet = {
-						is_wet = yes
-					}
-				}
-			}
-		}
-		text = job_aqu_angler_effect_desc
-	}
-	planet_modifier = {
-		biological_pop_happiness = 0.6
-		BIOLOGICAL_pop_growth_speed = 0.4
+	inline_script = {
+		script = buildings/production/nourishment_center
+		TIER = 4
+		PREREQUISITE = tech_stellarite_nourishment_center
+		JOB = farmer
+		JOB_DRONE = agri
+		ALLOW = "has_stellarite_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = ""
+		COST = "
+			energy = 5000
+			minerals = 5000
+			acot_sr_stellarite = 750
+			"
+		PRODUCES = "
+			food = @auto_food_se
+			"
+		UPKEEP = "
+			energy = 100
+			acot_sr_stellarite = 20
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -465,52 +233,20 @@ building_stellarite_nourishment_center = {
 			acot_sr_stellarite = 20
 		}
 	}
-	upgrades = {
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = food
-					value < 10
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		food = 10
-		trigger = {
-			always = yes
-		}
-	}
 }
 building_stellarite_dimensional_fabricator = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = resource
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_stellarite_dimensional_fabricator
-		}
-	}
-	prerequisites = {
-		tech_stellarite_dimensional_fabricator
-	}
-	allow = {
-		has_stellarite_capital = yes
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/dimensional_fabricator
+		PREREQUISITE = tech_stellarite_dimensional_fabricator
+		UPGRADES_INTO = ""
+		ALLOW = "has_stellarite_capital = yes"
+		CAN_BUILD = no
+		COST = "
 			energy = 5000
 			minerals = 5000
 			acot_sr_stellarite = 750
-		}
-		produces = {
+			"
+		PRODUCES = "
 			minerals = @auto_minerals_se
 			rare_crystals = @auto_sr_se
 			exotic_gases = @auto_sr_se
@@ -518,575 +254,179 @@ building_stellarite_dimensional_fabricator = {
 			sr_zro = @auto_sr_se
 			nanites = @auto_sr_se
 			sr_living_metal = @auto_sr_se
-			sr_dark_matter = @auto_sr_se            # Mod Pack: added production
-			acot_sr_dark_energy = @auto_sr_se            # Mod Pack: added production
-		}
-		upkeep = {
+			sr_dark_matter = @auto_sr_pe
+			acot_sr_dark_energy = @auto_sr_pe
+			aot_sr_runic_power = @auto_sr_pe
+			"
+		UPKEEP = "
 			energy = 200
 			acot_sr_stellarite = 40
-		}
-	}
-	upgrades = {
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = minerals
-					value < 10
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		minerals = 1000
-		rare_crystals = 50
-		exotic_gases = 50
-		volatile_motes = 50
-		sr_living_metal = 25
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 building_stellarite_class_11_singularity = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = resource
-	prerequisites = {
-		tech_stellarite_class_11_singularity
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_stellarite_class_11_singularity
-		}
-	}
-	allow = {
-		has_stellarite_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_fe_generator_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_generator_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_stellarite_energyman_add = @fe_jobs
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_stellarite_energydrone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-				is_fallen_empire = no
-			}
-		}
-		text = job_technician_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-				is_fallen_empire = no
-			}
-		}
-		text = job_technician_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		text = job_fe_acolyte_generator_effect_desc
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/class_x_singularity
+		TIER = 4
+		CAN_BUILD = no
+		PREREQUISITE = tech_stellarite_class_11_singularity
+		ALLOW = "has_stellarite_capital = yes"
+		UPGRADES_INTO = ""
+		JOB = technician
+		COST = "
 			energy = 5000
 			minerals = 5000
 			acot_sr_stellarite = 750
-		}
-		produces = {
+			"
+		PRODUCES = "
 			energy = @auto_energy_se
 			acot_sr_dark_energy = 90
 			sr_dark_matter = 90
 			physics_research = 90
 			aot_sr_runic_power = 160
-		}
-		upkeep = {
+			"
+		UPKEEP = "
+			aot_sr_runic_power = 60
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
 			acot_sr_stellarite = 100
-		}
-	}
-	upgrades = {
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 20
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		energy = 800
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 building_stellarite_nano_forge = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = manufacturing
-	prerequisites = {
-		tech_stellarite_nano_forge
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_stellarite_nano_forge
-		}
-	}
-	allow = {
-		has_stellarite_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_fe_foundry_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_acot_fe_acolyte_foundry_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			job_stellarite_alloyman_add = 6
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		text = job_foundry_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = yes
-			}
-		}
-		modifier = {
-			job_stellarite_alloyman_add = 6
-			job_catalytic_technician_add = 3
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = yes
-			}
-		}
-		text = job_catalytic_technician_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_hive_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			job_stellarite_alloydrone_add = 6
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_hive_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		text = job_alloy_drone_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_machine_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			job_stellarite_alloydrone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_machine_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		text = job_fabricator_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-				is_catalytic_empire = yes
-			}
-		}
-		modifier = {
-			job_stellarite_alloydrone_add = @fe_jobs
-			job_catalytic_drone_add = 3
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-				is_catalytic_empire = yes
-			}
-		}
-		text = job_catalytic_drone_effect_desc
-	}
-	planet_modifier = {
-		planet_building_build_speed_mult = 0.1
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/nano_forge
+		TIER = 4
+		PREREQUISITE = tech_stellarite_nano_forge
+		ALLOW = "has_stellarite_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = ""
+		JOB = foundry
+		JOB_DRONE = alloy
+		JOB_MACHINE = fabricator
+		COST = "
 			energy = 5000
 			minerals = 5000
 			acot_sr_stellarite = 1000
-		}
-		produces = {
+			"
+		PRODUCES = "
 			alloys = @auto_alloy_se
 			engineering_research = 100
-		}
-		upkeep = {
+			"
+		UPKEEP = "
+			aot_sr_runic_power = 60
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
 			acot_sr_stellarite = 50
-		}
-	}
-	upgrades = {
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 30
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		alloys = 100
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 building_stellarite_master_archive = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = research
-	prerequisites = {
-		tech_stellarite_master_archive
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_stellarite_master_archive
-		}
-	}
-	allow = {
-		has_stellarite_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_stellarite_researcher_add = 6
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_stellarite_researcher_drone_add = 8
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/master_archive
+		TIER = 4
+		PREREQUISITE = tech_stellarite_master_archive
+		ALLOW = "
+			has_stellarite_capital = yes
+			"
+		CAN_BUILD = no
+		UPGRADES_INTO = ""
+		JOB = head_researcher
+		JOB_DRONE = brain_drone
+		JOB_MACHINE = calculator
+		COST = "
 			energy = 5000
 			minerals = 5000
 			acot_sr_stellarite = 1500
-		}
-		produces = {
+			"
+		PRODUCES = "
 			physics_research = @auto_research_se
 			society_research = @auto_research_se
 			engineering_research = @auto_research_se
 			minor_artifacts = 20
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			energy = 750
 			acot_sr_stellarite = 100
-		}
-	}
-	upgrades = {
-	}
-	ai_weight = {
-		weight = 100
-	}
-	ai_resource_production = {
-		physics_research = 500
-		society_research = 500
-		engineering_research = 500
-		trigger = {
-			always = yes
-		}
+			aot_sr_runic_power = 60
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
 	}
 }
 building_stellarite_empyrean_shrine = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = unity
-	prerequisites = {
-		tech_stellarite_empyrean_shrine
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_stellarite_empyrean_shrine
-		}
-	}
-	allow = {
-		has_stellarite_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
+	inline_script = {
+		script = buildings/production/empyrean_shrine
+		TIER = 4
+		CAN_BUILD = no
+		PREREQUISITE = tech_stellarite_empyrean_shrine
+		UPGRADES_INTO = ""
+		ALLOW = "
+			has_stellarite_capital = yes
 			planet_owner = {
-				is_fallen_empire = no
-				is_spiritualist = yes
+				is_machine_empire = no
 			}
-		}
-		job_stellarite_priest_add = 8
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_spiritualist = no
+			NOT = {
+				has_modifier = slave_colony
 			}
-		}
-		job_researcher_add = 7
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+			"
+		JOB = high_priest
+		COST = "
 			energy = 5000
 			minerals = 5000
 			acot_sr_stellarite = 600
-		}
-		produces = {
+			"
+		PRODUCES = "
 			society_research = 320
 			sr_zro = 200
 			unity = @auto_unity_se
 			influence = 2
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			energy = 100
 			acot_sr_stellarite = 75
-		}
-	}
-	upgrades = {
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 0
-			planet_owner = {
-				is_spiritualist = no
-			}
-		}
+			aot_sr_runic_power = 30
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
 	}
 }
 building_stellarite_sky_dome = {
-	base_buildtime = 900
-	can_build = no
-	category = amenity
-	prerequisites = {
-		tech_stellarite_sky_dome
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_stellarite_sky_dome
-		}
-	}
-	allow = {
-		has_stellarite_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_valid_civic = civic_machine_servitor
-			}
-		}
-		job_bio_trophy_add = 50
-	}
-	planet_modifier = {
-		planet_housing_add = @auto_housing_se
-		planet_amenities_add = @auto_amenities_se
-		planet_max_buildings_add = 4
-		planet_max_districts_add = 4
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/sky_dome
+		TIER = 4
+		PREREQUISITE = tech_stellarite_sky_dome
+		CAN_BUILD = no
+		UPGRADES_INTO = ""
+		ALLOW = "
+			has_stellarite_capital = yes
+			"
+		COST = "
 			energy = 5000
 			minerals = 5000
 			acot_sr_stellarite = 750
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			energy = 200
 			acot_sr_stellarite = 40
-		}
-	}
-	upgrades = {
-	}
-	# ---------------------------- Build only if we have no districts left --------------------------- #
-	ai_weight = {
-		weight = 5
-		modifier = {
-			factor = 0
-			free_district_slots > 0
-		}
-		modifier = {
-			factor = 2
-			free_district_slots = 0
-		}
-		modifier = {
-			factor = 10
-			free_housing <= 0
-		}
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
+		AI_FACTORS = "
+			# ---------------------------- Build only if we have no districts left --------------------------- #
+			modifier = {
+				factor = 0
+				free_district_slots > 0
+			}
+			modifier = {
+				factor = 2
+				free_district_slots = 0
+			}
+			modifier = {
+				factor = 10
+				free_housing <= 0
+			}
+			"
 	}
 }
 
