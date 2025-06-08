@@ -583,9 +583,7 @@ PixelShader =
 
 			float4 vProperties = tex2D( SpecularMap, In.vUV0 );
 
-		#ifdef IS_PLANET
 			PointLight systemPointlight = GetPointLight(SystemLightPosRadius, SystemLightColorFalloff);
-		#endif
 
 		#ifdef USE_FLOWMAP
 			float3 vNormal = vInNormal;
@@ -650,15 +648,13 @@ PixelShader =
 		#endif
 
 			float3 vColor = vDiffuse.rgb;
-		#ifndef ADD_COLOR //Adds empire/atmosphere color to parts of mesh, depending on mask
+		#ifdef ADD_COLOR //Adds empire/atmosphere color to parts of mesh, depending on mask
 			if( AtmosphereColor.a > 0.0f )
 			{
-		#endif
 				// Gamma - Linear ping pong
 				// All content is already created for gamma space math, so we do this in gamma space
 				vColor = ToGamma(vColor);
 				vColor = ToLinear(lerp( vColor, vColor * ( vProperties.r * AtmosphereColor.rgb ), vProperties.r ));
-		#ifndef ADD_COLOR
 			}
 		#endif
 
@@ -2404,28 +2400,28 @@ Effect PdxMeshTerra
 {
 	VertexShader = "VertexPdxMeshStandard"
 	PixelShader = "PixelPdxMeshStandard"
-	Defines = { "ADD_COLOR" "EMISSIVE"  }
+	Defines = { "EMISSIVE" }
 }
 
 Effect PdxMeshTerraSkinned
 {
 	VertexShader = "VertexPdxMeshStandardSkinned"
 	PixelShader = "PixelPdxMeshStandard"
-	Defines = { "ADD_COLOR" "EMISSIVE" }
+	Defines = { "EMISSIVE" }
 }
 
 Effect PdxMeshTerraEmissiveMask
 {
 	VertexShader = "VertexPdxMeshStandard"
 	PixelShader = "PixelPdxMeshStandard"
-	Defines = { "ADD_COLOR" "EMISSIVE" "USE_EMPIRE_COLOR_MASK_FOR_EMISSIVE" }
+	Defines = { "EMISSIVE" "USE_EMPIRE_COLOR_MASK_FOR_EMISSIVE" }
 }
 
 Effect PdxMeshTerraEmissiveMaskSkinned
 {
 	VertexShader = "VertexPdxMeshStandardSkinned"
 	PixelShader = "PixelPdxMeshStandard"
-	Defines = { "ADD_COLOR" "EMISSIVE" "USE_EMPIRE_COLOR_MASK_FOR_EMISSIVE" }
+	Defines = { "EMISSIVE" "USE_EMPIRE_COLOR_MASK_FOR_EMISSIVE" }
 }
 
 Effect PdxMeshTerraAlphaBlend
@@ -2729,6 +2725,14 @@ Effect PdxMeshClouds
 	Defines = { "IS_PLANET" "IS_CLOUDS"  }
 }
 
+Effect PdxMeshRingworldClouds
+{
+	VertexShader = "VertexPdxMeshStandard"
+	PixelShader = "PixelPdxMeshStandard"
+	BlendState = "BlendStateAlphaBlend"
+	Defines = { "IS_CLOUDS" }
+}
+
 Effect PdxMeshCloudsSkinned
 {
 	VertexShader = "VertexPdxMeshStandardSkinned"
@@ -2736,22 +2740,58 @@ Effect PdxMeshCloudsSkinned
 	BlendState = "BlendStateAlphaBlend";
 	Defines = { "IS_PLANET" "IS_CLOUDS"  }
 }
+
+Effect PdxMeshRingworldCloudsSkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelPdxMeshStandard"
+	BlendState = "BlendStateAlphaBlend";
+	Defines = { "IS_CLOUDS"  }
+}
+
 Effect PdxMeshCloudsConstruction
 {
 	VertexShader = "VertexPdxMeshStandard"
 	PixelShader = "PixelPdxMeshInvisible"
 }
+
+Effect PdxMeshRingworldCloudsConstruction
+{
+	VertexShader = "VertexPdxMeshStandard"
+	PixelShader = "PixelPdxMeshInvisible"
+}
+
 Effect PdxMeshCloudsConstructionSkinned
 {
 	VertexShader = "VertexPdxMeshStandardSkinned"
 	PixelShader = "PixelPdxMeshInvisible"
 }
+
+Effect PdxMeshRingworldCloudsConstructionSkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelPdxMeshInvisible"
+}
+
 Effect PdxMeshCloudsConstructionAlphaBlend
 {
 	VertexShader = "VertexPdxMeshStandard"
 	PixelShader = "PixelPdxMeshInvisible"
 }
+
+Effect PdxMeshRingworldCloudsConstructionAlphaBlend
+{
+	VertexShader = "VertexPdxMeshStandard"
+	PixelShader = "PixelPdxMeshInvisible"
+}
+
 Effect PdxMeshCloudsConstructionAlphaBlendSkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelPdxMeshInvisible"
+}
+
+Effect PdxMeshRingworldCloudsConstructionAlphaBlendSkinned
 {
 	VertexShader = "VertexPdxMeshStandardSkinned"
 	PixelShader = "PixelPdxMeshInvisible"
@@ -3197,11 +3237,25 @@ Effect PdxMeshCloudsShadow
 	Defines = { "IS_SHADOW" "IS_PLANET" "IS_CLOUDS" }
 }
 
+Effect PdxMeshRingworldCloudsShadow
+{
+	VertexShader = "VertexPdxMeshStandardShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" "IS_CLOUDS" }
+}
+
 Effect PdxMeshCloudsSkinnedShadow
 {
 	VertexShader = "VertexPdxMeshStandardShadow"
 	PixelShader = "PixelPdxMeshStandardShadow"
 	Defines = { "IS_SHADOW" "IS_PLANET" "IS_CLOUDS" }
+}
+
+Effect PdxMeshRingworldCloudsSkinnedShadow
+{
+	VertexShader = "VertexPdxMeshStandardShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" "IS_CLOUDS" }
 }
 
 Effect PdxMeshRingsShadow
@@ -4324,7 +4378,7 @@ Effect AotPlanetShieldPESkinnedShadow
 }
 
 // Below taken from Ringworld Graphical Enhancements mod https://steamcommunity.com/id/corsairmarks/myworkshopfiles/?appid=281990 to fix clouds on ringworlds.
-Effect PdxMeshCloudsAnimateUVShadow
+Effect PdxMeshCloudsAnimateUVShadowPdxMeshCloudsAnimateUVShadow
 {
 	VertexShader = "VertexPdxMeshStandard"
 	PixelShader = "PixelPdxMeshShip"
