@@ -1,0 +1,86 @@
+inline_script = {
+	script = shared/normal_buildings_base
+	ALLOW = $ALLOW$
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = $AI_FACTORS$
+	TIER = $TIER$
+}
+category = pop_assembly
+building_sets = {
+	government
+	urban
+}
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		is_hive_empire = yes
+	}
+}
+destroy_trigger = {
+	exists = planet_owner
+	planet_owner = {
+		is_hive_empire = no
+	}
+}
+convert_to = {
+	building_offspring_nest
+}
+triggered_planet_modifier = {
+	potential = {
+		NAND = {
+			exists = planet_owner
+			planet_owner = {
+				has_origin = origin_progenitor_hive
+			}
+		}
+	}
+	job_acot_broodmother_add = 200
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			has_origin = origin_progenitor_hive
+		}
+	}
+	job_acot_offspring_add = 200
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			has_technology = tech_gene_tailoring
+		}
+		any_owned_pop_group = {
+			has_auto_modding_trait = yes
+		}
+	}
+	modifier = {
+		auto_mod_monthly_add = 800
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			has_origin = origin_overtuned
+		}
+		any_owned_pop_group = {
+			has_auto_modding_trait = yes
+		}
+	}
+	modifier = {
+		auto_mod_monthly_add = 800
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = { has_active_tradition = tr_cybernetics_synaptic_sub_processing }
+	}
+	modifier = {
+		job_augmentor_drone_add = 400
+	}
+}

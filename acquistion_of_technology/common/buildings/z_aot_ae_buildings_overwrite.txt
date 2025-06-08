@@ -1419,94 +1419,13 @@ building_acot_giga_fortress_obelisk = {
 # Training Building
 #####################
 building_acot_ae_hospital = {
-	base_buildtime = @acot_building_advanced_build_time
-	can_build = no
-	category = amenity
-	building_sets = {
-		government
-		urban
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_regular_empire = yes
-		}
-	}
-	destroy_trigger = {
-		exists = owner
-		OR = {
-			owner = { is_regular_empire = no }
-			AND = {
-				buildings_stop_pop = yes
-				owner = { is_ai = yes }
-			}
-		}
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_hospital
-	}
-	planet_modifier = {
-		planet_doctors_upkeep_mult = -0.40
-		pop_amenities_usage_organic_mult = -0.40
-		job_acot_apothecary_add = 400
-		pop_happiness = 0.4
-		pop_environment_tolerance = 0.4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_gene_tailoring
-			}
-			any_owned_pop_group = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 800
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				game_start_auto_mod_empire = yes
-			}
-			any_owned_pop_group = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 800
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_country_flag = clone_army_full_potential
-				has_active_tradition = tr_cloning_artificial_population_clone_army
-			}
-		}
-		clone_soldiers_sustained = @clones_sustained_low
-		mult = 3
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				OR = {
-					has_purity_heightened_attributes_tradition = yes
-					has_cloning_artificial_population_tradition = yes
-					has_mutation_somatic_subversiveness_tradition = yes
-				}
-			}
-		}
-		pop_bonus_workforce_mult = @medical_workforce_mult
-		mult = 3
+	inline_script = {
+		script = buildings/civilian/hospital
+		TIER = 2
+		PREREQUISITE = tech_fe_nourishment_center
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_hospital
 	}
 	resources = {
 		category = planet_buildings
@@ -1527,101 +1446,25 @@ building_acot_ae_hospital = {
 			acot_sr_dark_energy = 4
 		}
 	}
-	prerequisites = {
-		tech_acot_ae_hospital
-	}
-	show_tech_unlock_if = {
-		is_regular_empire = yes
-	}
 }
 building_acot_ae_hive_pool = {
-	base_buildtime = 520
-	can_build = no
-	category = pop_assembly
-	building_sets = {
-		government
-		urban
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_hive_empire = yes
-		}
-	}
-	upgrades = {
-		building_phanon_hive_pool
-	}
-	destroy_trigger = {
-		exists = planet_owner
-		planet_owner = {
-			is_hive_empire = no
-		}
-	}
-	convert_to = {
-		building_offspring_nest
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			NAND = {
-				exists = planet_owner
-				planet_owner = {
-					has_origin = origin_progenitor_hive
-				}
+	inline_script = {
+		script = buildings/civilian/hive_pool
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_hive_depot
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_hive_pool
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				free_amenities < 2
 			}
-		}
-		job_acot_broodmother_add = 200
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_origin = origin_progenitor_hive
+			modifier = {
+				factor = 0
+				has_building = building_acot_ae_hive_pool
 			}
-		}
-		job_acot_offspring_add = 200
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_gene_tailoring
-			}
-			any_owned_pop_group = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 800
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_origin = origin_overtuned
-			}
-			any_owned_pop_group = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 800
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = { has_active_tradition = tr_cybernetics_synaptic_sub_processing }
-		}
-		modifier = {
-			job_augmentor_drone_add = 400
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_hive_depot
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -1668,17 +1511,6 @@ building_acot_ae_hive_pool = {
 			food = 2
 			sr_dark_matter = 4
 			acot_sr_dark_energy = 4
-		}
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 5
-			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			has_building = building_acot_ae_hive_pool
 		}
 	}
 }
