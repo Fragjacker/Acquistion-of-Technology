@@ -1024,12 +1024,37 @@ building_acot_ae_hive_pool = {
 	}
 }
 building_acot_ae_super_assembly = {
-	base_buildtime = @acot_building_advanced_build_time
-	can_build = no
-	category = pop_assembly
-	building_sets = {
-		government
-		urban
+	inline_script = {
+		script = buildings/civilian/super_assembly
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_super_assembly
+		ALLOW = "
+			has_ascended_capital = yes
+			hidden_trigger = {
+				OR = {
+					owner = { is_ai = no }
+					NAND = {
+						free_district_slots = 0
+						free_building_slots <= 1
+						free_housing <= 0
+						free_jobs <= 0
+					}
+				}
+			}
+			"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_super_assembly
+		JOB = "acot_roboman"
+		JOB_MACHINE = "acot_robodrone"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				num_buildings = {
+					type = building_acot_ae_super_assembly
+					value >= 1
+				}
+			}
+			"
 	}
 	potential = {
 		exists = planet_owner
@@ -1058,133 +1083,8 @@ building_acot_ae_super_assembly = {
 		}
 		NOT = { has_modifier = resort_colony }
 	}
-	allow = {
-		has_ascended_capital = yes
-		hidden_trigger = {
-			OR = {
-				owner = { is_ai = no }
-				NAND = {
-					free_district_slots = 0
-					free_building_slots <= 1
-					free_housing <= 0
-					free_jobs <= 0
-				}
-			}
-		}
-	}
-	destroy_trigger = {
-		exists = planet_owner
-		OR = {
-			planet_owner = {
-				OR = {
-					is_regular_empire = no
-					has_policy_flag = robots_outlawed
-				}
-			}
-			AND = {
-				planet_owner = {
-					is_ai = yes
-				}
-				free_district_slots = 0
-				free_building_slots = 0
-				free_housing <= 0
-				free_jobs <= 0
-			}
-			planet_owner = {
-				is_ai = yes
-				has_ascension_perk = ap_engineered_evolution
-				is_materialist = no
-			}
-		}
-	}
 	convert_to = {
 		building_acot_ae_super_assembly_machine
-	}
-	upgrades = {
-		building_phanon_super_assembly
-	}
-	planet_modifier = {
-		job_acot_roboman_add = 400
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				OR = {
-					has_origin = origin_mechanists
-					is_individual_machine = yes
-					has_country_flag = synthetic_empire
-				}
-			}
-			any_owned_pop = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 800
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_country_flag = synth_safe_updates
-			}
-		}
-		modifier = {
-			planet_pop_assembly_mult = -0.1
-			planet_stability_add = 5
-		}
-	}
-
-	### JOB STRATA FOCUS MODIFIERS ###
-	triggered_planet_modifier = {
-		# Synth ruler focus
-		potential = {
-			exists = owner
-			owner = {
-				has_country_flag = synth_focus_rulers
-			}
-		}
-		modifier = {
-			planet_jobs_ruler_produces_mult = 0.15
-		}
-	}
-	triggered_planet_modifier = {
-		# Synth specialist focus
-		potential = {
-			exists = owner
-			owner = {
-				has_country_flag = synth_focus_specialists
-			}
-		}
-		modifier = {
-			planet_jobs_specialist_produces_mult = 0.05
-		}
-	}
-	triggered_planet_modifier = {
-		# Synth worker focus
-		potential = {
-			exists = owner
-			owner = {
-				has_country_flag = synth_focus_workers
-			}
-		}
-		modifier = {
-			planet_jobs_worker_produces_mult = 0.10
-		}
-	}
-	triggered_planet_modifier = {
-		# Synth upkeep focus
-		potential = {
-			exists = owner
-			owner = {
-				has_country_flag = synth_focus_upkeep
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = -0.05
-		}
 	}
 	resources = {
 		category = planet_buildings
@@ -1205,28 +1105,40 @@ building_acot_ae_super_assembly = {
 			acot_sr_dark_energy = 4
 		}
 	}
-	prerequisites = {
-		tech_acot_ae_super_assembly
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			num_buildings = {
-				type = building_acot_ae_super_assembly
-				value >= 1
-			}
-		}
-	}
 }
 building_acot_ae_super_assembly_machine = {
 	icon = building_acot_ae_super_assembly
-	base_buildtime = @acot_building_advanced_build_time
-	can_build = no
-	category = pop_assembly
-	building_sets = {
-		government
-		urban
+	inline_script = {
+		script = buildings/civilian/super_assembly
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_super_assembly
+		ALLOW = "
+			has_ascended_capital = yes
+			hidden_trigger = {
+				OR = {
+					owner = { is_ai = no }
+					NAND = {
+						free_district_slots = 0
+						free_building_slots <= 1
+						free_housing <= 0
+						free_jobs <= 0
+					}
+				}
+			}
+			"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_super_assembly_machine
+		JOB = "acot_roboman"
+		JOB_MACHINE = "acot_robodrone"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				num_buildings = {
+					type = building_acot_ae_super_assembly_machine
+					value >= 1
+				}
+			}
+			"
 	}
 	potential = {
 		exists = planet_owner
@@ -1241,78 +1153,8 @@ building_acot_ae_super_assembly_machine = {
 			has_modifier = resort_colony
 		}
 	}
-	destroy_trigger = {
-		exists = owner
-		OR = {
-			owner = {
-				is_robot_empire = no
-			}
-			AND = {
-				owner = { is_ai = yes }
-				free_district_slots = 0
-				free_building_slots = 0
-				free_housing <= 0
-				free_jobs <= 0
-			}
-		}
-	}
-	allow = {
-		has_ascended_capital = yes
-		hidden_trigger = {
-			OR = {
-				owner = { is_ai = no }
-				NAND = {
-					free_district_slots = 0
-					free_building_slots <= 1
-					free_housing <= 0
-					free_jobs <= 0
-				}
-			}
-		}
-	}
 	convert_to = {
 		building_acot_ae_super_assembly
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_machine_empire = yes
-			}
-		}
-		job_acot_robodrone_add = 600
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individual_machine = yes
-			}
-		}
-		job_acot_roboman_add = 400
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				OR = {
-					is_machine_empire = yes
-					is_individual_machine = yes
-				}
-			}
-			any_owned_pop_group = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 8
-		}
-	}
-	upgrades = {
-		building_phanon_super_assembly_machine
-	}
-	prerequisites = {
-		tech_acot_ae_super_assembly
 	}
 	resources = {
 		category = planet_buildings
@@ -1333,45 +1175,26 @@ building_acot_ae_super_assembly_machine = {
 			acot_sr_dark_energy = 4
 		}
 	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			num_buildings = {
-				type = building_acot_ae_super_assembly_machine
-				value >= 1
-			}
-		}
-	}
 }
 
 ### SOECIAL POP BUILDINGER
 building_acot_ae_clone_vats = {
-	base_buildtime = @acot_building_advanced_build_time
-	can_build = no
-	category = pop_assembly
-	building_sets = {
-		government
-		urban
-	}
-	prerequisites = {
-		tech_acot_ae_clone_vats
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	show_tech_unlock_if = {
-		owner = {
-			has_tradition = tr_genetics_efficient_cloning
-		}
-	}
-	upgrades = {
-		building_phanon_clone_vats
-	}
 	inline_script = {
 		script = buildings/clone_vats_and_evochambers
+		TIER = 2
 		POP_GROWTH = 6
 		POP_ASSEMBLY_GENETIC_TRADITION = 800
+		UPGRADES_INTO = building_phanon_clone_vats
+		ALLOW = "has_ascended_capital = yes"
+		PREREQUISITE = tech_acot_ae_clone_vats
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_acot_ae_clone_vats
+				}
+			}
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -1408,15 +1231,6 @@ building_acot_ae_clone_vats = {
 				}
 			}
 			minerals = 20
-		}
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_acot_ae_clone_vats
-			}
 		}
 	}
 }
@@ -1686,32 +1500,26 @@ building_acot_ae_machine_dome = {
 
 #### HIVE PATHOS
 building_acot_ae_hive_evochamber = {
-	base_buildtime = 360
-	can_build = no
-	category = pop_assembly
-	building_sets = {
-		government
-		urban
+	inline_script = {
+		script = buildings/clone_vats_and_evochambers
+		TIER = 2
+		POP_GROWTH = 2
+		POP_ASSEMBLY_GENETIC_TRADITION = 800
+		PREREQUISITE = tech_acot_ae_hive_evochamber
+		UPGRADES_INTO = building_phanon_hive_evochamber
+		ALLOW = "has_ascended_capital = yes"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_acot_ae_hive_evochamber
+				}
+			}
+			"
 	}
 	planet_modifier = {
 		logistic_growth_mult = 0.20
 		bonus_pop_growth_mult = 1.0
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_hive_evochamber
-	}
-	show_tech_unlock_if = {
-		owner = {
-			has_tradition = tr_genetics_efficient_cloning
-		}
-	}
-	inline_script = {
-		script = buildings/clone_vats_and_evochambers
-		POP_GROWTH = 2
-		POP_ASSEMBLY_GENETIC_TRADITION = 800
 	}
 	resources = {
 		category = planet_buildings
@@ -1734,18 +1542,6 @@ building_acot_ae_hive_evochamber = {
 			}
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_hive_evochamber
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_acot_ae_hive_evochamber
-			}
 		}
 	}
 }
