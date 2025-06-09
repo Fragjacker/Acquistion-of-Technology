@@ -1,0 +1,61 @@
+inline_script = {
+	script = shared/normal_buildings_base
+	ALLOW = $ALLOW$
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = $AI_FACTORS$
+	TIER = $TIER$
+}
+position_priority = 100
+can_be_ruined = no
+category = army
+building_sets = {
+	government
+	fortress
+}
+potential = {
+	exists = planet_owner
+	NOT = { has_modifier = resort_colony }
+	planet_owner = {
+		has_technology = $PREREQUISITE$
+	}
+}
+planet_modifier = {
+	planet_housing_add = @[ 500 * $TIER$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_gestalt = no
+		}
+	}
+	modifier = {
+		job_$JOB$_add = 400
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_gestalt = yes
+		}
+	}
+	modifier = {
+		job_$JOB$_drone_add = 400
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = yes
+		}
+	}
+	modifier = {
+		job_fe_protector_add = @[ 250 * $TIER$ ]
+	}
+}
