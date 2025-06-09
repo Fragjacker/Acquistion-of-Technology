@@ -417,37 +417,33 @@ building_ae_sky_dome = {
 	}
 }
 building_acot_ae_ancient_cryo_chamber = {
-	base_buildtime = @b3_time
-	can_demolish = yes
-	can_build = no
-	category = unity
-	building_sets = {
-		government
-		urban
-		unity
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_machine_empire = yes
-			has_technology = tech_acot_ae_ancient_cryo_chamber
-		}
-	}
-	upgrades = {
-		building_phanon_ancient_cryo_chamber
-	}
-	allow = {
-		has_enigmatic_capital = yes
+	inline_script = {
+		script = buildings/civilian/cryo_chamber
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_ancient_cryo_chamber
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_ancient_cryo_chamber
+		JOB_MACHINE = acot_entertainer
+		AI_FACTORS = "
+			modifier = {
+				factor = 200
+				free_housing < 0
+			}
+			modifier = {
+				factor = 300
+				free_amenities < 2
+			}
+			modifier = {
+				factor = 0
+				free_housing > 1
+			}
+			"
 	}
 	convert_to = {
 		building_acot_ae_mansion
 		building_acot_ae_temple
 		building_acot_ae_hive_depot
-	}
-	planet_modifier = {
-		planet_housing_add = 8000
-		planet_amenities_no_happiness_add = 15000
-		job_acot_entertainer_droid_add = 400
 	}
 	resources = {
 		category = planet_buildings
@@ -468,90 +464,44 @@ building_acot_ae_ancient_cryo_chamber = {
 			acot_sr_dark_energy = 4
 		}
 	}
-	prerequisites = {
-		tech_acot_ae_ancient_cryo_chamber
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
-		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			free_housing > 1
-		}
-	}
 }
 building_acot_ae_mansion = {
-	base_buildtime = @b3_time
-	can_build = no
-	category = unity
-	building_sets = {
-		government
-		urban
-		entertainment
-	}
-	potential = {
-		NOR = {
-			has_modifier = slave_colony
-			has_modifier = penal_colony
-		}
-		planet_owner = {
-			is_regular_empire = yes
-		}
-		NOT = { has_building = building_low_tech_capital }
-		OR = {
-			has_planet_flag = ignore_ai_building_limitations
-			planet_owner = {
-				NOT = { is_ai = yes }
+	inline_script = {
+		script = buildings/civilian/mansion
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_mansion
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_mansion
+		AI_FACTORS = "
+			modifier = {
+				factor = 3000
+				free_amenities < 0
 			}
-			AND = {
-				NOT = { has_available_jobs = acot_entertainer }
-				NOT = { has_forbidden_jobs = acot_entertainer }
+			modifier = {
+				factor = 5000
+				free_housing < 1
 			}
-		}
-	}
-	destroy_trigger = {
-		exists = planet_owner
-		OR = {
-			planet_owner = { is_regular_empire = no }
-			has_modifier = slave_colony
-		}
-	}
-	allow = {
-		has_ascended_capital = yes
+			"
 	}
 	convert_to = {
 		building_acot_ae_temple
 		building_acot_ae_hive_depot
 		building_acot_ae_ancient_cryo_chamber
 	}
-	upgrades = {
-		building_phanon_mansion
-	}
-	planet_modifier = {
-		planet_housing_add = @auto_housing_ae
-		planet_amenities_add = @auto_amenities_ae
-		job_acot_entertainer_add = 400
-	}
 	resources = {
 		category = planet_buildings
+		cost = {
+			alloys = 400
+			sr_dark_matter = 300
+			acot_sr_dark_energy = 300
+		}
 		produces = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
 			unity = 24
 			trade = 48
-		}
-		cost = {
-			alloys = 400
-			sr_dark_matter = 300
-			acot_sr_dark_energy = 300
 		}
 		upkeep = {
 			trigger = {
@@ -562,65 +512,43 @@ building_acot_ae_mansion = {
 			sr_dark_matter = 4
 		}
 	}
-	prerequisites = {
-		tech_acot_ae_mansion
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 300000
-			free_amenities < 0
-		}
-		modifier = {
-			factor = 500000
-			free_housing < 1
-		}
-	}
 }
 building_acot_ae_hive_depot = {
-	base_buildtime = @b3_time
-	can_build = no
-	category = unity
-	building_sets = {
-		government
-		urban
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = { is_hive_empire = yes }
-	}
-	destroy_trigger = {
-		exists = planet_owner
-		planet_owner = { is_hive_empire = no }
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_hive_depot
+	inline_script = {
+		script = buildings/civilian/hive_depot
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_hive_depot
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_hive_depot
+		AI_FACTORS = "
+			modifier = {
+				factor = 3000
+				free_amenities < 0
+			}
+			modifier = {
+				factor = 5000
+				free_housing < 1
+			}
+			"
 	}
 	convert_to = {
 		building_acot_ae_mansion
 		building_acot_ae_temple
 		building_acot_ae_ancient_cryo_chamber
 	}
-	planet_modifier = {
-		planet_housing_add = 8000
-		planet_amenities_add = 15000
-		job_acot_entertainer_drone_add = 400
-	}
 	resources = {
 		category = planet_buildings
+		cost = {
+			alloys = 400
+			sr_dark_matter = 300
+			acot_sr_dark_energy = 300
+		}
 		produces = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
 			unity = 24
-		}
-		cost = {
-			alloys = 400
-			sr_dark_matter = 300
-			acot_sr_dark_energy = 300
 		}
 		upkeep = {
 			trigger = {
@@ -628,20 +556,6 @@ building_acot_ae_hive_depot = {
 			}
 			acot_sr_dark_energy = 4
 			sr_dark_matter = 4
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_hive_depot
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
-		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
 		}
 	}
 }
