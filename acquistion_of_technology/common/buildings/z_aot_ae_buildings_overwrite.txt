@@ -1279,34 +1279,23 @@ building_acot_ae_synt_center = {
 
 # PSIONOIDE path
 building_acot_ae_psi_altar = {
-	base_buildtime = 360
-	can_build = no
-	category = government
-	building_sets = {
-		government
-		urban
-	}
-	planet_modifier = {
-		bonus_pop_growth_mult = 0.2
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_psi_altar
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			sr_zro = 10
-			unity = 50
-		}
-		cost = {
+	inline_script = {
+		script = buildings/civilian/psi_altar
+		TIER = 2
+		UPGRADES_INTO = building_phanon_psi_altar
+		ALLOW = "has_ascended_capital = yes"
+		PREREQUISITE = tech_acot_ae_psi_altar
+		CAN_BUILD = no
+		COST = "
 			minerals = 50
 			sr_dark_matter = 400
 			acot_sr_dark_energy = 400
-		}
-		upkeep = {
+			"
+		PRODUCES = "
+			sr_zro = 10
+			unity = 50
+			"
+		UPKEEP = "
 			trigger = {
 				planet_owner = {
 					NOT = {
@@ -1316,19 +1305,15 @@ building_acot_ae_psi_altar = {
 			}
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_psi_altar
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_acot_ae_psi_altar
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_acot_ae_psi_altar
+				}
 			}
-		}
+			"
 	}
 }
 
