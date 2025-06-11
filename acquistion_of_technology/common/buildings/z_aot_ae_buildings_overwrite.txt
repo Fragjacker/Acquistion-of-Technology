@@ -1369,6 +1369,7 @@ building_acot_ae_hive_evochamber = {
 		PREREQUISITE = tech_acot_ae_hive_evochamber
 		UPGRADES_INTO = building_phanon_hive_evochamber
 		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
 		AI_FACTORS = "
 			modifier = {
 				factor = 0
@@ -1418,6 +1419,7 @@ building_acot_ae_alloy_forge = {
 		JOB = acot_alloyman
 		JOB_MACHINE = acot_alloydrone
 		JOB_HIVE = acot_alloydrone
+		CAN_BUILD = no
 		AI_FACTORS = "
 			modifier = {
 				factor = 50
@@ -1474,6 +1476,7 @@ building_acot_ae_transmutor = {
 		ALLOW = "has_ascended_capital = yes"
 		JOB = acot_transmute_man
 		JOB_HIVE = acot_transmute_drone
+		CAN_BUILD = no
 		COST = "
 			alloys = @acot_building_advanced_alloy_cost
 			sr_dark_matter = @acot_building_advanced_dm_cost
@@ -1518,6 +1521,7 @@ building_acot_ae_mineral_processing_plant = {
 		ALLOW = "has_ascended_capital = yes"
 		JOB = acot_mineralman
 		JOB_HIVE = acot_mineraldrone
+		CAN_BUILD = no
 		COST = "
 			alloys = @acot_building_pleb_advanced_alloy_cost
 			sr_dark_matter = @acot_building_pleb_advanced_dm_cost
@@ -1559,6 +1563,7 @@ building_acot_ae_power_hub = {
 		ALLOW = "has_ascended_capital = yes"
 		JOB = acot_energyman
 		JOB_HIVE = acot_energydrone
+		CAN_BUILD = no
 		COST = "
 			alloys = @acot_building_pleb_advanced_alloy_cost
 			sr_dark_matter = @acot_building_pleb_advanced_dm_cost
@@ -1591,6 +1596,7 @@ building_acot_ae_food_processing_complex = {
 		ALLOW = "has_ascended_capital = yes"
 		JOB = acot_foodman
 		JOB_HIVE = acot_fooddrone
+		CAN_BUILD = no
 		COST = "
 			alloys = @acot_building_pleb_advanced_alloy_cost
 			sr_dark_matter = @acot_building_pleb_advanced_dm_cost
@@ -1650,6 +1656,7 @@ building_acot_ae_factory = {
 		ALLOW = "has_ascended_capital = yes"
 		JOB = acot_artisan
 		JOB_HIVE = acot_artisan
+		CAN_BUILD = no
 		COST = "
 			alloys = @acot_building_advanced_alloy_cost
 			sr_dark_matter = @acot_building_advanced_dm_cost
@@ -1688,6 +1695,7 @@ building_acot_ae_enigmatic_lab = {
 		ALLOW = "has_ascended_capital = yes"
 		JOB = acot_researcher
 		JOB_HIVE = acot_researcher_drone
+		CAN_BUILD = no
 		COST = "
 			alloys = 600
 			sr_dark_matter = 400
@@ -1731,6 +1739,7 @@ building_acot_ae_institute = {
 		PREREQUISITE = tech_acot_ae_institute
 		UPGRADES_INTO = building_phanon_institute
 		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
 		JOB = acot_researcher
 		JOB_HIVE = acot_researcher_drone
 		COST = "
@@ -1753,171 +1762,24 @@ building_acot_ae_institute = {
 # DM and Dark Energy Resources
 #####################
 building_acot_ae_dark_matter_synthersizer = {
-	base_buildtime = @acot_building_basic_build_time
-	can_build = no
-	category = manufacturing
-	building_sets = {
-		industrial
-		factory
-		foundry
-	}
-	potential = {
-	}
-	country_modifier = {
-		country_resource_max_acot_sr_dark_energy_add = 20000
-		country_resource_max_sr_dark_matter_add = 20000
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_synthersizer
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/synthersizer
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_dark_matter_synthersizer
+		UPGRADES_INTO = building_phanon_synthersizer
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		COST = "
 			alloys = 1250
 			sr_dark_matter = 625
 			acot_sr_dark_energy = 625
-		}
-		produces = {
+			"
+		PRODUCES = "
 			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_dm_dark_energy_pylon
-					value = 2
-				}
-			}
-			acot_sr_dark_energy = 20
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_dm_dark_energy_pylon
-					value = 3
-				}
-			}
-			acot_sr_dark_energy = 30
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_dm_dark_energy_pylon
-					value >= 4
-				}
-			}
-			acot_sr_dark_energy = 40
-		}
-		##### A DE
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_ae_dark_energy_pylon
-					value = 2
-				}
-			}
-			acot_sr_dark_energy = 30
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_ae_dark_energy_pylon
-					value = 3
-				}
-			}
-			acot_sr_dark_energy = 40
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_ae_dark_energy_pylon
-					value >= 4
-				}
-			}
-			acot_sr_dark_energy = 50
-		}
-		##### DM
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_dm_dark_matter_generator
-					value = 2
-				}
-			}
-			sr_dark_matter = 20
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_dm_dark_matter_generator
-					value = 3
-				}
-			}
-			sr_dark_matter = 30
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_dm_dark_matter_generator
-					value >= 4
-				}
-			}
-			sr_dark_matter = 40
-		}
-		##### A DM
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_ae_dark_matter_generator
-					value = 2
-				}
-			}
-			sr_dark_matter = 30
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_ae_dark_matter_generator
-					value = 3
-				}
-			}
-			sr_dark_matter = 40
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_acot_ae_dark_matter_generator
-					value >= 4
-				}
-			}
-			sr_dark_matter = 50
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
-					}
-				}
-			}
-			energy = 10
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_dark_matter_synthersizer
-	}
-	ai_weight = {
-		weight = 25000
-	}
-	ai_resource_production = {
-		sr_dark_matter = 100
-		acot_sr_dark_energy = 100
-		trigger = {
-			always = yes
-		}
+			"
+		AI_FACTORS = "
+			"
 	}
 }
 building_acot_ae_dark_energy_pylon = {
