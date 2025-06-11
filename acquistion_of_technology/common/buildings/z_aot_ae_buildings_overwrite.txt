@@ -1551,91 +1551,33 @@ building_acot_ae_mineral_processing_plant = {
 
 ########## ENERGY NEXOUS
 building_acot_ae_power_hub = {
-	base_buildtime = @acot_building_basic_build_time
-	category = resource
-	can_build = no
-	building_sets = {
-		generator
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_power_hub
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_energyman_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_energydrone_add = 400
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/power_hub
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_power_hub
+		UPGRADES_INTO = building_phanon_power_hub
+		ALLOW = "has_ascended_capital = yes"
+		JOB = acot_energyman
+		JOB_HIVE = acot_energydrone
+		COST = "
 			alloys = @acot_building_pleb_advanced_alloy_cost
 			sr_dark_matter = @acot_building_pleb_advanced_dm_cost
 			acot_sr_dark_energy = @acot_building_pleb_advanced_de_cost
-		}
-		produces = {
+			"
+		PRODUCES = "
 			energy = 100
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			energy = 40
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_power_hub
-	}
-	ai_weight = {
-		weight = 3000
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 10
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = energy
+						value < 10
+					}
 				}
 			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		energy = 20
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 
