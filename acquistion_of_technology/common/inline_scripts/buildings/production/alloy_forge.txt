@@ -1,0 +1,49 @@
+@num_jobs = @[ 200 * $TIER$ ]
+inline_script = {
+	script = shared/normal_buildings_base
+	ALLOW = $ALLOW$
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = $AI_FACTORS$
+	TIER = $TIER$
+}
+can_build = no
+category = manufacturing
+building_sets = {
+	industrial
+	foundry
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_hive_empire = yes
+		}
+	}
+	modifier = {
+		job_$JOB_HIVE$_add = @num_jobs
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_machine_empire = yes
+		}
+	}
+	modifier = {
+		job_$JOB_MACHINE$_add = @num_jobs
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_individualistic_empire = yes
+		}
+	}
+	modifier = {
+		job_$JOB$_add = @num_jobs
+	}
+}

@@ -1409,53 +1409,35 @@ building_acot_ae_hive_evochamber = {
 
 #########################  VANILLA RESOURCES  ######################################
 building_acot_ae_alloy_forge = {
-	base_buildtime = @acot_building_advanced_build_time
-	can_build = no
-	category = manufacturing
-	building_sets = {
-		industrial
-		foundry
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_alloy_forge
-	}
-	potential = {
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_hive_empire = yes
+	inline_script = {
+		script = buildings/production/alloy_forge
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_alloy_foundry
+		UPGRADES_INTO = building_phanon_alloy_forge
+		ALLOW = "has_ascended_capital = yes"
+		JOB = acot_alloyman
+		JOB_MACHINE = acot_alloydrone
+		JOB_HIVE = acot_alloydrone
+		AI_FACTORS = "
+			modifier = {
+				factor = 50
+				planet_owner = {
+					has_monthly_income = {
+						resource = alloys
+						value < 5
+					}
+				}
 			}
-		}
-		modifier = {
-			job_acot_alloydrone_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_machine_empire = yes
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 2
+					}
+				}
 			}
-		}
-		modifier = {
-			job_acot_alloydrone_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_alloyman_add = 400
-		}
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -1480,43 +1462,6 @@ building_acot_ae_alloy_forge = {
 			sr_dark_matter = 1
 			acot_sr_dark_energy = 1
 			minerals = 10
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_alloy_foundry
-	}
-	ai_weight = {
-		weight = 100000
-		modifier = {
-			factor = 50
-			planet_owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 5
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 2
-				}
-			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		alloys = 30
-		trigger = {
-			always = yes
 		}
 	}
 }
