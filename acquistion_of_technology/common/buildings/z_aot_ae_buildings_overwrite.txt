@@ -1237,49 +1237,21 @@ building_acot_ae_clone_vats = {
 
 # Synth path
 building_acot_ae_synt_center = {
-	base_buildtime = 360
-	can_build = no
-	category = government
-	building_sets = {
-		government
-		urban
-	}
-	planet_modifier = {
-		planet_jobs_specialist_produces_mult = 0.2
-	}
-	upgrades = {
-		building_phanon_synt_center
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 50
-		}
-		planet_jobs_specialist_produces_mult = 0.2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 100
-		}
-		planet_jobs_specialist_produces_mult = 0.2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 150
-		}
-		planet_jobs_specialist_produces_mult = 0.2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 200
-		}
-		planet_jobs_specialist_produces_mult = 0.2
-	}
-	allow = {
-		has_ascended_capital = yes
+	inline_script = {
+		script = buildings/civilian/synt_center
+		TIER = 2
+		UPGRADES_INTO = building_phanon_synt_center
+		ALLOW = "has_ascended_capital = yes"
+		PREREQUISITE = tech_acot_ae_synt_center
+		CAN_BUILD = no
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_acot_ae_synt_center
+				}
+			}
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -1301,18 +1273,6 @@ building_acot_ae_synt_center = {
 			}
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_synt_center
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_acot_ae_synt_center
-			}
 		}
 	}
 }
