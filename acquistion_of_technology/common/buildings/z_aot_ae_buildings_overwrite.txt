@@ -1466,212 +1466,47 @@ building_acot_ae_alloy_forge = {
 	}
 }
 building_acot_ae_transmutor = {
-	base_buildtime = @acot_building_basic_build_time
-	can_build = no
-	category = manufacturing
-	building_sets = {
-		industrial
-		factory
-		foundry
-	}
-	potential = {
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_transmutor
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-			}
-		}
-		modifier = {
-			job_acot_transmute_man_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_transmute_drone_add = 400
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/transmutor
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_transmutor
+		UPGRADES_INTO = building_phanon_transmutor
+		ALLOW = "has_ascended_capital = yes"
+		JOB = acot_transmute_man
+		JOB_HIVE = acot_transmute_drone
+		COST = "
 			alloys = @acot_building_advanced_alloy_cost
 			sr_dark_matter = @acot_building_advanced_dm_cost
 			acot_sr_dark_energy = @acot_building_advanced_de_cost
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5000
 				planet_owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			rare_crystals = 12
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			volatile_motes = 12
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			exotic_gases = 12
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			sr_living_metal = 6
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			nanites = 6
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			sr_zro = 6
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			acot_sr_dark_energy = 2
-			sr_dark_matter = 2
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			acot_sr_dark_energy = 2
-			sr_dark_matter = 2
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			acot_sr_dark_energy = 2
-			sr_dark_matter = 2
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			acot_sr_dark_energy = 2
-			sr_dark_matter = 2
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			acot_sr_dark_energy = 2
-			sr_dark_matter = 2
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			acot_sr_dark_energy = 2
-			sr_dark_matter = 2
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_transmutor
-	}
-	ai_weight = {
-		weight = 20000
-		modifier = {
-			factor = 5000
-			planet_owner = {
-				OR = {
-					has_monthly_income = {
-						resource = rare_crystals
-						value < 4
-					}
-					has_monthly_income = {
-						resource = exotic_gases
-						value < 4
-					}
-					has_monthly_income = {
-						resource = volatile_motes
-						value < 4
+					OR = {
+						has_monthly_income = {
+							resource = rare_crystals
+							value < 4
+						}
+						has_monthly_income = {
+							resource = exotic_gases
+							value < 4
+						}
+						has_monthly_income = {
+							resource = volatile_motes
+							value < 4
+						}
 					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			num_buildings = {
-				type = building_acot_ae_transmutor
-				value >= 1
+			modifier = {
+				factor = 0
+				num_buildings = {
+					type = building_acot_ae_transmutor
+					value >= 1
+				}
 			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		volatile_motes = 20
-		exotic_gases = 20
-		rare_crystals = 20
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 building_acot_ae_mineral_processing_plant = {
