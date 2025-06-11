@@ -1725,104 +1725,27 @@ building_acot_ae_enigmatic_lab = {
 	}
 }
 building_acot_ae_institute = {
-	base_buildtime = 520
-	can_build = no
-	category = research
-	building_sets = {
-		research
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_acot_ae_institute
-		}
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-			has_modifier = penal_colony
-		}
-	}
-	destroy_trigger = {
-		OR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-			has_modifier = penal_colony
-		}
-	}
-	upgrades = {
-		building_phanon_institute
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
+	inline_script = {
+		script = buildings/civilian/institute
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_institute
+		UPGRADES_INTO = building_phanon_institute
+		ALLOW = "has_ascended_capital = yes"
+		JOB = acot_researcher
+		JOB_HIVE = acot_researcher_drone
+		COST = "
+			alloys = 400
+			sr_dark_matter = 300
+			acot_sr_dark_energy = 450
+			"
+		PRODUCES = "
 			physics_research = 200
 			engineering_research = 200
 			society_research = 200
 			minor_artifacts = 10
-		}
-		cost = {
-			alloys = 400
-			sr_dark_matter = 300
-			acot_sr_dark_energy = 450
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
-					}
-				}
-			}
-			sr_dark_matter = 50
-			acot_sr_dark_energy = 50
-		}
-	}
-	country_modifier = {
-		country_scientist_cap_add = 2
-		physics_tech_cost_mult = -0.2
-		society_tech_cost_mult = -0.2
-		engineering_tech_cost_mult = -0.2
-		all_technology_research_speed = 0.4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_researcher_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_researcher_drone_add = 400
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_institute
-	}
-	show_tech_unlock_if = {
-	}
-	ai_weight = {
-		weight = 1000
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
+			"
+		AI_FACTORS = "
+			"
 	}
 }
 

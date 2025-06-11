@@ -32,10 +32,39 @@ destroy_trigger = {
 	}
 	is_special_colony_type = yes
 }
+resources = {
+	category = planet_buildings
+	produces = {
+		$PRODUCES$
+	}
+	cost = {
+		$COST$
+	}
+	upkeep = {
+		trigger = {
+			planet_owner = {
+				NOT = {
+					has_technology = tech_acot_fractured_autoharvesting
+				}
+			}
+		}
+		sr_dark_matter = 50
+		acot_sr_dark_energy = 50
+	}
+}
+country_modifier = {
+	country_scientist_cap_add = @[ 1 * $TIER$ ]
+	physics_tech_cost_mult = @[ - 0.1 * $TIER$ ]
+	society_tech_cost_mult = @[ - 0.1 * $TIER$ ]
+	engineering_tech_cost_mult = @[ - 0.1 * $TIER$ ]
+	all_technology_research_speed = @[ 0.2 * $TIER$ ]
+}
 triggered_planet_modifier = {
 	potential = {
 		exists = planet_owner
-		planet_owner = { is_regular_empire = yes }
+		planet_owner = {
+			is_regular_empire = yes
+		}
 	}
 	modifier = {
 		job_$JOB$_add = @num_jobs
@@ -50,26 +79,5 @@ triggered_planet_modifier = {
 	}
 	modifier = {
 		job_$JOB_HIVE$_add = @num_jobs
-	}
-}
-resources = {
-	category = planet_buildings
-	cost = {
-		$COST$
-	}
-	produces = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-		}
-		physics_research = 24
-		engineering_research = 24
-		society_research = 24
-	}
-	upkeep = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-		}
-		sr_dark_matter = 6
-		acot_sr_dark_energy = 6
 	}
 }
