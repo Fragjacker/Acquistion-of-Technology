@@ -1319,98 +1319,26 @@ building_acot_ae_psi_altar = {
 
 # Machine path
 building_acot_ae_machine_dome = {
-	base_buildtime = 360
-	can_build = no
-	category = government
-	upgrades = {
-		building_phanon_machine_dome
-	}
-	building_sets = {
-		government
-		urban
-	}
-	planet_modifier = {
-		planet_jobs_complex_drone_produces_mult = 0.05
-		planet_jobs_simple_drone_produces_mult = 0.05
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 25
-		}
-		planet_jobs_complex_drone_produces_mult = 0.05
-		planet_jobs_simple_drone_produces_mult = 0.05
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 50
-		}
-		planet_jobs_complex_drone_produces_mult = 0.05
-		planet_jobs_simple_drone_produces_mult = 0.05
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 75
-		}
-		planet_jobs_complex_drone_produces_mult = 0.05
-		planet_jobs_simple_drone_produces_mult = 0.05
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 100
-		}
-		planet_jobs_complex_drone_produces_mult = 0.05
-		planet_jobs_simple_drone_produces_mult = 0.05
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 125
-		}
-		planet_jobs_complex_drone_produces_mult = 0.05
-		planet_jobs_simple_drone_produces_mult = 0.05
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 150
-		}
-		planet_jobs_complex_drone_produces_mult = 0.05
-		planet_jobs_simple_drone_produces_mult = 0.05
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 175
-		}
-		planet_jobs_complex_drone_produces_mult = 0.05
-		planet_jobs_simple_drone_produces_mult = 0.05
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 200
-		}
-		planet_jobs_complex_drone_produces_mult = 0.05
-		planet_jobs_simple_drone_produces_mult = 0.05
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 225
-		}
-		planet_jobs_complex_drone_produces_mult = 0.05
-		planet_jobs_simple_drone_produces_mult = 0.05
-	}
-	allow = {
-		has_ascended_capital = yes
+	inline_script = {
+		script = buildings/civilian/machine_dome
+		TIER = 2
+		UPGRADES_INTO = building_phanon_machine_dome
+		ALLOW = "has_ascended_capital = yes"
+		PREREQUISITE = tech_acot_ae_machine_dome
+		CAN_BUILD = no
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_acot_ae_machine_dome
+				}
+			}
+			"
 	}
 	resources = {
 		category = planet_buildings
 		produces = {
+			engineering_research = 15
 		}
 		cost = {
 			minerals = 150
@@ -1427,18 +1355,6 @@ building_acot_ae_machine_dome = {
 			}
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_machine_dome
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_acot_ae_machine_dome
-			}
 		}
 	}
 }
