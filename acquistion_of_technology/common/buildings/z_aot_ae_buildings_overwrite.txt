@@ -1642,124 +1642,37 @@ building_acot_ae_food_processing_complex = {
 	}
 }
 building_acot_ae_factory = {
-	base_buildtime = @acot_building_advanced_build_time
-	can_build = no
-	category = manufacturing
-	building_sets = {
-		industrial
-		factory
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_civilian_factory
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			OR = {
-				is_gestalt = no
-				has_valid_civic = civic_machine_servitor
-			}
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_artisan_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_artisan_add = 400
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/food_processing_complex
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_factory
+		UPGRADES_INTO = building_phanon_civilian_factory
+		ALLOW = "has_ascended_capital = yes"
+		JOB = acot_artisan
+		JOB_HIVE = acot_artisan
+		COST = "
 			alloys = @acot_building_advanced_alloy_cost
 			sr_dark_matter = @acot_building_advanced_dm_cost
 			acot_sr_dark_energy = @acot_building_advanced_de_cost
-		}
-		produces = {
+			"
+		PRODUCES = "
 			consumer_goods = 50
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			consumer_goods = 40
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			sr_dark_matter = 2
-			acot_sr_dark_energy = 2
-			minerals = 20
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_factory
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		text = job_artisan_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		text = job_artisan_drone_effect_desc
-	}
-	ai_weight = {
-		weight = 2
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = consumer_goods
-					value < 5
-				}
-				has_monthly_income = {
-					resource = minerals
-					value > 6
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = consumer_goods
+						value < 5
+					}
+					has_monthly_income = {
+						resource = minerals
+						value > 6
+					}
 				}
 			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		consumer_goods = 1
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 
