@@ -1680,109 +1680,48 @@ building_acot_ae_factory = {
 # Research Building
 #####################
 building_acot_ae_enigmatic_lab = {
-	base_buildtime = 680
-	can_build = no
-	can_demolish = yes
-	category = research
-	building_sets = {
-		research
-	}
-	potential = {
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-			has_modifier = penal_colony
-		}
-		is_special_colony_type = no
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_enigmatic_lab
-	}
-	destroy_trigger = {
-		OR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-			has_modifier = penal_colony
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_acot_researcher_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_researcher_drone_add = 400
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/civilian/enigmatic_lab
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_enigmatic_lab
+		UPGRADES_INTO = building_phanon_enigmatic_lab
+		ALLOW = "has_ascended_capital = yes"
+		JOB = acot_researcher
+		JOB_HIVE = acot_researcher_drone
+		COST = "
 			alloys = 600
 			sr_dark_matter = 400
 			acot_sr_dark_energy = 400
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			physics_research = 24
-			engineering_research = 24
-			society_research = 24
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			sr_dark_matter = 6
-			acot_sr_dark_energy = 6
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_enigmatic_lab
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 3
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = energy
-					value <= 10
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = energy
+						value <= 10
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = consumer_goods
-					value <= 10
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = consumer_goods
+						value <= 10
+					}
 				}
 			}
-		}
+			"
 	}
 }
 building_acot_ae_institute = {

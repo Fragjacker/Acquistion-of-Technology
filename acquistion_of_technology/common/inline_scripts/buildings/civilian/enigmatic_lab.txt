@@ -1,0 +1,71 @@
+@num_jobs = @[ 200 * $TIER$ ]
+inline_script = {
+	script = shared/normal_buildings_base
+	ALLOW = $ALLOW$
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = $AI_FACTORS$
+	TIER = $TIER$
+}
+category = research
+building_sets = {
+	research
+}
+potential = {
+	NOR = {
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+		has_modifier = penal_colony
+	}
+	is_special_colony_type = no
+}
+destroy_trigger = {
+	OR = {
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+		has_modifier = penal_colony
+	}
+	is_special_colony_type = yes
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = { is_regular_empire = yes }
+	}
+	modifier = {
+		job_$JOB$_add = @num_jobs
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = yes
+		}
+	}
+	modifier = {
+		job_$JOB_HIVE$_add = @num_jobs
+	}
+}
+resources = {
+	category = planet_buildings
+	cost = {
+		$COST$
+	}
+	produces = {
+		trigger = {
+			has_modifier = acot_modifier_ascended_city
+		}
+		physics_research = 24
+		engineering_research = 24
+		society_research = 24
+	}
+	upkeep = {
+		trigger = {
+			has_modifier = acot_modifier_ascended_city
+		}
+		sr_dark_matter = 6
+		acot_sr_dark_energy = 6
+	}
+}
