@@ -1583,113 +1583,62 @@ building_acot_ae_power_hub = {
 
 ### FOOOD FIDDLEEE ###
 building_acot_ae_food_processing_complex = {
-	base_buildtime = @acot_building_basic_build_time
-	category = resource
-	can_build = no
-	building_sets = {
-		farming
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_food_processing_complex
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_foodman_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_fooddrone_add = 400
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/food_processing_complex
+		TIER = 2
+		PREREQUISITE = tech_acot_ae_power_hub
+		UPGRADES_INTO = building_phanon_power_hub
+		ALLOW = "has_ascended_capital = yes"
+		JOB = acot_foodman
+		JOB_HIVE = acot_fooddrone
+		COST = "
 			alloys = @acot_building_pleb_advanced_alloy_cost
 			sr_dark_matter = @acot_building_pleb_advanced_dm_cost
 			acot_sr_dark_energy = @acot_building_pleb_advanced_de_cost
-		}
-		produces = {
+			"
+		PRODUCES = "
 			food = 100
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			food = 40
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			acot_sr_dark_energy = 1
-			sr_dark_matter = 1
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_food_processing
-	}
-	ai_weight = {
-		weight = 2
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = food
-					value < 5
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				OR = {
-					is_mechanical_empire = no
-					AND = {
-						is_mechanical_empire = yes
-						OR = {
-							has_civic = civic_machine_servitor
-							has_civic = civic_machine_assimilator
-						}
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = food
+						value < 5
 					}
 				}
-				has_monthly_income = {
-					resource = energy
-					value < 5
+			}
+			modifier = {
+				factor = 0
+				planet_owner = {
+					OR = {
+						is_mechanical_empire = no
+						AND = {
+							is_mechanical_empire = yes
+							OR = {
+								has_civic = civic_machine_servitor
+								has_civic = civic_machine_assimilator
+							}
+						}
+					}
+					has_monthly_income = {
+						resource = energy
+						value < 5
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				is_mechanical_empire = yes
-				NOR = {
-					has_civic = civic_machine_servitor
-					has_civic = civic_machine_assimilator
+			modifier = {
+				factor = 0
+				planet_owner = {
+					is_mechanical_empire = yes
+					NOR = {
+						has_civic = civic_machine_servitor
+						has_civic = civic_machine_assimilator
+					}
 				}
 			}
-		}
-	}
-	ai_resource_production = {
-		food = 10
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 building_acot_ae_factory = {
