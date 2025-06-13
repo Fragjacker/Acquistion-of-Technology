@@ -1,3 +1,4 @@
+@DELTA_TIER = DELTA_TIER
 ###############################################################
 # Government Building
 ###############################################################
@@ -5,7 +6,7 @@ building_acot_dm_ancient_palace = {
 	inline_script = {
 		script = buildings/capital_buildings_boilerplate
 		BUILD_TIME = 900
-		TIER = 1
+		TIER = DELTA_TIER
 		OVERLORD_JOB = acot_overlord
 		OVERSEER_JOB = acot_overseer
 		ENFORCER_JOB = aot_dm_enforcer
@@ -54,7 +55,7 @@ building_acot_dm_ancient_control_center = {
 	inline_script = {
 		script = buildings/capital_buildings_boilerplate
 		BUILD_TIME = 900
-		TIER = 1
+		TIER = DELTA_TIER
 		OVERLORD_JOB = acot_overlord_droid
 		OVERSEER_JOB = acot_overseer_droid
 		ENFORCER_JOB = aot_dm_enforcer_drone
@@ -98,7 +99,7 @@ building_acot_dm_ancient_hive_cluster = {
 	inline_script = {
 		script = buildings/capital_buildings_boilerplate
 		BUILD_TIME = 900
-		TIER = 1
+		TIER = DELTA_TIER
 		OVERLORD_JOB = acot_overlord_drone
 		OVERSEER_JOB = acot_overseer_drone
 		ENFORCER_JOB = aot_dm_enforcer_drone
@@ -140,7 +141,7 @@ building_acot_dm_ancient_hive_cluster = {
 building_class_4_singularity = {
 	inline_script = {
 		script = buildings/production/class_x_singularity
-		TIER = 1
+		TIER = DELTA_TIER
 		CAN_BUILD = yes
 		PREREQUISITE = tech_fe_class_4_singularity
 		ALLOW = "has_enigmatic_capital = yes"
@@ -162,7 +163,7 @@ building_aot_fe_empyrean_shrine = {
 	icon = building_empyrean_shrine
 	inline_script = {
 		script = buildings/production/empyrean_shrine
-		TIER = 1
+		TIER = DELTA_TIER
 		CAN_BUILD = yes
 		PREREQUISITE = tech_aot_fe_empyrean_shrine
 		UPGRADES_INTO = building_ae_empyrean_shrine
@@ -194,7 +195,7 @@ building_fe_nano_forge = {
 	icon = building_nano_forge
 	inline_script = {
 		script = buildings/production/nano_forge
-		TIER = 1
+		TIER = DELTA_TIER
 		PREREQUISITE = tech_fe_nano_forge
 		ALLOW = "has_enigmatic_capital = yes"
 		CAN_BUILD = yes
@@ -221,7 +222,7 @@ building_fe_dimensional_fabricator = {
 	icon = building_dimensional_fabricator
 	inline_script = {
 		script = buildings/production/dimensional_fabricator
-		TIER = 1
+		TIER = DELTA_TIER
 		PREREQUISITE = tech_fe_dimensional_fabricator
 		UPGRADES_INTO = building_ae_dimensional_fabricator
 		ALLOW = "has_enigmatic_capital = yes"
@@ -253,7 +254,7 @@ building_fe_nourishment_center = {
 	icon = building_nourishment_center
 	inline_script = {
 		script = buildings/production/nourishment_center
-		TIER = 1
+		TIER = DELTA_TIER
 		PREREQUISITE = tech_fe_nourishment_center
 		JOB = farmer
 		JOB_DRONE = agri
@@ -279,7 +280,7 @@ building_fe_affluence_center = {
 	icon = building_affluence_center
 	inline_script = {
 		script = buildings/production/affluence_center
-		TIER = 1
+		TIER = DELTA_TIER
 		PREREQUISITE = tech_fe_affluence_center
 		JOB = artisan
 		ALLOW = "has_enigmatic_capital = yes"
@@ -304,7 +305,7 @@ building_fe_sky_dome = {
 	icon = building_fe_dome
 	inline_script = {
 		script = buildings/production/sky_dome
-		TIER = 1
+		TIER = DELTA_TIER
 		PREREQUISITE = tech_fe_sky_dome
 		CAN_BUILD = yes
 		UPGRADES_INTO = building_ae_sky_dome
@@ -340,7 +341,7 @@ building_fe_master_archive = {
 	base_cap_amount = 1
 	inline_script = {
 		script = buildings/production/master_archive
-		TIER = 1
+		TIER = DELTA_TIER
 		PREREQUISITE = tech_fe_master_archive
 		ALLOW = "
 			has_enigmatic_capital = yes
@@ -376,24 +377,26 @@ building_fe_master_archive = {
 # Biological path
 building_acot_dm_clone_vats = {
 	base_cap_amount = 1
-	category = pop_assembly
-	base_buildtime = 360
 	inline_script = {
-		script = buildings/clone_vats_and_evochambers
-		POP_GROWTH = 0.5
-		POP_ASSEMBLY_GENETIC_TRADITION = 3
-	}
-	allow = {
-		has_enigmatic_capital = yes
-	}
-	prerequisites = {
-		tech_acot_dm_clone_vats
+		script = buildings/civilian/clone_vats_and_evochambers
+		TIER = @DELTA_TIER
+		POP_GROWTH = 3
+		POP_ASSEMBLY_GENETIC_TRADITION = 400
+		UPGRADES_INTO = building_acot_ae_clone_vats
+		ALLOW = "has_enigmatic_capital = yes"
+		PREREQUISITE = tech_acot_dm_clone_vats
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_acot_dm_clone_vats
+					has_building = building_acot_ae_clone_vats
+				}
+			}
+			"
 	}
 	resources = {
 		category = planet_buildings
-		produces = {
-			food = 25
-		}
 		cost = {
 			minerals = 250
 			sr_dark_matter = 100
@@ -429,31 +432,26 @@ building_acot_dm_clone_vats = {
 			minerals = 10
 		}
 	}
-	upgrades = {
-		building_acot_ae_clone_vats
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_acot_dm_clone_vats
-				has_building = building_acot_ae_clone_vats
-			}
-		}
-	}
 }
 building_acot_dm_hive_evochamber = {
-	base_buildtime = 360
 	base_cap_amount = 1
-	category = pop_assembly
 	inline_script = {
-		script = buildings/clone_vats_and_evochambers
-		POP_GROWTH = 0.5
-		POP_ASSEMBLY_GENETIC_TRADITION = 3
-	}
-	allow = {
-		has_enigmatic_capital = yes
+		script = buildings/civilian/clone_vats_and_evochambers
+		TIER = @DELTA_TIER
+		POP_GROWTH = 3
+		POP_ASSEMBLY_GENETIC_TRADITION = 400
+		UPGRADES_INTO = building_acot_ae_hive_evochamber
+		ALLOW = "has_enigmatic_capital = yes"
+		PREREQUISITE = tech_acot_dm_hive_evochamber
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_acot_dm_hive_evochamber
+					has_building = building_acot_ae_hive_evochamber
+				}
+			}
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -476,22 +474,6 @@ building_acot_dm_hive_evochamber = {
 			}
 			sr_dark_matter = 5
 			acot_sr_dark_energy = 5
-		}
-	}
-	upgrades = {
-		building_acot_ae_hive_evochamber
-	}
-	prerequisites = {
-		tech_acot_dm_hive_evochamber
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_acot_dm_hive_evochamber
-				has_building = building_acot_ae_hive_evochamber
-			}
 		}
 	}
 }
@@ -1021,155 +1003,68 @@ building_dm_embassy = {
 # Research Building
 ###############################################################
 building_acot_dm_enigmatic_lab = {
-	base_buildtime = 680
-	can_demolish = yes
-	can_be_disabled = yes
-	category = research
-	allow = {
-		has_enigmatic_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_researcher_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_researcher_drone_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		# Mod Pack; added modifier from Vanilla, missed detail by A.C.o.T.
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_galactic_community_member = yes
-			}
-			is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
-			has_modifier = pm_extradimensional_experimentation
-		}
-		modifier = {
-			job_dimensional_portal_researcher_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		# Mod Pack; added modifier from Vanilla, missed detail by A.C.o.T.
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-				is_galactic_community_member = yes
-			}
-			is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
-			has_modifier = pm_extradimensional_experimentation
-		}
-		modifier = {
-			job_dimensional_portal_researcher_gestalt_add = 1
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/civilian/enigmatic_lab
+		TIER = @DELTA_TIER
+		PREREQUISITE = tech_acot_dm_enigmatic_lab
+		UPGRADES_INTO = building_acot_ae_enigmatic_lab
+		ALLOW = "has_enigmatic_capital = yes"
+		JOB = acot_researcher
+		JOB_HIVE = acot_researcher_drone
+		CAN_BUILD = no
+		COST = "
 			minerals = 500
 			sr_dark_matter = 50
 			acot_sr_dark_energy = 50
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5000000
+				num_buildings = {
+					type = building_acot_dm_enigmatic_lab
+					value <= 1
+				}
 			}
-			physics_research = 25
-			engineering_research = 25
-			society_research = 25
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
+			modifier = {
+				factor = 0
+				OR = {
+					num_buildings = {
+						type = building_acot_dm_enigmatic_lab
+						value >= 3
+					}
+					num_buildings = {
+						type = building_acot_dm_enigmatic_lab
+						value >= 3
+					}
+				}
 			}
-			sr_dark_matter = 2
-			acot_sr_dark_energy = 2
-		}
-		upkeep = {
-			# Mod Pack; added upkeep from Vanilla, missed detail by A.C.o.T.
-			trigger = {
+			modifier = {
+				factor = 0
 				planet_owner = {
-					is_galactic_community_member = yes
-				}
-				is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
-				planet = {
-					has_modifier = pm_extradimensional_experimentation
-				}
-			}
-			sr_zro = 1
-		}
-	}
-	prerequisites = {
-		tech_acot_dm_enigmatic_lab
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 5000000
-			num_buildings = {
-				type = building_acot_dm_enigmatic_lab
-				value <= 1
-			}
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				num_buildings = {
-					type = building_acot_dm_enigmatic_lab
-					value >= 3
-				}
-				num_buildings = {
-					type = building_acot_dm_enigmatic_lab
-					value >= 3
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 3
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = energy
+						value <= 10
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = energy
-					value <= 10
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = consumer_goods
+						value <= 10
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = consumer_goods
-					value <= 10
-				}
-			}
-		}
-	}
-	upgrades = {
-		building_acot_ae_enigmatic_lab
+			"
 	}
 }

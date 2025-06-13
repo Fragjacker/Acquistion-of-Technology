@@ -1,13 +1,14 @@
-@num_jobs = @[ 200 * $TIER$ ]
 inline_script = {
 	script = shared/normal_buildings_base
-	ALLOW = $ALLOW$
+	ALLOW = "$ALLOW$"
 	CAN_BUILD = $CAN_BUILD$
 	PREREQUISITE = $PREREQUISITE$
 	UPGRADES_INTO = $UPGRADES_INTO$
-	AI_FACTORS = $AI_FACTORS$
+	AI_FACTORS = "$AI_FACTORS$"
 	TIER = $TIER$
 }
+@num_dimensional_researcher = @[ 100 * $TIER$ ]
+@num_jobs = @[ num_dimensional_researcher * 2 ]
 category = research
 building_sets = {
 	research
@@ -35,7 +36,9 @@ destroy_trigger = {
 triggered_planet_modifier = {
 	potential = {
 		exists = planet_owner
-		planet_owner = { is_regular_empire = yes }
+		planet_owner = {
+			is_regular_empire = yes
+		}
 	}
 	modifier = {
 		job_$JOB$_add = @num_jobs
@@ -50,6 +53,36 @@ triggered_planet_modifier = {
 	}
 	modifier = {
 		job_$JOB_HIVE$_add = @num_jobs
+	}
+}
+triggered_planet_modifier = {
+	# Mod Pack; added modifier from Vanilla, missed detail by A.C.o.T.
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_individualistic_empire = yes
+			is_galactic_community_member = yes
+		}
+		is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
+		has_modifier = pm_extradimensional_experimentation
+	}
+	modifier = {
+		job_dimensional_portal_researcher_add = @num_dimensional_researcher
+	}
+}
+triggered_planet_modifier = {
+	# Mod Pack; added modifier from Vanilla, missed detail by A.C.o.T.
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = yes
+			is_galactic_community_member = yes
+		}
+		is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
+		has_modifier = pm_extradimensional_experimentation
+	}
+	modifier = {
+		job_dimensional_portal_researcher_gestalt_add = @num_dimensional_researcher
 	}
 }
 resources = {
@@ -71,5 +104,18 @@ resources = {
 		}
 		sr_dark_matter = 6
 		acot_sr_dark_energy = 6
+	}
+	upkeep = {
+		# Mod Pack; added upkeep from Vanilla, missed detail by A.C.o.T.
+		trigger = {
+			planet_owner = {
+				is_galactic_community_member = yes
+			}
+			is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
+			planet = {
+				has_modifier = pm_extradimensional_experimentation
+			}
+		}
+		sr_zro = $TIER$
 	}
 }

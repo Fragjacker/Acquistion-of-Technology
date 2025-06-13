@@ -1,13 +1,13 @@
-@num_jobs = @[ 200 * $TIER$ ]
 inline_script = {
 	script = shared/normal_buildings_base
-	ALLOW = $ALLOW$
+	ALLOW = "$ALLOW$"
 	CAN_BUILD = $CAN_BUILD$
 	PREREQUISITE = $PREREQUISITE$
 	UPGRADES_INTO = $UPGRADES_INTO$
-	AI_FACTORS = $AI_FACTORS$
+	AI_FACTORS = "$AI_FACTORS$"
 	TIER = $TIER$
 }
+@num_jobs = @[ 200 * $TIER$ ]
 category = resource
 building_sets = {
 	farming
@@ -17,6 +17,7 @@ triggered_planet_modifier = {
 		exists = planet_owner
 		planet_owner = {
 			is_regular_empire = yes
+			has_technology = $PREREQUISITE$
 		}
 	}
 	modifier = {
