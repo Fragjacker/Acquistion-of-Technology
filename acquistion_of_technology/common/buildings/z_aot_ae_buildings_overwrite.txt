@@ -2,11 +2,12 @@
 # Government Building
 #####################
 @ALPHA_TIER = 2
+@EXPONENT = 1
 building_acot_ae_ancient_palace = {
 	inline_script = {
 		script = buildings/capital_buildings_boilerplate
-		BUILD_TIME = 900
 		TIER = @ALPHA_TIER
+		EXPONENT = @EXPONENT
 		OVERLORD_JOB = acot_overlord
 		OVERSEER_JOB = acot_overseer
 		ENFORCER_JOB = acot_enforcer
@@ -59,8 +60,8 @@ building_acot_ae_ancient_palace = {
 building_acot_ae_ancient_control_center = {
 	inline_script = {
 		script = buildings/capital_buildings_boilerplate
-		BUILD_TIME = 900
 		TIER = @ALPHA_TIER
+		EXPONENT = @EXPONENT
 		OVERLORD_JOB = acot_overlord_droid
 		OVERSEER_JOB = acot_overseer_droid
 		ENFORCER_JOB = acot_enforcer_drone
@@ -109,26 +110,14 @@ building_acot_ae_ancient_control_center = {
 	show_tech_unlock_if = {
 		is_machine_empire = yes
 	}
-	planet_modifier = {
-		planet_housing_add = 12000
-		planet_amenities_add = 24000
-		planet_max_districts_add = 6
-		job_acot_overlord_droid_add = 100
-		job_acot_overseer_droid_add = 800
-		job_acot_enforcer_drone_add = 400
-		planet_orbital_bombardment_damage = -0.20
-		pop_environment_tolerance = 0.30
-		planet_defense_armies_add = 20
-		planet_traders_trade_produces_add = 0.5
-	}
 }
 
 # Hive Nexus
 building_acot_ae_ancient_hive_cluster = {
 	inline_script = {
 		script = buildings/capital_buildings_boilerplate
-		BUILD_TIME = 900
 		TIER = @ALPHA_TIER
+		EXPONENT = @EXPONENT
 		OVERLORD_JOB = acot_overlord_drone
 		OVERSEER_JOB = acot_overseer_drone
 		ENFORCER_JOB = acot_enforcer_drone
@@ -1691,6 +1680,7 @@ building_acot_ae_enigmatic_lab = {
 	inline_script = {
 		script = buildings/civilian/enigmatic_lab
 		TIER = @ALPHA_TIER
+		EXPONENT = @EXPONENT
 		PREREQUISITE = tech_acot_ae_enigmatic_lab
 		UPGRADES_INTO = building_phanon_enigmatic_lab
 		ALLOW = "has_ascended_capital = yes"
@@ -1766,6 +1756,7 @@ building_acot_ae_dark_matter_synthersizer = {
 	inline_script = {
 		script = buildings/production/synthersizer
 		TIER = @ALPHA_TIER
+		EXPONENT = @EXPONENT
 		ALLOW = "has_ascended_capital = yes"
 		CAN_BUILD = no
 		PREREQUISITE = tech_acot_ae_dark_matter_synthersizer
@@ -1791,10 +1782,11 @@ building_acot_ae_dark_energy_pylon = {
 	inline_script = {
 		script = buildings/production/dark_energy_pylon
 		TIER = @ALPHA_TIER
+		EXPONENT = @EXPONENT
 		ALLOW = "has_ascended_capital = yes"
 		CAN_BUILD = no
 		PREREQUISITE = tech_acot_ae_dark_energy_pylon
-		UPGRADES_INTO = ""
+		UPGRADES_INTO = "always = yes"
 		COST = "
 			alloys = 400
 			"
@@ -1824,15 +1816,16 @@ building_acot_ae_dark_matter_generator = {
 	inline_script = {
 		script = buildings/production/dark_matter_generator
 		TIER = @ALPHA_TIER
+		EXPONENT = @EXPONENT
 		ALLOW = "has_ascended_capital = yes"
 		CAN_BUILD = no
 		PREREQUISITE = tech_acot_ae_dark_matter_generator
-		UPGRADES_INTO = ""
+		UPGRADES_INTO = "always = yes"
 		COST = "
 			alloys = 400
 			"
 		AI_FACTORS = "
-		modifier = {
+			modifier = {
 					factor = 100000
 					planet_owner = {
 						has_monthly_income = {
@@ -1858,92 +1851,51 @@ building_acot_ae_dark_matter_generator = {
 #                                   New custom building additions                                  #
 # ------------------------------------------------------------------------------------------------ #
 building_ae_commercial_megaplex = {
-	base_buildtime = 900
-	can_build = no
-	category = trade
-	allow = {
-		has_ascended_capital = yes
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_individualistic_empire = yes
-			has_technology = tech_ae_commercial_megaplex
-		}
-		NOT = {
-			has_modifier = slave_colony
-		}
-	}
-	upgrades = {
-		building_phanon_commercial_megaplex
-	}
-	destroy_trigger = {
-		exists = planet_owner
-		OR = {
-			planet_owner = {
-				is_regular_empire = no
-			}
-			has_modifier = slave_colony
-		}
-	}
-	planet_modifier = {
-		job_merchant_add = 200
-		job_ae_clerk_add = 2000
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/civilian/commercial_megaplex
+		TIER = @ALPHA_TIER
+		EXPONENT = @EXPONENT
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		PREREQUISITE = tech_ae_commercial_megaplex
+		UPGRADES_INTO = "building_phanon_commercial_megaplex"
+		JOB = ae_clerk
+		COST = "
 			minerals = 1500
 			sr_dark_matter = 500
 			acot_sr_dark_energy = 500
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			energy = 20
 			sr_dark_matter = 4
 			acot_sr_dark_energy = 4
-		}
-	}
-	prerequisites = {
-		tech_ae_commercial_megaplex
-	}
-	triggered_desc = {
-		text = job_ae_clerk_effect_desc
-	}
-	triggered_desc = {
-		text = job_merchant_effect_desc
-	}
-	ai_weight = {
-		weight = 0
-		modifier = {
-			weight = 1
-			planet_owner = {
-				resource_income_compare = {
-					resource = sr_dark_matter
-					value >= 3
-				}
-				resource_income_compare = {
-					resource = acot_sr_dark_energy
-					value >= 3
-				}
-				resource_income_compare = {
-					resource = energy
-					value >= 15
+			"
+		AI_FACTORS = "
+			modifier = {
+				weight = 1
+				planet_owner = {
+					resource_income_compare = {
+						resource = sr_dark_matter
+						value >= 3
+					}
+					resource_income_compare = {
+						resource = acot_sr_dark_energy
+						value >= 3
+					}
+					resource_income_compare = {
+						resource = energy
+						value >= 15
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 10
-			exists = planet_owner
-			planet_owner = {
-				is_megacorp = yes
+			modifier = {
+				factor = 10
+				exists = planet_owner
+				planet_owner = {
+					is_megacorp = yes
+				}
 			}
-		}
-	}
-	ai_resource_production = {
-		energy = 1
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 building_ae_bureaucratic = {

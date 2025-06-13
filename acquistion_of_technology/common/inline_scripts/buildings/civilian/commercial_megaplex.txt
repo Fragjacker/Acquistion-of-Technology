@@ -1,0 +1,50 @@
+inline_script = {
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
+}
+@num_merchant_jobs = @[ 100 * two_exp$EXPONENT$ ]
+@num_clerk_jobs = @[ num_merchant_jobs * 10 ]
+category = trade
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		is_individualistic_empire = yes
+		has_technology = $PREREQUISITE$
+	}
+	NOT = {
+		has_modifier = slave_colony
+	}
+}
+destroy_trigger = {
+	exists = planet_owner
+	OR = {
+		planet_owner = {
+			is_regular_empire = no
+		}
+		has_modifier = slave_colony
+	}
+}
+planet_modifier = {
+	job_merchant_add = @num_merchant_jobs
+	job_$JOB$_add = @num_clerk_jobs
+}
+resources = {
+	category = planet_buildings
+	cost = {
+		$COST$
+	}
+	upkeep = {
+		$UPKEEP$
+	}
+}
+triggered_desc = {
+	text = job_ae_clerk_effect_desc
+}
+triggered_desc = {
+	text = job_merchant_effect_desc
+}

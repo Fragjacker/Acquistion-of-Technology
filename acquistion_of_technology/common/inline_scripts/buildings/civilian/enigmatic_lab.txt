@@ -7,8 +7,9 @@ inline_script = {
 	AI_FACTORS = "$AI_FACTORS$"
 	TIER = $TIER$
 }
-@num_dimensional_researcher = @[ 100 * $TIER$ ]
-@num_jobs = @[ num_dimensional_researcher * 2 ]
+@base_jobs = 200
+@base_dimensional_jobs = 100
+exempt_from_ai_planet_specialization = no
 category = research
 building_sets = {
 	research
@@ -18,30 +19,20 @@ potential = {
 	planet_owner = {
 		has_technology = $PREREQUISITE$
 	}
-	NOR = {
-		has_modifier = resort_colony
-		has_modifier = slave_colony
-		has_modifier = penal_colony
-	}
 	is_special_colony_type = no
 }
 destroy_trigger = {
-	OR = {
-		has_modifier = resort_colony
-		has_modifier = slave_colony
-		has_modifier = penal_colony
-	}
 	is_special_colony_type = yes
 }
 triggered_planet_modifier = {
 	potential = {
 		exists = planet_owner
 		planet_owner = {
-			is_regular_empire = yes
+			is_individualistic_empire = yes
 		}
 	}
 	modifier = {
-		job_$JOB$_add = @num_jobs
+		job_$JOB$_add = @[ base_jobs * two_exp$EXPONENT$ ]
 	}
 }
 triggered_planet_modifier = {
@@ -52,7 +43,7 @@ triggered_planet_modifier = {
 		}
 	}
 	modifier = {
-		job_$JOB_HIVE$_add = @num_jobs
+		job_$JOB_HIVE$_add = @[ base_jobs * two_exp$EXPONENT$ ]
 	}
 }
 triggered_planet_modifier = {
@@ -67,7 +58,7 @@ triggered_planet_modifier = {
 		has_modifier = pm_extradimensional_experimentation
 	}
 	modifier = {
-		job_dimensional_portal_researcher_add = @num_dimensional_researcher
+		job_dimensional_portal_researcher_add = @[ base_dimensional_jobs * two_exp$EXPONENT$ ]
 	}
 }
 triggered_planet_modifier = {
@@ -82,7 +73,7 @@ triggered_planet_modifier = {
 		has_modifier = pm_extradimensional_experimentation
 	}
 	modifier = {
-		job_dimensional_portal_researcher_gestalt_add = @num_dimensional_researcher
+		job_dimensional_portal_researcher_gestalt_add = @[ base_dimensional_jobs * two_exp$EXPONENT$ ]
 	}
 }
 resources = {
