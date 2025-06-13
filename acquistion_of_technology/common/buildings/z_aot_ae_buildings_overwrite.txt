@@ -558,18 +558,37 @@ building_acot_ae_psg = {
 		script = buildings/military/planetary_shield_generator
 		TIER = @ALPHA_TIER
 		PREREQUISITE = tech_acot_ae_psg
-		ALLOW = "has_ascended_capital = yes"
+		ALLOW = "
+			has_enigmatic_capital = yes
+			NOT = {
+				has_building = building_planetary_shield_generator
+			}
+			acot_has_shield_building = no
+			if = {
+				limit = { exists = orbital_defence }
+				orbital_defence = {
+					exists = starbase
+					starbase = {
+						NOR = {
+							has_starbase_building = ring_orbital_shield_generator
+							is_starbase_building_building = ring_orbital_shield_generator
+						}
+					}
+				}
+			}
+			"
 		CAN_BUILD = no
 		UPGRADES_INTO = building_phanon_psg
 		REDUCTION_FACTOR = -0.95
 		AI_FACTORS = "
 			modifier = {
-				factor = 3000
-				free_amenities < 0
-			}
-			modifier = {
-				factor = 5000
-				free_housing < 1
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = acot_sr_dark_energy
+						value <= 3
+					}
+				}
 			}
 			"
 	}

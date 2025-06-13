@@ -2,41 +2,15 @@ planet_modifier = {
 	planet_orbital_bombardment_damage = $REDUCTION_FACTOR$
 }
 triggered_planet_modifier = {
-	potential = { has_cosmic_storms_dlc = yes }
-	planet_storm_devastation_mult = $REDUCTION_FACTOR$
-}
-triggered_planet_modifier = {
 	potential = {
 		has_cosmic_storms_dlc = yes
-		exists = owner
-		owner = {
-			has_origin = origin_storm_chasers
-		}
 	}
-	planet_jobs_unity_produces_mult = @storm_chasers_storm_building_unity_produces_mult
+	planet_storm_devastation_mult = $REDUCTION_FACTOR$
 }
-on_built = {
-	if = {
-		limit = {
-			has_cosmic_storms_dlc = yes
-		}
-		solar_system = {
-			set_star_flag = storm_no_negative_effects
-			remove_modifier = storm_base_modifier
-		}
-	}
+inline_script = {
+	script = cosmic_storms/StormBuildingModifiers
 }
-on_destroy = {
-	if = {
-		limit = {
-			has_cosmic_storms_dlc = yes
-		}
-		owner = {
-			set_country_flag = shield_on_destroy
-		}
-		#an action when destroyed
-		solar_system = {
-			remove_star_flag = storm_no_negative_effects
-		}
-	}
+inline_script = {
+	# on_built & on_destroy behaviors
+	script = cosmic_storms/PlanetaryShieldOnBuiltDestroy
 }

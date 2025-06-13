@@ -483,61 +483,40 @@ building_acot_dm_hive_evochamber = {
 # Military
 #####################
 building_acot_dm_stronghold = {
-	can_build = yes
-	base_buildtime = 400
-	planetary_ftl_inhibitor = yes
-	category = army
-	position_priority = 100
-	allow = {
-		has_enigmatic_capital = yes
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_acot_dm_stronghold
-		}
-	}
-	planet_modifier = {
-		planet_housing_add = 5
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = no
+	inline_script = {
+		script = buildings/military/stronghold
+		TIER = @DELTA_TIER
+		PREREQUISITE = tech_acot_dm_stronghold
+		ALLOW = "has_enigmatic_capital = yes"
+		CAN_BUILD = yes
+		UPGRADES_INTO = building_acot_ae_stronghold
+		JOB = aot_dm_soldier
+		AI_FACTORS = "
+			modifier = {
+				weight = 100000
+				num_pops >= 4000
+				NOR = {
+					OR = {
+						num_buildings = {
+							type = building_acot_dm_stronghold
+							value <= 1
+						}
+						num_buildings = {
+							type = building_acot_ae_stronghold
+							value <= 1
+						}
+					}
+				}
+				planet_owner = {
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 3
+					}
+				}
 			}
-		}
-		modifier = {
-			job_aot_dm_soldier_add = 2
-		}
+			"
 	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_aot_dm_soldier_drone_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_protector_add = 3
-		}
-	}
-	prerequisites = {
-		tech_acot_dm_stronghold
-	}
+	custom_tooltip = building_acot_dm_stronghold_tooltip
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -557,56 +536,56 @@ building_acot_dm_stronghold = {
 			acot_sr_dark_energy = 2
 		}
 	}
-	upgrades = {
-		building_acot_ae_stronghold
-	}
-	ai_weight = {
-		weight = 0
-		modifier = {
-			weight = 100000
-			num_sapient_pops >= 40
-			NOR = {
-				OR = {
-					num_buildings = {
-						type = building_acot_dm_stronghold
-						value <= 1
-					}
-					num_buildings = {
-						type = building_acot_ae_stronghold
-						value <= 1
-					}
-				}
-			}
-			planet_owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
-				}
-			}
-		}
-	}
 }
 building_giga_fortress_dm = {
-	base_buildtime = 1200
-	add_to_first_building_slot = yes
-	can_be_ruined = no
-	can_be_disabled = no
-	can_demolish = no
-	base_cap_amount = 1
-	planetary_ftl_inhibitor = yes
-	category = army
-	position_priority = 100
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_giga_fortress_dm
-		}
-	}
-	allow = {
-		has_enigmatic_capital = yes
-	}
-	upgrades = {
-		building_acot_giga_fortress
+	inline_script = {
+		script = buildings/military/giga_fortress
+		TIER = @DELTA_TIER
+		PREREQUISITE = tech_giga_fortress_dm
+		ALLOW = "has_enigmatic_capital = yes"
+		CAN_BUILD = yes
+		UPGRADES_INTO = building_acot_giga_fortress
+		JOBS_REGULAR = "
+			job_aot_dm_giga_fortress_operator_add = 100
+			"
+		JOBS_HIVE = "
+			job_aot_dm_giga_fortress_operator_drone_add = 100
+			"
+		JOBS_MACHINE = "
+			job_aot_dm_giga_fortress_operator_drone_add = 100
+			"
+		JOBS_FE = "
+			job_acot_giga_fortress_operator_ancient_add = 200
+			"
+		COST = "
+			minerals = 20000
+			influence = 100
+			sr_dark_matter = 300
+			acot_sr_dark_energy = 300
+			"
+		UPKEEP = "
+			energy = 5
+			volatile_motes = 1
+			exotic_gases = 1
+			rare_crystals = 1
+			sr_dark_matter = 1
+			acot_sr_dark_energy = 1
+			"
+		PRODUCES = "
+			unity = 25
+			food = 25
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 3
+					}
+				}
+			}
+			"
 	}
 	planet_modifier = {
 		planet_amenities_add = 5        # Mod Pack; reduced from 10
@@ -618,83 +597,46 @@ building_giga_fortress_dm = {
 		army_defense_health_mult = 0.25
 		army_defense_damage_mult = 0.5
 	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			unity = 25
-			food = 25
-		}
-		cost = {
-			minerals = 20000
-			influence = 100
-			sr_dark_matter = 300
-			acot_sr_dark_energy = 300
-		}
-		upkeep = {
-			# Mod Pack; added upkeep
-			energy = 5
-			volatile_motes = 1
-			exotic_gases = 1
-			rare_crystals = 1
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = yes
-			}
-		}
-		job_acot_giga_fortress_operator_ancient_add = 2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-			}
-		}
-		job_aot_dm_giga_fortress_operator_add = 2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		job_aot_dm_giga_fortress_operator_drone_add = 2
-	}
-	prerequisites = {
-		tech_giga_fortress_dm
-	}
-	ai_weight = {
-		weight = 15000
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
-				}
-			}
-		}
-	}
 }
 building_acot_dm_psg = {
-	base_buildtime = 600
-	base_cap_amount = 1
-	position_priority = 100
-	category = army
-	allow = {
-		has_enigmatic_capital = yes
-		aot_has_planetary_shield_building = no
-	}
+	planet_limit = 1
 	inline_script = {
-		script = buildings/psg_shield_gen
+		script = buildings/military/planetary_shield_generator
+		TIER = @DELTA_TIER
+		PREREQUISITE = tech_acot_ae_psg
+		UPGRADES_INTO = building_acot_ae_psg
+		ALLOW = "
+			has_enigmatic_capital = yes
+			NOT = {
+				has_building = building_planetary_shield_generator
+			}
+			acot_has_shield_building = no
+			if = {
+				limit = { exists = orbital_defence }
+				orbital_defence = {
+					exists = starbase
+					starbase = {
+						NOR = {
+							has_starbase_building = ring_orbital_shield_generator
+							is_starbase_building_building = ring_orbital_shield_generator
+						}
+					}
+				}
+			}
+			"
+		CAN_BUILD = yes
 		REDUCTION_FACTOR = -0.7
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = acot_sr_dark_energy
+						value <= 3
+					}
+				}
+			}
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -712,24 +654,6 @@ building_acot_dm_psg = {
 			}
 			acot_sr_dark_energy = 1
 		}
-	}
-	prerequisites = {
-		tech_acot_dm_psg
-	}
-	ai_weight = {
-		weight = 15000
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = acot_sr_dark_energy
-					value <= 3
-				}
-			}
-		}
-	}
-	upgrades = {
-		building_acot_ae_psg
 	}
 }
 

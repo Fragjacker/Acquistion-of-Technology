@@ -11,6 +11,7 @@ inline_script = {
 	script = buildings/psg_shield_gen
 	REDUCTION_FACTOR = $REDUCTION_FACTOR$
 }
+can_be_ruined = no
 position_priority = 100
 category = army
 building_sets = {
@@ -21,5 +22,18 @@ potential = {
 	exists = planet_owner
 	planet_owner = {
 		has_technology = $PREREQUISITE$
+	}
+}
+custom_storm_ai_weight = {
+	weight = 5
+	modifier = {
+		factor = 5
+		AND = {
+			exists = owner
+			solar_system = {
+				exists = owner
+				owner = { num_cosmic_storms_encountered >= 2 }
+			}
+		}
 	}
 }
