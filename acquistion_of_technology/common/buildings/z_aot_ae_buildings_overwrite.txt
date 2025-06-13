@@ -1919,7 +1919,7 @@ building_ae_bureaucratic = {
 			acot_sr_dark_energy = 4
 			"
 		AI_FACTORS = "
-				modifier = {
+			modifier = {
 				factor = 0
 				buildings_has_crystals = no
 			}
@@ -1957,90 +1957,51 @@ building_ae_bureaucratic = {
 	}
 }
 building_ae_embassy = {
-	base_buildtime = 1000
-	can_build = no
-	category = government
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_individualistic_empire = yes
-			has_technology = tech_ae_embassy
-		}
-		planet = {
-			is_capital = yes
-		}
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-		}
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_embassy
-	}
-	destroy_trigger = {
-		OR = {
-			AND = {
-				exists = planet_owner
-				planet_owner = {
-					is_regular_empire = no
-				}
-			}
-			planet = {
-				is_capital = no
-			}
-		}
-	}
-	country_modifier = {
-		envoys_add = 4
-		diplo_weight_mult = 0.1
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/civilian/embassy
+		TIER = @ALPHA_TIER
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		PREREQUISITE = tech_ae_embassy
+		UPGRADES_INTO = building_phanon_embassy
+		COST = "
 			influence = 100
 			energy = 1500
 			minerals = 1500
 			sr_dark_matter = 500
 			acot_sr_dark_energy = 500
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			energy = 50
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
-		}
-	}
-	prerequisites = {
-		tech_ae_embassy
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			buildings_has_crystals = no
-		}
-		modifier = {
-			factor = 5
-			exists = planet_owner
-			planet_owner = {
-				is_galactic_community_member = yes
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				buildings_has_crystals = no
 			}
-		}
-		modifier = {
-			factor = 5
-			exists = planet_owner
-			planet_owner = {
-				has_federation = yes
+			modifier = {
+				factor = 5
+				exists = planet_owner
+				planet_owner = {
+					is_galactic_community_member = yes
+				}
 			}
-		}
-		modifier = {
-			factor = 3
-			exists = planet_owner
-			planet_owner = {
-				is_part_of_galactic_council = yes
+			modifier = {
+				factor = 5
+				exists = planet_owner
+				planet_owner = {
+					has_federation = yes
+				}
 			}
-		}
+			modifier = {
+				factor = 3
+				exists = planet_owner
+				planet_owner = {
+					is_part_of_galactic_council = yes
+				}
+			}
+			"
 	}
 }
