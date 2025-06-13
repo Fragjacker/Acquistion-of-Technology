@@ -1858,7 +1858,7 @@ building_ae_commercial_megaplex = {
 		ALLOW = "has_ascended_capital = yes"
 		CAN_BUILD = no
 		PREREQUISITE = tech_ae_commercial_megaplex
-		UPGRADES_INTO = "building_phanon_commercial_megaplex"
+		UPGRADES_INTO = building_phanon_commercial_megaplex
 		JOB = ae_clerk
 		COST = "
 			minerals = 1500
@@ -1899,99 +1899,61 @@ building_ae_commercial_megaplex = {
 	}
 }
 building_ae_bureaucratic = {
-	base_buildtime = 900
-	can_build = no
-	category = unity
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_individualistic_empire = yes
-			has_technology = tech_ae_bureau
-		}
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	upgrades = {
-		building_phanon_bureaucratic
-	}
-	destroy_trigger = {
-		exists = planet_owner
-		OR = {
-			planet_owner = {
-				is_regular_empire = no
-			}
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/civilian/bureaucratic
+		TIER = @ALPHA_TIER
+		EXPONENT = @EXPONENT
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		PREREQUISITE = tech_ae_bureau
+		UPGRADES_INTO = building_phanon_bureaucratic
+		JOB = ae_bureaucrat
+		COST = "
 			minerals = 1500
 			sr_dark_matter = 500
 			acot_sr_dark_energy = 500
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			energy = 20
 			sr_dark_matter = 4
 			acot_sr_dark_energy = 4
-		}
-	}
-	planet_modifier = {
-		job_ae_bureaucrat_add = 800
-	}
-	country_modifier = {
-		empire_size_mult = -0.02
-	}
-	prerequisites = {
-		tech_ae_bureau
-	}
-	triggered_desc = {
-		text = job_ae_bureaucrat_effect_desc
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			buildings_has_crystals = no
-		}
-		modifier = {
-			factor = 2
-			planet_owner = {
-				empire_sprawl_over_cap > 0
+			"
+		AI_FACTORS = "
+				modifier = {
+				factor = 0
+				buildings_has_crystals = no
 			}
-		}
-		modifier = {
-			factor = 2
-			planet_owner = {
-				empire_sprawl_over_cap > 10
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 0
+				}
 			}
-		}
-		modifier = {
-			factor = 2
-			planet_owner = {
-				empire_sprawl_over_cap > 20
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 10
+				}
 			}
-		}
-		modifier = {
-			factor = 2
-			planet_owner = {
-				empire_sprawl_over_cap > 40
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 20
+				}
 			}
-		}
-		modifier = {
-			factor = 2
-			planet_owner = {
-				has_valid_civic = civic_byzantine_bureaucracy
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 40
+				}
 			}
-		}
-	}
-	on_queued = {
-		planet = {
-			set_timed_planet_flag = {
-				flag = recent_admin_building_built
-				years = 2
+			modifier = {
+				factor = 2
+				planet_owner = {
+					has_valid_civic = civic_byzantine_bureaucracy
+				}
 			}
-		}
+			"
 	}
 }
 building_ae_embassy = {
