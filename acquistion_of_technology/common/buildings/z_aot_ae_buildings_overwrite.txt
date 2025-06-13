@@ -1788,89 +1788,36 @@ building_acot_ae_dark_matter_synthersizer = {
 	}
 }
 building_acot_ae_dark_energy_pylon = {
-	base_buildtime = @acot_building_basic_build_time
-	can_demolish = yes
-	can_build = no
-	category = manufacturing
-	building_sets = {
-		industrial
-		factory
-		foundry
-	}
-	potential = {
-	}
-	allow = {
-		has_ascended_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-			}
-		}
-		modifier = {
-			job_acot_dark_energy_man_add = 400
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_acot_dark_energy_drone_add = 400
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/dark_energy_pylon
+		TIER = @ALPHA_TIER
+		ALLOW = "has_ascended_capital = yes"
+		CAN_BUILD = no
+		PREREQUISITE = tech_acot_ae_dark_energy_pylon
+		UPGRADES_INTO = ""
+		COST = "
 			alloys = 400
-		}
-		produces = {
-			trigger = {
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 10000
 				planet_owner = {
-					is_ai = yes
-				}
-			}
-			acot_sr_dark_energy = 8
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
+					has_monthly_income = {
+						resource = acot_sr_dark_energy
+						value < 3
 					}
 				}
 			}
-			energy = 8
-		}
-	}
-	prerequisites = {
-		tech_acot_ae_dark_energy_pylon
-	}
-	ai_weight = {
-		weight = 15
-		modifier = {
-			factor = 10000
-			planet_owner = {
-				has_monthly_income = {
-					resource = acot_sr_dark_energy
-					value < 3
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = energy
+						value <= 10
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = energy
-					value <= 10
-				}
-			}
-		}
+			"
 	}
 }
 building_acot_ae_dark_matter_generator = {
