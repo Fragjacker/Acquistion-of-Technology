@@ -1,0 +1,41 @@
+inline_script = {
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
+}
+category = manufacturing
+building_sets = {
+	industrial
+	factory
+	foundry
+}
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		has_technology = $PREREQUISITE$
+	}
+	NOR = {
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+	}
+}
+destroy_trigger = {
+	OR = {
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+	}
+}
+inline_script = {
+	script = buildings/production/parts/power_conduit/storage_mult
+	EXPONENT = $EXPONENT$
+	STORAGE_INCREASE = "$STORAGE_INCREASE$"
+}
+inline_script = {
+	script = buildings/production/parts/power_conduit/planet_mult
+	EXPONENT = @[ $EXPONENT$ - 2 ] # We traverse back two levels. Still needs to be greater then zero.
+	PLANET_MODIFIER = "$PLANET_MODIFIER$"
+}
