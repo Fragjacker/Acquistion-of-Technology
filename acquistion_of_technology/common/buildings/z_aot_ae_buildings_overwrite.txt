@@ -940,10 +940,23 @@ building_acot_ae_hospital = {
 	inline_script = {
 		script = buildings/civilian/hospital
 		TIER = @ALPHA_TIER
-		PREREQUISITE = tech_fe_nourishment_center
+		PREREQUISITE = tech_acot_ae_hospital
 		ALLOW = "has_ascended_capital = yes"
 		CAN_BUILD = no
 		UPGRADES_INTO = building_phanon_hospital
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				free_amenities < 2
+			}
+			# There are already unworked jobs
+			# Blocks buildings unworkable by remaining pops (slaves/robots etc)
+			# Will be improved... at some point
+			modifier = {
+				factor = 0
+				free_jobs > 0
+			}
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -973,6 +986,11 @@ building_acot_ae_hive_pool = {
 		ALLOW = "has_ascended_capital = yes"
 		CAN_BUILD = no
 		UPGRADES_INTO = building_phanon_hive_pool
+		JOB_HIVE = acot_broodmother
+		COST = "
+			acot_sr_dark_energy = 300
+			sr_dark_matter = 300
+			"
 		AI_FACTORS = "
 			modifier = {
 				factor = 5
@@ -983,53 +1001,6 @@ building_acot_ae_hive_pool = {
 				has_building = building_acot_ae_hive_pool
 			}
 			"
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			trigger = {
-				planet_owner = {
-					is_wilderness_empire = no
-				}
-			}
-			alloys = 500
-		}
-		cost = {
-			trigger = {
-				planet_owner = {
-					is_wilderness_empire = yes
-				}
-			}
-			alloys = 200
-			food = 100
-			biomass = 200
-		}
-		cost = {
-			acot_sr_dark_energy = 300
-			sr_dark_matter = 300
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					is_wilderness_empire = no
-					NOT = { has_technology = tech_acot_fractured_autoharvesting }
-				}
-			}
-			energy = 2
-			sr_dark_matter = 4
-			acot_sr_dark_energy = 4
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					is_wilderness_empire = yes
-					NOT = { has_technology = tech_acot_fractured_autoharvesting }
-				}
-			}
-			food = 2
-			sr_dark_matter = 4
-			acot_sr_dark_energy = 4
-		}
 	}
 }
 building_acot_ae_super_assembly = {
@@ -1053,8 +1024,8 @@ building_acot_ae_super_assembly = {
 			"
 		CAN_BUILD = no
 		UPGRADES_INTO = building_phanon_super_assembly
-		JOB = "acot_roboman"
-		JOB_MACHINE = "acot_robodrone"
+		JOB = acot_roboman
+		JOB_MACHINE = acot_robodrone
 		AI_FACTORS = "
 			modifier = {
 				factor = 0
@@ -1137,8 +1108,8 @@ building_acot_ae_super_assembly_machine = {
 			"
 		CAN_BUILD = no
 		UPGRADES_INTO = building_phanon_super_assembly_machine
-		JOB = "acot_roboman"
-		JOB_MACHINE = "acot_robodrone"
+		JOB = acot_roboman
+		JOB_MACHINE = acot_robodrone
 		AI_FACTORS = "
 			modifier = {
 				factor = 0
@@ -1191,8 +1162,6 @@ building_acot_ae_clone_vats = {
 	inline_script = {
 		script = buildings/civilian/clone_vats_and_evochambers
 		TIER = @ALPHA_TIER
-		POP_GROWTH = 6
-		POP_ASSEMBLY_GENETIC_TRADITION = 800
 		UPGRADES_INTO = building_phanon_clone_vats
 		ALLOW = "has_ascended_capital = yes"
 		PREREQUISITE = tech_acot_ae_clone_vats
@@ -1373,8 +1342,6 @@ building_acot_ae_hive_evochamber = {
 	inline_script = {
 		script = buildings/civilian/clone_vats_and_evochambers
 		TIER = @ALPHA_TIER
-		POP_GROWTH = 2
-		POP_ASSEMBLY_GENETIC_TRADITION = 800
 		PREREQUISITE = tech_acot_ae_hive_evochamber
 		UPGRADES_INTO = building_phanon_hive_evochamber
 		ALLOW = "has_ascended_capital = yes"
@@ -1794,6 +1761,22 @@ building_acot_ae_dark_matter_synthersizer = {
 			country_resource_max_sr_dark_matter_add = @max_resource_add
 			"
 		AI_FACTORS = "
+			modifier = {
+				factor = 10000
+				planet_owner = {
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 50
+					}
+				}
+				factor = 10000
+				planet_owner = {
+					has_monthly_income = {
+						resource = acot_sr_dark_energy
+						value <= 50
+					}
+				}
+			}
 			"
 	}
 }

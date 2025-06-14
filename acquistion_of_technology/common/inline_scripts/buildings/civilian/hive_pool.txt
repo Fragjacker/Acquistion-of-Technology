@@ -37,7 +37,7 @@ triggered_planet_modifier = {
 			}
 		}
 	}
-	job_acot_broodmother_add = 200
+	job_$JOB_HIVE$_add = @[ 100 * two_exp$TIER$ ]
 }
 triggered_planet_modifier = {
 	potential = {
@@ -46,7 +46,7 @@ triggered_planet_modifier = {
 			has_origin = origin_progenitor_hive
 		}
 	}
-	job_acot_offspring_add = 200
+	job_acot_offspring_add = @[ 100 * two_exp$TIER$ ]
 }
 triggered_planet_modifier = {
 	potential = {
@@ -59,7 +59,7 @@ triggered_planet_modifier = {
 		}
 	}
 	modifier = {
-		auto_mod_monthly_add = 800
+		auto_mod_monthly_add = @[ 400 * two_exp$TIER$ ]
 	}
 }
 triggered_planet_modifier = {
@@ -73,7 +73,7 @@ triggered_planet_modifier = {
 		}
 	}
 	modifier = {
-		auto_mod_monthly_add = 800
+		auto_mod_monthly_add = @[ 400 * two_exp$TIER$ ]
 	}
 }
 triggered_planet_modifier = {
@@ -82,6 +82,52 @@ triggered_planet_modifier = {
 		planet_owner = { has_active_tradition = tr_cybernetics_synaptic_sub_processing }
 	}
 	modifier = {
-		job_augmentor_drone_add = 400
+		job_augmentor_drone_add = @[ 200 * two_exp$TIER$ ]
+	}
+}
+resources = {
+	category = planet_buildings
+	cost = {
+		trigger = {
+			planet_owner = {
+				is_wilderness_empire = no
+			}
+		}
+		alloys = @[ 250 * two_exp$TIER$ ]
+	}
+	cost = {
+		trigger = {
+			planet_owner = {
+				is_wilderness_empire = yes
+			}
+		}
+		alloys = @[ 100 * two_exp$TIER$ ]
+		food = @[ 50 * two_exp$TIER$ ]
+		biomass = @[ 100 * two_exp$TIER$ ]
+	}
+	cost = {
+		$COST$
+	}
+	upkeep = {
+		trigger = {
+			planet_owner = {
+				is_wilderness_empire = no
+				NOT = { has_technology = tech_acot_fractured_autoharvesting }
+			}
+		}
+		energy = @[ 1 * two_exp$TIER$ ]
+		sr_dark_matter = @[ 2 * two_exp$TIER$ ]
+		acot_sr_dark_energy = @[ 2 * two_exp$TIER$ ]
+	}
+	upkeep = {
+		trigger = {
+			planet_owner = {
+				is_wilderness_empire = yes
+				NOT = { has_technology = tech_acot_fractured_autoharvesting }
+			}
+		}
+		food = @[ 1 * two_exp$TIER$ ]
+		sr_dark_matter = @[ 2 * two_exp$TIER$ ]
+		acot_sr_dark_energy = @[ 2 * two_exp$TIER$ ]
 	}
 }
