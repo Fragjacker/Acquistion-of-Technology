@@ -845,7 +845,7 @@ building_phanon_super_assembly = {
 	inline_script = {
 		script = buildings/civilian/super_assembly
 		TIER = @PHANON_TIER
-		PREREQUISITE = tech_acot_ae_super_assembly
+		PREREQUISITE = tech_phanon_super_assembly
 		ALLOW = "
 			has_phanon_capital = yes
 			hidden_trigger = {
@@ -1184,6 +1184,7 @@ building_phanon_hive_evochamber = {
 	inline_script = {
 		script = buildings/civilian/clone_vats_and_evochambers
 		TIER = @PHANON_TIER
+		EXPONENT = @EXPONENT
 		PREREQUISITE = tech_phanon_hive_evochamber
 		UPGRADES_INTO = building_stellarite_hive_evochamber
 		ALLOW = "has_phanon_capital = yes"
@@ -1196,10 +1197,6 @@ building_phanon_hive_evochamber = {
 				}
 			}
 			"
-	}
-	planet_modifier = {
-		logistic_growth_mult = 0.40
-		bonus_pop_growth_mult = 2.0
 	}
 	resources = {
 		category = planet_buildings
@@ -1381,19 +1378,19 @@ building_phanon_giga_fortress_lab = {
 		CAN_BUILD = no
 		UPGRADES_INTO = building_stellarite_giga_fortress_lab
 		JOBS_REGULAR = "
-			job_acot_giga_fortress_operator_add = 200
-			job_phanon_soldier_drone_add = 200
-			job_acot_overseer_add = 300
+			job_phanon_fortress_operator_add = 200
+			job_phanon_soldier_add = 200
+			job_phanon_overseer_add = 300
 			"
 		JOBS_HIVE = "
-			job_acot_giga_fortress_operator_drone_add = 200
+			job_phanon_fortress_operator_drone_add = 200
 			job_phanon_soldier_drone_add = 200
-			job_acot_overseer_drone_add = 200
+			job_phanon_overseer_drone_add = 200
 			"
 		JOBS_MACHINE = "
-			job_acot_giga_fortress_operator_drone_add = 200
+			job_phanon_fortress_operator_drone_add = 200
 			job_phanon_soldier_drone_add = 200
-			job_acot_overseer_droid_add = 200
+			job_phanon_overseer_droid_add = 200
 			"
 		JOBS_FE = "
 			job_acot_giga_fortress_operator_ancient_add = 100
@@ -1708,7 +1705,6 @@ building_phanon_stellarite_nexus = {
 		UPGRADES_INTO = building_acot_stellarite_nexus
 		STORAGE_INCREASE = "
 			country_resource_max_aot_sr_runic_power_add = @max_conduit_storage
-			country_resource_max_acot_sr_stellarite_add = @max_conduit_storage
 			"
 		PLANET_MODIFIER = "
 			planet_jobs_aot_sr_runic_power_produces_mult = @planet_mult
@@ -1946,22 +1942,22 @@ building_phanon_commercial_megaplex = {
 			acot_sr_dark_energy = 2
 			"
 		AI_FACTORS = "
-		modifier = {
-			weight = 1
-			planet_owner = {
-				resource_income_compare = {
-					resource = aot_sr_runic_power
-					value >= 11
+			modifier = {
+				weight = 1
+				planet_owner = {
+					resource_income_compare = {
+						resource = aot_sr_runic_power
+						value >= 11
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 10
-			exists = planet_owner
-			planet_owner = {
-				is_megacorp = yes
+			modifier = {
+				factor = 10
+				exists = planet_owner
+				planet_owner = {
+					is_megacorp = yes
+				}
 			}
-		}
 			"
 	}
 }
