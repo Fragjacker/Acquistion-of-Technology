@@ -8,6 +8,12 @@ inline_script = {
 	TIER = $TIER$
 }
 category = trade
+building_sets = {
+	trade
+}
+planet_modifier = {
+	planet_traders_upkeep_mult = @[ - 0.01 * two_exp$EXPONENT$ ]
+}
 potential = {
 	exists = planet_owner
 	planet_owner = {
@@ -27,6 +33,9 @@ destroy_trigger = {
 		has_modifier = slave_colony
 	}
 }
+convert_to = {
+	building_maintenance_depot
+}
 planet_modifier = {
 	job_merchant_add = @[ 100 * two_exp$EXPONENT$ ]
 	job_$JOB$_add = @[ 1000 * two_exp$EXPONENT$ ]
@@ -45,4 +54,8 @@ triggered_desc = {
 }
 triggered_desc = {
 	text = job_merchant_effect_desc
+}
+inline_script = {
+	script = jobs/trader_add
+	AMOUNT = @[ 200 * two_exp$EXPONENT$ ]
 }
