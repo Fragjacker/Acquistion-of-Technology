@@ -1,0 +1,98 @@
+category = worker
+swappable_data = {
+	default = {
+		condition_string = WORKER_JOB_TRIGGER
+		building_icon = $ICON$
+	}
+}
+tags = {
+	amenities
+	trade
+}
+possible_pre_triggers = {
+	has_owner = yes
+	is_being_purged = no
+	is_being_assimilated = no
+	is_sapient = yes
+}
+possible_precalc = can_fill_worker_job
+resources = {
+	category = planet_clerks
+	produces = {
+		trade = @[ 10 * two_exp$EXPONENT$ ]
+	}
+	upkeep = {
+		consumer_goods = @[ 4 * two_exp$EXPONENT$ ]
+	}
+}
+planet_modifier = {
+	planet_amenities_add = @[ 200 * two_exp$EXPONENT$ ]
+	planet_jobs_trade_produces_mult = @[ 0.02 * two_exp$EXPONENT$ ]
+}
+overlord_resources = {
+	category = planet_corporate_franchising_meddling
+	produces = {
+		trigger = {
+			planet = {
+				has_planet_flag = has_franchise_headquarters
+			}
+		}
+		unity = 25
+	}
+}
+triggered_planet_modifier = {
+	potential = { always = yes }
+	planet_amenities_add = 300
+	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}
+weight = {
+	weight = @clerk_job_weight
+	mult = value:job_weights_modifier|JOB|clerk|RESOURCE|trade|
+	mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+	modifier = {
+		factor = 0.25
+		is_enslaved = yes
+		can_take_servant_job = no
+	}
+	modifier = {
+		factor = 2
+		OR = {
+			is_non_sapient_robot = yes
+			is_shackled_robot = yes
+		}
+		can_take_servant_job = no
+	}
+	modifier = {
+		factor = 10
+		OR = {
+			is_non_sapient_robot = yes
+			is_shackled_robot = yes
+		}
+		can_take_servant_job = no
+		can_fill_specialist_job_trigger = no
+	}
+	modifier = {
+		factor = 0.1
+		can_take_servant_job = yes
+	}
+	modifier = {
+		factor = 1.1
+		exists = owner
+		owner = { is_megacorp = yes }
+	}
+	modifier = {
+		factor = 0.5
+		exists = owner
+		owner = { is_fallen_empire = yes }
+	}
+}
+inline_script = "jobs/automodding_priority_trade"
+promotion = {
+	time = @standard_promotion_time
+	effect = {
+		pop_amount_change_category = {
+			CATEGORY = worker
+			AMOUNT = local_pop_amount
+		}
+	}
+}
