@@ -1,0 +1,74 @@
+category = $CATEGORY$
+tags = { soldier }
+country_modifier = {
+	country_naval_cap_add = @[ 10 * two_exp$EXPONENT$ ]
+}
+inline_script = "output/soldier_triggered_modifiers"
+possible_pre_triggers = {
+	has_owner = yes
+	is_being_purged = no
+	is_being_assimilated = no
+	is_sapient = yes
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet
+		planet = {
+			has_modifier = anticrime_campaign
+		}
+	}
+	modifier = {
+		planet_crime_add = @[ - 20 * two_exp$EXPONENT$ ]
+	}
+}
+promotion = {
+	time = @standard_promotion_time
+	effect = {
+		pop_amount_change_category = {
+			CATEGORY = $CATEGORY$
+			AMOUNT = local_pop_amount
+		}
+	}
+}
+weight = {
+	weight = 5
+	modifier = {
+		weight = 100
+		exists = owner
+		owner = { is_at_war = yes }
+	}
+	modifier = {
+		factor = 10
+		planet = {
+			exists = leader
+			leader = {
+				leader_class = commander
+			}
+		}
+	}
+	modifier = {
+		factor = 4
+		has_trait = trait_resilient
+	}
+	modifier = {
+		factor = 4
+		has_trait = trait_very_strong
+	}
+	modifier = {
+		factor = 3
+		has_trait = trait_strong
+	}
+	modifier = {
+		factor = 0.5
+		has_trait = trait_weak
+	}
+	modifier = {
+		factor = 2
+		has_trait = trait_lithoid
+	}
+	modifier = {
+		factor = 1.2
+		has_trait = trait_cybernetic
+	}
+	$AI_FACTORS$
+}
