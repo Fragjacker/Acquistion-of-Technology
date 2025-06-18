@@ -355,229 +355,47 @@ aot_dm_giga_fortress_operator_drone = {
 
 # ------------------------------------------ Civil jobs ------------------------------------------ #
 dm_bureaucrat = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_dm_bureaucratic
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-	}
-	possible_precalc = can_fill_specialist_job
-	resources = {
-		category = planet_administrators
-		produces = {
+	inline_script = {
+		script = pop_jobs/bureaucrat
+		EXPONENT = @EXPONENT_DELTA
+		PRODUCES = "
 			unity = 15
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_valid_civic = civic_byzantine_bureaucracy
-				}
-			}
-			unity = 10
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			sr_dark_matter = 2
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_dm_bureaucratic
+			icon = dm_bureaucrat
 		}
 	}
-	planet_modifier = {
-		planet_stability_add = 10
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_valid_civic = civic_byzantine_bureaucracy
-			}
-		}
-		modifier = {
-			planet_stability_add = 10
-		}
-	}
-	country_modifier = {
-	}
-	triggered_country_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				has_designation = col_bureau
-			}
-		}
-		modifier = {
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_robot_propaganda_machines
-			OR = {
-				is_non_sapient_robot = yes
-				is_shackled_robot = yes
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_quarrelsome
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = dm_bureaucrat
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_presapient_proles
-		}
-		modifier = {
-			factor = 1.1
-			has_trait = trait_latent_psionic
-		}
-		modifier = {
-			factor = 1.2
-			has_trait = trait_psionic
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_enigmatic_intelligence_failed
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #                                        AE Specialist Jobs                                        #
 # ------------------------------------------------------------------------------------------------ #
 ae_bureaucrat = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_ae_bureaucratic
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-	}
-	possible_precalc = can_fill_specialist_job
-	resources = {
-		category = planet_administrators
-		produces = {
+	inline_script = {
+		script = pop_jobs/bureaucrat
+		EXPONENT = @EXPONENT_ALPHA
+		PRODUCES = "
 			unity = 30
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_valid_civic = civic_byzantine_bureaucracy
-				}
-			}
-			unity = 15
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			sr_dark_matter = 3
 			acot_sr_dark_energy = 3
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_ae_bureaucratic
+			icon = ae_bureaucrat
 		}
 	}
-	planet_modifier = {
-		planet_stability_add = 15
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_valid_civic = civic_byzantine_bureaucracy
-			}
-		}
-		modifier = {
-			planet_stability_add = 12
-		}
-	}
-	country_modifier = {
-	}
-	triggered_country_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				has_designation = col_bureau
-			}
-		}
-		modifier = {
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_robot_propaganda_machines
-			OR = {
-				is_non_sapient_robot = yes
-				is_shackled_robot = yes
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_quarrelsome
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = ae_bureaucrat
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_presapient_proles
-		}
-		modifier = {
-			factor = 1.1
-			has_trait = trait_latent_psionic
-		}
-		modifier = {
-			factor = 1.2
-			has_trait = trait_psionic
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_enigmatic_intelligence_failed
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 ae_dark_energy_man = {
 	icon = acot_dark_energy_man
@@ -3821,119 +3639,23 @@ phanon_priest = {
 	inline_script = "jobs/automodding_priority_unity"
 }
 phanon_bureaucrat = {
-	icon = phanon_runicman
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_bureaucratic
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_administrators
-		produces = {
+	inline_script = {
+		script = pop_jobs/bureaucrat
+		EXPONENT = @EXPONENT_PHANON
+		PRODUCES = "
 			unity = 50
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_valid_civic = civic_byzantine_bureaucracy
-				}
-			}
-			unity = 15
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			aot_sr_runic_power = 8
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_bureaucratic
+			icon = phanon_bureaucrat
 		}
 	}
-	planet_modifier = {
-		planet_stability_add = 15
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_valid_civic = civic_byzantine_bureaucracy
-			}
-		}
-		modifier = {
-			planet_stability_add = 10
-		}
-	}
-	country_modifier = {
-	}
-	triggered_country_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				has_designation = col_bureau
-			}
-		}
-		modifier = {
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_robot_propaganda_machines
-			OR = {
-				is_non_sapient_robot = yes
-				is_shackled_robot = yes
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_quarrelsome
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_bureaucrat
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_presapient_proles
-		}
-		modifier = {
-			factor = 1.1
-			has_trait = trait_latent_psionic
-		}
-		modifier = {
-			factor = 1.2
-			has_trait = trait_psionic
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_enigmatic_intelligence_failed
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 
 # ------------------------------------------------------------------------------------------------ #
@@ -6362,119 +6084,23 @@ stellarite_priest = {
 	inline_script = "jobs/automodding_priority_unity"
 }
 stellarite_bureaucrat = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_bureaucratic
-	clothes_texture_index = 3
-	icon = stellarite_bureaucrat
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_administrators
-		produces = {
-			unity = 150
-		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_valid_civic = civic_byzantine_bureaucracy
-				}
-			}
-			unity = 45
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/bureaucrat
+		EXPONENT = @EXPONENT_SIGMA
+		PRODUCES = "
+			unity = 100
+			"
+		UPKEEP = "
 			acot_sr_stellarite = 12
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_bureaucratic
+			icon = stellarite_bureaucrat
 		}
 	}
-	planet_modifier = {
-		planet_stability_add = 30
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_valid_civic = civic_byzantine_bureaucracy
-			}
-		}
-		modifier = {
-			planet_stability_add = 30
-		}
-	}
-	country_modifier = {
-	}
-	triggered_country_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				has_designation = col_bureau
-			}
-		}
-		modifier = {
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_robot_propaganda_machines
-			OR = {
-				is_non_sapient_robot = yes
-				is_shackled_robot = yes
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_quarrelsome
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_bureaucrat
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_presapient_proles
-		}
-		modifier = {
-			factor = 1.1
-			has_trait = trait_latent_psionic
-		}
-		modifier = {
-			factor = 1.2
-			has_trait = trait_psionic
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_enigmatic_intelligence_failed
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 
 # ------------------------------------------------------------------------------------------------ #

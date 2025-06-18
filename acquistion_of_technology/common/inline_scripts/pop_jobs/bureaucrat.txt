@@ -1,0 +1,283 @@
+category = specialist
+possible_pre_triggers = {
+	has_owner = yes
+	is_being_purged = no
+	is_being_assimilated = no
+}
+tags = {
+	unity
+}
+possible_precalc = can_fill_specialist_job
+possible = {
+	complex_specialist_job_check_trigger = yes
+}
+planet_modifier = {
+	planet_stability_add = @[ 10 * two_exp$EXPONENT$ ]
+}
+resources = {
+	category = planet_bureaucrats
+	# PRODUCES
+	produces = {
+		$PRODUCES$
+	}
+	upkeep = {
+		$UPKEEP$
+	}
+	##Government Swaps
+	produces = {
+		trigger = {
+			bureaucrat_is_manager = yes
+		}
+		trade = @[ 2 * two_exp$EXPONENT$ ]
+	}
+	produces = {
+		trigger = {
+			bureaucrat_is_steward = yes
+		}
+		trade = @[ 1 * two_exp$EXPONENT$ ]
+	}
+	produces = {
+		trigger = {
+			bureaucrat_is_preacher = yes
+		}
+		unity = @[ - 1 * two_exp$EXPONENT$ ]
+		trade = @[ 2 * two_exp$EXPONENT$ ]
+	}
+	produces = {
+		trigger = {
+			bureaucrat_is_death_priest = yes
+		}
+		unity = @[ - 1 * two_exp$EXPONENT$ ]
+		society_research = @[ 1 * two_exp$EXPONENT$ ]
+	}
+	produces = {
+		trigger = {
+			bureaucrat_is_death_priest = yes
+			exists = owner
+			owner = { has_sacrificial_edict = yes }
+		}
+		unity = @[ 3 * two_exp$EXPONENT$ ]
+	}
+	produces = {
+		trigger = {
+			bureaucrat_is_haruspex = yes
+		}
+		unity = @[ - 1 * two_exp$EXPONENT$ ]
+		engineering_research = @[ 2 * two_exp$EXPONENT$ ]
+	}
+	##Broken Shackles
+	produces = {
+		trigger = {
+			exists = planet
+			planet = {
+				bureaucrat_is_low_tech = yes
+			}
+		}
+		unity = @[ - 2 * two_exp$EXPONENT$ ]
+	}
+	upkeep = {
+		trigger = {
+			exists = planet
+			planet = {
+				bureaucrat_is_low_tech = yes
+			}
+		}
+		consumer_goods = @[ - 1 * two_exp$EXPONENT$ ]
+	}
+	produces = {
+		trigger = {
+			exists = planet
+			planet = {
+				bureaucrat_is_low_tech_manager = yes
+			}
+		}
+		unity = @[ - 2 * two_exp$EXPONENT$ ]
+		trade = @[ 2 * two_exp$EXPONENT$ ]
+	}
+	upkeep = {
+		trigger = {
+			exists = planet
+			planet = {
+				bureaucrat_is_low_tech_manager = yes
+			}
+		}
+		consumer_goods = @[ - 1 * two_exp$EXPONENT$ ]
+	}
+	produces = {
+		trigger = {
+			exists = planet
+			planet = {
+				bureaucrat_is_low_tech_priest = yes
+			}
+		}
+		unity = @[ - 2 * two_exp$EXPONENT$ ]
+	}
+	upkeep = {
+		trigger = {
+			exists = planet
+			planet = {
+				bureaucrat_is_low_tech_priest = yes
+			}
+		}
+		consumer_goods = @[ - 1 * two_exp$EXPONENT$ ]
+	}
+	##Event Swaps
+	upkeep = {
+		trigger = {
+			bureaucrat_is_unifier = yes
+		}
+		consumer_goods = @[ - 1 * two_exp$EXPONENT$ ]
+	}
+	# Job Swap - Numistic Priests
+	produces = {
+		trigger = {
+			exists = planet
+			planet = {
+				bureaucrat_is_numistic_priest = yes
+			}
+		}
+		unity = @[ - 2 * two_exp$EXPONENT$ ]
+		trade = @[ 6 * two_exp$EXPONENT$ ]
+	}
+	inline_script = "jobs/ethic_job_resources_memorialist"
+}
+#----------------------------------------<  Planet modifier  >--------------------------------------
+triggered_planet_modifier = {
+	potential = {
+		exists = planet
+		planet = {
+			check_modifier_value = {
+				modifier = planet_bureaucrats_stability_produces_add
+				value > 0
+			}
+		}
+	}
+	planet_stability_add = @[ 1 * two_exp$EXPONENT$ ]
+	mult = planet.modifier:planet_bureaucrats_stability_produces_add
+}
+
+## Ethics Attraction
+triggered_planet_modifier = {
+	potential = {
+		bureaucrat_is_culture_worker = yes
+	}
+	pop_government_ethic_attraction = @[ 0.10 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		planet = {
+			has_active_building = building_league_offices
+		}
+	}
+	planet_amenities_add = @[ 100 * two_exp$EXPONENT$ ]
+	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}
+triggered_country_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_valid_civic = civic_efficient_bureaucracy }
+	}
+	country_edict_fund_add = @[ 2 * two_exp$EXPONENT$ ]
+	mult = value:job_total_output_modifier|JOB|bureaucrat|RESOURCE|unity|
+}
+triggered_planet_modifier = {
+	potential = {
+		planet = {
+			exists = owner
+			owner = {
+				has_tradition = tr_modularity_4
+			}
+		}
+	}
+	planet_jobs_worker_produces_mult = @[ 0.02 * two_exp$EXPONENT$ ]
+}
+#-------------------------------------------<  Memoralist  >----------------------------------------
+triggered_country_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_militarist = yes }
+		planet = {
+			bureaucrat_is_memorialist = yes
+		}
+	}
+	country_naval_cap_add = @[ 0.5 * two_exp$EXPONENT$ ]
+	mult = value:scripted_ethics_weight_mult|ETHIC|militarist|
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_pacifist = yes }
+		planet = {
+			bureaucrat_is_memorialist = yes
+		}
+	}
+	planet_amenities_add = @[ 100 * two_exp$EXPONENT$ ]
+	mult = value:scripted_modifier_ethics_weight_mult|MODIFIER|pop_job_amenities_mult|ETHIC|pacifist|
+}
+triggered_country_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_authoritarian = yes }
+		planet = {
+			bureaucrat_is_memorialist = yes
+		}
+	}
+	country_edict_fund_add = @[ 1 * two_exp$EXPONENT$ ]
+	mult = value:scripted_ethics_weight_mult|ETHIC|authoritarian|
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_xenophobe = yes }
+		planet = {
+			bureaucrat_is_memorialist = yes
+		}
+	}
+	pop_citizen_happiness = @[ 0.00625 * two_exp$EXPONENT$ ]
+	mult = value:scripted_ethics_weight_mult|ETHIC|xenophobe|
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_xenophile = yes }
+		planet = {
+			bureaucrat_is_memorialist = yes
+		}
+	}
+	planet_pops_upkeep_mult = @[ - 0.00625 * two_exp$EXPONENT$ ]
+	mult = value:scripted_ethics_weight_mult|ETHIC|xenophile|
+}
+weight = {
+	weight = @specialist_job_weight
+	mult = value:job_weights_modifier|JOB|bureaucrat|RESOURCE|unity|
+	mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+	modifier = {
+		factor = 0.2
+		has_citizenship_rights = no
+		NOT = { has_trait = trait_mechanical }
+	}
+	modifier = {
+		factor = 2
+		exists = owner
+		owner = { has_civic = civic_exalted_priesthood }
+	}
+	modifier = {
+		factor = 0.1
+		can_take_servant_job = yes
+	}
+	modifier = {
+		factor = 0.1
+		is_enslaved = yes
+		has_slavery_type = { type = slavery_indentured }
+	}
+}
+inline_script = "jobs/automodding_priority_unity"
+promotion = {
+	time = @standard_promotion_time
+	effect = {
+		pop_amount_change_category = {
+			CATEGORY = specialist
+			AMOUNT = local_pop_amount
+		}
+	}
+}
