@@ -738,434 +738,200 @@ ae_dark_matter_drone = {
 		}
 	}
 }
-ae_mineralman = {
-	icon = acot_dimesiona_traveler
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_acot_ae_mineral_processing_plant
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_miners
-		produces = {
-			minerals = 30
-		}
-		upkeep = {
+ae_energyman = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_ALPHA
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_technician
+		JOB = ae_energyman
+		RESOURCE = energy
+		AMOUNT = 40
+		UPKEEP = "
 			sr_dark_matter = 1
 			acot_sr_dark_energy = 1
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_acot_ae_power_hub
+			icon = acot_energyman
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = ae_mineralman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
+}
+ae_energydrone = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_ALPHA
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_technician
+		JOB = ae_energydrone
+		RESOURCE = energy
+		AMOUNT = 40
+		UPKEEP = "
+			sr_dark_matter = 1
+			acot_sr_dark_energy = 1
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_ae_power_hub
+			icon = acot_energydrone
 		}
 	}
-	inline_script = "jobs/automodding_priority_minerals"
+}
+ae_mineralman = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_ALPHA
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_miners
+		JOB = ae_mineralman
+		RESOURCE = minerals
+		AMOUNT = 30
+		UPKEEP = "
+			sr_dark_matter = 1
+			acot_sr_dark_energy = 1
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_acot_ae_mineral_processing_plant
+			icon = acot_dimesiona_traveler
+		}
+	}
 }
 ae_mineraldrone = {
-	icon = acot_dimesiona_traveler
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_acot_ae_mineral_processing_plant
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_miners
-		produces = {
-			minerals = 30
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_ALPHA
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_miners
+		JOB = ae_mineraldrone
+		RESOURCE = minerals
+		AMOUNT = 30
+		UPKEEP = "
 			sr_dark_matter = 1
 			acot_sr_dark_energy = 1
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_ae_mineral_processing_plant
+			icon = acot_dimesiona_traveler
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = ae_mineraldrone
-		}
-	}
-	inline_script = "jobs/automodding_priority_minerals"
 }
 ae_alloyman = {
-	icon = acot_alloyman
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_acot_ae_alloy_forge
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_metallurgists
-		produces = {
-			alloys = 30
-		}
-		upkeep = {
-			minerals = 10
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_ALPHA
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_metallurgists
+		JOB = ae_alloyman
+		RESOURCE = alloys
+		AMOUNT = 30
+		UPKEEP = "
 			sr_dark_matter = 1
 			acot_sr_dark_energy = 1
-		}
+			"
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = ae_alloyman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_acot_ae_alloy_forge
+			icon = acot_alloyman
 		}
 	}
 }
 ae_alloydrone = {
-	icon = acot_alloydrone
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_acot_ae_alloy_forge
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_metallurgists
-		produces = {
-			alloys = 30
-		}
-		upkeep = {
-			minerals = 10
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_ALPHA
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_metallurgists
+		JOB = ae_alloydrone
+		RESOURCE = alloys
+		AMOUNT = 30
+		UPKEEP = "
 			sr_dark_matter = 1
 			acot_sr_dark_energy = 1
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_ae_alloy_forge
+			icon = acot_alloydrone
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = ae_alloydrone
-		}
-	}
-}
-ae_energyman = {
-	icon = acot_energyman
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_acot_ae_power_hub
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_technician
-		produces = {
-			energy = 30
-		}
-		upkeep = {
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = ae_energyman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_energy"
-}
-ae_energydrone = {
-	icon = acot_energydrone
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_acot_ae_power_hub
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_technician
-		produces = {
-			energy = 30
-		}
-		upkeep = {
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = ae_energydrone
-		}
-	}
-	inline_script = "jobs/automodding_priority_energy"
 }
 ae_researcher = {
-	icon = acot_researcher
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_acot_ae_enigmatic_lab
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/researcher
+		EXPONENT = @EXPONENT_ALPHA
+		CATEGORY = specialst
+		JOB = ae_researcher
+		RESOURCE = physics_research
+		AMOUNT = 40
+		UPKEEP = "
+			upkeep = {
+				consumer_goods = 3
+				sr_dark_matter = 2
+				acot_sr_dark_energy = 2
+			}
+			"
 	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_researchers
-		produces = {
-			physics_research = 25
-			engineering_research = 25
-			society_research = 25
-		}
-		upkeep = {
-			consumer_goods = 3
-			sr_dark_matter = 2
-			acot_sr_dark_energy = 2
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_acot_ae_enigmatic_lab
+			icon = acot_researcher
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_living_standard = {
-				type = living_standard_academic_privilege
-			}
-		}
-		modifier = {
-			factor = 3
-			has_trait = trait_erudite
-		}
-		modifier = {
-			factor = 2
-			OR = {
-				has_trait = trait_robot_logic_engines
-				has_trait = trait_intelligent
-				has_trait = trait_brainslug
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_natural_engineers
-				has_trait = trait_natural_physicists
-				has_trait = trait_natural_sociologists
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = ae_researcher
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_research"
 }
 ae_researcher_drone = {
-	icon = acot_researcher
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_acot_ae_enigmatic_lab
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_researchers
-		produces = {
-			physics_research = 25
-			engineering_research = 25
-			society_research = 25
-		}
-		upkeep = {
-			sr_dark_matter = 2
-			acot_sr_dark_energy = 2
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_hive_empire = yes
-				}
+	inline_script = {
+		script = pop_jobs/researcher
+		EXPONENT = @EXPONENT_ALPHA
+		CATEGORY = complex_drone
+		JOB = ae_researcher_drone
+		RESOURCE = physics_research
+		AMOUNT = 40
+		UPKEEP = "
+			upkeep = {
+				sr_dark_matter = 2
+				acot_sr_dark_energy = 2
 			}
-			minerals = 6
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_machine_empire = yes
+			upkeep = {
+				trigger = {
+					owner = {
+						is_hive_empire = yes
+					}
 				}
+				minerals = 6
 			}
-			energy = 4
+			upkeep = {
+				trigger = {
+					owner = {
+						is_machine_empire = yes
+					}
+				}
+				energy = 4
+			}
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_ae_enigmatic_lab
+			icon = acot_researcher
 		}
 	}
-	weight = {
-		weight = @complex_drone_job_weight
-		modifier = {
-			factor = 1.5
-			has_job = ae_researcher_drone
-		}
-	}
-	inline_script = "jobs/automodding_priority_research"
 }
 
 # Missing alpha mentat drone job fix from acot
