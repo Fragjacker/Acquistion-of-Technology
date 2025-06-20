@@ -874,7 +874,7 @@ ae_researcher = {
 	inline_script = {
 		script = pop_jobs/researcher
 		EXPONENT = @EXPONENT_ALPHA
-		CATEGORY = specialst
+		CATEGORY = specialist
 		JOB = ae_researcher
 		RESOURCE = physics_research
 		AMOUNT = 40
@@ -1635,373 +1635,174 @@ phanon_robodrone = {
 #                                       Phanon Civilian Jobs                                       #
 # ------------------------------------------------------------------------------------------------ #
 phanon_energyman = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_power_hub
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_technician
-		produces = {
-			energy = 60
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_technician
+		JOB = phanon_energyman
+		RESOURCE = energy
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 8
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_acot_ae_power_hub
+			icon = phanon_energyman
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_energyman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_energy"
 }
 phanon_energydrone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_phanon_power_hub
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_technician
-		produces = {
-			energy = 60
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_technician
+		JOB = phanon_energydrone
+		RESOURCE = energy
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 8
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_ae_power_hub
+			icon = phanon_energydrone
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_energydrone
-		}
-	}
-	inline_script = "jobs/automodding_priority_energy"
 }
 phanon_mineralman = {
-	icon = acot_dimesiona_traveler
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_mineral_processing_plant
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_miners
-		produces = {
-			minerals = 60
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_miners
+		JOB = phanon_mineralman
+		RESOURCE = minerals
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 8
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_mineral_processing_plant
+			icon = phanon_mineralman
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_mineralman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_minerals"
 }
 phanon_mineraldrone = {
-	icon = acot_dimesiona_traveler
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_phanon_mineral_processing_plant
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_miners
-		produces = {
-			minerals = 60
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_technician
+		JOB = phanon_mineraldrone
+		RESOURCE = minerals
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 8
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_mineral_processing_plant
+			icon = phanon_mineraldrone
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_mineraldrone
-		}
-	}
-	inline_script = "jobs/automodding_priority_minerals"
 }
 phanon_alloyman = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_alloy_forge
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_metallurgists
-		produces = {
-			alloys = 30
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_metallurgists
+		JOB = phanon_alloyman
+		RESOURCE = alloys
+		AMOUNT = 50
+		UPKEEP = "
 			aot_sr_runic_power = 6
 			minerals = 15
-		}
+			"
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_alloyman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_alloy_forge
+			icon = phanon_alloyman
 		}
 	}
 }
 phanon_alloydrone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_phanon_alloy_forge
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_metallurgists
-		produces = {
-			alloys = 30
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_metallurgists
+		JOB = phanon_alloydrone
+		RESOURCE = alloys
+		AMOUNT = 50
+		UPKEEP = "
 			aot_sr_runic_power = 6
 			minerals = 15
-		}
+			"
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_alloydrone
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_alloy_forge
+			icon = phanon_alloydrone
 		}
 	}
 }
 phanon_foodman = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_food_processing_complex
-	clothes_texture_index = 3
-	icon = acot_foodman
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_farmers
-		produces = {
-			food = 60
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_farmers
+		JOB = phanon_foodman
+		RESOURCE = food
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 3
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_food_processing_complex
+			icon = phanon_foodman
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_foodman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_food"
 }
 phanon_fooddrone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_phanon_food_processing_complex
-	icon = acot_fooddrone
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_farmers
-		produces = {
-			food = 60
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_farmers
+		JOB = phanon_fooddrone
+		RESOURCE = food
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 3
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_food_processing_complex
+			icon = phanon_foodman
 		}
 	}
-	weight = {
-		weight = @complex_drone_job_weight
-		modifier = {
-			factor = 1.5
-			has_job = phanon_fooddrone
-		}
-	}
-	inline_script = "jobs/automodding_priority_food"
 }
 phanon_transmute_man = {
 	category = specialist
@@ -2267,201 +2068,92 @@ phanon_transmute_drone = {
 	}
 }
 phanon_artisan = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_civilian_factory
-	icon = acot_artisan
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_artisans
-		produces = {
-			consumer_goods = 60
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_artisans
+		JOB = phanon_artisan
+		RESOURCE = consumer_goods
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 6
 			minerals = 15
-		}
+			"
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_artisan
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_civilian_factory
+			icon = acot_artisan
 		}
 	}
 }
 phanon_artisan_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_phanon_civilian_factory
-	icon = acot_artisan
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_artisans
-		produces = {
-			consumer_goods = 60
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_artisans
+		JOB = phanon_artisan_drone
+		RESOURCE = consumer_goods
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 6
 			minerals = 15
-		}
+			"
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_artisan_drone
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_civilian_factory
+			icon = acot_artisan
 		}
 	}
 }
 phanon_entertainer = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_mansion
-	icon = acot_entertainer
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible = {
-		entertainer_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_entertainers
-		produces = {
-			unity = 36
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_entertainers
+		JOB = phanon_entertainer
+		RESOURCE = unity
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 6
-			consumer_goods = 3
+			minerals = 15
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_mansion
+			icon = acot_entertainer
 		}
 	}
-	planet_modifier = {
-		planet_amenities_add = 18
-	}
-	weight = {
-		weight = @specialist_job_weight
-		mult = value:job_weights_modifier|JOB|manager|RESOURCE|unity|
-		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_entertainer
-		}
-		modifier = {
-			factor = 0.1
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 phanon_entertainer_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_phanon_mansion
-	icon = acot_entertainer
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_entertainers
-		produces = {
-			unity = 36
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_entertainers
+		JOB = phanon_entertainer_drone
+		RESOURCE = unity
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 6
-			food = 6
-			minerals = 6
+			minerals = 15
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_mansion
+			icon = acot_entertainer
 		}
 	}
-	planet_modifier = {
-		planet_amenities_add = 9
-	}
-	weight = {
-		weight = @complex_drone_job_weight
-		modifier = {
-			factor = 1.5
-			has_job = phanon_entertainer_drone
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 
 # ------------------------------------------------------------------------------------------------ #
@@ -3207,202 +2899,72 @@ phanon_giga_fortress_operator_mentat_drone = {
 #									 Stellarite Research Jobs									 #
 # ------------------------------------------------------------------------------------------------ #
 phanon_researcher = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_enigmatic_lab
-	icon = acot_researcher
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/researcher
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
+		JOB = phanon_researcher
+		RESOURCE = physics_research
+		AMOUNT = 60
+		UPKEEP = "
+			upkeep = {
+				aot_sr_runic_power = 6
+				consumer_goods = 4
+			}
+			"
 	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_researchers
-		produces = {
-			physics_research = 36
-			engineering_research = 36
-			society_research = 36
-		}
-		upkeep = {
-			aot_sr_runic_power = 6
-			consumer_goods = 4
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_enigmatic_lab
+			icon = acot_researcher
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_living_standard = {
-				type = living_standard_academic_privilege
-			}
-		}
-		modifier = {
-			factor = 3
-			has_trait = trait_erudite
-		}
-		modifier = {
-			factor = 2
-			OR = {
-				has_trait = trait_robot_logic_engines
-				has_trait = trait_intelligent
-				has_trait = trait_brainslug
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_natural_engineers
-				has_trait = trait_natural_physicists
-				has_trait = trait_natural_sociologists
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_researcher
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_research"
 }
 phanon_researcher_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_phanon_enigmatic_lab
-	clothes_texture_index = 3
-	icon = acot_researcher
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_researchers
-		produces = {
-			physics_research = 36
-			engineering_research = 36
-			society_research = 36
-		}
-		upkeep = {
-			aot_sr_runic_power = 6
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_hive_empire = yes
-				}
+	inline_script = {
+		script = pop_jobs/researcher
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
+		JOB = phanon_researcher_drone
+		RESOURCE = physics_research
+		AMOUNT = 60
+		UPKEEP = "
+			upkeep = {
+				aot_sr_runic_power = 6
+				consumer_goods = 4
 			}
-			minerals = 6
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_machine_empire = yes
-				}
-			}
-			energy = 4
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_enigmatic_lab
+			icon = acot_researcher
 		}
 	}
-	weight = {
-		weight = @complex_drone_job_weight
-		modifier = {
-			factor = 1.5
-			has_job = phanon_researcher_drone
-		}
-	}
-	inline_script = "jobs/automodding_priority_research"
 }
 phanon_priest = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_empyrean_shrine
-	clothes_texture_index = 3
-	icon = acot_priest
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_priests
-		produces = {
-			unity = 42
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_technician
+		JOB = phanon_priest
+		RESOURCE = unity
+		AMOUNT = 60
+		UPKEEP = "
 			consumer_goods = 3
 			aot_sr_runic_power = 4
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_empyrean_shrine
+			icon = acot_priest
 		}
 	}
-	planet_modifier = {
-		planet_amenities_add = 24
-	}
-	weight = {
-		weight = @specialist_job_weight
-		mult = value:job_weights_modifier|JOB|priest|RESOURCE|unity|
-		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			exists = owner
-			owner = {
-				has_civic = civic_exalted_priesthood
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_priest
-		}
-		modifier = {
-			factor = 0.1
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 phanon_bureaucrat = {
 	inline_script = {
