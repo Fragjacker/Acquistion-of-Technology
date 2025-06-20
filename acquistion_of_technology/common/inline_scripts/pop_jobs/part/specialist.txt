@@ -3,8 +3,16 @@ possible_precalc = can_fill_specialist_job
 possible = {
 	complex_specialist_job_check_trigger = yes
 }
-inline_script = {
-	script = pop_jobs/part/weights/$CATEGORY$
-	JOB = $JOB$
-	RESOURCE = $RESOURCE$
+weight = {
+	weight = @specialist_job_weight
+	mult = value:job_weights_modifier|JOB|$JOB$|RESOURCE|$RESOURCE$|
+	modifier = {
+		factor = 0.2
+		has_citizenship_rights = no
+		NOT = { has_trait = trait_mechanical }
+	}
+	modifier = {
+		factor = 0.1
+		can_take_servant_job = yes
+	}
 }
