@@ -941,265 +941,40 @@ phanon_fooddrone = {
 	}
 }
 phanon_transmute_man = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_transmutor
-	clothes_texture_index = 3
-	icon = stellarite_alloyman
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/transmute
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
+		JOB = phanon_transmute_man
+		RESOURCE = rare_crystals
+		UPKEEP = "
+			aot_sr_runic_power = 1
+			"
 	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_jobs
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			rare_crystals = 18
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			volatile_motes = 18
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			exotic_gases = 18
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			sr_living_metal = 9
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			nanites = 9
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			sr_zro = 9
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = phanon_transmute_man
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_transmutor
+			icon = phanon_alloyman
 		}
 	}
 }
 phanon_transmute_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_phanon_transmutor
-	icon = stellarite_alloyman
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/transmute
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
+		JOB = phanon_transmute_man
+		RESOURCE = rare_crystals
+		UPKEEP = "
+			aot_sr_runic_power = 1
+			"
 	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_jobs
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			rare_crystals = 12
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			volatile_motes = 12
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			exotic_gases = 12
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			sr_living_metal = 6
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			nanites = 6
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			sr_zro = 6
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			aot_sr_runic_power = 1
-		}
-	}
-	weight = {
-		weight = @complex_drone_job_weight
-		modifier = {
-			factor = 1.5
-			has_job = phanon_transmute_drone
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_transmutor
+			icon = phanon_alloyman
 		}
 	}
 }
