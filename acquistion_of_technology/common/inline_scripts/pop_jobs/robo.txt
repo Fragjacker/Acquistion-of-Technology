@@ -1,0 +1,25 @@
+inline_script = pop_jobs/part/robo/$CATEGORY$
+tags = { pop_assembly }
+# AI SHOULDNT MAKE ROBOTS IF THERES NOT SUFFICIENT JOBS TO FILL
+triggered_planet_modifier = {
+	potential = {
+		owner = {
+			is_ai = yes
+		}
+		planet = {
+			num_unemployed > 0
+		}
+	}
+	modifier = {
+		planet_pop_assembly_add = @[ - 3 * two_exp$EXPONENT$ ]
+	}
+}
+resources = {
+	category = planet_pop_assemblers
+	upkeep = {
+		$UPKEEP$
+	}
+}
+planet_modifier = {
+	planet_pop_assembly_add = @[ 3 * two_exp$EXPONENT$ ]
+}
