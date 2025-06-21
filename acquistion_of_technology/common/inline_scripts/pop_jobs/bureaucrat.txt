@@ -1,15 +1,12 @@
-category = specialist
-possible_pre_triggers = {
-	has_owner = yes
-	is_being_purged = no
-	is_being_assimilated = no
+inline_script = {
+	script = pop_jobs/part/$CATEGORY$
+	CATEGORY = $CATEGORY$
+	JOB = $JOB$
+	RESOURCE = $RESOURCE$
 }
 tags = {
 	unity
-}
-possible_precalc = can_fill_specialist_job
-possible = {
-	complex_specialist_job_check_trigger = yes
+	trade
 }
 planet_modifier = {
 	planet_stability_add = @[ 10 * two_exp$EXPONENT$ ]
@@ -269,15 +266,5 @@ weight = {
 		factor = 0.1
 		is_enslaved = yes
 		has_slavery_type = { type = slavery_indentured }
-	}
-}
-inline_script = "jobs/automodding_priority_unity"
-promotion = {
-	time = @standard_promotion_time
-	effect = {
-		pop_amount_change_category = {
-			CATEGORY = specialist
-			AMOUNT = local_pop_amount
-		}
 	}
 }

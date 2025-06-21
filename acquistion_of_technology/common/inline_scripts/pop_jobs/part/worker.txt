@@ -1,0 +1,72 @@
+category = $CATEGORY$
+possible_pre_triggers = {
+	has_owner = yes
+	is_being_purged = no
+	is_being_assimilated = no
+	is_sapient = yes
+}
+possible_precalc = can_fill_worker_job
+weight = {
+	weight = @worker_job_weight
+	mult = value:job_weights_modifier|JOB|$JOB$|RESOURCE|$RESOURCE$|
+	modifier = {
+		factor = 100
+		OR = {
+			is_non_sapient_robot = yes
+			is_shackled_robot = yes
+		}
+		can_take_servant_job = no
+		can_fill_specialist_job_trigger = no
+	}
+	modifier = {
+		factor = 8
+		is_enslaved = yes
+		can_take_servant_job = no
+		OR = {
+			has_trait = trait_syncretic_proles
+			has_trait = trait_robot_superconductive
+			has_trait = trait_ingenious
+		}
+	}
+	modifier = {
+		factor = 2
+		OR = {
+			is_non_sapient_robot = yes
+			is_shackled_robot = yes
+		}
+		can_take_servant_job = no
+	}
+	modifier = {
+		factor = 0.25
+		can_take_servant_job = yes
+	}
+	# low income modifier
+	modifier = {
+		factor = 3
+		exists = planet
+		planet = {
+			has_available_jobs = $JOB$
+		}
+		exists = owner
+		owner = {
+			has_monthly_income = {
+				resource = $RESOURCE$
+				value < 10
+			}
+		}
+	}
+	modifier = {
+		factor = 5
+		has_trait = trait_cyborg_creed_of_labor
+	}
+}
+promotion = {
+	time = @standard_promotion_time
+	effect = {
+		pop_amount_change_category = {
+			CATEGORY = $CATEGORY$
+			AMOUNT = local_pop_amount
+		}
+	}
+}
+inline_script = "jobs/automodding_priority_$RESOURCE$"
