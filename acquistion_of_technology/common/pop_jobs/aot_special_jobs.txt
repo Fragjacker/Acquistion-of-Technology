@@ -1484,6 +1484,70 @@ phanon_bureaucrat = {
 }
 
 # ------------------------------------------------------------------------------------------------ #
+#										Phanon Creator Jobs									   #
+# ------------------------------------------------------------------------------------------------ #
+phanon_dimension_folder = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_jobs
+		JOB = phanon_dimension_folder
+		RESOURCE = aot_sr_runic_power
+		AMOUNT = 15
+		UPKEEP = "
+			sr_dark_matter = 50
+			acot_sr_dark_energy = 50
+			energy = 100
+			alloys = 50
+			sr_living_metal = 10
+			sr_zro = 10
+			volatile_motes = 10
+			exotic_gases = 10
+			rare_crystals = 10
+			nanites = 10
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_runic_generator
+			icon = phanon_runicman
+		}
+	}
+}
+phanon_dimension_folderdrone = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_jobs
+		JOB = phanon_dimension_folder
+		RESOURCE = aot_sr_runic_power
+		AMOUNT = 15
+		UPKEEP = "
+			sr_dark_matter = 50
+			acot_sr_dark_energy = 50
+			energy = 100
+			alloys = 50
+			sr_living_metal = 10
+			sr_zro = 10
+			volatile_motes = 10
+			exotic_gases = 10
+			rare_crystals = 10
+			nanites = 10
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_runic_generator
+			icon = phanon_runicdrone
+		}
+	}
+}
+
+# ------------------------------------------------------------------------------------------------ #
 #									   Sigma Governing Jobs									   #
 # ------------------------------------------------------------------------------------------------ #
 stellarite_overlord = {
@@ -3927,127 +3991,6 @@ stellarite_bureaucrat = {
 			condition_string = SPECIALIST_JOB_TRIGGER
 			building_icon = building_stellarite_bureaucratic
 			icon = stellarite_bureaucrat
-		}
-	}
-}
-
-# ------------------------------------------------------------------------------------------------ #
-#										Phanon Creator Jobs									   #
-# ------------------------------------------------------------------------------------------------ #
-phanon_dimension_folder = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_phanon_runic_generator
-	clothes_texture_index = 3
-	icon = phanon_runicman
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_jobs
-		produces = {
-			aot_sr_runic_power = 15
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			sr_dark_matter = 50
-			acot_sr_dark_energy = 50
-			energy = 100
-			alloys = 50
-			sr_living_metal = 10
-			sr_zro = 10
-			volatile_motes = 10
-			exotic_gases = 10
-			rare_crystals = 10
-			nanites = 10
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = yes
-				}
-			}
-			energy = 100
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = phanon_dimension_folder
-		}
-	}
-}
-phanon_dimension_folderdrone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_phanon_runic_generator
-	icon = phanon_runicdrone
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	resources = {
-		category = planet_jobs
-		produces = {
-			aot_sr_runic_power = 15
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = no
-				}
-			}
-			sr_dark_matter = 50
-			acot_sr_dark_energy = 50
-			energy = 100
-			alloys = 50
-			sr_living_metal = 10
-			sr_zro = 10
-			volatile_motes = 10
-			exotic_gases = 10
-			rare_crystals = 10
-			nanites = 10
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					is_ai = yes
-				}
-			}
-			energy = 100
-		}
-	}
-	weight = {
-		weight = @complex_drone_job_weight
-		modifier = {
-			factor = 5
-			has_job = phanon_dimension_folderdrone
 		}
 	}
 }
