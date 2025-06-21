@@ -1,6 +1,7 @@
 category = $CATEGORY$
 possible_pre_triggers = {
 	has_owner = yes
+	is_enslaved = no
 	is_being_purged = no
 	is_being_assimilated = no
 	is_sapient = yes
@@ -25,45 +26,5 @@ promotion = {
 		}
 	}
 }
-weight = {
-	weight = 5
-	modifier = {
-		weight = 100
-		exists = owner
-		owner = { is_at_war = yes }
-	}
-	modifier = {
-		factor = 10
-		planet = {
-			exists = leader
-			leader = {
-				leader_class = commander
-			}
-		}
-	}
-	modifier = {
-		factor = 4
-		has_trait = trait_resilient
-	}
-	modifier = {
-		factor = 4
-		has_trait = trait_very_strong
-	}
-	modifier = {
-		factor = 3
-		has_trait = trait_strong
-	}
-	modifier = {
-		factor = 0.5
-		has_trait = trait_weak
-	}
-	modifier = {
-		factor = 2
-		has_trait = trait_lithoid
-	}
-	modifier = {
-		factor = 1.2
-		has_trait = trait_cybernetic
-	}
-	$AI_FACTORS$
-}
+#--------------<  $CATEGORY$ can be complex_drone, simple_drone, specialist or worker.  >-----------
+inline_script = pop_jobs/job_weights/soldiers_and_enforcers/$CATEGORY$
