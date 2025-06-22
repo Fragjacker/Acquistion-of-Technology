@@ -1540,385 +1540,124 @@ phanon_dimension_folderdrone = {
 #									   Sigma Governing Jobs									   #
 # ------------------------------------------------------------------------------------------------ #
 stellarite_overlord = {
-	category = ruler
-	condition_string = RULER_JOB_TRIGGER
-	building_icon = building_stellarite_palace
-	clothes_texture_index = 1
-	icon = administrator
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_enslaved = no
-		is_being_assimilated = no
+	inline_script = {
+		script = pop_jobs/overlord
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = ruler
+		JOB = stellarite_overlord
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 80
+		UPKEEP = "
+			acot_sr_stellarite = 8
+			"
 	}
-	possible_precalc = can_fill_ruler_job
-	country_modifier = {
-	}
-	resources = {
-		category = planet_jobs_productive
-		produces = {
-			unity = 120
-			influence = 0.4
-		}
-		upkeep = {
-			acot_sr_stellarite = 4
-		}
-	}
-	planet_modifier = {
-		planet_stability_add = 45
-		planet_amenities_add = 90
-		planet_jobs_produces_mult = 0.45
-	}
-	triggered_planet_modifier = {
-		potential = {
-			planet = {
-				has_ascended_capital = yes
-			}
-		}
-		planet_jobs_produces_mult = 0.1
-	}
-	weight = {
-		weight = @ruler_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_living_standard = {
-				type = living_standard_academic_privilege
-			}
-		}
-		modifier = {
-			factor = 3
-			has_trait = trait_erudite
-		}
-		modifier = {
-			factor = 2
-			OR = {
-				has_trait = trait_robot_logic_engines
-				has_trait = trait_intelligent
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_natural_engineers
-				has_trait = trait_natural_physicists
-				has_trait = trait_natural_sociologists
-			}
-		}
-		modifier = {
-			factor = 100
-			has_job = acot_overlord
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_latent_psionic
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_psionic
-		}
-		modifier = {
-			factor = 0.1
-			has_trait = trait_enigmatic_intelligence_failed
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_brainslug
-		}
-		modifier = {
-			factor = 0.75
-			has_trait = trait_repugnant
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_stellarite_palace
+			icon = politician
 		}
 	}
 }
 stellarite_overseer = {
-	category = ruler
-	condition_string = RULER_JOB_TRIGGER
-	building_icon = building_stellarite_palace
-	clothes_texture_index = 1
-	icon = noble
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_enslaved = no
-		is_being_assimilated = no
-	}
-	possible_precalc = can_fill_ruler_job
-	country_modifier = {
-	}
-	resources = {
-		category = planet_jobs_productive
-		produces = {
-			unity = 60
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/overseer
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = ruler
+		JOB = stellarite_overseer
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 60
+		UPKEEP = "
 			acot_sr_stellarite = 4
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_stellarite_palace
+			icon = politician
 		}
 	}
-	planet_modifier = {
-		planet_amenities_add = 60
-		trade_value_add = 60
-	}
-	weight = {
-		weight = @ruler_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_living_standard = {
-				type = living_standard_academic_privilege
-			}
-		}
-		modifier = {
-			factor = 3
-			has_trait = trait_erudite
-		}
-		modifier = {
-			factor = 2
-			OR = {
-				has_trait = trait_robot_logic_engines
-				has_trait = trait_intelligent
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_natural_engineers
-				has_trait = trait_natural_physicists
-				has_trait = trait_natural_sociologists
-			}
-		}
-		modifier = {
-			factor = 5
-			has_job = acot_overseer
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_latent_psionic
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_psionic
-		}
-		modifier = {
-			factor = 0.1
-			has_trait = trait_enigmatic_intelligence_failed
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_brainslug
-		}
-		modifier = {
-			factor = 0.75
-			has_trait = trait_repugnant
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 stellarite_overlord_droid = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_control_center
-	icon = coordinator
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/overlord
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
+		JOB = stellarite_overlord_droid
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 80
+		UPKEEP = "
+			acot_sr_stellarite = 8
+			"
 	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	country_modifier = {
-	}
-	resources = {
-		category = planet_jobs_productive
-		produces = {
-			unity = 120
-			influence = 0.4
-		}
-		upkeep = {
-			acot_sr_stellarite = 6
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_control_center
+			icon = coordinator
 		}
 	}
-	planet_modifier = {
-		planet_stability_add = 45
-		planet_amenities_no_happiness_add = 90
-		planet_jobs_produces_mult = 0.45
-	}
-	triggered_planet_modifier = {
-		potential = {
-			planet = {
-				has_ascended_capital = yes
-			}
-		}
-		planet_jobs_produces_mult = 0.15
-	}
-	weight = {
-		weight = @synapse_drone_job_weight
-		modifier = {
-			factor = 10
-		}
-		modifier = {
-			factor = 0.9
-			exists = owner
-			years_passed < 1
-			owner = {
-				has_valid_civic = civic_machine_assimilator
-			}
-			has_trait = trait_cybernetic
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 stellarite_overseer_droid = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_control_center
-	icon = coordinator
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/overseer
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
+		JOB = stellarite_overseer_droid
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 60
+		UPKEEP = "
+			aot_sr_runic_power = 6
+			"
 	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	country_modifier = {
-	}
-	resources = {
-		category = planet_jobs_productive
-		produces = {
-			unity = 60
-		}
-		upkeep = {
-			acot_sr_stellarite = 6
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_control_center
+			icon = coordinator
 		}
 	}
-	planet_modifier = {
-		planet_amenities_no_happiness_add = 60
-	}
-	weight = {
-		weight = @synapse_drone_job_weight
-		modifier = {
-			factor = 0.9
-			exists = owner
-			years_passed < 1
-			owner = {
-				has_valid_civic = civic_machine_assimilator
-			}
-			has_trait = trait_cybernetic
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 stellarite_overlord_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_hive_cluster
-	icon = coordinator
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
+	inline_script = {
+		script = pop_jobs/overlord
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
+		JOB = stellarite_overlord_drone
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 80
+		UPKEEP = "
+			acot_sr_stellarite = 8
+			"
 	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	country_modifier = {
-	}
-	resources = {
-		category = planet_jobs_productive
-		produces = {
-			unity = 120
-			influence = 0.4
-		}
-		upkeep = {
-			acot_sr_stellarite = 6
-		}
-	}
-	planet_modifier = {
-		planet_stability_add = 45
-		planet_amenities_no_happiness_add = 120
-		planet_jobs_produces_mult = 0.45
-	}
-	triggered_planet_modifier = {
-		potential = {
-			planet = {
-				has_ascended_capital = yes
-			}
-		}
-		planet_jobs_produces_mult = 0.15
-	}
-	weight = {
-		weight = @synapse_drone_job_weight
-		modifier = {
-			factor = 10
-		}
-		modifier = {
-			factor = 1.25
-			OR = {
-				has_trait = trait_traditional
-				has_trait = trait_robot_propaganda_machines
-			}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_hive_cluster
+			icon = coordinator
 		}
 	}
 }
 stellarite_overseer_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_hive_cluster
-	icon = coordinator
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	country_modifier = {
-	}
-	resources = {
-		category = planet_jobs_productive
-		produces = {
-			unity = 60
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/overseer
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
+		JOB = phanon_overseer_drone
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 60
+		UPKEEP = "
 			acot_sr_stellarite = 6
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_hive_cluster
+			icon = coordinator
 		}
 	}
-	planet_modifier = {
-		planet_amenities_no_happiness_add = 60
-	}
-	weight = {
-		weight = @synapse_drone_job_weight
-		modifier = {
-			factor = 1.25
-			OR = {
-				has_trait = trait_traditional
-				has_trait = trait_robot_propaganda_machines
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 
 # ------------------------------------------------------------------------------------------------ #
