@@ -1029,7 +1029,7 @@ phanon_entertainer = {
 		AMOUNT = 60
 		UPKEEP = "
 			aot_sr_runic_power = 6
-			minerals = 15
+			consumer_goods = 6
 			"
 	}
 	swappable_data = {
@@ -1051,7 +1051,7 @@ phanon_entertainer_drone = {
 		AMOUNT = 60
 		UPKEEP = "
 			aot_sr_runic_power = 6
-			minerals = 15
+			consumer_goods = 6
 			"
 	}
 	swappable_data = {
@@ -1737,836 +1737,299 @@ stellarite_robodrone = {
 #										Sigma Special Jobs										#
 # ------------------------------------------------------------------------------------------------ #
 stellarite_energyman = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_power_hub
-	clothes_texture_index = 3
-	icon = stellarite_energyman
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_technician
-		produces = {
-			energy = 180
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_technician
+		JOB = stellarite_energyman
+		RESOURCE = energy
+		AMOUNT = 120
+		UPKEEP = "
 			acot_sr_stellarite = 12
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_power_hub
+			icon = stellarite_energyman
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_energyman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_energy"
 }
 stellarite_energydrone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_power_hub
-	icon = stellarite_energydrone
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_technician
-		produces = {
-			energy = 180
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_technician
+		JOB = stellarite_energydrone
+		RESOURCE = energy
+		AMOUNT = 120
+		UPKEEP = "
 			acot_sr_stellarite = 12
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_power_hub
+			icon = stellarite_energydrone
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_energydrone
-		}
-	}
-	inline_script = "jobs/automodding_priority_energy"
 }
 stellarite_mineralman = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_mineral_processing_plant
-	clothes_texture_index = 3
-	icon = stellarite_mineralman
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_miners
-		produces = {
-			minerals = 180
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_miners
+		JOB = stellarite_mineralman
+		RESOURCE = minerals
+		AMOUNT = 120
+		UPKEEP = "
 			acot_sr_stellarite = 12
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_mineral_processing_plant
+			icon = stellarite_mineralman
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_mineralman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_minerals"
 }
 stellarite_mineraldrone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_mineral_processing_plant
-	icon = stellarite_mineraldrone
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_metallurgists
-		produces = {
-			minerals = 180
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_technician
+		JOB = stellarite_mineraldrone
+		RESOURCE = minerals
+		AMOUNT = 120
+		UPKEEP = "
 			acot_sr_stellarite = 12
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_mineral_processing_plant
+			icon = stellarite_mineraldrone
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_mineraldrone
-		}
-	}
-	inline_script = "jobs/automodding_priority_minerals"
 }
 stellarite_alloyman = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_alloy_forge
-	clothes_texture_index = 3
-	icon = stellarite_alloyman
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_metallurgists
-		produces = {
-			alloys = 180
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_metallurgists
+		JOB = stellarite_alloyman
+		RESOURCE = alloys
+		AMOUNT = 100
+		UPKEEP = "
 			acot_sr_stellarite = 12
-		}
+			"
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_alloyman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_alloy_forge
+			icon = stellarite_alloyman
 		}
 	}
 }
 stellarite_alloydrone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_alloy_forge
-	icon = stellarite_alloydrone
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_metallurgists
-		produces = {
-			alloys = 120
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_metallurgists
+		JOB = stellarite_alloydrone
+		RESOURCE = alloys
+		AMOUNT = 100
+		UPKEEP = "
 			acot_sr_stellarite = 12
-			minerals = 30
-		}
+			"
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_alloydrone
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_alloy_forge
+			icon = stellarite_alloydrone
 		}
 	}
 }
 stellarite_foodman = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_food_processing_complex
-	clothes_texture_index = 3
-	icon = acot_foodman
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_farmers
-		produces = {
-			food = 180
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_farmers
+		JOB = stellarite_foodman
+		RESOURCE = food
+		AMOUNT = 120
+		UPKEEP = "
 			acot_sr_stellarite = 6
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_food_processing_complex
+			icon = acot_foodman
 		}
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_foodman
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_food"
 }
 stellarite_fooddrone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_food_processing_complex
-	icon = acot_fooddrone
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_farmers
-		produces = {
-			food = 180
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_farmers
+		JOB = stellarite_fooddrone
+		RESOURCE = food
+		AMOUNT = 120
+		UPKEEP = "
 			acot_sr_stellarite = 6
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_food_processing_complex
+			icon = acot_fooddrone
 		}
 	}
-	weight = {
-		weight = @complex_drone_job_weight
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_fooddrone
-		}
-	}
-	inline_script = "jobs/automodding_priority_food"
 }
 stellarite_transmute_man = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_transmutor
-	clothes_texture_index = 3
-	icon = stellarite_alloyman
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/transmute
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = specialist
+		JOB = stellarite_transmute_man
+		RESOURCE = rare_crystals
+		UPKEEP = "
+			acot_sr_stellarite = 2
+			"
 	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_jobs
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			rare_crystals = 32
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			volatile_motes = 32
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			exotic_gases = 32
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			sr_living_metal = 18
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			nanites = 18
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			sr_zro = 18
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_transmute_man
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_transmutor
+			icon = stellarite_alloyman
 		}
 	}
 }
 stellarite_transmute_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_transmutor
-	icon = stellarite_alloyman
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/transmute
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
+		JOB = stellarite_transmute_drone
+		RESOURCE = rare_crystals
+		UPKEEP = "
+			acot_sr_stellarite = 2
+			"
 	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_jobs
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			rare_crystals = 24
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			volatile_motes = 24
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			exotic_gases = 24
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			sr_living_metal = 12
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			nanites = 12
-		}
-		produces = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			sr_zro = 12
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-		upkeep = {
-			trigger = {
-				owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			acot_sr_stellarite = 1
-		}
-	}
-	weight = {
-		weight = @complex_drone_job_weight
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_transmute_drone
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_transmutor
+			icon = stellarite_alloyman
 		}
 	}
 }
 stellarite_artisan = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_civilian_factory
-	icon = acot_artisan
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_specialist_job
-	possible = {
-		complex_specialist_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_artisans
-		produces = {
-			consumer_goods = 180
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_artisans
+		JOB = stellarite_artisan
+		RESOURCE = consumer_goods
+		AMOUNT = 120
+		UPKEEP = "
 			acot_sr_stellarite = 9
 			minerals = 30
-		}
+			"
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_artisan
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_civilian_factory
+			icon = acot_artisan
 		}
 	}
 }
 stellarite_artisan_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_civilian_factory
-	icon = acot_artisan
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible_precalc = can_fill_drone_job
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_artisans
-		produces = {
-			consumer_goods = 180
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_artisans
+		JOB = stellarite_artisan_drone
+		RESOURCE = consumer_goods
+		AMOUNT = 60
+		AMOUNT = 120
+		UPKEEP = "
 			acot_sr_stellarite = 9
 			minerals = 30
-		}
+			"
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = stellarite_artisan_drone
-		}
-		modifier = {
-			factor = 1.2
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_civilian_factory
+			icon = acot_artisan
 		}
 	}
 }
 stellarite_entertainer = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_mansion
-	icon = acot_entertainer
-	clothes_texture_index = 3
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible = {
-		entertainer_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_entertainers
-		produces = {
-			unity = 102
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_entertainers
+		JOB = stellarite_entertainer
+		RESOURCE = unity
+		AMOUNT = 100
+		UPKEEP = "
 			acot_sr_stellarite = 9
 			consumer_goods = 9
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_mansion
+			icon = acot_entertainer
 		}
 	}
-	planet_modifier = {
-		planet_amenities_add = 36
-	}
-	weight = {
-		weight = @specialist_job_weight
-		mult = value:job_weights_modifier|JOB|manager|RESOURCE|unity|
-		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_entertainer
-		}
-		modifier = {
-			factor = 0.1
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 stellarite_entertainer_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_mansion
-	icon = acot_entertainer
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
-	}
-	possible = {
-		can_think = yes
-	}
-	resources = {
-		category = planet_entertainers
-		produces = {
-			unity = 72
-		}
-		upkeep = {
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_entertainers
+		JOB = stellarite_entertainer_drone
+		RESOURCE = unity
+		AMOUNT = 100
+		UPKEEP = "
 			acot_sr_stellarite = 9
-			food = 9
-			minerals = 9
+			consumer_goods = 9
+			"
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_mansion
+			icon = acot_entertainer
 		}
 	}
-	planet_modifier = {
-		planet_amenities_add = 28
-	}
-	weight = {
-		weight = @complex_drone_job_weight
-		modifier = {
-			factor = 1.5
-			has_job = stellarite_entertainer_drone
-		}
-	}
-	inline_script = "jobs/automodding_priority_unity"
 }
 
 # ------------------------------------------------------------------------------------------------ #
