@@ -1298,19 +1298,6 @@ phanon_giga_fortress_operator_drone = {
 			icon = acot_giga_fortress_operator
 		}
 	}
-	triggered_planet_modifier = {
-		potential = {
-			planet = {
-				OR = {
-					has_modifier = compliance_protocols
-					has_modifier = hunter_killer_drones
-				}
-			}
-		}
-		modifier = {
-			planet_stability_add = 10
-		}
-	}
 	country_modifier = {
 		country_naval_cap_add = 600
 	}
@@ -2012,7 +1999,7 @@ stellarite_entertainer = {
 stellarite_entertainer_drone = {
 	inline_script = {
 		script = pop_jobs/simple_jobs_base
-		EXPONENT = @EXPONENT_PHANON
+		EXPONENT = @EXPONENT_SIGMA
 		CATEGORY = complex_drone
 		JOB_CATEGORY = planet_entertainers
 		JOB = stellarite_entertainer_drone
@@ -2036,19 +2023,21 @@ stellarite_entertainer_drone = {
 #										Sigma Military Jobs									   #
 # ------------------------------------------------------------------------------------------------ #
 stellarite_enforcer = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_stronghold
-	clothes_texture_index = 5
-	icon = acot_enforcer
-	possible_pre_triggers = {
-		has_owner = yes
-		is_enslaved = no
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = specialist
 	}
-	possible_precalc = can_fill_specialist_job
+	tags = {
+		enforcer
+	}
+	swappable_data = {
+		default = {
+			condition_string = SOLDIER_JOB_TRIGGER
+			building_icon = building_stellarite_stronghold
+			icon = aot_se_enforcer
+		}
+	}
 	possible = {
 		battle_thrall_job_check_trigger = yes
 	}
@@ -2069,127 +2058,27 @@ stellarite_enforcer = {
 			acot_sr_stellarite = 4
 		}
 	}
-	pop_modifier = {
-		pop_defense_armies_add = 9
-	}
 	planet_modifier = {
-		planet_crime_add = -80
+		planet_crime_add = -100
 		planet_stability_add = 15
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet
-			planet = {
-				has_modifier = anticrime_campaign
-			}
-		}
-		modifier = {
-			planet_crime_add = -30
-		}
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = value:job_weights_modifier|JOB|enforcer|RESOURCE|unity|FACTOR|0.25|
-			owner = {
-				has_active_tradition = tr_domination_judgment_corps
-			}
-		}
-		modifier = {
-			factor = 10
-			has_job = enforcer
-		}
-		modifier = {
-			factor = 10
-			planet = {
-				planet_crime > 15
-			}
-			NOT = {
-				has_job = enforcer
-			}
-		}
-		modifier = {
-			factor = 0.01
-			planet = {
-				planet_crime <= 15
-			}
-			NOT = {
-				has_job = enforcer
-			}
-		}
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_resilient
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_very_strong
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_strong
-		}
-		modifier = {
-			factor = 10
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_military
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_weak
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.1
-			has_trait = trait_cybernetic
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_presapient_earthbound
-		}
-		modifier = {
-			factor = 1.1
-			has_trait = trait_limited_regeneration
-		}
-		modifier = {
-			factor = 0.8
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_indentured
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_lithoid
-		}
 	}
 }
 stellarite_enforcer_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_stronghold
-	clothes_texture_index = 5
-	icon = acot_enforcer
-	possible_pre_triggers = {
-		has_owner = yes
-		is_enslaved = no
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
 	}
-	possible_precalc = can_fill_drone_job
+	tags = {
+		enforcer
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_stronghold
+			icon = aot_se_enforcer
+		}
+	}
 	possible = {
 		can_think = yes
 	}
@@ -2213,96 +2102,36 @@ stellarite_enforcer_drone = {
 			acot_sr_stellarite = 4
 		}
 	}
-	pop_modifier = {
-		pop_defense_armies_add = 9
-	}
 	planet_modifier = {
 		planet_crime_no_happiness_add = -80
 		planet_stability_add = 15
 	}
-	weight = {
-		weight = @complex_drone_job_weight
-		mult = value:job_weights_modifier|JOB|patrol_drone|RESOURCE|unity|FACTOR|0.25|
-		modifier = {
-			factor = 50
-			planet = {
-				planet_crime > 22
-			}
-		}
-		modifier = {
-			weight = 20
-			exists = owner
-			owner = {
-				is_at_war = yes
-			}
-		}
-		modifier = {
-			factor = 3
-			has_trait = trait_resilient
-		}
-		modifier = {
-			factor = 3
-			planet = {
-				planet_crime > 0
-			}
-			has_trait = trait_very_strong
-		}
-		modifier = {
-			factor = 2
-			planet = {
-				planet_crime > 0
-			}
-			has_trait = trait_strong
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_weak
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_lithoid
-		}
-		modifier = {
-			factor = 1.2
-			has_trait = trait_cybernetic
-		}
-	}
 }
 stellarite_soldier = {
-	category = specialist
-	condition_string = SOLDIER_JOB_TRIGGER
-	building_icon = building_acot_dm_stronghold
-	clothes_texture_index = 4
-	icon = aot_se_enforcer
-	country_modifier = {
-		country_naval_cap_add = 36        # Built-in sum from ground defense planning then x2 it
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = worker
 	}
-	triggered_country_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				any_owned_leader = {
-					is_councilor = yes
-					has_trait = leader_trait_bellicose
-				}
-			}
-		}
-		modifier = {
-			country_naval_cap_add = 9
-		}
-		mult = value:bellicose_naval_cap
+	inline_script = "output/soldier_triggered_modifiers"
+	tags = {
+		soldier
 	}
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	swappable_data = {
+		default = {
+			condition_string = SOLDIER_JOB_TRIGGER
+			building_icon = building_stellarite_stronghold
+			icon = aot_se_enforcer
+		}
 	}
 	possible = {
 		soldier_job_check_trigger = yes
 		owner = {
 			is_gestalt = no
 		}
+	}
+	country_modifier = {
+		country_naval_cap_add = 36        # Built-in sum from ground defense planning then x2 it
 	}
 	resources = {
 		category = planet_soldiers
@@ -2328,27 +2157,6 @@ stellarite_soldier = {
 			acot_sr_stellarite = 4
 		}
 	}
-	pop_modifier = {
-		pop_defense_armies_add = 18
-	}
-	triggered_pop_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				any_owned_leader = {
-					is_councilor = yes
-					has_trait = leader_trait_bellicose
-				}
-			}
-		}
-		modifier = {
-			pop_defense_armies_add = 9
-		}
-		mult = value:bellicose_naval_cap
-	}
-	planet_modifier = {
-		planet_stability_add = 1.5
-	}
 	triggered_planet_modifier = {
 		potential = {
 			has_councilor = {
@@ -2360,92 +2168,24 @@ stellarite_soldier = {
 		}
 		mult = value:councilor_level|TYPE|councilor_private_military_companies|
 	}
-	weight = {
-		weight = @soldier_job_weight
-		modifier = {
-			factor = 10
-			exists = planet
-			planet = {
-				exists = leader
-				leader = {
-					leader_class = commander
-				}
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_resilient
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_very_strong
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_strong
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_weak
-		}
-		modifier = {
-			factor = 0.1
-			is_enslaved = yes
-			NOT = {
-				has_slavery_type = {
-					type = slavery_military
-				}
-			}
-		}
-		modifier = {
-			factor = 10
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_military
-			}
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 1.1
-			has_trait = trait_cybernetic
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_presapient_earthbound
-		}
-		modifier = {
-			factor = 1.1
-			has_trait = trait_limited_regeneration
-		}
-		modifier = {
-			factor = 0
-			species = {
-				can_be_soldier = no
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_lithoid
-		}
-	}
 }
 stellarite_soldier_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_acot_dm_stronghold
-	clothes_texture_index = 5
-	icon = aot_se_enforcer
-	possible_pre_triggers = {
-		has_owner = yes
-		is_enslaved = no
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = simple_drone
 	}
-	possible_precalc = can_fill_drone_job
+	inline_script = "output/soldier_triggered_modifiers"
+	tags = {
+		soldier
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_stronghold
+			icon = aot_se_enforcer
+		}
+	}
 	possible = {
 		can_think = yes
 	}
@@ -2469,85 +2209,22 @@ stellarite_soldier_drone = {
 			acot_sr_stellarite = 4
 		}
 	}
-	pop_modifier = {
-		pop_defense_armies_add = 18
-	}
-	planet_modifier = {
-		planet_stability_add = 1.5
-	}
-	weight = {
-		weight = 5
-		modifier = {
-			weight = 100
-			exists = owner
-			owner = {
-				is_at_war = yes
-			}
-		}
-		modifier = {
-			factor = 10
-			planet = {
-				exists = leader
-				leader = {
-					leader_class = commander
-				}
-			}
-		}
-		modifier = {
-			factor = 4
-			has_trait = trait_resilient
-		}
-		modifier = {
-			factor = 4
-			has_trait = trait_very_strong
-		}
-		modifier = {
-			factor = 3
-			has_trait = trait_strong
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_weak
-		}
-		modifier = {
-			factor = 0.9
-			exists = owner
-			years_passed < 1
-			owner = {
-				has_valid_civic = civic_machine_assimilator
-			}
-			has_trait = trait_cybernetic
-		}
-		modifier = {
-			factor = 0
-			planet = {
-				num_pops < 1200
-			}
-			owner = {
-				is_ai = yes
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_lithoid
-		}
-		modifier = {
-			factor = 1.2
-			has_trait = trait_cybernetic
-		}
-	}
 }
 stellarite_giga_fortress_operator = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_giga_fortress
-	clothes_texture_index = 5
-	icon = acot_giga_fortress_operator
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = specialist
+	}
+	tags = {
+		soldier
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_giga_fortress
+			icon = acot_giga_fortress_operator
+		}
 	}
 	possible_precalc = can_fill_specialist_job
 	possible = {
@@ -2560,67 +2237,29 @@ stellarite_giga_fortress_operator = {
 		planet_crime_add = -360
 		planet_stability_add = 360
 	}
-	weight = {
-		weight = 100
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_resilient
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_very_strong
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_strong
-		}
-		modifier = {
-			factor = 10
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_military
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_weak
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 100
-			has_job = stellarite_giga_fortress_operator
-		}
-	}
 }
 stellarite_giga_fortress_operator_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_giga_fortress
-	clothes_texture_index = 5
-	icon = acot_giga_fortress_operator
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @EXPONENT_SIGMA
+		CATEGORY = complex_drone
 	}
-	possible_precalc = can_fill_drone_job
+	tags = {
+		soldier
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_giga_fortress
+			icon = acot_giga_fortress_operator
+		}
+	}
 	country_modifier = {
 		country_naval_cap_add = 1200
 	}
 	planet_modifier = {
-		planet_crime_add = -360
-		planet_stability_add = 360
+		planet_crime_add = -240
+		planet_stability_add = 240
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2632,50 +2271,26 @@ stellarite_giga_fortress_operator_drone = {
 			}
 		}
 		modifier = {
-			planet_stability_add = 180
-		}
-	}
-	weight = {
-		weight = 100
-		modifier = {
-			factor = 2
-			has_trait = trait_resilient
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_very_strong
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_strong
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_weak
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 100
-			has_job = stellarite_giga_fortress_operator_drone
+			planet_stability_add = 120
 		}
 	}
 }
 stellarite_giga_fortress_operator_mentat = {
-	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stellarite_giga_fortress_array
-	clothes_texture_index = 5
-	icon = acot_giga_fortress_operator_mentat
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = specialist
 	}
-	possible_precalc = can_fill_specialist_job
+	tags = {
+		soldier
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_giga_fortress_array
+			icon = acot_giga_fortress_operator_mentat
+		}
+	}
 	possible = {
 		complex_specialist_job_check_trigger = yes
 	}
@@ -2683,91 +2298,26 @@ stellarite_giga_fortress_operator_mentat = {
 		country_naval_cap_mult = 0.18
 		command_limit_add = 400
 	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 0.2
-			has_citizenship_rights = no
-			NOT = {
-				has_trait = trait_mechanical
-			}
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_resilient
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_very_strong
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_strong
-		}
-		modifier = {
-			factor = 10
-			is_enslaved = yes
-			has_slavery_type = {
-				type = slavery_military
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_weak
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = stellarite_giga_fortress_operator_mentat
-		}
-	}
 }
 stellarite_giga_fortress_operator_mentat_drone = {
-	category = complex_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = building_stellarite_giga_fortress_array
-	clothes_texture_index = 5
-	icon = acot_giga_fortress_operator_mentat
-	possible_pre_triggers = {
-		has_owner = yes
-		is_being_purged = no
-		is_being_assimilated = no
-		is_sapient = yes
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @EXPONENT_PHANON
+		CATEGORY = complex_drone
 	}
-	possible_precalc = can_fill_drone_job
+	tags = {
+		soldier
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_giga_fortress_array
+			icon = acot_giga_fortress_operator_mentat
+		}
+	}
 	country_modifier = {
 		country_naval_cap_mult = 1.8
 		command_limit_add = 400
-	}
-	weight = {
-		weight = @specialist_job_weight
-		modifier = {
-			factor = 2
-			has_trait = trait_resilient
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_very_strong
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_strong
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_weak
-		}
-		modifier = {
-			factor = 0.1
-			can_take_servant_job = yes
-		}
-		modifier = {
-			factor = 5
-			has_job = stellarite_giga_fortress_operator_mentat_drone
-		}
 	}
 }
 
