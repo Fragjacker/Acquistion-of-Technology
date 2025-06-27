@@ -9,6 +9,10 @@
 district_dm_hab_housing = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
+	zone_slots = {
+		slot_habitat_01
+		slot_habitat_02
+	}
 	show_on_uncolonized = {
 		uses_district_set = dm_habitat
 	}
@@ -27,7 +31,7 @@ district_dm_hab_housing = {
 		}
 	}
 	planet_modifier = {
-		planet_housing_add = 12
+		planet_housing_add = 1200
 		planet_max_buildings_add = 1
 	}
 	triggered_planet_modifier = {
@@ -38,7 +42,7 @@ district_dm_hab_housing = {
 			}
 		}
 		modifier = {
-			job_maintenance_drone_add = 2
+			job_maintenance_drone_add = 200
 		}
 	}
 	triggered_desc = {
@@ -50,36 +54,16 @@ district_dm_hab_housing = {
 		}
 		text = job_maintenance_drone_desc
 	}
-	ai_weight = {
-		weight = 0
-		modifier = {
-			weight = 250
-			planet = {
-				num_districts = {
-					type = district_hab_housing
-					value < 1
-				}
-			}
-		}
-		modifier = {
-			weight = 250
-			planet = {
-				owner = {
-					is_individualistic_empire = yes
-					has_ascension_perk = ap_master_builders
-				}
-				num_districts = {
-					type = district_hab_housing
-					value < 2
-				}
-			}
-		}
+	inline_script = {
+		script = districts/ai_urban_district_extra_weighting
 	}
 }
-
 district_dm_hab_energy = {
 	base_buildtime = 240
 	is_capped_by_modifier = yes
+	zone_slots = {
+		slot_habitat_energy
+	}
 	show_on_uncolonized = {
 		uses_district_set = dm_habitat
 	}
@@ -88,9 +72,6 @@ district_dm_hab_energy = {
 	}
 	planet_modifier = {
 		planet_housing_add = 3
-	}
-	inline_script = {
-		script = districts/habitat_districts_triggered_mods
 	}
 	resources = {
 		category = planet_districts_hab_energy
@@ -199,10 +180,12 @@ district_dm_hab_energy = {
 		}
 	}
 }
-
 district_dm_hab_mining = {
 	base_buildtime = 240
 	is_capped_by_modifier = yes
+	zone_slots = {
+		slot_aot_habitat_minerals
+	}
 	show_on_uncolonized = {
 		uses_district_set = dm_habitat
 	}
@@ -211,9 +194,6 @@ district_dm_hab_mining = {
 	}
 	planet_modifier = {
 		planet_housing_add = 3
-	}
-	inline_script = {
-		script = districts/habitat_districts_triggered_mods
 	}
 	resources = {
 		category = planet_districts_hab_mining
@@ -323,10 +303,12 @@ district_dm_hab_mining = {
 		}
 	}
 }
-
 district_dm_hab_arms_industry = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
+	zone_slots = {
+		slot_aot_habitat_industry
+	}
 	show_on_uncolonized = {
 		uses_district_set = dm_habitat
 		NOT = {
@@ -450,10 +432,12 @@ district_dm_hab_arms_industry = {
 		}
 	}
 }
-
 district_dm_hab_dark_matter_energy = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
+	zone_slots = {
+		slot_aot_habitat_dark_matter_dark_energy
+	}
 	show_on_uncolonized = {
 		uses_district_set = dm_habitat
 	}
@@ -555,10 +539,12 @@ district_dm_hab_dark_matter_energy = {
 		}
 	}
 }
-
 district_dm_hab_research = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
+	zone_slots = {
+		slot_aot_habitat_research
+	}
 	show_on_uncolonized = {
 		uses_district_set = dm_habitat
 	}
@@ -712,7 +698,6 @@ district_ae_hab_housing = {
 		}
 	}
 }
-
 district_ae_hab_energy = {
 	base_buildtime = 240
 	is_capped_by_modifier = yes
@@ -835,7 +820,6 @@ district_ae_hab_energy = {
 		}
 	}
 }
-
 district_ae_hab_mining = {
 	base_buildtime = 240
 	is_capped_by_modifier = yes
@@ -959,7 +943,6 @@ district_ae_hab_mining = {
 		}
 	}
 }
-
 district_ae_hab_arms_industry = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
@@ -1086,7 +1069,6 @@ district_ae_hab_arms_industry = {
 		}
 	}
 }
-
 district_ae_hab_dark_matter_energy = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
@@ -1191,7 +1173,6 @@ district_ae_hab_dark_matter_energy = {
 		}
 	}
 }
-
 district_ae_hab_research = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
@@ -1348,7 +1329,6 @@ district_hab_phanon_housing = {
 		}
 	}
 }
-
 district_hab_phanon_energy = {
 	base_buildtime = 240
 	is_capped_by_modifier = yes
@@ -1470,7 +1450,6 @@ district_hab_phanon_energy = {
 		}
 	}
 }
-
 district_hab_phanon_mining = {
 	base_buildtime = 240
 	is_capped_by_modifier = yes
@@ -1593,7 +1572,6 @@ district_hab_phanon_mining = {
 		}
 	}
 }
-
 district_hab_phanon_arms_industry = {
 	icon = district_macripp_arms_industry
 	base_buildtime = 240
@@ -1720,7 +1698,6 @@ district_hab_phanon_arms_industry = {
 		}
 	}
 }
-
 district_hab_phanon_generator = {
 	icon = district_macripp_runic_power_generator
 	base_buildtime = 240
@@ -1875,7 +1852,6 @@ district_hab_phanon_generator = {
 		}
 	}
 }
-
 district_hab_phanon_research = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
@@ -2032,7 +2008,6 @@ district_hab_stellarite_housing = {
 		}
 	}
 }
-
 district_hab_stellarite_energy = {
 	base_buildtime = 240
 	is_capped_by_modifier = yes
@@ -2154,7 +2129,6 @@ district_hab_stellarite_energy = {
 		}
 	}
 }
-
 district_hab_stellarite_mining = {
 	base_buildtime = 240
 	is_capped_by_modifier = yes
@@ -2277,7 +2251,6 @@ district_hab_stellarite_mining = {
 		}
 	}
 }
-
 district_hab_stellarite_arms_industry = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
@@ -2397,7 +2370,6 @@ district_hab_stellarite_arms_industry = {
 		}
 	}
 }
-
 district_hab_stellarite_generator = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
@@ -2574,7 +2546,6 @@ district_hab_stellarite_generator = {
 		}
 	}
 }
-
 district_hab_stellarite_research = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
