@@ -1,0 +1,40 @@
+base_buildtime = @hab_time
+is_capped_by_modifier = no
+zone_slots = {
+	slot_aot_habitat_dark_matter_dark_energy
+}
+show_on_uncolonized = {
+	uses_district_set = $DISTRICT_SET$
+}
+potential = {
+	uses_district_set = $DISTRICT_SET$
+}
+inline_script = {
+	script = districts/aot_habitats/parts/cost
+	EXPONENT = $EXPONENT$
+	COST = "$COST$"
+}
+planet_modifier = {
+	planet_housing_add = @[ 300 * two_exp$EXPONENT$ ]
+}
+inline_script = {
+	script = districts/aot_habitats/parts/special/$TIER_TYPE$
+	EXPONENT = $EXPONENT$
+}
+ai_weight = {
+	weight = 0
+	modifier = {
+		weight = 250
+		planet = {
+			NOT = {
+				has_district = $DISTRICT$
+			}
+		}
+		owner = {
+			has_monthly_income = {
+				resource = minerals
+				value > 80
+			}
+		}
+	}
+}
