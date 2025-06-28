@@ -1,306 +1,40 @@
-@hab_cost = 1000
-@hab_cost_dm = 500
-@hab_cost_de = 500
-@hab_cost_stellarite = 500
-@hab_maintenance = 2
 #####################
 # Dark Matter Tier (Delta)
 #####################
 district_dm_hab_housing = {
-	base_buildtime = 240
-	is_capped_by_modifier = no
-	zone_slots = {
-		slot_habitat_01
-		slot_habitat_02
-	}
-	show_on_uncolonized = {
-		uses_district_set = dm_habitat
-	}
-	potential = {
-		uses_district_set = dm_habitat
-	}
-	resources = {
-		category = planet_districts
-		cost = {
-			minerals = @hab_cost
-			sr_dark_matter = @hab_cost_dm
-			acot_sr_dark_energy = @hab_cost_de
-		}
-		upkeep = {
-			energy = @hab_maintenance
-		}
-	}
-	planet_modifier = {
-		planet_housing_add = 1200
-		planet_max_buildings_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_maintenance_drone_add = 200
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		text = job_maintenance_drone_desc
-	}
 	inline_script = {
-		script = districts/ai_urban_district_extra_weighting
+		script = districts/aot_habitats/housing
+		COST = "
+			sr_dark_matter = @special_resource_cost
+			acot_sr_dark_energy = @special_resource_cost
+			"
+		EXPONENT = @DELTA_EXPONENT
 	}
 }
 district_dm_hab_energy = {
-	base_buildtime = 240
-	is_capped_by_modifier = yes
-	zone_slots = {
-		slot_habitat_energy
-	}
-	show_on_uncolonized = {
-		uses_district_set = dm_habitat
-	}
-	potential = {
-		uses_district_set = dm_habitat
-	}
-	planet_modifier = {
-		planet_housing_add = 3
-	}
-	resources = {
-		category = planet_districts_hab_energy
-		cost = {
-			minerals = @hab_cost
-			sr_dark_matter = @hab_cost_dm
-			acot_sr_dark_energy = @hab_cost_de
-		}
-		upkeep = {
-			energy = @hab_maintenance
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = no
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_energyman_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_generator_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_machine_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_energydrone_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_energydrone_add = 4
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		text = job_acot_energydrone_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = no
-			}
-		}
-		text = job_acot_energyman_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		text = job_fe_acolyte_generator_effect_desc
-	}
-	ai_weight = {
-		weight = 0
-		modifier = {
-			weight = 250
-			OR = {
-				owner = {
-					has_monthly_income = {
-						resource = energy
-						value < 200
-					}
-				}
-				planet = {
-					has_district = district_dm_hab_energy
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		energy = 1
-		trigger = {
-			always = yes
-		}
+	inline_script = {
+		script = districts/aot_habitats/energy
+		COST = "
+			sr_dark_matter = @special_resource_cost
+			acot_sr_dark_energy = @special_resource_cost
+			"
+		EXPONENT = @DELTA_EXPONENT
+		JOB = acot_energyman
+		JOB_GESTALT = acot_energydrone
+		DISTRICT = district_dm_hab_energy
 	}
 }
 district_dm_hab_mining = {
-	base_buildtime = 240
-	is_capped_by_modifier = yes
-	zone_slots = {
-		slot_aot_habitat_minerals
-	}
-	show_on_uncolonized = {
-		uses_district_set = dm_habitat
-	}
-	potential = {
-		uses_district_set = dm_habitat
-	}
-	planet_modifier = {
-		planet_housing_add = 3
-	}
-	resources = {
-		category = planet_districts_hab_mining
-		cost = {
-			minerals = @hab_cost
-			sr_dark_matter = @hab_cost_dm
-			acot_sr_dark_energy = @hab_cost_de
-		}
-		upkeep = {
-			energy = @hab_maintenance
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_mineraldrone_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_machine_empire = yes
-			}
-		}
-		modifier = {
-			job_acot_mineraldrone_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = no
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_mineralman_add = 3
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_mine_add = 3
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-			}
-		}
-		text = job_acot_mineraldrone_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_gestalt = no
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		text = job_acot_mineralman_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		text = job_fe_acolyte_mine_effect_desc
-	}
-	ai_weight = {
-		weight = 0
-		modifier = {
-			weight = 400
-			OR = {
-				owner = {
-					has_monthly_income = {
-						resource = energy
-						value < 200
-					}
-				}
-				planet = {
-					has_district = district_dm_hab_energy
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		minerals = 1
-		trigger = {
-			always = yes
-		}
+	inline_script = {
+		script = districts/aot_habitats/mining
+		COST = "
+			sr_dark_matter = @special_resource_cost
+			acot_sr_dark_energy = @special_resource_cost
+			"
+		EXPONENT = @DELTA_EXPONENT
+		JOB = acot_mineralman
+		JOB_GESTALT = acot_mineraldrone
+		DISTRICT = district_dm_hab_mining
 	}
 }
 district_dm_hab_arms_industry = {
