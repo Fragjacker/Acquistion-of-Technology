@@ -1,0 +1,246 @@
+@special_resource_cost = @[ 2500 * two_exp$EXPONENT$ ]
+@central_orbital_alloy_cost = 1500
+entity = "$ENTITY$"
+construction_entity = "$ENTITY$"
+portrait = "GFX_megastructure_habitat_background"
+place_entity_on_planet_plane = no
+show_galactic_map_icon = no
+hide_name = yes
+show_in_outliner = no
+construction_blocks_and_blocked_by = self_type
+entity_offset = {
+	x = 7
+	y = -7
+}
+build_time = 1800
+resources = {
+	category = megastructures_habitat
+	cost = {
+		$COST$
+	}
+	cost = {
+		trigger = {
+			country_uses_bio_ships = no
+		}
+		alloys = @[ central_orbital_alloy_cost * two_exp$EXPONENT$ ]
+	}
+	cost = {
+		trigger = {
+			country_uses_bio_ships = yes
+		}
+		alloys = @[ central_orbital_alloy_cost * two_exp$EXPONENT$ ]
+		mult = 0.5
+	}
+	cost = {
+		trigger = {
+			country_uses_bio_ships = yes
+		}
+		food = @[ central_orbital_alloy_cost * two_exp$EXPONENT$ ]
+		mult = @halved_alloy_to_food_cost_ratio
+	}
+}
+potential = {
+	has_technology = $PREREQUISITE$
+}
+prerequisites = {
+	$PREREQUISITE$
+}
+possible = {
+	exists = starbase
+	custom_tooltip = {
+		fail_text = "requires_inside_border"
+		is_inside_border = from
+	}
+	custom_tooltip = {
+		fail_text = "requires_not_habitat_central_complex"
+		NOT = {
+			OR = {
+				any_system_planet = {
+					has_planet_flag = habitat
+				}
+				has_megastructure = habitat_central_complex_ruined
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_orbital_debris"
+		NOT = {
+			any_system_planet = {
+				has_planet_flag = has_orbital_debris
+			}
+		}
+	}
+	# The AI has a hard cap on number of habitats scaling with galaxy size and difficulty
+	hidden_trigger = {
+		from = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				count_planet_within_border = {
+					count <= value:ai_habitat_cap
+					limit = {
+						OR = {
+							is_planet_class = pc_dm_habitat
+							is_planet_class = pc_ae_habitat
+							is_planet_class = pc_phanon_habitat
+							is_planet_class = pc_sigma_habitat
+						}
+					}
+				}
+			}
+		}
+	}
+}
+placement_rules = {
+	planet_possible = {
+		custom_tooltip = {
+			fail_text = "requires_surveyed_planet"
+			is_surveyed = {
+				# Prevent leaking habitability information
+				who = prev.from
+				status = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_anomaly"
+			NOT = {
+				has_anomaly = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			# can_build_megastructure_on_planet = yes
+			NOR = {
+				has_planet_flag = megastructure
+				has_planet_flag = has_megastructure
+				solar_system = {
+					OR = {
+						has_star_flag = ring_world_built
+						has_star_flag = ithomes_gate
+					}
+				}
+				merg_is_hab_ringworld = yes
+				is_planet_class = pc_ringworld_habitable_damaged
+				is_planet_class = pc_ringworld_tech
+				is_planet_class = pc_ringworld_tech_damaged
+				is_planet_class = pc_ringworld_seam
+				is_planet_class = pc_ringworld_seam_damaged
+				merg_is_habitat = yes
+				is_aot_habitat = yes
+			}
+		}
+		# Balance for habitats
+		custom_tooltip = {
+			fail_text = "requires_not_minor_planetary_body"
+			NOR = {
+				is_asteroid = yes
+				is_moon = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_not_solarpunk"
+			NOT = {
+				solar_system = {
+					has_star_flag = solarpunk_system_02
+				}
+			}
+		}
+		if = {
+			limit = {
+				from = {
+					is_ai = yes
+				}
+			}
+			OR = {
+				has_deposit_for = shipclass_mining_station
+				has_deposit_for = shipclass_research_station
+			}
+		}
+	}
+	# Use these for all non-star megastructures
+}
+# root = system
+# from = country
+ai_weight = {
+	factor = 5
+	modifier = {
+		# AI shouldn't build habitats if they have any uncolonised habitats.
+		factor = 0
+		owner = {
+			any_planet_within_border = {
+				OR = {
+					merg_is_habitat = yes
+					is_aot_habitat = yes
+				}
+				is_colony = no
+			}
+		}
+	}
+	modifier = {
+		# AI shouldn't build habitats if they don't have starports in the system
+		# Unless they have either the Void Dwellers origin or Voidborn AP.
+		factor = 0
+		owner = {
+			is_void_dweller_empire = no
+		}
+		starbase = {
+			NOT = {
+				has_starbase_size >= starbase_starport
+			}
+		}
+	}
+	modifier = {
+		factor = 5
+		exists = sector
+		sector = {
+			has_sector_type = core_sector
+		}
+	}
+	modifier = {
+		factor = 100
+		OR = {
+			has_star_flag = ideal_habitat_t1
+			has_star_flag = ideal_habitat_t2
+		}
+	}
+	modifier = {
+		factor = value:num_orbital_sites
+	}
+}
+on_build_complete = {
+	fromfrom.planet = {
+		save_event_target_as = target_planet
+	}
+	if = {
+		limit = {
+			fromfrom.planet = {
+				is_star = yes
+			}
+		}
+		spawn_aot_habitat_effect = {
+			DISTANCE = 19.798
+			ENTITY = $ENTITY$
+			PLANET_TYPE = $PLANET_TYPE$
+		}
+	}
+	else = {
+		spawn_aot_habitat_effect = {
+			DISTANCE = 9.899
+			ENTITY = $ENTITY$
+			PLANET_TYPE = $PLANET_TYPE$
+		}
+	}
+	fromfrom.solar_system = {
+		set_star_flag = has_habitat
+	}
+	from = {
+		save_event_target_as = habitat_owner
+	}
+	remove_megastructure = fromfrom
+	from = {
+		country_event = {
+			id = megastructures.10
+		}
+	}
+}

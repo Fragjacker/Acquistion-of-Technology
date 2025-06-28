@@ -166,163 +166,162 @@ create_sigma_Star = {
 # --------------------------------- Save old amount of districts --------------------------------- #
 save_aot_habitat_districts = {
 	[[HOUSING]
-	if = {
-		limit = {
-			has_district = $HOUSING$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $HOUSING$
+		if = {
+			limit = {
+				has_district = $HOUSING$
 			}
-			variable = num_houses
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $HOUSING$
+				}
+				variable = num_houses
+			}
 		}
-	}
 	]
 	[[ENERGY]
-	if = {
-		limit = {
-			has_district = $ENERGY$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $ENERGY$
+		if = {
+			limit = {
+				has_district = $ENERGY$
 			}
-			variable = num_energy
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $ENERGY$
+				}
+				variable = num_energy
+			}
 		}
-	}
 	]
 	[[MINING]
-	if = {
-		limit = {
-			has_district = $MINING$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $MINING$
+		if = {
+			limit = {
+				has_district = $MINING$
 			}
-			variable = num_mines
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $MINING$
+				}
+				variable = num_mines
+			}
 		}
-	}
 	]
 	[[INDUSTRY]
-	if = {
-		limit = {
-			has_district = $INDUSTRY$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $INDUSTRY$
+		if = {
+			limit = {
+				has_district = $INDUSTRY$
 			}
-			variable = num_industry
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $INDUSTRY$
+				}
+				variable = num_industry
+			}
 		}
-	}
 	]
 	[[SCIENCE]
-	if = {
-		limit = {
-			has_district = $SCIENCE$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $SCIENCE$
+		if = {
+			limit = {
+				has_district = $SCIENCE$
 			}
-			variable = num_research
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $SCIENCE$
+				}
+				variable = num_research
+			}
 		}
-	}
 	]
 	[[SPECIAL]
-	if = {
-		limit = {
-			has_district = $SPECIAL$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $SPECIAL$
+		if = {
+			limit = {
+				has_district = $SPECIAL$
 			}
-			variable = num_special
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $SPECIAL$
+				}
+				variable = num_special
+			}
 		}
-	}
 	]
 }
-
 create_new_aot_habitat_districts = {
 	[[HOUSING]
-	if = {
-		limit = {
-			is_variable_set = num_houses
+		if = {
+			limit = {
+				is_variable_set = num_houses
+			}
+			while = {
+				count = num_houses
+				add_district = $HOUSING$
+			}
+			clear_variable = num_houses
 		}
-		while = {
-			count = num_houses
-			add_district = $HOUSING$
-		}
-		clear_variable = num_houses
-	}
 	]
 	[[ENERGY]
-	if = {
-		limit = {
-			is_variable_set = num_energy
+		if = {
+			limit = {
+				is_variable_set = num_energy
+			}
+			while = {
+				count = num_energy
+				add_district = $ENERGY$
+			}
+			clear_variable = num_energy
 		}
-		while = {
-			count = num_energy
-			add_district = $ENERGY$
-		}
-		clear_variable = num_energy
-	}
 	]
 	[[MINING]
-	if = {
-		limit = {
-			is_variable_set = num_mines
+		if = {
+			limit = {
+				is_variable_set = num_mines
+			}
+			while = {
+				count = num_mines
+				add_district = $MINING$
+			}
+			clear_variable = num_mines
 		}
-		while = {
-			count = num_mines
-			add_district = $MINING$
-		}
-		clear_variable = num_mines
-	}
 	]
 	[[INDUSTRY]
-	if = {
-		limit = {
-			is_variable_set = num_industry
+		if = {
+			limit = {
+				is_variable_set = num_industry
+			}
+			while = {
+				count = num_industry
+				add_district = $INDUSTRY$
+			}
+			clear_variable = num_industry
 		}
-		while = {
-			count = num_industry
-			add_district = $INDUSTRY$
-		}
-		clear_variable = num_industry
-	}
 	]
 	[[SCIENCE]
-	if = {
-		limit = {
-			is_variable_set = num_research
+		if = {
+			limit = {
+				is_variable_set = num_research
+			}
+			while = {
+				count = num_research
+				add_district = $SCIENCE$
+			}
+			clear_variable = num_research
 		}
-		while = {
-			count = num_research
-			add_district = $SCIENCE$
-		}
-		clear_variable = num_research
-	}
 	]
 	[[SPECIAL]
-	if = {
-		limit = {
-			is_variable_set = num_special
+		if = {
+			limit = {
+				is_variable_set = num_special
+			}
+			while = {
+				count = num_special
+				add_district = $SPECIAL$
+			}
+			clear_variable = num_special
 		}
-		while = {
-			count = num_special
-			add_district = $SPECIAL$
-		}
-		clear_variable = num_special
-	}
 	]
 }
 
@@ -341,6 +340,41 @@ create_fe_dm_habitat = {
 		days = -1
 	}
 }
+spawn_aot_habitat_effect = {
+	optimize_memory
+	spawn_planet = {
+		class = $PLANET_TYPE$
+		location = event_target:target_planet
+		orbit_location = yes
+		orbit_angle_offset = 135
+		orbit_distance_offset = $DISTANCE$
+		size = 6
+		has_ring = no
+		init_effect = {
+			set_name = {
+				key = HABITAT_PLANET_NAME
+				variable_string = "\\[FROM.from.solar_system.GetName]"
+			}
+			set_planet_entity = {
+				entity = $ENTITY$
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = FROM
+			}
+			set_all_comms_surveyed = yes
+			clear_blockers = yes
+			set_planet_flag = megastructure
+			set_planet_flag = habitat
+			set_planet_flag = habitat_level_1
+			save_event_target_as = target_habitat
+			event_target:target_planet = {
+				set_planet_flag = habitat@PREV
+			}
+		}
+	}
+}
+
 
 # -------- Temporary disabled mining and energy district code, as it doesn't work anyways. ------- #
 create_dm_habitat = {
@@ -499,7 +533,6 @@ create_dm_habitat = {
 		}
 	}
 }
-
 create_ae_habitat = {
 	save_aot_habitat_districts = {
 		HOUSING = district_dm_hab_housing
@@ -694,7 +727,6 @@ create_ae_habitat = {
 		}
 	}
 }
-
 create_phanon_habitat = {
 	save_aot_habitat_districts = {
 		HOUSING = district_ae_hab_housing
@@ -890,7 +922,6 @@ create_phanon_habitat = {
 		}
 	}
 }
-
 create_sigma_habitat = {
 	save_aot_habitat_districts = {
 		HOUSING = district_hab_phanon_housing
@@ -1087,7 +1118,6 @@ create_sigma_habitat = {
 		}
 	}
 }
-
 add_aot_habitat_deposits = {
 	set_all_comms_surveyed = yes
 	clear_blockers = yes
@@ -1329,7 +1359,6 @@ get_eligible_alpha_research_leader = {
 		save_event_target_as = $TARGET_NAME$
 	}
 }
-
 assign_alpha_researcher = {
 	$TARGET$ = {
 		set_leader_flag = alpha_research_leader
