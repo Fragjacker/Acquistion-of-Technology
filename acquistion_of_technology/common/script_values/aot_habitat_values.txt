@@ -199,3 +199,20 @@ aot_count_system_deposits = {
 		mult = 6
 	}
 }
+count_system_conduit_buildings = {
+	complex_trigger_modifier = {
+		trigger = count_system_planet
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				is_aot_habitat = no # Don't count conduits built on the habitat itself.
+				OR = {
+					has_building = building_phanon_stellarite_nexus
+					has_building = building_acot_stellarite_nexus
+				}
+			}
+		}
+		mode = add
+		mult = 5
+	}
+}
