@@ -1,173 +1,201 @@
 # ------------------------------------------------------------------------------------------------ #
 #								  AoT Habitat Check for Orbitals								  #
 # ------------------------------------------------------------------------------------------------ #
-aot_habitat_district_value = {
-	base = 0
-	add = solar_system.value:aot_num_major_and_minor_orbitals_type|TYPE|$TYPE$|
-	mult = 3
-}
-
-aot_num_major_and_minor_orbitals_type = {
-	base = 0
-	add = value:aot_num_major_orbitals_type|TYPE|$TYPE$|
-	add = value:aot_num_minor_orbitals_type|TYPE|$TYPE$|
-}
-
-aot_num_major_and_minor_orbitals_class = {
-	base = 0
-	add = value:aot_num_major_orbitals_class|CLASS|$CLASS$|
-	add = value:aot_num_minor_orbitals_class|CLASS|$CLASS$|
-}
-
-aot_num_major_orbitals_class = {
-	base = 0
+aot_check_system_support_pylons = {
 	complex_trigger_modifier = {
-		trigger = count_fleet_in_system
+		trigger = count_system_megastructure
+		trigger_scope = solar_system
 		parameters = {
 			limit = {
-				OR = {
-					is_ship_size = major_orbital_$CLASS$
-					is_ship_size = dm_major_orbital_$CLASS$
-					is_ship_size = ae_major_orbital_$CLASS$
-					is_ship_size = phanon_major_orbital_$CLASS$
-					is_ship_size = sigma_major_orbital_$CLASS$
-				}
+				is_megastructure_type = acot_dark_matter_obelisk_core
+			}
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				is_megastructure_type = acot_dark_matter_obelisk_core_advanced
+			}
+		}
+		mode = add
+		mult = @two_exp1
+	}
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				is_megastructure_type = acot_dark_matter_obelisk_core_super
+			}
+		}
+		mode = add
+		mult = @two_exp2
+	}
+}
+aot_get_num_built_mining_districts = {
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_dm_hab_mining
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_ae_hab_mining
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_hab_phanon_mining
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_hab_stellarite_mining
+		}
+		mode = add
+	}
+}
+aot_get_num_built_energy_districts = {
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_dm_hab_energy
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_ae_hab_energy
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_hab_phanon_energy
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_hab_stellarite_energy
+		}
+		mode = add
+	}
+}
+aot_count_system_planets = {
+	complex_trigger_modifier = {
+		trigger = count_system_planet
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				is_artificial = no
+				is_astral_scar = no
 			}
 		}
 		mode = add
 	}
 }
-
-aot_num_minor_orbitals_class = {
-	base = 0
+aot_count_system_deposits = {
 	complex_trigger_modifier = {
-		trigger = count_fleet_in_system
+		trigger = count_system_planet
+		trigger_scope = solar_system
 		parameters = {
 			limit = {
-				OR = {
-					is_ship_size = minor_orbital_$CLASS$
-					is_ship_size = dm_minor_orbital_$CLASS$
-					is_ship_size = ae_minor_orbital_$CLASS$
-					is_ship_size = phanon_minor_orbital_$CLASS$
-					is_ship_size = sigma_minor_orbital_$CLASS$
-				}
+				is_artificial = no
+				is_astral_scar = no
+				has_deposit = d_$TYPE$_1
 			}
 		}
 		mode = add
 	}
-}
-
-aot_num_major_orbitals = {
-	base = 0
 	complex_trigger_modifier = {
-		trigger = count_fleet_in_system
+		trigger = count_system_planet
+		trigger_scope = solar_system
 		parameters = {
 			limit = {
-				is_ship_class = shipclass_habitat_station
-				NOR = {
-					is_ship_size = minor_orbital_resource
-					is_ship_size = minor_orbital_generic
-					is_ship_size = dm_minor_orbital_resource
-					is_ship_size = dm_minor_orbital_generic
-					is_ship_size = ae_minor_orbital_resource
-					is_ship_size = ae_minor_orbital_generic
-					is_ship_size = phanon_minor_orbital_resource
-					is_ship_size = phanon_minor_orbital_generic
-					is_ship_size = sigma_minor_orbital_resource
-					is_ship_size = sigma_minor_orbital_generic
-				}
-			}
-		}
-		mode = add
-	}
-}
-
-aot_num_major_orbitals = {
-	base = 0
-	complex_trigger_modifier = {
-		trigger = count_fleet_in_system
-		parameters = {
-			limit = {
-				is_ship_class = shipclass_habitat_station
+				is_artificial = no
+				is_astral_scar = no
 				OR = {
-					is_ship_size = major_orbital_generic
-					is_ship_size = dm_major_orbital_generic
-					is_ship_size = ae_major_orbital_generic
-					is_ship_size = phanon_major_orbital_generic
-					is_ship_size = sigma_major_orbital_generic
-					is_ship_size = major_orbital_resource
-					is_ship_size = dm_major_orbital_resource
-					is_ship_size = ae_major_orbital_resource
-					is_ship_size = phanon_major_orbital_resource
-					is_ship_size = sigma_major_orbital_resource
+					has_deposit = d_$TYPE$_2
+					has_deposit = d_$TYPE$_3
 				}
 			}
 		}
 		mode = add
+		mult = 2
 	}
-}
-
-aot_num_minor_orbitals = {
-	base = 0
 	complex_trigger_modifier = {
-		trigger = count_fleet_in_system
+		trigger = count_system_planet
+		trigger_scope = solar_system
 		parameters = {
 			limit = {
-				is_ship_class = shipclass_habitat_station
+				is_artificial = no
+				is_astral_scar = no
 				OR = {
-					is_ship_size = minor_orbital_generic
-					is_ship_size = dm_minor_orbital_generic
-					is_ship_size = ae_minor_orbital_generic
-					is_ship_size = phanon_minor_orbital_generic
-					is_ship_size = sigma_minor_orbital_generic
-					is_ship_size = minor_orbital_resource
-					is_ship_size = dm_minor_orbital_resource
-					is_ship_size = ae_minor_orbital_resource
-					is_ship_size = phanon_minor_orbital_resource
-					is_ship_size = sigma_minor_orbital_resource
+					has_deposit = d_$TYPE$_4
+					has_deposit = d_$TYPE$_5
 				}
 			}
 		}
 		mode = add
+		mult = 3
 	}
-}
-
-aot_num_major_orbitals_type = {
-	base = 0
 	complex_trigger_modifier = {
-		trigger = count_fleet_in_system
+		trigger = count_system_planet
+		trigger_scope = solar_system
 		parameters = {
 			limit = {
+				is_artificial = no
+				is_astral_scar = no
 				OR = {
-					is_ship_size = major_orbital_resource
-					is_ship_size = dm_major_orbital_resource
-					is_ship_size = ae_major_orbital_resource
-					is_ship_size = phanon_major_orbital_resource
-					is_ship_size = sigma_major_orbital_resource
+					has_deposit = d_$TYPE$_6
+					has_deposit = d_$TYPE$_7
 				}
-				has_fleet_flag = $TYPE$_orbital
 			}
 		}
 		mode = add
+		mult = 4
 	}
-}
-
-aot_num_minor_orbitals_type = {
-	base = 0
 	complex_trigger_modifier = {
-		trigger = count_fleet_in_system
+		trigger = count_system_planet
+		trigger_scope = solar_system
 		parameters = {
 			limit = {
+				is_artificial = no
+				is_astral_scar = no
 				OR = {
-					is_ship_size = minor_orbital_resource
-					is_ship_size = dm_minor_orbital_resource
-					is_ship_size = ae_minor_orbital_resource
-					is_ship_size = phanon_minor_orbital_resource
-					is_ship_size = sigma_minor_orbital_resource
+					has_deposit = d_$TYPE$_8
+					has_deposit = d_$TYPE$_9
 				}
-				has_fleet_flag = $TYPE$_orbital
 			}
 		}
 		mode = add
+		mult = 5
+	}
+	complex_trigger_modifier = {
+		trigger = count_system_planet
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				is_artificial = no
+				is_astral_scar = no
+				has_deposit = d_$TYPE$_10
+			}
+		}
+		mode = add
+		mult = 6
 	}
 }
