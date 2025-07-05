@@ -541,6 +541,9 @@ create_dm_habitat = {
 		modifier = dm_habitat_mod
 		days = -1
 	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
+	}
 	# Add housing districts if there's been built any previously.
 	create_new_aot_habitat_districts = {
 		HOUSING = district_dm_hab_housing
@@ -570,6 +573,9 @@ create_ae_habitat = {
 	add_modifier = {
 		modifier = ae_habitat_mod
 		days = -1
+	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
 	}
 	create_new_aot_habitat_districts = {
 		HOUSING = district_ae_hab_housing
@@ -629,6 +635,9 @@ create_phanon_habitat = {
 		modifier = phanon_habitat_mod
 		days = -1
 	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
+	}
 	create_new_aot_habitat_districts = {
 		HOUSING = district_hab_phanon_housing
 		ENERGY = district_hab_phanon_energy
@@ -687,6 +696,9 @@ create_sigma_habitat = {
 	add_modifier = {
 		modifier = stellarite_habitat_mod
 		days = -1
+	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
 	}
 	create_new_aot_habitat_districts = {
 		HOUSING = district_hab_stellarite_housing
@@ -784,25 +796,25 @@ update_last_built_orbital = {
 update_all_orbitals_wrapper = {
 	optimize_memory
 	update_minor_major_orbitals = {
-		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
+		[[FROM_TIER] FROM_TIER = $FROM_TIER$ ]
 		TO_TIER = $TO_TIER$
 		BODY = major
 		TYPE = generic
 	}
 	update_minor_major_orbitals = {
-		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
+		[[FROM_TIER] FROM_TIER = $FROM_TIER$ ]
 		TO_TIER = $TO_TIER$
 		BODY = major
 		TYPE = resource
 	}
 	update_minor_major_orbitals = {
-		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
+		[[FROM_TIER] FROM_TIER = $FROM_TIER$ ]
 		TO_TIER = $TO_TIER$
 		BODY = minor
 		TYPE = generic
 	}
 	update_minor_major_orbitals = {
-		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
+		[[FROM_TIER] FROM_TIER = $FROM_TIER$ ]
 		TO_TIER = $TO_TIER$
 		BODY = minor
 		TYPE = resource
@@ -816,8 +828,8 @@ update_minor_major_orbitals = {
 		every_fleet_in_system = {
 			limit = {
 				OR = {
-					[[!FROM_TIER]is_ship_size = $BODY$_orbital_$TYPE$]
-					[[FROM_TIER]is_ship_size = $FROM_TIER$_$BODY$_orbital_$TYPE$]
+					[[!FROM_TIER] is_ship_size = $BODY$_orbital_$TYPE$ ]
+					[[FROM_TIER] is_ship_size = $FROM_TIER$_$BODY$_orbital_$TYPE$ ]
 				}
 			}
 			orbit = {
