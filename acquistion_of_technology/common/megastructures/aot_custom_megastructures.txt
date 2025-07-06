@@ -2600,3 +2600,115 @@ enigmatic_lock_1 = {
 		}
 	}
 }
+
+# Support Pylons
+aot_delta_support_pylon = {
+	entity = "precursor_dark_obelisk_entity"
+	construction_entity = "precursor_dark_obelisk_construction_assembly_entity"
+	portrait = "GFX_acot_dark_obelisk_background"
+	show_in_outliner = no
+	prerequisites = {
+		tech_precursor_enigmalith
+	}
+	upgrade_from = {
+		acot_dark_matter_obelisk_core_portal
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = 0
+		y = 0
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		always = no
+	}
+	country_modifier = {
+		megastructure_build_speed_mult = 0.05
+	}
+	dismantle_potential = {
+		always = no
+	}
+	dismantle_possible = {
+		always = no
+	}
+	resources = {
+		category = megastructures
+		cost = {
+		}
+		upkeep = {
+		}
+		produces = {
+			energy = 50
+			minerals = 50
+			alloys = 50
+			mult = value:aot_count_system_support_pylons
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
+			sr_dark_matter = 25
+			mult = value:aot_count_system_support_pylons
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
+			acot_sr_dark_energy = 25
+			mult = value:aot_count_system_support_pylons
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_design
+				}
+			}
+			energy = 50
+			minerals = 50
+			alloys = 50
+			acot_sr_dark_energy = 25
+			sr_dark_matter = 25
+			mult = value:aot_count_system_support_pylons
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_enigmalith_ae
+				}
+			}
+			energy = 100
+			minerals = 100
+			alloys = 100
+			mult = value:aot_count_system_support_pylons
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_precursor_enigmalith_se
+				}
+			}
+			energy = 200
+			minerals = 200
+			alloys = 200
+			mult = value:aot_count_system_support_pylons
+		}
+	}
+	ai_weight = {
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+	}
+}

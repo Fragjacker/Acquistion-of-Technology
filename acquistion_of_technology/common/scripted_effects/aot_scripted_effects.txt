@@ -387,6 +387,7 @@ spawn_aot_habitat_effect = {
 			}
 		}
 	}
+	spawn_support_pylons_in_system = yes
 }
 replace_habitat_capital_building = {
 	optimize_memory
@@ -736,6 +737,54 @@ create_sigma_habitat = {
 		set_planet_size = @size_lvl3
 	}
 	replace_habitat_capital_building = yes
+}
+
+#--------------------<  Initial spawn of support pylons when building a habitat  >------------------
+spawn_support_pylons_in_system = {
+	solar_system = {
+		every_system_colony = {
+			limit = {
+				has_conduit_building = yes
+				is_aot_habitat = no
+			}
+			spawn_support_pylons = yes
+		}
+	}
+}
+
+#-------------------------------<  Spawn support pylons around planet  >----------------------------
+spawn_support_pylons = {
+	if = {
+		limit = {
+			this = {
+				is_aot_habitat = no
+			}
+			solar_system = {
+				any_system_planet = {
+					is_aot_habitat = yes
+				}
+			}
+			not = {
+				has_planet_flag = has_support_pylons
+			}
+		}
+		set_planet_flag = has_support_pylons
+		solar_system = {
+			spawn_one_support_pylon = { ANGLE = 0 }
+			spawn_one_support_pylon = { ANGLE = 90 }
+			spawn_one_support_pylon = { ANGLE = 180 }
+			spawn_one_support_pylon = { ANGLE = 270 }
+		}
+	}
+}
+spawn_one_support_pylon = {
+	spawn_megastructure = {
+		type = aot_delta_support_pylon
+		planet = prev
+		orbit_angle = $ANGLE$
+		orbit_distance = $DISTANCE|20$
+		owner = root
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
