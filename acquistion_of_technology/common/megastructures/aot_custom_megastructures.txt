@@ -2602,7 +2602,7 @@ enigmatic_lock_1 = {
 }
 
 # Support Pylons
-aot_delta_support_pylon = {
+aot_delta_support_pylon_active = {
 	entity = "precursor_dark_obelisk_entity"
 	construction_entity = "precursor_dark_obelisk_construction_assembly_entity"
 	portrait = "GFX_acot_dark_obelisk_background"
@@ -2611,7 +2611,7 @@ aot_delta_support_pylon = {
 		tech_precursor_enigmalith
 	}
 	upgrade_from = {
-		acot_dark_matter_obelisk_core_portal
+		aot_delta_support_pylon_inactive
 	}
 	place_entity_on_planet_plane = yes
 	entity_offset = {
@@ -2642,7 +2642,7 @@ aot_delta_support_pylon = {
 			energy = 50
 			minerals = 50
 			alloys = 50
-			mult = value:aot_count_system_support_pylons
+			mult = value:aot_count_system_active_support_pylons
 		}
 		produces = {
 			trigger = {
@@ -2652,7 +2652,7 @@ aot_delta_support_pylon = {
 				}
 			}
 			sr_dark_matter = 25
-			mult = value:aot_count_system_support_pylons
+			mult = value:aot_count_system_active_support_pylons
 		}
 		produces = {
 			trigger = {
@@ -2662,7 +2662,7 @@ aot_delta_support_pylon = {
 				}
 			}
 			acot_sr_dark_energy = 25
-			mult = value:aot_count_system_support_pylons
+			mult = value:aot_count_system_active_support_pylons
 		}
 		produces = {
 			trigger = {
@@ -2676,7 +2676,7 @@ aot_delta_support_pylon = {
 			alloys = 50
 			acot_sr_dark_energy = 25
 			sr_dark_matter = 25
-			mult = value:aot_count_system_support_pylons
+			mult = value:aot_count_system_active_support_pylons
 		}
 		produces = {
 			trigger = {
@@ -2688,7 +2688,7 @@ aot_delta_support_pylon = {
 			energy = 100
 			minerals = 100
 			alloys = 100
-			mult = value:aot_count_system_support_pylons
+			mult = value:aot_count_system_active_support_pylons
 		}
 		produces = {
 			trigger = {
@@ -2700,8 +2700,50 @@ aot_delta_support_pylon = {
 			energy = 200
 			minerals = 200
 			alloys = 200
-			mult = value:aot_count_system_support_pylons
+			mult = value:aot_count_system_active_support_pylons
 		}
+	}
+	ai_weight = {
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+	}
+}
+
+# Inactive Support Pylon produces nothing
+aot_delta_support_pylon_inactive = {
+	entity = "precursor_dark_obelisk_entity"
+	construction_entity = "precursor_dark_obelisk_construction_assembly_entity"
+	portrait = "GFX_acot_dark_obelisk_background"
+	show_in_outliner = no
+	prerequisites = {
+		tech_precursor_enigmalith
+	}
+	upgrade_from = {
+		aot_delta_support_pylon_active
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = 0
+		y = 0
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		always = no
+	}
+	country_modifier = {
+	}
+	dismantle_potential = {
+		always = no
+	}
+	dismantle_possible = {
+		always = no
+	}
+	resources = {
 	}
 	ai_weight = {
 	}

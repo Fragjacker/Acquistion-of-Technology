@@ -770,20 +770,90 @@ spawn_support_pylons = {
 		}
 		set_planet_flag = has_support_pylons
 		solar_system = {
-			spawn_one_support_pylon = { ANGLE = 0 }
-			spawn_one_support_pylon = { ANGLE = 90 }
-			spawn_one_support_pylon = { ANGLE = 180 }
-			spawn_one_support_pylon = { ANGLE = 270 }
+			spawn_one_support_pylon = { TYPE = aot_delta_support_pylon_inactive ANGLE = 0 }
+			spawn_one_support_pylon = { TYPE = aot_delta_support_pylon_inactive ANGLE = 90 }
+			spawn_one_support_pylon = { TYPE = aot_delta_support_pylon_inactive ANGLE = 180 }
+			spawn_one_support_pylon = { TYPE = aot_delta_support_pylon_inactive ANGLE = 270 }
 		}
 	}
 }
 spawn_one_support_pylon = {
 	spawn_megastructure = {
-		type = aot_delta_support_pylon
+		type = $TYPE$
 		planet = prev
 		orbit_angle = $ANGLE$
 		orbit_distance = $DISTANCE|20$
 		owner = root
+		init_effect = {
+			set_megastructure_flag = support_pylon_planet_id_@prevprev
+		}
+	}
+}
+#---------------------------------<  Helper effects for the others  >-------------------------------
+upgrade_one_support_pylon = {
+	switch = {
+		trigger = is_megastructure_type
+		aot_delta_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_delta_support_pylon_$TO$ }
+	}
+}
+
+#------------<  Deactivates a single support pylon, this is used by the habitat district  >---------
+deactivate_one_random_planet_support_pylon = {
+	solar_system = {
+		random_system_megastructure = {
+			limit = {
+				is_active_support_pylon = yes
+			}
+			upgrade_one_support_pylon = {
+				FROM = active
+				TO = inactive
+			}
+		}
+	}
+}
+
+#-------------<  Activates a single support pylon, this is used by the habitat district  >----------
+activate_one_random_planet_support_pylon = {
+	solar_system = {
+		random_system_megastructure = {
+			limit = {
+				is_inactive_support_pylon = yes
+			}
+			upgrade_one_support_pylon = {
+				FROM = inactive
+				TO = active
+			}
+		}
+	}
+}
+
+#--------------------<  Deactivates all support pylons around the current planet  >-----------------
+deactivate_all_planet_support_pylons = {
+	solar_system = {
+		every_system_megastructure = {
+			limit = {
+				has_megastructure_flag = support_pylon_planet_id_@prevprev
+			}
+			upgrade_one_support_pylon = {
+				FROM = active
+				TO = inactive
+			}
+		}
+	}
+}
+
+#---------------------<  Activates all support pylons around the current planet  >------------------
+activate_all_planet_support_pylons = {
+	solar_system = {
+		every_system_megastructure = {
+			limit = {
+				has_megastructure_flag = support_pylon_planet_id_@prevprev
+			}
+			upgrade_one_support_pylon = {
+				FROM = inactive
+				TO = active
+			}
+		}
 	}
 }
 
