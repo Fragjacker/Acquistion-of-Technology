@@ -2,103 +2,143 @@ namespace = aot_habitat_events
 
 # Spawn initial pylons on conduit building completion
 planet_event = {
-    id = aot_habitat_events.1
-    hide_window = yes
-    is_triggered_only = yes
-    pre_triggers = {
-        has_owner = yes
-    }
-    trigger = {
-        last_building_was_conduit_building = yes
-    }
-    immediate = {
-        spawn_support_pylons = yes
-    }
+	id = aot_habitat_events.1
+	hide_window = yes
+	is_triggered_only = yes
+	pre_triggers = {
+		has_owner = yes
+	}
+	trigger = {
+		last_building_was_conduit_building = yes
+	}
+	immediate = {
+		spawn_support_pylons = yes
+	}
 }
 
 # Activate support pylon on district completion
 planet_event = {
-    id = aot_habitat_events.2
-    hide_window = yes
-    is_triggered_only = yes
-    pre_triggers = {
-        has_owner = yes
-    }
-    trigger = {
-        is_special_habitat_resource_district = yes
-    }
-    immediate = {
-        activate_one_random_planet_support_pylon = yes
-    }
+	id = aot_habitat_events.2
+	hide_window = yes
+	is_triggered_only = yes
+	pre_triggers = {
+		has_owner = yes
+	}
+	trigger = {
+		last_was_special_habitat_resource_district = yes
+	}
+	immediate = {
+		activate_one_random_planet_support_pylon = yes
+	}
 }
 
 # Deactivate support pylon on district demolish
 planet_event = {
-    id = aot_habitat_events.3
-    hide_window = yes
-    is_triggered_only = yes
-    pre_triggers = {
-        has_owner = yes
-    }
-    trigger = {
-        is_special_habitat_resource_district = yes
-    }
-    immediate = {
-        deactivate_one_random_planet_support_pylon = yes
-    }
+	id = aot_habitat_events.3
+	hide_window = yes
+	is_triggered_only = yes
+	pre_triggers = {
+		has_owner = yes
+	}
+	trigger = {
+		last_was_special_habitat_resource_district = yes
+	}
+	immediate = {
+		deactivate_one_random_planet_support_pylon = yes
+	}
 }
 
 # Update the last built minor or major orbital if we have a delta tier complex or higher in the system.
 country_event = {
-    id = aot_habitat_events.5
-    hide_window = yes
-    is_triggered_only = yes
-    immediate = {
-        from.planet = {
-            save_event_target_as = target_planet
-        }
-        fromfrom.solar_system = {
-            random_system_planet = {
-                limit = {
-                    has_planet_flag = habitat
-                }
-                save_event_target_as = central_habitat
-            }
-        }
-        if = {
-            limit = {
-                exists = event_target:central_habitat
-            }
-            event_target:central_habitat = {
-                switch = {
-                    trigger = is_planet_class
-                    pc_dm_habitat = {
-                        update_last_orbital_wrapper = {
-                            TIER = dm
-                        }
-                    }
-                    pc_ae_habitat = {
-                        update_last_orbital_wrapper = {
-                            TIER = ae
-                        }
-                    }
-                    pc_phanon_habitat = {
-                        update_last_orbital_wrapper = {
-                            TIER = phanon
-                        }
-                    }
-                    pc_sigma_habitat = {
-                        update_last_orbital_wrapper = {
-                            TIER = sigma
-                        }
-                    }
-                    pc_sigma_deepspace_habitat = {
-                        update_last_orbital_wrapper = {
-                            TIER = sigma
-                        }
-                    }
-                }
-            }
-        }
-    }
+	id = aot_habitat_events.5
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		from.planet = {
+			save_event_target_as = target_planet
+		}
+		fromfrom.solar_system = {
+			random_system_planet = {
+				limit = {
+					has_planet_flag = habitat
+				}
+				save_event_target_as = central_habitat
+			}
+		}
+		if = {
+			limit = {
+				exists = event_target:central_habitat
+			}
+			event_target:central_habitat = {
+				switch = {
+					trigger = is_planet_class
+					pc_dm_habitat = {
+						update_last_orbital_wrapper = {
+							TIER = dm
+						}
+					}
+					pc_ae_habitat = {
+						update_last_orbital_wrapper = {
+							TIER = ae
+						}
+					}
+					pc_phanon_habitat = {
+						update_last_orbital_wrapper = {
+							TIER = phanon
+						}
+					}
+					pc_sigma_habitat = {
+						update_last_orbital_wrapper = {
+							TIER = sigma
+						}
+					}
+					pc_sigma_deepspace_habitat = {
+						update_last_orbital_wrapper = {
+							TIER = sigma
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Monthly check if the amount of districts is still cool or needs correction measures.
+country_event = {
+	id = aot_habitat_events.6
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		any_owned_planet = {
+			is_aot_habitat = yes
+		}
+	}
+	immediate = {
+		every_controlled_planet = {
+			limit = {
+				is_aot_habitat = yes
+			}
+			if = {
+				limit = {
+					is_special_habitat_resource_district_amount_above_max_cap = yes
+				}
+				while = {
+					count = value:aot_get_habitat_special_district_difference
+					remove_district = district_dm_hab_dark_matter_energy
+					remove_district = district_hab_phanon_generator
+					remove_district = district_hab_stellarite_generator
+				}
+			}
+			# Check if we have less special resource districts than support pylons in the system.
+			if = {
+				limit = {
+					is_support_pylon_amount_over_special_habitat_resource_district_max_cap = yes
+				}
+				while = {
+					count = value:aot_get_difference_amount_support_pylons_against_special_habitat_distrcits
+					deactivate_one_random_planet_support_pylon = yes # Deactivate excess amount.
+				}
+			}
+		}
+	}
 }
