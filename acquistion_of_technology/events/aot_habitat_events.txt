@@ -104,39 +104,47 @@ country_event = {
 }
 
 # Monthly check if the amount of districts is still cool or needs correction measures.
-country_event = {
+planet_event = {
 	id = aot_habitat_events.6
 	is_triggered_only = yes
 	hide_window = yes
+	pre_triggers = {
+		has_owner = yes
+	}
 	trigger = {
-		any_owned_planet = {
-			is_aot_habitat = yes
+		solar_system = {
+			any_system_colony = {
+				is_aot_habitat = yes
+			}
 		}
 	}
 	immediate = {
-		every_controlled_planet = {
-			limit = {
-				is_aot_habitat = yes
-			}
-			if = {
+		solar_system = {
+			every_system_planet = {
 				limit = {
-					is_special_habitat_resource_district_amount_above_max_cap = yes
+					is_aot_habitat = yes
 				}
-				while = {
-					count = value:aot_get_habitat_special_district_difference
-					remove_district = district_dm_hab_dark_matter_energy
-					remove_district = district_hab_phanon_generator
-					remove_district = district_hab_stellarite_generator
+				if = {
+					limit = {
+						is_special_habitat_resource_district_amount_above_max_cap = yes
+					}
+					while = {
+						count = value:aot_get_habitat_special_district_difference
+						remove_district = district_dm_hab_dark_matter_energy
+						remove_district = district_ae_hab_dark_matter_energy
+						remove_district = district_hab_phanon_generator
+						remove_district = district_hab_stellarite_generator
+					}
 				}
-			}
-			# Check if we have less special resource districts than support pylons in the system.
-			if = {
-				limit = {
-					is_support_pylon_amount_over_special_habitat_resource_district_max_cap = yes
-				}
-				while = {
-					count = value:aot_get_difference_amount_support_pylons_against_special_habitat_distrcits
-					deactivate_one_random_planet_support_pylon = yes # Deactivate excess amount.
+				# Check if we have less special resource districts than support pylons in the system.
+				if = {
+					limit = {
+						is_support_pylon_amount_over_special_habitat_resource_district_max_cap = yes
+					}
+					while = {
+						count = value:aot_get_difference_amount_support_pylons_against_special_habitat_distrcits
+						deactivate_one_random_planet_support_pylon = yes # Deactivate excess amount.
+					}
 				}
 			}
 		}
