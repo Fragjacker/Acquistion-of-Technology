@@ -1,0 +1,27 @@
+resources = {
+    category = megastructures
+    inline_script = {
+        script = megastructures/support_pylons/parts/shared
+        EXPONENT = $EXPONENT$
+    }
+    produces = {
+        trigger = {
+            exists = owner
+            owner = {
+                has_technology = tech_dark_matter_power_core_re
+            }
+        }
+        aot_sr_runic_power = @[ support_pylon_base_production * two_exp$EXPONENT$ ]
+        mult = value:aot_get_system_support_pylon_bonus
+    }
+    produces = {
+        trigger = {
+            exists = owner
+            owner = {
+                has_technology = tech_dark_matter_power_core_se
+            }
+        }
+        acot_sr_stellarite = @[ support_pylon_base_production * two_exp$EXPONENT$ / 2 ]
+        mult = value:aot_get_system_support_pylon_bonus
+    }
+}
