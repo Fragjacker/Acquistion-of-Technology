@@ -768,24 +768,43 @@ spawn_support_pylons = {
 				has_planet_flag = has_support_pylons
 			}
 		}
-		set_planet_flag = has_support_pylons
 		solar_system = {
-			spawn_one_support_pylon = { TYPE = aot_delta_support_pylon_inactive ANGLE = 0 }
-			spawn_one_support_pylon = { TYPE = aot_delta_support_pylon_inactive ANGLE = 90 }
-			spawn_one_support_pylon = { TYPE = aot_delta_support_pylon_inactive ANGLE = 180 }
-			spawn_one_support_pylon = { TYPE = aot_delta_support_pylon_inactive ANGLE = 270 }
+			random_system_planet = {
+				limit = {
+					is_aot_habitat = yes
+				}
+				save_event_target_as = system_aot_habitat
+			}
 		}
+		set_planet_flag = has_support_pylons
+		event_target:system_aot_habitat = {
+			switch = {
+				trigger = is_planet_class
+				pc_ae_habitat = { spawn_4_pylons = { TYPE = alpha } }
+				pc_phanon_habitat = { spawn_4_pylons = { TYPE = phanon } }
+				pc_sigma_habitat = { spawn_4_pylons = { TYPE = sigma } }
+				default = { spawn_4_pylons = { TYPE = delta } }
+			}
+		}
+	}
+}
+spawn_4_pylons = {
+	solar_system = {
+		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 0 }
+		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 90 }
+		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 180 }
+		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 270 }
 	}
 }
 spawn_one_support_pylon = {
 	spawn_megastructure = {
 		type = $TYPE$
-		planet = prev
+		planet = prevprev
 		orbit_angle = $ANGLE$
 		orbit_distance = $DISTANCE|20$
 		owner = root
 		init_effect = {
-			set_megastructure_flag = support_pylon_planet_id_@prevprev
+			set_megastructure_flag = support_pylon_planet_id_@prevprevprev
 		}
 	}
 }
@@ -794,6 +813,9 @@ upgrade_one_support_pylon = {
 	switch = {
 		trigger = is_megastructure_type
 		aot_delta_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_delta_support_pylon_$TO$ }
+		aot_alpha_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_alpha_support_pylon_$TO$ }
+		aot_phanon_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_phanon_support_pylon_$TO$ }
+		aot_sigma_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_sigma_support_pylon_$TO$ }
 	}
 }
 
