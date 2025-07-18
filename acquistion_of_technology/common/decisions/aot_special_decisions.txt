@@ -1,320 +1,316 @@
 # Dark Matter habitat Project
 decision_convert_dm_habitat = {
-	owned_planets_only = yes
-	icon = decision_convert_to_dm_habitat
-	enactment_time = 1080
-	resources = {
-		category = decisions
-		cost = {
-			unity = 5000
-			alloys = 3000
-			sr_dark_matter = 5000
-		}
-	}
-	potential = {
-		NOR = {
-			is_planet_class = pc_dm_habitat
-		}
-		owner = {
-			has_technology = tech_dm_habitat
-		}
-		merg_is_habitat = yes
-		exists = owner
-	}
-	prerequisites = {
-		tech_dm_habitat
-	}
-	allow = {
-	}
-	effect = {
-		custom_tooltip = decision_convert_dm_habitat_effects
-		hidden_effect = {
-			create_dm_habitat = yes
-			add_aot_habitat_deposits = yes
-			update_all_orbitals_wrapper = {
-				TO_TIER = dm
-			}
-		}
-	}
-	ai_weight = {
-		weight = 1
-	}
+    owned_planets_only = yes
+    icon = decision_convert_to_dm_habitat
+    enactment_time = 1080
+    resources = {
+        category = decisions
+        cost = {
+            unity = 5000
+            alloys = 3000
+            sr_dark_matter = 5000
+        }
+    }
+    potential = {
+        NOR = {
+            is_planet_class = pc_dm_habitat
+        }
+        owner = {
+            has_technology = tech_dm_habitat
+        }
+        merg_is_habitat = yes
+        exists = owner
+    }
+    prerequisites = {
+        tech_dm_habitat
+    }
+    allow = {
+    }
+    effect = {
+        custom_tooltip = decision_convert_dm_habitat_effects
+        hidden_effect = {
+            upgrade_dm_habitat = yes
+            update_all_orbitals_wrapper = {
+                TO_TIER = dm
+            }
+        }
+    }
+    ai_weight = {
+        weight = 1
+    }
 }
 
 decision_retrofit_ae_habitat = {
-	owned_planets_only = yes
-	icon = decision_convert_to_ae_habitat
-	enactment_time = 1440
-	resources = {
-		category = decisions
-		cost = {
-			alloys = 1000
-			sr_dark_matter = 1000
-			acot_sr_dark_energy = 5000
-		}
-	}
-	potential = {
-		is_planet_class = pc_dm_habitat
-		NOT = {
-			has_planet_flag = retrofitted_ae_habitat
-		}
-		exists = owner
-		owner = {
-			has_technology = tech_ae_habitat
-		}
-	}
-	prerequisites = {
-		tech_ae_habitat
-	}
-	allow = {
-	}
-	effect = {
-		custom_tooltip = decision_retrofit_ae_habitat_effects
-		hidden_effect = {
-			create_ae_habitat = yes
-			add_aot_habitat_deposits = yes
-			update_all_orbitals_wrapper = {
-				FROM_TIER = dm
-				TO_TIER = ae
-			}
-		}
-	}
-	ai_weight = {
-		weight = 1
-	}
+    owned_planets_only = yes
+    icon = decision_convert_to_ae_habitat
+    enactment_time = 1440
+    resources = {
+        category = decisions
+        cost = {
+            alloys = 1000
+            sr_dark_matter = 1000
+            acot_sr_dark_energy = 5000
+        }
+    }
+    potential = {
+        is_planet_class = pc_dm_habitat
+        NOT = {
+            has_planet_flag = retrofitted_ae_habitat
+        }
+        exists = owner
+        owner = {
+            has_technology = tech_ae_habitat
+        }
+    }
+    prerequisites = {
+        tech_ae_habitat
+    }
+    allow = {
+    }
+    effect = {
+        custom_tooltip = decision_retrofit_ae_habitat_effects
+        hidden_effect = {
+            upgrade_ae_habitat = yes
+            update_all_orbitals_wrapper = {
+                FROM_TIER = dm
+                TO_TIER = ae
+            }
+        }
+    }
+    ai_weight = {
+        weight = 1
+    }
 }
 
 decision_retrofit_phanon_habitat = {
-	owned_planets_only = yes
-	icon = decision_convert_to_phanon_habitat
-	enactment_time = 1440
-	resources = {
-		category = decisions
-		cost = {
-			alloys = 1000
-			sr_dark_matter = 2500
-			acot_sr_dark_energy = 2500
-		}
-	}
-	potential = {
-		is_planet_class = pc_ae_habitat
-		NOT = {
-			has_planet_flag = retrofitted_phanon_habitat
-		}
-		exists = owner
-		owner = {
-			has_technology = tech_phanon_habitat
-		}
-	}
-	prerequisites = {
-		tech_phanon_habitat
-	}
-	allow = {
-	}
-	effect = {
-		custom_tooltip = decision_retrofit_phanon_habitat_effects
-		hidden_effect = {
-			create_phanon_habitat = yes
-			add_aot_habitat_deposits = yes
-			update_all_orbitals_wrapper = {
-				FROM_TIER = ae
-				TO_TIER = phanon
-			}
-		}
-	}
-	ai_weight = {
-		weight = 1
-	}
+    owned_planets_only = yes
+    icon = decision_convert_to_phanon_habitat
+    enactment_time = 1440
+    resources = {
+        category = decisions
+        cost = {
+            alloys = 1000
+            sr_dark_matter = 2500
+            acot_sr_dark_energy = 2500
+        }
+    }
+    potential = {
+        is_planet_class = pc_ae_habitat
+        NOT = {
+            has_planet_flag = retrofitted_phanon_habitat
+        }
+        exists = owner
+        owner = {
+            has_technology = tech_phanon_habitat
+        }
+    }
+    prerequisites = {
+        tech_phanon_habitat
+    }
+    allow = {
+    }
+    effect = {
+        custom_tooltip = decision_retrofit_phanon_habitat_effects
+        hidden_effect = {
+            upgrade_phanon_habitat = yes
+            update_all_orbitals_wrapper = {
+                FROM_TIER = ae
+                TO_TIER = phanon
+            }
+        }
+    }
+    ai_weight = {
+        weight = 1
+    }
 }
 
 decision_retrofit_sigma_habitat = {
-	owned_planets_only = yes
-	icon = decision_convert_to_stellarite_habitat
-	enactment_time = 1440
-	resources = {
-		category = decisions
-		cost = {
-			alloys = 1000
-			aot_sr_runic_power = 5000
-		}
-	}
-	potential = {
-		is_planet_class = pc_phanon_habitat
-		NOT = {
-			has_planet_flag = retrofitted_sigma_habitat
-		}
-		exists = owner
-		owner = {
-			has_technology = tech_stellarite_habitat
-		}
-	}
-	prerequisites = {
-		tech_stellarite_habitat
-	}
-	allow = {
-	}
-	effect = {
-		custom_tooltip = decision_retrofit_sigma_habitat_effects
-		hidden_effect = {
-			create_sigma_habitat = yes
-			add_aot_habitat_deposits = yes
-			update_all_orbitals_wrapper = {
-				FROM_TIER = phanon
-				TO_TIER = sigma
-			}
-		}
-	}
-	ai_weight = {
-		weight = 1
-	}
+    owned_planets_only = yes
+    icon = decision_convert_to_stellarite_habitat
+    enactment_time = 1440
+    resources = {
+        category = decisions
+        cost = {
+            alloys = 1000
+            aot_sr_runic_power = 5000
+        }
+    }
+    potential = {
+        is_planet_class = pc_phanon_habitat
+        NOT = {
+            has_planet_flag = retrofitted_sigma_habitat
+        }
+        exists = owner
+        owner = {
+            has_technology = tech_stellarite_habitat
+        }
+    }
+    prerequisites = {
+        tech_stellarite_habitat
+    }
+    allow = {
+    }
+    effect = {
+        custom_tooltip = decision_retrofit_sigma_habitat_effects
+        hidden_effect = {
+            upgrade_sigma_habitat = yes
+            update_all_orbitals_wrapper = {
+                FROM_TIER = phanon
+                TO_TIER = sigma
+            }
+        }
+    }
+    ai_weight = {
+        weight = 1
+    }
 }
 
 decision_open_resurrection_chambers_menu = {
-	owned_planets_only = yes
-	icon = decision_access_resurrection_chambers
-	potential = {
-		has_building = building_stellarite_clone_vats
-	}
-	allow = {
-		has_building = building_stellarite_clone_vats
-	}
-	effect = {
-		planet_event = {
-			id = aot_events.3
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value <= 250
-				}
-			}
-		}
-	}
+    owned_planets_only = yes
+    icon = decision_access_resurrection_chambers
+    potential = {
+        has_building = building_stellarite_clone_vats
+    }
+    allow = {
+        has_building = building_stellarite_clone_vats
+    }
+    effect = {
+        planet_event = {
+            id = aot_events.3
+        }
+    }
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                resource_stockpile_compare = {
+                    resource = unity
+                    value <= 250
+                }
+            }
+        }
+    }
 }
 
 decision_open_resurrection_evochambers_menu = {
-	owned_planets_only = yes
-	icon = decision_access_resurrection_evochambers
-	potential = {
-		has_building = building_stellarite_hive_evochamber
-	}
-	allow = {
-		has_building = building_stellarite_hive_evochamber
-	}
-	effect = {
-		planet_event = {
-			id = aot_events.3
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value <= 250
-				}
-			}
-		}
-	}
+    owned_planets_only = yes
+    icon = decision_access_resurrection_evochambers
+    potential = {
+        has_building = building_stellarite_hive_evochamber
+    }
+    allow = {
+        has_building = building_stellarite_hive_evochamber
+    }
+    effect = {
+        planet_event = {
+            id = aot_events.3
+        }
+    }
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                resource_stockpile_compare = {
+                    resource = unity
+                    value <= 250
+                }
+            }
+        }
+    }
 }
 
 decision_open_kool_aid_vats_menu = {
-	owned_planets_only = yes
-	icon = decision_access_kool_aid_vats
-	potential = {
-		has_building = building_phanon_clone_vats
-	}
-	allow = {
-		has_building = building_phanon_clone_vats
-	}
-	effect = {
-		planet_event = {
-			id = aot_events.8
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value <= 25000
-				}
-			}
-		}
-	}
+    owned_planets_only = yes
+    icon = decision_access_kool_aid_vats
+    potential = {
+        has_building = building_phanon_clone_vats
+    }
+    allow = {
+        has_building = building_phanon_clone_vats
+    }
+    effect = {
+        planet_event = {
+            id = aot_events.8
+        }
+    }
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                resource_stockpile_compare = {
+                    resource = unity
+                    value <= 25000
+                }
+            }
+        }
+    }
 }
 
 decision_open_kool_aid_evochambers_menu = {
-	owned_planets_only = yes
-	icon = decision_access_kool_aid_evochambers
-	potential = {
-		has_building = building_phanon_hive_evochamber
-	}
-	allow = {
-		has_building = building_phanon_hive_evochamber
-	}
-	effect = {
-		planet_event = {
-			id = aot_events.8
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value <= 25000
-				}
-			}
-		}
-	}
+    owned_planets_only = yes
+    icon = decision_access_kool_aid_evochambers
+    potential = {
+        has_building = building_phanon_hive_evochamber
+    }
+    allow = {
+        has_building = building_phanon_hive_evochamber
+    }
+    effect = {
+        planet_event = {
+            id = aot_events.8
+        }
+    }
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                resource_stockpile_compare = {
+                    resource = unity
+                    value <= 25000
+                }
+            }
+        }
+    }
 }
 
 decision_open_kool_aid_assembly_menu = {
-	owned_planets_only = yes
-	icon = decision_machine_sapience
-	potential = {
-		OR = {
-			has_building = building_phanon_synt_center
-			has_building = building_phanon_machine_dome
-			has_building = building_stellarite_synt_center
-			has_building = building_stellarite_machine_dome
-		}
-	}
-	allow = {
-		OR = {
-			has_building = building_phanon_synt_center
-			has_building = building_phanon_machine_dome
-			has_building = building_stellarite_synt_center
-			has_building = building_stellarite_machine_dome
-		}
-	}
-	effect = {
-		planet_event = {
-			id = aot_events.81
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value <= 25000
-				}
-			}
-		}
-	}
+    owned_planets_only = yes
+    icon = decision_machine_sapience
+    potential = {
+        OR = {
+            has_building = building_phanon_synt_center
+            has_building = building_phanon_machine_dome
+            has_building = building_stellarite_synt_center
+            has_building = building_stellarite_machine_dome
+        }
+    }
+    allow = {
+        OR = {
+            has_building = building_phanon_synt_center
+            has_building = building_phanon_machine_dome
+            has_building = building_stellarite_synt_center
+            has_building = building_stellarite_machine_dome
+        }
+    }
+    effect = {
+        planet_event = {
+            id = aot_events.81
+        }
+    }
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                resource_stockpile_compare = {
+                    resource = unity
+                    value <= 25000
+                }
+            }
+        }
+    }
 }
