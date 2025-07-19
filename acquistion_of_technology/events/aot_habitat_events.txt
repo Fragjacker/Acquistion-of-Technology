@@ -1,5 +1,7 @@
 namespace = aot_habitat_events
-
+# ------------------------------------------------------------------------------------------------ #
+#                                    Support pylon helper events                                   #
+# ------------------------------------------------------------------------------------------------ #
 # Spawn initial pylons on conduit building completion
 planet_event = {
 	id = aot_habitat_events.1
@@ -48,61 +50,6 @@ planet_event = {
 	}
 }
 
-# Update the last built minor or major orbital if we have a delta tier complex or higher in the system.
-country_event = {
-	id = aot_habitat_events.5
-	hide_window = yes
-	is_triggered_only = yes
-	immediate = {
-		from.planet = {
-			save_event_target_as = target_planet
-		}
-		fromfrom.solar_system = {
-			random_system_planet = {
-				limit = {
-					has_planet_flag = habitat
-				}
-				save_event_target_as = central_habitat
-			}
-		}
-		if = {
-			limit = {
-				exists = event_target:central_habitat
-			}
-			event_target:central_habitat = {
-				switch = {
-					trigger = is_planet_class
-					pc_dm_habitat = {
-						update_last_orbital_wrapper = {
-							TIER = dm
-						}
-					}
-					pc_ae_habitat = {
-						update_last_orbital_wrapper = {
-							TIER = ae
-						}
-					}
-					pc_phanon_habitat = {
-						update_last_orbital_wrapper = {
-							TIER = phanon
-						}
-					}
-					pc_sigma_habitat = {
-						update_last_orbital_wrapper = {
-							TIER = sigma
-						}
-					}
-					pc_sigma_deepspace_habitat = {
-						update_last_orbital_wrapper = {
-							TIER = sigma
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
 # Monthly check if the amount of districts is still cool or needs correction measures.
 planet_event = {
 	id = aot_habitat_events.6
@@ -128,6 +75,7 @@ planet_event = {
 					limit = {
 						is_special_habitat_resource_district_amount_above_max_cap = yes
 					}
+					# Remove excess amount of district, if our max district count is below built district amount.
 					while = {
 						count = value:aot_get_habitat_special_district_difference
 						remove_district = district_dm_hab_dark_matter_energy
@@ -136,7 +84,7 @@ planet_event = {
 						remove_district = district_hab_stellarite_generator
 					}
 				}
-				# Check if we have less special resource districts than support pylons in the system.
+				# Check if we have less special resource districts than support pylons in the system to support them.
 				if = {
 					limit = {
 						is_support_pylon_amount_over_special_habitat_resource_district_max_cap = yes
@@ -148,5 +96,76 @@ planet_event = {
 				}
 			}
 		}
+	}
+}
+
+# ------------------------------------------------------------------------------------------------ #
+#                                       Orbital helper events                                      #
+# ------------------------------------------------------------------------------------------------ #
+
+# Refresh the system orbitals
+planet_event = {
+	id = aot_habitat_events.90
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		# Clear all old orbitals first.
+		clear_system_orbitals = yes
+
+		# Spawn a new set of orbitals, with respect to the tier
+		# and amount of energy/mining districts of the aot habitat in the system.
+		planet_event = {
+			id = aot_habitat_events.120
+			# We need a 2 day delay here because if clearing and spawning new orbitals happens on the same day
+			# the resource deposits on the planet won't register properly and are not harvested by the orbital.
+			days = 2
+		}
+	}
+}
+
+# Spawn a energy orbital
+# Fired by on_built by the aot habitat energy district.
+planet_event = {
+	id = aot_habitat_events.100
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_aot_habitat = yes
+	}
+	immediate = {
+		spawn_orbital_on_eligible_planet_in_system = {
+			TYPE = energy
+		}
+	}
+}
+
+# Spawn a mining orbital
+# Fired by on_built by the aot habitat energy district.
+planet_event = {
+	id = aot_habitat_events.110
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_aot_habitat = yes
+	}
+	immediate = {
+		spawn_orbital_on_eligible_planet_in_system = {
+			TYPE = mining
+		}
+	}
+}
+
+# Spawn a new set of orbitals in the system after the previous ones been removed.
+# This is a helper event and should only be called by other events where necessary.
+# This serves as a work around for orbitals not harvesting the resource below the planet.
+planet_event = {
+	id = aot_habitat_events.120
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_aot_habitat = yes
+	}
+	immediate = {
+		spawn_orbitals_according_to_district_count = yes
 	}
 }

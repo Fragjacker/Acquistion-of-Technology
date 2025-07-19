@@ -1,2676 +1,2736 @@
 # Phanon Dimensional Mirror
 dimensional_mirror_0 = {
-    entity = "acot_pmc_portal_disabled_entity"
-    construction_entity = "acot_pmc_portal_disabled_entity"
-    portrait = "GFX_megastructure_construction_background"
-    place_entity_on_planet_plane = no
-    build_outside_gravity_well = yes    # Indicates this will use "free" placement between the system's inner and outer ring
-    # If this option is active, the placement_rules will be completely ignored
-    show_galactic_map_icon = yes
-    build_time = 1800
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            acot_sr_dark_energy = 10000
-            sr_dark_matter = 10000
-            influence = 300
-        }
-    }
-    construction_blocks_and_blocked_by = self_type
-    potential = {
-        has_technology = tech_phanon_dimensional_mirror
-        NOR = {
-            has_global_flag = aot_phanon_content_OFF
-            has_megastructure = dimensional_mirror_0
-            has_megastructure = dimensional_mirror_final
-            has_country_flag = completed_dimensional_mirror
-        }
-    }
-    possible = {
-        exists = starbase
-        custom_tooltip = {
-            fail_text = "requires_inside_border"
-            is_inside_border = from
-        }
-        custom_tooltip = {
-            fail_text = "requires_surveyed_system"
-            NOT = {
-                any_system_planet = {
-                    is_surveyed = {
-                        who = prev.from
-                        status = no
-                    }
-                }
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_existing_gateway"
-            NOT = {
-                has_megastructure = dimensional_mirror_0
-            }
-        }
-    }
-    placement_rules = {
-        # Those would be ignored since the gateway is being "free-placed" between the inner and outer radius of the system
-    }
-    # root = system
-    # from = country
-    ai_weight = {
-        factor = 5
-        modifier = {
-            factor = 0
-            starbase = {
-                NOT = {
-                    has_starbase_size >= starbase_starfortress
-                }
-            }
-        }
-        # ------------------------ We need a decent fleet to fight the Phanon bois ----------------------- #
-        modifier = {
-            factor = 0
-            owner = {
-                fleet_power < 1000000
-            }
-        }
-        # -------------------------------- We should have a decent economy ------------------------------- #
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value >= 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_dark_energy
-                    value >= 1000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = sr_dark_matter
-                    value >= 1000
-                }
-            }
-        }
-    }
-    on_build_start = {
-    }
-    on_build_cancel = {
-    }
-    on_build_complete = {
-        from = {
-            country_event = {
-                id = aot_phanon_events.3
-            }
-        }
-    }
+	entity = "acot_pmc_portal_disabled_entity"
+	construction_entity = "acot_pmc_portal_disabled_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	build_outside_gravity_well = yes    # Indicates this will use "free" placement between the system's inner and outer ring
+	# If this option is active, the placement_rules will be completely ignored
+	show_galactic_map_icon = yes
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			acot_sr_dark_energy = 10000
+			sr_dark_matter = 10000
+			influence = 300
+		}
+	}
+	construction_blocks_and_blocked_by = self_type
+	potential = {
+		has_technology = tech_phanon_dimensional_mirror
+		NOR = {
+			has_global_flag = aot_phanon_content_OFF
+			has_megastructure = dimensional_mirror_0
+			has_megastructure = dimensional_mirror_final
+			has_country_flag = completed_dimensional_mirror
+		}
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_gateway"
+			NOT = {
+				has_megastructure = dimensional_mirror_0
+			}
+		}
+	}
+	placement_rules = {
+		# Those would be ignored since the gateway is being "free-placed" between the inner and outer radius of the system
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		# ------------------------ We need a decent fleet to fight the Phanon bois ----------------------- #
+		modifier = {
+			factor = 0
+			owner = {
+				fleet_power < 1000000
+			}
+		}
+		# -------------------------------- We should have a decent economy ------------------------------- #
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value >= 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_dark_energy
+					value >= 1000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value >= 1000
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = aot_phanon_events.3
+			}
+		}
+	}
 }
 dimensional_mirror_final = {
-    entity = "acot_pmc_portal_entity"
-    construction_entity = "acot_pmc_portal_entity"
-    portrait = "GFX_evt_dimensional_mirror"
-    place_entity_on_planet_plane = no
-    # build_outside_gravity_well = yes 						# Indicates this will use "free" placement between the system's inner and outer ring
-    # If this option is active, the placement_rules will be completely ignored
-    show_galactic_map_icon = yes
-    potential = {
-        has_technology = tech_phanon_dimensional_mirror
-    }
-    possible = {
-        custom_tooltip = {
-            fail_text = "requires_technology_gateway_construction"
-            from = {
-                has_technology = tech_phanon_dimensional_mirror
-            }
-        }
-    }
-    upgrade_from = {
-        dimensional_mirror_0
-    }
-    build_time = 1800
-    resources = {
-        category = megastructures
-        cost = {
-            energy = 200000
-            sr_dark_matter = 5000
-            acot_sr_dark_energy = 5000
-        }
-    }
-    construction_blocks_and_blocked_by = self_type
-    on_build_complete = {
-        fromfrom = {
-            save_event_target_as = dimensional_mirror_obj
-        }
-        from = {
-            country_event = {
-                id = aot_phanon_events.4
-            }
-        }
-    }
+	entity = "acot_pmc_portal_entity"
+	construction_entity = "acot_pmc_portal_entity"
+	portrait = "GFX_evt_dimensional_mirror"
+	place_entity_on_planet_plane = no
+	# build_outside_gravity_well = yes 						# Indicates this will use "free" placement between the system's inner and outer ring
+	# If this option is active, the placement_rules will be completely ignored
+	show_galactic_map_icon = yes
+	potential = {
+		has_technology = tech_phanon_dimensional_mirror
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_gateway_construction"
+			from = {
+				has_technology = tech_phanon_dimensional_mirror
+			}
+		}
+	}
+	upgrade_from = {
+		dimensional_mirror_0
+	}
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			energy = 200000
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+		}
+	}
+	construction_blocks_and_blocked_by = self_type
+	on_build_complete = {
+		fromfrom = {
+			save_event_target_as = dimensional_mirror_obj
+		}
+		from = {
+			country_event = {
+				id = aot_phanon_events.4
+			}
+		}
+	}
 }
 
 # Phanon Star Imploder Pylon creator.
 star_imploder_0 = {
-    entity = "construction_platform_entity"
-    construction_entity = "construction_platform_entity"
-    portrait = "GFX_megastructure_construction_background"
-    place_entity_on_planet_plane = no
-    entity_offset = {
-        x = -7
-        y = -7
-    }
-    construction_blocks_and_blocked_by = none
-    build_time = 1800
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 5000
-            influence = 300
-        }
-        upkeep = {
-            energy = 5
-        }
-    }
-    prerequisites = {
-        tech_phanon_stellar_converter
-    }
-    potential = {
-        NOT = {
-            has_global_flag = aot_phanon_content_OFF
-        }
-        has_technology = tech_phanon_stellar_converter
-    }
-    possible = {
-        exists = starbase
-        custom_tooltip = {
-            fail_text = "requires_inside_border"
-            is_inside_border = from
-        }
-        custom_tooltip = {
-            fail_text = "requires_surveyed_system"
-            NOT = {
-                any_system_planet = {
-                    is_surveyed = {
-                        who = prev.from
-                        status = no
-                    }
-                }
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_habitable_planets"
-            NOT = {
-                any_system_planet = {
-                    AND = {
-                        colonizable_planet = yes
-                    }
-                }
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_binary_trinary"
-            NOR = {
-                is_star_class = sc_binary_1
-                is_star_class = sc_binary_2
-                is_star_class = sc_binary_3
-                is_star_class = sc_binary_4
-                is_star_class = sc_binary_5
-                is_star_class = sc_binary_6
-                is_star_class = sc_binary_7
-                is_star_class = sc_binary_8
-                is_star_class = sc_binary_9
-                is_star_class = sc_binary_10
-                is_star_class = sc_trinary_1
-                is_star_class = sc_trinary_2
-                is_star_class = sc_trinary_3
-                is_star_class = sc_trinary_4
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_existing_megastructure"
-            has_no_non_gate_megastructure = yes
-            NOT = {
-                any_system_megastructure = {
-                    is_sbtg_outer_gate = yes
-                }
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_phanon_pylon"
-            NOT = {
-                is_star_class = sc_phanon_pylon
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_star_imploder"
-            NOT = {
-                has_star_flag = star_imploder_built
-            }
-        }
-    }
-    placement_rules = {
-        planet_possible = {
-            custom_tooltip = {
-                fail_text = "requires_no_sigma_star"
-                is_star = yes
-                NOT = {
-                    is_star_class = sc_sigma_star
-                }
-            }
-            custom_tooltip = {
-                fail_text = "requires_no_anomaly"
-                NOT = {
-                    has_anomaly = yes
-                }
-            }
-        }
-    }
-    # root = system
-    # from = country
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 0.1
-            starbase = {
-                NOT = {
-                    has_starbase_size >= starbase_starfortress
-                }
-            }
-        }
-        # ----------------------------- We need a decent eco to support this ----------------------------- #
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 6000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = sr_dark_matter
-                    value < 1000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_dark_energy
-                    value < 1000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 1000
-                }
-            }
-        }
-    }
-    on_build_start = {
-    }
-    on_build_cancel = {
-    }
-    on_build_complete = {
-        set_star_flag = star_imploder_built
-        from = {
-            set_country_flag = built_star_imploder
-        }
-        every_system_planet = {
-            limit = {
-                has_modifier = terraforming_candidate
-            }
-            remove_modifier = terraforming_candidate
-        }
-        fromfrom.planet = {
-            if = {
-                limit = {
-                    has_orbital_station = yes
-                }
-                orbital_station = {
-                    dismantle = yes
-                }
-            }
-        }
-    }
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -7
+		y = -7
+	}
+	construction_blocks_and_blocked_by = none
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			influence = 300
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	potential = {
+		NOT = {
+			has_global_flag = aot_phanon_content_OFF
+		}
+		has_technology = tech_phanon_stellar_converter
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					AND = {
+						colonizable_planet = yes
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+			NOT = {
+				any_system_megastructure = {
+					is_sbtg_outer_gate = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_phanon_pylon"
+			NOT = {
+				is_star_class = sc_phanon_pylon
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_star_imploder"
+			NOT = {
+				has_star_flag = star_imploder_built
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_no_sigma_star"
+				is_star = yes
+				NOT = {
+					is_star_class = sc_sigma_star
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0.1
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		# ----------------------------- We need a decent eco to support this ----------------------------- #
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 6000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value < 1000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_dark_energy
+					value < 1000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 1000
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		set_star_flag = star_imploder_built
+		from = {
+			set_country_flag = built_star_imploder
+		}
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+		fromfrom.planet = {
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
 }
 star_imploder_1 = {
-    entity = "star_imploder_stage_1_entity"
-    construction_entity = "star_imploder_stage_1_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            sr_dark_matter = 10000
-            acot_sr_dark_energy = 10000
-        }
-        upkeep = {
-            energy = 2000
-        }
-    }
-    upgrade_from = {
-        star_imploder_0
-    }
-    prerequisites = {
-        tech_phanon_stellar_converter
-    }
-    ai_weight = {
-        factor = 15
-        # ----------------------------- We need a decent eco to support this ----------------------------- #
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 6000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = sr_dark_matter
-                    value < 1000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_dark_energy
-                    value < 1000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 1000
-                }
-            }
-        }
-    }
-    on_build_complete = {
-        every_system_planet = {
-            limit = {
-                has_modifier = terraforming_candidate
-            }
-            remove_modifier = terraforming_candidate
-        }
-    }
+	entity = "star_imploder_stage_1_entity"
+	construction_entity = "star_imploder_stage_1_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
+		}
+		upkeep = {
+			energy = 2000
+		}
+	}
+	upgrade_from = {
+		star_imploder_0
+	}
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	ai_weight = {
+		factor = 15
+		# ----------------------------- We need a decent eco to support this ----------------------------- #
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 6000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value < 1000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_dark_energy
+					value < 1000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 1000
+				}
+			}
+		}
+	}
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+	}
 }
 star_imploder_2 = {
-    entity = "star_imploder_stage_2_entity"
-    construction_entity = "star_imploder_stage_2_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            sr_dark_matter = 10000
-            acot_sr_dark_energy = 10000
-        }
-        upkeep = {
-            energy = 4000
-        }
-    }
-    upgrade_from = {
-        star_imploder_1
-    }
-    prerequisites = {
-        tech_phanon_stellar_converter
-    }
-    ai_weight = {
-        factor = 15
-        # ----------------------------- We need a decent eco to support this ----------------------------- #
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 6000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = sr_dark_matter
-                    value < 1000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_dark_energy
-                    value < 1000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 1000
-                }
-            }
-        }
-    }
-    on_build_complete = {
-        every_system_planet = {
-            limit = {
-                has_modifier = terraforming_candidate
-            }
-            remove_modifier = terraforming_candidate
-        }
-    }
+	entity = "star_imploder_stage_2_entity"
+	construction_entity = "star_imploder_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
+		}
+		upkeep = {
+			energy = 4000
+		}
+	}
+	upgrade_from = {
+		star_imploder_1
+	}
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	ai_weight = {
+		factor = 15
+		# ----------------------------- We need a decent eco to support this ----------------------------- #
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 6000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value < 1000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_dark_energy
+					value < 1000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 1000
+				}
+			}
+		}
+	}
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+	}
 }
 star_imploder_3 = {
-    entity = "star_imploder_stage_3_entity"
-    construction_entity = "star_imploder_stage_3_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            sr_dark_matter = 10000
-            acot_sr_dark_energy = 10000
-        }
-        upkeep = {
-            energy = 6000
-        }
-        produces = {
-            aot_sr_runic_power = 1000
-        }
-    }
-    upgrade_from = {
-        star_imploder_2
-    }
-    prerequisites = {
-        tech_phanon_stellar_converter
-    }
-    ai_weight = {
-        factor = 15
-        # ----------------------------- We need a decent eco to support this ----------------------------- #
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 6000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = sr_dark_matter
-                    value < 1000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_dark_energy
-                    value < 1000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 1000
-                }
-            }
-        }
-    }
-    on_build_complete = {
-        from = {
-            set_country_flag = has_built_or_repaired_megastructure
-        }
-        phanon_destroy_solar_system = yes
-    }
+	entity = "star_imploder_stage_3_entity"
+	construction_entity = "star_imploder_stage_3_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
+		}
+		upkeep = {
+			energy = 6000
+		}
+		produces = {
+			aot_sr_runic_power = 1000
+		}
+	}
+	upgrade_from = {
+		star_imploder_2
+	}
+	prerequisites = {
+		tech_phanon_stellar_converter
+	}
+	ai_weight = {
+		factor = 15
+		# ----------------------------- We need a decent eco to support this ----------------------------- #
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 6000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value < 1000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_dark_energy
+					value < 1000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 1000
+				}
+			}
+		}
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		phanon_destroy_solar_system = yes
+	}
 }
 star_imploder_4 = {
-    entity = "star_imploder_stage_3_entity"
-    construction_entity = "star_imploder_stage_3_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            aot_sr_runic_power = 20000
-        }
-        upkeep = {
-            energy = 6000
-        }
-        produces = {
-            acot_sr_stellarite = 1000
-        }
-    }
-    ai_weight = {
-        factor = 15
-        # ----------------------------- We need a decent eco to support this ----------------------------- #
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 6000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 1000
-                }
-            }
-        }
-    }
-    upgrade_from = {
-        star_imploder_3
-    }
-    prerequisites = {
-        tech_sigma_stellar_converter
-    }
-    on_build_complete = {
-        from = {
-            set_country_flag = has_built_or_repaired_megastructure
-        }
-        create_sigma_Star = yes
-    }
+	entity = "star_imploder_stage_3_entity"
+	construction_entity = "star_imploder_stage_3_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 20000
+		}
+		upkeep = {
+			energy = 6000
+		}
+		produces = {
+			acot_sr_stellarite = 1000
+		}
+	}
+	ai_weight = {
+		factor = 15
+		# ----------------------------- We need a decent eco to support this ----------------------------- #
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 6000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 1000
+				}
+			}
+		}
+	}
+	upgrade_from = {
+		star_imploder_3
+	}
+	prerequisites = {
+		tech_sigma_stellar_converter
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		create_sigma_Star = yes
+	}
 }
 
 # Phanon Star Imploder Pylon creator.
 sigma_star_imploder_0 = {
-    entity = "construction_platform_entity"
-    construction_entity = "construction_platform_entity"
-    portrait = "GFX_megastructure_construction_background"
-    place_entity_on_planet_plane = no
-    entity_offset = {
-        x = -7
-        y = -7
-    }
-    construction_blocks_and_blocked_by = none
-    build_time = 1800
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 5000
-            influence = 300
-        }
-        upkeep = {
-            energy = 5
-        }
-    }
-    prerequisites = {
-        tech_sigma_stellar_converter
-    }
-    potential = {
-        has_technology = tech_sigma_stellar_converter
-    }
-    possible = {
-        exists = starbase
-        custom_tooltip = {
-            fail_text = "requires_inside_border"
-            is_inside_border = from
-        }
-        custom_tooltip = {
-            fail_text = "requires_surveyed_system"
-            NOT = {
-                any_system_planet = {
-                    is_surveyed = {
-                        who = prev.from
-                        status = no
-                    }
-                }
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_habitable_planets"
-            NOT = {
-                any_system_planet = {
-                    AND = {
-                        colonizable_planet = yes
-                    }
-                }
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_binary_trinary"
-            NOR = {
-                is_star_class = sc_binary_1
-                is_star_class = sc_binary_2
-                is_star_class = sc_binary_3
-                is_star_class = sc_binary_4
-                is_star_class = sc_binary_5
-                is_star_class = sc_binary_6
-                is_star_class = sc_binary_7
-                is_star_class = sc_binary_8
-                is_star_class = sc_binary_9
-                is_star_class = sc_binary_10
-                is_star_class = sc_trinary_1
-                is_star_class = sc_trinary_2
-                is_star_class = sc_trinary_3
-                is_star_class = sc_trinary_4
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_existing_megastructure"
-            has_no_non_gate_megastructure = yes
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_phanon_pylon"
-            NOT = {
-                is_star_class = sc_phanon_pylon
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_sigma_star_imploder"
-            NOT = {
-                has_star_flag = sigma_star_imploder_built
-            }
-        }
-    }
-    placement_rules = {
-        planet_possible = {
-            custom_tooltip = {
-                fail_text = "must_build_around_star"
-                is_star = yes
-                NOT = {
-                    is_star_class = sc_sigma_star
-                }
-            }
-            custom_tooltip = {
-                fail_text = "requires_no_anomaly"
-                NOT = {
-                    has_anomaly = yes
-                }
-            }
-        }
-    }
-    # root = system
-    # from = country
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 6000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_stellarite
-                    value < 1000
-                }
-            }
-        }
-    }
-    on_build_start = {
-    }
-    on_build_cancel = {
-    }
-    on_build_complete = {
-        set_star_flag = sigma_star_imploder_built
-        from = {
-            set_country_flag = built_sigma_star_imploder
-        }
-        every_system_planet = {
-            limit = {
-                has_modifier = terraforming_candidate
-            }
-            remove_modifier = terraforming_candidate
-        }
-        fromfrom.planet = {
-            if = {
-                limit = {
-                    has_orbital_station = yes
-                }
-                orbital_station = {
-                    dismantle = yes
-                }
-            }
-        }
-    }
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = {
+		x = -7
+		y = -7
+	}
+	construction_blocks_and_blocked_by = none
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			influence = 300
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	prerequisites = {
+		tech_sigma_stellar_converter
+	}
+	potential = {
+		has_technology = tech_sigma_stellar_converter
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			NOT = {
+				any_system_planet = {
+					AND = {
+						colonizable_planet = yes
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_phanon_pylon"
+			NOT = {
+				is_star_class = sc_phanon_pylon
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_sigma_star_imploder"
+			NOT = {
+				has_star_flag = sigma_star_imploder_built
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+				NOT = {
+					is_star_class = sc_sigma_star
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 6000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value < 1000
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		set_star_flag = sigma_star_imploder_built
+		from = {
+			set_country_flag = built_sigma_star_imploder
+		}
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+		fromfrom.planet = {
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
 }
 sigma_star_imploder_1 = {
-    entity = "star_imploder_stage_1_entity"
-    construction_entity = "star_imploder_stage_1_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            aot_sr_runic_power = 20000
-        }
-        upkeep = {
-            energy = 2000
-        }
-    }
-    upgrade_from = {
-        sigma_star_imploder_0
-    }
-    prerequisites = {
-        tech_sigma_stellar_converter
-    }
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 6000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_stellarite
-                    value < 1000
-                }
-            }
-        }
-    }
-    on_build_complete = {
-        every_system_planet = {
-            limit = {
-                has_modifier = terraforming_candidate
-            }
-            remove_modifier = terraforming_candidate
-        }
-    }
+	entity = "star_imploder_stage_1_entity"
+	construction_entity = "star_imploder_stage_1_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 20000
+		}
+		upkeep = {
+			energy = 2000
+		}
+	}
+	upgrade_from = {
+		sigma_star_imploder_0
+	}
+	prerequisites = {
+		tech_sigma_stellar_converter
+	}
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 6000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value < 1000
+				}
+			}
+		}
+	}
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+	}
 }
 sigma_star_imploder_2 = {
-    entity = "star_imploder_stage_2_entity"
-    construction_entity = "star_imploder_stage_2_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            aot_sr_runic_power = 20000
-        }
-        upkeep = {
-            energy = 4000
-        }
-    }
-    upgrade_from = {
-        sigma_star_imploder_1
-    }
-    prerequisites = {
-        tech_sigma_stellar_converter
-    }
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 6000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_stellarite
-                    value < 1000
-                }
-            }
-        }
-    }
-    on_build_complete = {
-        every_system_planet = {
-            limit = {
-                has_modifier = terraforming_candidate
-            }
-            remove_modifier = terraforming_candidate
-        }
-    }
+	entity = "star_imploder_stage_2_entity"
+	construction_entity = "star_imploder_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 20000
+		}
+		upkeep = {
+			energy = 4000
+		}
+	}
+	upgrade_from = {
+		sigma_star_imploder_1
+	}
+	prerequisites = {
+		tech_sigma_stellar_converter
+	}
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 6000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value < 1000
+				}
+			}
+		}
+	}
+	on_build_complete = {
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+	}
 }
 sigma_star_imploder_3 = {
-    entity = "star_imploder_stage_3_entity"
-    construction_entity = "star_imploder_stage_3_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            aot_sr_runic_power = 20000
-        }
-        upkeep = {
-            energy = 6000
-        }
-        produces = {
-            acot_sr_stellarite = 1000
-        }
-    }
-    upgrade_from = {
-        sigma_star_imploder_2
-    }
-    prerequisites = {
-        tech_sigma_stellar_converter
-    }
-    on_build_complete = {
-        from = {
-            set_country_flag = has_built_or_repaired_megastructure
-        }
-        sigma_destroy_solar_system = yes
-    }
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 6000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_stellarite
-                    value < 1000
-                }
-            }
-        }
-    }
+	entity = "star_imploder_stage_3_entity"
+	construction_entity = "star_imploder_stage_3_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 20000
+		}
+		upkeep = {
+			energy = 6000
+		}
+		produces = {
+			acot_sr_stellarite = 1000
+		}
+	}
+	upgrade_from = {
+		sigma_star_imploder_2
+	}
+	prerequisites = {
+		tech_sigma_stellar_converter
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		sigma_destroy_solar_system = yes
+	}
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 6000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value < 1000
+				}
+			}
+		}
+	}
 }
 
 # Phanon MacR.I.P.P.
 solaripp_0 = {
-    entity = "construction_platform_entity"
-    construction_entity = "construction_platform_entity"
-    portrait = "GFX_megastructure_construction_background"
-    place_entity_on_planet_plane = no
-    construction_blocks_and_blocked_by = none
-    entity_offset = {
-        x = -14
-        y = -14
-    }
-    build_time = 1800
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 5000
-            influence = 300
-        }
-        upkeep = {
-            energy = 5
-        }
-    }
-    prerequisites = {
-        tech_sigma_solaripp
-    }
-    potential = {
-        has_technology = tech_phanon_stellar_converter
-    }
-    possible = {
-        exists = starbase
-        custom_tooltip = {
-            fail_text = "requires_inside_border"
-            is_inside_border = from
-        }
-        custom_tooltip = {
-            fail_text = "requires_surveyed_system"
-            NOT = {
-                any_system_planet = {
-                    is_surveyed = {
-                        who = prev.from
-                        status = no
-                    }
-                }
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_sigma_star"
-            any_system_planet = {
-                is_star_class = sc_sigma_star
-                colonizable_planet = no
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_solaripp"
-            NOT = {
-                has_star_flag = system_has_solaripp
-            }
-        }
-    }
-    placement_rules = {
-        planet_possible = {
-            custom_tooltip = {
-                fail_text = "must_built_around_sigma_star"
-                is_star_class = sc_sigma_star
-                colonizable_planet = no
-            }
-            custom_tooltip = {
-                fail_text = "requires_no_anomaly"
-                NOT = {
-                    has_anomaly = yes
-                }
-            }
-        }
-    }
-    # root = system
-    # from = country
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_stellarite
-                    value < 1000
-                }
-            }
-        }
-    }
-    on_build_start = {
-    }
-    on_build_cancel = {
-    }
-    on_build_complete = {
-        set_star_flag = system_has_solaripp
-        from = {
-            set_country_flag = built_solaripp
-        }
-        every_system_planet = {
-            limit = {
-                has_modifier = terraforming_candidate
-            }
-            remove_modifier = terraforming_candidate
-        }
-        fromfrom.planet = {
-            if = {
-                limit = {
-                    has_orbital_station = yes
-                }
-                orbital_station = {
-                    dismantle = yes
-                }
-            }
-        }
-    }
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	construction_blocks_and_blocked_by = none
+	entity_offset = {
+		x = -14
+		y = -14
+	}
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			influence = 300
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	prerequisites = {
+		tech_sigma_solaripp
+	}
+	potential = {
+		has_technology = tech_phanon_stellar_converter
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_sigma_star"
+			any_system_planet = {
+				is_star_class = sc_sigma_star
+				colonizable_planet = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_solaripp"
+			NOT = {
+				has_star_flag = system_has_solaripp
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_built_around_sigma_star"
+				is_star_class = sc_sigma_star
+				colonizable_planet = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value < 1000
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		set_star_flag = system_has_solaripp
+		from = {
+			set_country_flag = built_solaripp
+		}
+		every_system_planet = {
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+		}
+		fromfrom.planet = {
+			if = {
+				limit = {
+					has_orbital_station = yes
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
 }
 solaripp_1 = {
-    entity = "sigma_solaRIPP_stage_1_entity"
-    construction_entity = "sigma_solaRIPP_stage_1_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 80000
-            aot_sr_runic_power = 10000
-        }
-        upkeep = {
-            energy = 2000
-        }
-    }
-    upgrade_from = {
-        solaripp_0
-    }
-    prerequisites = {
-        tech_sigma_solaripp
-    }
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_stellarite
-                    value < 1000
-                }
-            }
-        }
-    }
-    on_build_complete = {
-    }
+	entity = "sigma_solaRIPP_stage_1_entity"
+	construction_entity = "sigma_solaRIPP_stage_1_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 80000
+			aot_sr_runic_power = 10000
+		}
+		upkeep = {
+			energy = 2000
+		}
+	}
+	upgrade_from = {
+		solaripp_0
+	}
+	prerequisites = {
+		tech_sigma_solaripp
+	}
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value < 1000
+				}
+			}
+		}
+	}
+	on_build_complete = {
+	}
 }
 solaripp_2 = {
-    entity = "sigma_solaRIPP_stage_2_entity"
-    construction_entity = "sigma_solaRIPP_stage_2_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 80000
-            aot_sr_runic_power = 10000
-        }
-        upkeep = {
-            energy = 4000
-        }
-    }
-    upgrade_from = {
-        solaripp_1
-    }
-    prerequisites = {
-        tech_sigma_solaripp
-    }
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_stellarite
-                    value < 1000
-                }
-            }
-        }
-    }
-    on_build_complete = {
-    }
+	entity = "sigma_solaRIPP_stage_2_entity"
+	construction_entity = "sigma_solaRIPP_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 80000
+			aot_sr_runic_power = 10000
+		}
+		upkeep = {
+			energy = 4000
+		}
+	}
+	upgrade_from = {
+		solaripp_1
+	}
+	prerequisites = {
+		tech_sigma_solaripp
+	}
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value < 1000
+				}
+			}
+		}
+	}
+	on_build_complete = {
+	}
 }
 solaripp_3 = {
-    entity = "sigma_solaRIPP_stage_2_entity"
-    construction_entity = "sigma_solaRIPP_stage_2_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 80000
-            aot_sr_runic_power = 10000
-        }
-    }
-    upgrade_from = {
-        solaripp_2
-    }
-    prerequisites = {
-        tech_sigma_solaripp
-    }
-    on_build_complete = {
-        from = {
-            set_country_flag = has_built_or_repaired_megastructure
-        }
-        spawn_planet = {
-            class = pc_sigma_solaripp
-            location = fromfrom
-            has_ring = no
-            init_effect = {
-                set_name = "STARLIGHT"
-                change_pc = pc_sigma_solaripp
-                set_colony_type = col_sigma_solaripp
-                add_modifier = {
-                    modifier = sigma_solaripp_mod
-                    days = -1
-                }
-                set_planet_entity = {
-                    entity = "sigma_solaRIPP_stage_3_entity"
-                }
-                set_surveyed = {
-                    surveyed = yes
-                    surveyor = from
-                }
-                set_all_comms_surveyed = yes
-                clear_blockers = yes
-                set_planet_flag = megastructure
-                set_planet_flag = macRIPP_planet
-            }
-        }
-        remove_megastructure = fromfrom
-    }
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 4000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_stellarite
-                    value < 1000
-                }
-            }
-        }
-    }
+	entity = "sigma_solaRIPP_stage_2_entity"
+	construction_entity = "sigma_solaRIPP_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 80000
+			aot_sr_runic_power = 10000
+		}
+	}
+	upgrade_from = {
+		solaripp_2
+	}
+	prerequisites = {
+		tech_sigma_solaripp
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		spawn_planet = {
+			class = pc_sigma_solaripp
+			location = fromfrom
+			has_ring = no
+			init_effect = {
+				set_name = "STARLIGHT"
+				change_pc = pc_sigma_solaripp
+				set_colony_type = col_sigma_solaripp
+				add_modifier = {
+					modifier = sigma_solaripp_mod
+					days = -1
+				}
+				set_planet_entity = {
+					entity = "sigma_solaRIPP_stage_3_entity"
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = from
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				set_planet_flag = megastructure
+				set_planet_flag = macRIPP_planet
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 4000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value < 1000
+				}
+			}
+		}
+	}
 }
 
 # Phanon Great WAll.
 phanon_great_wall_0 = {
-    entity = "construction_platform_entity"
-    construction_entity = "construction_platform_entity"
-    portrait = "GFX_megastructure_construction_background"
-    place_entity_on_planet_plane = no
-    construction_blocks_and_blocked_by = none
-    entity_offset = {
-        x = -14
-        y = -14
-    }
-    build_time = 1800
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 5000
-            influence = 300
-        }
-        upkeep = {
-            energy = 5
-        }
-    }
-    prerequisites = {
-        tech_phanon_great_wall
-    }
-    potential = {
-        NOT = {
-            has_global_flag = aot_phanon_content_OFF
-        }
-        has_technology = tech_phanon_great_wall
-    }
-    possible = {
-        exists = starbase
-        custom_tooltip = {
-            fail_text = "requires_inside_border"
-            is_inside_border = from
-        }
-        custom_tooltip = {
-            fail_text = "requires_surveyed_system"
-            NOT = {
-                any_system_planet = {
-                    is_surveyed = {
-                        who = prev.from
-                        status = no
-                    }
-                }
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_phanon_macripp"
-            any_system_planet = {
-                OR = {
-                    is_star_class = sc_phanon_pylon
-                    is_star_class = sc_sigma_star
-                }
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_great_wall"
-            NOT = {
-                has_star_flag = great_wall_built
-            }
-        }
-    }
-    placement_rules = {
-        planet_possible = {
-            custom_tooltip = {
-                fail_text = "must_built_around_phanon_macripp"
-                OR = {
-                    is_star_class = sc_phanon_pylon
-                    is_star_class = sc_sigma_star
-                }
-            }
-            custom_tooltip = {
-                fail_text = "requires_no_anomaly"
-                NOT = {
-                    has_anomaly = yes
-                }
-            }
-        }
-    }
-    # root = system
-    # from = country
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 3
-            any_neighbor_system = {
-                owner = {
-                    is_rival = from
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 5000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 2500
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 8000
-                }
-            }
-        }
-    }
-    on_build_start = {
-    }
-    on_build_cancel = {
-    }
-    on_build_complete = {
-        set_star_flag = great_wall_built
-        from = {
-            set_country_flag = built_great_wall
-        }
-    }
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	construction_blocks_and_blocked_by = none
+	entity_offset = {
+		x = -14
+		y = -14
+	}
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			influence = 300
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	potential = {
+		NOT = {
+			has_global_flag = aot_phanon_content_OFF
+		}
+		has_technology = tech_phanon_great_wall
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_phanon_macripp"
+			any_system_planet = {
+				OR = {
+					is_star_class = sc_phanon_pylon
+					is_star_class = sc_sigma_star
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_great_wall"
+			NOT = {
+				has_star_flag = great_wall_built
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_built_around_phanon_macripp"
+				OR = {
+					is_star_class = sc_phanon_pylon
+					is_star_class = sc_sigma_star
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = {
+					has_anomaly = yes
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 3
+			any_neighbor_system = {
+				owner = {
+					is_rival = from
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 5000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 2500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 8000
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		set_star_flag = great_wall_built
+		from = {
+			set_country_flag = built_great_wall
+		}
+	}
 }
 phanon_great_wall_1 = {
-    entity = "phanon_great_wall_stage_1_entity"
-    construction_entity = "phanon_great_wall_stage_1_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 200000
-            aot_sr_runic_power = 10000
-        }
-        upkeep = {
-            energy = 2000
-        }
-    }
-    upgrade_from = {
-        phanon_great_wall_0
-    }
-    prerequisites = {
-        tech_phanon_great_wall
-    }
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 3
-            any_neighbor_system = {
-                owner = {
-                    is_rival = from
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 5000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 2500
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 8000
-                }
-            }
-        }
-    }
-    on_build_complete = {
-        spawn_inner_phanon_mega_turrets = yes
-    }
+	entity = "phanon_great_wall_stage_1_entity"
+	construction_entity = "phanon_great_wall_stage_1_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 200000
+			aot_sr_runic_power = 10000
+		}
+		upkeep = {
+			energy = 2000
+		}
+	}
+	upgrade_from = {
+		phanon_great_wall_0
+	}
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 3
+			any_neighbor_system = {
+				owner = {
+					is_rival = from
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 5000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 2500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 8000
+				}
+			}
+		}
+	}
+	on_build_complete = {
+		spawn_inner_phanon_mega_turrets = yes
+	}
 }
 phanon_great_wall_2 = {
-    entity = "phanon_great_wall_stage_2_entity"
-    construction_entity = "phanon_great_wall_stage_2_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 300000
-            aot_sr_runic_power = 10000
-        }
-        upkeep = {
-            energy = 4000
-        }
-    }
-    upgrade_from = {
-        phanon_great_wall_1
-    }
-    prerequisites = {
-        tech_phanon_great_wall
-    }
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 3
-            any_neighbor_system = {
-                owner = {
-                    is_rival = from
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 5000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 2500
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 8000
-                }
-            }
-        }
-    }
-    on_build_complete = {
-        spawn_great_wall_macripps = yes
-    }
+	entity = "phanon_great_wall_stage_2_entity"
+	construction_entity = "phanon_great_wall_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 300000
+			aot_sr_runic_power = 10000
+		}
+		upkeep = {
+			energy = 4000
+		}
+	}
+	upgrade_from = {
+		phanon_great_wall_1
+	}
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 3
+			any_neighbor_system = {
+				owner = {
+					is_rival = from
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 5000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 2500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 8000
+				}
+			}
+		}
+	}
+	on_build_complete = {
+		spawn_great_wall_macripps = yes
+	}
 }
 phanon_great_wall_3 = {
-    entity = "phanon_great_wall_stage_3_entity"
-    construction_entity = "phanon_great_wall_stage_3_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 200000
-            aot_sr_runic_power = 10000
-        }
-        upkeep = {
-            energy = 6000
-        }
-        produces = {
-            aot_sr_runic_power = 100
-        }
-    }
-    upgrade_from = {
-        phanon_great_wall_2
-    }
-    prerequisites = {
-        tech_phanon_great_wall
-    }
-    on_build_complete = {
-    }
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 3
-            any_neighbor_system = {
-                owner = {
-                    is_rival = from
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 5000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 2500
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 8000
-                }
-            }
-        }
-    }
+	entity = "phanon_great_wall_stage_3_entity"
+	construction_entity = "phanon_great_wall_stage_3_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 200000
+			aot_sr_runic_power = 10000
+		}
+		upkeep = {
+			energy = 6000
+		}
+		produces = {
+			aot_sr_runic_power = 100
+		}
+	}
+	upgrade_from = {
+		phanon_great_wall_2
+	}
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	on_build_complete = {
+	}
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 3
+			any_neighbor_system = {
+				owner = {
+					is_rival = from
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 5000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 2500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 8000
+				}
+			}
+		}
+	}
 }
 phanon_great_wall_4 = {
-    entity = "phanon_great_wall_stage_4_entity"
-    construction_entity = "phanon_great_wall_stage_4_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 200000
-            aot_sr_runic_power = 10000
-        }
-        upkeep = {
-            energy = 8000
-        }
-        produces = {
-            aot_sr_runic_power = 100
-        }
-    }
-    upgrade_from = {
-        phanon_great_wall_3
-    }
-    prerequisites = {
-        tech_phanon_great_wall
-    }
-    ai_weight = {
-        factor = 15
-        modifier = {
-            factor = 3
-            any_neighbor_system = {
-                owner = {
-                    is_rival = from
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 5000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 2500
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 8000
-                }
-            }
-        }
-    }
-    on_build_complete = {
-        from = {
-            set_country_flag = has_built_or_repaired_megastructure
-        }
-        spawn_outer_phanon_mega_turrets = yes
-    }
+	entity = "phanon_great_wall_stage_4_entity"
+	construction_entity = "phanon_great_wall_stage_4_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 200000
+			aot_sr_runic_power = 10000
+		}
+		upkeep = {
+			energy = 8000
+		}
+		produces = {
+			aot_sr_runic_power = 100
+		}
+	}
+	upgrade_from = {
+		phanon_great_wall_3
+	}
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	ai_weight = {
+		factor = 15
+		modifier = {
+			factor = 3
+			any_neighbor_system = {
+				owner = {
+					is_rival = from
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 5000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 2500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 8000
+				}
+			}
+		}
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		spawn_outer_phanon_mega_turrets = yes
+	}
 }
 phanon_megaturret_intermediate_1 = {
-    entity = "aot_megaturret_frame_entity"
-    construction_entity = ""
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    show_in_outliner = no
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            aot_sr_runic_power = 1000
-        }
-        upkeep = {
-            energy = 0
-        }
-        produces = {
-        }
-    }
-    upgrade_desc = hide
-    potential = {
-        always = no
-    }
-    on_build_complete = {
-        from = {
-            set_country_flag = has_built_or_repaired_megastructure
-        }
-    }
+	entity = "aot_megaturret_frame_entity"
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	show_in_outliner = no
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+			energy = 0
+		}
+		produces = {
+		}
+	}
+	upgrade_desc = hide
+	potential = {
+		always = no
+	}
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+	}
 }
 phanon_megaturret_1 = {
-    entity = "phanon_great_wall_megaturret_stage_1_entity"
-    construction_entity = "phanon_great_wall_megaturret_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    show_in_outliner = no
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            aot_sr_runic_power = 1000
-        }
-        upkeep = {
-            energy = 500
-        }
-        produces = {
-        }
-    }
-    # ------------------------------------ Can afford the upkeep? ------------------------------------ #
-    ai_weight = {
-        factor = 30
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 500
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2500
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                resource_stockpile_compare = {
-                    resource = aot_sr_runic_power
-                    value < 250
-                }
-            }
-        }
-    }
-    potential = {
-        NOT = {
-            has_global_flag = aot_phanon_content_OFF
-        }
-        has_technology = tech_phanon_great_wall
-    }
-    upgrade_from = {
-        phanon_megaturret_intermediate_1
-    }
-    prerequisites = {
-        tech_phanon_great_wall
-    }
-    on_build_complete = {
-    }
+	entity = "phanon_great_wall_megaturret_stage_1_entity"
+	construction_entity = "phanon_great_wall_megaturret_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	show_in_outliner = no
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+			energy = 500
+		}
+		produces = {
+		}
+	}
+	# ------------------------------------ Can afford the upkeep? ------------------------------------ #
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				resource_stockpile_compare = {
+					resource = aot_sr_runic_power
+					value < 250
+				}
+			}
+		}
+	}
+	potential = {
+		NOT = {
+			has_global_flag = aot_phanon_content_OFF
+		}
+		has_technology = tech_phanon_great_wall
+	}
+	upgrade_from = {
+		phanon_megaturret_intermediate_1
+	}
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	on_build_complete = {
+	}
 }
 phanon_megaturret_2 = {
-    entity = "phanon_great_wall_megaturret_stage_1_entity"
-    construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    show_in_outliner = no
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            aot_sr_runic_power = 1000
-        }
-        upkeep = {
-            energy = 500
-        }
-        produces = {
-        }
-    }
-    # ------------------------------------ Can afford the upkeep? ------------------------------------ #
-    ai_weight = {
-        factor = 30
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 500
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2500
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                resource_stockpile_compare = {
-                    resource = aot_sr_runic_power
-                    value < 250
-                }
-            }
-        }
-    }
-    upgrade_from = {
-        phanon_megaturret_1
-    }
-    prerequisites = {
-        tech_phanon_great_wall
-    }
-    on_build_complete = {
-        spawn_functional_megaturret = yes
-    }
+	entity = "phanon_great_wall_megaturret_stage_1_entity"
+	construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	show_in_outliner = no
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+			energy = 500
+		}
+		produces = {
+		}
+	}
+	# ------------------------------------ Can afford the upkeep? ------------------------------------ #
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				resource_stockpile_compare = {
+					resource = aot_sr_runic_power
+					value < 250
+				}
+			}
+		}
+	}
+	upgrade_from = {
+		phanon_megaturret_1
+	}
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	on_build_complete = {
+		spawn_functional_megaturret = yes
+	}
 }
 phanon_megaturret_destroyed_0 = {
-    entity = "destroyed_aot_megaturret_entity"
-    construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-        }
-        upkeep = {
-        }
-        produces = {
-        }
-    }
-    # Can't build this ever.
-    potential = {
-        always = no
-    }
-    upgrade_from = {
-    }
-    prerequisites = {
-        tech_phanon_great_wall
-    }
-    on_build_complete = {
-    }
+	entity = "destroyed_aot_megaturret_entity"
+	construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+		}
+		upkeep = {
+		}
+		produces = {
+		}
+	}
+	# Can't build this ever.
+	potential = {
+		always = no
+	}
+	upgrade_from = {
+	}
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	on_build_complete = {
+	}
 }
 phanon_megaturret_destroyed_1 = {
-    entity = "phanon_great_wall_megaturret_stage_1_entity"
-    construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
-    portrait = "GFX_megastructure_construction_background"
-    build_time = 3600
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            aot_sr_runic_power = 1000
-        }
-        upkeep = {
-        }
-        produces = {
-        }
-    }
-    # ------------------- Can we afford the repair? If yes give it a higher weight ------------------- #
-    ai_weight = {
-        factor = 60
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 2500
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                resource_stockpile_compare = {
-                    resource = aot_sr_runic_power
-                    value < 250
-                }
-            }
-        }
-    }
-    potential = {
-        NOT = {
-            has_global_flag = aot_phanon_content_OFF
-        }
-        has_technology = tech_phanon_great_wall
-    }
-    upgrade_from = {
-        phanon_megaturret_destroyed_0
-    }
-    prerequisites = {
-        tech_phanon_great_wall
-    }
-    on_build_complete = {
-        remove_megastructure = fromfrom
-        spawn_functional_megaturret = yes
-    }
+	entity = "phanon_great_wall_megaturret_stage_1_entity"
+	construction_entity = "phanon_great_wall_megaturret_stage_2_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	build_time = 3600
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+		}
+		produces = {
+		}
+	}
+	# ------------------- Can we afford the repair? If yes give it a higher weight ------------------- #
+	ai_weight = {
+		factor = 60
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 2500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				resource_stockpile_compare = {
+					resource = aot_sr_runic_power
+					value < 250
+				}
+			}
+		}
+	}
+	potential = {
+		NOT = {
+			has_global_flag = aot_phanon_content_OFF
+		}
+		has_technology = tech_phanon_great_wall
+	}
+	upgrade_from = {
+		phanon_megaturret_destroyed_0
+	}
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	on_build_complete = {
+		remove_megastructure = fromfrom
+		spawn_functional_megaturret = yes
+	}
 }
 aot_macripp_dark_matter_obelisk_core_pe = {
-    entity = "phanon_aot_enigmalith_entity"
-    construction_entity = "pe_aot_enigmalith_construction_entity"
-    portrait = "GFX_acot_dark_obelisk_background"
-    place_entity_on_planet_plane = yes
-    show_in_outliner = no
-    entity_offset = {
-        x = 0
-        y = 0
-    }
-    # Used from script only
-    # upgrade_desc = hide
-    potential = {
-        always = no
-    }
-    country_modifier = {
-        country_resource_max_aot_sr_runic_power_add = 10000
-    }
-    prerequisites = {
-        tech_precursor_enigmalith_pe
-    }
-    upgrade_from = {
-    }
-    dismantle_potential = {
-        always = no
-    }
-    construction_blocks_and_blocked_by = none
-    build_time = 360
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 10000
-            sr_dark_matter = 5000
-            acot_sr_dark_energy = 5000
-            aot_sr_runic_power = 2500
-        }
-        upkeep = {
-        }
-        produces = {
-            trigger = {
-                exists = owner
-                owner = {
-                    has_technology = tech_mine_dark_matter
-                }
-            }
-            sr_dark_matter = 250
-        }
-        produces = {
-            trigger = {
-                exists = owner
-                owner = {
-                    has_technology = tech_mine_dark_energy
-                }
-            }
-            acot_sr_dark_energy = 250
-        }
-        produces = {
-            trigger = {
-                exists = owner
-                owner = {
-                    has_technology = tech_dark_matter_power_core_re
-                }
-            }
-            aot_sr_runic_power = 500
-        }
-    }
+	entity = "phanon_aot_enigmalith_entity"
+	construction_entity = "pe_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_background"
+	place_entity_on_planet_plane = yes
+	show_in_outliner = no
+	entity_offset = {
+		x = 0
+		y = 0
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+		always = no
+	}
+	country_modifier = {
+		country_resource_max_aot_sr_runic_power_add = 10000
+	}
+	prerequisites = {
+		tech_precursor_enigmalith_pe
+	}
+	upgrade_from = {
+	}
+	dismantle_potential = {
+		always = no
+	}
+	construction_blocks_and_blocked_by = none
+	build_time = 360
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+			aot_sr_runic_power = 2500
+		}
+		upkeep = {
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
+			sr_dark_matter = 250
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
+			acot_sr_dark_energy = 250
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_re
+				}
+			}
+			aot_sr_runic_power = 500
+		}
+	}
 }
 
 # Special version of the obelisk to reside on the planet plane
 aot_macripp_dark_matter_obelisk_core_se = {
-    entity = "sigma_aot_enigmalith_entity"
-    construction_entity = "se_aot_enigmalith_construction_entity"
-    portrait = "GFX_acot_dark_obelisk_se_background"
-    show_in_outliner = no
-    prerequisites = {
-        "tech_precursor_enigmalith_se"
-    }
-    upgrade_from = {
-        aot_macripp_dark_matter_obelisk_core_pe
-    }
-    place_entity_on_planet_plane = yes
-    entity_offset = {
-        x = 0
-        y = 0
-    }
-    # Used from script only
-    # upgrade_desc = hide
-    potential = {
-    }
-    construction_blocks_and_blocked_by = none
-    country_modifier = {
-        country_resource_max_acot_sr_stellarite_add = 10000
-    }
-    dismantle_potential = {
-        always = no
-    }
-    build_time = 360
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 10000
-            aot_sr_runic_power = 5000
-            acot_sr_stellarite = 2500
-        }
-        upkeep = {
-        }
-        produces = {
-            trigger = {
-                exists = owner
-                owner = {
-                    has_technology = tech_dark_matter_power_core_re
-                }
-            }
-            aot_sr_runic_power = 250
-        }
-        produces = {
-            acot_sr_stellarite = 1000
-        }
-        # Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
-        produces = {
-            trigger = {
-                exists = owner
-                owner = {
-                    has_country_flag = omega_tech_researchable
-                }
-            }
-            acot_sr_light_matter = 5
-        }
-    }
-    on_build_start = {
-    }
-    on_build_cancel = {
-    }
-    on_build_complete = {
-        create_message = {
-            type = ACOT_MEGA_UPGRADED
-            localization = message_acot_mega_enigmalith_upgraded
-            days = 20
-            target = fromfrom
-        }
-    }
-    ai_weight = {
-        factor = 10
-        modifier = {
-            factor = 0
-            starbase = {
-                NOT = {
-                    has_starbase_size >= starbase_starfortress
-                }
-            }
-        }
-        # ----------------------- Encourage building this if we have low resources ----------------------- #
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 500
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_stellarite
-                    value < 1000
-                }
-            }
-        }
-    }
+	entity = "sigma_aot_enigmalith_entity"
+	construction_entity = "se_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_se_background"
+	show_in_outliner = no
+	prerequisites = {
+		"tech_precursor_enigmalith_se"
+	}
+	upgrade_from = {
+		aot_macripp_dark_matter_obelisk_core_pe
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = 0
+		y = 0
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+	}
+	construction_blocks_and_blocked_by = none
+	country_modifier = {
+		country_resource_max_acot_sr_stellarite_add = 10000
+	}
+	dismantle_potential = {
+		always = no
+	}
+	build_time = 360
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+			aot_sr_runic_power = 5000
+			acot_sr_stellarite = 2500
+		}
+		upkeep = {
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_re
+				}
+			}
+			aot_sr_runic_power = 250
+		}
+		produces = {
+			acot_sr_stellarite = 1000
+		}
+		# Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_country_flag = omega_tech_researchable
+				}
+			}
+			acot_sr_light_matter = 5
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		# ----------------------- Encourage building this if we have low resources ----------------------- #
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 500
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value < 1000
+				}
+			}
+		}
+	}
 }
 aot_macripp_dark_matter_obelisk_core_oe = {
-    entity = "precursor_dark_obelisk_oe_entity"
-    construction_entity = "oe_aot_enigmalith_construction_entity"
-    portrait = "GFX_acot_dark_obelisk_oe_background"
-    show_in_outliner = no
-    prerequisites = {
-        tech_precursor_enigmalith_oe
-    }
-    place_entity_on_planet_plane = yes
-    entity_offset = {
-        x = 0
-        y = 0
-    }
-    upgrade_from = {
-        aot_macripp_dark_matter_obelisk_core_se
-    }
-    # Used from script only
-    # upgrade_desc = hide
-    potential = {
-    }
-    construction_blocks_and_blocked_by = none
-    country_modifier = {
-        country_resource_max_acot_sr_light_matter_add = 10000
-    }
-    build_time = 360
-    dismantle_potential = {
-        always = no
-    }
-    resources = {
-        category = megastructures
-        cost = {
-            acot_sr_light_matter = 2500
-        }
-        upkeep = {
-        }
-        produces = {
-            food = 5000
-            consumer_goods = 5000
-            minerals = 5000
-            energy = 5000
-            alloys = 5000
-        }
-        produces = {
-            trigger = {
-                exists = owner
-                owner = {
-                    has_technology = tech_mine_dark_matter
-                }
-            }
-            sr_dark_matter = 5000
-        }
-        produces = {
-            trigger = {
-                exists = owner
-                owner = {
-                    has_technology = tech_mine_dark_energy
-                }
-            }
-            acot_sr_dark_energy = 5000
-        }
-        produces = {
-            trigger = {
-                exists = owner
-                owner = {
-                    has_technology = tech_dark_matter_power_core_re
-                }
-            }
-            aot_sr_runic_power = 5000
-        }
-        produces = {
-            trigger = {
-                exists = owner
-                owner = {
-                    has_technology = tech_dark_matter_power_core_se
-                }
-            }
-            acot_sr_stellarite = 5000
-        }
-        # Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
-        produces = {
-            trigger = {
-                exists = owner
-                owner = {
-                    has_country_flag = omega_tech_researchable
-                }
-            }
-            acot_sr_light_matter = 100
-        }
-    }
-    on_build_start = {
-    }
-    on_build_cancel = {
-    }
-    on_build_complete = {
-        create_message = {
-            type = ACOT_MEGA_UPGRADED
-            localization = message_acot_mega_enigmalith_upgraded
-            days = 20
-            target = fromfrom
-        }
-    }
-    ai_weight = {
-        factor = 10
-        modifier = {
-            factor = 0
-            starbase = {
-                NOT = {
-                    has_starbase_size >= starbase_starfortress
-                }
-            }
-        }
-        # ----------------------- Encourage building this if we have low resources ----------------------- #
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 10000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value < 10000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = food
-                    value < 10000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = minerals
-                    value < 10000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = aot_sr_runic_power
-                    value < 10000
-                }
-            }
-        }
-        modifier = {
-            factor = 2
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_stellarite
-                    value < 10000
-                }
-            }
-        }
-    }
+	entity = "precursor_dark_obelisk_oe_entity"
+	construction_entity = "oe_aot_enigmalith_construction_entity"
+	portrait = "GFX_acot_dark_obelisk_oe_background"
+	show_in_outliner = no
+	prerequisites = {
+		tech_precursor_enigmalith_oe
+	}
+	place_entity_on_planet_plane = yes
+	entity_offset = {
+		x = 0
+		y = 0
+	}
+	upgrade_from = {
+		aot_macripp_dark_matter_obelisk_core_se
+	}
+	# Used from script only
+	# upgrade_desc = hide
+	potential = {
+	}
+	construction_blocks_and_blocked_by = none
+	country_modifier = {
+		country_resource_max_acot_sr_light_matter_add = 10000
+	}
+	build_time = 360
+	dismantle_potential = {
+		always = no
+	}
+	resources = {
+		category = megastructures
+		cost = {
+			acot_sr_light_matter = 2500
+		}
+		upkeep = {
+		}
+		produces = {
+			food = 5000
+			consumer_goods = 5000
+			minerals = 5000
+			energy = 5000
+			alloys = 5000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_matter
+				}
+			}
+			sr_dark_matter = 5000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_mine_dark_energy
+				}
+			}
+			acot_sr_dark_energy = 5000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_re
+				}
+			}
+			aot_sr_runic_power = 5000
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_technology = tech_dark_matter_power_core_se
+				}
+			}
+			acot_sr_stellarite = 5000
+		}
+		# Compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=2906377708
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_country_flag = omega_tech_researchable
+				}
+			}
+			acot_sr_light_matter = 100
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		create_message = {
+			type = ACOT_MEGA_UPGRADED
+			localization = message_acot_mega_enigmalith_upgraded
+			days = 20
+			target = fromfrom
+		}
+	}
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		# ----------------------- Encourage building this if we have low resources ----------------------- #
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 10000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 10000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = food
+					value < 10000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = minerals
+					value < 10000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = aot_sr_runic_power
+					value < 10000
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_stellarite
+					value < 10000
+				}
+			}
+		}
+	}
 }
 
 # Make new Habitats directly buildable
 dm_habitat_0 = {
-    inline_script = {
-        script = megastructures/habitat/aot_habitat
-        ENTITY = dm_habitat_phase_03_entity
-        EXPONENT = @DELTA_EXPONENT
-        PLANET_TYPE = pc_dm_habitat
-        PREREQUISITE = tech_dm_habitat
-        COLONY_TYPE = col_habitat_dm
-        HAB_MODIFIER = dm_habitat_mod
-        COST = "
+	inline_script = {
+		script = megastructures/habitat/aot_habitat
+		ENTITY = dm_habitat_phase_03_entity
+		EXPONENT = @DELTA_EXPONENT
+		PLANET_TYPE = pc_dm_habitat
+		PREREQUISITE = tech_dm_habitat
+		COLONY_TYPE = col_habitat_dm
+		HAB_MODIFIER = dm_habitat_mod
+		COST = "
 			influence = 150
 			sr_dark_matter = @special_resource_cost
 			"
-    }
+	}
 }
 ae_habitat_0 = {
-    inline_script = {
-        script = megastructures/habitat/aot_habitat
-        ENTITY = alpha_habitat_phase_03_entity
-        EXPONENT = @ALPHA_EXPONENT
-        PLANET_TYPE = pc_ae_habitat
-        PREREQUISITE = tech_ae_habitat
-        COLONY_TYPE = col_habitat_dm
-        HAB_MODIFIER = ae_habitat_mod
-        COST = "
+	inline_script = {
+		script = megastructures/habitat/aot_habitat
+		ENTITY = alpha_habitat_phase_03_entity
+		EXPONENT = @ALPHA_EXPONENT
+		PLANET_TYPE = pc_ae_habitat
+		PREREQUISITE = tech_ae_habitat
+		COLONY_TYPE = col_habitat_dm
+		HAB_MODIFIER = ae_habitat_mod
+		COST = "
 			influence = 150
 			sr_dark_matter = @special_resource_cost
 			acot_sr_dark_energy = @special_resource_cost
 			"
-    }
+	}
 }
 phanon_habitat_0 = {
-    inline_script = {
-        script = megastructures/habitat/aot_habitat
-        ENTITY = phanon_habitat_phase_03_entity
-        EXPONENT = @PHANON_EXPONENT
-        PLANET_TYPE = pc_phanon_habitat
-        PREREQUISITE = tech_phanon_habitat
-        COLONY_TYPE = col_habitat_phanon
-        HAB_MODIFIER = phanon_habitat_mod
-        COST = "
+	inline_script = {
+		script = megastructures/habitat/aot_habitat
+		ENTITY = phanon_habitat_phase_03_entity
+		EXPONENT = @PHANON_EXPONENT
+		PLANET_TYPE = pc_phanon_habitat
+		PREREQUISITE = tech_phanon_habitat
+		COLONY_TYPE = col_habitat_phanon
+		HAB_MODIFIER = phanon_habitat_mod
+		COST = "
 			influence = 150
 			aot_sr_runic_power = @special_resource_cost
 			"
-    }
+	}
 }
 stellarite_habitat_0 = {
-    inline_script = {
-        script = megastructures/habitat/aot_habitat
-        ENTITY = sigma_habitat_phase_03_entity
-        EXPONENT = @SIGMA_EXPONENT
-        PLANET_TYPE = pc_sigma_habitat
-        PREREQUISITE = tech_stellarite_habitat
-        COLONY_TYPE = col_habitat_stellarite
-        HAB_MODIFIER = stellarite_habitat_mod
-        COST = "
+	inline_script = {
+		script = megastructures/habitat/aot_habitat
+		ENTITY = sigma_habitat_phase_03_entity
+		EXPONENT = @SIGMA_EXPONENT
+		PLANET_TYPE = pc_sigma_habitat
+		PREREQUISITE = tech_stellarite_habitat
+		COLONY_TYPE = col_habitat_stellarite
+		HAB_MODIFIER = stellarite_habitat_mod
+		COST = "
 			influence = 150
 			acot_sr_stellarite = @special_resource_cost
 			"
-    }
+	}
 }
 
 # Enigmatic lock to keep those pesky hordes outside
 enigmatic_lock_0 = {
-    entity = "construction_platform_entity"
-    construction_entity = "construction_platform_entity"
-    portrait = "GFX_megastructure_construction_background"
-    place_entity_on_planet_plane = no
-    build_outside_gravity_well = yes    # Indicates this will use "free" placement between the system's inner and outer ring
-    # If this option is active, the placement_rules will be completely ignored
-    show_galactic_map_icon = yes
-    build_time = 1800
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 5000
-            influence = 100
-        }
-    }
-    construction_blocks_and_blocked_by = self_type
-    potential = {
-        has_technology = tech_aot_enigmatic_lock_mega
-    }
-    prerequisites = {
-        tech_aot_enigmatic_lock_mega
-    }
-    possible = {
-        exists = starbase
-        custom_tooltip = {
-            fail_text = "requires_inside_border"
-            is_inside_border = from
-        }
-        custom_tooltip = {
-            fail_text = "requires_surveyed_system"
-            NOT = {
-                any_system_planet = {
-                    is_surveyed = {
-                        who = prev.from
-                        status = no
-                    }
-                }
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_valid_bypass"
-            any_bypass = {
-                solar_system = {
-                    has_owner = yes
-                    owner = {
-                        is_same_empire = root.owner
-                    }
-                }
-                is_valid_bypass_for_lock = yes
-            }
-        }
-        custom_tooltip = {
-            fail_text = "requires_no_existing_enigmatic_lock"
-            NOR = {
-                has_megastructure = enigmatic_lock_0
-                has_megastructure = enigmatic_lock_1
-            }
-        }
-    }
-    placement_rules = {
-        # Those would be ignored since the gateway is being "free-placed" between the inner and outer radius of the system
-    }
-    # root = system
-    # from = country
-    ai_weight = {
-        factor = 5
-        modifier = {
-            factor = 0
-            starbase = {
-                NOT = {
-                    has_starbase_size >= starbase_starfortress
-                }
-            }
-        }
-        # -------------------------------- We should have a decent economy ------------------------------- #
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = alloys
-                    value >= 2000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = acot_sr_dark_energy
-                    value >= 1000
-                }
-            }
-        }
-        modifier = {
-            factor = 0
-            owner = {
-                has_monthly_income = {
-                    resource = sr_dark_matter
-                    value >= 1000
-                }
-            }
-        }
-    }
-    on_build_start = {
-    }
-    on_build_cancel = {
-    }
-    on_build_complete = {
-        # from = {
-        #	country_event = {
-        #		id = aot_phanon_events.3
-        #	}
-        #}
-    }
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	build_outside_gravity_well = yes    # Indicates this will use "free" placement between the system's inner and outer ring
+	# If this option is active, the placement_rules will be completely ignored
+	show_galactic_map_icon = yes
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 5000
+			influence = 100
+		}
+	}
+	construction_blocks_and_blocked_by = self_type
+	potential = {
+		has_technology = tech_aot_enigmatic_lock_mega
+	}
+	prerequisites = {
+		tech_aot_enigmatic_lock_mega
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_valid_bypass"
+			any_bypass = {
+				solar_system = {
+					has_owner = yes
+					owner = {
+						is_same_empire = root.owner
+					}
+				}
+				is_valid_bypass_for_lock = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_enigmatic_lock"
+			NOR = {
+				has_megastructure = enigmatic_lock_0
+				has_megastructure = enigmatic_lock_1
+			}
+		}
+	}
+	placement_rules = {
+		# Those would be ignored since the gateway is being "free-placed" between the inner and outer radius of the system
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0
+			starbase = {
+				NOT = {
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+		}
+		# -------------------------------- We should have a decent economy ------------------------------- #
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value >= 2000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = acot_sr_dark_energy
+					value >= 1000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				has_monthly_income = {
+					resource = sr_dark_matter
+					value >= 1000
+				}
+			}
+		}
+	}
+	on_build_start = {
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		# from = {
+		#	country_event = {
+		#		id = aot_phanon_events.3
+		#	}
+		#}
+	}
 }
 enigmatic_lock_1 = {
-    entity = "aot_enigmatic_lock_entity"
-    construction_entity = "aot_enigmatic_lock_entity"
-    portrait = "GFX_megastructure_construction_background"
-    place_entity_on_planet_plane = no
-    build_outside_gravity_well = yes    # Indicates this will use "free" placement between the system's inner and outer ring
-    # If this option is active, the placement_rules will be completely ignored
-    show_galactic_map_icon = yes
-    build_time = 1800
-    resources = {
-        category = megastructures
-        cost = {
-            alloys = 40000
-            acot_sr_dark_energy = 10000
-            sr_dark_matter = 10000
-        }
-    }
-    potential = {
-        has_technology = tech_aot_enigmatic_lock_mega
-    }
-    prerequisites = {
-        tech_aot_enigmatic_lock_mega
-    }
-    possible = {
-    }
-    upgrade_from = {
-        enigmatic_lock_0
-    }
-    construction_blocks_and_blocked_by = self_type
-    on_build_complete = {
-        from = {
-            country_event = {
-                id = aot_enigmatic_lock_events.3
-            }
-        }
-    }
+	entity = "aot_enigmatic_lock_entity"
+	construction_entity = "aot_enigmatic_lock_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	build_outside_gravity_well = yes    # Indicates this will use "free" placement between the system's inner and outer ring
+	# If this option is active, the placement_rules will be completely ignored
+	show_galactic_map_icon = yes
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 40000
+			acot_sr_dark_energy = 10000
+			sr_dark_matter = 10000
+		}
+	}
+	potential = {
+		has_technology = tech_aot_enigmatic_lock_mega
+	}
+	prerequisites = {
+		tech_aot_enigmatic_lock_mega
+	}
+	possible = {
+	}
+	upgrade_from = {
+		enigmatic_lock_0
+	}
+	construction_blocks_and_blocked_by = self_type
+	on_build_complete = {
+		from = {
+			country_event = {
+				id = aot_enigmatic_lock_events.3
+			}
+		}
+	}
 }
 
-# Support Pylons
+# ------------------------------------------------------------------------------------------------ #
+#                                          Support Pylons                                          #
+# ------------------------------------------------------------------------------------------------ #
+
+# Active support pylons provide various bonuses
 aot_delta_support_pylon_active = {
-    inline_script = {
-        script = megastructures/support_pylons/support_pylon_active
-        ENTITY = "precursor_dark_obelisk_entity"
-        CONSTRUCTION_ENTITY = ""
-        TYPE = delta
-        EXPONENT = @DELTA_EXPONENT
-        PREVIOUS_STATE = aot_delta_support_pylon_inactive
-    }
+	inline_script = {
+		script = megastructures/support_pylons/support_pylon_active
+		ENTITY = "precursor_dark_obelisk_entity"
+		CONSTRUCTION_ENTITY = ""
+		TYPE = delta
+		EXPONENT = @DELTA_EXPONENT
+		PREVIOUS_STATE = aot_delta_support_pylon_inactive
+	}
 }
 aot_alpha_support_pylon_active = {
-    inline_script = {
-        script = megastructures/support_pylons/support_pylon_active
-        ENTITY = "precursor_dark_obelisk_ae_entity"
-        CONSTRUCTION_ENTITY = ""
-        TYPE = alpha
-        EXPONENT = @ALPHA_EXPONENT
-        PREVIOUS_STATE = aot_alpha_support_pylon_inactive
-    }
+	inline_script = {
+		script = megastructures/support_pylons/support_pylon_active
+		ENTITY = "precursor_dark_obelisk_ae_entity"
+		CONSTRUCTION_ENTITY = ""
+		TYPE = alpha
+		EXPONENT = @ALPHA_EXPONENT
+		PREVIOUS_STATE = aot_alpha_support_pylon_inactive
+	}
 }
 aot_phanon_support_pylon_active = {
-    inline_script = {
-        script = megastructures/support_pylons/support_pylon_active
-        ENTITY = "precursor_dark_obelisk_pe_entity"
-        CONSTRUCTION_ENTITY = ""
-        TYPE = phanon
-        EXPONENT = @PHANON_EXPONENT
-        PREVIOUS_STATE = aot_phanon_support_pylon_inactive
-    }
+	inline_script = {
+		script = megastructures/support_pylons/support_pylon_active
+		ENTITY = "precursor_dark_obelisk_pe_entity"
+		CONSTRUCTION_ENTITY = ""
+		TYPE = phanon
+		EXPONENT = @PHANON_EXPONENT
+		PREVIOUS_STATE = aot_phanon_support_pylon_inactive
+	}
 }
 aot_sigma_support_pylon_active = {
-    inline_script = {
-        script = megastructures/support_pylons/support_pylon_active
-        ENTITY = "precursor_dark_obelisk_se_entity"
-        CONSTRUCTION_ENTITY = ""
-        TYPE = sigma
-        EXPONENT = @SIGMA_EXPONENT
-        PREVIOUS_STATE = aot_sigma_support_pylon_inactive
-    }
+	inline_script = {
+		script = megastructures/support_pylons/support_pylon_active
+		ENTITY = "precursor_dark_obelisk_se_entity"
+		CONSTRUCTION_ENTITY = ""
+		TYPE = sigma
+		EXPONENT = @SIGMA_EXPONENT
+		PREVIOUS_STATE = aot_sigma_support_pylon_inactive
+	}
 }
 
-# Inactive Support Pylon produces nothing
+# ---------------------------- Inactive Support Pylon produce nothing ---------------------------- #
 aot_delta_support_pylon_inactive = {
-    inline_script = {
-        script = megastructures/support_pylons/support_pylon_base
-        ENTITY = "precursor_dark_obelisk_entity"
-        CONSTRUCTION_ENTITY = ""
-        PREVIOUS_STATE = aot_delta_support_pylon_active
-    }
+	inline_script = {
+		script = megastructures/support_pylons/support_pylon_base
+		ENTITY = "precursor_dark_obelisk_entity"
+		CONSTRUCTION_ENTITY = ""
+		PREVIOUS_STATE = aot_delta_support_pylon_active
+	}
 }
 aot_alpha_support_pylon_inactive = {
-    inline_script = {
-        script = megastructures/support_pylons/support_pylon_base
-        ENTITY = "precursor_dark_obelisk_ae_entity"
-        CONSTRUCTION_ENTITY = ""
-        PREVIOUS_STATE = aot_alpha_support_pylon_active
-    }
+	inline_script = {
+		script = megastructures/support_pylons/support_pylon_base
+		ENTITY = "precursor_dark_obelisk_ae_entity"
+		CONSTRUCTION_ENTITY = ""
+		PREVIOUS_STATE = aot_alpha_support_pylon_active
+	}
 }
 aot_phanon_support_pylon_inactive = {
-    inline_script = {
-        script = megastructures/support_pylons/support_pylon_base
-        ENTITY = "precursor_dark_obelisk_pe_entity"
-        CONSTRUCTION_ENTITY = ""
-        PREVIOUS_STATE = aot_phanon_support_pylon_active
-    }
+	inline_script = {
+		script = megastructures/support_pylons/support_pylon_base
+		ENTITY = "precursor_dark_obelisk_pe_entity"
+		CONSTRUCTION_ENTITY = ""
+		PREVIOUS_STATE = aot_phanon_support_pylon_active
+	}
 }
 aot_sigma_support_pylon_inactive = {
-    inline_script = {
-        script = megastructures/support_pylons/support_pylon_base
-        ENTITY = "precursor_dark_obelisk_se_entity"
-        CONSTRUCTION_ENTITY = ""
-        PREVIOUS_STATE = aot_sigma_support_pylon_active
-    }
+	inline_script = {
+		script = megastructures/support_pylons/support_pylon_base
+		ENTITY = "precursor_dark_obelisk_se_entity"
+		CONSTRUCTION_ENTITY = ""
+		PREVIOUS_STATE = aot_sigma_support_pylon_active
+	}
+}
+
+# ------------------------------------------------------------------------------------------------ #
+#                                           New Orbitals                                           #
+# ------------------------------------------------------------------------------------------------ #
+
+# Major orbitals
+aot_delta_habitat_major_orbital = {
+	inline_script = {
+		script = megastructures/habitat/aot_orbital
+		ENTITY = "dm_habitat_phase_02_entity"
+	}
+}
+aot_alpha_habitat_major_orbital = {
+	inline_script = {
+		script = megastructures/habitat/aot_orbital
+		ENTITY = "alpha_habitat_phase_02_entity"
+	}
+}
+aot_phanon_habitat_major_orbital = {
+	inline_script = {
+		script = megastructures/habitat/aot_orbital
+		ENTITY = "phanon_habitat_phase_02_entity"
+	}
+}
+aot_sigma_habitat_major_orbital = {
+	inline_script = {
+		script = megastructures/habitat/aot_orbital
+		ENTITY = "sigma_habitat_phase_02_entity"
+	}
+}
+
+# ---------------------------------------- Minor orbitals ---------------------------------------- #
+aot_delta_habitat_minor_orbital = {
+	inline_script = {
+		script = megastructures/habitat/aot_orbital
+		ENTITY = "dm_habitat_phase_01_entity"
+	}
+}
+aot_alpha_habitat_minor_orbital = {
+	inline_script = {
+		script = megastructures/habitat/aot_orbital
+		ENTITY = "alpha_habitat_phase_01_entity"
+	}
+}
+aot_phanon_habitat_minor_orbital = {
+	inline_script = {
+		script = megastructures/habitat/aot_orbital
+		ENTITY = "phanon_habitat_phase_01_entity"
+	}
+}
+aot_sigma_habitat_minor_orbital = {
+	inline_script = {
+		script = megastructures/habitat/aot_orbital
+		ENTITY = "sigma_habitat_phase_01_entity"
+	}
 }
