@@ -30,7 +30,9 @@ planet_event = {
 		last_was_special_habitat_resource_district = yes
 	}
 	immediate = {
-		activate_one_random_planet_support_pylon = yes
+		activate_one_random_planet_support_pylon = {
+			MESSAGE = yes
+		}
 	}
 }
 
@@ -46,7 +48,9 @@ planet_event = {
 		last_was_special_habitat_resource_district = yes
 	}
 	immediate = {
-		deactivate_one_random_planet_support_pylon = yes
+		deactivate_one_random_planet_support_pylon = {
+			MESSAGE = yes
+		}
 	}
 }
 
@@ -103,7 +107,7 @@ planet_event = {
 #                                       Orbital helper events                                      #
 # ------------------------------------------------------------------------------------------------ #
 
-# Refresh the system orbitals
+# Refresh the system orbitals upon habitat upgrade.
 planet_event = {
 	id = aot_habitat_events.90
 	hide_window = yes
@@ -119,6 +123,14 @@ planet_event = {
 			# We need a 2 day delay here because if clearing and spawning new orbitals happens on the same day
 			# the resource deposits on the planet won't register properly and are not harvested by the orbital.
 			days = 2
+		}
+		
+		# Create toast message.
+		create_message = {
+			type = TOAST_HABITAT_UPGRADED
+			localization = TOAST_HABITAT_UPGRADED_DESC
+			days = @toast_message_days
+			target = this
 		}
 	}
 }
