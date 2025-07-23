@@ -1,41 +1,67 @@
 inline_script = {
-    script = shared/normal_buildings_base
-    ALLOW = "$ALLOW$"
-    CAN_BUILD = $CAN_BUILD$
-    PREREQUISITE = $PREREQUISITE$
-    UPGRADES_INTO = $UPGRADES_INTO$
-    AI_FACTORS = "$AI_FACTORS$"
-    TIER = $TIER$
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
 }
 category = manufacturing
 building_sets = {
-    industrial
-    factory
-    foundry
+	industrial
+	factory
+	foundry
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
-        has_technology = $PREREQUISITE$
-    }
-    NOR = {
-        has_modifier = resort_colony
-        has_modifier = slave_colony
-    }
+	exists = planet_owner
+	planet_owner = {
+		has_technology = $PREREQUISITE$
+	}
+	NOR = {
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+	}
 }
 destroy_trigger = {
-    OR = {
-        has_modifier = resort_colony
-        has_modifier = slave_colony
-    }
+	OR = {
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+	}
+}
+triggered_desc = {
+	trigger = {
+		has_building = building_phanon_stellarite_nexus
+	}
+	text = TOOLTIP_CONDUIT_ACTIVE_SUPPORT_PYLONS_BONUS_PHANON
+}
+triggered_desc = {
+	trigger = {
+		has_building = building_acot_stellarite_nexus
+	}
+	text = TOOLTIP_CONDUIT_ACTIVE_SUPPORT_PYLONS_BONUS_SIGMA
+}
+triggered_planet_modifier = {
+	potential = {
+		solar_system = {
+			any_system_megastructure = {
+				is_active_support_pylon = yes
+			}
+		}
+	}
+	modifier = {
+		everyone_but_dystopian_specialist_workforce_mult = 1
+	}
+	# custom_tooltip = TOOLTIP_CONDUIT_ACTIVE_SUPPORT_PYLONS_BONUS
+	mult = value:aot_conduit_planet_job_bonus|EXPONENT|$EXPONENT$|
 }
 inline_script = {
-    script = buildings/production/parts/power_conduit/storage_mult
-    EXPONENT = $EXPONENT$
-    STORAGE_INCREASE = "$STORAGE_INCREASE$"
+	script = buildings/production/parts/power_conduit/storage_mult
+	EXPONENT = $EXPONENT$
+	STORAGE_INCREASE = "$STORAGE_INCREASE$"
 }
 inline_script = {
-    script = buildings/production/parts/power_conduit/planet_mult
-    EXPONENT = @[ $EXPONENT$ - 2 ] # We traverse back two levels. Still needs to be greater then zero.
-    PLANET_MODIFIER = "$PLANET_MODIFIER$"
+	script = buildings/production/parts/power_conduit/planet_mult
+	EXPONENT = @[ $EXPONENT$ - 2 ] # We traverse back two levels. Still needs to be greater then zero.
+	PLANET_MODIFIER = "$PLANET_MODIFIER$"
 }
