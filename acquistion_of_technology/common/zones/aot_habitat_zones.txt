@@ -1,101 +1,64 @@
-zone_aot_habitat_research = {
-	icon = GFX_colony_type_research
-	base_buildtime = @zone_buildtime
-	potential = {
-		# planet scope
-		always = yes
-	}
-	unlock = {
-		# planet scope
-		always = yes
-	}
-	resources = {
-		category = planet_zones
-		cost = {
-			minerals = @zone_cost
-		}
-	}
-	zone_sets = {
-		habitat_research
-	}
-	included_building_sets = {
-		research
-	}
-	inline_script = {
-		script = jobs/zone_researchers_add
-		AMOUNT = @habitat_zone_district_3_jobs
-	}
-	planet_modifier = {
-		zone_building_slots_add = 3
-	}
+#------------------------------------<  Delta special districts  >----------------------------------
+inline_script = {
+    script = zones/aot_habitat/tiered_special_zone
+    EXPONENT = @DELTA_EXPONENT
+    HABITAT_TYPE = pc_dm_habitat
+    JOB_TIER = acot
+    TIER_NAME = delta
+    AMOUNT = @habitat_zone_district_3_jobs
+    INJECTED_MODIFIERS_POSITIVE = "
+		planet_jobs_sr_dark_matter_produces_mult = 2.5
+		planet_jobs_acot_sr_dark_energy_produces_mult = 2.5
+		"
+    INJECTED_MODIFIERS_NEGATIVE = "
+		planet_jobs_sr_dark_matter_produces_mult = -2.5
+		planet_jobs_acot_sr_dark_energy_produces_mult = -2.5
+		"
 }
-zone_aot_habitat_industry = {
-	icon = GFX_colony_type_research
-	base_buildtime = @zone_buildtime
-	potential = {
-		# planet scope
-		always = yes
-	}
-	unlock = {
-		# planet scope
-		always = yes
-	}
-	resources = {
-		category = planet_zones
-		cost = {
-			minerals = @zone_cost
-		}
-	}
-	zone_sets = {
-		habitat_industry
-	}
-	included_building_sets = {
-		industry
-	}
-	inline_script = {
-		script = jobs/zone_factory_add
-		AMOUNT = @habitat_zone_district_3_jobs
-	}
-	inline_script = {
-		script = jobs/zone_foundry_add
-		AMOUNT = @habitat_zone_district_3_jobs
-	}
-	planet_modifier = {
-		zone_building_slots_add = 3
-	}
+#------------------------------------<  Alpha special districts  >----------------------------------
+inline_script = {
+    script = zones/aot_habitat/tiered_special_zone
+    EXPONENT = @ALPHA_EXPONENT
+    HABITAT_TYPE = pc_ae_habitat
+    JOB_TIER = ae
+    TIER_NAME = alpha
+    AMOUNT = @habitat_zone_district_3_jobs
+    INJECTED_MODIFIERS_POSITIVE = "
+		planet_jobs_sr_dark_matter_produces_mult = 5
+		planet_jobs_acot_sr_dark_energy_produces_mult = 5
+		"
+    INJECTED_MODIFIERS_NEGATIVE = "
+		planet_jobs_sr_dark_matter_produces_mult = -5
+		planet_jobs_acot_sr_dark_energy_produces_mult = -5
+		"
 }
-zone_aot_habitat_special = {
-	icon = GFX_colony_type_research
-	base_buildtime = @zone_buildtime
-	potential = {
-		# planet scope
-		always = yes
-	}
-	unlock = {
-		# planet scope
-		always = yes
-	}
-	resources = {
-		category = planet_zones
-		cost = {
-			minerals = @zone_cost
-		}
-	}
-	zone_sets = {
-		dm_habitat_special
-	}
-	included_building_sets = {
-		industry
-	}
-	inline_script = {
-		script = jobs/zone_factory_add
-		AMOUNT = @habitat_zone_district_3_jobs
-	}
-	inline_script = {
-		script = jobs/zone_foundry_add
-		AMOUNT = @habitat_zone_district_3_jobs
-	}
-	planet_modifier = {
-		zone_building_slots_add = 3
-	}
+#------------------------------------<  Phanon special districts  >---------------------------------
+inline_script = {
+    script = zones/aot_habitat/tiered_special_zone
+    EXPONENT = @PHANON_EXPONENT
+    HABITAT_TYPE = pc_phanon_habitat
+    JOB_TIER = phanon
+    TIER_NAME = phanon
+    AMOUNT = @habitat_zone_district_3_jobs
+    INJECTED_MODIFIERS_POSITIVE = "
+		planet_jobs_aot_sr_runic_power_produces_mult = 2
+		"
+    INJECTED_MODIFIERS_NEGATIVE = "
+		planet_jobs_aot_sr_runic_power_produces_mult = -2
+		"
+}
+#------------------------------------<  Sigma special districts  >----------------------------------
+inline_script = {
+    script = zones/aot_habitat/tiered_special_zone
+    EXPONENT = @PHANON_EXPONENT
+    HABITAT_TYPE = pc_phanon_habitat
+    JOB_TIER = stellarite
+    TIER_NAME = sigma
+    AMOUNT = @habitat_zone_district_3_jobs
+    INJECTED_MODIFIERS_POSITIVE = "
+		planet_jobs_acot_sr_stellarite_produces_mult = 2
+		"
+    INJECTED_MODIFIERS_NEGATIVE = "
+		planet_jobs_acot_sr_stellarite_produces_mult = -2
+		"
 }
