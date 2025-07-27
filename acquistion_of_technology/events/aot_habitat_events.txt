@@ -113,18 +113,9 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
-		# Clear all old orbitals first.
-		clear_system_orbitals = yes
+		# Upgrade all system orbitals.
+		upgrade_all_system_orbitals = yes
 
-		# Spawn a new set of orbitals, with respect to the tier
-		# and amount of energy/mining districts of the aot habitat in the system.
-		planet_event = {
-			id = aot_habitat_events.120
-			# We need a 2 day delay here because if clearing and spawning new orbitals happens on the same day
-			# the resource deposits on the planet won't register properly and are not harvested by the orbital.
-			days = 2
-		}
-		
 		# Create toast message.
 		create_message = {
 			type = TOAST_HABITAT_UPGRADED
