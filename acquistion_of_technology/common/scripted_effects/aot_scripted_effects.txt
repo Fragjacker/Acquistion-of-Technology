@@ -619,7 +619,7 @@ upgrade_ae_habitat = {
 		set_planet_size = @size_lvl3
 	}
 	replace_habitat_capital_building = yes
-	respawn_support_pylons = yes
+	upgrade_all_support_pylons = yes
 	# Refresh and upgrade orbitals.
 	planet_event = {
 		id = aot_habitat_events.90
@@ -685,7 +685,7 @@ upgrade_phanon_habitat = {
 		set_planet_size = @size_lvl3
 	}
 	replace_habitat_capital_building = yes
-	respawn_support_pylons = yes
+	upgrade_all_support_pylons = yes
 	# Refresh and upgrade orbitals.
 	planet_event = {
 		id = aot_habitat_events.90
@@ -752,7 +752,7 @@ upgrade_sigma_habitat = {
 		set_planet_size = @size_lvl3
 	}
 	replace_habitat_capital_building = yes
-	respawn_support_pylons = yes
+	upgrade_all_support_pylons = yes
 	# Refresh and upgrade orbitals.
 	planet_event = {
 		id = aot_habitat_events.90
@@ -823,9 +823,33 @@ get_aot_habitat_type = {
 }
 
 #-----------<  Spawns a new set of support pylons in the system, replacing existing ones.  >--------
-respawn_support_pylons = {
-	clear_system_support_pylons = yes    # Remove system pylons first.
-	spawn_support_pylons_in_system = yes    # Spawn new support pylons
+upgrade_all_support_pylons = {
+	get_aot_habitat_type = yes
+	event_target:system_aot_habitat = {
+		switch = {
+			trigger = is_planet_class
+			pc_ae_habitat = {
+				upgrade_all_system_support_pylons = {
+					TIER_FROM = delta
+					TIER_TO = alpha
+				}
+			}
+			pc_phanon_habitat = {
+				upgrade_all_system_support_pylons = {
+					TIER_FROM = alpha
+					TIER_TO = phanon
+				}
+			}
+			pc_sigma_habitat = {
+				upgrade_all_system_support_pylons = {
+					TIER_FROM = phanon
+					TIER_TO = sigma
+				}
+			}
+			default = {
+			}
+		}
+	}
 	# The support pylons respawn inactive, activate them now.
 	while = {
 		count = value:aot_count_special_resource_habitat_districts
@@ -857,35 +881,23 @@ spawn_one_support_pylon = {
 	}
 }
 
-#---------------------------<  Removes all support pylons in the system.  >-------------------------
-clear_system_support_pylons = {
-	solar_system = {
-		every_system_planet = {
-			limit = {
-				has_planet_flag = has_support_pylons
-			}
-			remove_planet_flag = has_support_pylons
-		}
-		every_system_megastructure = {
-			limit = {
-				OR = {
-					is_active_support_pylon = yes
-					is_inactive_support_pylon = yes
-				}
-			}
-			delete_megastructure = this
-		}
-	}
-}
-
-#--------------------<  Turns one support pylon from a desired state to another.  >-----------------
-upgrade_one_support_pylon = {
+#----------------<  Turns one support pylon from a active to inactive or vice versa.  >-------------
+state_swap_one_support_pylon = {
 	switch = {
 		trigger = is_megastructure_type
 		aot_delta_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_delta_support_pylon_$TO$ }
 		aot_alpha_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_alpha_support_pylon_$TO$ }
 		aot_phanon_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_phanon_support_pylon_$TO$ }
 		aot_sigma_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_sigma_support_pylon_$TO$ }
+	}
+}
+
+#---------------------<  Upgrades one support pylon from one tier to the next.  >-------------------
+upgrade_one_support_pylon = {
+	switch = {
+		trigger = is_megastructure_type
+		aot_$TIER_FROM$_support_pylon_inactive = { upgrade_megastructure_to = aot_$TIER_TO$_support_pylon_inactive }
+		aot_$TIER_FROM$_support_pylon_active = { upgrade_megastructure_to = aot_$TIER_TO$_support_pylon_active }
 	}
 }
 
@@ -897,7 +909,7 @@ deactivate_one_random_planet_support_pylon = {
 				is_active_support_pylon = yes
 				is_upgrading = no
 			}
-			upgrade_one_support_pylon = {
+			state_swap_one_support_pylon = {
 				FROM = active
 				TO = inactive
 			}
@@ -921,7 +933,7 @@ activate_one_random_planet_support_pylon = {
 				is_inactive_support_pylon = yes
 				is_upgrading = no
 			}
-			upgrade_one_support_pylon = {
+			state_swap_one_support_pylon = {
 				FROM = inactive
 				TO = active
 			}
@@ -937,48 +949,20 @@ activate_one_random_planet_support_pylon = {
 	}
 }
 
-#--------------------<  Deactivates all support pylons around the current planet  >-----------------
-deactivate_all_planet_support_pylons = {
+#----------<  Upgrades all support pylons int the system from target to destination tier.  >--------
+upgrade_all_system_support_pylons = {
 	solar_system = {
 		every_system_megastructure = {
 			limit = {
-				has_megastructure_flag = support_pylon_planet_id_@prevprev
+				OR = {
+					is_active_support_pylon = yes
+					is_inactive_support_pylon = yes
+				}
 			}
 			upgrade_one_support_pylon = {
-				FROM = active
-				TO = inactive
+				TIER_FROM = $TIER_FROM$
+				TIER_TO = $TIER_TO$
 			}
-			[[MESSAGE]
-				create_message = {
-					type = TOAST_SUPPORT_PYLON_DEACTIVATED
-					localization = TOAST_SUPPORT_PYLONA_DEACTIVATED_DESC
-					days = @toast_message_days
-					target = this
-				}
-			]
-		}
-	}
-}
-
-#---------------------<  Activates all support pylons around the current planet  >------------------
-activate_all_planet_support_pylons = {
-	solar_system = {
-		every_system_megastructure = {
-			limit = {
-				has_megastructure_flag = support_pylon_planet_id_@prevprev
-			}
-			upgrade_one_support_pylon = {
-				FROM = inactive
-				TO = active
-			}
-			[[MESSAGE]
-				create_message = {
-					type = TOAST_SUPPORT_PYLON_ACTIVATED
-					localization = TOAST_SUPPORT_PYLONA_ACTIVATED_DESC
-					days = @toast_message_days
-					target = this
-				}
-			]
 		}
 	}
 }
