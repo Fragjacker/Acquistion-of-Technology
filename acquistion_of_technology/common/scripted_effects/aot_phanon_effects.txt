@@ -93,7 +93,6 @@ create_protecc_country = {
 		}
 	}
 }
-
 create_phanon_protecc_wave_1 = {
 	event_target:phanon_protecc_base_country = {
 		create_leader = {
@@ -111,7 +110,7 @@ create_phanon_protecc_wave_1 = {
 				trait = leader_trait_psionic
 				trait = leader_trait_erudite
 			}
-			event_leader = yes			# Prevents this leader from leading factions and winning elections
+			event_leader = yes            # Prevents this leader from leading factions and winning elections
 			effect = {
 				random_list = {
 					5 = {
@@ -203,7 +202,6 @@ create_phanon_protecc_wave_1 = {
 		}
 	}
 }
-
 create_phanon_protecc_wave_2 = {
 	event_target:phanon_protecc_base_country = {
 		create_leader = {
@@ -221,7 +219,7 @@ create_phanon_protecc_wave_2 = {
 				trait = leader_trait_psionic
 				trait = leader_trait_erudite
 			}
-			event_leader = yes			# Prevents this leader from leading factions and winning elections
+			event_leader = yes            # Prevents this leader from leading factions and winning elections
 			effect = {
 				random_list = {
 					5 = {
@@ -321,7 +319,6 @@ create_phanon_protecc_wave_2 = {
 		}
 	}
 }
-
 create_phanon_protecc_wave_3 = {
 	event_target:phanon_protecc_base_country = {
 		create_leader = {
@@ -339,7 +336,7 @@ create_phanon_protecc_wave_3 = {
 				trait = leader_trait_psionic
 				trait = leader_trait_erudite
 			}
-			event_leader = yes			# Prevents this leader from leading factions and winning elections
+			event_leader = yes            # Prevents this leader from leading factions and winning elections
 			effect = {
 				random_list = {
 					5 = {
@@ -444,7 +441,6 @@ create_phanon_protecc_wave_3 = {
 		}
 	}
 }
-
 create_phanon_protecc_wave_4 = {
 	event_target:phanon_protecc_base_country = {
 		create_leader = {
@@ -462,7 +458,7 @@ create_phanon_protecc_wave_4 = {
 				trait = leader_trait_psionic
 				trait = leader_trait_erudite
 			}
-			event_leader = yes			# Prevents this leader from leading factions and winning elections
+			event_leader = yes            # Prevents this leader from leading factions and winning elections
 			effect = {
 				random_list = {
 					5 = {
@@ -567,7 +563,6 @@ create_phanon_protecc_wave_4 = {
 		}
 	}
 }
-
 create_phanon_vault_raid_protecc_fleet = {
 	event_target:phanon_protecc_base_country = {
 		create_leader = {
@@ -584,7 +579,7 @@ create_phanon_vault_raid_protecc_fleet = {
 				trait = leader_trait_psionic
 				trait = leader_trait_erudite
 			}
-			event_leader = yes			# Prevents this leader from leading factions and winning elections
+			event_leader = yes            # Prevents this leader from leading factions and winning elections
 			effect = {
 				random_list = {
 					5 = {
@@ -668,7 +663,6 @@ create_phanon_vault_raid_protecc_fleet = {
 		}
 	}
 }
-
 create_vault_defense_drones = {
 	if = {
 		limit = {
@@ -776,7 +770,6 @@ spawn_inner_phanon_mega_turrets = {
 		planet = star
 	}
 }
-
 spawn_outer_phanon_mega_turrets = {
 	spawn_megastructure = {
 		name = "Mega Turret 1"
@@ -971,7 +964,6 @@ spawn_outer_phanon_mega_turrets = {
 		planet = star
 	}
 }
-
 spawn_functional_megaturret = {
 	# Spawn them big boi cannons
 	create_fleet = {
@@ -997,7 +989,6 @@ spawn_functional_megaturret = {
 		}
 	}
 }
-
 spawn_great_wall_macripps = {
 	system_star = {
 		save_event_target_as = this_system_star
@@ -1166,7 +1157,6 @@ phanon_type_a_tech_gift = {
 		add_research_option = tech_phanon_stellar_converter
 	}
 }
-
 phanon_type_civ_tech_gift = {
 	if = {
 		limit = {
@@ -1177,7 +1167,6 @@ phanon_type_civ_tech_gift = {
 		add_research_option = tech_civil_phanon_application
 	}
 }
-
 phanon_species_traits_tech_gift_card = {
 	if = {
 		limit = {
@@ -1190,7 +1179,6 @@ phanon_species_traits_tech_gift_card = {
 		add_research_option = tech_phanon_augmentations
 	}
 }
-
 phanon_type_ship_tech_gift = {
 	if = {
 		limit = {
@@ -1213,7 +1201,6 @@ phanon_type_ship_tech_gift = {
 		add_research_option = tech_phanon_plat_l
 	}
 }
-
 phanon_type_b_tech_gift = {
 	if = {
 		limit = {
@@ -1320,7 +1307,6 @@ remove_capital_building = {
 		}
 	}
 }
-
 remove_databank_project_flag = {
 	switch = {
 		trigger = has_country_flag
@@ -1374,7 +1360,6 @@ remove_databank_project_flag = {
 		}
 	}
 }
-
 check_production_core_state = {
 	IF = {
 		limit = {
@@ -1427,7 +1412,6 @@ check_production_core_state = {
 		value = var_dm_production_core_energy
 	}
 }
-
 exterminatus_planet_effect_phanon_digitizer = {
 	if = {
 		limit = {
@@ -1451,4 +1435,75 @@ exterminatus_planet_effect_phanon_digitizer = {
 		}
 	}
 	change_pc = pc_acot_pmc_data_planet
+}
+
+# ------------------------------------------------------------------------------------------------ #
+#                                           Phanon Traits                                          #
+# ------------------------------------------------------------------------------------------------ #
+add_phanon_traits = {
+	owner = {
+		every_owned_leader = {
+			if = {
+				limit = {
+					NOT = {
+						has_trait = leader_trait_phanon_big_brain
+					}
+					leader_class = scientist
+				}
+				add_trait = {
+					trait = leader_trait_phanon_big_brain
+					show_message = no
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_trait = leader_trait_phanon_big_leader
+					}
+					OR = {
+						leader_class = official
+					}
+				}
+				add_trait = {
+					trait = leader_trait_phanon_big_leader
+					show_message = no
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_trait = leader_trait_phanon_six_stars_general
+					}
+					leader_class = commander
+				}
+				add_trait = {
+					trait = leader_trait_phanon_six_stars_general
+					show_message = no
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_trait = leader_trait_acot_phanon_admiral
+					}
+					leader_class = commander
+				}
+				add_trait = {
+					trait = leader_trait_acot_phanon_admiral
+					show_message = no
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_leader_flag = is_resurrection_candidate
+					}
+				}
+				set_leader_flag = is_resurrection_candidate
+			}
+		}
+		country_event = {
+			id = aot_events.9
+		}
+	}
 }

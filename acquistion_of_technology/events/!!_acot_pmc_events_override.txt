@@ -57,29 +57,23 @@ country_event = {
 			# It seems like the vanilla pop resettle is more proper to avoid void pop creation.
 			root = {
 				while = {
-					count = 3
-					random_owned_pop = {
-						limit = {
-							is_being_purged = no
-						}
-						resettle_pop = {
-							pop = this
-							planet = fromfrom
-						}
+					count = 30
+					create_pop_group = {
+						species = owner_main_species
 					}
 				}
 			}
-			every_owned_pop = {
+			every_owned_pop_group = {
 				limit = {
 					species = {
 						is_same_value = event_target:phanon_species
 					}
 				}
-				kill_pop = yes
+				kill_all_pop = yes
 			}
 			set_owner = root
 			set_controller = root
-			change_colony_foundation_date = 0			# Needed for acot_pmc.9101
+			change_colony_foundation_date = 0            # Needed for acot_pmc.9101
 		}
 	}
 	option = {
@@ -287,6 +281,7 @@ planet_event = {
 					owner = event_target:phanon_protecc_base_country
 					species = event_target:phanon_operative_species
 					type = acot_phanon_defense_turret
+					species = event_target:phanon_operative_species
 				}
 			}
 		}
@@ -366,7 +361,7 @@ country_event = {
 			add_planet_devastation = -100
 			add_modifier = {
 				modifier = acot_modifier_vault_delay
-				days = @vault_delay
+				years = 1
 			}
 			if = {
 				limit = {
@@ -554,7 +549,6 @@ planet_event = {
 				count = 80
 				create_army = {
 					owner = event_target:phanon_protecc_base_country
-					species = event_target:phanon_operative_species
 					type = acot_phanon_defense_droid
 				}
 			}
@@ -617,7 +611,7 @@ country_event = {
 			add_planet_devastation = -100
 			add_modifier = {
 				modifier = acot_modifier_vault_delay
-				days = @vault_delay
+				years = 2
 			}
 		}
 		if = {
@@ -854,7 +848,7 @@ country_event = {
 			add_planet_devastation = -100
 			add_modifier = {
 				modifier = acot_modifier_vault_delay
-				days = @vault_delay
+				years = 3
 			}
 		}
 		if = {
