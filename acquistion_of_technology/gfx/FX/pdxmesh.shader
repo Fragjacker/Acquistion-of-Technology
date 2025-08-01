@@ -4376,25 +4376,3 @@ Effect AotPlanetShieldPESkinnedShadow
 	PixelShader = "PixelPdxMeshStandardShadow"
 	Defines = { "IS_SHADOW" }
 }
-
-// Below taken from Ringworld Graphical Enhancements mod https://steamcommunity.com/id/corsairmarks/myworkshopfiles/?appid=281990 to fix clouds on ringworlds.
-Effect PdxMeshCloudsAnimateUVShadowPdxMeshCloudsAnimateUVShadow
-{
-	VertexShader = "VertexPdxMeshStandard"
-	PixelShader = "PixelPdxMeshShip"
-	BlendState = "BlendStateAlphaBlend";
-	Defines = { "IS_PLANET" "IS_CLOUDS" "IS_SHADOW" "ANIMATE_UV" "NO_ALPHA_MULTIPLIED_EMISSIVE"	}
-}
-
-Effect PdxMeshCloudsAnimateUV
-{
-	VertexShader = "VertexPdxMeshStandard"
-	PixelShader = "PixelPdxMeshShip"
-	BlendState = "BlendStateAlphaBlend";
-	Defines = {
-		"IS_PLANET"
-		"IS_CLOUDS"
-		"ANIMATE_UV"
-		"NO_ALPHA_MULTIPLIED_EMISSIVE"
-	}
-}
