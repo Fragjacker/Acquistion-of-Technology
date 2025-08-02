@@ -9,7 +9,6 @@
 # General Traits #
 ##################
 leader_trait_cell_activated = {
-	cost = 0
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_cell_activated.dds"
 	immortal_leaders = yes
 	leader_class = {
@@ -25,12 +24,11 @@ leader_trait_cell_activated = {
 # Ruler Traits #
 ##################
 leader_trait_phanon_big_brain = {
-	cost = 1
 	initial = no
 	randomized = no
 	icon = "gfx/interface/icons/traits/leader_traits/trait_leader_phanon_big_brain.dds"
 	immortal_leaders = yes
-	modifier = {
+	councilor_modifier = {
 		all_technology_research_speed = 2
 		science_ship_survey_speed = 2
 		ship_archaeological_site_clues_add = 4
@@ -40,47 +38,64 @@ leader_trait_phanon_big_brain = {
 		scientist
 	}
 }
-
 leader_trait_phanon_big_leader = {
-	cost = 1
 	initial = no
 	randomized = no
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_phanon_big_leader.dds"
 	immortal_leaders = yes
-	modifier = {
+	planet_modifier = {
 		deposit_blockers_cost_mult = -0.9
 		planet_clear_blocker_speed_mult = 1
 		planet_jobs_energy_produces_mult = 0.5
 		planet_jobs_minerals_produces_mult = 0.1
 		planet_stability_add = 50
-		trade_value_mult = 0.25
+		planet_jobs_trade_produces_mult = 0.25
 		planet_jobs_engineering_research_produces_mult = 0.5
 		planet_jobs_physics_research_produces_mult = 0.5
 		planet_jobs_society_research_produces_mult = 0.5
+	}
+	sector_modifier = {
+		deposit_blockers_cost_mult = -0.45
+		planet_clear_blocker_speed_mult = 0.5
+		planet_jobs_energy_produces_mult = 0.25
+		planet_jobs_minerals_produces_mult = 0.05
+		planet_stability_add = 25
+		planet_jobs_trade_produces_mult = 0.125
+		planet_jobs_engineering_research_produces_mult = 0.25
+		planet_jobs_physics_research_produces_mult = 0.25
+		planet_jobs_society_research_produces_mult = 0.25
 	}
 	leader_class = {
 		official
 	}
 }
-
 leader_trait_phanon_six_stars_general = {
-	cost = 1
 	initial = no
 	randomized = no
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_phanon_six_stars_general.dds"
 	immortal_leaders = yes
+	councilor_modifier = {
+		armies_upkeep_mult = -0.6
+		ship_aot_ships_cost_mult = -0.5
+		ship_acot_precursor_ships_cost_mult = -0.5
+		ship_acot_phanon_ships_cost_mult = -0.6
+	}
+	fleet_modifier = {
+		ship_fire_rate_mult = 0.25
+		ship_weapon_damage = 0.25
+	}
 	army_modifier = {
 		army_disengage_chance_mult = 0.75
 		army_collateral_damage_mult = -0.66
 		army_damage_mult = 0.5
 		army_morale = 1
-		armies_upkeep_mult = -0.6
 	}
 	leader_class = {
 		commander
 	}
 }
 
+#-----------------------------------------<  Species Traits  >--------------------------------------
 trait_phanon_people_mans = {
 	cost = -4
 	potential_crossbreeding_chance = 0
@@ -107,13 +122,12 @@ trait_phanon_people_mans = {
 		planet_jobs_sr_zro_produces_mult = 1
 		planet_jobs_acot_sr_stellarite_produces_mult = 0.2
 		planet_jobs_aot_sr_runic_power_produces_mult = 0.2
-		trade_value_mult = 0.25
+		planet_jobs_trade_produces_mult = 0.25
 	}
 	slave_cost = {
 		energy = 500
 	}
 }
-
 trait_phanon_suporbot = {
 	cost = -4
 	initial = no
@@ -139,7 +153,7 @@ trait_phanon_suporbot = {
 		planet_jobs_sr_zro_produces_mult = 1
 		planet_jobs_acot_sr_stellarite_produces_mult = 0.2
 		planet_jobs_aot_sr_runic_power_produces_mult = 0.2
-		trade_value_mult = 0.25
+		planet_jobs_trade_produces_mult = 0.25
 	}
 	slave_cost = {
 		energy = 500
