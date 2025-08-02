@@ -1,0 +1,131 @@
+moon = {
+	class = pc_dm_habitat
+	name = $NAME$
+	orbit_angle = {
+		min = 90
+		max = 270
+	}
+	orbit_distance = 5
+	flags = {
+		megastructure
+		habitat
+	}
+	deposit_blockers = none
+	modifiers = none
+	has_ring = no
+	init_effect = {
+		create_fe_dm_habitat = yes
+		create_fallen_empire_capital_building = yes
+		# Generate base districts, Amount of mining and energy districts can vary per system.
+		while = {
+			count = 1
+			add_district = district_dm_hab_energy
+		}
+		while = {
+			count = 1
+			add_district = district_dm_hab_energy
+		}
+		while = {
+			count = 4
+			add_district = district_dm_hab_dark_matter_energy
+		}
+		# First 6 Slots
+		add_building = building_fe_master_archive
+		add_building = building_fe_stronghold
+		add_building = building_fe_security_2
+		add_building = building_class_4_singularity
+		add_building = building_fe_nano_forge
+		add_building = building_fe_nourishment_center
+		add_zone = {
+			district = district_dm_hab_housing
+			zone = zone_urban
+		}
+		create_fallen_empire_housing_in_zone = {
+			ZONE = zone_urban
+		}
+		create_fallen_empire_housing_in_zone = {
+			ZONE = zone_urban
+		}
+		create_fallen_empire_housing_in_zone = {
+			ZONE = zone_urban
+		}
+		add_zone = {
+			district = district_dm_hab_dark_matter_energy
+			zone = zone_aot_delta_habitat_special_booster
+		}
+		add_building = {
+			zone = zone_aot_delta_habitat_special_booster
+			building = building_acot_dm_dark_matter_generator
+		}
+		add_building = {
+			zone = zone_aot_delta_habitat_special_booster
+			building = building_acot_dm_dark_matter_generator
+		}
+		add_building = {
+			zone = zone_aot_delta_habitat_special_booster
+			building = building_acot_dm_dark_energy_pylon
+		}
+		# Only add zones and buildings if we have available districts.
+		if = {
+			limit = {
+				num_districts = {
+					type = district_dm_hab_energy
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_dm_hab_energy
+				zone = zone_energy
+			}
+			add_building = {
+				zone = zone_energy
+				building = building_fe_silo_2
+			}
+			add_building = {
+				zone = zone_energy
+				building = building_fe_silo_2
+			}
+			add_building = {
+				zone = zone_energy
+				building = building_fe_silo_2
+			}
+		}
+		# Only add zones and buildings if we have available districts.
+		if = {
+			limit = {
+				num_districts = {
+					type = district_dm_hab_mining
+					value >= 1
+				}
+			}
+			add_zone = {
+				district = district_dm_hab_mining
+				zone = zone_minerals
+			}
+			add_building = {
+				zone = zone_minerals
+				building = building_fe_mine_2
+			}
+			add_building = {
+				zone = zone_minerals
+				building = building_fe_mine_2
+			}
+			add_building = {
+				zone = zone_minerals
+				building = building_fe_mine_2
+			}
+		}
+		while = {
+			count = 33
+			create_pop = {
+				species = owner_main_species
+			}
+		}
+		while = {
+			count = 60
+			create_pop = {
+				species = event_target:fe_servants
+			}
+		}
+	}
+}

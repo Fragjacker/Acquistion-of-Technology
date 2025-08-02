@@ -4,7 +4,6 @@ create_enigmatic_fortress_platform = {
 		design = "NAME_Xenophile_Enigmatic_Fortress_Platform"
 	}
 }
-
 create_citadel_with_enigmatic_fortress_platform = {
 	create_starbase = {
 		size = "acot_fallen_starbase"
@@ -27,7 +26,6 @@ create_citadel_with_enigmatic_fortress_platform = {
 		}
 	}
 }
-
 create_fallen_empire_starting_navy = {
 	create_fallen_empire_fleet = yes
 	create_fallen_empire_fleet = yes
@@ -113,7 +111,6 @@ create_fallen_empire_starting_navy = {
 		}
 	}
 }
-
 create_fallen_empire_reinforcements = {
 	create_fleet = {
 		settings = {
@@ -194,7 +191,6 @@ create_fallen_empire_reinforcements = {
 		}
 	}
 }
-
 create_fallen_empire_warbarge = {
 	if = {
 		limit = {
@@ -257,6 +253,73 @@ create_fallen_empire_warbarge = {
 			name = random
 			design = "NAME_Xenophile_Warbarge"
 			graphical_culture = root
+		}
+	}
+}
+
+#--------------------------------------------------------------------------------------------------
+#--------------------------------------<  Helper for buildings  >----------------------------------
+#--------------------------------------------------------------------------------------------------
+create_fallen_empire_capital_building = {
+	# Add the appropriate capital building now.
+	if = {
+		limit = {
+			owner = {
+				is_individualistic_empire = yes
+			}
+		}
+		add_building = building_ancient_palace
+	}
+	if = {
+		limit = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		add_building = building_ancient_control_center
+	}
+	if = {
+		limit = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		add_building = building_ancient_hive_capital
+	}
+}
+create_fallen_empire_housing_in_zone = {
+	# Add the appropriate housing building now.
+	if = {
+		limit = {
+			owner = {
+				is_individualistic_empire = yes
+			}
+		}
+		add_building = {
+			zone = $ZONE$
+			building = building_acot_dm_mansion
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		add_building = {
+			zone = $ZONE$
+			building = building_acot_dm_ancient_cryo_chamber
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		add_building = {
+			zone = $ZONE$
+			building = building_acot_dm_hive_depot
 		}
 	}
 }
