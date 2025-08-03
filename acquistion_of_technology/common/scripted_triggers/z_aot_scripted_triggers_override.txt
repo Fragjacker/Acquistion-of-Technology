@@ -22,17 +22,17 @@ can_build_phanon_ship = {
 		}
 	}
 }
-
 can_build_precursor_ship = {
 	OR = {
 		AND = {
 			owner = {
-				is_ai = yes				### AI SHOULD JUST BE GIVEN A LEEWAY
+				is_ai = yes                ### AI SHOULD JUST BE GIVEN A LEEWAY
 			}
 		}
 		AND = {
 			is_scope_type = megastructure
 			OR = {
+				# is_megastructure_type = mega_shipyard_3 ### INVALID
 				is_megastructure_type = acot_precursor_colossus_base
 				is_megastructure_type = acot_precursor_colossus_stage_two
 				is_megastructure_type = acot_amerigo
@@ -43,31 +43,35 @@ can_build_precursor_ship = {
 				is_megastructure_type = acot_phanon_master_reactor_sphere
 				is_megastructure_type = acot_precursor_mega_shipyard
 				is_sofe_megastructure_shipyard = yes
-				solar_system.starbase = {
-					OR = {
-						is_precursor_starbase = yes
-						has_starbase_building = acot_precursor_database
+				solar_system = {
+					exists = starbase
+					starbase = {
+						OR = {
+							is_precursor_starbase = yes
+							has_starbase_building = acot_precursor_database
+						}
 					}
 				}
 			}
 		}
 		AND = {
 			is_scope_type = starbase
-			OR = {
-				has_starbase_size >= juggernaut ### Even if no one's gonna use it ever.
-				has_virtual_shipyard_uplink = yes ### Gigaman X6
-				is_precursor_starbase = yes
-				has_starbase_building = acot_precursor_database
-				has_starbase_size >= precursor_colossus ### Actually is Herculean
-				is_sbtg_origin_starbase = yes
-				has_starbase_size >= sas_xxtitan_warship ### From Another Mod
-				# has_starbase_size >= acot_star_commander #### Phanon no longer should be able to build them. It is not their forte
-				has_starbase_size >= precursor_juggernaut				# AoT Warbarge
+			starbase = {
+				OR = {
+					has_starbase_size >= juggernaut ### Even if no one's gonna use it ever.
+					has_virtual_shipyard_uplink = yes ### Gigaman X6
+					is_precursor_starbase = yes
+					has_starbase_building = acot_precursor_database
+					has_starbase_size >= precursor_colossus ### Actually is Herculean
+					is_sbtg_origin_starbase = yes
+					has_starbase_size >= sas_xxtitan_warship ### From Another Mod
+					# has_starbase_size >= acot_star_commander #### Phanon no longer should be able to build them. It is not their forte
+					has_starbase_size >= precursor_juggernaut                # AoT Warbarge
+				}
 			}
 		}
 	}
 }
-
 acot_has_enigmalith_in_system = {
 	OR = {
 		has_megastructure = acot_dark_matter_obelisk_core_portal
