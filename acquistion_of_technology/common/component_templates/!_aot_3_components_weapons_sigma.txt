@@ -1,14 +1,145 @@
-### ### ### ### ### ENERGY ### ### ### ### ### 
-### SE Laser
+################## COMPONENT DAMAGE VALUES - START #########################
+######## ENERGY
+# Laser
+@min_laser_s = 60
+@max_laser_s = 163
+@min_laser_m = 151
+@max_laser_m = 408
+@min_laser_l = 362
+@max_laser_l = 980
+# Autolaser
+@min_autolaser_s = 57
+@max_autolaser_s = 99
+@min_autolaser_m = 142
+@max_autolaser_m = 248
+@min_autolaser_l = 341
+@max_autolaser_l = 596
+# Plasma
+@min_plasma_s = 75
+@max_plasma_s = 199
+@min_plasma_m = 186
+@max_plasma_m = 497
+@min_plasma_l = 447
+@max_plasma_l = 1192
+# Disruptor
+@min_disruptor_s = 1
+@max_disruptor_s = 67
+@min_disruptor_m = 1
+@max_disruptor_m = 169
+@min_disruptor_l = 1
+@max_disruptor_l = 405
+# Disruptor Lance
+@min_disruptor_lance = 51
+@max_disruptor_lance = 511
+# Energy Cannon
+@min_energy_cannon = 1611
+@max_energy_cannon = 3705
+# Energy Torp
+@min_energy_torp = 639
+@max_energy_torp = 1405
+# PD
+@min_pd_s = 14
+@max_pd_s = 28
+@min_pd_m = 28
+@max_pd_m = 56
+# Lance
+@min_energy_lance = 2760
+@max_energy_lance = 6899
+# Perdition
+@min_perdition = 17785
+@max_perdition = 35447
+# Emitter
+@min_emitter = 930
+@max_emitter = 9301
+# T Emitter
+@min_titan_emitter = 14718
+@max_titan_emitter = 14718
+######## KINETIC
+# Gauss
+@min_gauss_s = 57
+@max_gauss_s = 163
+@min_gauss_m = 142
+@max_gauss_m = 408
+@min_gauss_l = 341
+@max_gauss_l = 980
+# Autocannon
+@min_autocannon_s = 46
+@max_autocannon_s = 96
+@min_autocannon_m = 115
+@max_autocannon_m = 240
+@min_autocannon_l = 277
+@max_autocannon_l = 575
+# Macro
+@min_macrocannon = 213
+@max_macrocannon = 405
+# Artillery
+@min_artillery = 894
+@max_artillery = 2683
+# Flak
+@min_flak_s = 14
+@max_flak_s = 28
+@min_flak_m = 28
+@max_flak_m = 56
+# Mass Accelerator
+@min_accelerator = 4344
+@max_accelerator = 10988
+# Titan Accelerator
+@min_titan_accelerator = 23059
+@max_titan_accelerator = 33730
+######## EXPLOSIVE
+# Missiles
+@min_missile_s = 220
+@max_missile_s = 348
+@min_missile_m = 550
+@max_missile_m = 870
+# Torpedo
+@min_torpedo = 1810
+@max_torpedo = 2704
+# Swarmer
+@min_swarmer = 240
+@max_swarmer = 328
+# CMM
+@min_ccm_s = 114
+@max_ccm_s = 228
+@min_ccm_m = 228
+@max_ccm_m = 456
+# Barrage
+@min_barrage = 1831
+@max_barrage = 2129
+# XL
+@min_xl_missile = 1329
+@max_xl_missile = 3220
+# T Missile
+@min_t_missile = 26984
+@max_t_missile = 44155
+######## Strikecrafts
+# Interceptors
+@min_scouts = 7
+@max_scouts = 14
+# Fighters
+@min_fighters = 25
+@max_fighters = 71
+# Bombers
+@min_bombers = 887
+@max_bombers = 1065
+# Gunships
+@min_gunships = 710
+@max_gunships = 1420
+################## COMPONENT DAMAGE VALUES - END #########################
+#####################################################
+####  ENERGY
+#####################################################
+### Laser
 weapon_component_template = {
 	key = "ACOT_LASER_SE"
 	size = small
 	icon = "GFX_ship_part_laser_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 181
-		max = 490
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_laser_s
+		MAX_DMG = @max_laser_s
 	}
 	windup = {
 		min = 2
@@ -18,12 +149,12 @@ weapon_component_template = {
 	range = 40
 	accuracy = 1
 	power = @s_se_power_cost
-	hull_damage = 1
+	hull_damage = 1.25
 	armor_penetration = 0
-	armor_damage = 1.5
+	armor_damage = 1.75
 	shield_penetration = 0
 	shield_damage = 0.75
-	tracking = 0.8
+	tracking = 0.6
 	resources = {
 		category = ship_components
 		cost = {
@@ -32,7 +163,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @s_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -71,9 +217,10 @@ weapon_component_template = {
 	icon = "GFX_ship_part_laser_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 452
-		max = 1224
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_laser_m
+		MAX_DMG = @max_laser_m
 	}
 	windup = {
 		min = 2
@@ -83,9 +230,9 @@ weapon_component_template = {
 	range = 60
 	accuracy = 1
 	power = @m_se_power_cost
-	hull_damage = 1
+	hull_damage = 1.25
 	armor_penetration = 0
-	armor_damage = 1.5
+	armor_damage = 1.75
 	shield_penetration = 0
 	shield_damage = 0.75
 	tracking = 0.4
@@ -97,7 +244,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -136,9 +298,10 @@ weapon_component_template = {
 	icon = "GFX_ship_part_laser_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 1086
-		max = 2938
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_laser_l
+		MAX_DMG = @max_laser_l
 	}
 	windup = {
 		min = 2
@@ -148,9 +311,9 @@ weapon_component_template = {
 	range = 80
 	accuracy = 1
 	power = @l_se_power_cost
-	hull_damage = 1
+	hull_damage = 1.25
 	armor_penetration = 0
-	armor_damage = 1.5
+	armor_damage = 1.75
 	shield_penetration = 0
 	shield_damage = 0.75
 	tracking = 0.2
@@ -162,7 +325,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @l_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @l_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -195,16 +373,260 @@ weapon_component_template = {
 	}
 }
 
-### SE Plasma
+########################################
+### AutoLaser
+weapon_component_template = {
+	key = "SMALL_ACOT_AUTOLASER_SE"
+	size = small
+	icon = "GFX_ship_part_auto_laser_se"
+	icon_frame = 1
+	type = instant
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_autolaser_s
+		MAX_DMG = @max_autolaser_s
+	}
+	windup = {
+		min = 0
+		max = 0
+	}
+	total_fire_time = 20
+	range = 30
+	accuracy = 1
+	power = @s_se_power_cost
+	hull_damage = 1.5
+	armor_penetration = 0
+	armor_damage = 1.5
+	shield_penetration = 0
+	shield_damage = 0.4
+	tracking = 0.7
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @s_se_cost
+			acot_sr_stellarite = @s_se_sr_cost
+		}
+		upkeep = {
+			alloys = @s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @s_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_auto_laser_se"
+	}
+	component_set = "ACOT_AUTOLASER_SE"
+	projectile_gfx = "acot_se_laser_s"
+	tags = {
+		weapon_type_energy
+		s_slot
+	}
+	ai_tags = {
+		weapon_role_anti_armor
+		gunship
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "MEDIUM_ACOT_AUTOLASER_SE"
+	size = medium
+	icon = "GFX_ship_part_auto_laser_se"
+	icon_frame = 1
+	type = instant
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_autolaser_m
+		MAX_DMG = @max_autolaser_m
+	}
+	windup = {
+		min = 0
+		max = 0
+	}
+	total_fire_time = 20
+	range = 35
+	accuracy = 1
+	power = @m_se_power_cost
+	hull_damage = 1.5
+	armor_penetration = 0
+	armor_damage = 1.5
+	shield_penetration = 0
+	shield_damage = 0.4
+	tracking = 0.5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_se_cost
+			acot_sr_stellarite = @m_se_sr_cost
+		}
+		upkeep = {
+			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_auto_laser_se"
+	}
+	component_set = "ACOT_AUTOLASER_SE"
+	projectile_gfx = "acot_se_laser_m"
+	tags = {
+		weapon_type_energy
+		m_slot
+	}
+	ai_tags = {
+		weapon_role_anti_armor
+		gunship
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "LARGE_ACOT_AUTOLASER_SE"
+	size = large
+	icon = "GFX_ship_part_auto_laser_se"
+	icon_frame = 1
+	type = instant
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_autolaser_l
+		MAX_DMG = @max_autolaser_l
+	}
+	windup = {
+		min = 0
+		max = 0
+	}
+	total_fire_time = 20
+	range = 40
+	accuracy = 1
+	power = @l_se_power_cost
+	hull_damage = 1.5
+	armor_penetration = 0
+	armor_damage = 1.5
+	shield_penetration = 0
+	shield_damage = 0.4
+	tracking = 0.3
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @l_se_cost
+			acot_sr_stellarite = @l_se_sr_cost
+		}
+		upkeep = {
+			alloys = @l_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @l_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_auto_laser_se"
+	}
+	component_set = "ACOT_AUTOLASER_SE"
+	projectile_gfx = "acot_se_laser_l"
+	tags = {
+		weapon_type_energy
+		l_slot
+	}
+	ai_tags = {
+		weapon_role_anti_armor
+		gunship
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+########################################
+### Plasma
 weapon_component_template = {
 	key = "SMALL_ACOT_PLASMA_SE"
 	size = small
 	icon = "GFX_ship_part_plasma_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 223
-		max = 596
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_plasma_s
+		MAX_DMG = @max_plasma_s
 	}
 	windup = {
 		min = 2
@@ -216,10 +638,10 @@ weapon_component_template = {
 	power = @s_se_power_cost
 	hull_damage = 1.5
 	armor_penetration = 0
-	armor_damage = 2
+	armor_damage = 2.5
 	shield_penetration = 0
-	shield_damage = 0.75
-	tracking = 0.4
+	shield_damage = 0.5
+	tracking = 0.5
 	resources = {
 		category = ship_components
 		cost = {
@@ -228,7 +650,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @s_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -267,9 +704,10 @@ weapon_component_template = {
 	icon = "GFX_ship_part_plasma_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 559
-		max = 1490
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_plasma_m
+		MAX_DMG = @max_plasma_m
 	}
 	windup = {
 		min = 2
@@ -281,10 +719,10 @@ weapon_component_template = {
 	power = @m_se_power_cost
 	hull_damage = 1.5
 	armor_penetration = 0
-	armor_damage = 2
+	armor_damage = 2.5
 	shield_penetration = 0
-	shield_damage = 0.75
-	tracking = 0.2
+	shield_damage = 0.5
+	tracking = 0.3
 	resources = {
 		category = ship_components
 		cost = {
@@ -293,7 +731,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -332,25 +785,26 @@ weapon_component_template = {
 	icon = "GFX_ship_part_plasma_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 1341
-		max = 3577
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_plasma_l
+		MAX_DMG = @max_plasma_l
 	}
 	windup = {
 		min = 2
-		max = 10
+		max = 20
 	}
 	total_fire_time = 40
 	range = 80
-	min_range = 45
+	min_range = 0
 	accuracy = 0.8
 	power = @l_se_power_cost
 	hull_damage = 1.5
 	armor_penetration = 0
-	armor_damage = 2
+	armor_damage = 2.5
 	shield_penetration = 0
-	shield_damage = 0.75
-	tracking = 0.1
+	shield_damage = 0.5
+	tracking = 0.15
 	resources = {
 		category = ship_components
 		cost = {
@@ -359,7 +813,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @l_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @l_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -392,16 +861,18 @@ weapon_component_template = {
 	}
 }
 
-### SE Disruptor
+########################################
+### Disruptor
 weapon_component_template = {
 	key = "SMALL_ACOT_DISRUPTOR_SE"
 	size = small
 	icon = "GFX_ship_part_disruptor_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 10
-		max = 521
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_disruptor_s
+		MAX_DMG = @max_disruptor_s
 	}
 	windup = {
 		min = 3
@@ -411,10 +882,10 @@ weapon_component_template = {
 	range = 30
 	accuracy = 1
 	power = @s_se_power_cost
-	hull_damage = 1.25
-	armor_penetration = 1
+	hull_damage = 1.5
+	armor_penetration = 1.25
 	armor_damage = 1
-	shield_penetration = 1
+	shield_penetration = 1.25
 	shield_damage = 1
 	tracking = 0.6
 	resources = {
@@ -425,7 +896,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @s_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -465,9 +951,10 @@ weapon_component_template = {
 	icon = "GFX_ship_part_disruptor_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 26
-		max = 1304
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_disruptor_m
+		MAX_DMG = @max_disruptor_m
 	}
 	windup = {
 		min = 3
@@ -477,10 +964,10 @@ weapon_component_template = {
 	range = 40
 	accuracy = 1
 	power = @m_se_power_cost
-	hull_damage = 1.25
-	armor_penetration = 1
+	hull_damage = 1.5
+	armor_penetration = 1.25
 	armor_damage = 1
-	shield_penetration = 1
+	shield_penetration = 1.25
 	shield_damage = 1
 	tracking = 0.3
 	resources = {
@@ -491,7 +978,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -531,22 +1033,23 @@ weapon_component_template = {
 	icon = "GFX_ship_part_disruptor_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 64
-		max = 3130
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_disruptor_l
+		MAX_DMG = @max_disruptor_l
 	}
 	windup = {
 		min = 3
 		max = 11
 	}
 	total_fire_time = 16
-	range = 60
+	range = 50
 	accuracy = 1
 	power = @l_se_power_cost
-	hull_damage = 1.25
-	armor_penetration = 1
+	hull_damage = 1.5
+	armor_penetration = 1.25
 	armor_damage = 1
-	shield_penetration = 1
+	shield_penetration = 1.25
 	shield_damage = 1
 	tracking = 0.15
 	resources = {
@@ -557,7 +1060,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @l_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @l_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -591,32 +1109,119 @@ weapon_component_template = {
 	}
 }
 
-### SE  Plasma Accelerator
+########################################
+weapon_component_template = {
+	key = "ACOT_DISRUPTOR_LANCE_SE"
+	size = large
+	icon = "GFX_ship_part_disruptor_lance_se"
+	icon_frame = 1
+	type = instant
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_disruptor_lance
+		MAX_DMG = @max_disruptor_lance
+	}
+	windup = {
+		min = 1
+		max = 11
+	}
+	total_fire_time = 25
+	range = 140
+	min_range = 40
+	accuracy = 1
+	power = @al_se_power_cost
+	hull_damage = 1.75
+	armor_penetration = 1.25
+	armor_damage = 1
+	shield_penetration = 1.25
+	shield_damage = 1
+	tracking = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @al_se_cost
+			rare_crystals = @al_se_sr_cost
+		}
+		upkeep = {
+			alloys = @al_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @al_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @al_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_disruptor_lance_se"
+	}
+	component_set = "ACOT_DISRUPTOR_LANCE_SE"
+	projectile_gfx = "acot_disruptor_se"
+	tags = {
+		weapon_type_energy
+		weapon_type_acot_stellarite
+		l_slot
+		weapon_role_artillery
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+		artillery_stealth
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+########################################
+### Energy Cannon
 weapon_component_template = {
 	key = "ACOT_ENERGY_CANNON_SE"
 	size = large
 	icon = "GFX_ship_part_energy_cannon_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 4983
-		max = 11073
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_energy_cannon
+		MAX_DMG = @max_energy_cannon
 	}
 	windup = {
 		min = 1
 		max = 19
 	}
-	total_fire_time = 75
-	range = 160
-	accuracy = 0.9
+	total_fire_time = 150
+	range = 120
+	min_range = 0
+	accuracy = 1
 	power = @al_se_power_cost
-	hull_damage = 1.75
+	hull_damage = 1.5
 	armor_penetration = 0
 	armor_damage = 1.75
 	shield_penetration = 0
 	shield_damage = 0.75
-	tracking = 0.1
-	min_range = 50
+	tracking = 0.05
 	resources = {
 		category = ship_components
 		cost = {
@@ -625,7 +1230,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @al_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @al_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @al_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -637,10 +1257,12 @@ weapon_component_template = {
 		weapon_type_energy
 		weapon_type_acot_stellarite
 		l_slot
+		weapon_role_artillery
 	}
 	ai_tags = {
-		weapon_role_anti_shield
 		weapon_role_artillery
+		artillery
+		artillery_stealth
 	}
 	ai_weight = {
 		weight = 50
@@ -658,42 +1280,75 @@ weapon_component_template = {
 	}
 }
 
-### SE  Plasma Accelerator
+########################################
+### Energy Torpedo
 weapon_component_template = {
 	key = "ACOT_ENERGY_TORPEDO_SE"
 	size = torpedo
 	icon = "GFX_ship_part_energy_torpedo_se"
 	icon_frame = 1
-	type = instant
-	damage = {
-		min = 648
-		max = 1395
+	type = missile
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_energy_torp
+		MAX_DMG = @max_energy_torp
 	}
 	windup = {
-		min = 25
-		max = 100
+		min = 20
+		max = 60
 	}
-	total_fire_time = 150
-	range = 130
+	total_fire_time = 80
+	range = 60
 	min_range = 45
-	accuracy = 0.9
-	power = @m_se_power_cost
+	accuracy = 1
+	missile_speed = 22
+	missile_evasion = 0
+	missile_health = 48
+	missile_armor = 24
+	missile_retarget_range = 100
+	power = @g_se_power_cost
 	hull_damage = 1.75
 	armor_penetration = 0
-	armor_damage = 1.5
-	shield_penetration = 0
+	armor_damage = 2.25
+	shield_penetration = 0.5
 	shield_damage = 0.75
-	tracking = 0.05
+	tracking = 0.25
 	size_damage_factor = 1
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @m_se_cost
-			acot_sr_stellarite = @m_se_sr_cost
+			alloys = @g_se_cost
+			acot_sr_stellarite = @g_se_sr_cost
 		}
 		upkeep = {
-			alloys = @m_se_upkeep_alloys
-			energy = @m_se_upkeep_energy
+			alloys = @g_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @g_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @g_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_mauler_components = no
+			AND = {
+				ship_uses_mauler_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
 		}
 	}
 	prerequisites = {
@@ -704,11 +1359,12 @@ weapon_component_template = {
 	tags = {
 		weapon_type_energy
 		weapon_type_acot_stellarite
-		m_slot
+		g_slot
 	}
 	ai_tags = {
-		weapon_role_anti_shield
-		weapon_role_artillery
+		weapon_role_anti_armor
+		explosive
+		explosive_stealth
 	}
 	ai_weight = {
 		weight = 50
@@ -726,83 +1382,18 @@ weapon_component_template = {
 	}
 }
 
-weapon_component_template = {
-	key = "ACOT_ENERGY_TORPEDO_MEDIUM_SE"
-	size = medium
-	icon = "GFX_ship_part_energy_torpedo_se"
-	icon_frame = 1
-	type = instant
-	damage = {
-		min = 648
-		max = 1395
-	}
-	windup = {
-		min = 25
-		max = 100
-	}
-	total_fire_time = 150
-	range = 130
-	min_range = 45
-	accuracy = 0.9
-	power = @m_se_power_cost
-	hull_damage = 1.75
-	armor_penetration = 0
-	armor_damage = 1.5
-	shield_penetration = 0
-	shield_damage = 0.75
-	tracking = 0.05
-	size_damage_factor = 1
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @m_se_cost
-			acot_sr_stellarite = @m_se_sr_cost
-		}
-		upkeep = {
-			alloys = @m_se_upkeep_alloys
-			energy = @m_se_upkeep_energy
-		}
-	}
-	prerequisites = {
-		"tech_energy_torpedo_se"
-	}
-	component_set = "ACOT_ENERGY_TORPEDO_SE"
-	projectile_gfx = "acot_energy_torpedoes_se"
-	tags = {
-		weapon_type_energy
-		weapon_type_acot_stellarite
-		m_slot
-	}
-	ai_tags = {
-		weapon_role_anti_shield
-		weapon_role_artillery
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-### SE PD
+########################################
+### PD
 weapon_component_template = {
 	key = "ACOT_POINT_DEFENSE_SE"
 	size = point_defence
 	type = point_defence
 	icon = "GFX_ship_part_point_defense_se"
 	icon_frame = 1
-	damage = {
-		min = 50
-		max = 100
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_pd_s
+		MAX_DMG = @max_pd_s
 	}
 	windup = {
 		min = 0
@@ -811,28 +1402,54 @@ weapon_component_template = {
 	total_fire_time = 5
 	range = 30
 	accuracy = 0.75
-	power = @s_se_power_cost
+	power = 0	#@s_se_power_cost
 	hull_damage = 1
 	armor_penetration = 0.25
-	armor_damage = 2
+	armor_damage = 2.25
 	shield_penetration = 0
-	shield_damage = 0.25
-	tracking = 0.8
+	shield_damage = 0.5
+	tracking = 0.7
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @s_se_cost
-			acot_sr_stellarite = @s_se_sr_cost
+			alloys = 0			#@s_se_cost
+			acot_sr_stellarite = 0			#@s_se_sr_cost
 		}
 		upkeep = {
-			alloys = @s_se_upkeep_alloys
-			energy = @s_se_upkeep_energy
+			alloys = 0			#@s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = 0			#@s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = 0			#@s_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_weaver_components = no
+			AND = {
+				ship_uses_weaver_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
 		}
 	}
 	prerequisites = {
 		"tech_point_defense_se"
 	}
-	component_set = "ACOT_POINT_DEFENSE_SE"
+	component_set = "ACOT_POINT_DEFENSE_PD_SE"
 	projectile_gfx = "acot_point_defense_se"
 	tags = {
 		weapon_type_point_defense
@@ -869,9 +1486,10 @@ weapon_component_template = {
 	type = point_defence
 	icon = "GFX_ship_part_point_defense_se"
 	icon_frame = 1
-	damage = {
-		min = 7
-		max = 14
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_pd_s
+		MAX_DMG = @max_pd_s
 	}
 	windup = {
 		min = 0
@@ -883,10 +1501,10 @@ weapon_component_template = {
 	power = @s_se_power_cost
 	hull_damage = 1
 	armor_penetration = 0.25
-	armor_damage = 2
+	armor_damage = 2.25
 	shield_penetration = 0
-	shield_damage = 0.25
-	tracking = 0.8
+	shield_damage = 0.5
+	tracking = 0.7
 	resources = {
 		category = ship_components
 		cost = {
@@ -895,7 +1513,33 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @s_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_weaver_components = no
+			AND = {
+				ship_uses_weaver_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
 		}
 	}
 	prerequisites = {
@@ -929,6 +1573,7 @@ weapon_component_template = {
 	}
 	point_defence_targets = {
 		"missile"
+		"strike_craft"
 	}
 }
 
@@ -938,26 +1583,26 @@ weapon_component_template = {
 	type = point_defence
 	icon = "GFX_ship_part_point_defense_se"
 	icon_frame = 1
-	damage = {
-		min = 84
-		max = 168
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_pd_m
+		MAX_DMG = @max_pd_m
 	}
 	windup = {
 		min = 0
 		max = 0
 	}
 	total_fire_time = 10
-	range = 80
+	range = 60
 	min_range = 20
 	accuracy = 0.75
 	power = @m_se_power_cost
 	hull_damage = 1
 	armor_penetration = 0.25
-	armor_damage = 2
+	armor_damage = 2.25
 	shield_penetration = 0
-	shield_damage = 0.25
-	tracking = 0.8
-	size_damage_factor = -0.25
+	shield_damage = 0.5
+	tracking = 0.7
 	resources = {
 		category = ship_components
 		cost = {
@@ -966,7 +1611,33 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_weaver_components = no
+			AND = {
+				ship_uses_weaver_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
 		}
 	}
 	prerequisites = {
@@ -1000,20 +1671,410 @@ weapon_component_template = {
 	}
 	point_defence_targets = {
 		"missile"
+		"strike_craft"
 	}
 }
 
-### ### ### ### ### KINETIC ### ### ### ### ###
-### SE Gauss
+######################################## XL AND T
+### Lance
+weapon_component_template = {
+	key = "ACOT_PARTICLE_LANCE_SE"
+	size = extra_large
+	icon = "GFX_ship_part_energy_lance_se"
+	icon_frame = 1
+	type = instant
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_energy_lance
+		MAX_DMG = @max_energy_lance
+	}
+	windup = {
+		min = 12
+		max = 47
+	}
+	total_fire_time = 70
+	range = 150
+	accuracy = 1
+	power = @xl_se_power_cost
+	hull_damage = 1.5
+	armor_penetration = 0
+	armor_damage = 2.25
+	shield_penetration = 0
+	shield_damage = 0.75
+	tracking = 0
+	target_weights = {
+		battleship = 2
+		offspring_battleship = 2
+		precursor_battlecruiser = 2
+		large_ship_fallen_empire = 2
+		titan = 3
+		juggernaut = 3
+		precursor_assault_carrier = 3
+		precursor_titan = 3
+		massive_ship_fallen_empire = 3
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @xl_se_cost
+			acot_sr_stellarite = @xl_se_sr_cost
+		}
+		upkeep = {
+			alloys = @xl_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @xl_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @xl_se_upkeep_energy
+		}
+	}
+	firing_arc = 25
+	use_ship_kill_target = no
+	prerequisites = {
+		"tech_energy_lance_se"
+	}
+	component_set = "ACOT_PARTICLE_LANCE_SE"
+	projectile_gfx = "acot_energy_lance_se"
+	tags = {
+		weapon_type_energy
+		weapon_type_acot_stellarite
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+### SE Titan
+weapon_component_template = {
+	key = "ACOT_PERDITION_BEAM_SE"
+	size = titanic
+	type = instant
+	prio_projectile = yes
+	icon = "GFX_ship_part_perdition_beam_se"
+	icon_frame = 1
+	firing_arc = 10
+	min_range = 0
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_perdition
+		MAX_DMG = @max_perdition
+	}
+	windup = {
+		min = 30
+		max = 120
+	}
+	total_fire_time = 180
+	range = 250
+	accuracy = 1
+	power = @titanic_se_power_cost
+	hull_damage = 1.5
+	armor_penetration = 0.25
+	armor_damage = 2
+	shield_penetration = 0
+	shield_damage = 0.75
+	tracking = 0
+	target_weights = {
+		battleship = 2
+		offspring_battleship = 2
+		precursor_battlecruiser = 2
+		large_ship_fallen_empire = 2
+		titan = 3
+		juggernaut = 3
+		precursor_assault_carrier = 3
+		precursor_titan = 3
+		massive_ship_fallen_empire = 3
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @titanic_se_cost
+			acot_sr_stellarite = @titanic_se_sr_cost
+		}
+		upkeep = {
+			alloys = @titanic_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @titanic_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @titanic_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_perdition_beam_se"
+	}
+	component_set = "ACOT_PERDITION_BEAM_SE"
+	projectile_gfx = "acot_titan_beam_se"
+	tags = {
+		weapon_type_energy
+		weapon_type_acot_stellarite
+		t_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+	}
+	ai_tag_weight = 0
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+### Emitter
+weapon_component_template = {
+	key = "ACOT_ARC_EMITTER_SE"
+	size = extra_large
+	icon = "GFX_ship_part_arc_emitter_se"
+	icon_frame = 1
+	type = instant
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_emitter
+		MAX_DMG = @max_emitter
+	}
+	windup = {
+		min = 12
+		max = 48
+	}
+	total_fire_time = 71
+	range = 150
+	accuracy = 1
+	power = @xl_se_power_cost
+	hull_damage = 1.5
+	armor_penetration = 1.25
+	armor_damage = 1
+	shield_penetration = 1.25
+	shield_damage = 1
+	tracking = 0
+	firing_arc = 25
+	min_range = 10
+	use_ship_kill_target = no
+	target_weights = {
+		battleship = 2
+		offspring_battleship = 2
+		precursor_battlecruiser = 2
+		large_ship_fallen_empire = 2
+		titan = 3
+		juggernaut = 3
+		precursor_assault_carrier = 3
+		precursor_titan = 3
+		massive_ship_fallen_empire = 3
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @xl_se_cost
+			acot_sr_stellarite = @xl_se_sr_cost
+		}
+		upkeep = {
+			alloys = @xl_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @xl_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @xl_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_arc_emitter_se"
+	}
+	component_set = "ACOT_ARC_EMITTER_SE"
+	projectile_gfx = "acot_emitter_se"
+	tags = {
+		weapon_type_energy
+		weapon_type_acot_stellarite
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+	}
+	ai_tag_weight = 0
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+### SE Emitter
+weapon_component_template = {
+	key = "ACOT_ARC_EMITTER_SE_TITAN"
+	size = titanic
+	icon = "GFX_ship_part_titan_stellarite_emitter"
+	icon_frame = 1
+	type = instant
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_titan_emitter
+		MAX_DMG = @max_titan_emitter
+	}
+	windup = {
+		min = 24
+		max = 48
+	}
+	total_fire_time = 80
+	range = 275
+	accuracy = 1
+	power = @titanic_se_power_cost
+	hull_damage = 2.5
+	armor_penetration = 1.25
+	armor_damage = 1
+	shield_penetration = 1.25
+	shield_damage = 1
+	tracking = 0
+	firing_arc = 10
+	min_range = 15
+	target_weights = {
+		battleship = 2
+		offspring_battleship = 2
+		precursor_battlecruiser = 2
+		large_ship_fallen_empire = 2
+		titan = 3
+		juggernaut = 3
+		precursor_assault_carrier = 3
+		precursor_titan = 3
+		massive_ship_fallen_empire = 3
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @titanic_se_cost
+			acot_sr_stellarite = @titanic_se_sr_cost
+		}
+		upkeep = {
+			alloys = @titanic_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @titanic_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @titanic_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_titan_emitter_se"
+	}
+	component_set = "ACOT_ARC_EMITTER_SE_TITAN"
+	projectile_gfx = "acot_emitter_se_titan"
+	tags = {
+		weapon_type_energy
+		weapon_type_acot_stellarite
+		t_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+	}
+	ai_tag_weight = 0
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+#####################################################
+####  KINETIC
+#####################################################
+### Gauss
 weapon_component_template = {
 	key = "SMALL_ACOT_MASS_DRIVER_SE"
 	size = small
 	icon = "GFX_ship_part_mass_driver_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 170
-		max = 490
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_gauss_s
+		MAX_DMG = @max_gauss_s
 	}
 	windup = {
 		min = 1
@@ -1026,9 +2087,9 @@ weapon_component_template = {
 	hull_damage = 1
 	armor_penetration = 0
 	armor_damage = 0.75
-	shield_penetration = 0
+	shield_penetration = 0.25
 	shield_damage = 1.75
-	tracking = 0.5
+	tracking = 0.6
 	resources = {
 		category = ship_components
 		cost = {
@@ -1037,7 +2098,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @s_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -1076,9 +2152,10 @@ weapon_component_template = {
 	icon = "GFX_ship_part_mass_driver_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 426
-		max = 1224
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_gauss_m
+		MAX_DMG = @max_gauss_m
 	}
 	windup = {
 		min = 1
@@ -1091,7 +2168,7 @@ weapon_component_template = {
 	hull_damage = 1
 	armor_penetration = 0
 	armor_damage = 0.75
-	shield_penetration = 0
+	shield_penetration = 0.25
 	shield_damage = 1.75
 	tracking = 0.3
 	resources = {
@@ -1102,7 +2179,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -1141,9 +2233,10 @@ weapon_component_template = {
 	icon = "GFX_ship_part_mass_driver_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 1022
-		max = 2938
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_gauss_l
+		MAX_DMG = @max_gauss_l
 	}
 	windup = {
 		min = 1
@@ -1156,7 +2249,7 @@ weapon_component_template = {
 	hull_damage = 1
 	armor_penetration = 0
 	armor_damage = 0.75
-	shield_penetration = 0
+	shield_penetration = 0.25
 	shield_damage = 1.75
 	tracking = 0.15
 	resources = {
@@ -1167,7 +2260,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @l_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @l_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -1200,16 +2308,18 @@ weapon_component_template = {
 	}
 }
 
-### SE Autocannon
+########################################
+### Autocannon
 weapon_component_template = {
 	key = "ACOT_AUTOCANNON_SE"
 	size = small
 	icon = "GFX_ship_part_autocannon_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 138
-		max = 287
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_autocannon_s
+		MAX_DMG = @max_autocannon_s
 	}
 	windup = {
 		min = 2
@@ -1224,7 +2334,7 @@ weapon_component_template = {
 	armor_damage = 0.5
 	shield_penetration = 0
 	shield_damage = 1.75
-	tracking = 0.75
+	tracking = 0.85
 	resources = {
 		category = ship_components
 		cost = {
@@ -1233,7 +2343,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @s_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -1273,24 +2398,25 @@ weapon_component_template = {
 	icon = "GFX_ship_part_autocannon_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 346
-		max = 718
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_autocannon_m
+		MAX_DMG = @max_autocannon_m
 	}
 	windup = {
 		min = 2
 		max = 6
 	}
 	total_fire_time = 9
-	range = 50
+	range = 35
 	accuracy = 0.85
 	power = @m_se_power_cost
 	hull_damage = 1.25
 	armor_penetration = 0
 	armor_damage = 0.5
 	shield_penetration = 0
-	shield_damage = 1.5
-	tracking = 0.4
+	shield_damage = 1.75
+	tracking = 0.5
 	resources = {
 		category = ship_components
 		cost = {
@@ -1299,7 +2425,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -1339,24 +2480,25 @@ weapon_component_template = {
 	icon = "GFX_ship_part_autocannon_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 830
-		max = 1725
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_autocannon_l
+		MAX_DMG = @max_autocannon_l
 	}
 	windup = {
 		min = 2
 		max = 6
 	}
 	total_fire_time = 9
-	range = 70
+	range = 40
 	accuracy = 0.85
 	power = @l_se_power_cost
 	hull_damage = 1.25
 	armor_penetration = 0
 	armor_damage = 0.5
 	shield_penetration = 0
-	shield_damage = 1.5
-	tracking = 0.2
+	shield_damage = 1.75
+	tracking = 0.25
 	resources = {
 		category = ship_components
 		cost = {
@@ -1365,7 +2507,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @l_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @l_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -1399,40 +2556,68 @@ weapon_component_template = {
 	}
 }
 
-### SE Artillery
+########################################
+### Macrocannon
 weapon_component_template = {
 	key = "ACOT_MACROCANNON_SE"
 	size = torpedo
 	icon = "GFX_ship_part_large_accelerator_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 255
-		max = 510
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_macrocannon
+		MAX_DMG = @max_macrocannon
 	}
 	windup = {
 		min = 0
 		max = 0
 	}
 	total_fire_time = 5
-	range = 30
-	accuracy = 0.65
-	power = @m_se_power_cost
+	range = 45
+	accuracy = 0.5
+	power = @g_se_power_cost
 	hull_damage = 1.75
 	armor_penetration = 0
 	armor_damage = 0.25
 	shield_damage = 2
-	tracking = 0.5
+	tracking = 0.45
 	size_damage_factor = 0.5
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @m_se_cost
-			acot_sr_stellarite = @m_se_sr_cost
+			alloys = @g_se_cost
+			acot_sr_stellarite = @g_se_sr_cost
 		}
 		upkeep = {
-			alloys = @m_se_upkeep_alloys
-			energy = @m_se_upkeep_energy
+			alloys = @g_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @g_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @g_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_mauler_components = no
+			AND = {
+				ship_uses_mauler_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
 		}
 	}
 	prerequisites = {
@@ -1466,99 +2651,34 @@ weapon_component_template = {
 	}
 }
 
-### SE Artillery
-weapon_component_template = {
-	key = "ACOT_MACROCANNON_SE_MEDIUM"
-	size = medium
-	icon = "GFX_ship_part_large_accelerator_se"
-	icon_frame = 1
-	type = instant
-	damage = {
-		min = 255
-		max = 510
-	}
-	windup = {
-		min = 0
-		max = 0
-	}
-	total_fire_time = 5
-	range = 30
-	accuracy = 0.65
-	power = @m_se_power_cost
-	hull_damage = 1.75
-	armor_penetration = 0
-	armor_damage = 0.25
-	shield_damage = 2
-	tracking = 0.5
-	size_damage_factor = 0.5
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @m_se_cost
-			acot_sr_stellarite = @m_se_sr_cost
-		}
-		upkeep = {
-			alloys = @m_se_upkeep_alloys
-			energy = @m_se_upkeep_energy
-		}
-	}
-	prerequisites = {
-		"tech_macrocannon_se"
-	}
-	component_set = "ACOT_MACROCANNON_SE"
-	projectile_gfx = "acot_dakka_cannon_se"
-	tags = {
-		weapon_type_kinetic
-		weapon_type_acot_stellarite
-		m_slot
-	}
-	ai_tags = {
-		weapon_role_anti_shield
-		brawler
-		brawler_stealth
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-### SE Artillery
+########################################
+### Kinetic Artillery
 weapon_component_template = {
 	key = "ACOT_ARTILLERY_SE"
 	size = large
 	icon = "GFX_ship_part_kinetic_artillery_se"
 	icon_frame = 1
 	type = instant
-	damage = {
-		min = 2076
-		max = 6228
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_artillery
+		MAX_DMG = @max_artillery
 	}
 	windup = {
 		min = 3
 		max = 25
 	}
 	total_fire_time = 50
-	range = 160
+	range = 145
 	min_range = 45
 	accuracy = 0.75
 	power = @al_se_power_cost
-	hull_damage = 1.5
+	hull_damage = 1
 	armor_penetration = 0
-	armor_damage = 0.5
+	armor_damage = 0.75
 	shield_penetration = 0.5
-	shield_damage = 2
-	tracking = 0.1
+	shield_damage = 2.25
+	tracking = 0.05
 	resources = {
 		category = ship_components
 		cost = {
@@ -1567,7 +2687,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @al_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @al_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @al_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -1600,46 +2735,74 @@ weapon_component_template = {
 	}
 }
 
-### SE Flak
+########################################
+### Flak
 weapon_component_template = {
 	key = "ACOT_FLAK_CANNON_SE"
 	size = point_defence
 	icon = "GFX_ship_part_flak_batteries_se"
 	icon_frame = 1
 	type = point_defence
-	damage = {
-		min = 42
-		max = 84
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_flak_s
+		MAX_DMG = @max_flak_s
 	}
 	windup = {
 		min = 0
 		max = 0
 	}
 	total_fire_time = 5
-	range = 35
+	range = 40
 	accuracy = 0.8
-	power = @s_se_power_cost
+	power = 0	#@s_se_power_cost
 	hull_damage = 1
 	armor_penetration = 0
-	armor_damage = 0.25
+	armor_damage = 0.5
 	shield_penetration = 0.25
-	shield_damage = 2
+	shield_damage = 2.25
 	tracking = 0.95
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @s_se_cost
-			acot_sr_stellarite = @s_se_sr_cost
+			alloys = 0			#@s_se_cost
+			acot_sr_stellarite = 0			#@s_se_sr_cost
 		}
 		upkeep = {
-			alloys = @s_se_upkeep_alloys
-			energy = @s_se_upkeep_energy
+			alloys = 0			#@s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = 0			#@s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = 0			#@s_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_weaver_components = no
+			AND = {
+				ship_uses_weaver_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
 		}
 	}
 	prerequisites = {
 		"tech_flak_batteries_se"
 	}
-	component_set = "ACOT_FLAK_CANNON_SE"
+	component_set = "ACOT_FLAK_CANNON_PD_SE"
 	projectile_gfx = "acot_flak_se"
 	tags = {
 		weapon_type_point_defense
@@ -1676,23 +2839,24 @@ weapon_component_template = {
 	icon = "GFX_ship_part_flak_batteries_se"
 	icon_frame = 1
 	type = point_defence
-	damage = {
-		min = 42
-		max = 84
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_flak_s
+		MAX_DMG = @max_flak_s
 	}
 	windup = {
 		min = 0
 		max = 0
 	}
 	total_fire_time = 5
-	range = 35
+	range = 40
 	accuracy = 0.8
 	power = @s_se_power_cost
 	hull_damage = 1
 	armor_penetration = 0
-	armor_damage = 0.25
+	armor_damage = 0.5
 	shield_penetration = 0.25
-	shield_damage = 2
+	shield_damage = 2.25
 	tracking = 0.95
 	resources = {
 		category = ship_components
@@ -1702,7 +2866,33 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @s_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_weaver_components = no
+			AND = {
+				ship_uses_weaver_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
 		}
 	}
 	prerequisites = {
@@ -1735,6 +2925,7 @@ weapon_component_template = {
 		}
 	}
 	point_defence_targets = {
+		"missile"
 		"strike_craft"
 	}
 }
@@ -1745,9 +2936,10 @@ weapon_component_template = {
 	icon = "GFX_ship_part_flak_batteries_se"
 	icon_frame = 1
 	type = point_defence
-	damage = {
-		min = 84
-		max = 168
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_flak_m
+		MAX_DMG = @max_flak_m
 	}
 	windup = {
 		min = 0
@@ -1760,9 +2952,9 @@ weapon_component_template = {
 	power = @m_se_power_cost
 	hull_damage = 1
 	armor_penetration = 0
-	armor_damage = 0.25
+	armor_damage = 0.5
 	shield_penetration = 0.25
-	shield_damage = 2
+	shield_damage = 2.25
 	tracking = 0.95
 	resources = {
 		category = ship_components
@@ -1772,7 +2964,33 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_weaver_components = no
+			AND = {
+				ship_uses_weaver_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
 		}
 	}
 	prerequisites = {
@@ -1804,21 +3022,219 @@ weapon_component_template = {
 		}
 	}
 	point_defence_targets = {
+		"missile"
 		"strike_craft"
 	}
 }
 
-### ### ### ### ### MISSILES ### ### ### ### ###
-### SE Missiles
+### Giga
+weapon_component_template = {
+	key = "ACOT_MASS_ACCELERATOR_SE"
+	size = extra_large
+	icon = "GFX_ship_part_mass_accelerator_se"
+	icon_frame = 1
+	type = instant
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_accelerator
+		MAX_DMG = @max_accelerator
+	}
+	windup = {
+		min = 14
+		max = 54
+	}
+	total_fire_time = 80
+	range = 175
+	accuracy = 1
+	power = @xl_se_power_cost
+	hull_damage = 1
+	armor_penetration = 0
+	armor_damage = 1
+	shield_penetration = 0.5
+	shield_damage = 2.25
+	tracking = 0
+	firing_arc = 45
+	min_range = 45
+	use_ship_kill_target = no
+	target_weights = {
+		battleship = 2
+		offspring_battleship = 2
+		precursor_battlecruiser = 2
+		large_ship_fallen_empire = 2
+		titan = 3
+		juggernaut = 3
+		precursor_assault_carrier = 3
+		precursor_titan = 3
+		massive_ship_fallen_empire = 3
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @xl_se_cost
+			acot_sr_stellarite = @xl_se_sr_cost
+		}
+		upkeep = {
+			alloys = @xl_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @xl_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @xl_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_mass_accelerator_se"
+	}
+	component_set = "ACOT_MASS_ACCELERATOR_SE"
+	projectile_gfx = "acot_giga_cannon_se"
+	tags = {
+		weapon_type_kinetic
+		weapon_type_acot_stellarite
+		x_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+	}
+	ai_tag_weight = 0
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+### Giga
+weapon_component_template = {
+	key = "ACOT_TITAN_CANNON_SE"
+	size = titanic
+	icon = "GFX_ship_part_titan_accelerator_se"
+	icon_frame = 1
+	type = instant
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_titan_accelerator
+		MAX_DMG = @max_titan_accelerator
+	}
+	windup = {
+		min = 45
+		max = 90
+	}
+	total_fire_time = 180
+	range = 300
+	accuracy = 1
+	power = @titanic_se_power_cost
+	hull_damage = 1.5
+	armor_penetration = 0
+	armor_damage = 1
+	shield_penetration = 0.5
+	shield_damage = 2.25
+	tracking = 0
+	firing_arc = 45
+	min_range = 60
+	use_ship_kill_target = no
+	target_weights = {
+		battleship = 2
+		offspring_battleship = 2
+		precursor_battlecruiser = 2
+		large_ship_fallen_empire = 2
+		titan = 3
+		juggernaut = 3
+		precursor_assault_carrier = 3
+		precursor_titan = 3
+		massive_ship_fallen_empire = 3
+	}
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @titanic_se_cost
+			acot_sr_stellarite = @titanic_se_sr_cost
+		}
+		upkeep = {
+			alloys = @titanic_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @titanic_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @titanic_se_upkeep_energy
+		}
+	}
+	prerequisites = {
+		"tech_titan_accelerator_se"
+	}
+	component_set = "ACOT_TITAN_CANNON_SE"
+	projectile_gfx = "acot_giga_cannon_se"
+	tags = {
+		weapon_type_kinetic
+		weapon_type_acot_stellarite
+		t_slot
+	}
+	ai_tags = {
+		weapon_role_artillery
+		artillery
+	}
+	ai_tag_weight = 0
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+}
+
+#####################################################
+####  MISSILE
+#####################################################
+### Missiles
 weapon_component_template = {
 	key = "ACOT_MISSILE_SE"
 	size = small
 	icon = "GFX_ship_part_missile_se"
 	icon_frame = 1
 	type = missile
-	damage = {
-		min = 420
-		max = 835
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_missile_s
+		MAX_DMG = @max_missile_s
 	}
 	windup = {
 		min = 10
@@ -1827,7 +3243,7 @@ weapon_component_template = {
 	total_fire_time = 60
 	range = 120
 	accuracy = 1
-	missile_speed = 40	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
+	missile_speed = 22
 	missile_evasion = 0.8
 	missile_health = 12
 	missile_armor = 12
@@ -1847,7 +3263,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @s_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -1881,27 +3312,27 @@ weapon_component_template = {
 	}
 }
 
-## SE Medium Missile
 weapon_component_template = {
 	key = "MEDIUM_ACOT_MISSILE_SE"
 	size = medium
 	icon = "GFX_ship_part_missile_se"
 	icon_frame = 1
 	type = missile
-	damage = {
-		min = 1304
-		max = 1916
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_missile_m
+		MAX_DMG = @max_missile_m
 	}
 	windup = {
 		min = 10
 		max = 40
 	}
 	total_fire_time = 60
-	range = 140
+	range = 120
 	accuracy = 1
-	missile_speed = 40	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
+	missile_speed = 22
 	missile_evasion = 0.4
-	missile_health = 12
+	missile_health = 24
 	missile_armor = 24
 	missile_retarget_range = 140
 	power = @m_se_power_cost
@@ -1919,7 +3350,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -1953,32 +3399,33 @@ weapon_component_template = {
 	}
 }
 
-### SE PETODOR
+### Tirpode
 weapon_component_template = {
 	key = "ACOT_TORPEDO_SE"
 	size = torpedo
 	icon = "GFX_ship_part_torpedo_se"
 	icon_frame = 1
 	type = missile
-	damage = {
-		min = 1799
-		max = 2704
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_torpedo
+		MAX_DMG = @max_torpedo
 	}
 	windup = {
-		min = 5
-		max = 10
+		min = 10
+		max = 20
 	}
-	total_fire_time = 200
+	total_fire_time = 220
 	range = 60
 	accuracy = 1
-	missile_speed = 17	# 300 -- apparently, the game doesn't auto-convert speed for non-vanilla components
+	missile_speed = 15
 	missile_evasion = 0
 	missile_health = 24
 	missile_armor = 24
 	missile_retarget_range = 100
-	power = @m_se_power_cost
-	hull_damage = 1.25
-	armor_damage = 1.5
+	power = @g_se_power_cost
+	hull_damage = 2
+	armor_damage = 2
 	armor_penetration = 0
 	shield_damage = 1
 	shield_penetration = 1
@@ -1987,12 +3434,38 @@ weapon_component_template = {
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = @m_se_cost
-			acot_sr_stellarite = @m_se_sr_cost
+			alloys = @g_se_cost
+			acot_sr_stellarite = @g_se_sr_cost
 		}
 		upkeep = {
-			alloys = @m_se_upkeep_alloys
-			energy = @m_se_upkeep_energy
+			alloys = @g_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @g_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @g_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_mauler_components = no
+			AND = {
+				ship_uses_mauler_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
 		}
 	}
 	prerequisites = {
@@ -2025,37 +3498,37 @@ weapon_component_template = {
 	}
 }
 
-### AE PETODOR
+### Swarmer
 weapon_component_template = {
-	key = "ACOT_TORPEDO_MEDIUM_SE"
+	key = "ACOT_SWARMER_MISSILES_SE"
 	size = medium
-	icon = "GFX_ship_part_torpedo_se"
+	icon = "GFX_ship_part_swarmer_missile_se"
 	icon_frame = 1
 	type = missile
-	damage = {
-		min = 1799
-		max = 2704
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_swarmer
+		MAX_DMG = @max_swarmer
 	}
 	windup = {
 		min = 5
-		max = 10
+		max = 20
 	}
-	total_fire_time = 200
-	range = 60
+	total_fire_time = 30
+	range = 120
 	accuracy = 1
-	missile_speed = 17	# 300 -- apparently, the game doesn't auto-convert speed for non-vanilla components
-	missile_evasion = 0
-	missile_health = 24
-	missile_armor = 24
-	missile_retarget_range = 100
+	missile_speed = 22
+	missile_evasion = 0.2
+	missile_health = 110
+	missile_armor = 55
+	missile_retarget_range = 120
 	power = @m_se_power_cost
-	hull_damage = 1.25
-	armor_damage = 1.5
+	hull_damage = 1
+	armor_damage = 1.25
 	armor_penetration = 0
-	shield_damage = 1
+	shield_damage = 1.25
 	shield_penetration = 1
-	tracking = 0.1
-	size_damage_factor = 1.5
+	tracking = 0.4
 	resources = {
 		category = ship_components
 		cost = {
@@ -2064,22 +3537,38 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
 		}
 	}
 	prerequisites = {
-		"tech_torpedo_se"
+		"tech_swarmer_missile_se"
 	}
-	component_set = "ACOT_TORPEDO_SE"
-	projectile_gfx = "acot_missile_se"
+	component_set = "ACOT_SWARMER_MISSILES_SE"
+	projectile_gfx = "acot_swarmer_missiles_se"
 	tags = {
 		weapon_type_explosive
 		weapon_type_acot_stellarite
 		g_slot
 	}
 	ai_tags = {
-		weapon_role_anti_shield
-		explosive
+		weapon_role_artillery
+		artillery
+		energy_torpedoes
 	}
 	ai_weight = {
 		weight = 50
@@ -2097,36 +3586,329 @@ weapon_component_template = {
 	}
 }
 
-###  Missiles
+### CCM
+weapon_component_template = {
+	key = "ACOT_CCM_SE"
+	size = point_defence
+	icon = "GFX_ship_part_ccm_se"
+	icon_frame = 1
+	type = point_defence
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_ccm_s
+		MAX_DMG = @max_ccm_s
+	}
+	windup = {
+		min = 0
+		max = 0
+	}
+	total_fire_time = 20
+	min_range = 30
+	range = 100
+	accuracy = 1
+	power = 0	#@s_se_power_cost
+	hull_damage = 1.1
+	armor_penetration = 0
+	armor_damage = 1.1
+	shield_penetration = 1
+	shield_damage = 1
+	tracking = 0.9
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 0			#@s_se_cost
+			acot_sr_stellarite = 0			#@s_se_sr_cost
+		}
+		upkeep = {
+			alloys = 0			#@s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = 0			#@s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = 0			#@s_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_weaver_components = no
+			AND = {
+				ship_uses_weaver_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
+		}
+	}
+	prerequisites = {
+		"tech_ccm_se"
+	}
+	component_set = "ACOT_CCM_PD_SE"
+	projectile_gfx = "acot_missile_ccm_se"
+	tags = {
+		weapon_type_point_defense
+		weapon_type_explosive
+		weapon_type_acot_stellarite
+	}
+	ai_tags = {
+		weapon_role_point_defense
+		screen
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+	point_defence_targets = {
+		"missile"
+		"strike_craft"
+	}
+}
+
+weapon_component_template = {
+	key = "SMALL_ACOT_CCM_SE"
+	size = small
+	icon = "GFX_ship_part_ccm_se"
+	icon_frame = 1
+	type = point_defence
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_ccm_s
+		MAX_DMG = @max_ccm_s
+	}
+	windup = {
+		min = 0
+		max = 0
+	}
+	total_fire_time = 20
+	min_range = 30
+	range = 100
+	accuracy = 1
+	power = @s_se_power_cost
+	hull_damage = 1.1
+	armor_penetration = 0
+	armor_damage = 1.1
+	shield_penetration = 1
+	shield_damage = 1
+	tracking = 0.9
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @s_se_cost
+			acot_sr_stellarite = @s_se_sr_cost
+		}
+		upkeep = {
+			alloys = @s_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @s_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_weaver_components = no
+			AND = {
+				ship_uses_weaver_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
+		}
+	}
+	prerequisites = {
+		"tech_ccm_se"
+	}
+	component_set = "ACOT_CCM_SE"
+	projectile_gfx = "acot_missile_ccm_se"
+	tags = {
+		weapon_type_point_defense
+		weapon_type_explosive
+		weapon_type_acot_stellarite
+	}
+	ai_tags = {
+		weapon_role_point_defense
+		screen
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+	point_defence_targets = {
+		"missile"
+		"strike_craft"
+	}
+}
+
+weapon_component_template = {
+	key = "MEDIUM_ACOT_CCM_SE"
+	size = medium
+	icon = "GFX_ship_part_ccm_se"
+	icon_frame = 1
+	type = point_defence
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_ccm_s
+		MAX_DMG = @max_ccm_s
+	}
+	windup = {
+		min = 0
+		max = 0
+	}
+	total_fire_time = 40
+	min_range = 50
+	range = 140
+	accuracy = 1
+	power = @m_se_power_cost
+	hull_damage = 1.1
+	armor_penetration = 0
+	armor_damage = 1.1
+	shield_penetration = 1
+	shield_damage = 1
+	tracking = 0.9
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_se_cost
+			acot_sr_stellarite = @m_se_sr_cost
+		}
+		upkeep = {
+			alloys = @m_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @m_se_upkeep_energy
+		}
+	}
+	potential = {
+		OR = {
+			ship_uses_weaver_components = no
+			AND = {
+				ship_uses_weaver_components = yes
+				from = {
+					has_technology = tech_acot_bio_weapons_enig
+				}
+			}
+		}
+	}
+	prerequisites = {
+		"tech_ccm_se"
+	}
+	component_set = "ACOT_CCM_SE"
+	projectile_gfx = "acot_missile_ccm_se"
+	tags = {
+		weapon_type_point_defense
+		weapon_type_explosive
+		weapon_type_acot_stellarite
+	}
+	ai_tags = {
+		weapon_role_point_defense
+		screen
+	}
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5
+			}
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}
+		}
+	}
+	point_defence_targets = {
+		"missile"
+		"strike_craft"
+	}
+}
+
+### MRLS Barrage
 weapon_component_template = {
 	key = "ACOT_MISSILE_BARRAGE_SE"
 	size = large
 	icon = "GFX_ship_part_barrage_missile_se"
 	icon_frame = 1
 	type = missile
-	damage = {
-		min = 5536
-		max = 6383
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_barrage
+		MAX_DMG = @max_barrage
 	}
 	windup = {
 		min = 20
 		max = 30
 	}
 	total_fire_time = 120
-	range = 150
+	range = 140
 	min_range = 45
 	accuracy = 1
-	missile_speed = 22	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
+	missile_speed = 22
 	missile_evasion = 0
 	missile_health = 135
 	missile_retarget_range = 75
 	power = @al_se_power_cost
 	hull_damage = 1.25
-	armor_damage = 1
+	armor_damage = 1.25
 	armor_penetration = 0
-	shield_damage = 1.25
+	shield_damage = 1.5
 	shield_penetration = 1
-	tracking = 0.3
+	tracking = 0.4
 	resources = {
 		category = ship_components
 		cost = {
@@ -2135,7 +3917,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @al_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @al_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @al_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -2169,16 +3966,17 @@ weapon_component_template = {
 	}
 }
 
-###  Missiles
+### XL Missiles
 weapon_component_template = {
 	key = "ACOT_MISSILE_XL_SE"
 	size = extra_large
 	icon = "GFX_ship_part_xl_missile_se"
 	icon_frame = 1
 	type = missile
-	damage = {
-		min = 3939
-		max = 9582
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_xl_missile
+		MAX_DMG = @max_xl_missile
 	}
 	windup = {
 		min = 1
@@ -2188,7 +3986,7 @@ weapon_component_template = {
 	range = 180
 	min_range = 30
 	accuracy = 1
-	missile_speed = 47	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
+	missile_speed = 50
 	missile_evasion = 0.6
 	missile_health = 100
 	missile_retarget_range = 190
@@ -2196,8 +3994,8 @@ weapon_component_template = {
 	hull_damage = 1.25
 	armor_damage = 1.25
 	armor_penetration = 0
-	shield_damage = 1
-	shield_penetration = 1
+	shield_damage = 1.25
+	shield_penetration = 1.25
 	tracking = 0.2
 	firing_arc = 135
 	target_weights = {
@@ -2219,7 +4017,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @xl_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @xl_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @xl_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -2237,6 +4050,7 @@ weapon_component_template = {
 		artillery
 		energy_torpedoes
 	}
+	ai_tag_weight = 0
 	ai_weight = {
 		weight = 50
 		modifier = {
@@ -2253,37 +4067,39 @@ weapon_component_template = {
 	}
 }
 
-###  Missiles
+### T Nuke
 weapon_component_template = {
 	key = "ACOT_MISSILE_NUKE_SE"
 	size = titanic
 	icon = "GFX_ship_part_nuke_missile_se"
 	icon_frame = 1
 	type = missile
-	damage = {
-		min = 81896
-		max = 122855
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_t_missile
+		MAX_DMG = @max_t_missile
 	}
 	windup = {
-		min = 100
-		max = 100
+		min = 5
+		max = 25
 	}
 	total_fire_time = 400
-	range = 450
-	min_range = 150
+	range = 400
+	min_range = 100
 	accuracy = 1
-	missile_speed = 13	# 375 -- apparently, the game doesn't auto-convert speed for non-vanilla components
+	missile_speed = 16
 	missile_evasion = 0
-	missile_health = 650
+	missile_health = 300
+	missile_armor = 300
 	missile_retarget_range = 125
 	power = @titanic_se_power_cost
-	hull_damage = 3
-	armor_damage = 1
+	hull_damage = 2
+	armor_damage = 1.25
 	armor_penetration = 0
-	shield_damage = 1
-	shield_penetration = 1
+	shield_damage = 2
+	shield_penetration = 1.5
 	tracking = 0
-	size_damage_factor = 3
+	size_damage_factor = 0.25
 	firing_arc = 90
 	target_weights = {
 		battleship = 2
@@ -2304,7 +4120,22 @@ weapon_component_template = {
 		}
 		upkeep = {
 			alloys = @titanic_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @titanic_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @titanic_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -2322,6 +4153,7 @@ weapon_component_template = {
 		artillery
 		energy_torpedoes
 	}
+	ai_tag_weight = 0
 	ai_weight = {
 		weight = 50
 		modifier = {
@@ -2338,14 +4170,17 @@ weapon_component_template = {
 	}
 }
 
-### ### ### ### ### HANGER ### ### ### ### ###
-### SE Fighter
+#####################################################
+####  Strikecrafts
+#####################################################
+### Scout/Interceptor
 strike_craft_component_template = {
 	key = "ACOT_SCOUT_HANGAR_SE"
 	size = LARGE
 	entity = "fighter_entity"
 	icon = "GFX_ship_part_strike_craft_scout_se"
 	icon_frame = 1
+	custom_tooltip = ACOT_PRECURSOR_SHIP_AURA_PRECURSOR_DEBUFFER_TOOLTIP
 	weapon_type = point_defence
 	projectile_gfx = "acot_fighter_se"
 	power = @l_se_power_cost
@@ -2353,9 +4188,10 @@ strike_craft_component_template = {
 	regeneration_per_day = 1
 	launch_time = 0.25
 	engagement_range = 300
-	damage = {
-		min = 33
-		max = 63
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_scouts
+		MAX_DMG = @max_scouts
 	}
 	cooldown = 1
 	range = 20
@@ -2368,7 +4204,6 @@ strike_craft_component_template = {
 	rotation_speed = 1
 	acceleration = 1
 	evasion = 0.9
-	size_damage_factor = -1
 	hull_damage = 0.5
 	armor_penetration = 1
 	armor_damage = 0.5
@@ -2382,7 +4217,22 @@ strike_craft_component_template = {
 		}
 		upkeep = {
 			alloys = @l_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @l_se_upkeep_energy
 		}
 	}
 	ship_behavior = "origin_fighters_behavior"
@@ -2419,13 +4269,14 @@ strike_craft_component_template = {
 	}
 }
 
-### SE Fighter
+### Fighters
 strike_craft_component_template = {
 	key = "ACOT_FIGHTERS_HANGAR_SE"
 	size = LARGE
 	entity = "fighter_entity"
 	icon = "GFX_ship_part_strike_craft_fighter_se"
 	icon_frame = 1
+	custom_tooltip = acot_fighter_custom_tooltips
 	weapon_type = point_defence
 	projectile_gfx = "acot_fighter_se"
 	power = @l_se_power_cost
@@ -2433,9 +4284,10 @@ strike_craft_component_template = {
 	regeneration_per_day = 0.5
 	launch_time = 0.25
 	engagement_range = 300
-	damage = {
-		min = 63
-		max = 180
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_fighters
+		MAX_DMG = @max_fighters
 	}
 	cooldown = 2
 	range = 10
@@ -2461,7 +4313,22 @@ strike_craft_component_template = {
 		}
 		upkeep = {
 			alloys = @l_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @l_se_upkeep_energy
 		}
 	}
 	ship_behavior = "origin_fighters_behavior"
@@ -2478,7 +4345,7 @@ strike_craft_component_template = {
 		carrier
 	}
 	point_defence_targets = {
-		strike_craft
+		"strike_craft"
 	}
 	ai_weight = {
 		weight = 50
@@ -2496,13 +4363,14 @@ strike_craft_component_template = {
 	}
 }
 
-### SE Bomber
+### Bombers
 strike_craft_component_template = {
 	key = "ACOT_BOMBERS_HANGAR_SE"
 	size = LARGE
 	entity = "bomber_entity"
 	icon = "GFX_ship_part_strike_craft_bomber_se"
 	icon_frame = 1
+	custom_tooltip = acot_bomber_custom_tooltips
 	weapon_type = instant
 	projectile_gfx = "acot_bomber_se"
 	power = @l_se_power_cost
@@ -2510,26 +4378,28 @@ strike_craft_component_template = {
 	regeneration_per_day = 0.5
 	launch_time = 0.25
 	engagement_range = 300
-	damage = {
-		min = 480
-		max = 957
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_bombers
+		MAX_DMG = @max_bombers
 	}
-	cooldown = 3
-	range = 30
+	cooldown = 14
+	range = 3020
 	accuracy = 1
 	health = 40
 	armor = 30
 	shield = 100
 	evasion = 0.7
-	speed = 700
-	rotation_speed = 1
-	acceleration = 1
+	speed = 500
+	rotation_speed = 0.25
+	acceleration = 0.5
 	tracking = 0.5
 	hull_damage = 1.5
 	armor_penetration = 0.5
 	armor_damage = 1.5
 	shield_penetration = 0.5
 	shield_damage = 1.5
+	size_damage_factor = 0.5
 	ship_behavior = "origin_bombers_behavior"
 	resources = {
 		category = ship_components
@@ -2539,7 +4409,22 @@ strike_craft_component_template = {
 		}
 		upkeep = {
 			alloys = @l_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @l_se_upkeep_energy
 		}
 	}
 	component_set = "ACOT_BOMBERS_HANGAR_SE"
@@ -2571,33 +4456,35 @@ strike_craft_component_template = {
 	}
 }
 
-### SE Gunship
+### Gunships
 strike_craft_component_template = {
 	key = "ACOT_GUNSHIP_HANGAR_SE"
 	size = LARGE
 	entity = "fighter_entity"
 	icon = "GFX_ship_part_strike_craft_gunship_se"
 	icon_frame = 1
+	custom_tooltip = acot_gunship_custom_tooltips
 	weapon_type = instant
 	projectile_gfx = "acot_energy_lance_se"
 	power = @al_se_power_cost
-	count = 1
+	count = 2
 	regeneration_per_day = 0.1
 	launch_time = 0.25
 	engagement_range = 300
-	damage = {
-		min = 2129
-		max = 4259
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_gunships
+		MAX_DMG = @max_gunships
 	}
-	cooldown = 6
-	range = 165
+	cooldown = 12
+	range = 80
 	accuracy = 0.85
-	health = 180
-	armor = 90
-	shield = 400
+	health = 80
+	armor = 40
+	shield = 160
 	evasion = 0.3
 	speed = 350
-	tracking = 0.3
+	tracking = 0.2
 	rotation_speed = 0.4
 	acceleration = 0.3
 	hull_damage = 2
@@ -2613,7 +4500,22 @@ strike_craft_component_template = {
 		}
 		upkeep = {
 			alloys = @al_se_upkeep_alloys
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
 			energy = @al_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @al_se_upkeep_energy
 		}
 	}
 	component_set = "ACOT_GUNSHIP_HANGAR_SE"
@@ -2645,491 +4547,10 @@ strike_craft_component_template = {
 }
 
 #####################################################
-####  XL/TITANIC
+####  DEFENSES
 #####################################################
-# SE Lance
-weapon_component_template = {
-	key = "ACOT_PARTICLE_LANCE_SE"
-	size = extra_large
-	icon = "GFX_ship_part_energy_lance_se"
-	icon_frame = 1
-	type = instant
-	damage = {
-		min = 8304
-		max = 20761
-	}
-	windup = {
-		min = 12
-		max = 47
-	}
-	total_fire_time = 70
-	range = 150
-	accuracy = 1
-	power = @xl_se_power_cost
-	hull_damage = 1.5
-	armor_penetration = 0
-	armor_damage = 2.5
-	shield_penetration = 0
-	shield_damage = 0.5
-	tracking = 0
-	target_weights = {
-		battleship = 2
-		offspring_battleship = 2
-		precursor_battlecruiser = 2
-		large_ship_fallen_empire = 2
-		titan = 3
-		juggernaut = 3
-		precursor_assault_carrier = 3
-		precursor_titan = 3
-		massive_ship_fallen_empire = 3
-	}
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @xl_se_cost
-			acot_sr_stellarite = @xl_se_sr_cost
-		}
-		upkeep = {
-			alloys = @xl_se_upkeep_alloys
-			energy = @xl_se_upkeep_energy
-		}
-	}
-	firing_arc = 25
-	use_ship_kill_target = no
-	prerequisites = {
-		"tech_energy_lance_se"
-	}
-	component_set = "ACOT_PARTICLE_LANCE_SE"
-	projectile_gfx = "acot_energy_lance_se"
-	tags = {
-		weapon_type_energy
-		weapon_type_acot_stellarite
-		x_slot
-	}
-	ai_tags = {
-		weapon_role_artillery
-		artillery
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-### SE Emitter
-weapon_component_template = {
-	key = "ACOT_ARC_EMITTER_SE"
-	size = extra_large
-	icon = "GFX_ship_part_arc_emitter_se"
-	icon_frame = 1
-	type = instant
-	damage = {
-		min = 21
-		max = 17993
-	}
-	windup = {
-		min = 12
-		max = 48
-	}
-	total_fire_time = 71
-	range = 150
-	accuracy = 1
-	power = @xl_se_power_cost
-	hull_damage = 1.5
-	armor_penetration = 1
-	armor_damage = 1.5
-	shield_penetration = 1
-	shield_damage = 1
-	tracking = 0
-	firing_arc = 25
-	min_range = 10
-	use_ship_kill_target = no
-	target_weights = {
-		battleship = 2
-		offspring_battleship = 2
-		precursor_battlecruiser = 2
-		large_ship_fallen_empire = 2
-		titan = 3
-		juggernaut = 3
-		precursor_assault_carrier = 3
-		precursor_titan = 3
-		massive_ship_fallen_empire = 3
-	}
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @xl_se_cost
-			acot_sr_stellarite = @xl_se_sr_cost
-		}
-		upkeep = {
-			alloys = @xl_se_upkeep_alloys
-			energy = @xl_se_upkeep_energy
-		}
-	}
-	prerequisites = {
-		"tech_arc_emitter_se"
-	}
-	component_set = "ACOT_ARC_EMITTER_SE"
-	projectile_gfx = "acot_emitter_se"
-	tags = {
-		weapon_type_energy
-		weapon_type_acot_stellarite
-		x_slot
-	}
-	ai_tags = {
-		weapon_role_artillery
-		artillery
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-### SE Giga
-weapon_component_template = {
-	key = "ACOT_MASS_ACCELERATOR_SE"
-	size = extra_large
-	icon = "GFX_ship_part_mass_accelerator_se"
-	icon_frame = 1
-	type = instant
-	damage = {
-		min = 9689
-		max = 27682
-	}
-	windup = {
-		min = 14
-		max = 54
-	}
-	total_fire_time = 80
-	range = 175
-	accuracy = 1
-	power = @xl_se_power_cost
-	hull_damage = 1.5
-	armor_penetration = 0
-	armor_damage = 1
-	shield_penetration = 0.5
-	shield_damage = 2
-	tracking = 0
-	firing_arc = 45
-	min_range = 45
-	use_ship_kill_target = no
-	target_weights = {
-		battleship = 2
-		offspring_battleship = 2
-		precursor_battlecruiser = 2
-		large_ship_fallen_empire = 2
-		titan = 3
-		juggernaut = 3
-		precursor_assault_carrier = 3
-		precursor_titan = 3
-		massive_ship_fallen_empire = 3
-	}
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @xl_se_cost
-			acot_sr_stellarite = @xl_se_sr_cost
-		}
-		upkeep = {
-			alloys = @xl_se_upkeep_alloys
-			energy = @xl_se_upkeep_energy
-		}
-	}
-	prerequisites = {
-		"tech_mass_accelerator_se"
-	}
-	component_set = "ACOT_MASS_ACCELERATOR_SE"
-	projectile_gfx = "acot_giga_cannon_se"
-	tags = {
-		weapon_type_kinetic
-		weapon_type_acot_stellarite
-		x_slot
-	}
-	ai_tags = {
-		weapon_role_artillery
-		artillery
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-### SE Titan
-weapon_component_template = {
-	key = "ACOT_PERDITION_BEAM_SE"
-	size = titanic
-	type = instant
-	prio_projectile = yes
-	icon = "GFX_ship_part_perdition_beam_se"
-	icon_frame = 1
-	firing_arc = 10
-	min_range = 0
-	use_ship_kill_target = no
-	damage = {
-		min = 53235
-		max = 106470
-	}
-	windup = {
-		min = 30
-		max = 120
-	}
-	total_fire_time = 180
-	range = 250
-	accuracy = 1
-	hull_damage = 1.75
-	armor_penetration = 0.25
-	armor_damage = 2
-	shield_penetration = 0
-	shield_damage = 0.75
-	tracking = 0
-	power = @titanic_se_power_cost
-	target_weights = {
-		battleship = 2
-		offspring_battleship = 2
-		precursor_battlecruiser = 2
-		large_ship_fallen_empire = 2
-		titan = 3
-		juggernaut = 3
-		precursor_assault_carrier = 3
-		precursor_titan = 3
-		massive_ship_fallen_empire = 3
-	}
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @titanic_se_cost
-			acot_sr_stellarite = @titanic_se_sr_cost
-		}
-		upkeep = {
-			alloys = @titanic_se_upkeep_alloys
-			energy = @titanic_se_upkeep_energy
-		}
-	}
-	prerequisites = {
-		"tech_perdition_beam_se"
-	}
-	component_set = "ACOT_PERDITION_BEAM_SE"
-	projectile_gfx = "acot_titan_beam_se"
-	tags = {
-		weapon_type_energy
-		weapon_type_acot_stellarite
-		t_slot
-	}
-	ai_tags = {
-		weapon_role_artillery
-		artillery
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-### SE Emitter
-weapon_component_template = {
-	key = "ACOT_ARC_EMITTER_SE_TITAN"
-	size = titanic
-	icon = "GFX_ship_part_titan_stellarite_emitter"
-	icon_frame = 1
-	type = instant
-	damage = {
-		min = 20229
-		max = 20229
-	}
-	windup = {
-		min = 24
-		max = 48
-	}
-	total_fire_time = 80
-	range = 275
-	accuracy = 1
-	power = @titanic_se_power_cost
-	hull_damage = 2.5
-	armor_penetration = 1
-	armor_damage = 1
-	shield_penetration = 1
-	shield_damage = 1
-	tracking = 0
-	firing_arc = 10
-	min_range = 15
-	use_ship_kill_target = no
-	target_weights = {
-		battleship = 2
-		offspring_battleship = 2
-		precursor_battlecruiser = 2
-		large_ship_fallen_empire = 2
-		titan = 3
-		juggernaut = 3
-		precursor_assault_carrier = 3
-		precursor_titan = 3
-		massive_ship_fallen_empire = 3
-	}
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @titanic_se_cost
-			acot_sr_stellarite = @titanic_se_sr_cost
-		}
-		upkeep = {
-			alloys = @titanic_se_upkeep_alloys
-			energy = @titanic_se_upkeep_energy
-		}
-	}
-	prerequisites = {
-		"tech_titan_emitter_se"
-	}
-	component_set = "ACOT_ARC_EMITTER_SE_TITAN"
-	projectile_gfx = "acot_emitter_se_titan"
-	tags = {
-		weapon_type_energy
-		weapon_type_acot_stellarite
-		t_slot
-	}
-	ai_tags = {
-		weapon_role_artillery
-		artillery
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-### SE Giga
-weapon_component_template = {
-	key = "ACOT_TITAN_CANNON_SE"
-	size = titanic
-	icon = "GFX_ship_part_titan_accelerator_se"
-	icon_frame = 1
-	type = instant
-	damage = {
-		min = 69205
-		max = 101146
-	}
-	windup = {
-		min = 45
-		max = 90
-	}
-	total_fire_time = 180
-	range = 300
-	accuracy = 1
-	power = @titanic_se_power_cost
-	hull_damage = 2
-	armor_penetration = 0
-	armor_damage = 1
-	shield_penetration = 0.5
-	shield_damage = 2
-	tracking = 1
-	firing_arc = 45
-	min_range = 60
-	use_ship_kill_target = no
-	target_weights = {
-		battleship = 2
-		offspring_battleship = 2
-		precursor_battlecruiser = 2
-		large_ship_fallen_empire = 2
-		titan = 3
-		juggernaut = 3
-		precursor_assault_carrier = 3
-		precursor_titan = 3
-		massive_ship_fallen_empire = 3
-	}
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = @titanic_se_cost
-			acot_sr_stellarite = @titanic_se_sr_cost
-		}
-		upkeep = {
-			alloys = @titanic_se_upkeep_alloys
-			energy = @titanic_se_upkeep_energy
-		}
-	}
-	prerequisites = {
-		"tech_titan_accelerator_se"
-	}
-	component_set = "ACOT_TITAN_CANNON_SE"
-	projectile_gfx = "acot_giga_cannon_se"
-	tags = {
-		weapon_type_kinetic
-		weapon_type_acot_stellarite
-		t_slot
-	}
-	ai_tags = {
-		weapon_role_artillery
-		artillery
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-##################### ARMOR ###################################
 ########################################
-###  SE Armor	###
+###  Armor	###
 ########################################
 utility_component_template = {
 	key = "SMALL_ACOT_ARMOR_SE"
@@ -3144,13 +4565,29 @@ utility_component_template = {
 			acot_sr_stellarite = @armor_s_se_sr_cost
 		}
 		upkeep = {
-			energy = @armor_s_se_upkeep_energy
 			alloys = @armor_s_se_upkeep_alloy
 		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @armor_s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @armor_s_se_upkeep_energy
+		}
 	}
-	modifier = {
-		ship_armor_add = 4050
-		ship_armor_regen_add_static = 405
+	inline_script = {
+		script = weapons/aot_sigma_component
+		TYPE = armor
+		AMOUNT = 1350
 	}
 	prerequisites = {
 		tech_armor_se
@@ -3185,13 +4622,29 @@ utility_component_template = {
 			acot_sr_stellarite = @armor_m_se_sr_cost
 		}
 		upkeep = {
-			energy = @armor_m_se_upkeep_energy
 			alloys = @armor_m_se_upkeep_alloy
 		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @armor_m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @armor_m_se_upkeep_energy
+		}
 	}
-	modifier = {
-		ship_armor_add = 10125
-		ship_armor_regen_add_static = 1012.5
+	inline_script = {
+		script = weapons/aot_sigma_component
+		TYPE = armor
+		AMOUNT = 3375
 	}
 	prerequisites = {
 		tech_armor_se
@@ -3226,13 +4679,29 @@ utility_component_template = {
 			acot_sr_stellarite = @armor_l_se_sr_cost
 		}
 		upkeep = {
-			energy = @armor_l_se_upkeep_energy
 			alloys = @armor_l_se_upkeep_alloy
 		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @armor_l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @armor_l_se_upkeep_energy
+		}
 	}
-	modifier = {
-		ship_armor_add = 24300
-		ship_armor_regen_add_static = 2430
+	inline_script = {
+		script = weapons/aot_sigma_component
+		TYPE = armor
+		AMOUNT = 8100
 	}
 	prerequisites = {
 		tech_armor_se
@@ -3270,13 +4739,29 @@ utility_component_template = {
 			acot_sr_stellarite = @shield_s_se_sr_cost
 		}
 		upkeep = {
-			energy = @shield_s_se_upkeep_energy
 			alloys = @shield_s_se_upkeep_alloys
 		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @shield_s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @shield_s_se_upkeep_energy
+		}
 	}
-	modifier = {
-		ship_shield_add = 4050
-		ship_shield_regen_add_static = 450
+	inline_script = {
+		script = weapons/aot_sigma_component
+		TYPE = shield
+		AMOUNT = 1350
 	}
 	prerequisites = {
 		"tech_dark_matter_deflector_se"
@@ -3311,13 +4796,29 @@ utility_component_template = {
 			acot_sr_stellarite = @shield_m_se_sr_cost
 		}
 		upkeep = {
-			energy = @shield_m_se_upkeep_energy
 			alloys = @shield_m_se_upkeep_alloys
 		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @shield_m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @shield_m_se_upkeep_energy
+		}
 	}
-	modifier = {
-		ship_shield_add = 10125
-		ship_shield_regen_add_static = 1012.5
+	inline_script = {
+		script = weapons/aot_sigma_component
+		TYPE = shield
+		AMOUNT = 3375
 	}
 	prerequisites = {
 		"tech_dark_matter_deflector_se"
@@ -3352,13 +4853,29 @@ utility_component_template = {
 			acot_sr_stellarite = @shield_l_se_sr_cost
 		}
 		upkeep = {
-			energy = @shield_l_se_upkeep_energy
 			alloys = @shield_l_se_upkeep_alloys
 		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @shield_l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @shield_l_se_upkeep_energy
+		}
 	}
-	modifier = {
-		ship_shield_add = 24300
-		ship_shield_regen_add_static = 2430
+	inline_script = {
+		script = weapons/aot_sigma_component
+		TYPE = shield
+		AMOUNT = 8100
 	}
 	prerequisites = {
 		"tech_dark_matter_deflector_se"
@@ -3389,9 +4906,10 @@ utility_component_template = {
 	icon = "GFX_ship_part_hull_power_se"
 	icon_frame = 1
 	power = @hull_s_se_power_cost
-	modifier = {
-		ship_hull_add = 8100
-		ship_hull_regen_add_static = 162
+	inline_script = {
+		script = weapons/aot_sigma_component
+		TYPE = hull
+		AMOUNT = 1525
 	}
 	resources = {
 		category = ship_components
@@ -3400,8 +4918,23 @@ utility_component_template = {
 			acot_sr_stellarite = @armor_s_se_sr_cost
 		}
 		upkeep = {
-			energy = @armor_s_se_upkeep_energy
 			alloys = @armor_s_se_upkeep_alloy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @armor_s_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @armor_s_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -3429,10 +4962,11 @@ utility_component_template = {
 	size = medium
 	icon = "GFX_ship_part_hull_power_se"
 	icon_frame = 1
-	power = @hull_s_se_power_cost
-	modifier = {
-		ship_hull_add = 12000
-		ship_hull_regen_add_static = 1200
+	power = @hull_m_se_power_cost
+	inline_script = {
+		script = weapons/aot_sigma_component
+		TYPE = hull
+		AMOUNT = 3800
 	}
 	resources = {
 		category = ship_components
@@ -3441,8 +4975,23 @@ utility_component_template = {
 			acot_sr_stellarite = @armor_m_se_sr_cost
 		}
 		upkeep = {
-			energy = @armor_m_se_upkeep_energy
 			alloys = @armor_m_se_upkeep_alloy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @armor_m_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @armor_m_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -3471,9 +5020,10 @@ utility_component_template = {
 	icon = "GFX_ship_part_hull_power_se"
 	icon_frame = 1
 	power = @hull_l_se_power_cost
-	modifier = {
-		ship_hull_add = 28800
-		ship_hull_regen_add_static = 2880
+	inline_script = {
+		script = weapons/aot_sigma_component
+		TYPE = hull
+		AMOUNT = 9130
 	}
 	resources = {
 		category = ship_components
@@ -3482,8 +5032,23 @@ utility_component_template = {
 			acot_sr_stellarite = @armor_l_se_sr_cost
 		}
 		upkeep = {
-			energy = @armor_l_se_upkeep_energy
 			alloys = @armor_l_se_upkeep_alloy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			energy = @armor_l_se_upkeep_energy
+		}
+		upkeep = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @armor_l_se_upkeep_energy
 		}
 	}
 	prerequisites = {
@@ -3507,258 +5072,34 @@ utility_component_template = {
 }
 
 ########################################
-###   Combat Computers	###
-########################################
-utility_component_template = {
-	key = "SE_OFFENSIVE_COMBAT_COMPUTER_GOLIATH"
-	size = small
-	icon = "GFX_ship_part_computer_stellarite_offensive"
-	icon_frame = 1
-	power = -40
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = 20
-			acot_sr_stellarite = 8
-		}
-	}
-	size_restriction = {
-		acot_giga_fortress
-		giga_planet_behemoth
-		juggernaut
-		ascended_juggernaut
-		precursor_juggernaut
-		movable_fortress
-		fe_goliath
-		Carrier
-		dcv
-		Flagship
-		ultradreadnought
-		supportship
-		sofe_gatekeeper_warden
-		aot_gatekeeper
-		precursor_assault_carrier
-		progenitor_carrier
-		offspring_precursor_assault_carrier
-	}
-	component_set = "combat_computers"
-	ship_behavior = "origin_offense_goliath"
-	modifier = {
-		ship_weapon_damage = 0.3
-		ship_evasion_mult = 0.3
-	}
-	ship_modifier = {
-		ship_fire_rate_mult = 0.3
-		ship_weapon_range_mult = 0.3
-		ship_tracking_add = 30
-		ship_accuracy_mult = 0.3
-	}
-	prerequisites = {
-		"tech_computer_stellarite"
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "SE_BALANCE_COMBAT_COMPUTER_GOLIATH"
-	size = small
-	icon = "GFX_ship_part_computer_stellarite_balanced"
-	icon_frame = 1
-	power = -40
-	resources = {
-		category = ship_components
-		alloys = 20
-		acot_sr_stellarite = 8
-	}
-	class_restriction = {
-		shipclass_military
-		shipclass_starbase
-	}
-	size_restriction = {
-		juggernaut
-		ascended_juggernaut
-		precursor_juggernaut
-		aot_gatekeeper
-		fe_titan
-		precursor_titan
-		sofe_ancient_cruiser
-		titan
-		dcv
-		Dreadnought
-		SCX_Dreadnought
-		offspring_precursor_titan
-		rs_dreadnought
-		rs_heavy_dreadnought_type_a
-		rs_heavy_dreadnought_type_b
-		rs_heavy_dreadnought_type_c
-		rs_heavy_dreadnought_type_d
-		rs_heavy_dreadnought_type_e
-		rs_heavy_dreadnought_type_f
-		rs_heavy_dreadnought_type_g
-		rs_heavy_dreadnought_type_h
-	}
-	component_set = "combat_computers"
-	ship_behavior = "origin_balance_titan"
-	modifier = {
-		ship_weapon_damage = 0.3
-		ship_evasion_mult = 0.3
-	}
-	ship_modifier = {
-		ship_fire_rate_mult = 0.3
-		ship_weapon_range_mult = 0.3
-		ship_tracking_add = 30
-		ship_weapon_damage = 0.3
-		ship_accuracy_mult = 0.3
-		ship_evasion_mult = 0.3
-	}
-	prerequisites = {
-		"tech_computer_stellarite"
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "SE_DEFENSIVE_COMBAT_COMPUTER_GOLIATH"
-	size = small
-	icon = "GFX_ship_part_computer_stellarite_defensive"
-	icon_frame = 1
-	power = -40
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = 20
-			acot_sr_stellarite = 8
-		}
-	}
-	size_restriction = {
-		acot_giga_fortress
-		giga_planet_behemoth
-		juggernaut
-		ascended_juggernaut
-		precursor_juggernaut
-		movable_fortress
-		fe_goliath
-		Carrier
-		dcv
-		Flagship
-		ultradreadnought
-		sofe_gatekeeper_warden
-		aot_gatekeeper
-		precursor_assault_carrier
-		progenitor_carrier
-		offspring_precursor_assault_carrier
-	}
-	component_set = "combat_computers"
-	ship_behavior = "origin_defense_goliath"
-	modifier = {
-		ship_weapon_damage = 0.3
-		ship_evasion_mult = 0.3
-	}
-	ship_modifier = {
-		ship_fire_rate_mult = 0.3
-		ship_weapon_range_mult = 0.3
-		ship_tracking_add = 30
-		ship_accuracy_mult = 0.3
-	}
-	prerequisites = {
-		"tech_computer_stellarite"
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 3
-			}
-		}
-	}
-}
-
-########################################
 ##############################################
 utility_component_template = {
-	key = "TITAN_DARK_MATTER_REACTOR_SE"
+	key = "EMISSARY_SIGMA_COMPUTER"
 	size = small
-	icon = "GFX_ship_part_dark_matter_power_core_se"
+	icon = "GFX_ship_part_precursor_colony_sigma_comp"
 	icon_frame = 1
-	power = 153600
+	power = -400
+	potential = {
+		is_ship_size = precursor_colonizer
+	}
+	# fe_goliath
+	component_set = "combat_computers"
+	ship_behavior = "colossus"
+	prerequisites = {
+		"tech_precursor_colonizer_sigma"
+	}
+	upgrades_to = "EMISSARY_PHANON_COMPUTER"
 	resources = {
 		category = ship_components
 		cost = {
-			alloys = 640
-			acot_sr_stellarite = 256
+			acot_sr_stellarite = 100
+			alloys = 500
 		}
-		upkeep = {
-			energy = 0
-			alloys = 0
-		}
-	}
-	modifier = {
-		ship_hull_mult = 0.2
-		ship_weapon_damage = 0.2
-		ship_fire_rate_mult = 0.2
 	}
 	ship_modifier = {
-		ship_shield_reduction = -2
-	}
-	prerequisites = {
-		"tech_dark_matter_power_core_se"
-	}
-	component_set = "power_core"
-	size_restriction = {
-		titan
-		aot_gatekeeper
-		sofe_gatekeeper_warden
-		cosmo_crisis_titan
-		ion_cannon
-		precursor_titan
-		precursor_assault_carrier
-		progenitor_carrier
-		precursor_sentinel
-		precursor_guardian
-		Carrier
-		SCX_Dreadnought
-		fe_titan
-		Dreadnought
-		fe_large_station
-		fe_small_station
-		ag_aura_battleship
-		ag_alpha_psionic_container
-		ag_eta_titan_measurer		# ANCIENT EMPIRE STUFFS
 	}
 	ai_weight = {
-		weight = 50
+		weight = 20
 		modifier = {
 			factor = 0
 			has_resource = {
@@ -3767,7 +5108,7 @@ utility_component_template = {
 			}
 			has_monthly_income = {
 				resource = acot_sr_stellarite
-				value <= 3
+				value <= 2
 			}
 		}
 	}
@@ -3803,9 +5144,9 @@ utility_component_template = {
 		"tech_dark_matter_power_core_se"
 	}
 	component_set = "power_core"
-	upgrades_to = "LIGHT_MATTER_REACTOR_OE"
-	size_restriction = {
-		enigmatic_fortress_platform
+	#upgrades_to = "LIGHT_MATTER_REACTOR_OE"
+	potential = {
+		is_ship_size = enigmatic_fortress_platform
 	}
 	ai_weight = {
 		weight = 40
@@ -3818,46 +5159,6 @@ utility_component_template = {
 			has_monthly_income = {
 				resource = acot_sr_stellarite
 				value <= 3
-			}
-		}
-	}
-}
-
-utility_component_template = {
-	key = "EMISSARY_SIGMA_COMPUTER"
-	size = small
-	icon = "GFX_ship_part_precursor_colony_sigma_comp"
-	icon_frame = 1
-	power = -400
-	size_restriction = {
-		precursor_colonizer
-	}
-	# fe_goliath
-	component_set = "combat_computers"
-	ship_behavior = "colossus"
-	prerequisites = {
-		"tech_precursor_colonizer_sigma"
-	}
-	upgrades_to = "EMISSARY_PHANON_COMPUTER"
-	resources = {
-		category = ship_components
-		cost = {
-			acot_sr_stellarite = 10
-		}
-	}
-	ship_modifier = {
-	}
-	ai_weight = {
-		weight = 20
-		modifier = {
-			factor = 0
-			has_resource = {
-				type = acot_sr_stellarite
-				amount <= 5
-			}
-			has_monthly_income = {
-				resource = acot_sr_stellarite
-				value <= 2
 			}
 		}
 	}
@@ -3889,10 +5190,10 @@ utility_component_template = {
 		"tech_dark_matter_power_core_se"
 	}
 	component_set = "power_core"
-	size_restriction = {
-		aot_megaturret
+	potential = {
+		is_ship_size = aot_megaturret
 	}
-	upgrades_to = "LIGHT_MATTER_REACTOR_OE"
+	#upgrades_to = "LIGHT_MATTER_REACTOR_OE"
 	ai_weight = {
 		weight = 100
 	}

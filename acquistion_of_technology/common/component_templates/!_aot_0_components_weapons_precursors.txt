@@ -23,8 +23,8 @@ weapon_component_template = {
 	shield_penetration = 0
 	shield_damage = 1
 	tracking = 0.9
-	size_restriction = {
-		precursor_colossus
+	potential = {
+		is_ship_size = precursor_colossus
 	}
 	resources = {
 		category = ship_components
@@ -110,8 +110,8 @@ weapon_component_template = {
 			alloys = @al_ae_upkeep_alloys
 		}
 	}
-	size_restriction = {
-		precursor_colossus
+	potential = {
+		is_ship_size = precursor_colossus
 	}
 	prerequisites = {
 		"tech_acot_precursor_herculean_basic_weapon_s7"
@@ -184,9 +184,8 @@ weapon_component_template = {
 			alloys = @xl_ae_upkeep_alloys
 		}
 	}
-	use_ship_kill_target = no
-	size_restriction = {
-		precursor_colossus
+	potential = {
+		is_ship_size = precursor_colossus
 	}
 	prerequisites = {
 		"tech_acot_precursor_herculean_advanced_weapon_s7"
@@ -260,9 +259,8 @@ weapon_component_template = {
 			alloys = @titanic_ae_upkeep_alloys
 		}
 	}
-	use_ship_kill_target = no
-	size_restriction = {
-		precursor_colossus
+	potential = {
+		is_ship_size = precursor_colossus
 	}
 	prerequisites = {
 		"tech_acot_precursor_herculean_advanced_weapon_s7"
@@ -328,13 +326,37 @@ weapon_component_template = {
 	shield_damage = 3
 	shield_penetration = 0
 	tracking = 1
+	on_hit = {
+		hidden_effect = {
+			fleet = {
+				every_owned_ship = {
+					damage_ship = 150000
+					create_ambient_object = {
+						type = acot_planet_cannon_ae
+						location = this
+						use_3d_location = yes
+						base_angle_towards = star
+						entity_face_object = star
+						entity_offset = {
+							min = -5
+							max = 5
+						}
+						entity_offset_height = 0
+						duration = 10
+						scale = 1
+					}
+				}
+			}
+		}
+		custom_tooltip = "acot_precursor_colossus_spirit_weapon_7s_tt"
+	}
 	ship_limit = 1
 	blocked_by = {
 		ACOT_HERCULEAN_SPIRIT_WEAPON_8E
 	}
 	size_damage_factor = 3
-	size_restriction = {
-		precursor_colossus
+	potential = {
+		is_ship_size = precursor_colossus
 	}
 	resources = {
 		category = ship_components
@@ -388,22 +410,22 @@ strike_craft_component_template = {
 	icon_frame = 1
 	weapon_type = point_defence
 	projectile_gfx = "acot_mass_driver_se"
-	power = -550
-	count = 4
-	regeneration_per_day = 0.01
+	power = -4800
+	count = 2
+	regeneration_per_day = 0.1
 	launch_time = 2
 	engagement_range = 350
 	damage = {
 		min = 900
 		max = 1800
 	}
-	cooldown = 2
+	cooldown = 3
 	range = 80
 	accuracy = 1
-	health = 6000
-	armor = 3000
-	shield = 3000
-	tracking = 0.9
+	health = 6500
+	armor = 3500
+	shield = 3500
+	tracking = 0.8
 	speed = 800
 	rotation_speed = 1
 	acceleration = 1
@@ -417,43 +439,46 @@ strike_craft_component_template = {
 		category = ship_components
 		cost = {
 			alloys = 2500
-			acot_sr_stellarite = 250
+			acot_sr_stellarite = 5000
 		}
 		upkeep = {
 			energy = 250
 			alloys = 250
+			acot_sr_stellarite = 50
 		}
 	}
-	size_restriction = {
-		precursor_colossus
+	potential = {
+		is_ship_size = precursor_colossus
 	}
 	ship_behavior = "origin_fighters_behavior"
 	component_set = "ACOT_HERCULEAN_ESCORT_HANGAR_7S"
 	prerequisites = {
-		"tech_acot_precursor_herculean_hangar_escort_s7"
+		tech_acot_precursor_herculean_hangar_escort_s7
 	}
 	tags = {
 		weapon_type_strike_craft
 		weapon_type_kinetic
 		weapon_type_acot_stellarite
 	}
-	# upgrades_to = "ACOT_FIGHTERS_HANGAR_SE"	
+	ai_tags = {
+		weapon_role_point_defense
+		carrier
+	}
 	ai_weight = {
-		weight = 100
+		weight = 55
 		modifier = {
 			factor = 0
 			has_monthly_income = {
-				resource = sr_dark_matter
+				resource = acot_sr_stellarite
 				value <= 2
 			}
 			has_resource = {
-				type = sr_dark_matter
+				type = acot_sr_stellarite
 				amount <= 10
 			}
 		}
 	}
 	point_defence_targets = {
-		"missile"
 		"strike_craft"
 	}
 }
@@ -467,29 +492,18 @@ strike_craft_component_template = {
 	icon_frame = 1
 	weapon_type = instant
 	projectile_gfx = "acot_energy_lance_se"
-	power = -850
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = 2500
-			acot_sr_stellarite = 250
-		}
-		upkeep = {
-			energy = 250
-			alloys = 250
-		}
-	}
+	power = -4800
 	engagement_range = 350
-	count = 2
-	regeneration_per_day = 0.01
+	count = 1
+	regeneration_per_day = 0.05
 	launch_time = 2
 	damage = {
 		min = 3600
 		max = 7200
 	}
-	cooldown = 8
-	range = 200
-	accuracy = 0.85
+	cooldown = 5
+	range = 60
+	accuracy = 1
 	health = 14000
 	armor = 7000
 	shield = 7000
@@ -503,29 +517,44 @@ strike_craft_component_template = {
 	shield_damage = 1
 	shield_penetration = 0
 	ship_behavior = "origin_gunship_behavior"
-	size_restriction = {
-		precursor_colossus
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 2500
+			acot_sr_stellarite = 500
+		}
+		upkeep = {
+			energy = 250
+			alloys = 250
+			acot_sr_stellarite = 50
+		}
 	}
-	# upgrades_to = ACOT_GUNSHIP_HANGAR_SE
+	potential = {
+		is_ship_size = precursor_colossus
+	}
 	component_set = "ACOT_HERCULEAN_BC_HANGAR_7S"
 	prerequisites = {
-		"tech_acot_precursor_herculean_hangar_bc_s7"
+		tech_acot_precursor_herculean_hangar_bc_s7
 	}
 	tags = {
 		weapon_type_strike_craft
 		weapon_type_energy
 		weapon_type_acot_stellarite
 	}
+	ai_tags = {
+		weapon_role_anti_armor
+		carrier
+	}
 	ai_weight = {
-		weight = 100
+		weight = 55
 		modifier = {
 			factor = 0
 			has_resource = {
-				type = acot_sr_dark_energy
+				type = acot_sr_stellarite
 				amount <= 10
 			}
 			has_monthly_income = {
-				resource = acot_sr_dark_energy
+				resource = acot_sr_stellarite
 				value <= 2
 			}
 		}
@@ -556,8 +585,8 @@ utility_component_template = {
 			energy = @shield_l_ae_upkeep_energy
 		}
 	}
-	size_restriction = {
-		precursor_colossus
+	potential = {
+		is_ship_size = precursor_colossus
 	}
 	prerequisites = {
 		"tech_acot_precursor_herculean_shield_s7"
