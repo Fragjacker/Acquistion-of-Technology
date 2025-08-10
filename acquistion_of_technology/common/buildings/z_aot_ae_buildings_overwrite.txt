@@ -1164,6 +1164,14 @@ building_acot_ae_clone_vats = {
 		UPGRADES_INTO = building_phanon_clone_vats
 		ALLOW = "has_ascended_capital = yes"
 		PREREQUISITE = tech_acot_ae_clone_vats
+		PLANET_MODIFIER = "
+			sr_dark_matter = @vats_cost
+			acot_sr_dark_energy = @vats_cost
+			"
+		PLANET_UPKEEP = "
+			sr_dark_matter = @vats_upkeep
+			acot_sr_dark_energy = @vats_upkeep
+			"
 		AI_FACTORS = "
 			modifier = {
 				factor = 0
@@ -1172,43 +1180,6 @@ building_acot_ae_clone_vats = {
 				}
 			}
 			"
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			alloys = @acot_building_advanced_alloy_cost
-			sr_dark_matter = @acot_building_advanced_dm_cost
-			acot_sr_dark_energy = @acot_building_advanced_de_cost
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
-					}
-				}
-			}
-			sr_dark_matter = 4
-			acot_sr_dark_energy = 4
-		}
-		upkeep = {
-			trigger = {
-				exists = planet_owner
-				planet_owner = {
-					is_lithoid_empire = no
-				}
-			}
-			food = 20
-		}
-		upkeep = {
-			trigger = {
-				exists = planet_owner
-				planet_owner = {
-					is_lithoid_empire = yes
-				}
-			}
-			minerals = 20
-		}
 	}
 }
 
@@ -1347,6 +1318,14 @@ building_acot_ae_hive_evochamber = {
 		UPGRADES_INTO = building_phanon_hive_evochamber
 		ALLOW = "has_ascended_capital = yes"
 		CAN_BUILD = no
+		PLANET_MODIFIER = "
+			sr_dark_matter = @vats_cost
+			acot_sr_dark_energy = @vats_cost
+			"
+		PLANET_UPKEEP = "
+			sr_dark_matter = @vats_upkeep
+			acot_sr_dark_energy = @vats_upkeep
+			"
 		AI_FACTORS = "
 			modifier = {
 				factor = 0
@@ -1355,29 +1334,6 @@ building_acot_ae_hive_evochamber = {
 				}
 			}
 			"
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			society_research = 50
-			food = 100
-		}
-		cost = {
-			minerals = 150
-			sr_dark_matter = 250
-			acot_sr_dark_energy = 250
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
-					}
-				}
-			}
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
 	}
 }
 

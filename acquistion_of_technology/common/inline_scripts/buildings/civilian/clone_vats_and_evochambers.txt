@@ -7,9 +7,42 @@ inline_script = {
 	AI_FACTORS = "$AI_FACTORS$"
 	TIER = $TIER$
 }
+inline_script = {
+	script = buildings/civilian/parts/vats_and_chambers_cost
+	EXPONENT = $EXPONENT$
+	PLANET_MODIFIER = "$PLANET_MODIFIER$"
+	PLANET_UPKEEP = "$PLANET_UPKEEP$"
+}
 @base_pop_assembly = 400
 @base_pop_growth = 3
 category = pop_assembly
+planet_limit = {
+	base = 1
+	modifier = {
+		exists = owner
+		owner = {
+			has_tradition = tr_cloning_finish
+		}
+		has_enigmatic_capital = yes
+		add = 1
+	}
+	modifier = {
+		exists = owner
+		owner = {
+			has_tradition = tr_cloning_finish
+		}
+		has_phanon_capital = yes
+		add = 1
+	}
+	modifier = {
+		exists = owner
+		owner = {
+			has_tradition = tr_cloning_finish
+		}
+		has_stellarite_capital = yes
+		add = 1
+	}
+}
 building_sets = {
 	government
 	urban
@@ -136,7 +169,7 @@ triggered_planet_modifier = {
 			has_active_tradition = tr_cloning_adopt_clone_army
 		}
 	}
-	clone_soldiers_sustained = @clones_sustained_low
+	clone_soldiers_sustained = @[ clones_sustained_low * two_exp$TIER$ * 3 ]
 }
 triggered_planet_modifier = {
 	potential = {
@@ -146,7 +179,7 @@ triggered_planet_modifier = {
 			has_active_tradition = tr_cloning_finish_clone_army
 		}
 	}
-	clone_soldiers_sustained = @clones_sustained_low
+	clone_soldiers_sustained = @[ clones_sustained_low * two_exp$TIER$ * 3 ]
 }
 triggered_planet_modifier = {
 	potential = {
@@ -156,6 +189,6 @@ triggered_planet_modifier = {
 			is_megacorp = yes
 		}
 	}
-	planet_jobs_trade_produces_mult = @replicatory_association_trade_mult
-	planet_amenities_add = @replicatory_association_amenities_add
+	planet_jobs_trade_produces_mult = @[ replicatory_association_trade_mult * two_exp$TIER$ * 3 ]
+	planet_amenities_add = @[ replicatory_association_amenities_add * two_exp$TIER$ * 3 ]
 }
