@@ -1,0 +1,22 @@
+allow = {
+	fail_text = { text = $FAIL_TEXT$ }
+	owner = {
+		any_owned_leader = {
+			$LIMIT$
+			num_leader_traits = {
+				value > 0
+				negative = yes    # Tiers don't matter in this check.
+			}
+		}
+		resource_stockpile_compare = {
+			resource = $RESOURCE$
+			value >= $AMOUNT$
+		}
+	}
+}
+inline_script = {
+	script = events/parts/traits/$MODE$
+	RESOURCE = $RESOURCE$
+	AMOUNT = @[ $AMOUNT$ * - 1 ]
+	LIMIT = "$LIMIT$"
+}

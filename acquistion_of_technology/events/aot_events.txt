@@ -24,81 +24,24 @@ planet_event = {
 	option = {
 		name = acot_special_menu.3.1.name
 		custom_tooltip = acot_special_menu.3.1.explain
-		allow = {
-			fail_text = {
-				text = not_has_shitty_leaders
-			}
-			owner = {
-				any_owned_leader = {
-					is_organic_species = yes
-					OR = {
-						has_trait = leader_trait_arrested_development                        # leader_trait_eager
-						has_trait = leader_trait_substance_abuser                        # leader_trait_resilient
-						has_trait = leader_trait_stubborn                        # leader_trait_adaptable
-						has_trait = leader_trait_paranoid                        # leader_trait_carefree
-						has_trait = leader_trait_nervous                        # leader_trait_unyielding
-						has_trait = leader_trait_lethargic                        # leader_trait_gale_speed
-						has_trait = leader_trait_corrupt                        # leader_trait_righteous
-						has_trait = leader_trait_armchair_commander                        # leader_trait_glory_seeker
-						has_trait = leader_trait_traumatized                        # leader_trait_trauma
-						has_trait = leader_trait_maimed                        # leader_trait_trauma
-					}
-				}
-				resource_stockpile_compare = {
-					resource = unity
-					value >= 15000
-				}
-			}
-		}
-		swap_negative_with_positive_traits = {
-			UNITY_COST = -15000
+		inline_script = {
+			script = events/clean_bad_traits
+			LIMIT = "is_organic_species = yes"
+			FAIL_TEXT = not_has_shitty_leaders
+			RESOURCE = unity
+			AMOUNT = 15000
+			MODE = swap
 		}
 	}
 	option = {
 		name = acot_special_menu.3.2.name
 		custom_tooltip = acot_special_menu.3.2.explain
-		allow = {
-			fail_text = {
-				text = too_soon_to_do_that_nub
-			}
-			NOT = {
-				has_modifier = jumpstarted_exp_development
-			}
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value >= 25000
-				}
-			}
-		}
-		owner = {
-			add_resource = {
-				unity = -25000
-			}
-		}
-		add_modifier = {
-			modifier = jumpstarted_exp_development
-			years = 5
-		}
-		hidden_effect = {
-			owner = {
-				every_owned_leader = {
-					limit = {
-						is_organic_species = yes
-					}
-					add_experience = 2500
-				}
-				every_owned_leader = {
-					limit = {
-						leader_class = scientist
-						has_base_skill >= 6
-					}
-					add_trait = {
-						trait = leader_trait_spark_of_genius
-						show_message = no
-					}
-				}
-			}
+		inline_script = {
+			script = events/add_leader_experience
+			LIMIT = "is_organic_species = yes"
+			MODIFIER_ADD = jumpstarted_exp_development
+			RESOURCE = unity
+			AMOUNT = 25000
 		}
 	}
 	option = {
@@ -355,81 +298,24 @@ planet_event = {
 	option = {
 		name = acot_special_menu.3.1.name
 		custom_tooltip = acot_special_menu.3.1.explain
-		allow = {
-			fail_text = {
-				text = not_has_shitty_leaders
-			}
-			owner = {
-				any_owned_leader = {
-					is_organic_species = yes
-					OR = {
-						has_trait = leader_trait_arrested_development                        # leader_trait_eager
-						has_trait = leader_trait_substance_abuser                        # leader_trait_resilient
-						has_trait = leader_trait_stubborn                        # leader_trait_adaptable
-						has_trait = leader_trait_paranoid                        # leader_trait_carefree
-						has_trait = leader_trait_nervous                        # leader_trait_unyielding
-						has_trait = leader_trait_lethargic                        # leader_trait_gale_speed
-						has_trait = leader_trait_corrupt                        # leader_trait_righteous
-						has_trait = leader_trait_armchair_commander                        # leader_trait_glory_seeker
-						has_trait = leader_trait_traumatized                        # leader_trait_trauma
-						has_trait = leader_trait_maimed                        # leader_trait_trauma
-					}
-				}
-				resource_stockpile_compare = {
-					resource = unity
-					value >= 15000
-				}
-			}
-		}
-		swap_negative_with_positive_traits = {
-			UNITY_COST = -15000
+		inline_script = {
+			script = events/clean_bad_traits
+			LIMIT = "is_organic_species = yes"
+			FAIL_TEXT = not_has_shitty_leaders
+			RESOURCE = unity
+			AMOUNT = 15000
+			MODE = swap
 		}
 	}
 	option = {
 		name = acot_special_menu.3.2.name
 		custom_tooltip = acot_special_menu.3.2.explain
-		allow = {
-			fail_text = {
-				text = too_soon_to_do_that_nub
-			}
-			NOT = {
-				has_modifier = jumpstarted_exp_development
-			}
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value >= 25000
-				}
-			}
-		}
-		owner = {
-			add_resource = {
-				unity = -25000
-			}
-		}
-		add_modifier = {
-			modifier = jumpstarted_exp_development
-			years = 5
-		}
-		hidden_effect = {
-			owner = {
-				every_owned_leader = {
-					limit = {
-						is_organic_species = yes
-					}
-					add_experience = 2500
-				}
-				every_owned_leader = {
-					limit = {
-						leader_class = scientist
-						has_base_skill >= 6
-					}
-					add_trait = {
-						trait = leader_trait_spark_of_genius
-						show_message = no
-					}
-				}
-			}
+		inline_script = {
+			script = events/add_leader_experience
+			LIMIT = "is_organic_species = yes"
+			MODIFIER_ADD = jumpstarted_exp_development
+			RESOURCE = unity
+			AMOUNT = 25000
 		}
 	}
 	option = {
@@ -544,89 +430,24 @@ planet_event = {
 	option = {
 		name = acot_special_menu.3.1.name
 		custom_tooltip = acot_special_menu.3.1.explain
-		allow = {
-			fail_text = {
-				text = not_has_shitty_leaders
-			}
-			owner = {
-				any_owned_leader = {
-					species = {
-						OR = {
-							is_archetype = MACHINE
-							is_archetype = ROBOT
-						}
-					}
-					OR = {
-						has_trait = leader_trait_arrested_development                        # leader_trait_eager
-						has_trait = leader_trait_substance_abuser                        # leader_trait_resilient
-						has_trait = leader_trait_stubborn                        # leader_trait_adaptable
-						has_trait = leader_trait_paranoid                        # leader_trait_carefree
-						has_trait = leader_trait_nervous                        # leader_trait_unyielding
-						has_trait = leader_trait_lethargic                        # leader_trait_gale_speed
-						has_trait = leader_trait_corrupt                        # leader_trait_righteous
-						has_trait = leader_trait_armchair_commander                        # leader_trait_glory_seeker
-					}
-				}
-				resource_stockpile_compare = {
-					resource = unity
-					value >= 15000
-				}
-			}
-		}
-		swap_negative_with_positive_traits = {
-			UNITY_COST = -15000
+		inline_script = {
+			script = events/clean_bad_traits
+			LIMIT = "is_machine_species = yes"
+			FAIL_TEXT = not_has_shitty_leaders_machine
+			RESOURCE = unity
+			AMOUNT = 15000
+			MODE = swap
 		}
 	}
 	option = {
 		name = aot_special_menu.5.2.name
 		custom_tooltip = aot_special_menu.5.2.explain
-		allow = {
-			fail_text = {
-				text = too_soon_to_do_that_nub
-			}
-			NOT = {
-				has_modifier = jumpstarted_mecha_exp_development
-			}
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value >= 25000
-				}
-			}
-		}
-		owner = {
-			add_resource = {
-				unity = -25000
-			}
-		}
-		add_modifier = {
-			modifier = jumpstarted_mecha_exp_development
-			years = 5
-		}
-		hidden_effect = {
-			owner = {
-				every_owned_leader = {
-					limit = {
-						species = {
-							OR = {
-								is_archetype = MACHINE
-								is_archetype = ROBOT
-							}
-						}
-					}
-					add_experience = 2500
-				}
-				every_owned_leader = {
-					limit = {
-						leader_class = scientist
-						has_base_skill >= 6
-					}
-					add_trait = {
-						trait = leader_trait_spark_of_genius
-						show_message = no
-					}
-				}
-			}
+		inline_script = {
+			script = events/add_leader_experience
+			LIMIT = "is_machine_species = yes"
+			MODIFIER_ADD = jumpstarted_mecha_exp_development
+			RESOURCE = unity
+			AMOUNT = 25000
 		}
 	}
 	option = {
@@ -689,89 +510,24 @@ planet_event = {
 	option = {
 		name = acot_special_menu.4.1.name
 		custom_tooltip = acot_special_menu.4.1.explain
-		allow = {
-			fail_text = {
-				text = not_has_shitty_leaders
-			}
-			owner = {
-				any_owned_leader = {
-					species = {
-						OR = {
-							is_archetype = MACHINE
-							is_archetype = ROBOT
-						}
-					}
-					OR = {
-						has_trait = leader_trait_arrested_development                        # leader_trait_eager
-						has_trait = leader_trait_substance_abuser                        # leader_trait_resilient
-						has_trait = leader_trait_stubborn                        # leader_trait_adaptable
-						has_trait = leader_trait_paranoid                        # leader_trait_carefree
-						has_trait = leader_trait_nervous                        # leader_trait_unyielding
-						has_trait = leader_trait_lethargic                        # leader_trait_gale_speed
-						has_trait = leader_trait_corrupt                        # leader_trait_righteous
-						has_trait = leader_trait_armchair_commander                        # leader_trait_glory_seeker
-					}
-				}
-				resource_stockpile_compare = {
-					resource = unity
-					value >= 15000
-				}
-			}
-		}
-		swap_negative_with_positive_traits = {
-			UNITY_COST = -15000
+		inline_script = {
+			script = events/clean_bad_traits
+			LIMIT = "is_machine_species = yes"
+			FAIL_TEXT = not_has_shitty_leaders_machine
+			RESOURCE = unity
+			AMOUNT = 15000
+			MODE = remove
 		}
 	}
 	option = {
 		name = aot_special_menu.5.2.name
 		custom_tooltip = aot_special_menu.5.2.explain
-		allow = {
-			fail_text = {
-				text = too_soon_to_do_that_nub
-			}
-			NOT = {
-				has_modifier = jumpstarted_mecha_exp_development
-			}
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value >= 25000
-				}
-			}
-		}
-		owner = {
-			add_resource = {
-				unity = -25000
-			}
-		}
-		add_modifier = {
-			modifier = jumpstarted_mecha_exp_development
-			years = 5
-		}
-		hidden_effect = {
-			owner = {
-				every_owned_leader = {
-					limit = {
-						species = {
-							OR = {
-								is_archetype = MACHINE
-								is_archetype = ROBOT
-							}
-						}
-					}
-					add_experience = 2500
-				}
-				every_owned_leader = {
-					limit = {
-						leader_class = scientist
-						has_base_skill >= 6
-					}
-					add_trait = {
-						trait = leader_trait_spark_of_genius
-						show_message = no
-					}
-				}
-			}
+		inline_script = {
+			script = events/add_leader_experience
+			LIMIT = "is_machine_species = yes"
+			MODIFIER_ADD = jumpstarted_mecha_exp_development
+			RESOURCE = unity
+			AMOUNT = 25000
 		}
 	}
 	option = {
