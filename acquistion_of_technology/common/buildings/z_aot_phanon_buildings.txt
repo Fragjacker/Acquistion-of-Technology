@@ -1639,7 +1639,6 @@ building_phanon_synthersizer = {
 	}
 }
 building_phanon_stellarite_nexus = {
-	base_cap_amount = 1
 	icon = building_phanon_nexus
 	inline_script = {
 		script = buildings/production/power_conduit
@@ -1652,13 +1651,17 @@ building_phanon_stellarite_nexus = {
 				has_building = building_phanon_stellarite_nexus
 			}
 			"
-		CAN_BUILD = yes
+		CAN_BUILD = no
 		PREREQUISITE = tech_phanon_stellarite_nexus
 		UPGRADES_INTO = building_acot_stellarite_nexus
 		STORAGE_INCREASE = "
+			country_resource_max_sr_dark_matter_add = @max_conduit_storage
+			country_resource_max_acot_sr_dark_energy_add = @max_conduit_storage
 			country_resource_max_aot_sr_runic_power_add = @max_conduit_storage
 			"
 		PLANET_MODIFIER = "
+			planet_jobs_sr_dark_matter_produces_mult = @planet_mult
+			planet_jobs_acot_sr_dark_energy_produces_mult = @planet_mult
 			planet_jobs_aot_sr_runic_power_produces_mult = @planet_mult
 			"
 		AI_FACTORS = "
@@ -1675,13 +1678,6 @@ building_phanon_stellarite_nexus = {
 						resource = aot_sr_runic_power
 						value <= 1
 					}
-				}
-			}
-			modifier = {
-				factor = 0
-				num_buildings = {
-					type = building_acot_stellarite_nexus
-					value >= 2
 				}
 			}
 			"

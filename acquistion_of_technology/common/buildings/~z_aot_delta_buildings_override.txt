@@ -831,3 +831,78 @@ building_acot_dm_enigmatic_lab = {
 			"
 	}
 }
+building_delta_nexus = {
+	inline_script = {
+		script = buildings/production/power_conduit
+		TIER = @DELTA_TIER
+		EXPONENT = @DELTA_EXPONENT
+		ALLOW = "
+			has_enigmatic_capital = yes
+			NOR = {
+				has_building = building_acot_stellarite_nexus
+				has_building = building_phanon_stellarite_nexus
+				has_building = building_alpha_nexus
+				has_building = building_delta_nexus
+			}
+			"
+		CAN_BUILD = yes
+		PREREQUISITE = tech_delta_nexus
+		UPGRADES_INTO = building_alpha_nexus
+		STORAGE_INCREASE = "
+			country_resource_max_sr_dark_matter_add = @max_conduit_storage
+			country_resource_max_acot_sr_dark_energy_add = @max_conduit_storage
+			"
+		PLANET_MODIFIER = "
+			planet_jobs_sr_dark_matter_produces_mult = @planet_mult
+			planet_jobs_acot_sr_dark_energy_produces_mult = @planet_mult
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					merg_is_awakened_fe = yes
+				}
+			}
+			modifier = {
+				factor = 10000
+				planet_owner = {
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 1
+					}
+				}
+			}
+			modifier = {
+				factor = 10000
+				planet_owner = {
+					has_monthly_income = {
+						resource = acot_sr_dark_energy
+						value <= 1
+					}
+				}
+			}
+			"
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 5000
+			acot_sr_dark_energy = 2500
+			sr_dark_matter = 2500
+			aot_sr_runic_power = 1000
+		}
+		produces = {
+			aot_sr_runic_power = 200
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					is_ai = no
+				}
+			}
+			sr_dark_matter = 500
+			acot_sr_dark_energy = 500
+			energy = 1000
+		}
+	}
+}

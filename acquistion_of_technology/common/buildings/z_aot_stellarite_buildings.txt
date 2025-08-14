@@ -2018,15 +2018,22 @@ building_acot_stellarite_nexus = {
 		script = buildings/production/power_conduit
 		TIER = @SIGMA_TIER
 		EXPONENT = @SIGMA_EXPONENT
-		ALLOW = "has_stellarite_capital = yes"
+		ALLOW = "
+			has_stellarite_capital = yes
+			NOT = { has_building = building_acot_stellarite_nexus }
+			"
 		CAN_BUILD = no
 		PREREQUISITE = tech_acot_stellarite_nexus
 		UPGRADES_INTO = "always = no"
 		STORAGE_INCREASE = "
+			country_resource_max_sr_dark_matter_add = @max_conduit_storage
+			country_resource_max_acot_sr_dark_energy_add = @max_conduit_storage
 			country_resource_max_aot_sr_runic_power_add = @max_conduit_storage
 			country_resource_max_acot_sr_stellarite_add = @max_conduit_storage
 			"
 		PLANET_MODIFIER = "
+			planet_jobs_sr_dark_matter_produces_mult = @planet_mult
+			planet_jobs_acot_sr_dark_energy_produces_mult = @planet_mult
 			planet_jobs_aot_sr_runic_power_produces_mult = @planet_mult
 			planet_jobs_acot_sr_stellarite_produces_mult = @planet_mult
 			"

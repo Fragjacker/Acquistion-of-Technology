@@ -7,6 +7,7 @@ inline_script = {
 	AI_FACTORS = "$AI_FACTORS$"
 	TIER = $TIER$
 }
+base_cap_amount = 1
 category = manufacturing
 building_sets = {
 	industrial
@@ -28,6 +29,18 @@ destroy_trigger = {
 		has_modifier = resort_colony
 		has_modifier = slave_colony
 	}
+}
+triggered_desc = {
+	trigger = {
+		has_building = building_delta_nexus
+	}
+	text = TOOLTIP_CONDUIT_ACTIVE_SUPPORT_PYLONS_BONUS_DELTA
+}
+triggered_desc = {
+	trigger = {
+		has_building = building_alpha_nexus
+	}
+	text = TOOLTIP_CONDUIT_ACTIVE_SUPPORT_PYLONS_BONUS_ALPHA
 }
 triggered_desc = {
 	trigger = {
@@ -62,6 +75,6 @@ inline_script = {
 }
 inline_script = {
 	script = buildings/production/parts/power_conduit/planet_mult
-	EXPONENT = @[ $EXPONENT$ - 2 ] # We traverse back two levels. Still needs to be greater then zero.
+	EXPONENT = $EXPONENT$ # We traverse back two levels. Still needs to be greater then zero.
 	PLANET_MODIFIER = "$PLANET_MODIFIER$"
 }
