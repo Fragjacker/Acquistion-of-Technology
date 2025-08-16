@@ -1,5 +1,4 @@
 @special_resource_cost = @[ 2500 * two_exp$EXPONENT$ ]
-@central_orbital_alloy_cost = 1500
 entity = "$ENTITY$"
 construction_entity = "$ENTITY$"
 portrait = "GFX_megastructure_habitat_background"
@@ -18,25 +17,11 @@ resources = {
 	cost = {
 		$COST$
 	}
-	cost = {
-		trigger = {
-			country_uses_bio_ships = no
-		}
-		alloys = @[ central_orbital_alloy_cost * two_exp$EXPONENT$ ]
-	}
-	cost = {
-		trigger = {
-			country_uses_bio_ships = yes
-		}
-		alloys = @[ central_orbital_alloy_cost * two_exp$EXPONENT$ ]
-		mult = 0.5
-	}
-	cost = {
-		trigger = {
-			country_uses_bio_ships = yes
-		}
-		food = @[ central_orbital_alloy_cost * two_exp$EXPONENT$ ]
-		mult = @halved_alloy_to_food_cost_ratio
+	inline_script = {
+		script = resources/convert_to_food
+		MODE = cost
+		RESOURCE = alloys
+		AMOUNT = @[ 1500 * two_exp$EXPONENT$ ]
 	}
 }
 potential = {
