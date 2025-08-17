@@ -766,8 +766,12 @@ tech_dm_enigmatic_fortress_platform = {
 	}
 	tier = 6
 	prerequisites = {
-		"tech_dark_matter_power_core_dm"
-		"tech_giga_fortress_dm"
+		tech_dark_matter_power_core_dm
+		tech_giga_fortress_dm
+		tech_mega_engineering
+	}
+	modifier = {
+		deep_space_enigmatic_fortress_limit_add = 1
 	}
 	weight = @tier5weight3
 	is_rare = yes
@@ -780,7 +784,6 @@ tech_dm_enigmatic_fortress_platform = {
 		modifier = {
 			factor = 0
 			NOR = {
-				is_zofe_country = yes
 				has_country_flag = ascended_empire                # Player ascended Dawn of Ascension style
 				# Did the player encounter a enigmatic fortress leviathan?
 				any_country = {
@@ -794,14 +797,16 @@ tech_dm_enigmatic_fortress_platform = {
 				}
 				# Has the player conquered a fallen xenophile enigmatic fortress?
 				any_owned_ship = {
-					is_ship_size = fe_enigmatic_fortress_platform
+					OR = {
+						is_ship_size = fe_enigmatic_fortress_platform
+						is_deep_space_enigmatic_fortress = yes
+					}
 				}
 			}
 		}
 		modifier = {
 			factor = 10
 			OR = {
-				is_zofe_country = yes
 				has_country_flag = ascended_empire                # Player ascended Dawn of Ascension style
 				# Did the player encounter a enigmatic fortress leviathan?
 				any_country = {
@@ -815,7 +820,10 @@ tech_dm_enigmatic_fortress_platform = {
 				}
 				# Has the player conquered a fallen xenophile enigmatic fortress?
 				any_owned_ship = {
-					is_ship_size = fe_enigmatic_fortress_platform
+					OR = {
+						is_ship_size = fe_enigmatic_fortress_platform
+						is_deep_space_enigmatic_fortress = yes
+					}
 				}
 			}
 		}
@@ -1142,6 +1150,32 @@ tech_omega_enigmatic_fortress_platform = {
 				TRAIT = leader_trait_expertise_voidcraft
 			}
 		}
+	}
+}
+tech_repeatable_deep_space_enigmatic_fortress_limit_increase = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { voidcraft }
+	ai_update_type = all
+	levels = 5
+	prerequisites = { "tech_dm_enigmatic_fortress_platform" }
+	weight = @repeatableTechWeight
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+	ai_weight = {
+		factor = 1.0
+	}
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+	modifier = {
+		deep_space_enigmatic_fortress_limit_add = 1
 	}
 }
 tech_bombardment_pe = {
