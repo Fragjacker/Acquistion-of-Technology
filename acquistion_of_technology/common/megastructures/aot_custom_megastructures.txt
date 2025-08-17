@@ -1,4 +1,6 @@
-# Phanon Dimensional Mirror
+# ------------------------------------------------------------------------------------------------ #
+#                                     Phanon Dimensional Mirror                                    #
+# ------------------------------------------------------------------------------------------------ #
 dimensional_mirror_0 = {
 	entity = "acot_pmc_portal_disabled_entity"
 	construction_entity = "acot_pmc_portal_disabled_entity"
@@ -163,7 +165,9 @@ dimensional_mirror_final = {
 	}
 }
 
-# Phanon Star Imploder Pylon creator.
+# ------------------------------------------------------------------------------------------------ #
+#                                Phanon Star Imploder Pylon creator                                #
+# ------------------------------------------------------------------------------------------------ #
 star_imploder_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -703,7 +707,9 @@ star_imploder_4 = {
 	}
 }
 
-# Phanon Star Imploder Pylon creator.
+# ------------------------------------------------------------------------------------------------ #
+#                                 Sigma Star Imploder Pylon creator                                #
+# ------------------------------------------------------------------------------------------------ #
 sigma_star_imploder_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -1108,7 +1114,9 @@ sigma_star_imploder_3 = {
 	}
 }
 
-# Phanon MacR.I.P.P.
+# ------------------------------------------------------------------------------------------------ #
+#                                        Phanon MacR.I.P.P.                                        #
+# ------------------------------------------------------------------------------------------------ #
 solaripp_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -1486,7 +1494,9 @@ solaripp_3 = {
 	}
 }
 
-# Phanon Great WAll.
+# ------------------------------------------------------------------------------------------------ #
+#                                         Phanon Great Wall                                        #
+# ------------------------------------------------------------------------------------------------ #
 phanon_great_wall_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -2228,7 +2238,7 @@ aot_macripp_dark_matter_obelisk_core_pe = {
 	}
 }
 
-# Special version of the obelisk to reside on the planet plane
+# ----------------- Special version of the obelisk to reside on the planet plane ----------------- #
 aot_macripp_dark_matter_obelisk_core_se = {
 	entity = "sigma_aot_enigmalith_entity"
 	construction_entity = "se_aot_enigmalith_construction_entity"
@@ -2511,7 +2521,7 @@ aot_macripp_dark_matter_obelisk_core_oe = {
 	}
 }
 
-# Make new Habitats directly buildable
+# ----------------------------- Make new Habitats directly buildable ----------------------------- #
 dm_habitat_0 = {
 	inline_script = {
 		script = megastructures/habitat/aot_habitat
@@ -2574,7 +2584,9 @@ stellarite_habitat_0 = {
 	}
 }
 
-# Enigmatic lock to keep those pesky hordes outside
+# ------------------------------------------------------------------------------------------------ #
+#                         Enigmatic lock to keep those pesky hordes outside                        #
+# ------------------------------------------------------------------------------------------------ #
 enigmatic_lock_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -2831,7 +2843,7 @@ aot_sigma_support_pylon_inactive = {
 #                                           New Orbitals                                           #
 # ------------------------------------------------------------------------------------------------ #
 
-# Major orbitals
+# ---------------------------------------- Major orbitals ---------------------------------------- #
 aot_delta_habitat_major_orbital = {
 	inline_script = {
 		script = megastructures/habitat/aot_orbital
@@ -2904,5 +2916,126 @@ aot_sigma_habitat_minor_orbital = {
 	}
 	upgrade_from = {
 		aot_phanon_habitat_minor_orbital
+	}
+}
+
+# ------------------------------------------------------------------------------------------------ #
+#                                   Deep Space Enigmatic Fortress                                  #
+# ------------------------------------------------------------------------------------------------ #
+deep_space_enigmatic_fortress_0 = {
+	entity = ""
+	construction_entity = "dm_enigmatic_fortress_platform_hull_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	build_type = inside_gravity_well
+	show_in_outliner = no
+	use_planet_resource = no
+	build_time = 1080 # 3 years
+	must_select_ship_design = yes
+	starbase = starbase_level_deep_space_enigmatic_fortress_1
+	resources = {
+		category = megastructures
+		cost = {
+			unity = 2500
+		}
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			RESOURCE = alloys
+			AMOUNT = 1000
+		}
+	}
+	construction_blocks_and_blocked_by = self_type
+	prerequisites = { "tech_deep_space_citadel" }
+	potential = {
+		always = yes
+	}
+	possible = {
+		hidden_trigger = {
+			exists = starbase
+		}
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_less_than_x_deep_space_citadel"
+			count_ship_in_system = {
+				limit = {
+					is_space_citadel_ship_size = yes
+				}
+				count < from.modifier:deep_space_citadel_limit_add
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "BUILD_MEGASTRUCTURE_PLANET_TARGET_NEEDED"    # these loc lines are inverted
+				always = no
+			}
+		}
+	}
+
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+		modifier = {
+			add = 10
+			is_bottleneck_system = yes
+		}
+		complex_trigger_modifier = {
+			trigger = count_neighbor_system
+			mode = add
+			mult = 1
+		}
+		complex_trigger_modifier = {
+			trigger = count_starbase_in_system
+			mode = add
+			mult = -1
+		}
+		complex_trigger_modifier = {
+			trigger = count_bypass_in_system
+			mode = add
+			mult = 1
+		}
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+		modifier = {
+			add = 5
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		modifier = {
+			factor = 1.15
+			from = {
+				has_origin = origin_starlit_citadel
+			}
+		}
+	}
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {
+		fromfrom = {
+			remove_megastructure = this
+		}
 	}
 }

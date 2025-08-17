@@ -5,222 +5,254 @@
 @megaturret_max_hp = 50000000
 @megaturret_armor_add = 50000000
 @megaturret_shield_add = 50000000
-enigmatic_fortress_platform = {
-    max_speed = 2
-    rotation_speed = 2
-    acceleration = 2
-    max_hitpoints = @enigmatic_fortress_platform_max_hp
-    modifier = {
-        ship_evasion_mult = -1
-        ship_hull_regen_add_perc = 0.35
-        ship_armor_regen_add_perc = 0.25
-        ship_shield_regen_add_static = 0.25
-        ships_upkeep_mult = -0.25
-        ship_armor_add = @enigmatic_fortress_platform_armor_add
-        ship_shield_add = @enigmatic_fortress_platform_shield_add
-    }
-    ship_modifier = {
-        ship_weapon_range_mult = 2
-        ship_fire_rate_mult = 1
-        ship_weapon_damage = 1
-    }
-    combat_size_multiplier = 10
-    size_multiplier = 12
-    fleet_slot_size = 12
-    section_slots = {
-        "core" = {
-            locator = "part1"
-        }
-        "large" = {
-            locator = "part1"
-        }
-        "medium" = {
-            locator = "part1"
-        }
-        "small" = {
-            locator = "part1"
-        }
-    }
-    num_target_locators = 0
-    is_space_station = yes
-    build_block_radius = @build_block_radius_enigmatic
-    uses_name_prefix = no
-    takes_name_from_ship_design = yes
-    is_space_object = yes
-    auto_upgrade = no
-    can_disable = yes
-    flip_control_on_disable = yes
-    resources = {
-        category = ships
-        cost = {
-            alloys = 40000
-            sr_dark_matter = 10000
-            acot_sr_dark_energy = 10000
-        }
-        upkeep = {
-            sr_dark_matter = 250
-            acot_sr_dark_energy = 250
-        }
-    }
-    base_buildtime = 1800
-    prerequisites = {
-        "tech_dm_enigmatic_fortress_platform"
-    }
-    enable_default_design = yes    # if yes, countries will have an auto-generated design at start
-    is_designable = yes
-    class = shipclass_military_station
-    possible_country = {
-        NOR = {
-            is_fallen_empire = yes
-            is_country_type = eternal_empire
-        }
-    }
-    ship_class_icon_frame = 28
-    construction_type = starbase_defenses
-    required_component_set = "power_core"
-    required_component_set = "sensor_components"
-    required_component_set = "combat_computers"
+deep_space_enigmatic_fortress = {
+	entity = "enigmatic_fortress_platform_entity"
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	max_hitpoints = @enigmatic_fortress_platform_max_hp
+	modifier = {
+		ship_evasion_mult = -1
+		ship_hull_regen_add_perc = 0.35
+		ship_armor_regen_add_perc = 0.25
+		ship_shield_regen_add_static = 0.25
+		ships_upkeep_mult = -0.25
+		starbase_building_capacity_add = 4
+		starbase_defense_platform_capacity_add = 15
+		ship_armor_add = @enigmatic_fortress_platform_armor_add
+		ship_shield_add = @enigmatic_fortress_platform_shield_add
+	}
+	ship_modifier = {
+		ship_weapon_range_mult = 2
+		ship_fire_rate_mult = 1
+		ship_weapon_damage = 1
+	}
+	section_slots = {
+		"core" = {
+			locator = "part1"
+		}
+		"large" = {
+			locator = "part1"
+		}
+		"medium" = {
+			locator = "part1"
+		}
+		"small" = {
+			locator = "part1"
+		}
+	}
+	resources = {
+		category = starbases
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			RESOURCE = alloys
+			AMOUNT = 40000
+		}
+		cost = {
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
+		}
+		upkeep = {
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
+		}
+	}
+	base_buildtime = 1800
+	prerequisites = {
+		"tech_dm_enigmatic_fortress_platform"
+	}
+	role_background = "GFX_role_selection_background"
+	ship_roles = { citadel }
+	combat_size_multiplier = 30
+	size_multiplier = 12
+	fleet_slot_size = 12
+	is_designable = yes
+	num_target_locators = 0
+	is_space_station = yes
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	is_listed = no
+	can_disable = yes
+	enable_default_design = yes    #if yes, countries will have an auto-generated design at start
+	class = shipclass_starbase
+	use_shipnames_from = military_station_small
+	potential_construction = {
+		# Uses a megastructure for construction
+		# but is upgradeable
+		AND = {
+			exists = this.starbase
+			is_ship_size = deep_space_enigmatic_fortress
+		}
+	}
+	possible_construction = {
+		# Uses a megastructure for construction
+		# but is upgradeable
+		AND = {
+			exists = this.starbase
+			is_ship_size = deep_space_enigmatic_fortress
+		}
+	}
+	possible_country = {
+		NOR = {
+			is_fallen_empire = yes
+			is_country_type = eternal_empire
+		}
+	}
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_inhibitor"
+	required_component_set = "dsc_aura_components"
+	auto_upgrade = no
+	available_to_everyone = yes
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = 10
+	icon = ship_size_military_station
+	on_click_sound = "deep_space_citadel_select"
 }
 
 # Fallen Empire version
 fe_enigmatic_fortress_platform = {
-    max_speed = 2
-    rotation_speed = 2
-    acceleration = 2
-    max_hitpoints = @enigmatic_fortress_platform_max_hp
-    modifier = {
-        ship_evasion_mult = -1
-        ship_hull_regen_add_perc = 0.35
-        ship_armor_regen_add_perc = 0.25
-        ship_shield_regen_add_static = 0.25
-        ships_upkeep_mult = -0.25
-        ship_armor_add = @enigmatic_fortress_platform_armor_add
-        ship_shield_add = @enigmatic_fortress_platform_shield_add
-    }
-    ship_modifier = {
-        ship_weapon_range_mult = 2
-        ship_fire_rate_mult = 1
-        ship_weapon_damage = 1
-    }
-    combat_size_multiplier = 8
-    size_multiplier = 12
-    fleet_slot_size = 12
-    section_slots = {
-        "core" = {
-            locator = "part1"
-        }
-        "large" = {
-            locator = "part1"
-        }
-        "medium" = {
-            locator = "part1"
-        }
-        "small" = {
-            locator = "part1"
-        }
-    }
-    num_target_locators = 0
-    is_space_station = yes
-    build_block_radius = @build_block_radius_enigmatic
-    uses_name_prefix = no
-    takes_name_from_ship_design = yes
-    is_space_object = yes
-    auto_upgrade = no
-    can_disable = yes
-    flip_control_on_disable = yes
-    can_be_inspected = no
-    resources = {
-        category = ships
-        cost = {
-            alloys = 40000
-            sr_dark_matter = 10000
-            acot_sr_dark_energy = 10000
-        }
-        upkeep = {
-            sr_dark_matter = 250
-            acot_sr_dark_energy = 250
-        }
-    }
-    base_buildtime = 1800
-    prerequisites = {
-        "tech_dm_enigmatic_fortress_platform"
-    }
-    class = shipclass_military_station
-    possible_country = {
-        is_fallen_empire = yes
-    }
-    ship_class_icon_frame = 28
-    construction_type = starbase_defenses
-    required_component_set = "power_core"
-    required_component_set = "sensor_components"
-    required_component_set = "combat_computers"
+	max_speed = 2
+	rotation_speed = 2
+	acceleration = 2
+	max_hitpoints = @enigmatic_fortress_platform_max_hp
+	modifier = {
+		ship_evasion_mult = -1
+		ship_hull_regen_add_perc = 0.35
+		ship_armor_regen_add_perc = 0.25
+		ship_shield_regen_add_static = 0.25
+		ships_upkeep_mult = -0.25
+		ship_armor_add = @enigmatic_fortress_platform_armor_add
+		ship_shield_add = @enigmatic_fortress_platform_shield_add
+	}
+	ship_modifier = {
+		ship_weapon_range_mult = 2
+		ship_fire_rate_mult = 1
+		ship_weapon_damage = 1
+	}
+	combat_size_multiplier = 8
+	size_multiplier = 12
+	fleet_slot_size = 12
+	section_slots = {
+		"core" = {
+			locator = "part1"
+		}
+		"large" = {
+			locator = "part1"
+		}
+		"medium" = {
+			locator = "part1"
+		}
+		"small" = {
+			locator = "part1"
+		}
+	}
+	num_target_locators = 0
+	is_space_station = yes
+	build_block_radius = @build_block_radius_enigmatic
+	uses_name_prefix = no
+	takes_name_from_ship_design = yes
+	is_space_object = yes
+	auto_upgrade = no
+	can_disable = yes
+	flip_control_on_disable = yes
+	can_be_inspected = no
+	resources = {
+		category = ships
+		cost = {
+			alloys = 40000
+			sr_dark_matter = 10000
+			acot_sr_dark_energy = 10000
+		}
+		upkeep = {
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
+		}
+	}
+	base_buildtime = 1800
+	prerequisites = {
+		"tech_dm_enigmatic_fortress_platform"
+	}
+	class = shipclass_military_station
+	possible_country = {
+		is_fallen_empire = yes
+	}
+	ship_class_icon_frame = 28
+	construction_type = starbase_defenses
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
 }
 
 # Phanon Mega Turret
 aot_megaturret = {
-    max_speed = 0
-    rotation_speed = 1
-    acceleration = 1
-    max_hitpoints = @megaturret_max_hp
-    modifier = {
-        ship_evasion_mult = -1
-        ship_hull_regen_add_perc = 0.35
-        ship_armor_regen_add_perc = 0.25
-        ship_shield_regen_add_static = 0.25
-        ships_upkeep_mult = -0.25
-        ship_armor_add = @megaturret_armor_add
-        ship_shield_add = @megaturret_shield_add
-        ship_armor_penetration_mult = -1
-        ship_shield_penetration_mult = -1
-    }
-    ship_modifier = {
-        ship_weapon_range_mult = 5
-        ship_fire_rate_mult = 2
-        ship_weapon_damage = 2
-    }
-    section_slots = {
-        "core" = {
-            locator = "part1"
-        }
-        "large" = {
-            locator = "part1"
-        }
-    }
-    size_multiplier = 15
-    fleet_slot_size = 15
-    combat_size_multiplier = 8
-    is_designable = yes
-    components_add_to_cost = no
-    uses_name_prefix = no
-    takes_name_from_ship_design = yes
-    num_target_locators = 0
-    is_space_station = yes
-    base_buildtime = 1080
-    auto_upgrade = no
-    can_disable = yes
-    flip_control_on_disable = yes
-    can_be_inspected = yes
-    enable_default_design = yes    # if yes, countries will have an auto-generated design at start
-    prerequisites = {
-        tech_phanon_great_wall
-    }
-    class = shipclass_military_station
-    ship_class_icon_frame = 26
-    icon = ship_size_military_station
-    construction_type = starbase_defenses
-    required_component_set = "power_core"
-    required_component_set = "sensor_components"
-    required_component_set = "combat_computers"
-    potential_construction = {
-        always = no
-    }
-    possible_construction = {
-        always = no
-    }
-    resources = {
-        category = starbases
-        cost = {
-            alloys = 2000
-        }
-    }
+	max_speed = 0
+	rotation_speed = 1
+	acceleration = 1
+	max_hitpoints = @megaturret_max_hp
+	modifier = {
+		ship_evasion_mult = -1
+		ship_hull_regen_add_perc = 0.35
+		ship_armor_regen_add_perc = 0.25
+		ship_shield_regen_add_static = 0.25
+		ships_upkeep_mult = -0.25
+		ship_armor_add = @megaturret_armor_add
+		ship_shield_add = @megaturret_shield_add
+		ship_armor_penetration_mult = -1
+		ship_shield_penetration_mult = -1
+	}
+	ship_modifier = {
+		ship_weapon_range_mult = 5
+		ship_fire_rate_mult = 2
+		ship_weapon_damage = 2
+	}
+	section_slots = {
+		"core" = {
+			locator = "part1"
+		}
+		"large" = {
+			locator = "part1"
+		}
+	}
+	size_multiplier = 15
+	fleet_slot_size = 15
+	combat_size_multiplier = 8
+	is_designable = yes
+	components_add_to_cost = no
+	uses_name_prefix = no
+	takes_name_from_ship_design = yes
+	num_target_locators = 0
+	is_space_station = yes
+	base_buildtime = 1080
+	auto_upgrade = no
+	can_disable = yes
+	flip_control_on_disable = yes
+	can_be_inspected = yes
+	enable_default_design = yes    # if yes, countries will have an auto-generated design at start
+	prerequisites = {
+		tech_phanon_great_wall
+	}
+	class = shipclass_military_station
+	ship_class_icon_frame = 26
+	icon = ship_size_military_station
+	construction_type = starbase_defenses
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	potential_construction = {
+		always = no
+	}
+	possible_construction = {
+		always = no
+	}
+	resources = {
+		category = starbases
+		cost = {
+			alloys = 2000
+		}
+	}
 }
