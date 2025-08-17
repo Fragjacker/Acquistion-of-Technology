@@ -1,0 +1,68 @@
+inline_script = {
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
+}
+@num_jobs = @[ 200 * two_exp$EXPONENT$ ]
+category = manufacturing
+building_sets = {
+	industrial
+	factory
+	foundry
+}
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		has_technology = $PREREQUISITE$
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = no
+		}
+	}
+	modifier = {
+		job_acot_dark_energy_man_add = @num_jobs
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = yes
+		}
+	}
+	modifier = {
+		job_acot_dark_energy_drone_add = @num_jobs
+	}
+}
+resources = {
+	category = planet_buildings
+	cost = {
+		$COST$
+	}
+	produces = {
+		trigger = {
+			planet_owner = {
+				is_ai = yes
+			}
+		}
+		acot_sr_dark_energy = @[ 4 * $TIER$ ]
+	}
+	upkeep = {
+		trigger = {
+			planet_owner = {
+				NOT = {
+					has_technology = tech_acot_fractured_autoharvesting
+				}
+			}
+		}
+		energy = @[ 4 * $TIER$ ]
+	}
+}

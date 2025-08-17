@@ -2,14 +2,25 @@
 # Government Building
 ###############################################################
 building_phanon_palace = {
-	base_buildtime = 900
-	capital = yes
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	can_build = no
-	position_priority = 0
-	category = government
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		TIER = @PHANON_TIER
+		EXPONENT = @PHANON_EXPONENT
+		OVERLORD_JOB = phanon_overlord
+		OVERSEER_JOB = phanon_overseer
+		ENFORCER_JOB = phanon_enforcer
+		PRODUCES = "
+			energy = 80
+			aot_sr_runic_power = 20
+			"
+		COST = "
+			alloys = 1500
+			unity = 30000
+			energy = 5000
+			minerals = 10000
+			aot_sr_runic_power = 10000
+			"
+	}
 	country_modifier = {
 		country_resource_max_add = 20000
 		country_resource_max_acot_sr_dark_energy_add = 5000
@@ -27,11 +38,11 @@ building_phanon_palace = {
 		}
 	}
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
+		building_ancient_hive_capital
 		building_phanon_control_center
 		building_phanon_hive_cluster
-	}
-	allow = {
-		num_sapient_pops >= 40
 	}
 	upgrades = {
 		building_stellarite_palace
@@ -39,179 +50,35 @@ building_phanon_palace = {
 	prerequisites = {
 		tech_phanon_palace
 	}
-	planet_modifier = {
-		planet_housing_add = 30		# Mod Pack: reduced from 40
-		planet_amenities_add = 45		# Mod Pack: reduced from 100
-		planet_max_districts_add = 4		# Mod Pack: reduced from 8
-		planet_max_buildings_add = 12		# Mod Pack: reduced from 24
-		planet_max_branch_office_buildings_add = 4		# Mod Pack: reduced from 10
-		trade_value_add = 10		# Mod Pack: reduced from 30
-		trade_value_mult = 1		# Mod Pack: reduced from 2
-		planet_orbital_bombardment_damage = -0.2
-		pop_environment_tolerance = 0.2
-		defense_armies_add = @tier_4_capital_defense_armies
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_individual_machine = yes
-				NOT = {
-					has_technology = tech_acot_dm_super_assembly
-				}
-			}
-		}
-		job_roboticist_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_individual_machine = yes
-				has_technology = tech_acot_dm_super_assembly
-			}
-		}
-		job_phanon_roboman_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_phanon_overlord_add = 1
-			job_phanon_overseer_add = 2			# Mod Pack: reduced from 4
-			job_phanon_enforcer_add = 2			# Mod Pack: reduced from 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_mechanical_empire = yes
-			}
-		}
-		job_phanon_roboman_add = 1
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			energy = 40			# Mod Pack: reduced from 80
-			aot_sr_runic_power = 20			# Mod Pack: reduced from 40
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 20
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
-			energy = 40
-			sr_dark_matter = 20
-			acot_sr_dark_energy = 20
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_acot_enigmopolis
-			}
-			energy = 120
-			sr_dark_matter = 60
-			acot_sr_dark_energy = 60
-		}
-		cost = {
-			unity = 100
-			energy = 5000
-			minerals = 10000
-			aot_sr_runic_power = 10000
-		}
-	}
-	##### FOR FE ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = no
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_overseer_add = 4
-			job_fe_protector_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-				is_fallen_empire = yes
-			}
-		}
-		modifier = {
-			job_fe_sky_cardinal_add = 4
-			job_fe_protector_add = 4
-		}
-	}
-	ai_weight = {
-		weight = 100
-	}
 }
 
 # Supra Nexus
 building_phanon_control_center = {
-	base_buildtime = 900
-	capital = yes
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	position_priority = 0
-	country_modifier = {
-		country_resource_max_add = 15000
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		TIER = @PHANON_TIER
+		EXPONENT = @PHANON_EXPONENT
+		OVERLORD_JOB = phanon_overlord_droid
+		OVERSEER_JOB = phanon_overseer_droid
+		ENFORCER_JOB = phanon_enforcer_drone
+		PRODUCES = "
+			energy = 80
+			aot_sr_runic_power = 20
+			"
+		COST = "
+			alloys = 1500
+			unity = 30000
+			energy = 5000
+			minerals = 10000
+			aot_sr_runic_power = 10000
+			"
 	}
-	category = government
+	country_modifier = {
+		country_resource_max_add = 20000
+		country_resource_max_acot_sr_dark_energy_add = 5000
+		country_resource_max_sr_dark_matter_add = 5000
+		country_resource_max_aot_sr_runic_power_add = 5000
+	}
 	upgrades = {
 		building_stellarite_control_center
 	}
@@ -226,11 +93,11 @@ building_phanon_control_center = {
 		}
 	}
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
+		building_ancient_hive_capital
 		building_phanon_palace
 		building_phanon_hive_cluster
-	}
-	allow = {
-		num_sapient_pops >= 40
 	}
 	prerequisites = {
 		tech_phanon_control_center
@@ -238,155 +105,35 @@ building_phanon_control_center = {
 	show_tech_unlock_if = {
 		is_machine_empire = yes
 	}
-	planet_modifier = {
-		planet_housing_add = 30		# Mod Pack: reduced from 40
-		planet_amenities_add = 30		# Mod Pack: reduced from 100
-		planet_max_districts_add = 3		# Mod Pack: reduced from 8
-		planet_max_buildings_add = 12		# Mod Pack: reduced from 24
-		planet_orbital_bombardment_damage = -0.2
-		pop_environment_tolerance = 0.2
-		defense_armies_add = @tier_4_capital_defense_armies
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				NOT = {
-					has_technology = tech_acot_dm_super_assembly
-				}
-			}
-		}
-		job_replicator_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_technology = tech_acot_dm_super_assembly
-			}
-		}
-		job_phanon_robodrone_add = 1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	##### FOR DEFEARTHH ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_machine = no
-			}
-		}
-		modifier = {
-			job_phanon_overlord_droid_add = 1
-			job_phanon_overseer_droid_add = 2			# Mod Pack: reduced from 4
-			job_phanon_enforcer_drone_add = 2			# Mod Pack: reduced from 4
-			job_phanon_robodrone_add = 1
-		}
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			energy = 20			# Mod Pack: reduced from 80
-			aot_sr_runic_power = 10			# Mod Pack: reduced from 40
-		}
-		cost = {
-			unity = 100
-			energy = 5000
-			minerals = 10000
-			aot_sr_runic_power = 10000
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 20
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
-			energy = 40
-			sr_dark_matter = 20
-			acot_sr_dark_energy = 20
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_acot_enigmopolis
-			}
-			energy = 120
-			sr_dark_matter = 60
-			acot_sr_dark_energy = 60
-		}
-	}
-	##### FOR FE ###
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_machine = yes
-			}
-		}
-		modifier = {
-			job_fe_guardian_bot_add = 10
-		}
-	}
-	ai_weight = {
-		weight = 100
-	}
 }
 
 # Hive Nexus
 building_phanon_hive_cluster = {
-	base_buildtime = 900
-	capital = yes
-	can_build = no
-	can_demolish = no
-	can_be_ruined = no
-	can_be_disabled = no
-	position_priority = 0
+	inline_script = {
+		script = buildings/capital_buildings_boilerplate
+		TIER = @PHANON_TIER
+		EXPONENT = @PHANON_EXPONENT
+		OVERLORD_JOB = phanon_overlord_drone
+		OVERSEER_JOB = phanon_overseer_drone
+		ENFORCER_JOB = phanon_enforcer_drone
+		PRODUCES = "
+			energy = 80
+			aot_sr_runic_power = 20
+			"
+		COST = "
+			alloys = 1500
+			unity = 30000
+			energy = 5000
+			minerals = 10000
+			aot_sr_runic_power = 10000
+			"
+	}
 	country_modifier = {
-		country_resource_max_add = 15000		# Mod Pack: Reduced from 20000
+		country_resource_max_add = 20000
 		country_resource_max_acot_sr_dark_energy_add = 5000
 		country_resource_max_sr_dark_matter_add = 5000
+		country_resource_max_aot_sr_runic_power_add = 5000
 	}
-	category = government
 	upgrades = {
 		building_stellarite_hive_cluster
 	}
@@ -401,11 +148,11 @@ building_phanon_hive_cluster = {
 		}
 	}
 	convert_to = {
+		building_ancient_control_center
+		building_ancient_palace
+		building_ancient_hive_capital
 		building_phanon_control_center
 		building_phanon_palace
-	}
-	allow = {
-		num_sapient_pops >= 40
 	}
 	prerequisites = {
 		tech_phanon_hive_cluster
@@ -413,1093 +160,253 @@ building_phanon_hive_cluster = {
 	show_tech_unlock_if = {
 		is_hive_empire = yes
 	}
-	planet_modifier = {
-		planet_housing_add = 30		# Mod Pack: reduced from 40
-		planet_amenities_add = 30		# Mod Pack: reduced from 100
-		planet_max_districts_add = 3		# Mod Pack: reduced from 8
-		planet_max_buildings_add = 12		# Mod Pack: reduced from 24
-		job_phanon_overlord_drone_add = 1
-		job_phanon_overseer_drone_add = 2		# Mod Pack: Reduced from 4
-		job_phanon_enforcer_drone_add = 2		# Mod Pack: Reduced from 4
-		planet_orbital_bombardment_damage = -0.2
-		pop_environment_tolerance = 0.2
-		defense_armies_add = @tier_4_capital_defense_armies
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_1
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_2
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_capital_productivity_3
-			}
-		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_origin = origin_progenitor_hive
-			}
-			is_planet_class = pc_hive
-		}
-		job_spawning_drone_add = -1
-		job_offspring_drone_add = 1
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			energy = 20			# Mod Pack: reduced from 80
-			aot_sr_runic_power = 10			# Mod Pack: reduced from 40
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured
-			}
-			energy = 20
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_dark_fractured_ae
-			}
-			energy = 40
-			sr_dark_matter = 20
-			acot_sr_dark_energy = 20
-		}
-		produces = {
-			trigger = {
-				is_planet_class = pc_acot_enigmopolis
-			}
-			energy = 120
-			sr_dark_matter = 60
-			acot_sr_dark_energy = 60
-		}
-		cost = {
-			unity = 100
-			energy = 5000
-			minerals = 10000
-			aot_sr_runic_power = 10000
-		}
-	}
-	ai_weight = {
-		weight = 100
-	}
 }
 
 #####################
 # Automated Production
 #####################
 building_phanon_affluence_center = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = manufacturing
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_affluence_center
-		}
-	}
-	prerequisites = {
-		tech_phanon_affluence_center
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = no
-			}
-		}
-		modifier = {
-			job_phanon_artisan_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = no
-			}
-		}
-		text = job_artisan_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = yes
-			}
-		}
-		modifier = {
-			job_artificer_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_crafter_empire = yes
-			}
-		}
-		text = job_artificer_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_phanon_artisan_drone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		text = job_artisan_drone_effect_desc
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/affluence_center
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_affluence_center
+		JOB = artisan
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_affluence_center
+		COST = "
 			energy = 2500
 			minerals = 2500
 			aot_sr_runic_power = 750
-		}
-		produces = {
+			"
+		PRODUCES = "
 			consumer_goods = @auto_cg_pe
 			unity = @auto_unity_pe
-		}
-		upkeep = {
+			society_research = 300
+			"
+		UPKEEP = "
 			energy = 40
-			aot_sr_runic_power = 10
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
-		}
-	}
-	upgrades = {
-		building_stellarite_affluence_center
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = consumer_goods
-					value < 10
-				}
-				has_monthly_income = {
-					resource = minerals
-					value > 12
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		consumer_goods = 6
-		trigger = {
-			always = yes
-		}
+			aot_sr_runic_power = 20
+			sr_dark_matter = 5            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 5            # Mod Pack: added upkeep
+			"
 	}
 }
-
 building_phanon_nourishment_center = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = resource
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_nourishment_center
-		}
-	}
-	prerequisites = {
-		tech_phanon_nourishment_center
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_fe_farmer_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_farm_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
-				OR = {
-					is_anglers_empire = no
-					AND = {
-						is_anglers_empire = yes
-						NOT = {
-							PREV = {
-								planet = {
-									is_wet = yes
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		modifier = {
-			job_phanon_foodman_add = @fe_jobs
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_farm_add = @fe_jobs
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_phanon_fooddrone_add = @fe_jobs
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
-				is_anglers_empire = yes
-				PREV = {
-					planet = {
-						is_wet = yes
-					}
-				}
-			}
-		}
-		modifier = {
-			job_angler_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		text = job_agri_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-				is_fallen_empire = no
-				OR = {
-					is_anglers_empire = no
-					AND = {
-						is_anglers_empire = yes
-						NOT = {
-							PREV = {
-								planet = {
-									is_wet = yes
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		text = job_farmer_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		text = job_fe_acolyte_farm_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_anglers_empire = yes
-				PREV = {
-					planet = {
-						is_wet = yes
-					}
-				}
-			}
-		}
-		text = job_aqu_angler_effect_desc
-	}
-	planet_modifier = {
-		biological_pop_happiness = 0.4
-		BIOLOGICAL_pop_growth_speed = 0.2
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/nourishment_center
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_nourishment_center
+		JOB = farmer
+		JOB_DRONE = agri
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_phanon_nourishment_center
+		COST = "
 			energy = 2500
 			minerals = 2500
 			aot_sr_runic_power = 750
-		}
-		produces = {
+			"
+		PRODUCES = "
 			food = @auto_food_pe
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			energy = 20
 			aot_sr_runic_power = 20
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
-		}
-	}
-	upgrades = {
-		building_stellarite_nourishment_center
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = food
-					value < 10
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		food = 10
-		trigger = {
-			always = yes
-		}
+			sr_dark_matter = 5            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 5            # Mod Pack: added upkeep
+			"
 	}
 }
-
 building_phanon_dimensional_fabricator = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = resource
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_dimensional_fabricator
-		}
-	}
-	prerequisites = {
-		tech_phanon_dimensional_fabricator
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/dimensional_fabricator
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_dimensional_fabricator
+		UPGRADES_INTO = building_stellarite_dimensional_fabricator
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		COST = "
 			energy = 2500
 			minerals = 2500
 			aot_sr_runic_power = 750
-		}
-		produces = {
+			"
+		PRODUCES = "
 			minerals = @auto_minerals_pe
 			rare_crystals = @auto_sr_pe
 			exotic_gases = @auto_sr_pe
 			volatile_motes = @auto_sr_pe
 			sr_zro = @auto_sr_pe
 			nanites = @auto_sr_pe
-			sr_dark_matter = @auto_sr_ae			# Mod Pack: added production
-			acot_sr_dark_energy = @auto_sr_ae			# Mod Pack: added production
+			sr_dark_matter = @auto_sr_ae
+			acot_sr_dark_energy = @auto_sr_ae
 			sr_living_metal = @auto_sr_pe
-		}
-		upkeep = {
-			energy = 100			# Mod Pack: added upkeep
+			"
+		UPKEEP = "
+			energy = 100
 			aot_sr_runic_power = 30
-		}
-	}
-	upgrades = {
-		building_stellarite_dimensional_fabricator
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = minerals
-					value < 10
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		minerals = 1000
-		rare_crystals = 50
-		exotic_gases = 50
-		volatile_motes = 50
-		sr_living_metal = 25
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
-
 building_phanon_class_7_singularity = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = resource
-	prerequisites = {
-		tech_phanon_class_7_singularity
-	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_class_7_singularity
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_fe_generator_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_fe_acolyte_generator_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_phanon_energyman_add = @fe_jobs
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_phanon_energydrone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-				is_fallen_empire = no
-			}
-		}
-		text = job_technician_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-				is_fallen_empire = no
-			}
-		}
-		text = job_technician_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		text = job_fe_acolyte_generator_effect_desc
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/class_x_singularity
+		TIER = @PHANON_TIER
+		CAN_BUILD = no
+		PREREQUISITE = tech_phanon_class_7_singularity
+		ALLOW = "has_phanon_capital = yes"
+		UPGRADES_INTO = building_stellarite_class_11_singularity
+		JOB = technician
+		COST = "
 			energy = 2500
 			minerals = 2500
 			aot_sr_runic_power = 750
-		}
-		produces = {
+			"
+		PRODUCES = "
 			energy = @auto_energy_pe
 			acot_sr_dark_energy = 90
 			sr_dark_matter = 90
 			physics_research = 90
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			aot_sr_runic_power = 60
-			sr_dark_matter = 20			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 20			# Mod Pack: added upkeep
-		}
-	}
-	upgrades = {
-		building_stellarite_class_11_singularity
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 20
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		energy = 800
-		trigger = {
-			always = yes
-		}
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
 	}
 }
-
 building_phanon_nano_forge = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = manufacturing
-	prerequisites = {
-		tech_phanon_nano_forge
-	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_nano_forge
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_acot_fe_foundry_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				merg_is_awakened_fe = yes
-				is_fallen_empire_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_acot_fe_acolyte_foundry_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			job_phanon_alloyman_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		text = job_foundry_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = yes
-			}
-		}
-		modifier = {
-			job_catalytic_technician_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_individualistic_empire = yes
-				is_catalytic_empire = yes
-			}
-		}
-		text = job_catalytic_technician_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_hive_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			job_phanon_alloydrone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_hive_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		text = job_alloy_drone_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_machine_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		modifier = {
-			job_fabricator_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_machine_empire = yes
-				is_catalytic_empire = no
-			}
-		}
-		text = job_fabricator_effect_desc
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-				is_catalytic_empire = yes
-			}
-		}
-		modifier = {
-			job_catalytic_drone_add = @fe_jobs
-		}
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-				is_catalytic_empire = yes
-			}
-		}
-		text = job_catalytic_drone_effect_desc
-	}
-	planet_modifier = {
-		planet_building_build_speed_mult = 0.1
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/nano_forge
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_nano_forge
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_nano_forge
+		JOB = foundry
+		JOB_DRONE = alloy
+		JOB_MACHINE = fabricator
+		COST = "
 			energy = 2500
 			minerals = 2500
 			aot_sr_runic_power = 1000
-		}
-		produces = {
+			"
+		PRODUCES = "
 			alloys = @auto_alloy_pe
 			engineering_research = 70
-		}
-		upkeep = {
-			aot_sr_runic_power = 60			# Mod Pack: increased from 20
-			sr_dark_matter = 20			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 20			# Mod Pack: added upkeep
-		}
-	}
-	upgrades = {
-		building_stellarite_nano_forge
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 30
-				}
-			}
-		}
-	}
-	ai_resource_production = {
-		alloys = 100
-		trigger = {
-			always = yes
-		}
+			"
+		UPKEEP = "
+			aot_sr_runic_power = 60
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
 	}
 }
-
 building_phanon_master_archive = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = research
-	prerequisites = {
-		tech_phanon_master_archive
-	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_master_archive
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_fallen_empire = no
+	inline_script = {
+		script = buildings/production/master_archive
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_master_archive
+		ALLOW = "
+			has_phanon_capital = yes
+			NOT = {
+				has_building = building_stellarite_master_archive
 			}
-		}
-		modifier = {
-			job_phanon_researcher_add = 6
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-				is_fallen_empire = no
-			}
-		}
-		modifier = {
-			job_phanon_researcher_drone_add = 8
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+			"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_master_archive
+		JOB = head_researcher
+		JOB_DRONE = brain_drone
+		JOB_MACHINE = calculator
+		COST = "
 			energy = 2500
 			minerals = 2500
 			aot_sr_runic_power = 1500
-		}
-		produces = {
+			"
+		PRODUCES = "
 			physics_research = @auto_research_pe
 			society_research = @auto_research_pe
 			engineering_research = @auto_research_pe
 			minor_artifacts = 15
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			energy = 100
 			aot_sr_runic_power = 60
-			sr_dark_matter = 20			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 20			# Mod Pack: added upkeep
-		}
-	}
-	upgrades = {
-		building_stellarite_master_archive
-	}
-	ai_weight = {
-		weight = 100
-	}
-	ai_resource_production = {
-		physics_research = 500
-		society_research = 500
-		engineering_research = 500
-		trigger = {
-			always = yes
-		}
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
 	}
 }
-
 building_phanon_empyrean_shrine = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = unity
-	prerequisites = {
-		tech_phanon_empyrean_shrine
-	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_empyrean_shrine
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
+	inline_script = {
+		script = buildings/production/empyrean_shrine
+		TIER = @PHANON_TIER
+		CAN_BUILD = no
+		PREREQUISITE = tech_phanon_empyrean_shrine
+		UPGRADES_INTO = building_stellarite_empyrean_shrine
+		ALLOW = "
+			has_phanon_capital = yes
 			planet_owner = {
-				is_fallen_empire = no
-				is_spiritualist = yes
+				is_machine_empire = no
 			}
-		}
-		job_phanon_priest_add = 8
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_spiritualist = no
+			NOT = {
+				has_modifier = slave_colony
 			}
-		}
-		job_researcher_add = 7
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+			"
+		JOB = high_priest
+		COST = "
 			energy = 2500
 			minerals = 2500
 			aot_sr_runic_power = 600
-		}
-		produces = {
+			"
+		PRODUCES = "
 			society_research = 250
 			sr_zro = 150
 			unity = @auto_unity_pe
 			influence = 1.5
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			energy = 60
 			aot_sr_runic_power = 30
-			sr_dark_matter = 20			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 20			# Mod Pack: added upkeep
-		}
-	}
-	upgrades = {
-		building_stellarite_empyrean_shrine
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 0
-			planet_owner = {
-				is_spiritualist = no
-			}
-		}
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
 	}
 }
-
 building_phanon_sky_dome = {
-	base_buildtime = 900
-	can_build = no
-	category = amenity
-	prerequisites = {
-		tech_phanon_sky_dome
-	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_sky_dome
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_valid_civic = civic_machine_servitor
+	inline_script = {
+		script = buildings/production/sky_dome
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_sky_dome
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_sky_dome
+		ALLOW = "
+			has_phanon_capital = yes
+			"
+		COST = "
+			minerals = 150
+			sr_dark_matter = 750
+			acot_sr_dark_energy = 750
+			"
+		UPKEEP = "
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
+		AI_FACTORS = "
+			# ---------------------------- Build only if we have no districts left --------------------------- #
+			modifier = {
+				factor = 0
+				free_district_slots > 0
 			}
-		}
-		job_bio_trophy_add = 50
-	}
-	planet_modifier = {
-		planet_housing_add = @auto_housing_pe
-		planet_amenities_add = @auto_amenities_pe
-		planet_max_buildings_add = 4
-		planet_max_districts_add = 4
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			energy = 2500
-			minerals = 2500
-			aot_sr_runic_power = 750
-		}
-		upkeep = {
-			energy = 100
-			aot_sr_runic_power = 40
-			sr_dark_matter = 20			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 20			# Mod Pack: added upkeep
-		}
-	}
-	upgrades = {
-		building_stellarite_sky_dome
-	}
-	# ---------------------------- Build only if we have no districts left --------------------------- #
-	ai_weight = {
-		weight = 5
-		modifier = {
-			factor = 0
-			free_district_slots > 0
-		}
-		modifier = {
-			factor = 2
-			free_district_slots = 0
-		}
-		modifier = {
-			factor = 10
-			free_housing <= 0
-		}
+			modifier = {
+				factor = 2
+				free_district_slots = 0
+			}
+			modifier = {
+				factor = 10
+				free_housing <= 0
+			}
+			"
 	}
 }
 
@@ -1507,56 +414,36 @@ building_phanon_sky_dome = {
 # Job based Production
 #####################
 building_phanon_alloy_forge = {
-	base_buildtime = 900
-	can_build = no
-	category = manufacturing
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_alloy_forge
-	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_alloy_foundry
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_hive_empire = yes
+	inline_script = {
+		script = buildings/production/alloy_forge
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_alloy_foundry
+		UPGRADES_INTO = building_stellarite_alloy_forge
+		ALLOW = "has_phanon_capital = yes"
+		JOB = phanon_alloyman
+		JOB_MACHINE = phanon_alloydrone
+		JOB_HIVE = phanon_alloydrone
+		CAN_BUILD = no
+		AI_FACTORS = "
+			modifier = {
+				factor = 50
+				planet_owner = {
+					has_monthly_income = {
+						resource = alloys
+						value < 5
+					}
+				}
 			}
-		}
-		modifier = {
-			job_phanon_alloydrone_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_machine_empire = yes
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 2
+					}
+				}
 			}
-		}
-		modifier = {
-			job_phanon_alloydrone_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		modifier = {
-			job_phanon_alloyman_add = 4
-		}
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -1575,681 +462,234 @@ building_phanon_alloy_forge = {
 			alloys = 40
 		}
 		upkeep = {
-			energy = 20
-			aot_sr_runic_power = 10
-			sr_dark_matter = 20			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 20			# Mod Pack: added upkeep
-			minerals = 20
-		}
-	}
-	prerequisites = {
-		tech_phanon_alloy_foundry
-	}
-	ai_weight = {
-		weight = 100000
-		modifier = {
-			factor = 50
-			planet_owner = {
-				has_monthly_income = {
-					resource = alloys
-					value < 5
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 2
-				}
-			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		alloys = 30
-		trigger = {
-			always = yes
-		}
-	}
-}
-
-building_phanon_transmutor = {
-	base_buildtime = 900
-	can_build = no
-	category = manufacturing
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_transmutor
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_transmutor
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-			}
-		}
-		modifier = {
-			job_phanon_transmute_man_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_phanon_transmute_drone_add = 4
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			energy = 1500
-			minerals = 1500
-			aot_sr_runic_power = 450
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			rare_crystals = 18
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			volatile_motes = 18
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			exotic_gases = 18
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			sr_living_metal = 10
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			nanites = 10
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			sr_zro = 10
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_rare_crystals
-				}
-			}
-			aot_sr_runic_power = 2
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_volatile_motes
-				}
-			}
-			aot_sr_runic_power = 2
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_exotic_gases
-				}
-			}
-			aot_sr_runic_power = 2
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_mine_living_metal
-				}
-			}
-			aot_sr_runic_power = 2
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_nanite_transmutation
-				}
-			}
-			aot_sr_runic_power = 2
-		}
-		upkeep = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-				planet_owner = {
-					has_technology = tech_mine_zro
-				}
-			}
-			aot_sr_runic_power = 2
-		}
-	}
-	prerequisites = {
-		tech_phanon_transmutor
-	}
-	ai_weight = {
-		weight = 20000
-		modifier = {
-			factor = 5000
-			planet_owner = {
-				OR = {
-					has_monthly_income = {
-						resource = rare_crystals
-						value < 4
-					}
-					has_monthly_income = {
-						resource = exotic_gases
-						value < 4
-					}
-					has_monthly_income = {
-						resource = volatile_motes
-						value < 4
-					}
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			num_buildings = {
-				type = building_phanon_transmutor
-				value >= 1
-			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		volatile_motes = 20
-		exotic_gases = 20
-		rare_crystals = 20
-		trigger = {
-			always = yes
-		}
-	}
-}
-
-building_phanon_mineral_processing_plant = {
-	base_buildtime = 900
-	category = resource
-	can_build = no
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_mineral_processing_plant
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		modifier = {
-			job_phanon_mineralman_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_phanon_mineraldrone_add = 4
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			alloys = @acot_building_pleb_advanced_alloy_cost
-			aot_sr_runic_power = 100
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			minerals = 40
-		}
-		upkeep = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
 			sr_dark_matter = 2
 			acot_sr_dark_energy = 2
+			minerals = 20
+		}
+		upkeep = {
+			energy = 20
+			aot_sr_runic_power = 10
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			minerals = 20
 		}
 	}
-	prerequisites = {
-		tech_phanon_mineral_processing_plant
-	}
-	ai_weight = {
-		weight = 2000
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = minerals
-					value < 5
+}
+building_phanon_transmutor = {
+	inline_script = {
+		script = buildings/production/transmutor
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_transmutor
+		UPGRADES_INTO = building_stellarite_transmutor
+		ALLOW = "has_phanon_capital = yes"
+		JOB = phanon_transmute_man
+		JOB_HIVE = phanon_transmute_drone
+		CAN_BUILD = no
+		COST = "
+			energy = 1500
+			minerals = 1500
+			aot_sr_runic_power = 450
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5000
+				planet_owner = {
+					OR = {
+						has_monthly_income = {
+							resource = rare_crystals
+							value < 4
+						}
+						has_monthly_income = {
+							resource = exotic_gases
+							value < 4
+						}
+						has_monthly_income = {
+							resource = volatile_motes
+							value < 4
+						}
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 5
+			modifier = {
+				factor = 0
+				num_buildings = {
+					type = building_phanon_transmutor
+					value >= 1
 				}
 			}
-		}
+			"
 	}
-	ai_resource_production = {
-		minerals = 20
-		trigger = {
-			always = yes
-		}
+}
+building_phanon_mineral_processing_plant = {
+	inline_script = {
+		script = buildings/production/mineral_processing_plant
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_mineral_processing_plant
+		UPGRADES_INTO = building_stellarite_mineral_processing_plant
+		ALLOW = "has_phanon_capital = yes"
+		JOB = phanon_mineralman
+		JOB_HIVE = phanon_mineraldrone
+		CAN_BUILD = no
+		COST = "
+			alloys = @acot_building_pleb_advanced_alloy_cost
+			aot_sr_runic_power = 100
+			"
+		PRODUCES = "
+			minerals = 200
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = minerals
+						value < 5
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = energy
+						value < 5
+					}
+				}
+			}
+			"
 	}
 }
 
 ########## ENERGY NEXOUS
 building_phanon_power_hub = {
-	base_buildtime = 900
-	category = resource
-	can_build = no
-	allow = {
-		has_phanon_capital = yes
-	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_power_hub
-		}
-	}
-	upgrades = {
-		building_stellarite_power_hub
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		modifier = {
-			job_phanon_energyman_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_phanon_energydrone_add = 4
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/power_hub
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_power_hub
+		UPGRADES_INTO = building_stellarite_power_hub
+		ALLOW = "has_phanon_capital = yes"
+		JOB = phanon_energyman
+		JOB_HIVE = phanon_energydrone
+		CAN_BUILD = no
+		COST = "
 			energy = 2000
 			minerals = 2000
 			aot_sr_runic_power = 800
-		}
-		produces = {
-			energy = 100
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			energy = 40
-		}
-		upkeep = {
-			energy = 20
-			aot_sr_runic_power = 10
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
-		}
-	}
-	prerequisites = {
-		tech_phanon_power_hub
-	}
-	ai_weight = {
-		weight = 3000
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 10
+			"
+		PRODUCES = "
+			energy = 200
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = energy
+						value < 10
+					}
 				}
 			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		energy = 20
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 
 ### FOOOD FIDDLEEE ###
 building_phanon_food_processing_complex = {
-	base_buildtime = 900
-	category = resource
-	can_build = no
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_food_processing
-		}
-	}
-	upgrades = {
-		building_stellarite_food_processing_complex
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_phanon_foodman_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_phanon_fooddrone_add = 4
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/food_processing_complex
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_food_processing
+		UPGRADES_INTO = building_stellarite_food_processing_complex
+		ALLOW = "has_phanon_capital = yes"
+		JOB = phanon_foodman
+		JOB_HIVE = phanon_fooddrone
+		CAN_BUILD = no
+		COST = "
 			energy = 2000
 			minerals = 2000
 			aot_sr_runic_power = 800
-		}
-		produces = {
+			"
+		PRODUCES = "
 			food = 100
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			food = 40
-		}
-		upkeep = {
-			energy = 20
-			aot_sr_runic_power = 10
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
-		}
-	}
-	prerequisites = {
-		tech_phanon_food_processing
-	}
-	ai_weight = {
-		weight = 2
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = food
-					value < 5
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = food
+						value < 5
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				OR = {
-					is_mechanical_empire = no
-					AND = {
-						is_mechanical_empire = yes
-						OR = {
-							has_civic = civic_machine_servitor
-							has_civic = civic_machine_assimilator
+			modifier = {
+				factor = 0
+				planet_owner = {
+					OR = {
+						is_mechanical_empire = no
+						AND = {
+							is_mechanical_empire = yes
+							OR = {
+								has_civic = civic_machine_servitor
+								has_civic = civic_machine_assimilator
+							}
 						}
 					}
-				}
-				has_monthly_income = {
-					resource = energy
-					value < 5
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				is_mechanical_empire = yes
-				NOR = {
-					has_civic = civic_machine_servitor
-					has_civic = civic_machine_assimilator
-				}
-			}
-		}
-		# No one to work it
-		modifier = {
-			factor = 0
-			count_owned_pop = {
-				limit = {
-					OR = {
-						is_unemployed = yes
-						has_job = servant
+					has_monthly_income = {
+						resource = energy
+						value < 5
 					}
 				}
-				count < 1
 			}
-		}
-	}
-	ai_resource_production = {
-		food = 10
-		trigger = {
-			always = yes
-		}
+			modifier = {
+				factor = 0
+				planet_owner = {
+					is_mechanical_empire = yes
+					NOR = {
+						has_civic = civic_machine_servitor
+						has_civic = civic_machine_assimilator
+					}
+				}
+			}
+			"
 	}
 }
-
 building_phanon_civilian_factory = {
-	base_buildtime = 900
-	can_build = no
-	category = manufacturing
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_civilian_factory
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			OR = {
-				is_gestalt = no
-				has_valid_civic = civic_machine_servitor
-			}
-			has_technology = tech_phanon_civilian_factory
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		modifier = {
-			job_phanon_artisan_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_phanon_artisan_add = 4
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/factory
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_civilian_factory
+		UPGRADES_INTO = building_stellarite_civilian_factory
+		ALLOW = "has_phanon_capital = yes"
+		JOB = phanon_artisan
+		JOB_HIVE = phanon_artisan
+		CAN_BUILD = no
+		COST = "
 			energy = 2000
 			minerals = 2000
 			aot_sr_runic_power = 800
-		}
-		produces = {
-			consumer_goods = 50
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			consumer_goods = 40
-		}
-		upkeep = {
-			energy = 20
-			aot_sr_runic_power = 10
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
-		}
-	}
-	prerequisites = {
-		tech_phanon_civilian_factory
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		text = job_artisan_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		text = job_artisan_drone_effect_desc
-	}
-	ai_weight = {
-		weight = 2
-		modifier = {
-			factor = 5
-			planet_owner = {
-				has_monthly_income = {
-					resource = consumer_goods
-					value < 5
-				}
-				has_monthly_income = {
-					resource = minerals
-					value > 6
+			"
+		PRODUCES = "
+			consumer_goods = 100
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = consumer_goods
+						value < 5
+					}
+					has_monthly_income = {
+						resource = minerals
+						value > 6
+					}
 				}
 			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-	ai_resource_production = {
-		consumer_goods = 1
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
 
@@ -2257,217 +697,79 @@ building_phanon_civilian_factory = {
 # Research Building
 #####################
 building_phanon_enigmatic_lab = {
-	base_buildtime = 900
-	can_build = no
-	can_demolish = yes
-	category = research
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_enigmatic_lab
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		modifier = {
-			job_phanon_researcher_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_phanon_researcher_drone_add = 4
-		}
-	}
-	triggered_planet_modifier = {
-		# Mod Pack; added modifier from Vanilla, missed detail by A.C.o.T.
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-				is_galactic_community_member = yes
-			}
-			is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
-			has_modifier = pm_extradimensional_experimentation
-		}
-		modifier = {
-			job_dimensional_portal_researcher_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		# Mod Pack; added modifier from Vanilla, missed detail by A.o.T.
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-				is_galactic_community_member = yes
-			}
-			is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
-			has_modifier = pm_extradimensional_experimentation
-		}
-		modifier = {
-			job_dimensional_portal_researcher_gestalt_add = 1
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/civilian/enigmatic_lab
+		TIER = @PHANON_TIER
+		EXPONENT = @PHANON_EXPONENT
+		PREREQUISITE = tech_phanon_enigmatic_lab
+		UPGRADES_INTO = building_stellarite_enigmatic_lab
+		ALLOW = "has_phanon_capital = yes"
+		JOB = phanon_researcher
+		JOB_HIVE = phanon_researcher_drone
+		CAN_BUILD = no
+		COST = "
 			energy = 2000
 			minerals = 2000
 			aot_sr_runic_power = 800
-		}
-		produces = {
-			trigger = {
-				has_modifier = acot_modifier_ascended_city
-			}
-			physics_research = 24
-			engineering_research = 24
-			society_research = 24
-		}
-		upkeep = {
-			energy = 20
-			aot_sr_runic_power = 10
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
-		}
-		upkeep = {
-			# Mod Pack; added upkeep from Vanilla, missed detail by A.o.T.
-			trigger = {
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
 				planet_owner = {
-					is_galactic_community_member = yes
-				}
-				is_active_resolution = resolution_galacticstudies_extradimensional_experimentation
-				planet = {
-					has_modifier = pm_extradimensional_experimentation
-				}
-			}
-			sr_zro = 1
-		}
-	}
-	prerequisites = {
-		tech_phanon_enigmatic_lab
-	}
-	ai_weight = {
-		weight = 50
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 3
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 3
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 0
-			planet_owner = {
-				has_monthly_income = {
-					resource = energy
-					value <= 10
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = energy
+						value <= 10
+					}
 				}
 			}
-		}
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = consumer_goods
+						value <= 10
+					}
+				}
+			}
+			"
 	}
 }
-
 building_phanon_institute = {
-	base_buildtime = 900
-	can_build = no
-	category = research
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_institute
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_institute
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
+	inline_script = {
+		script = buildings/civilian/institute
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_institute
+		UPGRADES_INTO = building_stellarite_institute
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		JOB = phanon_researcher
+		JOB_HIVE = phanon_researcher_drone
+		COST = "
+			energy = 2500
+			minerals = 2500
+			aot_sr_runic_power = 2000
+			"
+		PRODUCES = "
 			physics_research = 200
 			engineering_research = 200
 			society_research = 200
 			minor_artifacts = 15
-		}
-		cost = {
-			energy = 2500
-			minerals = 2500
-			aot_sr_runic_power = 2000
-		}
-		upkeep = {
-			energy = 100
-			aot_sr_runic_power = 80
-			sr_dark_matter = 30			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 30			# Mod Pack: added upkeep
-		}
-	}
-	planet_modifier = {
-		planet_jobs_society_research_produces_mult = 1
-		planet_jobs_engineering_research_produces_mult = 1
-		planet_jobs_physics_research_produces_mult = 1
-	}
-	country_modifier = {
-		country_scientist_cap_add = 3
-		physics_tech_cost_mult = -0.2
-		society_tech_cost_mult = -0.2
-		engineering_tech_cost_mult = -0.2
-		all_technology_research_speed = 0.4
-		num_tech_alternatives_add = 2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				free_jobs > 0
 			}
-		}
-		modifier = {
-			job_phanon_researcher_add = 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_phanon_researcher_drone_add = 2
-		}
-	}
-	prerequisites = {
-		tech_phanon_institute
-	}
-	show_tech_unlock_if = {
-	}
-	ai_weight = {
-		weight = 1000
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
+			"
 	}
 }
 
@@ -2475,61 +777,26 @@ building_phanon_institute = {
 # Training Building
 #####################
 building_phanon_hospital = {
-	base_buildtime = 900
-	can_build = no
-	category = amenity
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			is_regular_empire = yes
-			has_technology = tech_phanon_hospital
-		}
-	}
-	upgrades = {
-		building_stellarite_hospital
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	destroy_trigger = {
-		planet_owner = {
-			is_regular_empire = no
-		}
-	}
-	planet_modifier = {
-		job_phanon_apothecary_add = 4
-		pop_happiness = 0.6
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_gene_tailoring
+	inline_script = {
+		script = buildings/civilian/hospital
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_hospital
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_hospital
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				free_amenities < 2
 			}
-			any_owned_pop = {
-				has_auto_modding_trait = yes
+			# There are already unworked jobs
+			# Blocks buildings unworkable by remaining pops (slaves/robots etc)
+			# Will be improved... at some point
+			modifier = {
+				factor = 0
+				free_jobs > 0
 			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 8
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_origin = origin_overtuned
-			}
-			any_owned_pop = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 8
-		}
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -2541,139 +808,70 @@ building_phanon_hospital = {
 		upkeep = {
 			energy = 50
 			aot_sr_runic_power = 8
-			sr_dark_matter = 2			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 2			# Mod Pack: added upkeep
-		}
-	}
-	prerequisites = {
-		tech_phanon_hospital
-	}
-	triggered_desc = {
-		text = job_healthcare_effect_desc
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 5
-			free_amenities < 2
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
+			sr_dark_matter = 2            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 2            # Mod Pack: added upkeep
 		}
 	}
 }
-
 building_phanon_hive_pool = {
-	base_buildtime = 900
-	can_build = no
-	category = amenity
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_hive_pool
-	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			is_hive_empire = yes
-			has_technology = tech_phanon_hive_pool
-		}
-	}
-	destroy_trigger = {
-		planet_owner = {
-			is_hive_empire = no
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			NAND = {
-				exists = planet_owner
-				planet_owner = {
-					has_origin = origin_progenitor_hive
-				}
-			}
-		}
-		job_phanon_broodmother_add = 4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_origin = origin_progenitor_hive
-			}
-		}
-		job_acot_offspring_add = 2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_technology = tech_gene_tailoring
-			}
-			any_owned_pop = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 10
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				has_origin = origin_overtuned
-			}
-			any_owned_pop = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 10
-		}
-	}
-	prerequisites = {
-		tech_phanon_hive_pool
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/civilian/hive_pool
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_hive_pool
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_hive_pool
+		JOB_HIVE = phanon_broodmother
+		COST = "
 			energy = 2000
 			minerals = 2000
 			aot_sr_runic_power = 600
-		}
-		upkeep = {
-			energy = 50
-			aot_sr_runic_power = 8
-			sr_dark_matter = 2			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 2			# Mod Pack: added upkeep
-		}
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 5
-			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			has_building = building_acot_ae_hive_pool
-		}
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 5
+				free_amenities < 2
+			}
+			modifier = {
+				factor = 0
+				has_building = building_acot_ae_hive_pool
+			}
+			"
 	}
 }
-
 building_phanon_super_assembly = {
-	base_buildtime = 900
-	can_build = no
-	category = pop_assembly
+	inline_script = {
+		script = buildings/civilian/super_assembly
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_super_assembly
+		ALLOW = "
+			has_phanon_capital = yes
+			hidden_trigger = {
+				OR = {
+					owner = { is_ai = no }
+					NAND = {
+						free_district_slots = 0
+						free_building_slots <= 1
+						free_housing <= 0
+						free_jobs <= 0
+					}
+				}
+			}
+			"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_super_assembly
+		JOB = phanon_roboman
+		JOB_MACHINE = phanon_robodrone
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				num_buildings = {
+					type = building_phanon_super_assembly
+					value >= 1
+				}
+			}
+			"
+	}
 	potential = {
 		NOT = {
 			has_global_flag = aot_phanon_content_OFF
@@ -2707,61 +905,8 @@ building_phanon_super_assembly = {
 			has_modifier = resort_colony
 		}
 	}
-	destroy_trigger = {
-		exists = planet_owner
-		OR = {
-			planet_owner = {
-				OR = {
-					is_regular_empire = no
-					has_policy_flag = robots_outlawed
-				}
-			}
-			has_modifier = slave_colony
-			AND = {
-				planet_owner = {
-					is_ai = yes
-				}
-				free_district_slots = 0
-				free_building_slots = 0
-				free_housing <= 0
-				free_jobs <= 0
-			}
-			planet_owner = {
-				is_ai = yes
-				has_genetic_ascension = yes
-				is_materialist = no
-			}
-		}
-	}
 	convert_to = {
 		building_phanon_super_assembly_machine
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_super_assembly
-	}
-	planet_modifier = {
-		job_phanon_roboman_add = 4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				OR = {
-					has_origin = origin_mechanists
-					is_individual_machine = yes
-					has_country_flag = synthetic_empire
-				}
-			}
-			any_owned_pop = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 8
-		}
 	}
 	resources = {
 		category = planet_buildings
@@ -2773,32 +918,44 @@ building_phanon_super_assembly = {
 		upkeep = {
 			energy = 50
 			aot_sr_runic_power = 8
-			sr_dark_matter = 2			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 2			# Mod Pack: added upkeep
-		}
-	}
-	prerequisites = {
-		tech_phanon_super_assembly
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			num_buildings = {
-				type = building_phanon_super_assembly
-				value >= 1
-			}
+			sr_dark_matter = 2            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 2            # Mod Pack: added upkeep
 		}
 	}
 }
-
 building_phanon_super_assembly_machine = {
 	icon = building_phanon_super_assembly
-	base_buildtime = 900
-	can_build = no
-	category = pop_assembly
-	allow = {
-		has_phanon_capital = yes
+	inline_script = {
+		script = buildings/civilian/super_assembly
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_super_assembly
+		ALLOW = "
+			has_phanon_capital = yes
+			hidden_trigger = {
+				OR = {
+					owner = { is_ai = no }
+					NAND = {
+						free_district_slots = 0
+						free_building_slots <= 1
+						free_housing <= 0
+						free_jobs <= 0
+					}
+				}
+			}
+			"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_super_assembly_machine
+		JOB = phanon_roboman
+		JOB_MACHINE = phanon_robodrone
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				num_buildings = {
+					type = building_phanon_super_assembly_machine
+					value >= 1
+				}
+			}
+			"
 	}
 	potential = {
 		NOR = {
@@ -2813,49 +970,8 @@ building_phanon_super_assembly_machine = {
 			}
 		}
 	}
-	upgrades = {
-		building_stellarite_super_assembly_machine
-	}
 	convert_to = {
 		building_phanon_super_assembly
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_machine_empire = yes
-			}
-		}
-		job_phanon_robodrone_add = 6
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individual_machine = yes
-			}
-		}
-		job_phanon_roboman_add = 4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				OR = {
-					is_machine_empire = yes
-					is_individual_machine = yes
-				}
-			}
-			any_owned_pop = {
-				has_auto_modding_trait = yes
-			}
-		}
-		modifier = {
-			auto_mod_monthly_add = 10
-		}
-	}
-	prerequisites = {
-		tech_phanon_super_assembly
 	}
 	resources = {
 		category = planet_buildings
@@ -2867,67 +983,511 @@ building_phanon_super_assembly_machine = {
 		upkeep = {
 			energy = 50
 			aot_sr_runic_power = 8
-			sr_dark_matter = 2			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 2			# Mod Pack: added upkeep
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			num_buildings = {
-				type = building_phanon_super_assembly_machine
-				value >= 1
-			}
+			sr_dark_matter = 2            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 2            # Mod Pack: added upkeep
 		}
 	}
 }
 
 ### SOECIAL POP BUILDINGER
 building_phanon_clone_vats = {
-	base_buildtime = 900
-	can_build = no
-	category = pop_assembly
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_clone_vats
-		}
-	}
-	prerequisites = {
-		tech_phanon_clone_vats
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	show_tech_unlock_if = {
-		owner = {
-			has_tradition = tr_genetics_efficient_cloning
-		}
-	}
-	upgrades = {
-		building_stellarite_clone_vats
-	}
 	inline_script = {
-		script = buildings/clone_vats_and_evochambers
-		POP_GROWTH = 3
-		POP_ASSEMBLY = 30
-		POP_ASSEMBLY_GENETIC_TRADITION = 10
+		script = buildings/civilian/clone_vats_and_evochambers
+		CAN_BUILD = no
+		TIER = @PHANON_TIER
+		EXPONENT = @PHANON_EXPONENT
+		UPGRADES_INTO = building_stellarite_clone_vats
+		ALLOW = "has_phanon_capital = yes"
+		PREREQUISITE = tech_phanon_clone_vats
+		PLANET_MODIFIER = "
+			aot_sr_runic_power = @vats_cost
+			"
+		PLANET_UPKEEP = "
+			aot_sr_runic_power = @vats_upkeep
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_phanon_clone_vats
+				}
+			}
+			"
+	}
+}
+
+# Synth path
+building_phanon_synt_center = {
+	inline_script = {
+		script = buildings/civilian/synt_center
+		TIER = @PHANON_TIER
+		UPGRADES_INTO = building_stellarite_synt_center
+		ALLOW = "has_phanon_capital = yes"
+		PREREQUISITE = tech_phanon_synt_center
+		CAN_BUILD = no
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_phanon_synt_center
+				}
+			}
+			"
 	}
 	resources = {
 		category = planet_buildings
+		produces = {
+			engineering_research = 30
+		}
 		cost = {
 			energy = 2000
 			minerals = 2000
 			aot_sr_runic_power = 700
 		}
 		upkeep = {
+			aot_sr_runic_power = 10
+			sr_dark_matter = 3            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 3            # Mod Pack: added upkeep
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+	}
+}
+
+# PSIONOIDE path
+building_phanon_psi_altar = {
+	inline_script = {
+		script = buildings/civilian/psi_altar
+		TIER = @PHANON_TIER
+		UPGRADES_INTO = building_stellarite_psi_altar
+		ALLOW = "has_phanon_capital = yes"
+		PREREQUISITE = tech_phanon_psi_altar
+		CAN_BUILD = no
+		COST = "
+			energy = 2000
+			minerals = 2000
+			aot_sr_runic_power = 800
+			"
+		PRODUCES = "
+			sr_zro = 20
+			unity = 100
+			"
+		UPKEEP = "
 			aot_sr_runic_power = 20
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
+			sr_dark_matter = 5            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 5            # Mod Pack: added upkeep
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_phanon_psi_altar
+				}
+			}
+			"
+	}
+}
+
+# Machine path
+building_phanon_machine_dome = {
+	inline_script = {
+		script = buildings/civilian/machine_dome
+		TIER = @PHANON_TIER
+		UPGRADES_INTO = building_stellarite_machine_dome
+		ALLOW = "has_phanon_capital = yes"
+		PREREQUISITE = tech_phanon_machine_dome
+		CAN_BUILD = no
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_phanon_machine_dome
+				}
+			}
+			"
+	}
+	resources = {
+		category = planet_buildings
+		produces = {
+		}
+		cost = {
+			energy = 2000
+			minerals = 2000
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+			aot_sr_runic_power = 20
+			sr_dark_matter = 5            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 5            # Mod Pack: added upkeep
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+	}
+}
+
+#### HIVE PATHOS
+building_phanon_hive_evochamber = {
+	inline_script = {
+		script = buildings/civilian/clone_vats_and_evochambers
+		CAN_BUILD = no
+		TIER = @PHANON_TIER
+		EXPONENT = @PHANON_EXPONENT
+		PREREQUISITE = tech_phanon_hive_evochamber
+		UPGRADES_INTO = building_stellarite_hive_evochamber
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		PLANET_MODIFIER = "
+			aot_sr_runic_power = @vats_cost
+			"
+		PLANET_UPKEEP = "
+			aot_sr_runic_power = @vats_upkeep
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_phanon_hive_evochamber
+				}
+			}
+			"
+	}
+}
+
+#####################
+# Military
+#####################
+building_phanon_psg = {
+	inline_script = {
+		script = buildings/military/planetary_shield_generator
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_psg
+		ALLOW = "
+			has_phanon_capital = yes
+			NOT = {
+				has_building = building_planetary_shield_generator
+			}
+			if = {
+				limit = { exists = orbital_defence }
+				orbital_defence = {
+					exists = starbase
+					starbase = {
+						NOR = {
+							has_starbase_building = ring_orbital_shield_generator
+							is_starbase_building_building = ring_orbital_shield_generator
+						}
+					}
+				}
+			}
+			"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_psg
+		REDUCTION_FACTOR = -0.95
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = acot_sr_dark_energy
+						value <= 3
+					}
+				}
+			}
+			"
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 5000
+			minerals = 5000
+			alloys = 1000            # Mod Pack: added cost
+			aot_sr_runic_power = 1000
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					is_ai = no
+				}
+			}
+			energy = 1000
+			aot_sr_runic_power = 100
+			acot_sr_dark_energy = 10            # Mod Pack: added upkeep
+		}
+		upkeep = {
+			trigger = {
+				planet_owner = {
+					NOT = {
+						has_technology = tech_acot_fractured_autoharvesting
+					}
+				}
+			}
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+		}
+	}
+}
+building_phanon_giga_fortress_array = {
+	inline_script = {
+		script = buildings/military/giga_fortress
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_giga_fortress
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_giga_fortress_array
+		JOBS_REGULAR = "
+			job_phanon_giga_fortress_operator_add = 100
+			job_phanon_giga_fortress_operator_mentat_add = 100
+			"
+		JOBS_HIVE = "
+			job_phanon_giga_fortress_operator_drone_add = 100
+			job_phanon_giga_fortress_operator_mentat_drone_add = 100
+			"
+		JOBS_MACHINE = "
+			job_phanon_giga_fortress_operator_drone_add = 100
+			job_phanon_giga_fortress_operator_mentat_drone_add = 100
+			"
+		JOBS_FE = "
+			job_acot_giga_fortress_operator_ancient_add = 100
+			"
+		COST = "
+			energy = 50000
+			minerals = 30000
+			aot_sr_runic_power = 10000
+			"
+		UPKEEP = "
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+			aot_sr_runic_power = 100
+			"
+		PRODUCES = "
+			unity = 100
+			energy = 100
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 3
+					}
+				}
+			}
+			"
+	}
+	country_modifier = {
+		country_naval_cap_add = 400
+		starbase_shipyard_build_speed_mult = 0.2
+	}
+	planet_modifier = {
+		planet_amenities_add = 2500        # Mod Pack; reduced from 40
+		planet_housing_add = 2500        # Mod Pack; reduced from 40
+		planet_stability_add = 15        # Mod Pack; reduced from 100
+		#		planet_crime_add = -100 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
+	}
+	army_modifier = {
+		army_defense_damage_mult = 7.5        # Mod Pack; reduced from 20
+		army_defense_health_mult = 5        # Mod Pack; reduced from 20
+		army_defense_morale_mult = 5        # Mod Pack; reduced from 20
+	}
+}
+building_phanon_giga_fortress_lab = {
+	inline_script = {
+		script = buildings/military/giga_fortress
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_giga_fortress
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_giga_fortress_lab
+		JOBS_REGULAR = "
+			job_phanon_fortress_operator_add = 200
+			job_phanon_soldier_add = 200
+			job_phanon_overseer_add = 300
+			"
+		JOBS_HIVE = "
+			job_phanon_fortress_operator_drone_add = 200
+			job_phanon_soldier_drone_add = 200
+			job_phanon_overseer_drone_add = 200
+			"
+		JOBS_MACHINE = "
+			job_phanon_fortress_operator_drone_add = 200
+			job_phanon_soldier_drone_add = 200
+			job_phanon_overseer_droid_add = 200
+			"
+		JOBS_FE = "
+			job_acot_giga_fortress_operator_ancient_add = 100
+			"
+		COST = "
+			energy = 50000
+			minerals = 30000
+			aot_sr_runic_power = 10000
+			"
+		UPKEEP = "
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+			aot_sr_runic_power = 100
+			"
+		PRODUCES = "
+			unity = 200
+			influence = 1
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = aot_sr_runic_power
+						value <= 100
+					}
+				}
+			}
+			"
+	}
+	planet_modifier = {
+		planet_amenities_add = 2000
+		planet_housing_add = 2000
+		planet_stability_add = 15
+	}
+	army_modifier = {
+		army_defense_damage_mult = 2
+		army_defense_health_mult = 2
+		army_defense_morale_mult = 2
+	}
+	country_modifier = {
+		country_naval_cap_add = 100
+	}
+}
+building_phanon_giga_fortress_obelisk = {
+	inline_script = {
+		script = buildings/military/giga_fortress
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_giga_fortress
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_giga_fortress_obelisk
+		JOBS_REGULAR = "
+			job_phanon_giga_fortress_operator_add = 300
+			job_phanon_soldier_add = 1000
+			"
+		JOBS_HIVE = "
+			job_phanon_giga_fortress_operator_drone_add = 300
+			job_phanon_soldier_drone_add = 1000
+			"
+		JOBS_MACHINE = "
+			job_phanon_giga_fortress_operator_drone_add = 300
+			job_phanon_soldier_drone_add = 1000
+			"
+		JOBS_FE = "
+			job_acot_giga_fortress_operator_ancient_add = 200
+			job_fe_protector_add = 300
+			"
+		COST = "
+			energy = 50000
+			minerals = 30000
+			aot_sr_runic_power = 10000
+			"
+		UPKEEP = "
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+			aot_sr_runic_power = 80
+			"
+		PRODUCES = "
+			unity = 100
+			energy = 100
+			minerals = 200
+			alloys = 200
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = aot_sr_runic_power
+						value <= 100
+					}
+				}
+			}
+			"
+	}
+	planet_modifier = {
+		planet_amenities_add = 2500        # Mod Pack: reduced from 40
+		planet_housing_add = 2500        # Mod Pack: reduced from 40
+		planet_stability_add = 10        # Mod Pack: reduced from 200
+	}
+	army_modifier = {
+		army_defense_morale_mult = 40        # Mod Pack: reduced from 50
+		army_defense_health_mult = 20        # Mod Pack: reduced from 50
+		army_defense_damage_mult = 20        # Mod Pack: reduced from 50
+		army_starting_experience_add = 20000        # Mod Pack: reduced from 50000
+	}
+}
+building_phanon_stronghold = {
+	inline_script = {
+		script = buildings/military/stronghold
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_stronghold
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_stronghold
+		JOB = phanon_soldier
+		AI_FACTORS = "
+			modifier = {
+				weight = 100000
+				num_pops >= 4000
+				NOR = {
+					num_buildings = {
+						type = building_phanon_stronghold
+						value <= 2
+					}
+				}
+				planet_owner = {
+					has_monthly_income = {
+						resource = aot_sr_runic_power
+						value <= 3
+					}
+				}
+			}
+			"
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 2500
+			energy = 2500
+			aot_sr_runic_power = 600
 		}
 		upkeep = {
 			trigger = {
@@ -2942,988 +1502,14 @@ building_phanon_clone_vats = {
 		}
 		upkeep = {
 			trigger = {
-				exists = planet_owner
-				planet_owner = {
-					is_lithoid_empire = no
-				}
-			}
-			food = 20
-		}
-		upkeep = {
-			trigger = {
-				exists = planet_owner
-				planet_owner = {
-					is_lithoid_empire = yes
-				}
-			}
-			minerals = 20
-		}
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_phanon_clone_vats
-			}
-		}
-	}
-}
-
-# Synth path
-building_phanon_synt_center = {
-	base_buildtime = 900
-	can_build = no
-	category = government
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_synt_center
-		}
-	}
-	planet_modifier = {
-		planet_jobs_specialist_produces_mult = 0.4
-	}
-	upgrades = {
-		building_stellarite_synt_center
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 50
-		}
-		planet_jobs_specialist_produces_mult = 0.4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 100
-		}
-		planet_jobs_specialist_produces_mult = 0.4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 150
-		}
-		planet_jobs_specialist_produces_mult = 0.4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 200
-		}
-		planet_jobs_specialist_produces_mult = 0.4
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			engineering_research = 30
-		}
-		cost = {
-			energy = 2000
-			minerals = 2000
-			aot_sr_runic_power = 700
-		}
-		upkeep = {
-			aot_sr_runic_power = 10
-			sr_dark_matter = 3			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 3			# Mod Pack: added upkeep
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
-					}
-				}
-			}
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-	}
-	prerequisites = {
-		tech_phanon_synt_center
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_phanon_synt_center
-			}
-		}
-	}
-}
-
-# PSIONOIDE path
-building_phanon_psi_altar = {
-	base_buildtime = 900
-	can_build = no
-	category = government
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_psi_altar
-		}
-	}
-	planet_modifier = {
-		pop_growth_speed = 1
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_psi_altar
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			sr_zro = 20
-			unity = 100
-		}
-		cost = {
-			energy = 2000
-			minerals = 2000
-			aot_sr_runic_power = 800
-		}
-		upkeep = {
-			aot_sr_runic_power = 20
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
-					}
-				}
-			}
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-	}
-	prerequisites = {
-		tech_phanon_psi_altar
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_phanon_psi_altar
-			}
-		}
-	}
-}
-
-# Machine path
-building_phanon_machine_dome = {
-	base_buildtime = 900
-	can_build = no
-	category = government
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_machine_dome
-		}
-	}
-	planet_modifier = {
-		planet_jobs_complex_drone_produces_mult = 0.1
-		planet_jobs_simple_drone_produces_mult = 0.1
-	}
-	upgrades = {
-		building_stellarite_machine_dome
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 25
-		}
-		planet_jobs_complex_drone_produces_mult = 0.1
-		planet_jobs_simple_drone_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 50
-		}
-		planet_jobs_complex_drone_produces_mult = 0.1
-		planet_jobs_simple_drone_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 75
-		}
-		planet_jobs_complex_drone_produces_mult = 0.1
-		planet_jobs_simple_drone_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 100
-		}
-		planet_jobs_complex_drone_produces_mult = 0.1
-		planet_jobs_simple_drone_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 125
-		}
-		planet_jobs_complex_drone_produces_mult = 0.1
-		planet_jobs_simple_drone_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 150
-		}
-		planet_jobs_complex_drone_produces_mult = 0.1
-		planet_jobs_simple_drone_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 175
-		}
-		planet_jobs_complex_drone_produces_mult = 0.1
-		planet_jobs_simple_drone_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 200
-		}
-		planet_jobs_complex_drone_produces_mult = 0.1
-		planet_jobs_simple_drone_produces_mult = 0.1
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			num_sapient_pops >= 225
-		}
-		planet_jobs_complex_drone_produces_mult = 0.1
-		planet_jobs_simple_drone_produces_mult = 0.1
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-		}
-		cost = {
-			energy = 2000
-			minerals = 2000
-			aot_sr_runic_power = 1000
-		}
-		upkeep = {
-			aot_sr_runic_power = 20
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
-					}
-				}
-			}
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-	}
-	prerequisites = {
-		tech_phanon_machine_dome
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_phanon_machine_dome
-			}
-		}
-	}
-}
-
-#### HIVE PATHOS
-building_phanon_hive_evochamber = {
-	base_buildtime = 900
-	can_build = no
-	category = pop_assembly
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_hive_evochamber
-		}
-	}
-	inline_script = {
-		script = buildings/clone_vats_and_evochambers
-		POP_GROWTH = 3
-		POP_ASSEMBLY = 30
-		POP_ASSEMBLY_GENETIC_TRADITION = 10
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_hive_evochamber
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			society_research = 100
-			food = 200
-		}
-		cost = {
-			energy = 2000
-			minerals = 2000
-			aot_sr_runic_power = 800
-		}
-		upkeep = {
-			aot_sr_runic_power = 20
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
-					}
-				}
-			}
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-	}
-	prerequisites = {
-		tech_phanon_hive_evochamber
-	}
-	ai_weight = {
-		weight = 10000
-		modifier = {
-			factor = 0
-			OR = {
-				has_building = building_phanon_hive_evochamber
-			}
-		}
-	}
-}
-
-#####################
-# Military
-#####################
-building_phanon_psg = {
-	base_buildtime = 900
-	add_to_first_building_slot = yes
-	can_build = no
-	category = army
-	position_priority = 100
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_psg
-	}
-	inline_script = {
-		script = buildings/psg_shield_gen
-		REDUCTION_FACTOR = -0.99
-	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_psg
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			energy = 5000
-			minerals = 5000
-			alloys = 1000			# Mod Pack: added cost
-			aot_sr_runic_power = 1000
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					is_ai = no
-				}
-			}
-			energy = 1000
-			aot_sr_runic_power = 100
-			acot_sr_dark_energy = 10			# Mod Pack: added upkeep
-		}
-		upkeep = {
-			trigger = {
-				planet_owner = {
-					NOT = {
-						has_technology = tech_acot_fractured_autoharvesting
-					}
-				}
-			}
-			sr_dark_matter = 10
-			acot_sr_dark_energy = 10
-		}
-	}
-	prerequisites = {
-		tech_phanon_psg
-	}
-	ai_weight = {
-		weight = 15000
-	}
-}
-
-building_phanon_giga_fortress_array = {
-	base_buildtime = 1200
-	add_to_first_building_slot = yes
-	can_be_ruined = no
-	can_be_disabled = no
-	can_build = no
-	planetary_ftl_inhibitor = yes
-	category = army
-	position_priority = 100
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_giga_fortress
-		}
-		NOT = {
-			has_modifier = resort_colony
-		}
-	}
-	on_built = {
-		if = {
-			limit = {
-				NOT = {
-					any_planet_army = {
-						army_type = acot_garrison_army_giga
-					}
-				}
-			}
-			create_army = {
-				owner = planet_owner
-				type = acot_garrison_army_giga
-			}
-		}
-	}
-	on_destroy = {
-		if = {
-			limit = {
-				has_giga_fort = no
-			}
-			every_planet_army = {
-				limit = {
-					army_type = acot_garrison_army_giga
-				}
-				remove_army = yes
-			}
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_giga_fortress_array
-	}
-	planet_modifier = {
-		planet_amenities_add = 20		# Mod Pack; reduced from 40
-		planet_housing_add = 15		# Mod Pack; reduced from 40
-		planet_stability_add = 15		# Mod Pack; reduced from 100
-		#		planet_crime_add = -100 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_ground_combat = yes
-		}
-		pop_defense_armies_add = 1
-	}
-	army_modifier = {
-		army_defense_damage_mult = 7.5		# Mod Pack; reduced from 20
-		army_defense_health_mult = 5		# Mod Pack; reduced from 20
-		army_defense_morale_mult = 5		# Mod Pack; reduced from 20
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-			}
-		}
-		job_phanon_giga_fortress_operator_add = 2		# Mod Pack; reduced from 6
-		#		job_phanon_enforcer_add = 20 # Mod Pack; removed for making this have a more unique purpose
-		job_phanon_giga_fortress_operator_mentat_add = 1		# Mod Pack; reduced from 2
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		job_phanon_giga_fortress_operator_drone_add = 2		# Mod Pack; reduced from 6
-		#		job_phanon_enforcer_drone_add = 20 # Mod Pack; removed for making this have a more unique purpose
-		job_phanon_giga_fortress_operator_mentat_drone_add = 2
-	}
-	country_modifier = {
-		country_naval_cap_add = 400
-		starbase_shipyard_build_speed_mult = 0.2
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			unity = 100
-			energy = 100
-		}
-		produces = {
-			trigger = {
-				planet_owner = {
-					country_uses_food = yes
-				}
-			}
-			food = 100
-		}
-		produces = {
-			trigger = {
-				planet_owner = {
-					country_uses_food = no
-				}
-			}
-			energy = 75
-		}
-		cost = {
-			energy = 50000
-			minerals = 30000
-			aot_sr_runic_power = 10000
-		}
-		upkeep = {
-			# Mod Pack; added upkeep
-			energy = 10
-			volatile_motes = 2
-			exotic_gases = 2
-			rare_crystals = 2
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
-			aot_sr_runic_power = 100
-		}
-	}
-	prerequisites = {
-		tech_phanon_giga_fortress
-	}
-	ai_weight = {
-		weight = 150000
-	}
-}
-
-building_phanon_giga_fortress_lab = {
-	base_buildtime = 1200
-	add_to_first_building_slot = yes
-	can_be_ruined = no
-	can_be_disabled = no
-	can_demolish = no
-	can_build = no
-	planetary_ftl_inhibitor = yes
-	category = army
-	position_priority = 100
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_giga_fortress
-		}
-		NOT = {
-			has_modifier = resort_colony
-		}
-	}
-	on_built = {
-		if = {
-			limit = {
-				NOT = {
-					any_planet_army = {
-						army_type = acot_garrison_army_giga
-					}
-				}
-			}
-			create_army = {
-				owner = planet_owner
-				type = acot_garrison_army_giga
-			}
-		}
-	}
-	on_destroy = {
-		if = {
-			limit = {
-				has_giga_fort = no
-			}
-			every_planet_army = {
-				limit = {
-					army_type = acot_garrison_army_giga
-				}
-				remove_army = yes
-			}
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_giga_fortress_lab
-	}
-	planet_modifier = {
-		planet_amenities_add = 20		# Mod Pack: reduced from 200
-		planet_housing_add = 20		# Mod Pack: reduced from 200
-		planet_stability_add = 15		# Mod Pack: reduced from 100
-		#		planet_crime_add = -100 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
-	}
-	army_modifier = {
-		army_defense_damage_mult = 2		# Mod Pack: reduced from 20
-		army_defense_health_mult = 2		# Mod Pack: reduced from 20
-		army_defense_morale_mult = 2		# Mod Pack: reduced from 20
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_individualistic_empire = yes
-			}
-		}
-		job_phanon_giga_fortress_operator_add = 2		# Mod Pack: reduced from 6
-		job_phanon_soldier_add = 2		# Mod Pack: reduced from 20
-		job_acot_overseer_add = 2		# Mod Pack: reduced from 4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_machine_empire = yes
-			}
-		}
-		job_phanon_giga_fortress_operator_drone_add = 2		# Mod Pack; reduced from 6
-		job_phanon_soldier_drone_add = 2		# Mod Pack; reduced from 20
-		job_acot_overseer_droid_add = 2		# Mod Pack; reduced from 4
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_hive_empire = yes
-			}
-		}
-		job_phanon_giga_fortress_operator_drone_add = 2		# Mod Pack; reduced from 6
-		job_phanon_soldier_drone_add = 2		# Mod Pack; reduced from 20
-		job_acot_overseer_droid_add = 2		# Mod Pack; reduced from 4
-	}
-	country_modifier = {
-		country_naval_cap_add = 100
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			unity = 200
-			influence = 1
-		}
-		produces = {
-			trigger = {
-				planet_owner = {
-					country_uses_food = yes
-				}
-			}
-			food = 100
-		}
-		produces = {
-			trigger = {
-				planet_owner = {
-					country_uses_food = no
-				}
-			}
-			energy = 75
-		}
-		cost = {
-			energy = 50000
-			minerals = 30000
-			aot_sr_runic_power = 10000
-		}
-		upkeep = {
-			# Mod Pack; added upkeep
-			energy = 10
-			volatile_motes = 2
-			exotic_gases = 2
-			rare_crystals = 2
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
-			aot_sr_runic_power = 100
-		}
-	}
-	prerequisites = {
-		tech_phanon_giga_fortress
-	}
-	ai_weight = {
-		weight = 15
-	}
-}
-
-building_phanon_giga_fortress_obelisk = {
-	base_buildtime = 1200
-	add_to_first_building_slot = yes
-	can_be_ruined = no
-	can_be_disabled = no
-	can_demolish = no
-	can_build = no
-	planetary_ftl_inhibitor = yes
-	category = army
-	position_priority = 100
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_giga_fortress
-		}
-		NOT = {
-			has_modifier = resort_colony
-		}
-	}
-	on_built = {
-		if = {
-			limit = {
-				NOT = {
-					any_planet_army = {
-						army_type = acot_garrison_army_giga
-					}
-				}
-			}
-			create_army = {
-				owner = planet_owner
-				type = acot_garrison_army_giga
-			}
-		}
-	}
-	on_destroy = {
-		if = {
-			limit = {
-				has_giga_fort = no
-			}
-			every_planet_army = {
-				limit = {
-					army_type = acot_garrison_army_giga
-				}
-				remove_army = yes
-			}
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_giga_fortress_obelisk
-	}
-	planet_modifier = {
-		planet_amenities_add = 25		# Mod Pack: reduced from 40
-		planet_housing_add = 25		# Mod Pack: reduced from 40
-		planet_stability_add = 10		# Mod Pack: reduced from 200
-		#		planet_crime_add = -200 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
-	}
-	army_modifier = {
-		army_defense_morale_mult = 40		# Mod Pack: reduced from 50
-		army_defense_health_mult = 20		# Mod Pack: reduced from 50
-		army_defense_damage_mult = 20		# Mod Pack: reduced from 50
-		army_starting_experience_add = 20000		# Mod Pack: reduced from 50000
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = no
-			}
-		}
-		job_phanon_giga_fortress_operator_add = 3		# Mod Pack: reduced from 10
-		job_phanon_soldier_add = 10		# Mod Pack: reduced from 30
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_gestalt = yes
-			}
-		}
-		job_phanon_giga_fortress_operator_drone_add = 3		# Mod Pack: reduced from 10
-		job_phanon_soldier_drone_add = 10		# Mod Pack: reduced from 30
-	}
-	resources = {
-		category = planet_buildings
-		produces = {
-			unity = 100
-			energy = 100
-			minerals = 200
-			alloys = 200
-		}
-		produces = {
-			trigger = {
-				planet_owner = {
-					country_uses_food = yes
-				}
-			}
-			food = 200
-		}
-		produces = {
-			trigger = {
-				planet_owner = {
-					country_uses_food = no
-				}
-			}
-			energy = 175
-		}
-		cost = {
-			energy = 50000
-			minerals = 30000
-			aot_sr_runic_power = 10000
-		}
-		upkeep = {
-			# Mod Pack; added upkeep
-			energy = 10
-			volatile_motes = 2
-			exotic_gases = 2
-			rare_crystals = 2
-			sr_dark_matter = 5
-			acot_sr_dark_energy = 5
-			aot_sr_runic_power = 80
-		}
-	}
-	prerequisites = {
-		tech_phanon_giga_fortress
-	}
-	ai_weight = {
-		weight = 150000
-	}
-}
-
-building_phanon_stronghold = {
-	base_buildtime = 900
-	planetary_ftl_inhibitor = yes
-	can_build = no
-	position_priority = 100
-	category = army
-	allow = {
-		has_phanon_capital = yes
-	}
-	planet_modifier = {
-		planet_housing_add = 20
-		planet_army_build_time_mult = -0.05
-		#		planet_crime_add = -10 # Mod Pack: removed (many other methods do reduce crime)
-		planet_stability_add = 5
-	}
-	army_modifier = {
-		army_defense_damage_mult = 2
-		army_defense_health_mult = 2
-		army_defense_morale_mult = 2
-	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_stronghold
-		}
-		NOT = {
-			has_modifier = resort_colony
-		}
-	}
-	upgrades = {
-		building_stellarite_stronghold
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = no
-			}
-		}
-		modifier = {
-			job_phanon_soldier_add = 8
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = planet_owner
-			planet_owner = {
-				is_fallen_empire = no
-				is_gestalt = yes
-			}
-		}
-		modifier = {
-			job_phanon_soldier_drone_add = 8
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 2500
-			energy = 2500
-			aot_sr_runic_power = 600
-		}
-		upkeep = {
-			trigger = {
 				planet_owner = {
 					is_ai = no
 				}
 			}
 			energy = 60
 			aot_sr_runic_power = 20
-			sr_dark_matter = 5			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 5			# Mod Pack: added upkeep
-		}
-	}
-	prerequisites = {
-		tech_phanon_stronghold
-	}
-	ai_weight = {
-		weight = 0
-		modifier = {
-			weight = 100000
-			num_sapient_pops >= 40
-			NOR = {
-				num_buildings = {
-					type = building_phanon_stronghold
-					value <= 2
-				}
-			}
-			planet_owner = {
-				has_monthly_income = {
-					resource = aot_sr_runic_power
-					value <= 3
-				}
-			}
+			sr_dark_matter = 5            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 5            # Mod Pack: added upkeep
 		}
 	}
 }
@@ -3936,6 +1522,11 @@ building_phanon_runic_generator = {
 	can_demolish = yes
 	can_build = yes
 	category = manufacturing
+	building_sets = {
+		industrial
+		factory
+		foundry
+	}
 	potential = {
 		NOT = {
 			has_global_flag = aot_phanon_content_OFF
@@ -3982,8 +1573,8 @@ building_phanon_runic_generator = {
 			energy = 200
 		}
 		upkeep = {
-			energy = 100			# Mod Pack: kept at 100
-			acot_sr_dark_energy = 50			# Mod Pack: added upkeep
+			energy = 100            # Mod Pack: kept at 100
+			acot_sr_dark_energy = 50            # Mod Pack: added upkeep
 			sr_dark_matter = 50
 		}
 	}
@@ -4009,110 +1600,87 @@ building_phanon_runic_generator = {
 		}
 	}
 }
-
 building_phanon_synthersizer = {
-	base_buildtime = 900
-	can_build = no
-	category = manufacturing
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_synthersizer
-		}
-	}
-	country_modifier = {
-		country_resource_max_acot_sr_dark_energy_add = 15000
-		country_resource_max_sr_dark_matter_add = 15000
-		country_resource_max_aot_sr_runic_power_add = 15000
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	prerequisites = {
-		tech_phanon_synthersizer
-	}
-	upgrades = {
-		building_stellarite_synthersizer
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/production/synthersizer
+		TIER = @PHANON_TIER
+		EXPONENT = @PHANON_EXPONENT
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		PREREQUISITE = tech_phanon_synthersizer
+		UPGRADES_INTO = building_stellarite_synthersizer
+		COST = "
 			minerals = 500
 			energy = 500
 			sr_dark_matter = 1500
 			acot_sr_dark_energy = 1500
-		}
-		produces = {
+			"
+		PRODUCES = "
 			sr_dark_matter = 100
 			acot_sr_dark_energy = 100
 			aot_sr_runic_power = 500
-		}
-		##### Runic
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_phanon_runic_generator
-					value = 2
+			"
+		STORAGE_INCREASE = "
+			country_resource_max_acot_sr_dark_energy_add = @max_resource_add
+			country_resource_max_sr_dark_matter_add = @max_resource_add
+			country_resource_max_aot_sr_runic_power_add = @max_resource_add
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 100000
+				planet_owner = {
+					has_monthly_income = {
+						resource = aot_sr_runic_power
+						value <= 100
+					}
 				}
 			}
-			aot_sr_runic_power = 100
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_phanon_runic_generator
-					value = 3
-				}
-			}
-			aot_sr_runic_power = 200
-		}
-		produces = {
-			trigger = {
-				num_buildings = {
-					type = building_phanon_runic_generator
-					value >= 4
-				}
-			}
-			aot_sr_runic_power = 300
-		}
-	}
-	ai_weight = {
-		weight = 25000
-	}
-	ai_resource_production = {
-		sr_dark_matter = 100
-		acot_sr_dark_energy = 100
-		trigger = {
-			always = yes
-		}
+			"
 	}
 }
-
 building_phanon_stellarite_nexus = {
 	icon = building_phanon_nexus
-	base_buildtime = 900
-	category = manufacturing
-	base_cap_amount = 1
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_technology = tech_phanon_stellarite_nexus
-		}
-		NOR = {
-			has_global_flag = aot_phanon_content_OFF
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-		NOR = {
-			has_building = building_acot_stellarite_nexus
-			has_building = building_phanon_stellarite_nexus
-		}
-	}
-	upgrades = {
-		building_acot_stellarite_nexus
+	inline_script = {
+		script = buildings/production/power_conduit
+		TIER = @PHANON_TIER
+		EXPONENT = @PHANON_EXPONENT
+		ALLOW = "
+			has_phanon_capital = yes
+			NOR = {
+				has_building = building_acot_stellarite_nexus
+				has_building = building_phanon_stellarite_nexus
+			}
+			"
+		CAN_BUILD = no
+		PREREQUISITE = tech_phanon_stellarite_nexus
+		UPGRADES_INTO = building_acot_stellarite_nexus
+		STORAGE_INCREASE = "
+			country_resource_max_sr_dark_matter_add = @max_conduit_storage
+			country_resource_max_acot_sr_dark_energy_add = @max_conduit_storage
+			country_resource_max_aot_sr_runic_power_add = @max_conduit_storage
+			"
+		PLANET_MODIFIER = "
+			planet_jobs_sr_dark_matter_produces_mult = @planet_mult
+			planet_jobs_acot_sr_dark_energy_produces_mult = @planet_mult
+			planet_jobs_aot_sr_runic_power_produces_mult = @planet_mult
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					merg_is_awakened_fe = yes
+				}
+			}
+			modifier = {
+				factor = 10000
+				planet_owner = {
+					has_monthly_income = {
+						resource = aot_sr_runic_power
+						value <= 1
+					}
+				}
+			}
+			"
 	}
 	resources = {
 		category = planet_buildings
@@ -4136,88 +1704,38 @@ building_phanon_stellarite_nexus = {
 			energy = 1000
 		}
 	}
-	planet_modifier = {
-		planet_jobs_aot_sr_runic_power_produces_mult = 1
-	}
-	prerequisites = {
-		"tech_phanon_stellarite_nexus"
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			planet_owner = {
-				merg_is_awakened_fe = yes
-			}
-		}
-		modifier = {
-			factor = 10000
-			planet_owner = {
-				has_monthly_income = {
-					resource = aot_sr_runic_power
-					value <= 1
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			num_buildings = {
-				type = building_acot_stellarite_nexus
-				value >= 2
-			}
-		}
-	}
-	ai_resource_production = {
-		aot_sr_runic_power = 500
-		trigger = {
-			always = yes
-		}
-	}
 }
 
 #####################
 # OTHER STUFFS
 #####################
 building_phanon_mansion = {
-	base_buildtime = 900
-	can_build = no
-	category = amenity
-	potential = {
-		planet_owner = {
-			has_technology = tech_phanon_mansion
-			is_individualistic_empire = yes
-			is_spiritualist = no
-			has_make_spiritualist_perk = no
-			NOT = {
-				has_global_flag = aot_phanon_content_OFF
+	inline_script = {
+		script = buildings/civilian/mansion
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_mansion
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_mansion
+		AI_FACTORS = "
+			modifier = {
+				factor = 300000
+				free_amenities < 0
 			}
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
+			modifier = {
+				factor = 500000
+				free_housing < 1
+			}
+			modifier = {
+				factor = 0
+				free_housing > 1
+			}
+			"
 	}
 	convert_to = {
 		building_phanon_empyrean_shrine
 		building_phanon_hive_depot
 		building_phanon_ancient_cryo_chamber
-	}
-	upgrades = {
-		building_stellarite_mansion
-	}
-	destroy_trigger = {
-		exists = planet_owner
-		planet_owner = {
-			OR = {
-				is_regular_empire = no
-				is_spiritualist = yes
-				has_make_spiritualist_perk = yes
-			}
-		}
-	}
-	planet_modifier = {
-		planet_housing_add = 60
-		planet_amenities_add = 60
-		job_phanon_entertainer_add = 6
 	}
 	resources = {
 		category = planet_buildings
@@ -4234,90 +1752,64 @@ building_phanon_mansion = {
 		}
 		upkeep = {
 			aot_sr_runic_power = 10
-			sr_dark_matter = 2			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 2			# Mod Pack: added upkeep
+			sr_dark_matter = 2            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 2            # Mod Pack: added upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
-			energy = 10			# Mod Pack: added upkeep
+			energy = 10            # Mod Pack: added upkeep
 			acot_sr_dark_energy = 4
 			sr_dark_matter = 4
 		}
 	}
-	prerequisites = {
-		tech_phanon_mansion
-	}
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 300000
-			free_amenities < 0
-		}
-		modifier = {
-			factor = 500000
-			free_housing < 1
-		}
-		modifier = {
-			factor = 0
-			free_housing > 1
-		}
-	}
 }
-
 building_phanon_hive_depot = {
-	base_buildtime = 900
-	can_build = no
-	category = amenity
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			is_hive_empire = yes
-			has_technology = tech_phanon_hive_depot
-		}
-	}
-	upgrades = {
-		building_stellarite_hive_depot
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	show_tech_unlock_if = {
-		owner = {
-			is_hive_empire = yes
-		}
+	inline_script = {
+		script = buildings/civilian/hive_depot
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_hive_depot
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_hive_depot
+		AI_FACTORS = "
+			modifier = {
+				factor = 20000
+				free_housing < 0
+			}
+			modifier = {
+				factor = 30000
+				free_amenities < 2
+			}
+			modifier = {
+				factor = 0
+				free_housing > 1
+			}
+			"
 	}
 	convert_to = {
 		building_phanon_empyrean_shrine
 		building_phanon_mansion
 		building_phanon_ancient_cryo_chamber
 	}
-	planet_modifier = {
-		planet_housing_add = 70
-		planet_amenities_add = 70
-		job_phanon_entertainer_drone_add = 6
-	}
 	resources = {
 		category = planet_buildings
+		cost = {
+			energy = 2000
+			minerals = 2000
+			aot_sr_runic_power = 800
+		}
 		produces = {
 			trigger = {
 				has_modifier = acot_modifier_ascended_city
 			}
 			unity = 60
 		}
-		cost = {
-			energy = 2000
-			minerals = 2000
-			aot_sr_runic_power = 800
-		}
 		upkeep = {
 			aot_sr_runic_power = 10
-			sr_dark_matter = 2			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 2			# Mod Pack: added upkeep
+			sr_dark_matter = 2            # Mod Pack: added upkeep
+			acot_sr_dark_energy = 2            # Mod Pack: added upkeep
 		}
 		upkeep = {
 			trigger = {
@@ -4327,52 +1819,35 @@ building_phanon_hive_depot = {
 			sr_dark_matter = 4
 		}
 	}
-	prerequisites = {
-		tech_phanon_hive_depot
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
-		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			free_housing > 1
-		}
-	}
 }
-
 building_phanon_ancient_cryo_chamber = {
-	base_buildtime = 900
-	can_demolish = yes
-	can_build = no
-	category = amenity
-	potential = {
-		planet_owner = {
-			is_machine_empire = yes
-			has_technology = tech_phanon_ancient_cryo_chamber
-		}
-	}
-	upgrades = {
-		building_stellarite_ancient_cryo_chamber
-	}
-	allow = {
-		has_phanon_capital = yes
+	inline_script = {
+		script = buildings/civilian/cryo_chamber
+		TIER = @PHANON_TIER
+		PREREQUISITE = tech_phanon_ancient_cryo_chamber
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		UPGRADES_INTO = building_stellarite_ancient_cryo_chamber
+		JOB_MACHINE = acot_entertainer
+		AI_FACTORS = "
+			modifier = {
+				factor = 20000
+				free_housing < 0
+			}
+			modifier = {
+				factor = 30000
+				free_amenities < 2
+			}
+			modifier = {
+				factor = 0
+				free_housing > 1
+			}
+			"
 	}
 	convert_to = {
 		building_phanon_empyrean_shrine
 		building_phanon_mansion
 		building_phanon_hive_depot
-	}
-	planet_modifier = {
-		planet_housing_add = 70
-		planet_amenities_add = 70
-		job_maintenance_drone_add = 6
 	}
 	resources = {
 		category = planet_buildings
@@ -4393,295 +1868,151 @@ building_phanon_ancient_cryo_chamber = {
 			acot_sr_dark_energy = 2
 		}
 	}
-	prerequisites = {
-		tech_phanon_ancient_cryo_chamber
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 20000
-			free_housing < 0
-		}
-		modifier = {
-			factor = 30000
-			free_amenities < 2
-		}
-		modifier = {
-			factor = 0
-			free_housing > 1
-		}
-	}
 }
-
 building_phanon_commercial_megaplex = {
-	base_buildtime = 900
-	can_build = no
-	category = trade
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_commercial_megaplex
-	}
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_individualistic_empire = yes
-			has_technology = tech_phanon_commercial_megaplex
-		}
-		NOR = {
-			has_modifier = slave_colony
-			has_global_flag = aot_phanon_content_OFF
-		}
-	}
-	destroy_trigger = {
-		exists = planet_owner
-		OR = {
-			planet_owner = {
-				is_regular_empire = no
-			}
-			has_modifier = slave_colony
-		}
-	}
-	planet_modifier = {
-		job_merchant_add = 4
-		job_phanon_clerk_add = 40
-		trade_value_mult = 0.15
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+	inline_script = {
+		script = buildings/civilian/commercial_megaplex
+		TIER = @PHANON_TIER
+		EXPONENT = @PHANON_EXPONENT
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		PREREQUISITE = tech_phanon_commercial_megaplex
+		UPGRADES_INTO = building_stellarite_commercial_megaplex
+		JOB = phanon_clerk
+		COST = "
 			energy = 2000
 			minerals = 2000
 			aot_sr_runic_power = 800
-		}
-		upkeep = {
+			"
+		UPKEEP = "
 			aot_sr_runic_power = 15
-			sr_dark_matter = 2			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 2			# Mod Pack: added upkeep
-		}
-	}
-	prerequisites = {
-		tech_phanon_commercial_megaplex
-	}
-	triggered_desc = {
-		text = job_phanon_clerk_effect_desc
-	}
-	triggered_desc = {
-		text = job_merchant_effect_desc
-	}
-	ai_weight = {
-		weight = 0
-		modifier = {
-			weight = 1
-			planet_owner = {
-				resource_income_compare = {
-					resource = aot_sr_runic_power
-					value >= 11
+			sr_dark_matter = 2
+			acot_sr_dark_energy = 2
+			"
+		AI_FACTORS = "
+			modifier = {
+				weight = 1
+				planet_owner = {
+					resource_income_compare = {
+						resource = aot_sr_runic_power
+						value >= 11
+					}
 				}
 			}
-		}
-		modifier = {
-			factor = 10
-			exists = planet_owner
-			planet_owner = {
-				is_megacorp = yes
-			}
-		}
-	}
-	ai_resource_production = {
-		energy = 1
-		trigger = {
-			always = yes
-		}
-	}
-}
-
-building_phanon_bureaucratic = {
-	base_buildtime = 900
-	can_build = no
-	category = unity
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		planet_owner = {
-			is_individualistic_empire = yes
-			has_technology = tech_phanon_bureau
-		}
-	}
-	upgrades = {
-		building_stellarite_bureaucratic
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	destroy_trigger = {
-		exists = planet_owner
-		OR = {
-			planet_owner = {
-				is_regular_empire = no
-			}
-		}
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
-			energy = 2000
-			minerals = 2000
-			aot_sr_runic_power = 800
-		}
-		upkeep = {
-			aot_sr_runic_power = 15
-			sr_dark_matter = 2			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 2			# Mod Pack: added upkeep
-		}
-	}
-	planet_modifier = {
-		job_phanon_bureaucrat_add = 16
-	}
-	country_modifier = {
-		empire_size_mult = -0.03
-	}
-	prerequisites = {
-		tech_phanon_bureau
-	}
-	triggered_desc = {
-		text = job_phanon_bureaucrat_effect_desc
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			buildings_has_crystals = no
-		}
-		modifier = {
-			factor = 2
-			planet_owner = {
-				empire_sprawl_over_cap > 0
-			}
-		}
-		modifier = {
-			factor = 2
-			planet_owner = {
-				empire_sprawl_over_cap > 10
-			}
-		}
-		modifier = {
-			factor = 2
-			planet_owner = {
-				empire_sprawl_over_cap > 20
-			}
-		}
-		modifier = {
-			factor = 2
-			planet_owner = {
-				empire_sprawl_over_cap > 40
-			}
-		}
-		modifier = {
-			factor = 2
-			planet_owner = {
-				has_valid_civic = civic_byzantine_bureaucracy
-			}
-		}
-	}
-	on_queued = {
-		planet = {
-			set_timed_planet_flag = {
-				flag = recent_admin_building_built
-				years = 2
-			}
-		}
-	}
-}
-
-building_phanon_embassy = {
-	base_buildtime = 1200
-	can_build = no
-	category = government
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_individualistic_empire = yes
-			has_technology = tech_phanon_embassy
-		}
-		planet = {
-			is_capital = yes
-		}
-		NOR = {
-			has_global_flag = aot_phanon_content_OFF
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-		}
-	}
-	allow = {
-		has_phanon_capital = yes
-	}
-	upgrades = {
-		building_stellarite_embassy
-	}
-	destroy_trigger = {
-		OR = {
-			AND = {
+			modifier = {
+				factor = 10
 				exists = planet_owner
 				planet_owner = {
-					is_regular_empire = no
+					is_megacorp = yes
 				}
 			}
-			planet = {
-				is_capital = no
+			"
+	}
+}
+building_phanon_bureaucratic = {
+	inline_script = {
+		script = buildings/civilian/bureaucratic
+		TIER = @PHANON_TIER
+		EXPONENT = @PHANON_EXPONENT
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		PREREQUISITE = tech_phanon_bureau
+		UPGRADES_INTO = building_stellarite_bureaucratic
+		JOB = phanon_bureaucrat
+		COST = "
+			energy = 2000
+			minerals = 2000
+			aot_sr_runic_power = 800
+			"
+		UPKEEP = "
+			aot_sr_runic_power = 15
+			sr_dark_matter = 2
+			acot_sr_dark_energy = 2
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				buildings_has_crystals = no
 			}
-		}
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 0
+				}
+			}
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 10
+				}
+			}
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 20
+				}
+			}
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 40
+				}
+			}
+			modifier = {
+				factor = 2
+				planet_owner = {
+					has_valid_civic = civic_byzantine_bureaucracy
+				}
+			}
+			"
 	}
-	country_modifier = {
-		envoys_add = 8
-		diplo_weight_mult = 0.2		# Mod Pack: reduced from 2
-	}
-	resources = {
-		category = planet_buildings
-		cost = {
+}
+building_phanon_embassy = {
+	inline_script = {
+		script = buildings/civilian/embassy
+		TIER = @PHANON_TIER
+		ALLOW = "has_phanon_capital = yes"
+		CAN_BUILD = no
+		PREREQUISITE = tech_phanon_embassy
+		UPGRADES_INTO = building_stellarite_embassy
+		COST = "
 			influence = 150
 			energy = 3000
 			minerals = 3000
 			aot_sr_runic_power = 1500
-		}
-		upkeep = {
+			"
+		UPKEEP = "
+			energy = 100
 			aot_sr_runic_power = 30
-			sr_dark_matter = 2			# Mod Pack: added upkeep
-			acot_sr_dark_energy = 2			# Mod Pack: added upkeep
-		}
-	}
-	prerequisites = {
-		tech_phanon_embassy
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			buildings_has_crystals = no
-		}
-		modifier = {
-			factor = 5
-			exists = planet_owner
-			planet_owner = {
-				is_galactic_community_member = yes
+			sr_dark_matter = 2
+			acot_sr_dark_energy = 2
+			"
+		AI_FACTORS = "
+			modifier = {
+				factor = 0
+				buildings_has_crystals = no
 			}
-		}
-		modifier = {
-			factor = 5
-			exists = planet_owner
-			planet_owner = {
-				has_federation = yes
+			modifier = {
+				factor = 5
+				exists = planet_owner
+				planet_owner = {
+					is_galactic_community_member = yes
+				}
 			}
-		}
-		modifier = {
-			factor = 3
-			exists = planet_owner
-			planet_owner = {
-				is_part_of_galactic_council = yes
+			modifier = {
+				factor = 5
+				exists = planet_owner
+				planet_owner = {
+					has_federation = yes
+				}
 			}
-		}
+			modifier = {
+				factor = 3
+				exists = planet_owner
+				planet_owner = {
+					is_part_of_galactic_council = yes
+				}
+			}
+			"
 	}
 }

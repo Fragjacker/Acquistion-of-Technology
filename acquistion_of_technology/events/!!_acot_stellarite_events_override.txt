@@ -5,11 +5,9 @@ country_event = {
 	id = stellarite_events.0
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
-		always = no # We use the AoT way to do the stellarite events instead, found in aot_tech_events.txt
+		always = no        # We use the AoT way to do the stellarite events instead, found in aot_tech_events.txt
 	}
-
 	immediate = {
 		set_country_flag = hear_stellarite
 		if = {
@@ -24,7 +22,6 @@ country_event = {
 		}
 	}
 }
-
 country_event = {
 	id = stellarite_events.1
 	title = stellarite_events.1.name
@@ -104,6 +101,235 @@ country_event = {
 	}
 }
 
+# Stellar - For AI
+country_event = {
+	id = stellarite_events.101
+	hide_window = yes
+	trigger = {
+		is_ai = yes
+		NOR = {
+			has_global_flag = acot_sigma_forbidden
+			has_country_flag = hear_stellarite
+			has_technology = tech_dark_matter_power_core_se
+			has_tech_option = tech_dark_matter_power_core_se
+		}
+		has_technology = tech_dark_matter_power_core_re
+		has_established_contact = event_target:acot_precursor_databank_country
+		is_playable_country = yes
+		is_fallen_empire = no        # SIR NO SIR
+		OR = {
+			AND = {
+				NOT = {
+					has_global_flag = acot_ai_simple_event_forbidden
+				}
+				resource_stockpile_compare = {
+					resource = aot_sr_runic_power
+					value >= 2000
+				}
+			}
+			AND = {
+				has_global_flag = acot_ai_simple_event_forbidden
+				resource_stockpile_compare = {
+					resource = aot_sr_runic_power
+					value >= 20000
+				}
+			}
+			OR = {
+				end_game_years_passed >= 0
+				mid_game_years_passed >= 50
+			}
+		}
+		NOT = {
+			has_global_flag = acot_stellarite_saturated
+		}
+	}
+	mean_time_to_happen = {
+		years = 20
+	}
+	immediate = {
+		set_country_flag = hear_stellarite
+		if = {
+			limit = {
+				NOT = {
+					has_global_flag = acot_stellarite_saturated
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = acot_ai_simple_event_forbidden
+					}
+				}
+				add_resource = {
+					aot_sr_runic_power = -2000
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = acot_ai_simple_event_forbidden
+				}
+				add_resource = {
+					aot_sr_runic_power = -20000
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_event_chain = acot_stellarite_chain
+					}
+				}
+				begin_event_chain = {
+					event_chain = acot_stellarite_chain
+				}
+				capital_scope = {
+					create_point_of_interest = {
+						id = acot_stellarite_tech_poi.1
+						name = "acot_stellarite_experiment"
+						desc = "acot_stellarite_experiment_desc"
+						event_chain = acot_stellarite_chain
+						location = this
+					}
+				}
+			}
+			enable_special_project = {
+				name = RESEARCH_STELLARITE_POWER
+			}
+			hidden_effect = {
+				remove_country_flag = acot_databank_diplomacy_engaged
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = acot_ai_simple_event_forbidden
+					}
+				}
+				add_resource = {
+					aot_sr_runic_power = -2000
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = acot_ai_simple_event_forbidden
+				}
+				add_resource = {
+					aot_sr_runic_power = -20000
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_event_chain = acot_stellarite_chain
+					}
+				}
+				begin_event_chain = {
+					event_chain = acot_stellarite_chain
+				}
+				capital_scope = {
+					create_point_of_interest = {
+						id = acot_stellarite_tech_poi.1
+						name = "acot_stellarite_experiment"
+						desc = "acot_stellarite_experiment_desc"
+						event_chain = acot_stellarite_chain
+						location = this
+					}
+				}
+			}
+			enable_special_project = {
+				name = RESEARCH_STELLARITE_POWER_CHEAP
+			}
+			hidden_effect = {
+				remove_country_flag = acot_databank_diplomacy_engaged
+			}
+		}
+	}
+}
+
+# Stellarite Annoucemnents
+country_event = {
+	id = stellarite_events.501
+	title = stellarite_events.501.name
+	desc = {
+		trigger = {
+			has_technology = tech_dark_matter_power_core_se
+		}
+		text = stellarite_events.501.desc.c
+	}
+	desc = {
+		trigger = {
+			has_established_contact = event_target:acot_precursor_databank_country
+			NOT = {
+				has_technology = tech_dark_matter_power_core_se
+			}
+		}
+		text = stellarite_events.501.desc
+	}
+	desc = {
+		trigger = {
+			NOR = {
+				has_established_contact = event_target:acot_precursor_databank_country
+				has_technology = tech_dark_matter_power_core_se
+			}
+		}
+		text = stellarite_events.501.desc.b
+	}
+	picture = GFX_evt_physics_research
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		name = stellarite_events.501.a
+		trigger = {
+			NOT = {
+				has_technology = tech_dark_matter_power_core_se
+			}
+			is_ai = no
+			has_technology = tech_dark_matter_power_core_re
+			has_established_contact = event_target:acot_precursor_databank_country
+		}
+		default_hide_option = yes
+		hidden_effect = {
+			set_country_flag = hear_stellarite
+			country_event = {
+				id = stellarite_events.100
+			}
+		}
+	}
+	option = {
+		name = EXCELLENT
+		default_hide_option = yes
+		trigger = {
+			NOT = {
+				has_technology = tech_dark_matter_power_core_se
+			}
+			is_ai = yes
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = stellarite_events.501.b
+		trigger = {
+			NOR = {
+				has_established_contact = event_target:acot_precursor_databank_country
+				has_technology = tech_dark_matter_power_core_se
+			}
+		}
+		default_hide_option = yes
+	}
+	option = {
+		name = stellarite_events.501.c
+		trigger = {
+			has_technology = tech_dark_matter_power_core_se
+		}
+		default_hide_option = yes
+	}
+}
 planet_event = {
 	id = stellarite_events.15
 	title = stellarite_events.15.name
@@ -443,8 +669,8 @@ planet_event = {
 					}
 				}
 			}
-			every_owned_pop = {
-				kill_pop = yes
+			every_owned_pop_group = {
+				kill_all_pop = yes
 			}
 			remove_all_buildings = yes
 			reroll_deposits = yes

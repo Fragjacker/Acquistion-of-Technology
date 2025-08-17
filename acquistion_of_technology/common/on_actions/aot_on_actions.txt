@@ -13,20 +13,13 @@ on_colony_destroyed = {
 	}
 }
 
-# Planet has reached 0 health
-# This = Planet
-# From = Bombarder
-on_planet_zero_health_ground_combat = {
-	events = {
-		aot_planetary_shields_event.1
-	}
-}
-
 # A building construction has been completed.
 # This = Planet
 on_building_complete = {
 	events = {
 		aot_planetary_shields_event.1
+		aot_habitat_events.1 # Spawn support pylons
+		aot_habitat_events.6 # TODO: REMOVE THIS ONCE on_building_demolished WORKS AGAIN!
 	}
 }
 
@@ -35,15 +28,17 @@ on_building_complete = {
 on_building_upgraded = {
 	events = {
 		aot_planetary_shields_event.1
+		aot_habitat_events.6 # TODO: REMOVE THIS ONCE on_building_demolished WORKS AGAIN!
 	}
 }
 
 # A building construction has demolished.
 # This = Planet
-# From = Tile
+# TODO: Currently no events here are fired. Check back again in the future once Pdx fixes this.
 on_building_demolished = {
 	events = {
 		aot_planetary_shields_event.1
+		aot_habitat_events.6
 	}
 }
 
@@ -52,18 +47,37 @@ on_building_demolished = {
 on_building_downgraded = {
 	events = {
 		aot_planetary_shields_event.1
+		aot_habitat_events.6
 	}
 }
 
 # A building construction has finished, replacing another building.
 # This = Planet
-# From = Tile
 on_building_replaced = {
 	events = {
 		aot_planetary_shields_event.1
+		aot_habitat_events.1
+		aot_habitat_events.6 # TODO: REMOVE THIS ONCE on_building_demolished WORKS AGAIN!
 	}
 }
 
+#A district construction has been completed.
+# This = Planet
+on_district_complete = {
+	events = {
+		aot_habitat_events.2
+		aot_habitat_events.6 # TODO: REMOVE THIS ONCE on_building_demolished WORKS AGAIN!
+	}
+}
+
+# A district construction has demolished.
+# This = Planet
+on_district_demolished = {
+	events = {
+		aot_habitat_events.3
+		aot_habitat_events.6 # TODO: REMOVE THIS ONCE on_building_demolished WORKS AGAIN!
+	}
+}
 on_monthly_pulse_country = {
 	events = {
 		# phanon_star_list.1
@@ -76,7 +90,6 @@ on_yearly_pulse = {
 		aot_planetary_shields_event.4
 	}
 }
-
 on_monthly_pulse = {
 	events = {
 		aot_startup.1
@@ -93,7 +106,6 @@ on_ship_built = {
 		aot_events.11
 	}
 }
-
 on_game_start = {
 	events = {
 		aot_startup.1
@@ -108,11 +120,10 @@ on_leader_death = {
 		aot_events.4
 	}
 }
-
 on_leader_hired = {
 	events = {
 		aot_events.7
-}
+	}
 }
 
 # Executed as a leader has been fired
@@ -164,7 +175,6 @@ on_megastructure_built = {
 		aot_phanon_events.1000
 		aot_phanon_events.2000
 		aot_phanon_events.3000
-		aot_events.12		# Update all Orbitals visuals
 	}
 }
 
@@ -210,6 +220,6 @@ on_megastructure_upgraded = {
 # scope: country, from: leader
 on_leader_spawned = {
 	events = {
-		aot_events.10		# New Leaders Get Phanon Trait
+		aot_events.10        # New Leaders Get Phanon Trait
 	}
 }

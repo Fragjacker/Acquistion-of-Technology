@@ -9,27 +9,30 @@ tech_acot_ae_ancient_palace = {
 	category = {
 		statecraft
 	}
-	prerequisites = {
-		"tech_dark_matter_power_core_ae"
-		"tech_acot_dm_ancient_palace"
-	}
-	weight = 100000
-	gateway = capital	# Unlocks Empire Capital-Complex
+	prerequisites = { "tech_dark_matter_power_core_ae" "tech_acot_dm_ancient_palace" }
+	weight = @acot_techweight_advanced
+	gateway = capital    # Unlocks Empire Capital-Complex
 	potential = {
-		is_individualistic_empire = yes
-		NOT = {
-			has_global_flag = acot_building_forbidden
+		OR = {
+			is_regular_empire = yes
+			is_individual_machine = yes
 		}
+		NOT = { has_global_flag = acot_building_forbidden }
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	weight_modifier = {
-		factor = 4
+		modifier = {
+			factor = 2.00
+			num_researched_techs_of_tier = {
+				value = 6
+				tier = 7
+			}
+		}
 	}
 	ai_weight = {
 		factor = 10
 	}
 }
-
 tech_acot_ae_ancient_control_center = {
 	cost = @acot_tier7cost3
 	area = society
@@ -37,12 +40,9 @@ tech_acot_ae_ancient_control_center = {
 	category = {
 		statecraft
 	}
-	prerequisites = {
-		"tech_dark_matter_power_core_ae"
-		"tech_acot_dm_ancient_control_center"
-	}
-	weight = 100000
-	gateway = capital	# Unlocks Empire Capital-Complex
+	prerequisites = { "tech_dark_matter_power_core_ae" "tech_acot_dm_ancient_control_center" }
+	weight = @acot_techweight_advanced
+	gateway = capital    # Unlocks Empire Capital-Complex
 	potential = {
 		is_machine_empire = yes
 		NOT = {
@@ -51,13 +51,18 @@ tech_acot_ae_ancient_control_center = {
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	weight_modifier = {
-		factor = 4
+		modifier = {
+			factor = 2.00
+			num_researched_techs_of_tier = {
+				value = 6
+				tier = 7
+			}
+		}
 	}
 	ai_weight = {
 		factor = 10
 	}
 }
-
 tech_acot_ae_ancient_hive_cluster = {
 	cost = @acot_tier7cost3
 	area = society
@@ -65,12 +70,9 @@ tech_acot_ae_ancient_hive_cluster = {
 	category = {
 		statecraft
 	}
-	prerequisites = {
-		"tech_dark_matter_power_core_ae"
-		"tech_acot_dm_ancient_hive_cluster"
-	}
-	weight = 100000
-	gateway = capital	# Unlocks Empire Capital-Complex
+	prerequisites = { "tech_dark_matter_power_core_ae" "tech_acot_dm_ancient_hive_cluster" }
+	weight = @acot_techweight_advanced
+	gateway = capital    # Unlocks Empire Capital-Complex
 	potential = {
 		is_hive_empire = yes
 		NOT = {
@@ -79,7 +81,13 @@ tech_acot_ae_ancient_hive_cluster = {
 		has_technology = tech_dark_matter_power_core_ae
 	}
 	weight_modifier = {
-		factor = 4
+		modifier = {
+			factor = 2.00
+			num_researched_techs_of_tier = {
+				value = 6
+				tier = 7
+			}
+		}
 	}
 	ai_weight = {
 		factor = 10
@@ -142,9 +150,15 @@ tech_giga_fortress_dm = {
 				TRAIT = leader_trait_expertise_military_theory
 			}
 		}
+		modifier = {
+			factor = 2.00
+			num_researched_techs_of_tier = {
+				value = 4
+				tier = 6
+			}
+		}
 	}
 }
-
 tech_aot_ae_affluence_center = {
 	cost = @acot_tier7cost3
 	area = engineering
@@ -186,7 +200,6 @@ tech_aot_ae_affluence_center = {
 		}
 	}
 }
-
 tech_aot_ae_nourishment_center = {
 	cost = @acot_tier7cost3
 	area = society
@@ -242,7 +255,6 @@ tech_aot_ae_nourishment_center = {
 		}
 	}
 }
-
 tech_aot_ae_dimensional_fabricator = {
 	cost = @acot_tier7cost3
 	area = engineering
@@ -284,7 +296,6 @@ tech_aot_ae_dimensional_fabricator = {
 		}
 	}
 }
-
 tech_aot_ae_class_4_singularity = {
 	cost = @acot_tier7cost3
 	area = physics
@@ -336,7 +347,6 @@ tech_aot_ae_class_4_singularity = {
 		}
 	}
 }
-
 tech_aot_ae_nano_forge = {
 	cost = @acot_tier7cost3
 	area = engineering
@@ -378,7 +388,6 @@ tech_aot_ae_nano_forge = {
 		}
 	}
 }
-
 tech_aot_ae_master_archive = {
 	cost = @acot_tier7cost3
 	area = physics
@@ -420,7 +429,6 @@ tech_aot_ae_master_archive = {
 		}
 	}
 }
-
 tech_aot_ae_empyrean_shrine = {
 	cost = @acot_tier7cost3
 	area = society
@@ -462,7 +470,6 @@ tech_aot_ae_empyrean_shrine = {
 		}
 	}
 }
-
 tech_aot_ae_sky_dome = {
 	cost = @acot_tier7cost3
 	area = society
@@ -512,7 +519,7 @@ tech_aot_ae_sky_dome = {
 
 # Interstellar Economics
 tech_dm_commercial_megaplex = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = society
 	tier = 6
 	category = {
@@ -521,7 +528,7 @@ tech_dm_commercial_megaplex = {
 	prerequisites = {
 		"tech_interstellar_economics"
 	}
-	weight = @tier3weight1
+	weight = @tier5weight1
 	potential = {
 		is_gestalt = no
 		has_technology = tech_dark_matter_power_core_dm
@@ -557,9 +564,8 @@ tech_dm_commercial_megaplex = {
 		}
 	}
 }
-
 tech_dm_embassy = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = society
 	tier = 6
 	category = {
@@ -568,7 +574,7 @@ tech_dm_embassy = {
 	prerequisites = {
 		"tech_xeno_relations"
 	}
-	weight = @tier3weight1
+	weight = @tier5weight1
 	potential = {
 		is_individualistic_empire = yes
 		has_technology = tech_dark_matter_power_core_dm
@@ -624,9 +630,8 @@ tech_dm_embassy = {
 		}
 	}
 }
-
 tech_dm_bureau = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = society
 	tier = 6
 	category = {
@@ -681,7 +686,7 @@ tech_ae_commercial_megaplex = {
 	prerequisites = {
 		"tech_dm_commercial_megaplex"
 	}
-	weight = @tier3weight1
+	weight = @tier5weight1
 	potential = {
 		is_gestalt = no
 		has_technology = tech_dark_matter_power_core_ae
@@ -717,7 +722,6 @@ tech_ae_commercial_megaplex = {
 		}
 	}
 }
-
 tech_ae_embassy = {
 	cost = @acot_tier7cost2
 	area = society
@@ -728,7 +732,7 @@ tech_ae_embassy = {
 	prerequisites = {
 		"tech_dm_embassy"
 	}
-	weight = @tier3weight1
+	weight = @tier5weight1
 	potential = {
 		is_individualistic_empire = yes
 		has_technology = tech_dark_matter_power_core_ae
@@ -784,7 +788,6 @@ tech_ae_embassy = {
 		}
 	}
 }
-
 tech_ae_bureau = {
 	cost = @acot_tier7cost2
 	area = society
@@ -832,7 +835,7 @@ tech_ae_bureau = {
 
 # Fallen Empire automated buildings.
 tech_dm_production_core = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = engineering
 	tier = 6
 	weight = 0
@@ -865,9 +868,8 @@ tech_dm_production_core = {
 		}
 	}
 }
-
 tech_fe_class_4_singularity = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = physics
 	tier = 6
 	category = {
@@ -876,7 +878,7 @@ tech_fe_class_4_singularity = {
 	prerequisites = {
 		tech_dm_production_core
 	}
-	weight = @tier3weight1
+	weight = @tier5weight1
 	potential = {
 		has_technology = tech_dm_production_core
 	}
@@ -915,9 +917,8 @@ tech_fe_class_4_singularity = {
 		}
 	}
 }
-
 tech_fe_dimensional_fabricator = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = engineering
 	tier = 6
 	category = {
@@ -926,7 +927,7 @@ tech_fe_dimensional_fabricator = {
 	prerequisites = {
 		"tech_dm_production_core"
 	}
-	weight = @tier3weight1
+	weight = @tier5weight1
 	potential = {
 		has_technology = tech_dm_production_core
 	}
@@ -955,9 +956,8 @@ tech_fe_dimensional_fabricator = {
 		}
 	}
 }
-
 tech_fe_nourishment_center = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = society
 	tier = 6
 	category = {
@@ -966,7 +966,7 @@ tech_fe_nourishment_center = {
 	prerequisites = {
 		"tech_dm_production_core"
 	}
-	weight = @tier3weight1
+	weight = @tier5weight1
 	potential = {
 		has_technology = tech_dm_production_core
 		OR = {
@@ -1013,9 +1013,8 @@ tech_fe_nourishment_center = {
 		}
 	}
 }
-
 tech_fe_affluence_center = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = engineering
 	tier = 6
 	category = {
@@ -1056,9 +1055,8 @@ tech_fe_affluence_center = {
 		}
 	}
 }
-
 tech_fe_nano_forge = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = engineering
 	tier = 6
 	category = {
@@ -1096,9 +1094,8 @@ tech_fe_nano_forge = {
 		}
 	}
 }
-
 tech_fe_master_archive = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = physics
 	tier = 6
 	category = {
@@ -1136,9 +1133,8 @@ tech_fe_master_archive = {
 		}
 	}
 }
-
 tech_fe_sky_dome = {
-	cost = @acot_tier6cost2
+	cost = @acot_tier6cost3
 	area = society
 	tier = 6
 	category = {
@@ -1183,9 +1179,8 @@ tech_fe_sky_dome = {
 		}
 	}
 }
-
 tech_aot_fe_empyrean_shrine = {
-	cost = @acot_tier8cost3
+	cost = @acot_tier6cost3
 	area = society
 	tier = 6
 	icon = tech_fe_empyrean_shrine
@@ -1194,7 +1189,8 @@ tech_aot_fe_empyrean_shrine = {
 	}
 	potential = {
 		has_technology = tech_dm_production_core
-		has_ethic = ethic_fanatic_spiritualist
+		has_technology = tech_psionic_theory
+		is_spiritualist = yes
 	}
 	prerequisites = {
 		"tech_dark_matter_power_core_dm"
@@ -1227,149 +1223,82 @@ tech_aot_fe_empyrean_shrine = {
 	}
 }
 
-# Mansion Tech override
-tech_acot_dm_mansion = {
-	cost = @acot_tier6cost1
-	area = society
-	category = {
-		statecraft
-	}
+# New Conduit buildings
+tech_delta_nexus = {
+	cost = @acot_tier6cost3
+	area = physics
 	tier = 6
+	category = {
+		field_manipulation
+	}
+	potential = {
+		has_technology = tech_dark_matter_power_core_dm
+	}
 	prerequisites = {
-		"tech_paradise_dome"
 		"tech_dark_matter_power_core_dm"
 	}
-	weight = @tier5weight1
-	potential = {
-		is_individualistic_empire = yes
-		NOT = {
-			has_global_flag = acot_building_forbidden
-		}
-	}
+	weight = @tier4weight1
+	is_rare = yes
 	weight_modifier = {
 		modifier = {
 			factor = 0
-			NOR = {
-				has_technology = tech_mine_dark_matter
-				has_country_flag = has_market_access
+			NOT = {
+				has_technology = tech_dark_matter_power_core_dm
 			}
 		}
 		modifier = {
-			factor = 1.25
+			factor = 1.75
 			has_trait_in_council = {
-				TRAIT = leader_trait_expertise_statecraft
+				TRAIT = leader_trait_expertise_field_manipulation
 			}
 		}
 	}
 	ai_weight = {
+		factor = 0.8
 		modifier = {
-			factor = 1.25
+			factor = 1.75
 			has_trait_in_council = {
-				TRAIT = leader_trait_expertise_statecraft
+				TRAIT = leader_trait_expertise_field_manipulation
 			}
 		}
 	}
 }
-
-tech_acot_ae_mansion = {
-	cost = @acot_tier7cost1
-	area = society
-	category = {
-		statecraft
-	}
+tech_alpha_nexus = {
+	cost = @acot_tier7cost3
+	area = physics
 	tier = 7
-	prerequisites = {
-		"tech_acot_dm_mansion"
+	category = {
+		field_manipulation
 	}
-	weight = @tier5weight1
 	potential = {
-		is_individualistic_empire = yes
-		NOT = {
-			has_global_flag = acot_building_forbidden
-		}
 		has_technology = tech_dark_matter_power_core_ae
 	}
-	weight_modifier = {
-		modifier = {
-			factor = 0
-			NOR = {
-				has_technology = tech_mine_dark_matter
-				has_country_flag = has_market_access
-			}
-		}
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = {
-				TRAIT = leader_trait_expertise_statecraft
-			}
-		}
-	}
-	ai_weight = {
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = {
-				TRAIT = leader_trait_expertise_statecraft
-			}
-		}
-	}
-}
-
-# Synt center override
-tech_acot_ae_synt_center = {
-	cost = @acot_tier7cost2
-	area = engineering
-	tier = 7
-	category = {
-		industry
-	}
 	prerequisites = {
-		"tech_acot_ae_super_assembly"
-		"tech_acot_dm_synt_center"
+		"tech_dark_matter_power_core_ae"
 	}
 	weight = @tier5weight1
-	potential = {
-		OR = {
-			has_technology = tech_acot_ae_super_assembly
-			has_technology = tech_acot_dm_synt_center
-		}
-		NOT = {
-			has_global_flag = acot_building_forbidden
-		}
-	}
+	is_rare = yes
 	weight_modifier = {
 		modifier = {
 			factor = 0
-			has_policy_flag = robots_outlawed
-		}
-		modifier = {
-			factor = 0.5
-			is_spiritualist = yes
-		}
-		modifier = {
-			factor = 2
-			is_materialist = yes
-		}
-		modifier = {
-			factor = 2
-			has_origin = origin_mechanists
-		}
-	}
-	ai_weight = {
-		weight = 2
-		modifier = {
-			factor = 2
-			is_materialist = yes
-		}
-		modifier = {
-			factor = 0
-			NOR = {
-				has_ai_personality_behaviour = robot_exploiter
-				has_ai_personality_behaviour = robot_liberator
+			NOT = {
+				has_technology = tech_dark_matter_power_core_ae
 			}
 		}
 		modifier = {
-			factor = 2
-			has_origin = origin_mechanists
+			factor = 1.75
+			has_trait_in_council = {
+				TRAIT = leader_trait_expertise_field_manipulation
+			}
+		}
+	}
+	ai_weight = {
+		factor = 0.8
+		modifier = {
+			factor = 1.75
+			has_trait_in_council = {
+				TRAIT = leader_trait_expertise_field_manipulation
+			}
 		}
 	}
 }

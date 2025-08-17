@@ -1,0 +1,171 @@
+inline_script = {
+	script = shared/automated_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	PRODUCES = "$PRODUCES$"
+	COST = "$COST$"
+	UPKEEP = "$UPKEEP$"
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
+}
+category = manufacturing
+building_sets = {
+	industry
+	foundry
+}
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		has_technology = $PREREQUISITE$
+	}
+}
+planet_modifier = {
+	planet_structures_upkeep_mult = @[ - 0.05 * $TIER$ ]
+	planet_building_build_speed_mult = @[ 0.1 * $TIER$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			merg_is_awakened_fe = yes
+			is_fallen_empire_spiritualist = no
+		}
+	}
+	modifier = {
+		job_acot_fe_foundry_add = @fe_jobs
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			merg_is_awakened_fe = yes
+			is_fallen_empire_spiritualist = yes
+		}
+	}
+	modifier = {
+		job_acot_fe_acolyte_foundry_add = @fe_jobs
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_individualistic_empire = yes
+			is_catalytic_empire = no
+		}
+	}
+	modifier = {
+		job_$JOB$_add = @[ fe_jobs * $TIER$ ]
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_individualistic_empire = yes
+			is_catalytic_empire = no
+		}
+	}
+	text = job_foundry_effect_desc
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_individualistic_empire = yes
+			is_catalytic_empire = yes
+		}
+	}
+	modifier = {
+		job_catalytic_technician_add = @[ fe_jobs * $TIER$ ]
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_individualistic_empire = yes
+			is_catalytic_empire = yes
+		}
+	}
+	text = job_catalytic_technician_effect_desc
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_hive_empire = yes
+			is_catalytic_empire = no
+		}
+	}
+	modifier = {
+		job_$JOB_DRONE$_drone_add = @[ fe_jobs * $TIER$ ]
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_hive_empire = yes
+			is_catalytic_empire = no
+		}
+	}
+	text = job_alloy_drone_effect_desc
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_machine_empire = yes
+			is_catalytic_empire = no
+		}
+	}
+	modifier = {
+		job_$JOB_MACHINE$_add = @[ fe_jobs * $TIER$ ]
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_machine_empire = yes
+			is_catalytic_empire = no
+		}
+	}
+	text = job_fabricator_effect_desc
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_gestalt = yes
+			is_catalytic_empire = yes
+		}
+	}
+	modifier = {
+		job_catalytic_drone_add = @[ fe_jobs * $TIER$ ]
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = no
+			is_gestalt = yes
+			is_catalytic_empire = yes
+		}
+	}
+	text = job_catalytic_drone_effect_desc
+}

@@ -1,0 +1,49 @@
+inline_script = {
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
+}
+category = government
+building_sets = {
+	government
+}
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		is_individualistic_empire = yes
+		has_technology = $PREREQUISITE$
+	}
+	planet = {
+		is_capital = yes
+	}
+}
+destroy_trigger = {
+	OR = {
+		AND = {
+			exists = planet_owner
+			planet_owner = {
+				is_regular_empire = no
+			}
+		}
+		planet = {
+			is_capital = no
+		}
+	}
+}
+country_modifier = {
+	envoys_add = @[ 2 * $TIER$ ]
+	diplo_weight_mult = @[ 0.1 * $TIER$ ]
+}
+resources = {
+	category = planet_buildings
+	cost = {
+		$COST$
+	}
+	upkeep = {
+		$UPKEEP$
+	}
+}

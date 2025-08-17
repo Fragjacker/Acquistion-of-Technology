@@ -1,0 +1,24 @@
+category = complex_drone
+possible_pre_triggers = {
+	has_owner = yes
+	is_enslaved = no
+	is_being_purged = no
+	is_being_assimilated = no
+	is_sapient = yes
+}
+possible_precalc = can_fill_drone_job
+possible = { can_think = yes }
+weight = {
+	weight = @spawner_drone_job_weight
+	modifier = {
+		factor = 0.01 # crisis purge
+		exists = planet
+		exists = planet.controller
+		planet.controller = {
+			OR = {
+				is_country_type = swarm
+				is_country_type = ai_empire
+			}
+		}
+	}
+}

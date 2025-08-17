@@ -1,0 +1,73 @@
+inline_script = {
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
+}
+@num_jobs = @[ 200 * $TIER$ ]
+category = research
+building_sets = {
+	research
+}
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		has_technology = $PREREQUISITE$
+	}
+	is_special_colony_type = no
+}
+destroy_trigger = {
+	is_special_colony_type = yes
+}
+resources = {
+	category = planet_buildings
+	produces = {
+		$PRODUCES$
+	}
+	cost = {
+		$COST$
+	}
+	upkeep = {
+		trigger = {
+			planet_owner = {
+				NOT = {
+					has_technology = tech_acot_fractured_autoharvesting
+				}
+			}
+		}
+		sr_dark_matter = 50
+		acot_sr_dark_energy = 50
+	}
+}
+country_modifier = {
+	country_scientist_cap_add = @[ 1 * $TIER$ ]
+	physics_tech_cost_mult = @[ - 0.1 * $TIER$ ]
+	society_tech_cost_mult = @[ - 0.1 * $TIER$ ]
+	engineering_tech_cost_mult = @[ - 0.1 * $TIER$ ]
+	all_technology_research_speed = @[ 0.2 * $TIER$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_regular_empire = yes
+		}
+	}
+	modifier = {
+		job_$JOB$_add = @num_jobs
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = yes
+		}
+	}
+	modifier = {
+		job_$JOB_HIVE$_add = @num_jobs
+	}
+}

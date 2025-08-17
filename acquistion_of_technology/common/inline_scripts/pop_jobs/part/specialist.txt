@@ -1,0 +1,34 @@
+category = $CATEGORY$
+possible_pre_triggers = {
+	has_owner = yes
+	is_being_purged = no
+	is_being_assimilated = no
+	is_sapient = yes
+}
+possible_precalc = can_fill_specialist_job
+possible = {
+	complex_specialist_job_check_trigger = yes
+}
+weight = {
+	weight = @specialist_job_weight
+	mult = value:job_weights_modifier|JOB|$JOB$|RESOURCE|$RESOURCE$|
+	modifier = {
+		factor = 0.2
+		has_citizenship_rights = no
+		NOT = { has_trait = trait_mechanical }
+	}
+	modifier = {
+		factor = 0.1
+		can_take_servant_job = yes
+	}
+}
+promotion = {
+	time = @standard_promotion_time
+	effect = {
+		pop_amount_change_category = {
+			CATEGORY = $CATEGORY$
+			AMOUNT = local_pop_amount
+		}
+	}
+}
+inline_script = "jobs/automodding_priority_$RESOURCE$"

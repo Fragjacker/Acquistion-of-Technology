@@ -1,0 +1,25 @@
+# Check if the last changed district was of relevant type.
+last_was_special_habitat_resource_district = {
+	OR = {
+		last_district_changed = district_dm_hab_dark_matter_energy
+		last_district_changed = district_ae_hab_dark_matter_energy
+		last_district_changed = district_hab_phanon_generator
+		last_district_changed = district_hab_stellarite_generator
+	}
+}
+is_special_habitat_resource_district_amount_above_max_cap = {
+	OR = {
+		num_districts = { type = district_dm_hab_dark_matter_energy value > value:aot_special_resource_habitat_districts_target_amount }
+		num_districts = { type = district_ae_hab_dark_matter_energy value > value:aot_special_resource_habitat_districts_target_amount }
+		num_districts = { type = district_hab_phanon_generator value > value:aot_special_resource_habitat_districts_target_amount }
+		num_districts = { type = district_hab_stellarite_generator value > value:aot_special_resource_habitat_districts_target_amount }
+	}
+}
+is_support_pylon_amount_over_special_habitat_resource_district_max_cap = {
+	OR = {
+		num_districts = { type = district_dm_hab_dark_matter_energy value < value:aot_count_system_active_support_pylons }
+		num_districts = { type = district_ae_hab_dark_matter_energy value < value:aot_count_system_active_support_pylons }
+		num_districts = { type = district_hab_phanon_generator value < value:aot_count_system_active_support_pylons }
+		num_districts = { type = district_hab_stellarite_generator value < value:aot_count_system_active_support_pylons }
+	}
+}

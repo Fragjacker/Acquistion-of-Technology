@@ -51,12 +51,25 @@ phanon_digitalization = {
 	default = no
 	stop_when_armies_dead = no
 	abduct_pops = no
-	planet_damage = 24
-	army_damage = 50
+	planet_damage = {
+		base = 8.0
+		modifier = {
+			add = 12.0
+			aot_has_planetary_shield_building = no
+		}
+		modifier = {
+			factor = 2
+			from = {
+				planet_devastation >= 75
+			}
+		}
+	}
+	army_damage = 20
 	kill_pop_chance = {
-		base = 20
+		base = 1.0
 	}
 	min_pops_to_kill_pop = 0
+	kill_pop_amount = { min = 600 max = 1000 }
 	# root = fleet
 	# from = planet
 	ai_weight = {
@@ -92,6 +105,17 @@ phanon_digitalization = {
 				owner = {
 					is_country_type = aot_phanon_protecc
 				}
+			}
+		}
+		modifier = {
+			factor = 100
+			OR = {
+				owner = { has_ethic = ethic_fanatic_xenophile }
+				owner = { has_ethic = ethic_fanatic_pacifist }
+				owner = { has_valid_civic = civic_machine_servitor }
+				owner = { has_valid_civic = civic_machine_assimilator }
+				owner = { is_country_type = sbtg_stellarborne_empire }
+				owner = { is_country_type = sbtg_stellarborne_empire_active }
 			}
 		}
 	}

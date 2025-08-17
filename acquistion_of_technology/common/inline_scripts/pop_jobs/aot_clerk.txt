@@ -1,0 +1,45 @@
+inline_script = {
+	script = pop_jobs/part/$CATEGORY$
+	CATEGORY = $CATEGORY$
+	JOB = $JOB$
+	RESOURCE = $RESOURCE$
+}
+swappable_data = {
+	default = {
+		condition_string = WORKER_JOB_TRIGGER
+		building_icon = $ICON$
+	}
+}
+tags = {
+	amenities
+	trade
+}
+resources = {
+	category = planet_clerks
+	produces = {
+		trade = @[ 10 * two_exp$EXPONENT$ ]
+	}
+	upkeep = {
+		consumer_goods = @[ 4 * two_exp$EXPONENT$ ]
+	}
+}
+planet_modifier = {
+	planet_amenities_add = @[ 200 * two_exp$EXPONENT$ ]
+	planet_jobs_trade_produces_mult = @[ 0.02 * two_exp$EXPONENT$ ]
+}
+overlord_resources = {
+	category = planet_corporate_franchising_meddling
+	produces = {
+		trigger = {
+			planet = {
+				has_planet_flag = has_franchise_headquarters
+			}
+		}
+		unity = 25
+	}
+}
+triggered_planet_modifier = {
+	potential = { always = yes }
+	planet_amenities_add = 300
+	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}

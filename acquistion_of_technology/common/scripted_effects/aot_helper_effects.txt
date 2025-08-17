@@ -6,7 +6,6 @@ checked_modifier_remove = {
 		remove_modifier = $MODIFIER$
 	}
 }
-
 checked_planet_flag_remove = {
 	if = {
 		limit = {
@@ -15,24 +14,22 @@ checked_planet_flag_remove = {
 		remove_planet_flag = $FLAG$
 	}
 }
-
 AoT_MTTH = {
 	if = {
 		limit = {
-			$START_TRIGGER$				# Start the whole thing once the Dark Energy Reactor got researched.
+			$START_TRIGGER$                # Start the whole thing once the Dark Energy Reactor got researched.
 		}
 		country_event = {
 			id = $FOLLOW_UP_ID$
-			[[INITAL_TIME]days = $INITAL_TIME$]
-			[[INITAL_RANDOM]random = $INITAL_RANDOM$]
+			[[INITAL_TIME] days = $INITAL_TIME$ ]
+			[[INITAL_RANDOM] random = $INITAL_RANDOM$ ]
 		}
 	}
 }
-
 AoT_RecurringMTTH = {
 	if = {
 		limit = {
-			$END_TRIGGER$				# Is the actual criteria fulfilled? If not check again in a year.
+			$END_TRIGGER$                # Is the actual criteria fulfilled? If not check again in a year.
 		}
 		country_event = {
 			id = $TARGET_EVENT$
@@ -41,12 +38,11 @@ AoT_RecurringMTTH = {
 	else = {
 		country_event = {
 			id = $RECURRING_ID$
-			[[RECURRING_TIME]days = $RECURRING_TIME$]
-			[[RECURRING_RANDOM]random = $RECURRING_RANDOM$]
+			[[RECURRING_TIME] days = $RECURRING_TIME$ ]
+			[[RECURRING_RANDOM] random = $RECURRING_RANDOM$ ]
 		}
 	}
 }
-
 AoT_add_phanon_vault_tracker = {
 	if = {
 		limit = {
@@ -68,6 +64,26 @@ AoT_add_phanon_vault_tracker = {
 				event_chain = phanon_vault_track_list
 				location = $LOCATION$
 			}
+		}
+	}
+}
+add_resource_checked_for_bioships = {
+	if = {
+		limit = {
+			country_uses_bio_ships = yes
+		}
+		add_resource = {
+			food = $AMOUNT$
+			mult = @alloy_to_food_cost_ratio
+		}
+		add_resource = {
+			$RESOURCE$ = $AMOUNT$
+			mult = 0.5
+		}
+	}
+	else = {
+		add_resource = {
+			$RESOURCE$ = $AMOUNT$
 		}
 	}
 }

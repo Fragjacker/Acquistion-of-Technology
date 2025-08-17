@@ -141,7 +141,6 @@ has_upgraded_capital = {
 		}
 	}
 }
-
 has_major_upgraded_capital = {
 	if = {
 		limit = {
@@ -279,7 +278,6 @@ has_major_upgraded_capital = {
 		}
 	}
 }
-
 has_fully_upgraded_capital = {
 	if = {
 		limit = {
@@ -411,7 +409,6 @@ has_fully_upgraded_capital = {
 		}
 	}
 }
-
 has_enigmatic_capital = {
 	if = {
 		limit = {
@@ -472,7 +469,6 @@ has_enigmatic_capital = {
 		}
 	}
 }
-
 has_ascended_capital = {
 	if = {
 		limit = {
@@ -527,7 +523,6 @@ has_ascended_capital = {
 		}
 	}
 }
-
 has_stellarite_capital = {
 	if = {
 		limit = {
@@ -573,7 +568,6 @@ has_stellarite_capital = {
 		}
 	}
 }
-
 has_phanon_capital = {
 	if = {
 		limit = {
@@ -625,7 +619,6 @@ has_phanon_capital = {
 		}
 	}
 }
-
 has_advanced_fort = {
 	OR = {
 		# Strongholds
@@ -662,18 +655,34 @@ has_advanced_fort = {
 		is_aot_macripp = yes
 	}
 }
-
 advanced_resource_generation_building_regulation = {
 	NOR = {
 		has_modifier = resort_colony
 		has_modifier = penal_colony
 	}
 }
-
 has_lightmatter_reactor_tech = {
 	AND = {
 		has_technology = tech_dark_matter_power_core_oe
 		is_sbtg_activated = yes
+	}
+}
+
+# ------------------------------------- Habitat related stuff ------------------------------------ #
+has_conduit_building = {
+	OR = {
+		has_building = building_delta_nexus
+		has_building = building_alpha_nexus
+		has_building = building_phanon_stellarite_nexus
+		has_building = building_acot_stellarite_nexus
+	}
+}
+last_building_was_conduit_building = {
+	OR = {
+		last_building_changed = building_delta_nexus
+		last_building_changed = building_alpha_nexus
+		last_building_changed = building_phanon_stellarite_nexus
+		last_building_changed = building_acot_stellarite_nexus
 	}
 }
 
@@ -706,26 +715,6 @@ potential_can_have_vats_or_evochamber = {
 			free_building_slots <= 1
 			free_housing <= 0
 			free_jobs <= 0
-		}
-	}
-}
-
-destroy_trigger_vats_or_evochamber = {
-	exists = owner
-	OR = {
-		AND = {
-			owner = {
-				is_ai = yes
-			}
-			free_district_slots = 0
-			free_building_slots = 0
-			free_housing <= 0
-			free_jobs <= 0
-		}
-		NOT = {
-			owner = {
-				has_tradition = tr_genetics_adopt
-			}
 		}
 	}
 }

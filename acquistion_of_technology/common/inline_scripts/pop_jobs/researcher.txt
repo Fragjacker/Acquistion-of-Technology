@@ -1,0 +1,64 @@
+#---------------------------------<  Inline script for researchers  >-------------------------------
+inline_script = {
+	script = pop_jobs/part/$CATEGORY$
+	CATEGORY = $CATEGORY$
+	JOB = $JOB$
+	RESOURCE = $RESOURCE$
+}
+@base_extra_research = @[ ( $AMOUNT$ / 4 ) * two_exp$EXPONENT$ ]
+tags = { research }
+resources = {
+	category = planet_researchers
+	produces = {
+		physics_research = @[ $AMOUNT$ * two_exp$EXPONENT$ ]
+		engineering_research = @[ $AMOUNT$ * two_exp$EXPONENT$ ]
+		society_research = @[ $AMOUNT$ * two_exp$EXPONENT$ ]
+	}
+	produces = {
+		trigger = {
+			OR = {
+				has_building = building_acot_dm_institute
+				has_building = building_acot_dm_institute_super
+			}
+		}
+		physics_research = @[ base_extra_research * 2 ]
+		engineering_research = @[ base_extra_research * 2 ]
+		society_research = @[ base_extra_research * 2 ]
+	}
+	produces = {
+		trigger = {
+			OR = {
+				has_building = building_acot_ae_institute
+				has_building = building_acot_ae_institute_super
+			}
+		}
+		physics_research = @[ base_extra_research * 4 ]
+		engineering_research = @[ base_extra_research * 4 ]
+		society_research = @[ base_extra_research * 4 ]
+	}
+	produces = {
+		trigger = {
+			owner = {
+				any_owned_planet = {
+					has_building = building_acot_dm_institute_super
+				}
+			}
+		}
+		physics_research = @base_extra_research
+		engineering_research = @base_extra_research
+		society_research = @base_extra_research
+	}
+	produces = {
+		trigger = {
+			owner = {
+				any_owned_planet = {
+					has_building = building_acot_ae_institute_super
+				}
+			}
+		}
+		physics_research = @[ base_extra_research * 2 ]
+		engineering_research = @[ base_extra_research * 2 ]
+		society_research = @[ base_extra_research * 2 ]
+	}
+	$UPKEEP$
+}

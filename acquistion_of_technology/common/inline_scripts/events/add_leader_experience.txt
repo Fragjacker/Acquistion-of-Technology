@@ -1,0 +1,43 @@
+allow = {
+	fail_text = {
+		text = too_soon_to_do_that_nub
+	}
+	NOT = {
+		has_modifier = $MODIFIER_ADD$
+	}
+	owner = {
+		resource_stockpile_compare = {
+			resource = $RESOURCE$
+			value >= $AMOUNT$
+		}
+	}
+}
+owner = {
+	add_resource = {
+		$RESOURCE$ = @[ $AMOUNT$ * - 1 ]
+	}
+}
+add_modifier = {
+	modifier = $MODIFIER_ADD$
+	years = 5
+}
+hidden_effect = {
+	owner = {
+		every_owned_leader = {
+			limit = {
+				$LIMIT$
+			}
+			add_experience = 2500
+		}
+		every_owned_leader = {
+			limit = {
+				leader_class = scientist
+				has_base_skill >= 6
+			}
+			add_trait = {
+				trait = leader_trait_spark_of_genius
+				show_message = no
+			}
+		}
+	}
+}

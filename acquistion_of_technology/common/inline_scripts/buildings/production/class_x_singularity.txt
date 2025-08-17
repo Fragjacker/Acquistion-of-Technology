@@ -1,0 +1,107 @@
+inline_script = {
+	script = shared/automated_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	PRODUCES = "$PRODUCES$"
+	COST = "$COST$"
+	UPKEEP = "$UPKEEP$"
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
+}
+category = resource
+building_sets = {
+	generator
+}
+potential = {
+	exists = planet_owner
+	planet_owner = {
+		has_technology = $PREREQUISITE$
+	}
+	NOR = {
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+	}
+}
+destroy_trigger = {
+	always = no
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			merg_is_awakened_fe = yes
+			is_fallen_empire_spiritualist = no
+		}
+	}
+	modifier = {
+		job_acot_fe_generator_add = @[ 200 * $TIER$ ]
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			merg_is_awakened_fe = yes
+			is_fallen_empire_spiritualist = yes
+		}
+	}
+	modifier = {
+		job_fe_acolyte_generator_add = @[ 200 * $TIER$ ]
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_individualistic_empire = yes
+			is_fallen_empire = no
+		}
+	}
+	modifier = {
+		job_$JOB$_add = @[ fe_jobs * $TIER$ ]
+	}
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = yes
+			is_fallen_empire = no
+		}
+	}
+	modifier = {
+		job_$JOB$_drone_add = @[ fe_jobs * $TIER$ ]
+	}
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = yes
+			is_fallen_empire = no
+		}
+	}
+	text = job_technician_drone_effect_desc
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = no
+			is_fallen_empire = no
+		}
+	}
+	text = job_technician_effect_desc
+}
+triggered_desc = {
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire_spiritualist = yes
+		}
+	}
+	text = job_fe_acolyte_generator_effect_desc
+}

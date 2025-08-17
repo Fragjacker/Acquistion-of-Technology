@@ -1,0 +1,73 @@
+zone_aot_$TIER_NAME$_habitat_special_booster = {
+	icon = GFX_colony_type_dm_habitat
+	inline_script = {
+		script = zones/aot_habitat/special_zones_base
+		EXPONENT = $EXPONENT$
+		HABITAT_TYPE = $HABITAT_TYPE$
+		ZONE_SETS = "$ZONE_SETS$"
+	}
+	inline_script = {
+		script = zones/aot_habitat/part/planet_modifer_shared
+		RESEARCH_MULT = -0.5
+		RESOURCE_MULT = -0.5
+		INJECTED_MODIFIERS = "$INJECTED_MODIFIERS_POSITIVE$"
+	}
+	included_building_sets = {
+		industrial
+	}
+}
+zone_aot_$TIER_NAME$_habitat_special_research = {
+	icon = GFX_colony_type_research
+	inline_script = {
+		script = zones/aot_habitat/special_zones_base
+		EXPONENT = $EXPONENT$
+		HABITAT_TYPE = $HABITAT_TYPE$
+		ZONE_SETS = "$ZONE_SETS$"
+	}
+	inline_script = {
+		script = jobs/zones/aot_researchers
+		AMOUNT = $AMOUNT$
+		JOBS = $JOB_TIER$_researcher
+		JOBS_GESTALT = $JOB_TIER$_researcherdrone
+	}
+	inline_script = {
+		script = zones/aot_habitat/part/planet_modifer_shared
+		RESEARCH_MULT = 1
+		RESOURCE_MULT = -0.75
+		INJECTED_MODIFIERS = "$INJECTED_MODIFIERS_NEGATIVE$"
+	}
+	included_building_sets = {
+		research
+	}
+}
+zone_aot_$TIER_NAME$_habitat_special_resources = {
+	icon = GFX_colony_type_mine
+	inline_script = {
+		script = zones/aot_habitat/special_zones_base
+		EXPONENT = $EXPONENT$
+		HABITAT_TYPE = $HABITAT_TYPE$
+		ZONE_SETS = "$ZONE_SETS$"
+	}
+	inline_script = {
+		script = jobs/zones/aot_miners
+		AMOUNT = $AMOUNT$
+		JOBS = $JOB_TIER$_mineralman
+		JOBS_GESTALT = $JOB_TIER$_mineraldrone
+	}
+	inline_script = {
+		script = jobs/zones/aot_technicians
+		AMOUNT = $AMOUNT$
+		JOBS = $JOB_TIER$_energyman
+		JOBS_GESTALT = $JOB_TIER$_energydrone
+	}
+	inline_script = {
+		script = zones/aot_habitat/part/planet_modifer_shared
+		RESEARCH_MULT = -0.75
+		RESOURCE_MULT = 1
+		INJECTED_MODIFIERS = "$INJECTED_MODIFIERS_NEGATIVE$"
+	}
+	included_building_sets = {
+		mining
+		energy
+	}
+}

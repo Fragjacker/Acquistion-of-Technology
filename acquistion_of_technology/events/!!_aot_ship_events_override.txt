@@ -14,9 +14,15 @@ planet_event = {
 			limit = {
 				has_owner = no
 			}
+			set_timed_planet_flag = {
+				flag = acot_emissary_arrival_flag
+				days = 3
+			}
 			create_colony = {
 				owner = event_target:terraforming_emissary.owner
 			}
+			clear_blockers = yes
+			remove_all_buildings = yes
 			# ALPHA CAPITAL BUILDINGS
 			if = {
 				limit = {
@@ -29,7 +35,6 @@ planet_event = {
 						}
 					}
 				}
-				remove_building = building_colony_shelter
 				add_building = building_acot_ae_ancient_palace
 			}
 			if = {
@@ -43,7 +48,6 @@ planet_event = {
 						}
 					}
 				}
-				remove_building = building_colony_shelter
 				add_building = building_acot_ae_ancient_hive_cluster
 			}
 			if = {
@@ -57,7 +61,6 @@ planet_event = {
 						}
 					}
 				}
-				remove_building = building_deployment_post
 				add_building = building_acot_ae_ancient_control_center
 			}
 			# PHANON
@@ -72,7 +75,6 @@ planet_event = {
 						}
 					}
 				}
-				remove_building = building_colony_shelter
 				add_building = building_phanon_palace
 			}
 			if = {
@@ -86,7 +88,6 @@ planet_event = {
 						}
 					}
 				}
-				remove_building = building_colony_shelter
 				add_building = building_phanon_hive_cluster
 			}
 			if = {
@@ -100,7 +101,6 @@ planet_event = {
 						}
 					}
 				}
-				remove_building = building_deployment_post
 				add_building = building_phanon_control_center
 			}
 			# SIGMA
@@ -115,7 +115,6 @@ planet_event = {
 						}
 					}
 				}
-				remove_building = building_colony_shelter
 				add_building = building_stellarite_palace
 			}
 			if = {
@@ -129,7 +128,6 @@ planet_event = {
 						}
 					}
 				}
-				remove_building = building_colony_shelter
 				add_building = building_stellarite_hive_cluster
 			}
 			if = {
@@ -143,7 +141,6 @@ planet_event = {
 						}
 					}
 				}
-				remove_building = building_deployment_post
 				add_building = building_stellarite_control_center
 			}
 			## SPECIAL ADDITIONAL STUFFS
@@ -154,11 +151,9 @@ planet_event = {
 						has_fleet_flag = precursor_colonizer_delta
 					}
 				}
-				while = {
-					count = 5
-					create_pop = {
-						species = event_target:terraforming_emissary.owner_main_species
-					}
+				create_pop_group = {
+					size = 500
+					species = event_target:terraforming_emissary.owner_main_species
 				}
 			}
 			### ALPHA
@@ -170,11 +165,9 @@ planet_event = {
 						}
 					}
 				}
-				while = {
-					count = 10
-					create_pop = {
-						species = event_target:terraforming_emissary.owner_main_species
-					}
+				create_pop_group = {
+					size = 1000
+					species = event_target:terraforming_emissary.owner_main_species
 				}
 			}
 			#### PHANON
@@ -186,11 +179,9 @@ planet_event = {
 						}
 					}
 				}
-				while = {
-					count = 15
-					create_pop = {
-						species = event_target:terraforming_emissary.owner_main_species
-					}
+				create_pop_group = {
+					size = 1500
+					species = event_target:terraforming_emissary.owner_main_species
 				}
 			}
 			#### SUGNA
@@ -202,11 +193,9 @@ planet_event = {
 						}
 					}
 				}
-				while = {
-					count = 20
-					create_pop = {
-						species = event_target:terraforming_emissary.owner_main_species
-					}
+				create_pop_group = {
+					size = 2000
+					species = event_target:terraforming_emissary.owner_main_species
 				}
 			}
 			#### INEGA
@@ -218,11 +207,9 @@ planet_event = {
 						}
 					}
 				}
-				while = {
-					count = 25
-					create_pop = {
-						species = event_target:terraforming_emissary.owner_main_species
-					}
+				create_pop_group = {
+					size = 2500
+					species = event_target:terraforming_emissary.owner_main_species
 				}
 			}
 			### EXTRA STUFFS
@@ -234,11 +221,9 @@ planet_event = {
 						}
 					}
 				}
-				while = {
-					count = 10
-					create_pop = {
-						species = event_target:terraforming_emissary.owner_main_species
-					}
+				create_pop_group = {
+					size = 1000
+					species = event_target:terraforming_emissary.owner_main_species
 				}
 			}
 			if = {
@@ -249,11 +234,9 @@ planet_event = {
 						}
 					}
 				}
-				while = {
-					count = 15
-					create_pop = {
-						species = event_target:terraforming_emissary.owner_main_species
-					}
+				create_pop_group = {
+					size = 1500
+					species = event_target:terraforming_emissary.owner_main_species
 				}
 			}
 			else_if = {
@@ -264,11 +247,9 @@ planet_event = {
 						}
 					}
 				}
-				while = {
-					count = 20
-					create_pop = {
-						species = event_target:terraforming_emissary.owner_main_species
-					}
+				create_pop_group = {
+					size = 2000
+					species = event_target:terraforming_emissary.owner_main_species
 				}
 			}
 			# GIGA FORTRESSES
@@ -299,8 +280,8 @@ planet_event = {
 							has_component = ACOT_EMISSART_EXTRA_GIGA
 						}
 					}
-				 }
-				 add_building = building_acot_giga_fortress
+				}
+				add_building = building_acot_giga_fortress
 			}
 			# LABS
 			if = {
@@ -310,8 +291,8 @@ planet_event = {
 							has_component = ACOT_EMISSART_EXTRA_LAB
 						}
 					}
-				 }
-				 add_building = building_acot_ae_enigmatic_lab
+				}
+				add_building = building_acot_ae_enigmatic_lab
 			}
 			else_if = {
 				limit = {
@@ -361,8 +342,8 @@ planet_event = {
 							has_component = ACOT_EMISSART_EXTRA_SKYSHIELD
 						}
 					}
-				 }
-				 add_building = building_acot_ae_psg
+				}
+				add_building = building_acot_ae_psg
 			}
 			# Synthesizer
 			if = {
@@ -372,8 +353,8 @@ planet_event = {
 							has_component = ACOT_EMISSART_EXTRA_NEXUS
 						}
 					}
-				 }
-				 add_building = building_acot_ae_dark_matter_synthersizer
+				}
+				add_building = building_acot_ae_dark_matter_synthersizer
 			}
 			else_if = {
 				limit = {
@@ -487,17 +468,17 @@ planet_event = {
 						event_target:terraforming_emissary.owner = {
 							is_machine_empire = yes
 						}
-					 }
-					 add_building = building_acot_ae_super_assembly_machine
-				 }
+					}
+					add_building = building_acot_ae_super_assembly_machine
+				}
 			}
 		}
-	############## ATTACK #############################
-			if = {
-				limit = {
-					planet_is_hostile = yes
-				}
-				set_planet_flag = acot_emissary_planet_attack
+		############## ATTACK #############################
+		if = {
+			limit = {
+				planet_is_hostile = yes
+			}
+			set_planet_flag = acot_emissary_planet_attack
 			### DELTA ###
 			if = {
 				limit = {
@@ -510,33 +491,33 @@ planet_event = {
 				if = {
 					limit = {
 						event_target:terraforming_emissary.owner = {
-							 is_machine_empire = no
-						 }
-					  }
-					  while ={
-						 count = 10
-						 create_army = {
-							 owner = event_target:terraforming_emissary.owner
-							 type = acot_garrison_army
-							 species = event_target:terraforming_emissary.owner_main_species
-						 }
-					 }
-				 }
-				 if = {
-					 limit = {
+							is_machine_empire = no
+						}
+					}
+					while = {
+						count = 10
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army
+							species = event_target:terraforming_emissary.owner_main_species
+						}
+					}
+				}
+				if = {
+					limit = {
 						event_target:terraforming_emissary.owner = {
-							 is_machine_empire = yes
-						 }
-					  }
-					  while ={
-						 count = 10
-						 create_army = {
-							 owner = event_target:terraforming_emissary.owner
-							 type = acot_garrison_army_droid
-							 species = event_target:terraforming_emissary.owner_main_species
-						 }
-					 }
-				 }
+							is_machine_empire = yes
+						}
+					}
+					while = {
+						count = 10
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army_droid
+							species = event_target:terraforming_emissary.owner_main_species
+						}
+					}
+				}
 			}
 			### ALPHA ###
 			if = {
@@ -550,16 +531,16 @@ planet_event = {
 				if = {
 					limit = {
 						event_target:terraforming_emissary.owner = {
-							 is_machine_empire = no
-						 }
-					  }
-					  while ={
-						 count = 15
-						 create_army = {
-							 owner = event_target:terraforming_emissary.owner
-							 type = acot_garrison_army
-							 species = event_target:terraforming_emissary.owner_main_species
-							 effect = {
+							is_machine_empire = no
+						}
+					}
+					while = {
+						count = 15
+						create_army = {
+							owner = event_target:terraforming_emissary.owner
+							type = acot_garrison_army
+							species = event_target:terraforming_emissary.owner_main_species
+							effect = {
 								set_army_flag = acot_emissary_army
 							}
 						}

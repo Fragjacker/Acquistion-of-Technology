@@ -1,0 +1,97 @@
+@vats_cost = @[ 200 * two_exp$EXPONENT$ ]
+"" # We need a random filler line here that has no effect but is required because without it, this entire thing doesn't work.
+resources = {
+	category = planet_buildings_clone_vats
+
+	# Base cost
+	cost = {
+		energy = @[ 500 * two_exp$EXPONENT$ ]
+		minerals = @[ 500 * two_exp$EXPONENT$ ]
+		$PLANET_MODIFIER$
+	}
+	inline_script = {
+		script = buildings/civilian/parts/vats_and_chambers_upkeep
+		PLANET_UPKEEP = "$PLANET_UPKEEP$"
+		FACTOR = @vats_cost
+	}
+	upkeep = {
+		trigger = {
+			planet_owner = {
+				NOT = {
+					has_technology = tech_acot_fractured_autoharvesting
+				}
+			}
+		}
+		sr_dark_matter = @[ 4 * two_exp$EXPONENT$ ]
+		acot_sr_dark_energy = @[ 4 * two_exp$EXPONENT$ ]
+	}
+	# Org/Lith cost
+	cost = {
+		trigger = {
+			exists = owner
+			owner = { is_lithoid_empire = no }
+		}
+		food = @[ 500 * two_exp$EXPONENT$ ]
+	}
+	cost = {
+		trigger = {
+			exists = owner
+			owner = { is_lithoid_empire = yes }
+		}
+		energy = @[ 500 * two_exp$EXPONENT$ ]
+	}
+
+	# Base upkeep
+	upkeep = {
+		energy = @[ 2 * two_exp$EXPONENT$ ]
+	}
+	# Org/Lith upkeep
+	upkeep = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = no
+			}
+		}
+		food = @[ 15 * two_exp$EXPONENT$ ]
+	}
+	upkeep = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = no
+				has_cloning_tradition = yes
+			}
+		}
+		food = @[ 15 * two_exp$EXPONENT$ ]
+	}
+	upkeep = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = no
+				has_cloning_tradition = yes
+			}
+		}
+		food = @[ 15 * two_exp$EXPONENT$ ]
+	}
+	upkeep = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+			}
+		}
+		minerals = @[ 15 * two_exp$EXPONENT$ ]
+	}
+	upkeep = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+				has_cloning_tradition = yes
+			}
+		}
+		minerals = @[ 15 * two_exp$EXPONENT$ ]
+	}
+}

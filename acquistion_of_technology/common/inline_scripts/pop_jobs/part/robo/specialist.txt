@@ -1,0 +1,109 @@
+category = specialist
+possible_pre_triggers = {
+	has_owner = yes
+	is_being_purged = no
+	is_being_assimilated = no
+	is_sapient = yes
+}
+possible_precalc = can_fill_specialist_job
+triggered_planet_modifier = {
+	potential = {
+		roboticist_is_bath_attendant_individual_machine = yes
+	}
+	planet_pop_assembly_mult = @[ 0.0075 * two_exp$EXPONENT$ ]
+	pop_amenities_usage_mult = @[ 0.0075 * two_exp$EXPONENT$ ]
+	mult = planet.value:toxic_attendant_growth
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			exists = ruler
+			ruler = {
+				has_trait = leader_trait_legendary_great_inventor
+			}
+		}
+	}
+	planet_amenities_add = @[ 50 * two_exp$EXPONENT$ ]
+	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			exists = ruler
+			ruler = {
+				has_trait = leader_trait_legendary_great_inventor_2
+			}
+		}
+	}
+	planet_amenities_add = @[ 100 * two_exp$EXPONENT$ ]
+	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			exists = ruler
+			ruler = {
+				has_trait = leader_trait_legendary_great_inventor_3
+			}
+		}
+	}
+	planet_amenities_add = @[ 150 * two_exp$EXPONENT$ ]
+	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_tradition = tr_modularity_2
+		}
+	}
+	planet_pop_assembly_add = @[ 0.5 * two_exp$EXPONENT$ ] #If this changes, update tr_modularity_2_modifier_desc
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_synthetics_prefabricated_components
+		}
+	}
+	planet_amenities_add = @[ 100 * two_exp$EXPONENT$ ]
+	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}
+triggered_planet_modifier = {
+	potential = {
+		check_modifier_value = {
+			modifier = job_roboticist_branch_office_value_mult
+			value > 0
+		}
+	}
+	# Actual value determined in the script value below
+	branch_office_value_mult = 1
+	mult = value:roboticist_branch_office_value_mult
+}
+triggered_planet_modifier = {
+	potential = {
+		roboticist_is_identity_designer = yes
+	}
+	planet_amenities_add = @[ 250 * two_exp$EXPONENT$ ]
+	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}
+triggered_country_modifier = {
+	potential = {
+		roboticist_is_identity_designer = yes
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = identity_designer_converter }
+		}
+	}
+	planet_pop_assembly_add = @[ 0.5 * two_exp$EXPONENT$ ]
+}
+weight = {
+	weight = 500
+	modifier = {
+		factor = 10
+		owner = { is_synthetic_empire = yes }
+	}
+}

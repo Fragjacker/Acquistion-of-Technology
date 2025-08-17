@@ -3,6 +3,7 @@
 # ------------------------------------------------------------------------------------------------ #
 # Phanon Pylon blasts system to bits
 phanon_destroy_solar_system = {
+	optimize_memory
 	solar_system = {
 		set_star_class = sc_phanon_pylon
 	}
@@ -75,6 +76,7 @@ phanon_destroy_solar_system = {
 
 # Sigma Star blasts system to bits
 sigma_destroy_solar_system = {
+	optimize_memory
 	solar_system = {
 		set_star_class = sc_sigma_star
 	}
@@ -145,6 +147,7 @@ sigma_destroy_solar_system = {
 
 # Upgrade phanon pylon to sigma star without beeg boom.
 create_sigma_Star = {
+	optimize_memory
 	solar_system = {
 		set_star_class = sc_sigma_star
 	}
@@ -165,212 +168,238 @@ create_sigma_Star = {
 # ------------------------------------------------------------------------------------------------ #
 # --------------------------------- Save old amount of districts --------------------------------- #
 save_aot_habitat_districts = {
+	optimize_memory
 	[[HOUSING]
-	if = {
-		limit = {
-			has_district = $HOUSING$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $HOUSING$
+		if = {
+			limit = {
+				has_district = $HOUSING$
 			}
-			variable = num_houses
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $HOUSING$
+				}
+				variable = num_houses
+			}
 		}
-	}
 	]
 	[[ENERGY]
-	if = {
-		limit = {
-			has_district = $ENERGY$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $ENERGY$
+		if = {
+			limit = {
+				has_district = $ENERGY$
 			}
-			variable = num_energy
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $ENERGY$
+				}
+				variable = num_energy
+			}
 		}
-	}
 	]
 	[[MINING]
-	if = {
-		limit = {
-			has_district = $MINING$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $MINING$
+		if = {
+			limit = {
+				has_district = $MINING$
 			}
-			variable = num_mines
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $MINING$
+				}
+				variable = num_mines
+			}
 		}
-	}
 	]
 	[[INDUSTRY]
-	if = {
-		limit = {
-			has_district = $INDUSTRY$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $INDUSTRY$
+		if = {
+			limit = {
+				has_district = $INDUSTRY$
 			}
-			variable = num_industry
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $INDUSTRY$
+				}
+				variable = num_industry
+			}
 		}
-	}
 	]
 	[[SCIENCE]
-	if = {
-		limit = {
-			has_district = $SCIENCE$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $SCIENCE$
+		if = {
+			limit = {
+				has_district = $SCIENCE$
 			}
-			variable = num_research
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $SCIENCE$
+				}
+				variable = num_research
+			}
 		}
-	}
 	]
 	[[SPECIAL]
-	if = {
-		limit = {
-			has_district = $SPECIAL$
-		}
-		export_trigger_value_to_variable = {
-			trigger = num_districts
-			parameters = {
-				type = $SPECIAL$
+		if = {
+			limit = {
+				has_district = $SPECIAL$
 			}
-			variable = num_special
+			export_trigger_value_to_variable = {
+				trigger = num_districts
+				parameters = {
+					type = $SPECIAL$
+				}
+				variable = num_special
+			}
 		}
-	}
 	]
 }
-
 create_new_aot_habitat_districts = {
+	optimize_memory
 	[[HOUSING]
-	if = {
-		limit = {
-			is_variable_set = num_houses
+		if = {
+			limit = {
+				is_variable_set = num_houses
+			}
+			while = {
+				count = num_houses
+				add_district = $HOUSING$
+			}
+			clear_variable = num_houses
 		}
-		while = {
-			count = num_houses
-			add_district = $HOUSING$
-		}
-		clear_variable = num_houses
-	}
 	]
 	[[ENERGY]
-	if = {
-		limit = {
-			is_variable_set = num_energy
+		if = {
+			limit = {
+				is_variable_set = num_energy
+			}
+			while = {
+				count = num_energy
+				add_district = $ENERGY$
+			}
+			clear_variable = num_energy
 		}
-		while = {
-			count = num_energy
-			add_district = $ENERGY$
-		}
-		clear_variable = num_energy
-	}
 	]
 	[[MINING]
-	if = {
-		limit = {
-			is_variable_set = num_mines
+		if = {
+			limit = {
+				is_variable_set = num_mines
+			}
+			while = {
+				count = num_mines
+				add_district = $MINING$
+			}
+			clear_variable = num_mines
 		}
-		while = {
-			count = num_mines
-			add_district = $MINING$
-		}
-		clear_variable = num_mines
-	}
 	]
 	[[INDUSTRY]
-	if = {
-		limit = {
-			is_variable_set = num_industry
+		if = {
+			limit = {
+				is_variable_set = num_industry
+			}
+			while = {
+				count = num_industry
+				add_district = $INDUSTRY$
+			}
+			clear_variable = num_industry
 		}
-		while = {
-			count = num_industry
-			add_district = $INDUSTRY$
-		}
-		clear_variable = num_industry
-	}
 	]
 	[[SCIENCE]
-	if = {
-		limit = {
-			is_variable_set = num_research
+		if = {
+			limit = {
+				is_variable_set = num_research
+			}
+			while = {
+				count = num_research
+				add_district = $SCIENCE$
+			}
+			clear_variable = num_research
 		}
-		while = {
-			count = num_research
-			add_district = $SCIENCE$
-		}
-		clear_variable = num_research
-	}
 	]
 	[[SPECIAL]
-	if = {
-		limit = {
-			is_variable_set = num_special
+		if = {
+			limit = {
+				is_variable_set = num_special
+			}
+			while = {
+				count = num_special
+				add_district = $SPECIAL$
+			}
+			clear_variable = num_special
 		}
-		while = {
-			count = num_special
-			add_district = $SPECIAL$
-		}
-		clear_variable = num_special
-	}
 	]
 }
 
 # ---------------------------------- AoT habitat initialisation ---------------------------------- #
 create_fe_dm_habitat = {
 	clear_deposits = yes
+	prevent_anomaly = yes
+	set_planet_flag = fallen_empire_world
+	set_planet_flag = megastructure
+	set_planet_flag = habitat
+	set_planet_flag = habitat_level_1
+	set_owner = root
+	set_controller = root
+	set_planet_size = @size_lvl1
 	set_colony_type = col_habitat_dm
 	change_pc = pc_dm_habitat
 	set_planet_entity = {
 		entity = "dm_habitat_phase_03_entity"
 	}
-	set_planet_size = @size_lvl1
-	set_planet_flag = advanced_ascended_habitat_2
 	add_modifier = {
 		modifier = dm_habitat_mod
 		days = -1
 	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
+	}
+	spawn_support_pylons_in_system = yes
 }
-
-# -------- Temporary disabled mining and energy district code, as it doesn't work anyways. ------- #
-create_dm_habitat = {
-	save_aot_habitat_districts = {
-		HOUSING = district_hab_housing
-		# ENERGY = district_hab_energy
-		# MINING = district_hab_mining
-		INDUSTRY = district_hab_industrial
-		# SCIENCE = district_hab_science
+spawn_aot_habitat_effect = {
+	optimize_memory
+	spawn_planet = {
+		class = $PLANET_TYPE$
+		location = event_target:target_planet
+		orbit_location = yes
+		orbit_angle_offset = 135
+		orbit_distance_offset = $DISTANCE$
+		size = @size_lvl1
+		has_ring = no
+		init_effect = {
+			set_name = {
+				key = HABITAT_PLANET_NAME
+				variable_string = "\\[FROM.from.solar_system.GetName]"
+			}
+			set_planet_entity = {
+				entity = $ENTITY$
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = FROM
+			}
+			set_all_comms_surveyed = yes
+			set_colony_type = $COLONY_TYPE$
+			clear_blockers = yes
+			set_planet_flag = megastructure
+			set_planet_flag = habitat
+			set_planet_flag = habitat_level_1
+			add_modifier = {
+				modifier = $HAB_MODIFIER$
+				days = -1
+			}
+			save_event_target_as = target_habitat
+			event_target:target_planet = {
+				set_planet_flag = habitat@PREV
+			}
+			add_deposit_if_missing = {
+				DEPOSIT = aot_habitat_system_resources
+			}
+		}
 	}
-	clear_deposits = yes
-	set_colony_type = col_habitat_dm
-	change_pc = pc_dm_habitat
-	set_planet_entity = {
-		entity = "dm_habitat_phase_03_entity"
-	}
-	set_planet_size = @size_lvl1
-	set_planet_flag = advanced_ascended_habitat_2
-	add_modifier = {
-		modifier = dm_habitat_mod
-		days = -1
-	}
-	# Add housing districts if there's been built any previously.
-	create_new_aot_habitat_districts = {
-		HOUSING = district_dm_hab_housing
-		# ENERGY = district_dm_hab_energy
-		# MINING = district_dm_hab_mining
-		INDUSTRY = district_dm_hab_arms_industry
-		# SCIENCE = district_dm_hab_research
-	}
+	spawn_support_pylons_in_system = yes
+}
+replace_habitat_capital_building = {
+	optimize_memory
 	if = {
 		limit = {
 			exists = owner
@@ -500,13 +529,54 @@ create_dm_habitat = {
 	}
 }
 
-create_ae_habitat = {
+# -------- Temporary disabled mining and energy district code, as it doesn't work anyways. ------- #
+upgrade_dm_habitat = {
+	optimize_memory
+	save_aot_habitat_districts = {
+		HOUSING = district_hab_housing
+		ENERGY = district_hab_energy
+		MINING = district_hab_mining
+		# INDUSTRY = district_hab_industrial
+		# SCIENCE = district_hab_science
+	}
+	clear_deposits = yes
+	set_colony_type = col_habitat_dm
+	change_pc = pc_dm_habitat
+	set_planet_entity = {
+		entity = "dm_habitat_phase_03_entity"
+	}
+	set_planet_size = @size_lvl1
+	set_planet_flag = advanced_ascended_habitat_2
+	add_modifier = {
+		modifier = dm_habitat_mod
+		days = -1
+	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
+	}
+	# Add housing districts if there's been built any previously.
+	create_new_aot_habitat_districts = {
+		HOUSING = district_dm_hab_housing
+		ENERGY = district_dm_hab_energy
+		MINING = district_dm_hab_mining
+		# INDUSTRY = district_dm_hab_arms_industry
+		# SCIENCE = district_dm_hab_research
+	}
+	replace_habitat_capital_building = yes
+	spawn_support_pylons_in_system = yes
+	# Refresh and upgrade orbitals.
+	planet_event = {
+		id = aot_habitat_events.90
+	}
+}
+upgrade_ae_habitat = {
+	optimize_memory
 	save_aot_habitat_districts = {
 		HOUSING = district_dm_hab_housing
-		# ENERGY = district_dm_hab_energy
-		# MINING = district_dm_hab_mining
-		INDUSTRY = district_dm_hab_arms_industry
-		SCIENCE = district_dm_hab_research
+		ENERGY = district_dm_hab_energy
+		MINING = district_dm_hab_mining
+		# INDUSTRY = district_dm_hab_arms_industry
+		# SCIENCE = district_dm_hab_research
 		SPECIAL = district_dm_hab_dark_matter_energy
 	}
 	clear_deposits = yes
@@ -519,12 +589,15 @@ create_ae_habitat = {
 		modifier = ae_habitat_mod
 		days = -1
 	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
+	}
 	create_new_aot_habitat_districts = {
 		HOUSING = district_ae_hab_housing
-		# ENERGY = district_ae_hab_energy
-		# MINING = district_ae_hab_mining
-		INDUSTRY = district_ae_hab_arms_industry
-		SCIENCE = district_ae_hab_research
+		ENERGY = district_ae_hab_energy
+		MINING = district_ae_hab_mining
+		# INDUSTRY = district_ae_hab_arms_industry
+		# SCIENCE = district_ae_hab_research
 		SPECIAL = district_ae_hab_dark_matter_energy
 	}
 	if = {
@@ -554,154 +627,21 @@ create_ae_habitat = {
 		}
 		set_planet_size = @size_lvl3
 	}
-	if = {
-		limit = {
-			exists = owner
-			has_ascended_capital = no
-		}
-		if = {
-			limit = {
-				has_building = building_colony_shelter
-			}
-			remove_building = building_colony_shelter
-		}
-		if = {
-			limit = {
-				has_building = building_capital
-			}
-			remove_building = building_capital
-		}
-		if = {
-			limit = {
-				has_building = building_major_capital
-			}
-			remove_building = building_major_capital
-		}
-		if = {
-			limit = {
-				has_building = building_system_capital
-			}
-			remove_building = building_system_capital
-		}
-		if = {
-			limit = {
-				has_building = building_hab_capital
-			}
-			remove_building = building_hab_capital
-		}
-		if = {
-			limit = {
-				has_building = building_hab_system_capital
-			}
-			remove_building = building_hab_system_capital
-		}
-		if = {
-			limit = {
-				has_building = building_resort_capital
-			}
-			remove_building = building_resort_capital
-		}
-		if = {
-			limit = {
-				has_building = building_resort_major_capital
-			}
-			remove_building = building_resort_major_capital
-		}
-		if = {
-			limit = {
-				has_building = building_slave_capital
-			}
-			remove_building = building_slave_capital
-		}
-		if = {
-			limit = {
-				has_building = building_slave_major_capital
-			}
-			remove_building = building_slave_major_capital
-		}
-		if = {
-			limit = {
-				has_building = building_ancient_palace
-			}
-			remove_building = building_ancient_palace
-		}
-		if = {
-			limit = {
-				has_building = building_ancient_control_center
-			}
-			remove_building = building_ancient_control_center
-		}
-		if = {
-			limit = {
-				has_building = building_imperial_capital
-			}
-			remove_building = building_imperial_capital
-		}
-		if = {
-			limit = {
-				has_building = building_imperial_machine_capital
-			}
-			remove_building = building_imperial_machine_capital
-		}
-		if = {
-			limit = {
-				has_building = building_imperial_hive_capital
-			}
-			remove_building = building_imperial_hive_capital
-		}
-		if = {
-			limit = {
-				has_building = building_acot_dm_ancient_control_center
-			}
-			remove_building = building_acot_dm_ancient_control_center
-		}
-		if = {
-			limit = {
-				has_building = building_acot_dm_ancient_palace
-			}
-			remove_building = building_acot_dm_ancient_palace
-		}
-		if = {
-			limit = {
-				has_building = building_acot_dm_ancient_hive_cluster
-			}
-			remove_building = building_acot_dm_ancient_hive_cluster
-		}
-		# Add the appropriate building now.
-		if = {
-			limit = {
-				owner = {
-					is_individualistic_empire = yes
-				}
-			}
-			add_building = building_acot_ae_ancient_palace
-		}
-		if = {
-			limit = {
-				owner = {
-					is_machine_empire = yes
-				}
-			}
-			add_building = building_acot_ae_ancient_control_center
-		}
-		if = {
-			limit = {
-				owner = {
-					is_hive_empire = yes
-				}
-			}
-			add_building = building_acot_ae_ancient_hive_cluster
-		}
+	replace_habitat_capital_building = yes
+	upgrade_all_support_pylons = yes
+	# Refresh and upgrade orbitals.
+	planet_event = {
+		id = aot_habitat_events.90
 	}
 }
-
-create_phanon_habitat = {
+upgrade_phanon_habitat = {
+	optimize_memory
 	save_aot_habitat_districts = {
 		HOUSING = district_ae_hab_housing
-		# ENERGY = district_ae_hab_energy
-		# MINING = district_ae_hab_mining
-		INDUSTRY = district_ae_hab_arms_industry
-		SCIENCE = district_ae_hab_research
+		ENERGY = district_ae_hab_energy
+		MINING = district_ae_hab_mining
+		# INDUSTRY = district_ae_hab_arms_industry
+		# SCIENCE = district_ae_hab_research
 		SPECIAL = district_ae_hab_dark_matter_energy
 	}
 	clear_deposits = yes
@@ -715,12 +655,15 @@ create_phanon_habitat = {
 		modifier = phanon_habitat_mod
 		days = -1
 	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
+	}
 	create_new_aot_habitat_districts = {
 		HOUSING = district_hab_phanon_housing
-		# ENERGY = district_hab_phanon_energy
-		# MINING = district_hab_phanon_mining
-		INDUSTRY = district_hab_phanon_arms_industry
-		SCIENCE = district_hab_phanon_research
+		ENERGY = district_hab_phanon_energy
+		MINING = district_hab_phanon_mining
+		# INDUSTRY = district_hab_phanon_arms_industry
+		# SCIENCE = district_hab_phanon_research
 		SPECIAL = district_hab_phanon_generator
 	}
 	if = {
@@ -750,154 +693,21 @@ create_phanon_habitat = {
 		}
 		set_planet_size = @size_lvl3
 	}
-	if = {
-		limit = {
-			exists = owner
-			has_phanon_capital = no
-		}
-		if = {
-			limit = {
-				has_building = building_colony_shelter
-			}
-			remove_building = building_colony_shelter
-		}
-		if = {
-			limit = {
-				has_building = building_capital
-			}
-			remove_building = building_capital
-		}
-		if = {
-			limit = {
-				has_building = building_major_capital
-			}
-			remove_building = building_major_capital
-		}
-		if = {
-			limit = {
-				has_building = building_system_capital
-			}
-			remove_building = building_system_capital
-		}
-		if = {
-			limit = {
-				has_building = building_hab_capital
-			}
-			remove_building = building_hab_capital
-		}
-		if = {
-			limit = {
-				has_building = building_hab_system_capital
-			}
-			remove_building = building_hab_system_capital
-		}
-		if = {
-			limit = {
-				has_building = building_resort_capital
-			}
-			remove_building = building_resort_capital
-		}
-		if = {
-			limit = {
-				has_building = building_resort_major_capital
-			}
-			remove_building = building_resort_major_capital
-		}
-		if = {
-			limit = {
-				has_building = building_slave_capital
-			}
-			remove_building = building_slave_capital
-		}
-		if = {
-			limit = {
-				has_building = building_slave_major_capital
-			}
-			remove_building = building_slave_major_capital
-		}
-		if = {
-			limit = {
-				has_building = building_imperial_capital
-			}
-			remove_building = building_imperial_capital
-		}
-		if = {
-			limit = {
-				has_building = building_imperial_machine_capital
-			}
-			remove_building = building_imperial_machine_capital
-		}
-		if = {
-			limit = {
-				has_building = building_imperial_hive_capital
-			}
-			remove_building = building_imperial_hive_capital
-		}
-		if = {
-			limit = {
-				has_building = building_ancient_palace
-			}
-			remove_building = building_ancient_palace
-		}
-		if = {
-			limit = {
-				has_building = building_ancient_control_center
-			}
-			remove_building = building_ancient_control_center
-		}
-		if = {
-			limit = {
-				has_building = building_acot_ae_ancient_control_center
-			}
-			remove_building = building_acot_ae_ancient_control_center
-		}
-		if = {
-			limit = {
-				has_building = building_acot_ae_ancient_palace
-			}
-			remove_building = building_acot_ae_ancient_palace
-		}
-		if = {
-			limit = {
-				has_building = building_acot_ae_ancient_hive_cluster
-			}
-			remove_building = building_acot_ae_ancient_hive_cluster
-		}
-		# Add the appropriate building now.
-		if = {
-			limit = {
-				owner = {
-					is_individualistic_empire = yes
-				}
-			}
-			add_building = building_phanon_palace
-		}
-		if = {
-			limit = {
-				owner = {
-					is_machine_empire = yes
-				}
-			}
-			add_building = building_phanon_control_center
-		}
-		if = {
-			limit = {
-				owner = {
-					is_hive_empire = yes
-				}
-			}
-			add_building = building_phanon_hive_cluster
-		}
+	replace_habitat_capital_building = yes
+	upgrade_all_support_pylons = yes
+	# Refresh and upgrade orbitals.
+	planet_event = {
+		id = aot_habitat_events.90
 	}
 }
-
-create_sigma_habitat = {
+upgrade_sigma_habitat = {
+	optimize_memory
 	save_aot_habitat_districts = {
 		HOUSING = district_hab_phanon_housing
-		# ENERGY = district_hab_phanon_energy
-		# MINING = district_hab_phanon_mining
-		INDUSTRY = district_hab_phanon_arms_industry
-		SCIENCE = district_hab_phanon_research
+		ENERGY = district_hab_phanon_energy
+		MINING = district_hab_phanon_mining
+		# INDUSTRY = district_hab_phanon_arms_industry
+		# SCIENCE = district_hab_phanon_research
 		SPECIAL = district_hab_phanon_generator
 	}
 	clear_deposits = yes
@@ -912,12 +722,15 @@ create_sigma_habitat = {
 		modifier = stellarite_habitat_mod
 		days = -1
 	}
+	add_deposit_if_missing = {
+		DEPOSIT = aot_habitat_system_resources
+	}
 	create_new_aot_habitat_districts = {
 		HOUSING = district_hab_stellarite_housing
-		# ENERGY = district_hab_stellarite_energy
-		# MINING = district_hab_stellarite_mining
-		INDUSTRY = district_hab_stellarite_arms_industry
-		SCIENCE = district_hab_stellarite_research
+		ENERGY = district_hab_stellarite_energy
+		MINING = district_hab_stellarite_mining
+		# INDUSTRY = district_hab_stellarite_arms_industry
+		# SCIENCE = district_hab_stellarite_research
 		SPECIAL = district_hab_stellarite_generator
 	}
 	if = {
@@ -947,358 +760,225 @@ create_sigma_habitat = {
 		}
 		set_planet_size = @size_lvl3
 	}
+	replace_habitat_capital_building = yes
+	upgrade_all_support_pylons = yes
+	# Refresh and upgrade orbitals.
+	planet_event = {
+		id = aot_habitat_events.90
+	}
+}
+
+#--------------------<  Initial spawn of support pylons when building a habitat  >------------------
+spawn_support_pylons_in_system = {
+	solar_system = {
+		every_system_colony = {
+			limit = {
+				has_conduit_building = yes
+				OR = {
+					merg_is_habitat = no
+					is_aot_habitat = no
+					is_artificial = no
+				}
+			}
+			spawn_support_pylons = yes
+		}
+	}
+}
+
+#--------------------------<  Spawn support pylons around eligible planets  >-----------------------
+spawn_support_pylons = {
 	if = {
 		limit = {
-			exists = owner
-			has_stellarite_capital = no
-		}
-		if = {
-			limit = {
-				has_building = building_colony_shelter
-			}
-			remove_building = building_colony_shelter
-		}
-		if = {
-			limit = {
-				has_building = building_capital
-			}
-			remove_building = building_capital
-		}
-		if = {
-			limit = {
-				has_building = building_major_capital
-			}
-			remove_building = building_major_capital
-		}
-		if = {
-			limit = {
-				has_building = building_system_capital
-			}
-			remove_building = building_system_capital
-		}
-		if = {
-			limit = {
-				has_building = building_hab_capital
-			}
-			remove_building = building_hab_capital
-		}
-		if = {
-			limit = {
-				has_building = building_hab_system_capital
-			}
-			remove_building = building_hab_system_capital
-		}
-		if = {
-			limit = {
-				has_building = building_resort_capital
-			}
-			remove_building = building_resort_capital
-		}
-		if = {
-			limit = {
-				has_building = building_resort_major_capital
-			}
-			remove_building = building_resort_major_capital
-		}
-		if = {
-			limit = {
-				has_building = building_slave_capital
-			}
-			remove_building = building_slave_capital
-		}
-		if = {
-			limit = {
-				has_building = building_slave_major_capital
-			}
-			remove_building = building_slave_major_capital
-		}
-		if = {
-			limit = {
-				has_building = building_imperial_capital
-			}
-			remove_building = building_imperial_capital
-		}
-		if = {
-			limit = {
-				has_building = building_imperial_machine_capital
-			}
-			remove_building = building_imperial_machine_capital
-		}
-		if = {
-			limit = {
-				has_building = building_imperial_hive_capital
-			}
-			remove_building = building_imperial_hive_capital
-		}
-		if = {
-			limit = {
-				has_building = building_ancient_palace
-			}
-			remove_building = building_ancient_palace
-		}
-		if = {
-			limit = {
-				has_building = building_ancient_control_center
-			}
-			remove_building = building_ancient_control_center
-		}
-		if = {
-			limit = {
-				has_building = building_acot_ae_ancient_control_center
-			}
-			remove_building = building_acot_ae_ancient_control_center
-		}
-		if = {
-			limit = {
-				has_building = building_acot_ae_ancient_palace
-			}
-			remove_building = building_acot_ae_ancient_palace
-		}
-		if = {
-			limit = {
-				has_building = building_acot_ae_ancient_hive_cluster
-			}
-			remove_building = building_acot_ae_ancient_hive_cluster
-		}
-		# Add the appropriate building now.
-		if = {
-			limit = {
-				owner = {
-					is_individualistic_empire = yes
+			this = {
+				OR = {
+					merg_is_habitat = no
+					is_aot_habitat = no
+					is_artificial = no
 				}
 			}
-			add_building = building_stellarite_palace
-		}
-		if = {
-			limit = {
-				owner = {
-					is_machine_empire = yes
+			solar_system = {
+				any_system_planet = {
+					is_aot_habitat = yes
 				}
 			}
-			add_building = building_stellarite_control_center
-		}
-		if = {
-			limit = {
-				owner = {
-					is_hive_empire = yes
-				}
-			}
-			add_building = building_stellarite_hive_cluster
-		}
-	}
-}
-
-add_aot_habitat_deposits = {
-	set_all_comms_surveyed = yes
-	clear_blockers = yes
-	set_planet_flag = megastructure
-	set_planet_flag = habitat
-	set_planet_flag = advanced_habitat_2
-	add_deposit_if_missing = {
-		DEPOSIT = aot_habitat_system_resources
-	}
-	add_deposit_if_missing = {
-		DEPOSIT = aot_orbital_energy
-	}
-	add_deposit_if_missing = {
-		DEPOSIT = aot_orbital_mining
-	}
-}
-
-# ------------------------------------------------------------------------------------------------ #
-#										 Aot Orbitals Code										#
-# ------------------------------------------------------------------------------------------------ #
-# Wraps the handling executing the proper function depending on the ship size of the last built orbital.
-update_last_orbital_wrapper = {
-	remove_deposit = d_system_resources
-	remove_deposit = d_orbital_energy
-	remove_deposit = d_orbital_mining
-	remove_deposit = d_orbital_research
-	add_deposit_if_missing = {
-		DEPOSIT = aot_habitat_system_resources
-	}
-	add_deposit_if_missing = {
-		DEPOSIT = aot_orbital_energy
-	}
-	add_deposit_if_missing = {
-		DEPOSIT = aot_orbital_mining
-	}
-	last_created_fleet = {
-		switch = {
-			trigger = is_ship_size
-			major_orbital_generic = {
-				update_last_built_orbital = {
-					TO_TIER = $TIER$
-					BODY = major
-					TYPE = generic
-				}
-			}
-			major_orbital_resource = {
-				update_last_built_orbital = {
-					TO_TIER = $TIER$
-					BODY = major
-					TYPE = resource
-				}
-			}
-			minor_orbital_generic = {
-				update_last_built_orbital = {
-					TO_TIER = $TIER$
-					BODY = minor
-					TYPE = generic
-				}
-			}
-			minor_orbital_resource = {
-				update_last_built_orbital = {
-					TO_TIER = $TIER$
-					BODY = minor
-					TYPE = resource
-				}
+			not = {
+				has_planet_flag = has_support_pylons
 			}
 		}
-	}
-}
-
-# Updates the last build orbital to another tier visual.
-update_last_built_orbital = {
-	last_created_fleet = {
-		save_event_target_as = old_orbital
-		create_fleet = {
-			effect = {
-				set_owner = from
-				create_ship = {
-					random_existing_design = $TO_TIER$_$BODY$_orbital_$TYPE$
-					effect = {
-						set_disable_at_health = 0.05
-						set_name = {
-							key = TARGET_ORBITAL_NAME
-							variable_string = "\\[FROM.from.planet.GetName]"
-						}
-					}
-				}
-				save_event_target_as = target_orbital
-				fleet = {
-					set_location = {
-						target = event_target:target_planet
-					}
-				}
-			}
-		}
-		event_target:target_orbital = {
-			set_name = {
-				key = TARGET_ORBITAL_NAME
-				variable_string = "\\[FROM.from.planet.GetName]"
-			}
-		}
-		event_target:old_orbital = {
+		get_aot_habitat_type = yes
+		set_planet_flag = has_support_pylons
+		event_target:system_aot_habitat = {
 			switch = {
-				trigger = has_fleet_flag
-				mining_orbital = {
-					event_target:target_orbital = {
-						set_fleet_flag = mining_orbital
-					}
-				}
-				energy_orbital = {
-					event_target:target_orbital = {
-						set_fleet_flag = energy_orbital
-					}
-				}
+				trigger = is_planet_class
+				pc_ae_habitat = { spawn_4_pylons = { TYPE = alpha } }
+				pc_phanon_habitat = { spawn_4_pylons = { TYPE = phanon } }
+				pc_sigma_habitat = { spawn_4_pylons = { TYPE = sigma } }
+				default = { spawn_4_pylons = { TYPE = delta } }
 			}
 		}
-		delete_fleet = event_target:old_orbital
 	}
 }
 
-# Wraps all possible minor/major orbital upgrade paths in one command.
-update_all_orbitals_wrapper = {
-	update_minor_major_orbitals = {
-		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
-		TO_TIER = $TO_TIER$
-		BODY = major
-		TYPE = generic
-	}
-	update_minor_major_orbitals = {
-		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
-		TO_TIER = $TO_TIER$
-		BODY = major
-		TYPE = resource
-	}
-	update_minor_major_orbitals = {
-		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
-		TO_TIER = $TO_TIER$
-		BODY = minor
-		TYPE = generic
-	}
-	update_minor_major_orbitals = {
-		[[FROM_TIER]FROM_TIER = $FROM_TIER$]
-		TO_TIER = $TO_TIER$
-		BODY = minor
-		TYPE = resource
-	}
-}
-
-# Upgrades all orbitals of the same kind on the system. PARAMETERS: FROM_TIER, TO_TIER, BODY, TYPE
-update_minor_major_orbitals = {
+# Gets the type of the aot habitat in the system and stores the scope as event_target:system_aot_habitat.
+get_aot_habitat_type = {
 	solar_system = {
-		every_fleet_in_system = {
+		random_system_planet = {
+			limit = {
+				is_aot_habitat = yes
+			}
+			save_event_target_as = system_aot_habitat
+		}
+	}
+}
+
+#-----------<  Spawns a new set of support pylons in the system, replacing existing ones.  >--------
+upgrade_all_support_pylons = {
+	get_aot_habitat_type = yes
+	event_target:system_aot_habitat = {
+		switch = {
+			trigger = is_planet_class
+			pc_ae_habitat = {
+				upgrade_all_system_support_pylons = {
+					TIER_FROM = delta
+					TIER_TO = alpha
+				}
+			}
+			pc_phanon_habitat = {
+				upgrade_all_system_support_pylons = {
+					TIER_FROM = alpha
+					TIER_TO = phanon
+				}
+			}
+			pc_sigma_habitat = {
+				upgrade_all_system_support_pylons = {
+					TIER_FROM = phanon
+					TIER_TO = sigma
+				}
+			}
+			default = {
+			}
+		}
+	}
+	# The support pylons respawn inactive, activate them now.
+	while = {
+		count = value:aot_count_special_resource_habitat_districts
+		activate_one_random_planet_support_pylon = yes
+	}
+}
+
+#---------------------------<  Spawns 4 pylons around an eligible planet.  >------------------------
+spawn_4_pylons = {
+	solar_system = {
+		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 0 }
+		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 90 }
+		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 180 }
+		spawn_one_support_pylon = { TYPE = aot_$TYPE$_support_pylon_inactive ANGLE = 270 }
+	}
+}
+
+#---------------------------------<  Spawns a single support pylon.  >------------------------------
+spawn_one_support_pylon = {
+	spawn_megastructure = {
+		type = $TYPE$
+		planet = prevprev
+		orbit_angle = $ANGLE$
+		orbit_distance = $DISTANCE|20$ # Fallback value of 20.
+		owner = root
+		init_effect = {
+			set_megastructure_flag = support_pylon_planet_id_@prevprevprev
+		}
+	}
+}
+
+#----------------<  Turns one support pylon from a active to inactive or vice versa.  >-------------
+state_swap_one_support_pylon = {
+	switch = {
+		trigger = is_megastructure_type
+		aot_delta_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_delta_support_pylon_$TO$ }
+		aot_alpha_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_alpha_support_pylon_$TO$ }
+		aot_phanon_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_phanon_support_pylon_$TO$ }
+		aot_sigma_support_pylon_$FROM$ = { upgrade_megastructure_to = aot_sigma_support_pylon_$TO$ }
+	}
+}
+
+#---------------------<  Upgrades one support pylon from one tier to the next.  >-------------------
+upgrade_one_support_pylon = {
+	switch = {
+		trigger = is_megastructure_type
+		aot_$TIER_FROM$_support_pylon_inactive = { upgrade_megastructure_to = aot_$TIER_TO$_support_pylon_inactive }
+		aot_$TIER_FROM$_support_pylon_active = { upgrade_megastructure_to = aot_$TIER_TO$_support_pylon_active }
+	}
+}
+
+#------------<  Deactivates a single support pylon, this is used by the habitat district  >---------
+deactivate_one_random_planet_support_pylon = {
+	solar_system = {
+		random_system_megastructure = {
+			limit = {
+				is_active_support_pylon = yes
+				is_upgrading = no
+			}
+			state_swap_one_support_pylon = {
+				FROM = active
+				TO = inactive
+			}
+			[[MESSAGE]
+				create_message = {
+					type = TOAST_SUPPORT_PYLON_DEACTIVATED
+					localization = TOAST_SUPPORT_PYLONA_DEACTIVATED_DESC
+					days = @toast_message_days
+					target = this
+				}
+			]
+		}
+	}
+}
+
+#-------------<  Activates a single support pylon, this is used by the habitat district  >----------
+activate_one_random_planet_support_pylon = {
+	solar_system = {
+		random_system_megastructure = {
+			limit = {
+				is_inactive_support_pylon = yes
+				is_upgrading = no
+			}
+			state_swap_one_support_pylon = {
+				FROM = inactive
+				TO = active
+			}
+			[[MESSAGE]
+				create_message = {
+					type = TOAST_SUPPORT_PYLON_ACTIVATED
+					localization = TOAST_SUPPORT_PYLONA_ACTIVATED_DESC
+					days = @toast_message_days
+					target = this
+				}
+			]
+		}
+	}
+}
+
+#----------<  Upgrades all support pylons int the system from target to destination tier.  >--------
+upgrade_all_system_support_pylons = {
+	solar_system = {
+		every_system_megastructure = {
 			limit = {
 				OR = {
-					[[!FROM_TIER]is_ship_size = $BODY$_orbital_$TYPE$]
-					[[FROM_TIER]is_ship_size = $FROM_TIER$_$BODY$_orbital_$TYPE$]
+					is_active_support_pylon = yes
+					is_inactive_support_pylon = yes
 				}
 			}
-			orbit = {
-				save_event_target_as = target_planet
+			upgrade_one_support_pylon = {
+				TIER_FROM = $TIER_FROM$
+				TIER_TO = $TIER_TO$
 			}
-			save_event_target_as = old_orbital
-			create_fleet = {
-				effect = {
-					set_owner = from
-					create_ship = {
-						random_existing_design = $TO_TIER$_$BODY$_orbital_$TYPE$
-						effect = {
-							set_disable_at_health = 0.05
-							set_name = {
-								key = TARGET_ORBITAL_NAME
-								variable_string = "\\[FROM.from.planet.GetName]"
-							}
-						}
-					}
-					save_event_target_as = target_orbital
-					fleet = {
-						set_location = {
-							target = event_target:target_planet
-						}
-					}
-				}
-			}
-			event_target:target_orbital = {
-				set_name = {
-					key = TARGET_ORBITAL_NAME
-					variable_string = "\\[FROM.from.planet.GetName]"
-				}
-			}
-			event_target:old_orbital = {
-				switch = {
-					trigger = has_fleet_flag
-					mining_orbital = {
-						event_target:target_orbital = {
-							set_fleet_flag = mining_orbital
-						}
-					}
-					energy_orbital = {
-						event_target:target_orbital = {
-							set_fleet_flag = energy_orbital
-						}
-					}
-				}
-			}
-			delete_fleet = event_target:old_orbital
 		}
 	}
 }
 
-# Planet Cracker effect
+#----------------------------------<  Habitat destruction effect.  >--------------------------------
 spawn_aot_habitat_blast_effect = {
+	optimize_memory
 	create_ambient_object = {
 		location = this
 		type = habitat_cracker_object
@@ -1316,9 +996,163 @@ spawn_aot_habitat_blast_effect = {
 }
 
 # ------------------------------------------------------------------------------------------------ #
-#							   Select Leader for Alpha Project Code							   #
+#										 Aot Orbitals Code										   #
+# ------------------------------------------------------------------------------------------------ #
+# Get the type of the habitat in this system and then spawn an orbital of the same tier.
+spawn_orbitals_depending_on_system_habitat_type = {
+	get_aot_habitat_type = yes
+	event_target:system_aot_habitat = {
+		switch = {
+			trigger = is_planet_class
+			pc_ae_habitat = {
+				solar_system = {
+					spawn_aot_orbital_effect = {
+						TYPE = $TYPE$
+						TIER = alpha
+						HABITAT_OWNER = event_target:system_aot_habitat.owner
+						TARGET_PLANET = event_target:target_planet
+					}
+				}
+			}
+			pc_phanon_habitat = {
+				solar_system = {
+					spawn_aot_orbital_effect = {
+						TYPE = $TYPE$
+						TIER = phanon
+						HABITAT_OWNER = event_target:system_aot_habitat.owner
+						TARGET_PLANET = event_target:target_planet
+					}
+				}
+			}
+			pc_sigma_habitat = {
+				solar_system = {
+					spawn_aot_orbital_effect = {
+						TYPE = $TYPE$
+						TIER = sigma
+						HABITAT_OWNER = event_target:system_aot_habitat.owner
+						TARGET_PLANET = event_target:target_planet
+					}
+				}
+			}
+			default = {
+				solar_system = {
+					spawn_aot_orbital_effect = {
+						TYPE = $TYPE$
+						TIER = delta
+						HABITAT_OWNER = event_target:system_aot_habitat.owner
+						TARGET_PLANET = event_target:target_planet
+					}
+				}
+			}
+		}
+	}
+}
+
+# Specify the $HABITAT_OWNER$ event target as the country to determine graphical culture
+# Specify the $TARGET_PLANET$ event target as the celestial object to place the orbital around
+spawn_aot_orbital_effect = {
+	optimize_memory
+	spawn_megastructure = {
+		type = aot_$TIER$_habitat_$TYPE$_orbital
+		owner = $HABITAT_OWNER$
+		planet = $TARGET_PLANET$
+		coords_from = $TARGET_PLANET$
+		orbit_distance = 50
+		orbit_angle = 50
+		init_effect = {
+			save_event_target_as = target_orbital
+		}
+	}
+	event_target:target_orbital = {
+		set_name = {
+			key = TARGET_AOT_ORBITAL_NAME
+			variable_string = "\\[target_planet.GetName]"
+		}
+	}
+}
+
+# Find fitting planets in system for an orbital.
+spawn_orbital_on_eligible_planet_in_system = {
+	solar_system = {
+		random_system_planet = {
+			limit = {
+				is_artificial = no
+				is_astral_scar = no
+				NOT = {
+					has_planet_flag = has_orbital
+				}
+				has_orbital_$TYPE$_deposit = yes
+				habitat_owner_has_tech_for_deposit = yes
+			}
+			save_event_target_as = target_planet
+			if = {
+				limit = {
+					OR = {
+						is_moon = yes
+						is_asteroid = yes
+					}
+				}
+				spawn_orbitals_depending_on_system_habitat_type = {
+					TYPE = minor
+				}
+			}
+			else = {
+				spawn_orbitals_depending_on_system_habitat_type = {
+					TYPE = major
+				}
+			}
+		}
+	}
+}
+
+# Removes and respawns all orbitals in the system to the same tier as the system aot habitat.
+upgrade_all_system_orbitals = {
+	solar_system = {
+		every_system_megastructure = {
+			switch = {
+				trigger = is_megastructure_type
+				habitat_major_orbital = { upgrade_megastructure_to = aot_delta_habitat_major_orbital }
+				habitat_minor_orbital = { upgrade_megastructure_to = aot_delta_habitat_minor_orbital }
+				aot_delta_habitat_major_orbital = { upgrade_megastructure_to = aot_alpha_habitat_major_orbital }
+				aot_delta_habitat_minor_orbital = { upgrade_megastructure_to = aot_alpha_habitat_minor_orbital }
+				aot_alpha_habitat_major_orbital = { upgrade_megastructure_to = aot_phanon_habitat_major_orbital }
+				aot_alpha_habitat_minor_orbital = { upgrade_megastructure_to = aot_phanon_habitat_minor_orbital }
+				aot_phanon_habitat_major_orbital = { upgrade_megastructure_to = aot_sigma_habitat_major_orbital }
+				aot_phanon_habitat_minor_orbital = { upgrade_megastructure_to = aot_sigma_habitat_minor_orbital }
+				default = {
+				}
+			}
+			upgrade_one_support_pylon = {
+				TIER_FROM = $TIER_FROM$
+				TIER_TO = $TIER_TO$
+			}
+		}
+	}
+}
+
+# Spawns the amount of orbitals equal to the amount of built energy/mining districts on the aot habitat.
+spawn_orbitals_according_to_district_count = {
+	# Respawn energy orbitals according to built energy districts on system habitat.
+	while = {
+		count = value:aot_get_num_built_energy_districts
+		spawn_orbital_on_eligible_planet_in_system = {
+			TYPE = energy
+		}
+	}
+
+	# Respawn mining orbitals according to built mining districts on system habitat.
+	while = {
+		count = value:aot_get_num_built_mining_districts
+		spawn_orbital_on_eligible_planet_in_system = {
+			TYPE = mining
+		}
+	}
+}
+# ------------------------------------------------------------------------------------------------ #
+#							   Select Leader for Alpha Project Code							       #
 # ------------------------------------------------------------------------------------------------ #
 get_eligible_alpha_research_leader = {
+	optimize_memory
 	random_owned_leader = {
 		limit = {
 			leader_class = scientist
@@ -1329,7 +1163,6 @@ get_eligible_alpha_research_leader = {
 		save_event_target_as = $TARGET_NAME$
 	}
 }
-
 assign_alpha_researcher = {
 	$TARGET$ = {
 		set_leader_flag = alpha_research_leader
@@ -1340,5 +1173,82 @@ assign_alpha_researcher = {
 			location = this
 			owner = root
 		}
+	}
+}
+
+# ------------------------------------------------------------------------------------------------ #
+#                                      Complex trait handling                                      #
+# ------------------------------------------------------------------------------------------------ #
+swap_trait = {
+	remove_trait = $FROM$
+	[[TO]
+		add_trait = {
+			trait = $TO$
+			show_message = no
+		}
+	]
+}
+
+#---------------------------------<  Transformation by elimination  >-------------------------------
+perform_chrysalis_transformation = {
+	add_modifier = {
+		modifier = chrysalis_protocol_activated
+		years = 5
+	}
+	random_owned_pop_group = {
+		limit = {
+			is_organic_species = yes
+			is_same_species = owner_species
+		}
+		species = {
+			save_event_target_as = chrysalis_pop_species
+		}
+	}
+	every_owned_pop_group = {
+		root = {
+			if = {
+				limit = {
+					exists = event_target:chrysalis_pop_species
+				}
+				create_pop = {
+					species = event_target:chrysalis_pop_species
+				}
+			}
+			else = {
+				create_pop = {
+					species = owner_species
+				}
+			}
+			if = {
+				limit = {
+					last_created_species = {
+						NOT = {
+							ideal_planet_class = root
+						}
+					}
+					NOR = {
+						uses_district_set = habitat
+						merg_is_hab_ringworld = yes
+						uses_district_set = city_world
+						uses_district_set = hive_world
+						uses_district_set = machine_world
+						is_planet_class = pc_gaia
+						is_planet_class = pc_relic
+					}
+					owner = {
+						has_technology = tech_glandular_acclimation
+						NOT = {
+							ideal_planet_class = root
+						}
+					}
+				}
+				last_created_species = {
+					modify_species = {
+						ideal_planet_class = root
+					}
+				}
+			}
+		}
+		kill_all_pop = yes
 	}
 }

@@ -14,16 +14,19 @@ planet_event = {
 			has_global_flag = acot_exterminatus_forbidden
 		}
 		OR = {
-			has_orbital_bombardment_stance = exterminatus
-			has_orbital_bombardment_stance = punishment
+			has_orbital_bombardment_stance = acot_bombardment_dm
+			has_orbital_bombardment_stance = acot_bombardment_ae
+			has_orbital_bombardment_stance = acot_bombardment_se
 		}
 		OR = {
 			is_memeable_planet = yes
 			is_memeable_space_habitat = yes
 			is_memeable_ringworld = yes
 		}
+		count_owned_pop_amount = {
+			count <= 5000
+		}
 	}
-
 	immediate = {
 		inline_script = {
 			script = exterminatus_standard_effect
@@ -40,9 +43,9 @@ planet_event = {
 	trigger = {
 		planet_devastation >= 100
 		OR = {
-			has_orbital_bombardment_stance = exterminatus
-			has_orbital_bombardment_stance = punishment
-			has_orbital_bombardment_stance = final_destionation
+			has_orbital_bombardment_stance = acot_bombardment_dm
+			has_orbital_bombardment_stance = acot_bombardment_ae
+			has_orbital_bombardment_stance = acot_bombardment_se
 		}
 		NOR = {
 			has_global_flag = acot_exterminatus_forbidden
@@ -57,7 +60,7 @@ planet_event = {
 	immediate = {
 		if = {
 			limit = {
-				has_orbital_bombardment_stance = final_destionation
+				has_orbital_bombardment_stance = acot_bombardment_se
 			}
 			inline_script = {
 				script = exterminatus_standard_effect
@@ -66,8 +69,14 @@ planet_event = {
 		}
 		else_if = {
 			limit = {
+				OR = {
+					has_orbital_bombardment_stance = acot_bombardment_dm
+					has_orbital_bombardment_stance = acot_bombardment_ae
+				}
 				from = {
-					has_technology = tech_bombardment_ae_final
+					NOT = {
+						has_technology = tech_bombardment_ae_final
+					}
 				}
 			}
 			set_timed_planet_flag = {
@@ -86,16 +95,16 @@ planet_event = {
 				80 = {
 					modifier = {
 						factor = 0
-						num_pops <= 5
+						num_pops <= 500
 					}
 					if = {
 						limit = {
-							has_building = building_acot_dm_psg
+							has_building = building_acot_ae_psg
 						}
 						while = {
 							count = 3
-							random_owned_pop = {
-								kill_pop = yes
+							random_owned_pop_group = {
+								kill_single_pop = yes
 							}
 						}
 					}
@@ -109,8 +118,8 @@ planet_event = {
 						}
 						while = {
 							count = 5
-							random_owned_pop = {
-								kill_pop = yes
+							random_owned_pop_group = {
+								kill_single_pop = yes
 							}
 						}
 					}

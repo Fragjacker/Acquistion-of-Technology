@@ -79,8 +79,13 @@ acot_dark_matter_obelisk_core_portal = {
 	build_time = 1
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 20000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 20000
 			sr_dark_matter = 2000
 			acot_sr_dark_energy = 2000
 		}
@@ -135,7 +140,6 @@ acot_dark_matter_obelisk_core_portal = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core = {
 	entity = "dm_aot_enigmalith_entity"
 	construction_entity = "dm_aot_enigmalith_construction_entity"
@@ -185,8 +189,9 @@ acot_dark_matter_obelisk_core = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 10000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 10000
 			}
 		}
 	}
@@ -197,10 +202,15 @@ acot_dark_matter_obelisk_core = {
 		}
 		upkeep = {
 		}
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = produces
+			AMOUNT = 50
+			RESOURCE = alloys
+		}
 		produces = {
 			energy = 50
 			minerals = 50
-			alloys = 50
 		}
 		produces = {
 			trigger = {
@@ -220,40 +230,40 @@ acot_dark_matter_obelisk_core = {
 			}
 			acot_sr_dark_energy = 25
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_precursor_design
-				}
-			}
-			energy = 50
-			minerals = 50
-			alloys = 50
-			acot_sr_dark_energy = 25
-			sr_dark_matter = 25
+		inline_script = {
+			script = resources/swappable_resource_cost
+			TRIGGER_TECHNOLOGY = tech_precursor_design
+			MODE = produces
+			SWAPPED_RESOURCE = alloys
+			AMOUNT = 50
+			SHARED_VALUES = "
+				energy = 50
+				minerals = 50
+				acot_sr_dark_energy = 25
+				sr_dark_matter = 25
+				"
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_precursor_enigmalith_ae
-				}
-			}
-			energy = 100
-			minerals = 100
-			alloys = 100
+		inline_script = {
+			script = resources/swappable_resource_cost
+			TRIGGER_TECHNOLOGY = tech_precursor_enigmalith_ae
+			MODE = produces
+			SWAPPED_RESOURCE = alloys
+			AMOUNT = 100
+			SHARED_VALUES = "
+				energy = 100
+				minerals = 100
+				"
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_precursor_enigmalith_se
-				}
-			}
-			energy = 200
-			minerals = 200
-			alloys = 200
+		inline_script = {
+			script = resources/swappable_resource_cost
+			TRIGGER_TECHNOLOGY = tech_precursor_enigmalith_ae
+			MODE = produces
+			SWAPPED_RESOURCE = alloys
+			AMOUNT = 200
+			SHARED_VALUES = "
+				energy = 200
+				minerals = 200
+				"
 		}
 	}
 	ai_weight = {
@@ -272,7 +282,6 @@ acot_dark_matter_obelisk_core = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_advanced = {
 	entity = "dm_aot_enigmalith_advanced_entity"
 	construction_entity = "dm_aot_enigmalith_entity"
@@ -322,25 +331,36 @@ acot_dark_matter_obelisk_core_advanced = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 10000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 10000
 			}
 		}
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 20000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 20000
 			sr_dark_matter = 2000
 			acot_sr_dark_energy = 2000
 		}
 		upkeep = {
 		}
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = produces
+			AMOUNT = 100
+			RESOURCE = alloys
+		}
 		produces = {
 			energy = 100
 			minerals = 100
-			alloys = 100
 		}
 		produces = {
 			trigger = {
@@ -360,40 +380,40 @@ acot_dark_matter_obelisk_core_advanced = {
 			}
 			acot_sr_dark_energy = 25
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_precursor_design
-				}
-			}
-			energy = 100
-			minerals = 100
-			alloys = 100
-			acot_sr_dark_energy = 25
-			sr_dark_matter = 25
+		inline_script = {
+			script = resources/swappable_resource_cost
+			TRIGGER_TECHNOLOGY = tech_precursor_design
+			MODE = produces
+			SWAPPED_RESOURCE = alloys
+			AMOUNT = 100
+			SHARED_VALUES = "
+				energy = 100
+				minerals = 100
+				acot_sr_dark_energy = 25
+				sr_dark_matter = 25
+				"
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_precursor_enigmalith_ae
-				}
-			}
-			energy = 200
-			minerals = 200
-			alloys = 200
+		inline_script = {
+			script = resources/swappable_resource_cost
+			TRIGGER_TECHNOLOGY = tech_precursor_enigmalith_ae
+			MODE = produces
+			SWAPPED_RESOURCE = alloys
+			AMOUNT = 200
+			SHARED_VALUES = "
+				energy = 200
+				minerals = 200
+				"
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_precursor_enigmalith_se
-				}
-			}
-			energy = 400
-			minerals = 400
-			alloys = 400
+		inline_script = {
+			script = resources/swappable_resource_cost
+			TRIGGER_TECHNOLOGY = tech_precursor_enigmalith_ae
+			MODE = produces
+			SWAPPED_RESOURCE = alloys
+			AMOUNT = 400
+			SHARED_VALUES = "
+				energy = 400
+				minerals = 400
+				"
 		}
 	}
 	ai_weight = {
@@ -412,7 +432,6 @@ acot_dark_matter_obelisk_core_advanced = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_super = {
 	entity = "dm_aot_enigmalith_super_entity"
 	construction_entity = "dm_aot_enigmalith_advanced_entity"
@@ -462,16 +481,22 @@ acot_dark_matter_obelisk_core_super = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 20000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 20000
 			}
 		}
 	}
 	build_time = 720
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 40000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 40000
 			sr_dark_matter = 4000
 			acot_sr_dark_energy = 4000
 		}
@@ -480,7 +505,12 @@ acot_dark_matter_obelisk_core_super = {
 		produces = {
 			energy = 200
 			minerals = 200
-			alloys = 200
+		}
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = produces
+			AMOUNT = 100
+			RESOURCE = alloys
 		}
 		produces = {
 			trigger = {
@@ -500,40 +530,40 @@ acot_dark_matter_obelisk_core_super = {
 			}
 			acot_sr_dark_energy = 25
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_precursor_design
-				}
-			}
-			energy = 200
-			minerals = 200
-			alloys = 200
-			acot_sr_dark_energy = 25
-			sr_dark_matter = 25
+		inline_script = {
+			script = resources/swappable_resource_cost
+			TRIGGER_TECHNOLOGY = tech_precursor_design
+			MODE = produces
+			SWAPPED_RESOURCE = alloys
+			AMOUNT = 200
+			SHARED_VALUES = "
+				energy = 200
+				minerals = 200
+				acot_sr_dark_energy = 25
+				sr_dark_matter = 25
+				"
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_precursor_enigmalith_ae
-				}
-			}
-			energy = 400
-			minerals = 400
-			alloys = 400
+		inline_script = {
+			script = resources/swappable_resource_cost
+			TRIGGER_TECHNOLOGY = tech_precursor_enigmalith_ae
+			MODE = produces
+			SWAPPED_RESOURCE = alloys
+			AMOUNT = 400
+			SHARED_VALUES = "
+				energy = 400
+				minerals = 400
+				"
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_technology = tech_precursor_enigmalith_se
-				}
-			}
-			energy = 800
-			minerals = 800
-			alloys = 800
+		inline_script = {
+			script = resources/swappable_resource_cost
+			TRIGGER_TECHNOLOGY = tech_precursor_enigmalith_ae
+			MODE = produces
+			SWAPPED_RESOURCE = alloys
+			AMOUNT = 800
+			SHARED_VALUES = "
+				energy = 800
+				minerals = 800
+				"
 		}
 	}
 	ai_weight = {
@@ -630,8 +660,13 @@ acot_dark_matter_obelisk_core_portal_ae = {
 	build_time = 1
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 10000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 10000
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
 		}
@@ -686,7 +721,6 @@ acot_dark_matter_obelisk_core_portal_ae = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_ae = {
 	entity = "ae_aot_enigmalith_entity"
 	construction_entity = "ae_aot_enigmalith_construction_entity"
@@ -737,8 +771,9 @@ acot_dark_matter_obelisk_core_ae = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 10000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 10000
 			}
 		}
 	}
@@ -775,7 +810,6 @@ acot_dark_matter_obelisk_core_ae = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_advanced_ae = {
 	entity = "ae_aot_enigmalith_advanced_entity"
 	construction_entity = "ae_aot_enigmalith_entity"
@@ -820,16 +854,22 @@ acot_dark_matter_obelisk_core_advanced_ae = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 10000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 10000
 			}
 		}
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 20000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 20000
 			sr_dark_matter = 10000
 			acot_sr_dark_energy = 10000
 		}
@@ -861,7 +901,6 @@ acot_dark_matter_obelisk_core_advanced_ae = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_super_ae = {
 	entity = "ae_aot_enigmalith_super_entity"
 	construction_entity = "ae_aot_enigmalith_advanced_entity"
@@ -912,16 +951,22 @@ acot_dark_matter_obelisk_core_super_ae = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 20000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 20000
 			}
 		}
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 40000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 40000
 			sr_dark_matter = 20000
 			acot_sr_dark_energy = 20000
 		}
@@ -1031,8 +1076,13 @@ aot_dark_matter_obelisk_core_portal_pe = {
 	build_time = 1
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 10000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 10000
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
 			aot_sr_runic_power = 2500
@@ -1088,7 +1138,6 @@ aot_dark_matter_obelisk_core_portal_pe = {
 		}
 	}
 }
-
 aot_dark_matter_obelisk_core_pe = {
 	entity = "phanon_aot_enigmalith_entity"
 	construction_entity = "pe_aot_enigmalith_construction_entity"
@@ -1133,8 +1182,9 @@ aot_dark_matter_obelisk_core_pe = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 10000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 10000
 			}
 		}
 	}
@@ -1162,7 +1212,6 @@ aot_dark_matter_obelisk_core_pe = {
 		}
 	}
 }
-
 aot_dark_matter_obelisk_core_advanced_pe = {
 	entity = "phanon_aot_enigmalith_advanced_entity"
 	construction_entity = "phanon_aot_enigmalith_entity"
@@ -1206,16 +1255,22 @@ aot_dark_matter_obelisk_core_advanced_pe = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 10000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 10000
 			}
 		}
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 20000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 20000
 			sr_dark_matter = 10000
 			acot_sr_dark_energy = 10000
 			aot_sr_runic_power = 5000
@@ -1239,7 +1294,6 @@ aot_dark_matter_obelisk_core_advanced_pe = {
 		}
 	}
 }
-
 aot_dark_matter_obelisk_core_super_pe = {
 	entity = "phanon_aot_enigmalith_super_entity"
 	construction_entity = "phanon_aot_enigmalith_advanced_entity"
@@ -1289,16 +1343,22 @@ aot_dark_matter_obelisk_core_super_pe = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 20000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 20000
 			}
 		}
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 40000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 40000
 			sr_dark_matter = 20000
 			acot_sr_dark_energy = 20000
 			aot_sr_runic_power = 10000
@@ -1400,8 +1460,13 @@ acot_dark_matter_obelisk_core_portal_se = {
 	build_time = 1
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 10000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 10000
 			aot_sr_runic_power = 5000
 			acot_sr_stellarite = 2500
 		}
@@ -1456,7 +1521,6 @@ acot_dark_matter_obelisk_core_portal_se = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_se = {
 	entity = "sigma_aot_enigmalith_entity"
 	construction_entity = "se_aot_enigmalith_construction_entity"
@@ -1501,8 +1565,9 @@ acot_dark_matter_obelisk_core_se = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 10000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 10000
 			}
 		}
 	}
@@ -1529,7 +1594,6 @@ acot_dark_matter_obelisk_core_se = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_advanced_se = {
 	entity = "sigma_aot_enigmalith_advanced_entity"
 	construction_entity = "sigma_aot_enigmalith_entity"
@@ -1573,16 +1637,22 @@ acot_dark_matter_obelisk_core_advanced_se = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 10000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 10000
 			}
 		}
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 20000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 20000
 			aot_sr_runic_power = 10000
 			acot_sr_stellarite = 5000
 		}
@@ -1604,7 +1674,6 @@ acot_dark_matter_obelisk_core_advanced_se = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_super_se = {
 	entity = "sigma_aot_enigmalith_super_entity"
 	construction_entity = "sigma_aot_enigmalith_advanced_entity"
@@ -1654,16 +1723,22 @@ acot_dark_matter_obelisk_core_super_se = {
 			remove_planet_flag = has_enigmalith
 		}
 		from = {
-			add_resource = {
-				alloys = 20000
+			add_resource_checked_for_bioships = {
+				RESOURCE = alloys
+				AMOUNT = 20000
 			}
 		}
 	}
 	build_time = 360
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 40000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 40000
 			aot_sr_runic_power = 20000
 			acot_sr_stellarite = 10000
 		}
@@ -1774,8 +1849,13 @@ acot_dark_matter_obelisk_core_portal_oe = {
 	build_time = 1
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 5000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 5000
 			acot_sr_light_matter = 1000
 		}
 		upkeep = {
@@ -1829,7 +1909,6 @@ acot_dark_matter_obelisk_core_portal_oe = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_oe = {
 	entity = "omega_aot_enigmalith_entity"
 	construction_entity = "oe_aot_enigmalith_construction_entity"
@@ -1879,12 +1958,17 @@ acot_dark_matter_obelisk_core_oe = {
 	build_time = 359
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = produces
+			AMOUNT = 5000
+			RESOURCE = alloys
+		}
 		produces = {
 			food = 5000
 			consumer_goods = 5000
 			minerals = 5000
 			energy = 5000
-			alloys = 5000
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
 			aot_sr_runic_power = 5000
@@ -1907,7 +1991,6 @@ acot_dark_matter_obelisk_core_oe = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_advanced_oe = {
 	entity = "omega_aot_enigmalith_advanced_entity"
 	construction_entity = "omega_aot_enigmalith_entity"
@@ -1956,16 +2039,26 @@ acot_dark_matter_obelisk_core_advanced_oe = {
 	build_time = 180
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 5000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 5000
 			acot_sr_light_matter = 500
+		}
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = produces
+			AMOUNT = 10000
+			RESOURCE = alloys
 		}
 		produces = {
 			food = 10000
 			consumer_goods = 10000
 			minerals = 10000
 			energy = 10000
-			alloys = 10000
 			sr_dark_matter = 10000
 			acot_sr_dark_energy = 10000
 			aot_sr_runic_power = 10000
@@ -1989,7 +2082,6 @@ acot_dark_matter_obelisk_core_advanced_oe = {
 		}
 	}
 }
-
 acot_dark_matter_obelisk_core_super_oe = {
 	entity = "omega_aot_enigmalith_super_entity"
 	construction_entity = "omega_aot_enigmalith_advanced_entity"
@@ -2041,8 +2133,19 @@ acot_dark_matter_obelisk_core_super_oe = {
 	build_time = 180
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 10000
+			RESOURCE = alloys
+		}
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = produces
+			AMOUNT = 20000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 10000
 			acot_sr_light_matter = 250
 		}
 		produces = {
@@ -2050,7 +2153,6 @@ acot_dark_matter_obelisk_core_super_oe = {
 			consumer_goods = 20000
 			minerals = 20000
 			energy = 20000
-			alloys = 20000
 			sr_dark_matter = 20000
 			acot_sr_dark_energy = 20000
 			aot_sr_runic_power = 20000
@@ -2086,11 +2188,16 @@ acot_precursor_citadel_site = {
 	build_time = 1
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 50000
+			RESOURCE = alloys
+		}
 		cost = {
 			trigger = {
 				is_ai = no
 			}
-			alloys = 200000
 			unity = 50000
 			sr_dark_matter = 15000
 			acot_sr_dark_energy = 15000
@@ -2100,7 +2207,6 @@ acot_precursor_citadel_site = {
 			trigger = {
 				is_ai = yes
 			}
-			alloys = 20000
 			sr_dark_matter = 1500
 			acot_sr_dark_energy = 1500
 		}
@@ -2195,11 +2301,16 @@ acot_precursor_sigma_citadel_site = {
 	build_time = 1
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 50000
+			RESOURCE = alloys
+		}
 		cost = {
 			trigger = {
 				is_ai = no
 			}
-			alloys = 200000
 			unity = 50000
 			acot_sr_stellarite = 15000
 			influence = 50
@@ -2208,7 +2319,6 @@ acot_precursor_sigma_citadel_site = {
 			trigger = {
 				is_ai = yes
 			}
-			alloys = 20000
 			acot_sr_stellarite = 1500
 		}
 		upkeep = {
@@ -2311,8 +2421,13 @@ acot_precursor_phanon_citadel_site = {
 	build_time = 1
 	resources = {
 		category = megastructures
+		inline_script = {
+			script = resources/convert_to_food
+			MODE = cost
+			AMOUNT = 500000
+			RESOURCE = alloys
+		}
 		cost = {
-			alloys = 500000
 			unity = 50000
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000

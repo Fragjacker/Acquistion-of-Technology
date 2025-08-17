@@ -1,0 +1,41 @@
+#----------------<  This script handles the boilerplate code for the overlord ruler  >--------------
+inline_script = {
+	script = pop_jobs/part/$CATEGORY$
+	CATEGORY = $CATEGORY$
+	JOB = $JOB$
+	RESOURCE = $RESOURCE$
+}
+tags = {
+	$RESOURCE$
+	amenities
+}
+resources = {
+	category = planet_bureaucrats
+	produces = {
+		$RESOURCE$ = $PRODUCTION_AMOUNT$
+		influence = @[ $PRODUCTION_AMOUNT$ / 10 ]
+	}
+	upkeep = {
+		$UPKEEP$
+	}
+}
+planet_modifier = {
+	planet_stability_add = @[ 10 * two_exp$EXPONENT$ ]
+	planet_amenities_add = @[ 20 * two_exp$EXPONENT$ ]
+	planet_jobs_produces_mult = @[ 0.1 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		always = yes
+	}
+	planet_amenities_add = @[ 150 * two_exp$EXPONENT$ ]
+	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}
+triggered_planet_modifier = {
+	potential = {
+		planet = {
+			has_ascended_capital = yes
+		}
+	}
+	planet_jobs_produces_mult = @[ 0.1 * two_exp$EXPONENT$ ]
+}
