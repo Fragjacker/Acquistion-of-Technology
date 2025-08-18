@@ -17,15 +17,26 @@ potential = {
 	planet_owner = {
 		has_technology = $PREREQUISITE$
 	}
-	is_special_colony_type = no
+	NOR = {
+		is_special_colony_type = yes
+		has_building = building_acot_dm_institute_super
+		has_building = building_acot_ae_institute_super
+	}
 }
 destroy_trigger = {
-	is_special_colony_type = yes
+	OR = {
+		is_special_colony_type = yes
+		has_building = building_acot_dm_institute_super
+		has_building = building_acot_ae_institute_super
+	}
 }
 resources = {
 	category = planet_buildings
 	produces = {
-		$PRODUCES$
+		physics_research = @[ 100 * $TIER$ ]
+		engineering_research = @[ 100 * $TIER$ ]
+		society_research = @[ 100 * $TIER$ ]
+		minor_artifacts = @[ 10 + ( 5 * $TIER$ ) ]
 	}
 	cost = {
 		$COST$
@@ -42,13 +53,6 @@ resources = {
 		acot_sr_dark_energy = 50
 	}
 }
-country_modifier = {
-	country_scientist_cap_add = @[ 1 * $TIER$ ]
-	physics_tech_cost_mult = @[ - 0.1 * $TIER$ ]
-	society_tech_cost_mult = @[ - 0.1 * $TIER$ ]
-	engineering_tech_cost_mult = @[ - 0.1 * $TIER$ ]
-	all_technology_research_speed = @[ 0.2 * $TIER$ ]
-}
 triggered_planet_modifier = {
 	potential = {
 		exists = planet_owner
@@ -58,16 +62,16 @@ triggered_planet_modifier = {
 	}
 	modifier = {
 		job_$JOB$_add = @num_jobs
+		pop_$JOB$_bonus_workforce_mult = 0.5
 	}
 }
 triggered_planet_modifier = {
 	potential = {
 		exists = planet_owner
-		planet_owner = {
-			is_gestalt = yes
-		}
+		planet_owner = { is_gestalt = yes }
 	}
 	modifier = {
 		job_$JOB_HIVE$_add = @num_jobs
+		pop_$JOB_HIVE$_bonus_workforce_mult = 0.5
 	}
 }
