@@ -872,38 +872,9 @@ building_phanon_super_assembly = {
 			}
 			"
 	}
-	potential = {
-		NOT = {
-			has_global_flag = aot_phanon_content_OFF
-		}
-		exists = planet_owner
-		OR = {
-			planet_owner = {
-				is_ai = no
-			}
-			NOT = {
-				exists = assembling_species
-			}
-			assembling_species = {
-				is_robotic_species = yes
-			}
-		}
-		planet_owner = {
-			is_regular_empire = yes
-			is_individual_machine = no
-			NOT = {
-				has_policy_flag = robots_outlawed
-			}
-			OR = {
-				is_ai = no
-				has_genetic_ascension = no
-				is_materialist = yes
-			}
-		}
-		NOR = {
-			has_modifier = slave_colony
-			has_modifier = resort_colony
-		}
+	# Potential and destroy blocks
+	inline_script = {
+		script = buildings/civilian/parts/super_assembly/organic
 	}
 	convert_to = {
 		building_phanon_super_assembly_machine
@@ -957,18 +928,9 @@ building_phanon_super_assembly_machine = {
 			}
 			"
 	}
-	potential = {
-		NOR = {
-			has_global_flag = aot_phanon_content_OFF
-			has_modifier = gestation_colony
-		}
-		exists = planet_owner
-		planet_owner = {
-			OR = {
-				is_machine_empire = yes
-				is_individual_machine = yes
-			}
-		}
+	# Potential and destroy blocks
+	inline_script = {
+		script = buildings/civilian/parts/super_assembly/machine
 	}
 	convert_to = {
 		building_phanon_super_assembly

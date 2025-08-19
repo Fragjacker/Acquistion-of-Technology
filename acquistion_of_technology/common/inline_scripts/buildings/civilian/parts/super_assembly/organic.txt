@@ -1,0 +1,42 @@
+potential = {
+	exists = owner
+	OR = {
+		owner = { is_ai = no }
+		NOT = { exists = assembling_species }
+		assembling_species = { is_robotic_species = yes }
+	}
+	owner = {
+		is_regular_empire = yes
+		is_individual_machine = no
+		NOT = { has_policy_flag = robots_outlawed }
+		OR = {
+			is_ai = no
+			NOT = { has_ascension_perk = ap_engineered_evolution }
+			is_materialist = yes
+		}
+	}
+	NOT = { has_modifier = resort_colony }
+}
+destroy_trigger = {
+	exists = owner
+	OR = {
+		owner = {
+			OR = {
+				is_regular_empire = no
+				has_policy_flag = robots_outlawed
+			}
+		}
+		AND = {
+			owner = { is_ai = yes }
+			free_district_slots = 0
+			free_building_slots = 0
+			free_housing <= 0
+			free_jobs <= 0
+		}
+		owner = {
+			is_ai = yes
+			has_ascension_perk = ap_engineered_evolution
+			is_materialist = no
+		}
+	}
+}

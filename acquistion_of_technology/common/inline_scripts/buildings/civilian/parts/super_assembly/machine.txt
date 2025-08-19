@@ -1,0 +1,28 @@
+potential = {
+	exists = owner
+	owner = {
+		OR = {
+			is_machine_empire = yes
+			is_individual_machine = yes
+		}
+	}
+	NOR = {
+		has_modifier = gestation_colony
+		has_modifier = resort_colony
+	}
+}
+destroy_trigger = {
+	exists = owner
+	OR = {
+		owner = {
+			is_robot_empire = no
+		}
+		AND = {
+			owner = { is_ai = yes }
+			free_district_slots = 0
+			free_building_slots = 0
+			free_housing <= 0
+			free_jobs <= 0
+		}
+	}
+}
