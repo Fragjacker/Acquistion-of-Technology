@@ -3,7 +3,8 @@ namespace = aot_planetary_shields_event
 # This handles the creation of shield
 # Ambient objects on planets.
 #---------------------------------------
-# Dark Matter shield generator completed.
+
+# Check if we need to spawn the planetary shield bubble graphic.
 # This = Planet
 planet_event = {
 	id = aot_planetary_shields_event.1
@@ -15,24 +16,13 @@ planet_event = {
 		}
 	}
 	immediate = {
-		planet_event = {
-			id = aot_planetary_shields_event.2
-		}
-		planet_event = {
-			id = aot_planetary_shields_event.3
-		}
-		planet_event = {
-			id = aot_planetary_shields_event.6
-		}
-		planet_event = {
-			id = aot_planetary_shields_event.7
-		}
+		refresh_planetary_shields = yes
 	}
 }
 
-# Creation of dark matter shields for planets.
+# Refresh planetary shields for every galaxy system.
 # This = Planet
-planet_event = {
+event = {
 	id = aot_planetary_shields_event.2
 	hide_window = yes
 	is_triggered_only = yes
@@ -42,110 +32,16 @@ planet_event = {
 		}
 	}
 	immediate = {
-		create_aot_planetary_shield = {
-			TIER = dm
-			PSG_BUILDING = building_acot_dm_psg
-		}
-		create_aot_planetary_shield = {
-			TIER = dm
-			PSG_BUILDING = building_fe_psg
+		every_system = {
+			refresh_planetary_shields = yes
 		}
 	}
 }
 
-# Creation of dark energy shields for planets.
-# This = Planet
-planet_event = {
-	id = aot_planetary_shields_event.3
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = {
-			has_global_flag = aot_planetary_shields_OFF
-		}
-	}
-	immediate = {
-		create_aot_planetary_shield = {
-			TIER = ae
-			PSG_BUILDING = building_acot_ae_psg
-		}
-	}
-}
-# Cleanup leftover shields at the end of the month
-# This = Planet
-event = {
-	id = aot_planetary_shields_event.4
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = {
-			has_global_flag = aot_planetary_shields_OFF
-		}
-	}
-	immediate = {
-		every_galaxy_planet = {
-			limit = {
-				has_owner = yes
-				OR = {
-					NOR = {
-						has_active_building = building_fe_psg
-						has_active_building = building_acot_dm_psg
-						has_active_building = building_acot_ae_psg
-						has_active_building = building_stellarite_psg
-						has_active_building = building_phanon_psg
-					}
-					AND = {
-						has_active_building = building_fe_psg
-						NOT = {
-							has_planet_flag = has_dm_planetary_shield_01
-						}
-					}
-					AND = {
-						has_active_building = building_acot_dm_psg
-						NOT = {
-							has_planet_flag = has_dm_planetary_shield_01
-						}
-					}
-					AND = {
-						has_active_building = building_acot_ae_psg
-						NOT = {
-							has_planet_flag = has_ae_planetary_shield_01
-						}
-					}
-					AND = {
-						has_active_building = building_stellarite_psg
-						NOT = {
-							has_planet_flag = has_stellarite_planetary_shield_01
-						}
-					}
-					AND = {
-						has_active_building = building_phanon_psg
-						NOT = {
-							has_planet_flag = has_phanon_planetary_shield_01
-						}
-					}
-				}
-			}
-			planet_event = {
-				id = aot_planetary_shields_event.2
-			}
-			planet_event = {
-				id = aot_planetary_shields_event.3
-			}
-			planet_event = {
-				id = aot_planetary_shields_event.6
-			}
-			planet_event = {
-				id = aot_planetary_shields_event.7
-			}
-		}
-	}
-}
-
-# Delete all planetary shields via ACOT edict decision.
+# Delete all planetary shields via ACOT menu edict decision.
 # This = Planet
 country_event = {
-	id = aot_planetary_shields_event.5
+	id = aot_planetary_shields_event.3
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
@@ -157,54 +53,11 @@ country_event = {
 			solar_system = {
 				every_system_ambient_object = {
 					limit = {
-						OR = {
-							has_ambient_object_flag = phanon_planetary_shield_01
-							has_ambient_object_flag = stellarite_planetary_shield_01
-							has_ambient_object_flag = ae_planetary_shield_01
-							has_ambient_object_flag = dm_planetary_shield_01
-						}
+						is_aot_planetary_shield_ambient_object = yes
 					}
 					destroy_ambient_object = this
 				}
 			}
-		}
-	}
-}
-
-# Creation of stellarite shields for planets.
-# This = Planet
-planet_event = {
-	id = aot_planetary_shields_event.6
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = {
-			has_global_flag = aot_planetary_shields_OFF
-		}
-	}
-	immediate = {
-		create_aot_planetary_shield = {
-			TIER = stellarite
-			PSG_BUILDING = building_stellarite_psg
-		}
-	}
-}
-
-# Creation of phanon shields for planets.
-# This = Planet
-planet_event = {
-	id = aot_planetary_shields_event.7
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = {
-			has_global_flag = aot_planetary_shields_OFF
-		}
-	}
-	immediate = {
-		create_aot_planetary_shield = {
-			TIER = phanon
-			PSG_BUILDING = building_phanon_psg
 		}
 	}
 }
