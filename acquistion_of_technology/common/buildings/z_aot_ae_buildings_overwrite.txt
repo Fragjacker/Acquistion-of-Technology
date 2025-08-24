@@ -14,8 +14,8 @@ building_acot_ae_ancient_palace = {
 			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
 			"
+		ALLOY_COST = 1500
 		COST = "
-			alloys = 1500
 			unity = 30000
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
@@ -68,8 +68,8 @@ building_acot_ae_ancient_control_center = {
 			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
 			"
+		ALLOY_COST = 1500
 		COST = "
-			alloys = 1500
 			unity = 30000
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
@@ -124,8 +124,8 @@ building_acot_ae_ancient_hive_cluster = {
 			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
 			"
+		ALLOY_COST = 1500
 		COST = "
-			alloys = 1500
 			unity = 30000
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
@@ -981,8 +981,14 @@ building_acot_ae_hospital = {
 	}
 	resources = {
 		category = planet_buildings
+		inline_script = {
+			script = resources/convert_to_food
+			SCOPE = from
+			MODE = cost
+			RESOURCE = alloys
+			AMOUNT = @acot_building_advanced_alloy_cost
+		}
 		cost = {
-			alloys = @acot_building_advanced_alloy_cost
 			sr_dark_matter = @acot_building_advanced_dm_cost
 			acot_sr_dark_energy = @acot_building_advanced_de_cost
 		}
@@ -1066,8 +1072,14 @@ building_acot_ae_super_assembly = {
 	}
 	resources = {
 		category = planet_buildings
+		inline_script = {
+			script = resources/convert_to_food
+			SCOPE = from
+			MODE = cost
+			RESOURCE = alloys
+			AMOUNT = 400
+		}
 		cost = {
-			alloys = 400
 			sr_dark_matter = 300
 			acot_sr_dark_energy = 450
 		}
@@ -1127,8 +1139,14 @@ building_acot_ae_super_assembly_machine = {
 	}
 	resources = {
 		category = planet_buildings
+		inline_script = {
+			script = resources/convert_to_food
+			SCOPE = from
+			MODE = cost
+			RESOURCE = alloys
+			AMOUNT = 400
+		}
 		cost = {
-			alloys = 400
 			sr_dark_matter = 300
 			acot_sr_dark_energy = 450
 		}
@@ -1364,8 +1382,14 @@ building_acot_ae_alloy_forge = {
 	}
 	resources = {
 		category = planet_buildings
+		inline_script = {
+			script = resources/convert_to_food
+			SCOPE = from
+			MODE = cost
+			RESOURCE = alloys
+			AMOUNT = @acot_building_advanced_alloy_cost
+		}
 		cost = {
-			alloys = @acot_building_advanced_alloy_cost
 			sr_dark_matter = @acot_building_advanced_dm_cost
 			acot_sr_dark_energy = @acot_building_advanced_de_cost
 		}
