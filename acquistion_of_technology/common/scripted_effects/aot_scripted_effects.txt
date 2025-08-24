@@ -163,9 +163,11 @@ create_sigma_Star = {
 	}
 }
 
+
 # ------------------------------------------------------------------------------------------------ #
-#									 Habitat creation effects									 #
+#                                     Habitat creation effects                                     #
 # ------------------------------------------------------------------------------------------------ #
+
 # --------------------------------- Save old amount of districts --------------------------------- #
 save_aot_habitat_districts = {
 	optimize_memory
@@ -254,6 +256,7 @@ save_aot_habitat_districts = {
 		}
 	]
 }
+# -------------------------------- Restore old amount of districts ------------------------------- #
 create_new_aot_habitat_districts = {
 	optimize_memory
 	[[HOUSING]
@@ -328,6 +331,42 @@ create_new_aot_habitat_districts = {
 			clear_variable = num_special
 		}
 	]
+}
+# ----------------------------------- Save zones to be restored ---------------------------------- #
+save_special_zones = {
+	# Store information persistent.
+	if = {
+		limit = {
+			has_zone = { zone = zone_habitat_knights }
+		}
+		# set_variable = { which = zone_habitat_knights value = 1 }
+		set_planet_flag = has_zone_habitat_knights
+	}
+}
+# ---------------------------- Restore lost zones due to planet change --------------------------- #
+restore_special_zones = {
+	# Restore consecrated toxic god keep when retrofitting.
+	if = {
+		limit = {
+			# is_variable_set = zone_habitat_knights
+			has_planet_flag = has_zone_habitat_knights
+		}
+		hidden_effect = {
+			switch = {
+				trigger = is_planet_class
+				pc_dm_habitat = { add_zone = { district = district_dm_hab_housing zone = zone_habitat_knights zone_slot = 1 replace = yes } }
+				pc_ae_habitat = { add_zone = { district = district_ae_hab_housing zone = zone_habitat_knights zone_slot = 1 replace = yes } }
+				pc_phanon_habitat = { add_zone = { district = district_hab_phanon_housing zone = zone_habitat_knights zone_slot = 1 replace = yes } }
+				pc_sigma_habitat = { add_zone = { district = district_hab_stellarite_housing zone = zone_habitat_knights zone_slot = 1 replace = yes } }
+			}
+			add_building = {
+				zone = zone_habitat_knights
+				building = building_order_castle
+			}
+		}
+		# clear_variable = zone_habitat_knights
+		remove_planet_flag = has_zone_habitat_knights
+	}
 }
 
 # ---------------------------------- AoT habitat initialisation ---------------------------------- #
@@ -532,6 +571,7 @@ replace_habitat_capital_building = {
 # -------- Temporary disabled mining and energy district code, as it doesn't work anyways. ------- #
 upgrade_dm_habitat = {
 	optimize_memory
+	save_special_zones = yes
 	save_aot_habitat_districts = {
 		HOUSING = district_hab_housing
 		ENERGY = district_hab_energy
@@ -562,6 +602,7 @@ upgrade_dm_habitat = {
 		# INDUSTRY = district_dm_hab_arms_industry
 		# SCIENCE = district_dm_hab_research
 	}
+	restore_special_zones = yes
 	replace_habitat_capital_building = yes
 	spawn_support_pylons_in_system = yes
 	# Refresh and upgrade orbitals.
@@ -571,6 +612,7 @@ upgrade_dm_habitat = {
 }
 upgrade_ae_habitat = {
 	optimize_memory
+	save_special_zones = yes
 	save_aot_habitat_districts = {
 		HOUSING = district_dm_hab_housing
 		ENERGY = district_dm_hab_energy
@@ -627,6 +669,7 @@ upgrade_ae_habitat = {
 		}
 		set_planet_size = @size_lvl3
 	}
+	restore_special_zones = yes
 	replace_habitat_capital_building = yes
 	upgrade_all_support_pylons = yes
 	# Refresh and upgrade orbitals.
@@ -636,6 +679,7 @@ upgrade_ae_habitat = {
 }
 upgrade_phanon_habitat = {
 	optimize_memory
+	save_special_zones = yes
 	save_aot_habitat_districts = {
 		HOUSING = district_ae_hab_housing
 		ENERGY = district_ae_hab_energy
@@ -693,6 +737,7 @@ upgrade_phanon_habitat = {
 		}
 		set_planet_size = @size_lvl3
 	}
+	restore_special_zones = yes
 	replace_habitat_capital_building = yes
 	upgrade_all_support_pylons = yes
 	# Refresh and upgrade orbitals.
@@ -702,6 +747,7 @@ upgrade_phanon_habitat = {
 }
 upgrade_sigma_habitat = {
 	optimize_memory
+	save_special_zones = yes
 	save_aot_habitat_districts = {
 		HOUSING = district_hab_phanon_housing
 		ENERGY = district_hab_phanon_energy
@@ -760,6 +806,7 @@ upgrade_sigma_habitat = {
 		}
 		set_planet_size = @size_lvl3
 	}
+	restore_special_zones = yes
 	replace_habitat_capital_building = yes
 	upgrade_all_support_pylons = yes
 	# Refresh and upgrade orbitals.
