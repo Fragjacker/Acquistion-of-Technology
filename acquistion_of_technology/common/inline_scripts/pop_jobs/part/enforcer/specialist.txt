@@ -1,0 +1,24 @@
+possible = {
+	battle_thrall_job_check_trigger = yes
+}
+resources = {
+	category = planet_enforcers
+	inline_script = "jobs/job_enforcer_triggered_resources"
+}
+triggered_planet_modifier = {
+	potential = {
+		enforcer_is_educator_trigger = no
+	}
+	planet_crime_add = @[ - 35 * two_exp$EXPONENT$ ]
+	planet_defense_armies_add = @[ 3 * two_exp$EXPONENT$ ]
+	planet_stability_add = @[ 2 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+	potential = {
+		enforcer_is_educator_trigger = yes
+	}
+	planet_crime_add = @[ - 30 * two_exp$EXPONENT$ ]
+	planet_defense_armies_add = @[ 2 * two_exp$EXPONENT$ ]
+	pop_government_ethic_attraction = @[ 0.2 * two_exp$EXPONENT$ ]
+}
+inline_script = "jobs/job_enforcer_additional_modifiers"

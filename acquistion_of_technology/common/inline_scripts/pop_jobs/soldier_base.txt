@@ -1,12 +1,21 @@
-triggered_planet_modifier = {
-	potential = {
-		exists = planet
-		planet = {
-			has_modifier = anticrime_campaign
+tags = {
+	soldier
+}
+resources = {
+	category = planet_soldiers
+	inline_script = "output/soldier_output"
+	produces = {
+		trigger = {
+			soldier_is_necromancer = yes
 		}
+		physics_research = @[ 3 * two_exp$EXPONENT$ ]
+		society_research = @[ 3 * two_exp$EXPONENT$ ]
 	}
-	modifier = {
-		planet_crime_add = @[ - 20 * two_exp$EXPONENT$ ]
+	upkeep = {
+		trigger = {
+			soldier_is_necromancer = yes
+		}
+		consumer_goods = @[ 1.5 * two_exp$EXPONENT$ ]
 	}
 }
 promotion = {
@@ -18,6 +27,7 @@ promotion = {
 		}
 	}
 }
+inline_script = { script = pop_jobs/part/soldier/triggered_modifiers EXPONENT = $EXPONENT$ }
 #--------------<  $CATEGORY$ can be complex_drone, simple_drone, specialist or worker.  >-----------
 inline_script = pop_jobs/pre_triggers/$CATEGORY$
-inline_script = pop_jobs/job_weights/soldiers_and_enforcers/$CATEGORY$
+inline_script = pop_jobs/job_weights/soldier/$CATEGORY$

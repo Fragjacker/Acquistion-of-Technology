@@ -1,0 +1,16 @@
+tags = { crime enforcer }
+promotion = {
+	time = @standard_promotion_time
+	effect = {
+		pop_amount_change_category = {
+			CATEGORY = $CATEGORY$
+			AMOUNT = local_pop_amount
+		}
+	}
+}
+inline_script = "jobs/automodding_priority_unity"
+
+#--------------<  $CATEGORY$ can be complex_drone, simple_drone, specialist or worker.  >-----------
+inline_script = { script = pop_jobs/part/enforcer/$CATEGORY$ EXPONENT = $EXPONENT$ } # Resource and planet modifiers.
+inline_script = pop_jobs/pre_triggers/$CATEGORY$ # Precalc and pre-triggers.
+inline_script = pop_jobs/job_weights/enforcer/$CATEGORY$ # Job ai weights.

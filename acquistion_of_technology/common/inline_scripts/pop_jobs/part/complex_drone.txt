@@ -1,11 +1,4 @@
-category = $CATEGORY$
-possible_pre_triggers = {
-	has_owner = yes
-	is_being_purged = no
-	is_being_assimilated = no
-	is_sapient = yes
-}
-possible_precalc = can_fill_drone_job
+inline_script = pop_jobs/pre_triggers/complex_drone
 possible = {
 	can_think = yes
 }
@@ -20,13 +13,5 @@ weight = {
 		has_trait = trait_cybernetic
 	}
 }
-promotion = {
-	time = @standard_promotion_time
-	effect = {
-		pop_amount_change_category = {
-			CATEGORY = $CATEGORY$
-			AMOUNT = local_pop_amount
-		}
-	}
-}
+inline_script = { script = pop_jobs/part/shared/promotion CATEGORY = $CATEGORY$ }
 inline_script = "jobs/automodding_priority_$RESOURCE$"

@@ -4,12 +4,9 @@
 # ----------------------------------------- Enforcer jobs ---------------------------------------- #
 aot_dm_enforcer = {
 	inline_script = {
-		script = pop_jobs/soldier_base
+		script = pop_jobs/enforcer
 		EXPONENT = @DELTA_EXPONENT
 		CATEGORY = specialist
-	}
-	tags = {
-		enforcer
 	}
 	swappable_data = {
 		default = {
@@ -17,61 +14,18 @@ aot_dm_enforcer = {
 			building_icon = building_acot_dm_stronghold
 		}
 	}
-	possible = {
-		soldier_job_check_trigger = yes
-		owner = { is_gestalt = no }
-	}
-	resources = {
-		category = planet_enforcers
-		produces = {
-			unity = 2
-		}
-		produces = {
-			trigger = {
-				planet = {
-					is_planet_class = pc_dark_fractured
-				}
-			}
-			unity = 2
-		}
-		upkeep = {
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-		}
-	}
 }
 aot_dm_enforcer_drone = {
 	inline_script = {
-		script = pop_jobs/soldier_base
+		script = pop_jobs/enforcer
 		EXPONENT = @DELTA_EXPONENT
 		CATEGORY = complex_drone
-	}
-	tags = {
-		enforcer
 	}
 	swappable_data = {
 		default = {
 			condition_string = DRONE_JOB_TRIGGER
 			building_icon = building_acot_dm_stronghold
 			icon = aot_dm_enforcer
-		}
-	}
-	resources = {
-		category = planet_enforcers
-		produces = {
-			unity = 2
-		}
-		produces = {
-			trigger = {
-				planet = {
-					is_planet_class = pc_dark_fractured
-				}
-			}
-			unity = 2
-		}
-		upkeep = {
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
 		}
 	}
 }
@@ -82,10 +36,6 @@ aot_dm_soldier = {
 		script = pop_jobs/soldier_base
 		EXPONENT = @DELTA_EXPONENT
 		CATEGORY = worker
-	}
-	inline_script = "output/soldier_triggered_modifiers"
-	tags = {
-		soldier
 	}
 	swappable_data = {
 		default = {
@@ -132,10 +82,6 @@ aot_dm_soldier_drone = {
 		EXPONENT = @DELTA_EXPONENT
 		CATEGORY = simple_drone
 	}
-	inline_script = "output/soldier_triggered_modifiers"
-	tags = {
-		soldier
-	}
 	swappable_data = {
 		default = {
 			condition_string = DRONE_JOB_TRIGGER
@@ -169,12 +115,6 @@ aot_dm_giga_fortress_operator = {
 		EXPONENT = @DELTA_EXPONENT
 		CATEGORY = specialist
 	}
-	tags = {
-		soldier
-	}
-	planet_modifier = {
-		planet_stability_add = 0.25
-	}
 	swappable_data = {
 		default = {
 			condition_string = SPECIALIST_JOB_TRIGGER
@@ -194,9 +134,6 @@ aot_dm_giga_fortress_operator_drone = {
 		script = pop_jobs/soldier_base
 		EXPONENT = @DELTA_EXPONENT
 		CATEGORY = complex_drone
-	}
-	tags = {
-		soldier
 	}
 	swappable_data = {
 		default = {
@@ -1064,12 +1001,9 @@ phanon_entertainer_drone = {
 # ------------------------------------------------------------------------------------------------ #
 phanon_enforcer = {
 	inline_script = {
-		script = pop_jobs/soldier_base
+		script = pop_jobs/enforcer
 		EXPONENT = @PHANON_EXPONENT
 		CATEGORY = specialist
-	}
-	tags = {
-		enforcer
 	}
 	swappable_data = {
 		default = {
@@ -1078,40 +1012,12 @@ phanon_enforcer = {
 			icon = aot_pe_enforcer
 		}
 	}
-	possible = {
-		soldier_job_check_trigger = yes
-		owner = { is_gestalt = no }
-	}
-	resources = {
-		category = planet_enforcers
-		produces = {
-			unity = 15
-		}
-		produces = {
-			trigger = {
-				planet = {
-					is_planet_class = pc_dark_fractured
-				}
-			}
-			unity = 15
-		}
-		upkeep = {
-			aot_sr_runic_power = 4
-		}
-	}
-	planet_modifier = {
-		planet_crime_add = -60
-		planet_stability_add = 15
-	}
 }
 phanon_enforcer_drone = {
 	inline_script = {
-		script = pop_jobs/soldier_base
+		script = pop_jobs/enforcer
 		EXPONENT = @PHANON_EXPONENT
 		CATEGORY = complex_drone
-	}
-	tags = {
-		enforcer
 	}
 	swappable_data = {
 		default = {
@@ -1120,43 +1026,12 @@ phanon_enforcer_drone = {
 			icon = aot_pe_enforcer
 		}
 	}
-	possible = {
-		can_think = yes
-	}
-	country_modifier = {
-		country_naval_cap_add = 30
-	}
-	resources = {
-		category = planet_enforcers
-		produces = {
-			unity = 15
-		}
-		produces = {
-			trigger = {
-				planet = {
-					is_planet_class = pc_dark_fractured
-				}
-			}
-			unity = 15
-		}
-		upkeep = {
-			aot_sr_runic_power = 4
-		}
-	}
-	planet_modifier = {
-		planet_crime_no_happiness_add = -60
-		planet_stability_add = 15
-	}
 }
 phanon_soldier = {
 	inline_script = {
 		script = pop_jobs/soldier_base
 		EXPONENT = @PHANON_EXPONENT
 		CATEGORY = worker
-	}
-	inline_script = "output/soldier_triggered_modifiers"
-	tags = {
-		soldier
 	}
 	swappable_data = {
 		default = {
@@ -1170,9 +1045,6 @@ phanon_soldier = {
 		owner = {
 			is_gestalt = no
 		}
-	}
-	country_modifier = {
-		country_naval_cap_add = 18        # Built-in sum from ground defense planning then x2 it
 	}
 	resources = {
 		category = planet_soldiers
@@ -1198,27 +1070,12 @@ phanon_soldier = {
 			aot_sr_runic_power = 2
 		}
 	}
-	triggered_planet_modifier = {
-		potential = {
-			has_councilor = {
-				COUNCILOR = "councilor_private_military_companies"
-			}
-		}
-		modifier = {
-			planet_stability_add = @councilor_private_military_companies_stability
-		}
-		mult = value:councilor_level|TYPE|councilor_private_military_companies|
-	}
 }
 phanon_soldier_drone = {
 	inline_script = {
 		script = pop_jobs/soldier_base
 		EXPONENT = @PHANON_EXPONENT
 		CATEGORY = simple_drone
-	}
-	inline_script = "output/soldier_triggered_modifiers"
-	tags = {
-		soldier
 	}
 	swappable_data = {
 		default = {
@@ -1229,9 +1086,6 @@ phanon_soldier_drone = {
 	}
 	possible = {
 		can_think = yes
-	}
-	country_modifier = {
-		country_naval_cap_add = 18
 	}
 	resources = {
 		category = planet_soldiers
@@ -1257,9 +1111,6 @@ phanon_giga_fortress_operator = {
 		EXPONENT = @PHANON_EXPONENT
 		CATEGORY = specialist
 	}
-	tags = {
-		soldier
-	}
 	swappable_data = {
 		default = {
 			condition_string = SPECIALIST_JOB_TRIGGER
@@ -1273,19 +1124,12 @@ phanon_giga_fortress_operator = {
 	country_modifier = {
 		country_naval_cap_add = 600
 	}
-	planet_modifier = {
-		planet_crime_add = -120
-		planet_stability_add = 120
-	}
 }
 phanon_giga_fortress_operator_drone = {
 	inline_script = {
 		script = pop_jobs/soldier_base
 		EXPONENT = @PHANON_EXPONENT
 		CATEGORY = complex_drone
-	}
-	tags = {
-		soldier
 	}
 	swappable_data = {
 		default = {
@@ -1296,10 +1140,6 @@ phanon_giga_fortress_operator_drone = {
 	}
 	country_modifier = {
 		country_naval_cap_add = 600
-	}
-	planet_modifier = {
-		planet_crime_add = -120
-		planet_stability_add = 120
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -1321,9 +1161,6 @@ phanon_giga_fortress_operator_mentat = {
 		EXPONENT = @PHANON_EXPONENT
 		CATEGORY = specialist
 	}
-	tags = {
-		soldier
-	}
 	swappable_data = {
 		default = {
 			condition_string = SPECIALIST_JOB_TRIGGER
@@ -1344,9 +1181,6 @@ phanon_giga_fortress_operator_mentat_drone = {
 		script = pop_jobs/soldier_base
 		EXPONENT = @PHANON_EXPONENT
 		CATEGORY = complex_drone
-	}
-	tags = {
-		soldier
 	}
 	swappable_data = {
 		default = {
@@ -2020,12 +1854,9 @@ stellarite_entertainer_drone = {
 # ------------------------------------------------------------------------------------------------ #
 stellarite_enforcer = {
 	inline_script = {
-		script = pop_jobs/soldier_base
+		script = pop_jobs/enforcer
 		EXPONENT = @SIGMA_EXPONENT
 		CATEGORY = specialist
-	}
-	tags = {
-		enforcer
 	}
 	swappable_data = {
 		default = {
@@ -2034,39 +1865,12 @@ stellarite_enforcer = {
 			icon = aot_se_enforcer
 		}
 	}
-	possible = {
-		battle_thrall_job_check_trigger = yes
-	}
-	resources = {
-		category = planet_enforcers
-		produces = {
-			unity = 45
-		}
-		produces = {
-			trigger = {
-				planet = {
-					is_planet_class = pc_phanon_macripp
-				}
-			}
-			unity = 45
-		}
-		upkeep = {
-			acot_sr_stellarite = 4
-		}
-	}
-	planet_modifier = {
-		planet_crime_add = -100
-		planet_stability_add = 15
-	}
 }
 stellarite_enforcer_drone = {
 	inline_script = {
-		script = pop_jobs/soldier_base
+		script = pop_jobs/enforcer
 		EXPONENT = @SIGMA_EXPONENT
 		CATEGORY = complex_drone
-	}
-	tags = {
-		enforcer
 	}
 	swappable_data = {
 		default = {
@@ -2075,43 +1879,12 @@ stellarite_enforcer_drone = {
 			icon = aot_se_enforcer
 		}
 	}
-	possible = {
-		can_think = yes
-	}
-	country_modifier = {
-		country_naval_cap_add = 60
-	}
-	resources = {
-		category = planet_enforcers
-		produces = {
-			unity = 45
-		}
-		produces = {
-			trigger = {
-				planet = {
-					is_planet_class = pc_phanon_macripp
-				}
-			}
-			unity = 45
-		}
-		upkeep = {
-			acot_sr_stellarite = 4
-		}
-	}
-	planet_modifier = {
-		planet_crime_no_happiness_add = -80
-		planet_stability_add = 15
-	}
 }
 stellarite_soldier = {
 	inline_script = {
 		script = pop_jobs/soldier_base
 		EXPONENT = @SIGMA_EXPONENT
 		CATEGORY = worker
-	}
-	inline_script = "output/soldier_triggered_modifiers"
-	tags = {
-		soldier
 	}
 	swappable_data = {
 		default = {
@@ -2153,27 +1926,12 @@ stellarite_soldier = {
 			acot_sr_stellarite = 4
 		}
 	}
-	triggered_planet_modifier = {
-		potential = {
-			has_councilor = {
-				COUNCILOR = "councilor_private_military_companies"
-			}
-		}
-		modifier = {
-			planet_stability_add = @councilor_private_military_companies_stability
-		}
-		mult = value:councilor_level|TYPE|councilor_private_military_companies|
-	}
 }
 stellarite_soldier_drone = {
 	inline_script = {
 		script = pop_jobs/soldier_base
 		EXPONENT = @SIGMA_EXPONENT
 		CATEGORY = simple_drone
-	}
-	inline_script = "output/soldier_triggered_modifiers"
-	tags = {
-		soldier
 	}
 	swappable_data = {
 		default = {
@@ -2212,9 +1970,6 @@ stellarite_giga_fortress_operator = {
 		EXPONENT = @SIGMA_EXPONENT
 		CATEGORY = specialist
 	}
-	tags = {
-		soldier
-	}
 	swappable_data = {
 		default = {
 			condition_string = SPECIALIST_JOB_TRIGGER
@@ -2229,19 +1984,12 @@ stellarite_giga_fortress_operator = {
 	country_modifier = {
 		country_naval_cap_add = 1200
 	}
-	planet_modifier = {
-		planet_crime_add = -360
-		planet_stability_add = 360
-	}
 }
 stellarite_giga_fortress_operator_drone = {
 	inline_script = {
 		script = pop_jobs/soldier_base
 		EXPONENT = @SIGMA_EXPONENT
 		CATEGORY = complex_drone
-	}
-	tags = {
-		soldier
 	}
 	swappable_data = {
 		default = {
@@ -2252,10 +2000,6 @@ stellarite_giga_fortress_operator_drone = {
 	}
 	country_modifier = {
 		country_naval_cap_add = 1200
-	}
-	planet_modifier = {
-		planet_crime_add = -240
-		planet_stability_add = 240
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2277,9 +2021,6 @@ stellarite_giga_fortress_operator_mentat = {
 		EXPONENT = @SIGMA_EXPONENT
 		CATEGORY = specialist
 	}
-	tags = {
-		soldier
-	}
 	swappable_data = {
 		default = {
 			condition_string = SPECIALIST_JOB_TRIGGER
@@ -2300,9 +2041,6 @@ stellarite_giga_fortress_operator_mentat_drone = {
 		script = pop_jobs/soldier_base
 		EXPONENT = @SIGMA_EXPONENT
 		CATEGORY = complex_drone
-	}
-	tags = {
-		soldier
 	}
 	swappable_data = {
 		default = {
