@@ -1,0 +1,84 @@
+stronghold_damage_bombarding_ships_in_orbit = {
+	if = {
+		limit = {
+			has_active_building = $BUILDING_TYPE$
+		}
+		while = {
+			count = value:aot_get_strongholds_on_planet_of_type|BUILDING_TYPE|$BUILDING_TYPE$|
+			random_owned_ship = {
+				set_variable_to_random_value = {
+					which = acot_bombardment_damage
+					min = $MIN_DAMAGE$
+					max = $MAX_DAMAGE$
+					rounded = yes
+				}
+				damage_ship = acot_bombardment_damage
+				clear_variable = acot_bombardment_damage
+				if = {
+					limit = {
+						has_modifier = acot_fort_bombardment_cannon_ship_debuff
+					}
+					remove_modifier = acot_fort_bombardment_cannon_ship_debuff
+				}
+				add_modifier = {
+					modifier = acot_fort_bombardment_cannon_ship_debuff
+					days = 10
+				}
+				create_ambient_object = {
+					type = $AMBIENT_OBJECT$
+					location = this
+					use_3d_location = yes
+					base_angle_towards = star
+					entity_face_object = star
+					entity_offset = { min = -5 max = 5 }
+					entity_offset_height = 0
+					duration = 10
+					scale = 1.0
+				}
+			}
+		}
+	}
+}
+giga_fortress_damage_bombarding_ships_in_orbit = {
+	if = {
+		limit = {
+			OR = {
+				$BUILDING_TYPES$
+			}
+		}
+		every_fleet_in_orbit = {
+			limit = { is_owned_by = from }
+			random_owned_ship = {
+				set_variable_to_random_value = {
+					which = acot_bombardment_damage
+					min = $MIN_DAMAGE$
+					max = $MAX_DAMAGE$
+					rounded = yes
+				}
+				damage_ship = acot_bombardment_damage
+				clear_variable = acot_bombardment_damage
+				if = {
+					limit = {
+						has_modifier = acot_gigafortress_cannon_ship_debuff
+					}
+					remove_modifier = acot_gigafortress_cannon_ship_debuff
+				}
+				add_modifier = {
+					modifier = acot_gigafortress_cannon_ship_debuff
+					days = 180
+				}
+				create_ambient_object = {
+					type = $AMBIENT_OBJECT$
+					location = this
+					use_3d_location = yes
+					base_angle_towards = star
+					entity_face_object = star
+					entity_offset = { min = 0 max = 0 }
+					entity_offset_height = 0
+					duration = 10
+					scale = 4.0
+				}
+			}
+		}
+	}
+}
