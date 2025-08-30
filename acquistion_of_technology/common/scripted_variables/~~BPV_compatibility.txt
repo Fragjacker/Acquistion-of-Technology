@@ -1,0 +1,30 @@
+# To make your mod compatible with BPV - More Building Slots, implement these changes:
+
+# common/scripted_variables/~~BPV_compatibility.txt
+# @BPV_compatibility_load = 0
+# @BPV_CITY_SLOT = 3
+# # end with "#" or empty line
+
+# # common/zones/your_city_zone.txt
+# # before:
+# max_buildings = 6
+# # after:
+# max_buildings = @[ BPV_CITY_SLOT * BPV_compatibility_load ]
+
+# common/zones/your_other_zone.txt
+# → DO NOT set max_buildings in zone definitions
+#   This utilizes default building slot defines that BPVMBS will modify
+
+# # common/districts/your_main_city_district.txt
+# # → Only for primary city districts
+# # → Append at district end: (preserve original zone_slots)
+# inline_script = {
+# 	script      = districts/BPV_district_slots2
+# 	GOVERNMENT  = slot_city_government
+# 	SLOT1       = slot_city_01
+# 	SLOT_END    = your_slot_city_02
+# }
+# # This script duplicates END specialization until reaching user-requested counts
+
+@BPV_compatibility_load = 0
+@BPV_CITY_SLOT = 3
