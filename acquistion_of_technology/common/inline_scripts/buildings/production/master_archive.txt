@@ -1,64 +1,71 @@
 inline_script = {
-	script = shared/automated_buildings_base
-	ALLOW = "$ALLOW$"
-	CAN_BUILD = $CAN_BUILD$
-	PREREQUISITE = $PREREQUISITE$
-	UPGRADES_INTO = $UPGRADES_INTO$
-	PRODUCES = "$PRODUCES$"
-	COST = "$COST$"
-	UPKEEP = "$UPKEEP$"
-	AI_FACTORS = "$AI_FACTORS$"
-	TIER = $TIER$
+    script = shared/automated_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    PRODUCES = "$PRODUCES$"
+    COST = "$COST$"
+    UPKEEP = "$UPKEEP$"
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
 }
+base_cap_amount = 1
 category = research
 building_sets = {
-	research
+    research
+    physics
+    society
+    engineering
+}
+country_modifier = {
+    num_tech_alternatives_add = @[ 2 * $TIER$ ]
 }
 potential = {
-	exists = planet_owner
-	planet_owner = {
-		has_technology = $PREREQUISITE$
-	}
+    exists = planet_owner
+    planet_owner = {
+        has_technology = $PREREQUISITE$
+    }
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_fallen_empire = yes
-		}
-	}
-	job_fe_archivist_add = @[ 1000 * $TIER$ ]
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_fallen_empire = yes
+        }
+    }
+    job_fe_archivist_add = @[ 1000 * $TIER$ ]
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_individualistic_empire = yes
-		}
-	}
-	modifier = {
-		job_$JOB$_add = @[ fe_jobs * $TIER$ ]
-	}
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_individualistic_empire = yes
+        }
+    }
+    modifier = {
+        job_$JOB$_add = @[ fe_jobs * $TIER$ ]
+    }
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_hive_empire = yes
-		}
-	}
-	modifier = {
-		job_$JOB_DRONE$_add = @[ fe_jobs * $TIER$ ]
-	}
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_hive_empire = yes
+        }
+    }
+    modifier = {
+        job_$JOB_DRONE$_add = @[ fe_jobs * $TIER$ ]
+    }
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_machine_empire = yes
-		}
-	}
-	modifier = {
-		job_$JOB_DRONE$_add = @[ fe_jobs * $TIER$ ]
-	}
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_machine_empire = yes
+        }
+    }
+    modifier = {
+        job_$JOB_DRONE$_add = @[ fe_jobs * $TIER$ ]
+    }
 }

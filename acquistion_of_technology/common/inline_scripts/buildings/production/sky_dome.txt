@@ -1,47 +1,48 @@
 inline_script = {
-	script = shared/automated_buildings_base
-	ALLOW = "$ALLOW$"
-	CAN_BUILD = $CAN_BUILD$
-	PREREQUISITE = $PREREQUISITE$
-	UPGRADES_INTO = $UPGRADES_INTO$
-	PRODUCES = "$PRODUCES$"
-	COST = "$COST$"
-	UPKEEP = "$UPKEEP$"
-	AI_FACTORS = "$AI_FACTORS$"
-	TIER = $TIER$
+    script = shared/automated_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    PRODUCES = "$PRODUCES$"
+    COST = "$COST$"
+    UPKEEP = "$UPKEEP$"
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
 }
 category = amenity
 building_sets = {
-	urban
-	entertainment
+    urban
+    bio_trophy
 }
 potential = {
-	exists = planet_owner
-	planet_owner = {
-		is_individualistic_empire = yes
-		has_technology = $PREREQUISITE$
-	}
-	NOT = {
-		has_modifier = slave_colony
-	}
+    exists = planet_owner
+    planet_owner = {
+        is_individualistic_empire = yes
+        has_technology = $PREREQUISITE$
+    }
+    NOR = {
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
 }
 convert_to = {
-	building_drone_megastorage
-	building_expanded_warren
-	building_communal_housing_large
+    building_drone_megastorage
+    building_expanded_warren
+    building_communal_housing_large
 }
 planet_modifier = {
-	planet_housing_add = @[ auto_housing_dm * $TIER$ ]
-	planet_amenities_add = @[ auto_amenities_dm * $TIER$ ]
-	planet_pops_upkeep_mult = @[ - 0.05 * $TIER$ ]
-	planet_max_districts_add = @[ 2 * $TIER$ ]
+    planet_housing_add = @[ 2500 * $TIER$ ]
+    planet_amenities_add = @[ 3750 * $TIER$ ]
+    planet_pops_upkeep_mult = @[ - 0.05 * $TIER$ ]
+    planet_max_districts_add = @[ 2 * $TIER$ ]
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			has_valid_civic = civic_machine_servitor
-		}
-	}
-	job_bio_trophy_add = @[ 5000 * $TIER$ ]
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            has_valid_civic = civic_machine_servitor
+        }
+    }
+    job_bio_trophy_add = @[ 3750 * $TIER$ ]
 }

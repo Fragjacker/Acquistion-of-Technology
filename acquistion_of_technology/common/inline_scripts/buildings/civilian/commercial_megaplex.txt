@@ -1,59 +1,58 @@
 inline_script = {
-	script = shared/normal_buildings_base
-	ALLOW = "$ALLOW$"
-	CAN_BUILD = $CAN_BUILD$
-	PREREQUISITE = $PREREQUISITE$
-	UPGRADES_INTO = $UPGRADES_INTO$
-	AI_FACTORS = "$AI_FACTORS$"
-	TIER = $TIER$
+    script = shared/normal_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
 }
 category = trade
 building_sets = {
-	trade
+    trade
 }
 planet_modifier = {
-	planet_traders_upkeep_mult = @[ - 0.01 * two_exp$EXPONENT$ ]
-	job_merchant_add = @[ 100 * two_exp$EXPONENT$ ]
-	job_$JOB$_add = @[ 1000 * two_exp$EXPONENT$ ]
+    planet_traders_upkeep_mult = @[ - 0.01 * two_exp$EXPONENT$ ]
+    job_$JOB$_add = @[ 1000 * two_exp$EXPONENT$ ]
 }
 potential = {
-	exists = planet_owner
-	planet_owner = {
-		is_individualistic_empire = yes
-		has_technology = $PREREQUISITE$
-	}
-	NOT = {
-		has_modifier = slave_colony
-	}
+    exists = planet_owner
+    planet_owner = {
+        is_regular_empire = yes
+        has_technology = $PREREQUISITE$
+    }
+    NOR = {
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
 }
 destroy_trigger = {
-	exists = planet_owner
-	OR = {
-		planet_owner = {
-			is_regular_empire = no
-		}
-		has_modifier = slave_colony
-	}
+    exists = planet_owner
+    OR = {
+        planet_owner = { is_regular_empire = no }
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
 }
 convert_to = {
-	building_maintenance_depot
+    building_maintenance_depot
 }
 resources = {
-	category = planet_buildings
-	cost = {
-		$COST$
-	}
-	upkeep = {
-		$UPKEEP$
-	}
+    category = planet_buildings
+    cost = {
+        $COST$
+    }
+    upkeep = {
+        $UPKEEP$
+    }
 }
 triggered_desc = {
-	text = job_ae_clerk_effect_desc
+    text = job_ae_clerk_effect_desc
 }
-triggered_desc = {
-	text = job_merchant_effect_desc
+show_tech_unlock_if = {
+    is_regular_empire = yes
 }
 inline_script = {
-	script = jobs/trader_add
-	AMOUNT = @[ 200 * two_exp$EXPONENT$ ]
+    script = jobs/trader_add
+    AMOUNT = @[ 200 * two_exp$EXPONENT$ ]
 }
