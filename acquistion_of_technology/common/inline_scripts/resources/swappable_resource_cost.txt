@@ -1,33 +1,50 @@
+# Handle non bio ship empires here.
 $MODE$ = {
-	trigger = {
-		exists = this.owner
-		this.owner = {
-			has_technology = $TRIGGER_TECHNOLOGY$
-			country_uses_bio_ships = no
-		}
-	}
-	$SHARED_VALUES$
-	$SWAPPED_RESOURCE$ = $AMOUNT$
+    trigger = {
+        exists = this.owner
+        this.owner = {
+            has_technology = $TRIGGER_TECHNOLOGY$
+            country_uses_bio_ships = no
+        }
+    }
+    $SWAPPED_RESOURCE$ = $AMOUNT$
+    $SHARED_VALUES$
+    mult = value:aot_get_system_support_pylon_bonus
+}
+# Swap resource for food by factor @alloy_to_food_cost_ratio
+$MODE$ = {
+    trigger = {
+        exists = this.owner
+        this.owner = {
+            has_technology = $TRIGGER_TECHNOLOGY$
+            country_uses_bio_ships = yes
+        }
+    }
+    food = $AMOUNT$
+    mult = @alloy_to_food_cost_ratio
+    mult = value:aot_get_system_support_pylon_bonus
 }
 $MODE$ = {
-	trigger = {
-		exists = this.owner
-		this.owner = {
-			has_technology = $TRIGGER_TECHNOLOGY$
-			country_uses_bio_ships = yes
-		}
-	}
-	food = $AMOUNT$
-	mult = @alloy_to_food_cost_ratio
+    trigger = {
+        exists = this.owner
+        this.owner = {
+            has_technology = $TRIGGER_TECHNOLOGY$
+            country_uses_bio_ships = yes
+        }
+    }
+    $SWAPPED_RESOURCE$ = $AMOUNT$
+    mult = 0.5
+    mult = value:aot_get_system_support_pylon_bonus
 }
+# Provide shared resources as well.
 $MODE$ = {
-	trigger = {
-		exists = this.owner
-		this.owner = {
-			has_technology = $TRIGGER_TECHNOLOGY$
-			country_uses_bio_ships = yes
-		}
-	}
-	$SWAPPED_RESOURCE$ = $AMOUNT$
-	mult = 0.5
+    trigger = {
+        exists = this.owner
+        this.owner = {
+            has_technology = $TRIGGER_TECHNOLOGY$
+            country_uses_bio_ships = yes
+        }
+    }
+    $SHARED_VALUES$
+    mult = value:aot_get_system_support_pylon_bonus
 }
