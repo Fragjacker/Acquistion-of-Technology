@@ -1,11 +1,11 @@
-version = "4.0.8.0"
+version = "4.0.9.0"
 tags = {
-	"Technologies"
-	"Gameplay"
-	"Overhaul"
+    "Technologies"
+    "Gameplay"
+    "Overhaul"
 }
 dependencies = {
-	"Ancient Cache of Technologies"
+    "Ancient Cache of Technologies"
 }
 name = "Acquisition of Technology"
 picture = "thumbnail.png"
