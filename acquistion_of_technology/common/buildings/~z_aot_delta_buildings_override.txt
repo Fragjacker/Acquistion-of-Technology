@@ -10,6 +10,7 @@ building_acot_dm_ancient_palace = {
         OVERSEER_JOB = acot_overseer
         ENFORCER_JOB = aot_dm_enforcer
         TOOLTIP_TIER = dm
+        ALLOY_COST = 1000
         PRODUCES = "
 			energy = 20
 			sr_dark_matter = 10
@@ -60,6 +61,7 @@ building_acot_dm_ancient_control_center = {
         OVERSEER_JOB = acot_overseer_droid
         ENFORCER_JOB = aot_dm_enforcer_drone
         TOOLTIP_TIER = dm
+        ALLOY_COST = 1000
         PRODUCES = "energy = 20
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10"
@@ -105,6 +107,7 @@ building_acot_dm_ancient_hive_cluster = {
         OVERSEER_JOB = acot_overseer_drone
         ENFORCER_JOB = aot_dm_enforcer_drone
         TOOLTIP_TIER = dm
+        ALLOY_COST = 1000
         PRODUCES = "energy = 20
 			sr_dark_matter = 10
 			acot_sr_dark_energy = 10"
@@ -893,10 +896,24 @@ building_delta_nexus = {
     }
     resources = {
         category = planet_buildings
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 1000
+        }
         cost = {
             minerals = 2000
             acot_sr_dark_energy = 1500
             sr_dark_matter = 1500
+        }
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = upkeep
+            RESOURCE = energy
+            AMOUNT = 500
         }
         upkeep = {
             trigger = {
@@ -906,7 +923,6 @@ building_delta_nexus = {
             }
             sr_dark_matter = 400
             acot_sr_dark_energy = 400
-            energy = 500
         }
     }
 }

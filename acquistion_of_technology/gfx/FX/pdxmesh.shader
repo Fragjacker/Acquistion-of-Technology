@@ -1136,56 +1136,60 @@ PixelShader =
 		{
 			float4 UVLod = float4( (In.vUV0), 0.0f, PortraitMipLevel * 0.35f );
 
-			#ifdef CLOTHES
-				float4 vDiffuse = tex2Dlod( PortraitClothes, UVLod );
-			#else
-				#ifdef HAIR
-					float4 vDiffuse = tex2Dlod( PortraitHair, UVLod );
-				#else
-					float4 vDiffuse;
-					if( CustomDiffuseTexture > 0.5f )
-					{
-						const float4 MASK_COLOR = float4( 0.0f, 1.0f, 1.0f, 1.0f ); // There is corresponding mask_color entry in portrait database
-						const float COMPARISON_PRECISION = 0.1f;
-						const float ABOUT_ZERO = 0.00001f;
+            #ifdef CUSTOM_DIFFUSE
+                float4 vDiffuse = tex2Dlod( DiffuseMap, UVLod );
+            #else
+                #ifdef CLOTHES
+                    float4 vDiffuse = tex2Dlod( PortraitClothes, UVLod );
+                #else
+                    #ifdef HAIR
+                        float4 vDiffuse = tex2Dlod( PortraitHair, UVLod );
+                    #else
+                        float4 vDiffuse;
+                        if( CustomDiffuseTexture > 0.5f )
+                        {
+                            const float4 MASK_COLOR = float4( 0.0f, 1.0f, 1.0f, 1.0f ); // There is corresponding mask_color entry in portrait database
+                            const float COMPARISON_PRECISION = 0.1f;
+                            const float ABOUT_ZERO = 0.00001f;
 
-						float4 vDecalColor = tex2Dlod( PortraitEvolutionDecal, UVLod );
-						float4 vMaskColor = tex2Dlod( CustomTexture2, UVLod );
+                            float4 vDecalColor = tex2Dlod( PortraitEvolutionDecal, UVLod );
+                            float4 vMaskColor = tex2Dlod( CustomTexture2, UVLod );
 
-						if( AreEqual( vMaskColor, MASK_COLOR, COMPARISON_PRECISION ) )
-						{
-							float4 vCharacterColor = tex2Dlod( PortraitCharacter, UVLod );
+                            if( AreEqual( vMaskColor, MASK_COLOR, COMPARISON_PRECISION ) )
+                            {
+                                float4 vCharacterColor = tex2Dlod( PortraitCharacter, UVLod );
 
-							float backgroundAlpha = vCharacterColor.a;
-							float foregroundAlpha = vDecalColor.a;
-							float summarisedAlpha = foregroundAlpha + backgroundAlpha;
+                                float backgroundAlpha = vCharacterColor.a;
+                                float foregroundAlpha = vDecalColor.a;
+                                float summarisedAlpha = foregroundAlpha + backgroundAlpha;
 
-							float3 blendedColor;
-							if( summarisedAlpha > ABOUT_ZERO )
-							{
-								float scalar = foregroundAlpha + ( 1.f - foregroundAlpha ) * foregroundAlpha / summarisedAlpha;
-								blendedColor = lerp( vCharacterColor.rgb, vDecalColor.rgb, scalar );
-							}
-					else
-							{
-								blendedColor = vCharacterColor.rgb;
-							}
+                                float3 blendedColor;
+                                if( summarisedAlpha > ABOUT_ZERO )
+                                {
+                                    float scalar = foregroundAlpha + ( 1.f - foregroundAlpha ) * foregroundAlpha / summarisedAlpha;
+                                    blendedColor = lerp( vCharacterColor.rgb, vDecalColor.rgb, scalar );
+                                }
+                        else
+                                {
+                                    blendedColor = vCharacterColor.rgb;
+                                }
 
-							vDiffuse.rgb = blendedColor;
-							vDiffuse.a = ( foregroundAlpha + ( 1.f - foregroundAlpha ) * backgroundAlpha );
-						}
-						else
-						{
-							vDiffuse = vDecalColor;
-							vDiffuse.a = vDecalColor.a;
-						}
-					}
-					else
-					{
-						vDiffuse = tex2Dlod( DiffuseMap, UVLod );
-					}
-				#endif
-			#endif
+                                vDiffuse.rgb = blendedColor;
+                                vDiffuse.a = ( foregroundAlpha + ( 1.f - foregroundAlpha ) * backgroundAlpha );
+                            }
+                            else
+                            {
+                                vDiffuse = vDecalColor;
+                                vDiffuse.a = vDecalColor.a;
+                            }
+                        }
+                        else
+                        {
+                            vDiffuse = tex2Dlod( DiffuseMap, UVLod );
+                        }
+                    #endif
+                #endif
+            #endif
 
 			#ifdef HUE_SHIFT
 				#ifdef USE_HUE_SHIFT_MASK
@@ -2679,7 +2683,7 @@ Effect PdxMeshAtmosphereStarSkinned
 	RasterizerState = "RasterizerStateBack"
 	BlendState = "BlendStateAdditiveBlend"
 	DepthStencilState = "DepthStencilNoZWrite"
-	Defines = { "IS_PLANET "IS_STAR"" }
+	Defines = { "IS_PLANET" "IS_STAR" }
 }
 
 Effect PdxMeshStar
@@ -2941,6 +2945,38 @@ Effect PdxMeshPortraitClothesSkinned
 	DepthStencilState = "DepthStencilNoZ"
 	RasterizerState = "RasterizerStateNoCulling"
 	Defines = { "CLOTHES" }
+}
+
+Effect PdxMeshPortraitCustomDiffuseAnimateUV
+{
+	VertexShader = "VertexPdxMeshPortraitStandard"
+	PixelShader = "PixelPdxMeshPortrait"
+	BlendState = "BlendStateAlphaBlendWriteAlpha";
+	DepthStencilState = "DepthStencilNoZ"
+	Defines = { "CUSTOM_DIFFUSE" "FLOWMAP" }
+}
+
+Effect PdxMeshPortraitCustomDiffuseAnimateUVSkinned
+{
+	VertexShader = "VertexPdxMeshPortraitStandardSkinned"
+	PixelShader = "PixelPdxMeshPortrait"
+	BlendState = "BlendStateAlphaBlendWriteAlpha";
+	DepthStencilState = "DepthStencilNoZ"
+	Defines = { "CUSTOM_DIFFUSE" "FLOWMAP" }
+}
+
+Effect PdxMeshPortraitCustomDiffuseAnimateUVShadow
+{
+	VertexShader = "VertexPdxMeshStandardShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
+
+Effect PdxMeshPortraitCustomDiffuseAnimateUVSkinnedShadow
+{
+	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
 }
 
 Effect PdxMeshPortraitHair

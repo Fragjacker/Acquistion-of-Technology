@@ -1,268 +1,310 @@
 inline_script = {
-	script = shared/normal_buildings_base
-	ALLOW = "$ALLOW$"
-	CAN_BUILD = $CAN_BUILD$
-	PREREQUISITE = $PREREQUISITE$
-	UPGRADES_INTO = $UPGRADES_INTO$
-	AI_FACTORS = "$AI_FACTORS$"
-	TIER = $TIER$
+    script = shared/normal_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
 }
 @max_resource_add = @[ 10000 * two_exp$EXPONENT$ ]
 category = manufacturing
 building_sets = {
-	industrial
-	factory
-	foundry
+    industrial
+    factory
+    foundry
 }
 potential = {
-	exists = planet_owner
-	planet_owner = {
-		has_technology = $PREREQUISITE$
-	}
+    exists = planet_owner
+    planet_owner = {
+        has_technology = $PREREQUISITE$
+    }
 }
 country_modifier = {
-	$STORAGE_INCREASE$
+    $STORAGE_INCREASE$
+}
+# Additional jobs and workforce bonus
+triggered_planet_modifier = {
+    potential = {
+        exists = planet_owner
+        planet_owner = { is_gestalt = no }
+    }
+    job_acot_dark_matter_man_add = @[ 400 + ( 100 * two_exp$EXPONENT$ ) ]
+    job_acot_dark_energy_man_add = @[ 400 + ( 100 * two_exp$EXPONENT$ ) ]
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = planet_owner
+        planet_owner = { is_gestalt = yes }
+        has_active_building = building_acot_ae_dark_matter_synthersizer
+    }
+    job_acot_dark_matter_drone_add = @[ 200 + ( 100 * two_exp$EXPONENT$ ) ]
+    job_acot_dark_energy_drone_add = @[ 200 + ( 100 * two_exp$EXPONENT$ ) ]
+}
+triggered_planet_modifier = {
+    potential = {
+        exists = planet_owner
+        has_active_building = building_acot_ae_dark_matter_synthersizer
+    }
+    planet_jobs_acot_sr_dark_energy_produces_mult = 1.0
+    planet_jobs_sr_dark_matter_produces_mult = 1.0
+}
+triggered_planet_modifier = {
+    potential = {
+        exists = planet_owner
+        has_active_building = building_phanon_synthersizer
+    }
+    planet_jobs_aot_sr_runic_power_produces_mult = 1.0
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = planet_owner
+        has_active_building = building_stellarite_synthersizer
+    }
+    planet_jobs_acot_sr_stellarite_produces_mult = 1.0
 }
 resources = {
-	category = planet_buildings
-	cost = {
-		$COST$
-	}
-	produces = {
-		$PRODUCES$
-	}
-	# Stellarite
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_stellarite_generator
-				value = 2
-			}
-		}
-		acot_sr_stellarite = 30
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_stellarite_generator
-				value = 3
-			}
-		}
-		acot_sr_stellarite = 60
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_stellarite_generator
-				value >= 4
-			}
-		}
-		acot_sr_stellarite = 90
-	}
-	##### A DE
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_stellarite_generator_ae
-				value = 2
-			}
-		}
-		acot_sr_stellarite = 60
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_stellarite_generator_ae
-				value = 3
-			}
-		}
-		acot_sr_stellarite = 120
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_stellarite_generator_ae
-				value >= 4
-			}
-		}
-		acot_sr_stellarite = 180
-	}
-	##### DM
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_stellarite_generator_lvl3
-				value = 2
-			}
-		}
-		acot_sr_stellarite = 100
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_stellarite_generator_lvl3
-				value = 3
-			}
-		}
-		acot_sr_stellarite = 200
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_stellarite_generator_lvl3
-				value >= 4
-			}
-		}
-		acot_sr_stellarite = 300
-	}
-	# Phanon
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_stellarite_generator
-				value = 2
-			}
-		}
-		aot_sr_runic_power = 30
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_stellarite_generator
-				value = 3
-			}
-		}
-		aot_sr_runic_power = 60
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_stellarite_generator
-				value >= 4
-			}
-		}
-		aot_sr_runic_power = 90
-	}
-	# DM and DE
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_dm_dark_energy_pylon
-				value = 2
-			}
-		}
-		acot_sr_dark_energy = @[ 20 * $TIER$ ]
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_dm_dark_energy_pylon
-				value = 3
-			}
-		}
-		acot_sr_dark_energy = @[ 30 * $TIER$ ]
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_dm_dark_energy_pylon
-				value >= 4
-			}
-		}
-		acot_sr_dark_energy = @[ 40 * $TIER$ ]
-	}
-	##### A DE
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_ae_dark_energy_pylon
-				value = 2
-			}
-		}
-		acot_sr_dark_energy = @[ 30 * $TIER$ ]
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_ae_dark_energy_pylon
-				value = 3
-			}
-		}
-		acot_sr_dark_energy = @[ 40 * $TIER$ ]
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_ae_dark_energy_pylon
-				value >= 4
-			}
-		}
-		acot_sr_dark_energy = @[ 50 * $TIER$ ]
-	}
-	##### DM
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_dm_dark_matter_generator
-				value = 2
-			}
-		}
-		sr_dark_matter = @[ 20 * $TIER$ ]
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_dm_dark_matter_generator
-				value = 3
-			}
-		}
-		sr_dark_matter = @[ 30 * $TIER$ ]
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_dm_dark_matter_generator
-				value >= 4
-			}
-		}
-		sr_dark_matter = @[ 40 * $TIER$ ]
-	}
-	##### A DM
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_ae_dark_matter_generator
-				value = 2
-			}
-		}
-		sr_dark_matter = @[ 30 * $TIER$ ]
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_ae_dark_matter_generator
-				value = 3
-			}
-		}
-		sr_dark_matter = @[ 40 * $TIER$ ]
-	}
-	produces = {
-		trigger = {
-			num_buildings = {
-				type = building_acot_ae_dark_matter_generator
-				value >= 4
-			}
-		}
-		sr_dark_matter = @[ 50 * $TIER$ ]
-	}
-	upkeep = {
-		trigger = {
-			planet_owner = {
-				NOT = {
-					has_technology = tech_acot_fractured_autoharvesting
-				}
-			}
-		}
-		energy = @[ 10 * $TIER$ ]
-	}
+    category = planet_buildings
+    cost = {
+        $COST$
+    }
+    produces = {
+        $PRODUCES$
+    }
+    # Stellarite
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_stellarite_generator
+                value = 2
+            }
+        }
+        acot_sr_stellarite = 30
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_stellarite_generator
+                value = 3
+            }
+        }
+        acot_sr_stellarite = 60
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_stellarite_generator
+                value >= 4
+            }
+        }
+        acot_sr_stellarite = 90
+    }
+    ##### A DE
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_stellarite_generator_ae
+                value = 2
+            }
+        }
+        acot_sr_stellarite = 60
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_stellarite_generator_ae
+                value = 3
+            }
+        }
+        acot_sr_stellarite = 120
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_stellarite_generator_ae
+                value >= 4
+            }
+        }
+        acot_sr_stellarite = 180
+    }
+    ##### DM
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_stellarite_generator_lvl3
+                value = 2
+            }
+        }
+        acot_sr_stellarite = 100
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_stellarite_generator_lvl3
+                value = 3
+            }
+        }
+        acot_sr_stellarite = 200
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_stellarite_generator_lvl3
+                value >= 4
+            }
+        }
+        acot_sr_stellarite = 300
+    }
+    # Phanon
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_stellarite_generator
+                value = 2
+            }
+        }
+        aot_sr_runic_power = 30
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_stellarite_generator
+                value = 3
+            }
+        }
+        aot_sr_runic_power = 60
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_stellarite_generator
+                value >= 4
+            }
+        }
+        aot_sr_runic_power = 90
+    }
+    # DM and DE
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_dm_dark_energy_pylon
+                value = 2
+            }
+        }
+        acot_sr_dark_energy = @[ 20 * $TIER$ ]
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_dm_dark_energy_pylon
+                value = 3
+            }
+        }
+        acot_sr_dark_energy = @[ 30 * $TIER$ ]
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_dm_dark_energy_pylon
+                value >= 4
+            }
+        }
+        acot_sr_dark_energy = @[ 40 * $TIER$ ]
+    }
+    ##### A DE
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_ae_dark_energy_pylon
+                value = 2
+            }
+        }
+        acot_sr_dark_energy = @[ 30 * $TIER$ ]
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_ae_dark_energy_pylon
+                value = 3
+            }
+        }
+        acot_sr_dark_energy = @[ 40 * $TIER$ ]
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_ae_dark_energy_pylon
+                value >= 4
+            }
+        }
+        acot_sr_dark_energy = @[ 50 * $TIER$ ]
+    }
+    ##### DM
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_dm_dark_matter_generator
+                value = 2
+            }
+        }
+        sr_dark_matter = @[ 20 * $TIER$ ]
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_dm_dark_matter_generator
+                value = 3
+            }
+        }
+        sr_dark_matter = @[ 30 * $TIER$ ]
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_dm_dark_matter_generator
+                value >= 4
+            }
+        }
+        sr_dark_matter = @[ 40 * $TIER$ ]
+    }
+    ##### A DM
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_ae_dark_matter_generator
+                value = 2
+            }
+        }
+        sr_dark_matter = @[ 30 * $TIER$ ]
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_ae_dark_matter_generator
+                value = 3
+            }
+        }
+        sr_dark_matter = @[ 40 * $TIER$ ]
+    }
+    produces = {
+        trigger = {
+            num_buildings = {
+                type = building_acot_ae_dark_matter_generator
+                value >= 4
+            }
+        }
+        sr_dark_matter = @[ 50 * $TIER$ ]
+    }
+    upkeep = {
+        trigger = {
+            planet_owner = {
+                NOT = {
+                    has_technology = tech_acot_fractured_autoharvesting
+                }
+            }
+        }
+        energy = @[ 10 * $TIER$ ]
+    }
 }

@@ -4,160 +4,135 @@
 #
 #########################################
 namespace = acot_exterminatus_event
-# Planet is turned into tomb world by Exterminatus bombing stance
-planet_event = {
-	id = acot_exterminatus_event.1
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = {
-			has_global_flag = acot_exterminatus_forbidden
-		}
-		OR = {
-			has_orbital_bombardment_stance = acot_bombardment_dm
-			has_orbital_bombardment_stance = acot_bombardment_ae
-			has_orbital_bombardment_stance = acot_bombardment_se
-		}
-		OR = {
-			is_memeable_planet = yes
-			is_memeable_space_habitat = yes
-			is_memeable_ringworld = yes
-		}
-		count_owned_pop_amount = {
-			count <= 5000
-		}
-	}
-	immediate = {
-		inline_script = {
-			script = exterminatus_standard_effect
-			EFFECT = exterminatus_planet_effect
-		}
-	}
-}
 
 # Colony Rolls Chance to being MEMED
 planet_event = {
-	id = acot_exterminatus_event.100
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		planet_devastation >= 100
-		OR = {
-			has_orbital_bombardment_stance = acot_bombardment_dm
-			has_orbital_bombardment_stance = acot_bombardment_ae
-			has_orbital_bombardment_stance = acot_bombardment_se
-		}
-		NOR = {
-			has_global_flag = acot_exterminatus_forbidden
-			has_planet_flag = bombardment_cooldown
-		}
-		OR = {
-			is_memeable_planet = yes
-			is_memeable_space_habitat = yes
-			is_memeable_ringworld = yes
-		}
-	}
-	immediate = {
-		if = {
-			limit = {
-				has_orbital_bombardment_stance = acot_bombardment_se
-			}
-			inline_script = {
-				script = exterminatus_standard_effect
-				EFFECT = exterminatus_planet_effect_final_destination
-			}
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_orbital_bombardment_stance = acot_bombardment_dm
-					has_orbital_bombardment_stance = acot_bombardment_ae
-				}
-				from = {
-					NOT = {
-						has_technology = tech_bombardment_ae_final
-					}
-				}
-			}
-			set_timed_planet_flag = {
-				flag = bombardment_cooldown months = 2
-			}
-			inline_script = {
-				script = exterminatus_standard_effect
-				EFFECT = exterminatus_planet_effect_ae
-			}
-		}
-		else = {
-			set_timed_planet_flag = {
-				flag = bombardment_cooldown months = 1
-			}
-			random_list = {
-				80 = {
-					modifier = {
-						factor = 0
-						num_pops <= 500
-					}
-					if = {
-						limit = {
-							has_building = building_acot_ae_psg
-						}
-						while = {
-							count = 3
-							random_owned_pop_group = {
-								kill_single_pop = yes
-							}
-						}
-					}
-					else_if = {
-						limit = {
-							NOR = {
-								has_building = building_acot_ae_psg
-								has_building = building_phanon_psg
-								has_building = building_stellarite_psg
-							}
-						}
-						while = {
-							count = 5
-							random_owned_pop_group = {
-								kill_single_pop = yes
-							}
-						}
-					}
-				}
-				20 = {
-					modifier = {
-						factor = 0.75
-						has_building = building_planetary_shield_generator
-					}
-					modifier = {
-						factor = 0.25
-						has_building = building_acot_dm_psg
-					}
-					modifier = {
-						factor = 0
-						has_building = building_acot_ae_psg
-					}
-					modifier = {
-						factor = 0
-						has_building = building_phanon_psg
-					}
-					modifier = {
-						factor = 0
-						has_building = building_stellarite_psg
-					}
-					modifier = {
-						factor = 4
-						check_variable = {
-							which = acot_planet_damage
-							value >= 40
-						}
-					}
-					inline_script = {
-						script = exterminatus_standard_effect
-						EFFECT = exterminatus_planet_effect
-					}
-				}
-			}
-		}
-	}
+    id = acot_exterminatus_event.100
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        planet_devastation >= 100
+        OR = {
+            has_orbital_bombardment_stance = acot_bombardment_dm
+            has_orbital_bombardment_stance = acot_bombardment_ae
+            has_orbital_bombardment_stance = acot_bombardment_se
+        }
+        NOR = {
+            has_global_flag = acot_exterminatus_forbidden
+            has_planet_flag = bombardment_cooldown
+        }
+        OR = {
+            colonizable_planet = yes
+            AND = {
+                exists = owner
+                planet_owner = {
+                    is_same_value = event_target:exterminatus_victim_country
+                }
+            }
+        }
+        is_acot_pmc_vault = no
+    }
+    immediate = {
+        if = {
+            limit = {
+                has_orbital_bombardment_stance = acot_bombardment_se
+            }
+            inline_script = {
+                script = exterminatus_standard_effect
+                EFFECT = exterminatus_planet_effect_final_destination
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                    has_orbital_bombardment_stance = acot_bombardment_dm
+                    has_orbital_bombardment_stance = acot_bombardment_ae
+                }
+                from = {
+                    NOT = {
+                        has_technology = tech_bombardment_ae_final
+                    }
+                }
+            }
+            set_timed_planet_flag = {
+                flag = bombardment_cooldown months = 2
+            }
+            inline_script = {
+                script = exterminatus_standard_effect
+                EFFECT = exterminatus_planet_effect_ae
+            }
+        }
+        else = {
+            set_timed_planet_flag = {
+                flag = bombardment_cooldown months = 1
+            }
+            random_list = {
+                80 = {
+                    modifier = {
+                        factor = 0
+                        num_pops <= 500
+                    }
+                    if = {
+                        limit = {
+                            has_building = building_acot_ae_psg
+                        }
+                        while = {
+                            count = 3
+                            random_owned_pop_group = {
+                                kill_single_pop = yes
+                            }
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            NOR = {
+                                has_building = building_acot_ae_psg
+                                has_building = building_phanon_psg
+                                has_building = building_stellarite_psg
+                            }
+                        }
+                        while = {
+                            count = 5
+                            random_owned_pop_group = {
+                                kill_single_pop = yes
+                            }
+                        }
+                    }
+                }
+                20 = {
+                    modifier = {
+                        factor = 0.75
+                        has_building = building_planetary_shield_generator
+                    }
+                    modifier = {
+                        factor = 0.25
+                        has_building = building_acot_dm_psg
+                    }
+                    modifier = {
+                        factor = 0
+                        has_building = building_acot_ae_psg
+                    }
+                    modifier = {
+                        factor = 0
+                        has_building = building_phanon_psg
+                    }
+                    modifier = {
+                        factor = 0
+                        has_building = building_stellarite_psg
+                    }
+                    modifier = {
+                        factor = 4
+                        check_variable = {
+                            which = acot_planet_damage
+                            value >= 40
+                        }
+                    }
+                    inline_script = {
+                        script = exterminatus_standard_effect
+                        EFFECT = exterminatus_planet_effect
+                    }
+                }
+            }
+        }
+    }
 }

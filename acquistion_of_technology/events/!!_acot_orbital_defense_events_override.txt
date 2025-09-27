@@ -8,418 +8,418 @@ namespace = acot_orbital_defense_events
 
 # STRONGHOLD
 planet_event = {
-	id = acot_orbital_defense_events.0
-	hide_window = yes
-	is_triggered_only = yes
-	pre_triggers = {
-		has_owner = yes
-	}
-	trigger = {
-		planet_devastation >= 75
-		NOT = {
-			has_planet_flag = acot_bombard_damage_delay
-		}
-		OR = {
-			has_building = building_fe_stronghold
-			has_building = building_acot_dm_stronghold
-			has_building = building_acot_ae_stronghold
-		}
-	}
-	immediate = {
-		set_timed_planet_flag = {
-			flag = acot_bombard_damage_delay
-			days = 5
-		}
-		every_fleet_in_orbit = {
-			limit = { is_owned_by = from }
-			#---------------------------------------<  Delta Strongholds  >-------------------------------------
-			stronghold_damage_bombarding_ships_in_orbit = {
-				BUILDING_TYPE = building_acot_dm_stronghold
-				MIN_DAMAGE = 1000
-				MAX_DAMAGE = 2000
-				AMBIENT_OBJECT = acot_planet_cannon_dm
-			}
-			stronghold_damage_bombarding_ships_in_orbit = {
-				BUILDING_TYPE = building_acot_dm_stronghold
-				MIN_DAMAGE = 1000
-				MAX_DAMAGE = 2000
-				AMBIENT_OBJECT = acot_planet_cannon_dm
-			}
-			#---------------------------------------<  Alpha Strongholds  >-------------------------------------
-			stronghold_damage_bombarding_ships_in_orbit = {
-				BUILDING_TYPE = building_acot_ae_stronghold
-				MIN_DAMAGE = 2000
-				MAX_DAMAGE = 4000
-				AMBIENT_OBJECT = acot_planet_cannon_ae
-			}
-			#---------------------------------------<  Phanon Strongholds  >------------------------------------
-			stronghold_damage_bombarding_ships_in_orbit = {
-				BUILDING_TYPE = building_phanon_stronghold
-				MIN_DAMAGE = 4000
-				MAX_DAMAGE = 8000
-				AMBIENT_OBJECT = aot_planet_cannon_phanon
-			}
-			#---------------------------------------<  Sigma Strongholds  >-------------------------------------
-			stronghold_damage_bombarding_ships_in_orbit = {
-				BUILDING_TYPE = building_stellarite_stronghold
-				MIN_DAMAGE = 8000
-				MAX_DAMAGE = 16000
-				AMBIENT_OBJECT = aot_planet_cannon_sigma
-			}
-		}
-	}
+    id = acot_orbital_defense_events.0
+    hide_window = yes
+    is_triggered_only = yes
+    pre_triggers = {
+        has_owner = yes
+    }
+    trigger = {
+        planet_devastation >= 75
+        NOT = {
+            has_planet_flag = acot_bombard_damage_delay
+        }
+        OR = {
+            has_building = building_fe_stronghold
+            has_building = building_acot_dm_stronghold
+            has_building = building_acot_ae_stronghold
+        }
+    }
+    immediate = {
+        set_timed_planet_flag = {
+            flag = acot_bombard_damage_delay
+            days = 5
+        }
+        every_fleet_in_orbit = {
+            limit = { is_owned_by = from }
+            #---------------------------------------<  Delta Strongholds  >-------------------------------------
+            stronghold_damage_bombarding_ships_in_orbit = {
+                BUILDING_TYPE = building_acot_dm_stronghold
+                MIN_DAMAGE = 1000
+                MAX_DAMAGE = 2000
+                AMBIENT_OBJECT = acot_planet_cannon_dm
+            }
+            stronghold_damage_bombarding_ships_in_orbit = {
+                BUILDING_TYPE = building_acot_dm_stronghold
+                MIN_DAMAGE = 1000
+                MAX_DAMAGE = 2000
+                AMBIENT_OBJECT = acot_planet_cannon_dm
+            }
+            #---------------------------------------<  Alpha Strongholds  >-------------------------------------
+            stronghold_damage_bombarding_ships_in_orbit = {
+                BUILDING_TYPE = building_acot_ae_stronghold
+                MIN_DAMAGE = 2000
+                MAX_DAMAGE = 4000
+                AMBIENT_OBJECT = acot_planet_cannon_ae
+            }
+            #---------------------------------------<  Phanon Strongholds  >------------------------------------
+            stronghold_damage_bombarding_ships_in_orbit = {
+                BUILDING_TYPE = building_phanon_stronghold
+                MIN_DAMAGE = 4000
+                MAX_DAMAGE = 8000
+                AMBIENT_OBJECT = aot_planet_cannon_phanon
+            }
+            #---------------------------------------<  Sigma Strongholds  >-------------------------------------
+            stronghold_damage_bombarding_ships_in_orbit = {
+                BUILDING_TYPE = building_stellarite_stronghold
+                MIN_DAMAGE = 8000
+                MAX_DAMAGE = 16000
+                AMBIENT_OBJECT = aot_planet_cannon_sigma
+            }
+        }
+    }
 }
 
 # SHIELD
 planet_event = {
-	id = acot_orbital_defense_events.1
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		planet_devastation <= 50
-		NOT = {
-			has_planet_flag = acot_shield_reflect_damage_delay
-		}
-	}
-	immediate = {
-		set_timed_planet_flag = {
-			flag = acot_shield_reflect_damage_delay
-			days = 10
-		}
-		if = {
-			limit = {
-				OR = {
-					aot_has_planetary_shield_building = yes
-					is_planet_class = pc_acot_enigmopolis
-					is_planet_class = pc_acot_pmc_vault
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						has_orbital_bombardment_stance = selective
-						has_orbital_bombardment_stance = raiding
-					}
-				}
-				every_fleet_in_orbit = {
-					limit = { is_owned_by = from }
-					every_owned_ship = {
-						set_variable_to_random_value = {
-							which = acot_bombardment_damage
-							min = 200
-							max = 400
-							rounded = yes
-						}
-						damage_ship = acot_bombardment_damage
-						clear_variable = acot_bombardment_damage
-						if = {
-							limit = {
-								has_modifier = acot_psg_bombardment_ship_debuff
-							}
-							remove_modifier = acot_psg_bombardment_ship_debuff
-						}
-						add_modifier = {
-							modifier = acot_psg_bombardment_ship_debuff
-							days = 20
-						}
-						create_ambient_object = {
-							type = acot_planet_cannon_ae
-							location = this
-							use_3d_location = yes
-							base_angle_towards = star
-							entity_face_object = star
-							entity_offset = { min = -5 max = 5 }
-							entity_offset_height = 0
-							duration = 10
-							scale = 1.0
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					OR = {
-						has_orbital_bombardment_stance = pox
-						has_orbital_bombardment_stance = indiscriminate
-					}
-				}
-				every_fleet_in_orbit = {
-					limit = { is_owned_by = from }
-					every_owned_ship = {
-						set_variable_to_random_value = {
-							which = acot_bombardment_damage
-							min = 400
-							max = 600
-							rounded = yes
-						}
-						damage_ship = acot_bombardment_damage
-						clear_variable = acot_bombardment_damage
-						if = {
-							limit = {
-								has_modifier = acot_psg_bombardment_ship_debuff
-							}
-							remove_modifier = acot_psg_bombardment_ship_debuff
-						}
-						add_modifier = {
-							modifier = acot_psg_bombardment_ship_debuff
-							days = 20
-						}
-						create_ambient_object = {
-							type = acot_planet_cannon_ae
-							location = this
-							use_3d_location = yes
-							base_angle_towards = star
-							entity_face_object = star
-							entity_offset = { min = -5 max = 5 }
-							entity_offset_height = 0
-							duration = 10
-							scale = 1.0
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					OR = {
-						has_orbital_bombardment_stance = armageddon
-						has_orbital_bombardment_stance = acot_bombardment_dm
-						has_orbital_bombardment_stance = siphonlife
-						has_orbital_bombardment_stance = contingency
-						has_orbital_bombardment_stance = infestation
-					}
-				}
-				every_fleet_in_orbit = {
-					limit = { is_owned_by = from }
-					every_owned_ship = {
-						set_variable_to_random_value = {
-							which = acot_bombardment_damage
-							min = 600
-							max = 800
-							rounded = yes
-						}
-						damage_ship = acot_bombardment_damage
-						clear_variable = acot_bombardment_damage
-						if = {
-							limit = {
-								has_modifier = acot_psg_bombardment_ship_debuff
-							}
-							remove_modifier = acot_psg_bombardment_ship_debuff
-						}
-						add_modifier = {
-							modifier = acot_psg_bombardment_ship_debuff
-							days = 20
-						}
-						create_ambient_object = {
-							type = acot_planet_cannon_ae
-							location = this
-							use_3d_location = yes
-							base_angle_towards = star
-							entity_face_object = star
-							entity_offset = { min = -5 max = 5 }
-							entity_offset_height = 0
-							duration = 10
-							scale = 1.0
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					has_orbital_bombardment_stance = acot_bombardment_ae
-				}
-				every_fleet_in_orbit = {
-					limit = { is_owned_by = from }
-					every_owned_ship = {
-						set_variable_to_random_value = {
-							which = acot_bombardment_damage
-							min = 800
-							max = 1000
-							rounded = yes
-						}
-						damage_ship = acot_bombardment_damage
-						clear_variable = acot_bombardment_damage
-						if = {
-							limit = {
-								has_modifier = acot_psg_bombardment_ship_debuff
-							}
-							remove_modifier = acot_psg_bombardment_ship_debuff
-						}
-						add_modifier = {
-							modifier = acot_psg_bombardment_ship_debuff
-							days = 20
-						}
-						create_ambient_object = {
-							type = acot_planet_cannon_ae
-							location = this
-							use_3d_location = yes
-							base_angle_towards = star
-							entity_face_object = star
-							entity_offset = { min = -5 max = 5 }
-							entity_offset_height = 0
-							duration = 10
-							scale = 1.0
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					has_orbital_bombardment_stance = acot_bombardment_se
-				}
-				every_fleet_in_orbit = {
-					limit = { is_owned_by = from }
-					every_owned_ship = {
-						set_variable_to_random_value = {
-							which = acot_bombardment_damage
-							min = 1000
-							max = 1200
-							rounded = yes
-						}
-						damage_ship = acot_bombardment_damage
-						clear_variable = acot_bombardment_damage
-						if = {
-							limit = {
-								has_modifier = acot_psg_bombardment_ship_debuff
-							}
-							remove_modifier = acot_psg_bombardment_ship_debuff
-						}
-						add_modifier = {
-							modifier = acot_psg_bombardment_ship_debuff
-							days = 20
-						}
-						create_ambient_object = {
-							type = acot_planet_cannon_ae
-							location = this
-							use_3d_location = yes
-							base_angle_towards = star
-							entity_face_object = star
-							entity_offset = { min = -5 max = 5 }
-							entity_offset_height = 0
-							duration = 10
-							scale = 1.0
-						}
-					}
-				}
-			}
-			else = {
-				every_fleet_in_orbit = {
-					limit = { is_owned_by = from }
-					every_owned_ship = {
-						set_variable_to_random_value = {
-							which = acot_bombardment_damage
-							min = 500
-							max = 750
-							rounded = yes
-						}
-						damage_ship = acot_bombardment_damage
-						clear_variable = acot_bombardment_damage
-						if = {
-							limit = {
-								has_modifier = acot_psg_bombardment_ship_debuff
-							}
-							remove_modifier = acot_psg_bombardment_ship_debuff
-						}
-						add_modifier = {
-							modifier = acot_psg_bombardment_ship_debuff
-							days = 20
-						}
-						create_ambient_object = {
-							type = acot_planet_cannon_ae
-							location = this
-							use_3d_location = yes
-							base_angle_towards = star
-							entity_face_object = star
-							entity_offset = { min = -5 max = 5 }
-							entity_offset_height = 0
-							duration = 10
-							scale = 1.0
-						}
-					}
-				}
-			}
-		}
-	}
+    id = acot_orbital_defense_events.1
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        planet_devastation <= 50
+        NOT = {
+            has_planet_flag = acot_shield_reflect_damage_delay
+        }
+    }
+    immediate = {
+        set_timed_planet_flag = {
+            flag = acot_shield_reflect_damage_delay
+            days = 10
+        }
+        if = {
+            limit = {
+                OR = {
+                    aot_has_planetary_shield_building = yes
+                    is_planet_class = pc_acot_enigmopolis
+                    is_planet_class = pc_acot_pmc_vault
+                }
+            }
+            if = {
+                limit = {
+                    OR = {
+                        has_orbital_bombardment_stance = selective
+                        has_orbital_bombardment_stance = raiding
+                    }
+                }
+                every_fleet_in_orbit = {
+                    limit = { is_owned_by = from }
+                    every_owned_ship = {
+                        set_variable_to_random_value = {
+                            which = acot_bombardment_damage
+                            min = 200
+                            max = 400
+                            rounded = yes
+                        }
+                        damage_ship = acot_bombardment_damage
+                        clear_variable = acot_bombardment_damage
+                        if = {
+                            limit = {
+                                has_modifier = acot_psg_bombardment_ship_debuff
+                            }
+                            remove_modifier = acot_psg_bombardment_ship_debuff
+                        }
+                        add_modifier = {
+                            modifier = acot_psg_bombardment_ship_debuff
+                            days = 20
+                        }
+                        create_ambient_object = {
+                            type = acot_planet_cannon_ae
+                            location = this
+                            use_3d_location = yes
+                            base_angle_towards = star
+                            entity_face_object = star
+                            entity_offset = { min = -5 max = 5 }
+                            entity_offset_height = 0
+                            duration = 10
+                            scale = 1.0
+                        }
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    OR = {
+                        has_orbital_bombardment_stance = pox
+                        has_orbital_bombardment_stance = indiscriminate
+                    }
+                }
+                every_fleet_in_orbit = {
+                    limit = { is_owned_by = from }
+                    every_owned_ship = {
+                        set_variable_to_random_value = {
+                            which = acot_bombardment_damage
+                            min = 400
+                            max = 600
+                            rounded = yes
+                        }
+                        damage_ship = acot_bombardment_damage
+                        clear_variable = acot_bombardment_damage
+                        if = {
+                            limit = {
+                                has_modifier = acot_psg_bombardment_ship_debuff
+                            }
+                            remove_modifier = acot_psg_bombardment_ship_debuff
+                        }
+                        add_modifier = {
+                            modifier = acot_psg_bombardment_ship_debuff
+                            days = 20
+                        }
+                        create_ambient_object = {
+                            type = acot_planet_cannon_ae
+                            location = this
+                            use_3d_location = yes
+                            base_angle_towards = star
+                            entity_face_object = star
+                            entity_offset = { min = -5 max = 5 }
+                            entity_offset_height = 0
+                            duration = 10
+                            scale = 1.0
+                        }
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    OR = {
+                        has_orbital_bombardment_stance = armageddon
+                        has_orbital_bombardment_stance = acot_bombardment_dm
+                        has_orbital_bombardment_stance = siphonlife
+                        has_orbital_bombardment_stance = contingency
+                        has_orbital_bombardment_stance = infestation
+                    }
+                }
+                every_fleet_in_orbit = {
+                    limit = { is_owned_by = from }
+                    every_owned_ship = {
+                        set_variable_to_random_value = {
+                            which = acot_bombardment_damage
+                            min = 600
+                            max = 800
+                            rounded = yes
+                        }
+                        damage_ship = acot_bombardment_damage
+                        clear_variable = acot_bombardment_damage
+                        if = {
+                            limit = {
+                                has_modifier = acot_psg_bombardment_ship_debuff
+                            }
+                            remove_modifier = acot_psg_bombardment_ship_debuff
+                        }
+                        add_modifier = {
+                            modifier = acot_psg_bombardment_ship_debuff
+                            days = 20
+                        }
+                        create_ambient_object = {
+                            type = acot_planet_cannon_ae
+                            location = this
+                            use_3d_location = yes
+                            base_angle_towards = star
+                            entity_face_object = star
+                            entity_offset = { min = -5 max = 5 }
+                            entity_offset_height = 0
+                            duration = 10
+                            scale = 1.0
+                        }
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    has_orbital_bombardment_stance = acot_bombardment_ae
+                }
+                every_fleet_in_orbit = {
+                    limit = { is_owned_by = from }
+                    every_owned_ship = {
+                        set_variable_to_random_value = {
+                            which = acot_bombardment_damage
+                            min = 800
+                            max = 1000
+                            rounded = yes
+                        }
+                        damage_ship = acot_bombardment_damage
+                        clear_variable = acot_bombardment_damage
+                        if = {
+                            limit = {
+                                has_modifier = acot_psg_bombardment_ship_debuff
+                            }
+                            remove_modifier = acot_psg_bombardment_ship_debuff
+                        }
+                        add_modifier = {
+                            modifier = acot_psg_bombardment_ship_debuff
+                            days = 20
+                        }
+                        create_ambient_object = {
+                            type = acot_planet_cannon_ae
+                            location = this
+                            use_3d_location = yes
+                            base_angle_towards = star
+                            entity_face_object = star
+                            entity_offset = { min = -5 max = 5 }
+                            entity_offset_height = 0
+                            duration = 10
+                            scale = 1.0
+                        }
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    has_orbital_bombardment_stance = acot_bombardment_se
+                }
+                every_fleet_in_orbit = {
+                    limit = { is_owned_by = from }
+                    every_owned_ship = {
+                        set_variable_to_random_value = {
+                            which = acot_bombardment_damage
+                            min = 1000
+                            max = 1200
+                            rounded = yes
+                        }
+                        damage_ship = acot_bombardment_damage
+                        clear_variable = acot_bombardment_damage
+                        if = {
+                            limit = {
+                                has_modifier = acot_psg_bombardment_ship_debuff
+                            }
+                            remove_modifier = acot_psg_bombardment_ship_debuff
+                        }
+                        add_modifier = {
+                            modifier = acot_psg_bombardment_ship_debuff
+                            days = 20
+                        }
+                        create_ambient_object = {
+                            type = acot_planet_cannon_ae
+                            location = this
+                            use_3d_location = yes
+                            base_angle_towards = star
+                            entity_face_object = star
+                            entity_offset = { min = -5 max = 5 }
+                            entity_offset_height = 0
+                            duration = 10
+                            scale = 1.0
+                        }
+                    }
+                }
+            }
+            else = {
+                every_fleet_in_orbit = {
+                    limit = { is_owned_by = from }
+                    every_owned_ship = {
+                        set_variable_to_random_value = {
+                            which = acot_bombardment_damage
+                            min = 500
+                            max = 750
+                            rounded = yes
+                        }
+                        damage_ship = acot_bombardment_damage
+                        clear_variable = acot_bombardment_damage
+                        if = {
+                            limit = {
+                                has_modifier = acot_psg_bombardment_ship_debuff
+                            }
+                            remove_modifier = acot_psg_bombardment_ship_debuff
+                        }
+                        add_modifier = {
+                            modifier = acot_psg_bombardment_ship_debuff
+                            days = 20
+                        }
+                        create_ambient_object = {
+                            type = acot_planet_cannon_ae
+                            location = this
+                            use_3d_location = yes
+                            base_angle_towards = star
+                            entity_face_object = star
+                            entity_offset = { min = -5 max = 5 }
+                            entity_offset_height = 0
+                            duration = 10
+                            scale = 1.0
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 # GIGA FORTRESS
 planet_event = {
-	id = acot_orbital_defense_events.2
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = {
-			has_planet_flag = acot_giga_damage_delay
-		}
-	}
-	immediate = {
-		set_timed_planet_flag = {
-			flag = acot_giga_damage_delay
-			months = 1
-		}
-		#--------------------------------------<  Delta Giga Fortress  >------------------------------------
-		giga_fortress_damage_bombarding_ships_in_orbit = {
-			BUILDING_TYPES = "
+    id = acot_orbital_defense_events.2
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        NOT = {
+            has_planet_flag = acot_giga_damage_delay
+        }
+    }
+    immediate = {
+        set_timed_planet_flag = {
+            flag = acot_giga_damage_delay
+            months = 1
+        }
+        #--------------------------------------<  Delta Giga Fortress  >------------------------------------
+        giga_fortress_damage_bombarding_ships_in_orbit = {
+            BUILDING_TYPES = "
 				has_building = building_giga_fortress_dm
 				"
-			MIN_DAMAGE = 7500
-			MAX_DAMAGE = 12500
-			AMBIENT_OBJECT = acot_planet_cannon_dm
-		}
-		#--------------------------------------<  Alpha Giga Fortress  >------------------------------------
-		giga_fortress_damage_bombarding_ships_in_orbit = {
-			BUILDING_TYPES = "
+            MIN_DAMAGE = 7500
+            MAX_DAMAGE = 12500
+            AMBIENT_OBJECT = acot_planet_cannon_dm
+        }
+        #--------------------------------------<  Alpha Giga Fortress  >------------------------------------
+        giga_fortress_damage_bombarding_ships_in_orbit = {
+            BUILDING_TYPES = "
 				has_building = building_acot_giga_fortress
 				has_building = building_fe_giga_fortress
 				has_building = building_acot_giga_fortress_lab
 				has_building = building_acot_giga_fortress_array
 				"
-			MIN_DAMAGE = 15000
-			MAX_DAMAGE = 25000
-			AMBIENT_OBJECT = acot_planet_cannon_ae
-		}
-		giga_fortress_damage_bombarding_ships_in_orbit = {
-			BUILDING_TYPES = "
+            MIN_DAMAGE = 15000
+            MAX_DAMAGE = 25000
+            AMBIENT_OBJECT = acot_planet_cannon_ae
+        }
+        giga_fortress_damage_bombarding_ships_in_orbit = {
+            BUILDING_TYPES = "
 				has_building = building_acot_giga_fortress_obelisk
 				"
-			MIN_DAMAGE = 30000
-			MAX_DAMAGE = 45000
-			AMBIENT_OBJECT = acot_planet_cannon_ae
-		}
-		#--------------------------------------<  Phanon Giga Fortress  >-----------------------------------
-		giga_fortress_damage_bombarding_ships_in_orbit = {
-			BUILDING_TYPES = "
+            MIN_DAMAGE = 30000
+            MAX_DAMAGE = 45000
+            AMBIENT_OBJECT = acot_planet_cannon_ae
+        }
+        #--------------------------------------<  Phanon Giga Fortress  >-----------------------------------
+        giga_fortress_damage_bombarding_ships_in_orbit = {
+            BUILDING_TYPES = "
 				has_building = building_phanon_giga_fortress_lab
 				has_building = building_phanon_giga_fortress_array
 				"
-			MIN_DAMAGE = 30000
-			MAX_DAMAGE = 50000
-			AMBIENT_OBJECT = acot_planet_cannon_pe
-		}
-		giga_fortress_damage_bombarding_ships_in_orbit = {
-			BUILDING_TYPES = "
+            MIN_DAMAGE = 30000
+            MAX_DAMAGE = 50000
+            AMBIENT_OBJECT = aot_planet_cannon_phanon
+        }
+        giga_fortress_damage_bombarding_ships_in_orbit = {
+            BUILDING_TYPES = "
 				has_building = building_phanon_giga_fortress_obelisk
 				"
-			MIN_DAMAGE = 60000
-			MAX_DAMAGE = 90000
-			AMBIENT_OBJECT = acot_planet_cannon_pe
-		}
-		#--------------------------------------<  Sigma Giga Fortress  >------------------------------------
-		giga_fortress_damage_bombarding_ships_in_orbit = {
-			BUILDING_TYPES = "
+            MIN_DAMAGE = 60000
+            MAX_DAMAGE = 90000
+            AMBIENT_OBJECT = aot_planet_cannon_phanon
+        }
+        #--------------------------------------<  Sigma Giga Fortress  >------------------------------------
+        giga_fortress_damage_bombarding_ships_in_orbit = {
+            BUILDING_TYPES = "
 				has_building = building_stellarite_giga_fortress_lab
 				has_building = building_stellarite_giga_fortress_array
 				"
-			MIN_DAMAGE = 60000
-			MAX_DAMAGE = 100000
-			AMBIENT_OBJECT = acot_planet_cannon_se
-		}
-		giga_fortress_damage_bombarding_ships_in_orbit = {
-			BUILDING_TYPES = "
+            MIN_DAMAGE = 60000
+            MAX_DAMAGE = 100000
+            AMBIENT_OBJECT = aot_planet_cannon_sigma
+        }
+        giga_fortress_damage_bombarding_ships_in_orbit = {
+            BUILDING_TYPES = "
 				has_building = building_stellarite_giga_fortress_obelisk
 				"
-			MIN_DAMAGE = 120000
-			MAX_DAMAGE = 180000
-			AMBIENT_OBJECT = acot_planet_cannon_se
-		}
-	}
+            MIN_DAMAGE = 120000
+            MAX_DAMAGE = 180000
+            AMBIENT_OBJECT = aot_planet_cannon_sigma
+        }
+    }
 }

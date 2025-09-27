@@ -1,4 +1,4 @@
-version = "4.0.11.0"
+version = "4.1.0.0"
 tags = {
     "Technologies"
     "Gameplay"
@@ -9,5 +9,5 @@ dependencies = {
 }
 name = "Acquisition of Technology"
 picture = "thumbnail.png"
-supported_version = "v4.0.*"
+supported_version = "v4.1.*"
 remote_file_id = "2178603631"
