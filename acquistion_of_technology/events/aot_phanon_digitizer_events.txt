@@ -5,67 +5,63 @@
 #########################################
 namespace = aot_phanon_digitizer_events
 
-# Planet is turned into meme after Final Destination
+# Planet is turned into meme after Digitization
 planet_event = {
-	id = aot_phanon_digitizer_events.1
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		planet_devastation >= 100
-		has_orbital_bombardment_stance = phanon_digitalization
-		NOR = {
-			has_global_flag = acot_exterminatus_forbidden
-			has_planet_flag = bombardment_cooldown
-		}
-		OR = {
-			is_memeable_planet = yes
-			is_memeable_space_habitat = yes
-			is_memeable_ringworld = yes
-		}
-	}
-	immediate = {
-		if = {
-			limit = {
-				has_orbital_bombardment_stance = phanon_digitalization
-			}
-			inline_script = {
-				script = exterminatus_standard_effect
-				EFFECT = exterminatus_planet_effect_phanon_digitizer
-			}
-		}
-	}
+    id = aot_phanon_digitizer_events.1
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        planet_devastation >= 100
+        has_orbital_bombardment_stance = phanon_digitalization
+        NOR = {
+            has_global_flag = acot_exterminatus_forbidden
+            has_planet_flag = bombardment_cooldown
+        }
+        is_colony = yes
+    }
+    immediate = {
+        if = {
+            limit = {
+                has_orbital_bombardment_stance = phanon_digitalization
+            }
+            inline_script = {
+                script = exterminatus_standard_effect
+                EFFECT = exterminatus_planet_effect_phanon_digitizer
+            }
+        }
+    }
 }
 
-# Planet is turned into tomb world by Annihilatus bombing stance (boomboomer)
+# Planet is turned into digitized world by Digitization bombing stance (boomboomer)
 country_event = {
-	id = aot_phanon_digitizer_events.2
-	title = "digitizer_event.2.name"
-	picture = GFX_evt_phanon_bombardment
-	desc = digitizer_event.2.desc
-	show_sound = event_super_explosion
-	location = event_target:showered_planet
-	is_triggered_only = yes
-	option = {
-		name = digitizer_event.2.a
-		name = digitizer_event.2.b
-		name = digitizer_event.2.c
-		custom_tooltip = bombed_to_data_world
-	}
+    id = aot_phanon_digitizer_events.2
+    title = "digitizer_event.2.name"
+    picture = GFX_evt_phanon_bombardment
+    desc = digitizer_event.2.desc
+    show_sound = event_super_explosion
+    location = event_target:showered_planet
+    is_triggered_only = yes
+    option = {
+        name = digitizer_event.2.a
+        name = digitizer_event.2.b
+        name = digitizer_event.2.c
+        custom_tooltip = bombed_to_data_world
+    }
 }
 
-# Planet is turned into tomb world by Annihilatus bombing stance (former owner)
+# Planet is turned into digitized world by Digitization bombing stance (former owner)
 country_event = {
-	id = aot_phanon_digitizer_events.3
-	title = "digitizer_event.2.name"
-	picture = GFX_evt_phanon_bombardment
-	desc = digitizer_event.3.desc
-	show_sound = event_super_explosion
-	location = from
-	is_triggered_only = yes
-	option = {
-		name = digitizer_event.3.a
-		name = digitizer_event.3.b
-		name = digitizer_event.3.c
-		custom_tooltip = bombed_to_data_world
-	}
+    id = aot_phanon_digitizer_events.3
+    title = "digitizer_event.2.name"
+    picture = GFX_evt_phanon_bombardment
+    desc = digitizer_event.3.desc
+    show_sound = event_super_explosion
+    location = from
+    is_triggered_only = yes
+    option = {
+        name = digitizer_event.3.a
+        name = digitizer_event.3.b
+        name = digitizer_event.3.c
+        custom_tooltip = bombed_to_data_world
+    }
 }
