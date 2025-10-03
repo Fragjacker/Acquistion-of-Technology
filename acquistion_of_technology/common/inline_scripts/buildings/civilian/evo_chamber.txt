@@ -1,36 +1,45 @@
 inline_script = {
-	script = shared/normal_buildings_base
-	ALLOW = "$ALLOW$"
-	CAN_BUILD = $CAN_BUILD$
-	PREREQUISITE = $PREREQUISITE$
-	UPGRADES_INTO = $UPGRADES_INTO$
-	AI_FACTORS = "$AI_FACTORS$"
-	TIER = $TIER$
+    script = shared/normal_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
 }
 inline_script = {
-	script = buildings/civilian/parts/vats_and_chambers_cost
-	EXPONENT = $EXPONENT$
-	PLANET_MODIFIER = "$PLANET_MODIFIER$"
-	PLANET_UPKEEP = "$PLANET_UPKEEP$"
+    script = buildings/civilian/parts/vats_and_chambers_cost
+    EXPONENT = $EXPONENT$
+    PLANET_MODIFIER = "$PLANET_MODIFIER$"
+    PLANET_UPKEEP = "$PLANET_UPKEEP$"
 }
 planet_limit = 1
 category = government
 building_sets = {
-	government
-	urban
+    government
+    urban
 }
 planet_modifier = {
-	logistic_growth_mult = @[ 0.1 * two_exp$EXPONENT$ ]
-	bonus_pop_growth_mult = @[ 0.5 * two_exp$EXPONENT$ ]
+    logistic_growth_mult = @[ 0.1 * two_exp$EXPONENT$ ]
+    bonus_pop_growth_mult = @[ 0.5 * two_exp$EXPONENT$ ]
 }
 potential = {
-	exists = planet_owner
-	planet_owner = {
-		is_hive_empire = yes
-		has_technology = $PREREQUISITE$
-	}
+    exists = planet_owner
+    planet_owner = {
+        is_hive_empire = yes
+        has_technology = $PREREQUISITE$
+    }
 }
 destroy_trigger = {
-	exists = planet_owner
-	planet_owner = { is_hive_empire = no }
+    exists = owner
+    OR = {
+        planet_owner = { is_hive_empire = no }
+        AND = {
+            owner = { is_ai = yes }
+            free_district_slots = 0
+            free_building_slots = 0
+            free_housing <= 0
+            free_jobs <= 0
+        }
+    }
 }
