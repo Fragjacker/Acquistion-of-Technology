@@ -1,19 +1,19 @@
 version = "7.2.1.0"
-tags = {
-    "Balance"
-    "Overhaul"
-    "Economy"
-    "Buildings"
-    "Events"
-    "Gameplay"
-    "Military"
-    "Technologies"
-    "Translation"
+tags={
+	"Balance"
+	"Overhaul"
+	"Economy"
+	"Buildings"
+	"Events"
+	"Gameplay"
+	"Military"
+	"Technologies"
+	"Translation"
 }
-dependencies = {
-    "Ancient Cache of Technologies"
+dependencies={
+	"Ancient Cache of Technologies"
 }
-name = "Acquisition of Technology"
-picture = "thumbnail.png"
+name="Acquisition of Technology"
+picture="thumbnail.png"
 supported_version = "v4.4.*"
-remote_file_id = "2178603631"
+remote_file_id="2178603631"
