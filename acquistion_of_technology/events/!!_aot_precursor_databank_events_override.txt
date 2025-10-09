@@ -6,2418 +6,2419 @@
 namespace = acot_precursor_databank
 # Databank MAIN MENU
 country_event = {
-	id = acot_precursor_databank.2
-	title = acot_precursor_databank.2.name
-	desc = acot_precursor_databank.2.desc.a
-	desc = acot_precursor_databank.2.desc.b
-	desc = acot_precursor_databank.2.desc.c
-	desc = acot_precursor_databank.2.desc.d
-	is_triggered_only = yes
-	diplomatic = yes
-	picture_event_data = {
-		room = acot_sophia_room
-		portrait = event_target:acot_sophia_ruler
-	}
-	custom_gui = "acot_enclave_sophia_window"
-	custom_gui_option = "acot_enclave_sophia_option"
-	trigger = {
-		from = {
-			is_country_type = acot_databank
-		}
-		has_country_flag = acot_databank_installed
-		NOR = {
-			has_ascension_perk = ap_cosmogenesis
-			has_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
-	immediate = {
-		set_country_flag = acot_databank_diplomacy_engaged
-		if = {
-			limit = {
-				NOT = {
-					exists = event_target:acot_sophia_ruler
-				}
-			}
-			create_leader = {
-				class = scientist
-				species = event_target:acot_sophia_species
-				name = "SOPHIA-D X2LOL"
-				skill = 10
-				immortal = yes
-			}
-			last_created_leader = {
-				save_global_event_target_as = acot_sophia_ruler
-			}
-			assign_leader = last_created_leader
-		}
-	}
-	after = {
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
-	###  ACCESS ALPHA TECH EVIDENCE
-	option = {
-		name = acot_precursor_databank.2.a
-		trigger = {
-			NOR = {
-				has_tech_option = tech_dark_matter_power_core_ae
-				has_technology = tech_dark_matter_power_core_ae
-				has_country_flag = learned_dm_alpha_existence
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.3
-			}
-		}
-	}
-	###  ACCESS ARCHIVE
-	option = {
-		name = acot_precursor_databank.2.b
-		custom_tooltip = acot_precursor_databank.2.b.tooltip
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.4
-			}
-		}
-	}
-	### ACCESS Project Reimagionation
-	option = {
-		name = acot_precursor_databank.2.c
-		trigger = {
-			NOT = {
-				has_country_flag = enable_precursor_ap
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.6
-			}
-		}
-	}
-	### ACCESS Project Reimagionation
-	option = {
-		name = acot_precursor_databank.2.d
-		trigger = {
-			has_country_flag = enable_precursor_ap
-			NAND = {
-				has_technology = tech_precursor_escort                # 1
-				has_technology = tech_precursor_bc                # 2
-				has_technology = tech_precursor_titan                # 3
-				has_technology = tech_precursor_assault_carrier                # 4
-				has_technology = tech_precursor_sentinel                # 5
-				has_technology = tech_precursor_guardian                # 6
-				has_technology = tech_precursor_construcor                # 8
-				has_technology = tech_precursor_science                # 9
-				has_technology = tech_precursor_colonizer                # 10
-				has_technology = tech_precursor_citadel                # 11
-				has_technology = tech_precursor_enigmalith                # 12
-				has_technology = tech_precursor_world_shaper                # 13
-				has_technology = tech_dm_habitat                # 12
-				has_technology = tech_precursor_enigmalith                # 13
-				has_technology = tech_gatekeepers                # 14
-				has_technology = tech_precursor_juggernaut                # 15
-				has_technology = tech_dm_enigmatic_fortress_platform                # 16
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.9
-			}
-		}
-	}
-	### ACCESS Project Reimagionation
-	option = {
-		name = acot_precursor_databank.2.e
-		trigger = {
-			has_country_flag = acot_stellarite_topic_started
-			NOR = {
-				has_technology = tech_dark_matter_power_core_se
-				has_tech_option = tech_dark_matter_power_core_se
-				has_special_project = RESEARCH_STELLARITE_POWER
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = stellarite_events.100
-			}
-		}
-	}
-	### ACCESS Project MASTER
-	option = {
-		name = acot_precursor_databank.2.g
-		trigger = {
-			has_country_flag = acot_databank_mastercraft_enable
-			NOT = {
-				has_country_flag = precursor_master_design_project_active
-			}
-			NAND = {
-				has_technology = tech_precursor_escort_master                # 1
-				has_technology = tech_precursor_bc_master                # 2
-				has_technology = tech_precursor_titan_master                # 3
-				has_technology = tech_precursor_assault_carrier_master                # 4
-				has_technology = tech_precursor_sentinel_master                # 5
-				has_technology = tech_precursor_guardian_master                # 6
-				has_technology = tech_precursor_colossus_master                # 7
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.1002
-			}
-		}
-	}
-	option = {
-		name = acot_precursor_databank.2.f
-		hidden_country_self_event_call = {
-			EVENT_ID = acot_precursor_databank.7
-		}
-	}
-	### EXIT
-	option = {
-		name = acot_precursor_databank.2.end
-		response_text = EXCELLENT
-		default_hide_option = yes
-	}
+    id = acot_precursor_databank.2
+    title = acot_precursor_databank.2.name
+    desc = acot_precursor_databank.2.desc.a
+    desc = acot_precursor_databank.2.desc.b
+    desc = acot_precursor_databank.2.desc.c
+    desc = acot_precursor_databank.2.desc.d
+    is_triggered_only = yes
+    diplomatic = yes
+    picture_event_data = {
+        room = acot_sophia_room
+        portrait = event_target:acot_sophia_ruler
+    }
+    custom_gui = "acot_enclave_sophia_window"
+    custom_gui_option = "acot_enclave_sophia_option"
+    trigger = {
+        from = {
+            is_country_type = acot_databank
+        }
+        has_country_flag = acot_databank_installed
+        NOR = {
+            has_ascension_perk = ap_cosmogenesis
+            has_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
+    immediate = {
+        set_country_flag = acot_databank_diplomacy_engaged
+        if = {
+            limit = {
+                NOT = {
+                    exists = event_target:acot_sophia_ruler
+                }
+            }
+            create_leader = {
+                class = scientist
+                species = event_target:acot_sophia_species
+                name = "SOPHIA-D X2LOL"
+                skill = 10
+                immortal = yes
+            }
+            last_created_leader = {
+                save_global_event_target_as = acot_sophia_ruler
+            }
+            assign_leader = last_created_leader
+        }
+    }
+    after = {
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
+    ###  ACCESS ALPHA TECH EVIDENCE
+    option = {
+        name = acot_precursor_databank.2.a
+        trigger = {
+            NOR = {
+                has_tech_option = tech_dark_matter_power_core_ae
+                has_technology = tech_dark_matter_power_core_ae
+                has_country_flag = learned_dm_alpha_existence
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.3
+            }
+        }
+    }
+    ###  ACCESS ARCHIVE
+    option = {
+        name = acot_precursor_databank.2.b
+        custom_tooltip = acot_precursor_databank.2.b.tooltip
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.4
+            }
+        }
+    }
+    ### ACCESS Project Reimagionation
+    option = {
+        name = acot_precursor_databank.2.c
+        trigger = {
+            NOT = {
+                has_country_flag = enable_precursor_ap
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.6
+            }
+        }
+    }
+    ### ACCESS Project Reimagionation
+    option = {
+        name = acot_precursor_databank.2.d
+        trigger = {
+            has_country_flag = enable_precursor_ap
+            NAND = {
+                has_technology = tech_precursor_escort                # 1
+                has_technology = tech_precursor_bc                # 2
+                has_technology = tech_precursor_titan                # 3
+                has_technology = tech_precursor_assault_carrier                # 4
+                has_technology = tech_precursor_sentinel                # 5
+                has_technology = tech_precursor_guardian                # 6
+                has_technology = tech_precursor_construcor                # 8
+                has_technology = tech_precursor_science                # 9
+                has_technology = tech_precursor_colonizer                # 10
+                has_technology = tech_precursor_citadel                # 11
+                has_technology = tech_precursor_enigmalith                # 12
+                has_technology = tech_precursor_world_shaper                # 13
+                has_technology = tech_dm_habitat                # 12
+                has_technology = tech_precursor_enigmalith                # 13
+                has_technology = tech_gatekeepers                # 14
+                has_technology = tech_precursor_juggernaut                # 15
+                has_technology = tech_dm_enigmatic_fortress_platform                # 16
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.9
+            }
+        }
+    }
+    ### ACCESS Project Reimagionation
+    option = {
+        name = acot_precursor_databank.2.e
+        trigger = {
+            has_country_flag = acot_stellarite_topic_started
+            NOR = {
+                has_technology = tech_dark_matter_power_core_se
+                has_tech_option = tech_dark_matter_power_core_se
+                has_special_project = RESEARCH_STELLARITE_POWER
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = stellarite_events.100
+            }
+        }
+    }
+    ### ACCESS Project MASTER
+    option = {
+        name = acot_precursor_databank.2.g
+        trigger = {
+            has_country_flag = acot_databank_mastercraft_enable
+            NOT = {
+                has_country_flag = precursor_master_design_project_active
+            }
+            NAND = {
+                has_technology = tech_precursor_escort_master                # 1
+                has_technology = tech_precursor_bc_master                # 2
+                has_technology = tech_precursor_titan_master                # 3
+                has_technology = tech_precursor_assault_carrier_master                # 4
+                has_technology = tech_precursor_sentinel_master                # 5
+                has_technology = tech_precursor_guardian_master                # 6
+                has_technology = tech_precursor_colossus_master                # 7
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.1002
+            }
+        }
+    }
+    option = {
+        name = acot_precursor_databank.2.f
+        hidden_country_self_event_call = {
+            EVENT_ID = acot_precursor_databank.7
+        }
+    }
+    ### EXIT
+    option = {
+        name = acot_precursor_databank.2.end
+        response_text = EXCELLENT
+        default_hide_option = yes
+    }
 }
 
 # Databank MAIN MENU CLONE
 country_event = {
-	id = acot_precursor_databank.200
-	title = acot_precursor_databank.2.name
-	desc = acot_precursor_databank.2.desc.a
-	desc = acot_precursor_databank.2.desc.b
-	desc = acot_precursor_databank.2.desc.c
-	desc = acot_precursor_databank.2.desc.d
-	is_triggered_only = yes
-	diplomatic = yes
-	picture_event_data = {
-		room = acot_sophia_room
-		portrait = event_target:acot_sophia_ruler
-	}
-	custom_gui = "acot_enclave_sophia_window"
-	custom_gui_option = "acot_enclave_sophia_option"
-	trigger = {
-	}
-	immediate = {
-		set_country_flag = acot_databank_diplomacy_engaged
-	}
-	after = {
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
-	###  ACCESS ALPHA TECH EVIDENCE
-	option = {
-		trigger = {
-			NOR = {
-				has_tech_option = tech_dark_matter_power_core_ae
-				has_technology = tech_dark_matter_power_core_ae
-				has_country_flag = learned_dm_alpha_existence
-			}
-		}
-		name = acot_precursor_databank.2.a
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.3
-			}
-		}
-	}
-	###  ACCESS ARCHIVE
-	option = {
-		name = acot_precursor_databank.2.b
-		custom_tooltip = acot_precursor_databank.2.b.tooltip
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.4
-			}
-		}
-	}
-	### ACCESS Project Reimagionation
-	option = {
-		name = acot_precursor_databank.2.c
-		trigger = {
-			NOT = {
-				has_country_flag = enable_precursor_ap
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.6
-			}
-		}
-	}
-	### ACCESS Project Reimagionation
-	option = {
-		name = acot_precursor_databank.2.d
-		trigger = {
-			has_country_flag = enable_precursor_ap
-			NAND = {
-				has_technology = tech_precursor_escort                # 1
-				has_technology = tech_precursor_bc                # 2
-				has_technology = tech_precursor_titan                # 3
-				has_technology = tech_precursor_assault_carrier                # 4
-				has_technology = tech_precursor_sentinel                # 5
-				has_technology = tech_precursor_guardian                # 6
-				has_technology = tech_precursor_construcor                # 8
-				has_technology = tech_precursor_science                # 9
-				has_technology = tech_precursor_colonizer                # 10
-				has_technology = tech_precursor_citadel                # 11
-				has_technology = tech_precursor_enigmalith                # 12
-				has_technology = tech_precursor_world_shaper                # 13
-				has_technology = tech_dm_habitat                # 12
-				has_technology = tech_precursor_enigmalith                # 13
-				has_technology = tech_gatekeepers                # 14
-				has_technology = tech_precursor_juggernaut                # 15
-				has_technology = tech_dm_enigmatic_fortress_platform                # 16
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.9
-			}
-		}
-	}
-	### Stelllarite Stuffus
-	option = {
-		name = acot_precursor_databank.2.e
-		trigger = {
-			has_country_flag = acot_stellarite_topic_started
-			NOR = {
-				has_technology = tech_dark_matter_power_core_se
-				has_tech_option = tech_dark_matter_power_core_se
-				has_special_project = RESEARCH_STELLARITE_POWER
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = stellarite_events.100
-			}
-		}
-	}
-	### ACCESS Project MASTER
-	option = {
-		name = acot_precursor_databank.2.g
-		trigger = {
-			has_country_flag = acot_databank_mastercraft_enable
-			NOT = {
-				has_country_flag = precursor_master_design_project_active
-			}
-			NAND = {
-				has_technology = tech_precursor_escort_master                # 1
-				has_technology = tech_precursor_bc_master                # 2
-				has_technology = tech_precursor_titan_master                # 3
-				has_technology = tech_precursor_assault_carrier_master                # 4
-				has_technology = tech_precursor_sentinel_master                # 5
-				has_technology = tech_precursor_guardian_master                # 6
-				has_technology = tech_precursor_colossus_master                # 7
-			}
-		}
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.1002
-			}
-		}
-	}
-	option = {
-		name = acot_precursor_databank.2.f
-		hidden_country_self_event_call = {
-			EVENT_ID = acot_precursor_databank.7
-		}
-	}
-	### EXIT
-	option = {
-		name = acot_precursor_databank.2.end
-		response_text = EXCELLENT
-		default_hide_option = yes
-	}
+    id = acot_precursor_databank.200
+    title = acot_precursor_databank.2.name
+    desc = acot_precursor_databank.2.desc.a
+    desc = acot_precursor_databank.2.desc.b
+    desc = acot_precursor_databank.2.desc.c
+    desc = acot_precursor_databank.2.desc.d
+    is_triggered_only = yes
+    diplomatic = yes
+    picture_event_data = {
+        room = acot_sophia_room
+        portrait = event_target:acot_sophia_ruler
+    }
+    custom_gui = "acot_enclave_sophia_window"
+    custom_gui_option = "acot_enclave_sophia_option"
+    trigger = {
+    }
+    immediate = {
+        set_country_flag = acot_databank_diplomacy_engaged
+    }
+    after = {
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
+    ###  ACCESS ALPHA TECH EVIDENCE
+    option = {
+        trigger = {
+            NOR = {
+                has_tech_option = tech_dark_matter_power_core_ae
+                has_technology = tech_dark_matter_power_core_ae
+                has_country_flag = learned_dm_alpha_existence
+            }
+        }
+        name = acot_precursor_databank.2.a
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.3
+            }
+        }
+    }
+    ###  ACCESS ARCHIVE
+    option = {
+        name = acot_precursor_databank.2.b
+        custom_tooltip = acot_precursor_databank.2.b.tooltip
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.4
+            }
+        }
+    }
+    ### ACCESS Project Reimagionation
+    option = {
+        name = acot_precursor_databank.2.c
+        trigger = {
+            NOT = {
+                has_country_flag = enable_precursor_ap
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.6
+            }
+        }
+    }
+    ### ACCESS Project Reimagionation
+    option = {
+        name = acot_precursor_databank.2.d
+        trigger = {
+            has_country_flag = enable_precursor_ap
+            NAND = {
+                has_technology = tech_precursor_escort                # 1
+                has_technology = tech_precursor_bc                # 2
+                has_technology = tech_precursor_titan                # 3
+                has_technology = tech_precursor_assault_carrier                # 4
+                has_technology = tech_precursor_sentinel                # 5
+                has_technology = tech_precursor_guardian                # 6
+                has_technology = tech_precursor_construcor                # 8
+                has_technology = tech_precursor_science                # 9
+                has_technology = tech_precursor_colonizer                # 10
+                has_technology = tech_precursor_citadel                # 11
+                has_technology = tech_precursor_enigmalith                # 12
+                has_technology = tech_precursor_world_shaper                # 13
+                has_technology = tech_dm_habitat                # 12
+                has_technology = tech_precursor_enigmalith                # 13
+                has_technology = tech_gatekeepers                # 14
+                has_technology = tech_precursor_juggernaut                # 15
+                has_technology = tech_dm_enigmatic_fortress_platform                # 16
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.9
+            }
+        }
+    }
+    ### Stelllarite Stuffus
+    option = {
+        name = acot_precursor_databank.2.e
+        trigger = {
+            has_country_flag = acot_stellarite_topic_started
+            NOR = {
+                has_technology = tech_dark_matter_power_core_se
+                has_tech_option = tech_dark_matter_power_core_se
+                has_special_project = RESEARCH_STELLARITE_POWER
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = stellarite_events.100
+            }
+        }
+    }
+    ### ACCESS Project MASTER
+    option = {
+        name = acot_precursor_databank.2.g
+        trigger = {
+            has_country_flag = acot_databank_mastercraft_enable
+            NOT = {
+                has_country_flag = precursor_master_design_project_active
+            }
+            NAND = {
+                has_technology = tech_precursor_escort_master                # 1
+                has_technology = tech_precursor_bc_master                # 2
+                has_technology = tech_precursor_titan_master                # 3
+                has_technology = tech_precursor_assault_carrier_master                # 4
+                has_technology = tech_precursor_sentinel_master                # 5
+                has_technology = tech_precursor_guardian_master                # 6
+                has_technology = tech_precursor_colossus_master                # 7
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.1002
+            }
+        }
+    }
+    option = {
+        name = acot_precursor_databank.2.f
+        hidden_country_self_event_call = {
+            EVENT_ID = acot_precursor_databank.7
+        }
+    }
+    ### EXIT
+    option = {
+        name = acot_precursor_databank.2.end
+        response_text = EXCELLENT
+        default_hide_option = yes
+    }
 }
 
 ############################################################ PRECURSOR STUFFS ############################################################
 # Databank Warbarge
 country_event = {
-	id = acot_precursor_databank.413
-	title = acot_precursor_databank.3.name
-	desc = acot_precursor_databank.416.desc
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_curator_window"
-	picture_event_data = {
-		room = aot_warbarge_room
-	}
-	trigger = {
-	}
-	immediate = {
-		set_country_flag = acot_databank_diplomacy_engaged
-	}
-	after = {
-	}
-	### GENERAL LORE ###
-	option = {
-		name = acot_precursor_databank.500.lore
-		response_text = acot_precursor_databank.400.a.warbarge.lore
-		is_dialog_only = yes
-	}
-	### TACTICAL LORE ###
-	option = {
-		name = acot_precursor_databank.500.tacdata
-		response_text = acot_precursor_databank.400.a.warbarge.data
-		is_dialog_only = yes
-	}
-	###  BACK ###
-	option = {
-		name = acot_precursor_databank.400.b
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.4
-			}
-		}
-	}
-	### EXIT
-	option = {
-		name = acot_precursor_databank.2.f
-		response_text = EXCELLENT
-		default_hide_option = yes
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
+    id = acot_precursor_databank.413
+    title = acot_precursor_databank.3.name
+    desc = acot_precursor_databank.416.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "enclave_curator_window"
+    picture_event_data = {
+        room = aot_warbarge_room
+    }
+    trigger = {
+    }
+    immediate = {
+        set_country_flag = acot_databank_diplomacy_engaged
+    }
+    after = {
+    }
+    ### GENERAL LORE ###
+    option = {
+        name = acot_precursor_databank.500.lore
+        response_text = acot_precursor_databank.400.a.warbarge.lore
+        is_dialog_only = yes
+    }
+    ### TACTICAL LORE ###
+    option = {
+        name = acot_precursor_databank.500.tacdata
+        response_text = acot_precursor_databank.400.a.warbarge.data
+        is_dialog_only = yes
+    }
+    ###  BACK ###
+    option = {
+        name = acot_precursor_databank.400.b
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.4
+            }
+        }
+    }
+    ### EXIT
+    option = {
+        name = acot_precursor_databank.2.f
+        response_text = EXCELLENT
+        default_hide_option = yes
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
 }
 
 # Databank Gatekeepers
 country_event = {
-	id = acot_precursor_databank.415
-	title = acot_precursor_databank.3.name
-	desc = acot_precursor_databank.414.desc
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_curator_window"
-	picture_event_data = {
-		room = aot_gatekeepers_room
-	}
-	trigger = {
-	}
-	immediate = {
-		set_country_flag = acot_databank_diplomacy_engaged
-	}
-	after = {
-	}
-	### GENERAL LORE ###
-	option = {
-		name = acot_precursor_databank.500.lore
-		response_text = acot_precursor_databank.400.a.gatekeepers.lore
-		is_dialog_only = yes
-	}
-	### TACTICAL LORE ###
-	option = {
-		name = acot_precursor_databank.500.tacdata
-		response_text = acot_precursor_databank.400.a.gatekeepers.data
-		is_dialog_only = yes
-	}
-	###  BACK ###
-	option = {
-		name = acot_precursor_databank.400.b
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.4
-			}
-		}
-	}
-	### EXIT
-	option = {
-		name = acot_precursor_databank.2.f
-		response_text = EXCELLENT
-		default_hide_option = yes
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
+    id = acot_precursor_databank.415
+    title = acot_precursor_databank.3.name
+    desc = acot_precursor_databank.414.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "enclave_curator_window"
+    picture_event_data = {
+        room = aot_gatekeepers_room
+    }
+    trigger = {
+    }
+    immediate = {
+        set_country_flag = acot_databank_diplomacy_engaged
+    }
+    after = {
+    }
+    ### GENERAL LORE ###
+    option = {
+        name = acot_precursor_databank.500.lore
+        response_text = acot_precursor_databank.400.a.gatekeepers.lore
+        is_dialog_only = yes
+    }
+    ### TACTICAL LORE ###
+    option = {
+        name = acot_precursor_databank.500.tacdata
+        response_text = acot_precursor_databank.400.a.gatekeepers.data
+        is_dialog_only = yes
+    }
+    ###  BACK ###
+    option = {
+        name = acot_precursor_databank.400.b
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.4
+            }
+        }
+    }
+    ### EXIT
+    option = {
+        name = acot_precursor_databank.2.f
+        response_text = EXCELLENT
+        default_hide_option = yes
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
 }
 
 # Databank Enigmatic Fortress
 country_event = {
-	id = acot_precursor_databank.416
-	title = acot_precursor_databank.3.name
-	desc = acot_precursor_databank.415.desc
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_curator_window"
-	picture_event_data = {
-		room = enigmatic_fortress_room
-	}
-	trigger = {
-	}
-	immediate = {
-		set_country_flag = acot_databank_diplomacy_engaged
-	}
-	after = {
-	}
-	### GENERAL LORE ###
-	option = {
-		name = acot_precursor_databank.500.lore
-		response_text = acot_precursor_databank.400.a.enigmatic_fortress_platform.lore
-		is_dialog_only = yes
-	}
-	### TACTICAL LORE ###
-	option = {
-		name = acot_precursor_databank.500.tacdata
-		response_text = acot_precursor_databank.400.a.enigmatic_fortress_platform.data
-		is_dialog_only = yes
-	}
-	###  BACK ###
-	option = {
-		name = acot_precursor_databank.400.b
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.4
-			}
-		}
-	}
-	### EXIT
-	option = {
-		name = acot_precursor_databank.2.f
-		response_text = EXCELLENT
-		default_hide_option = yes
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
+    id = acot_precursor_databank.416
+    title = acot_precursor_databank.3.name
+    desc = acot_precursor_databank.415.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    custom_gui = "enclave_curator_window"
+    picture_event_data = {
+        room = enigmatic_fortress_room
+    }
+    trigger = {
+    }
+    immediate = {
+        set_country_flag = acot_databank_diplomacy_engaged
+    }
+    after = {
+    }
+    ### GENERAL LORE ###
+    option = {
+        name = acot_precursor_databank.500.lore
+        response_text = acot_precursor_databank.400.a.enigmatic_fortress_platform.lore
+        is_dialog_only = yes
+    }
+    ### TACTICAL LORE ###
+    option = {
+        name = acot_precursor_databank.500.tacdata
+        response_text = acot_precursor_databank.400.a.enigmatic_fortress_platform.data
+        is_dialog_only = yes
+    }
+    ###  BACK ###
+    option = {
+        name = acot_precursor_databank.400.b
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.4
+            }
+        }
+    }
+    ### EXIT
+    option = {
+        name = acot_precursor_databank.2.f
+        response_text = EXCELLENT
+        default_hide_option = yes
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
 }
 
 #### PROJECT
 country_event = {
-	id = acot_precursor_databank.900
-	title = acot_precursor_databank.3.name
-	desc = acot_precursor_databank.900.desc
-	is_triggered_only = yes
-	diplomatic = yes
-	picture_event_data = {
-		room = acot_sophia_room
-		portrait = event_target:acot_sophia_ruler
-	}
-	custom_gui = "acot_enclave_sophia_window"
-	custom_gui_option = "acot_enclave_sophia_option"
-	trigger = {
-	}
-	immediate = {
-		set_country_flag = acot_databank_diplomacy_engaged
-	}
-	after = {
-	}
-	### ESCORT ###
-	option = {
-		name = acot_precursor_databank.900.escort
-		custom_tooltip = acot_precursor_databank.900.escort.infodata
-		allow = {
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 500
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 500
-			}
-		}
-		trigger = {
-			NOR = {
-				has_tech_option = tech_precursor_escort
-				has_technology = tech_precursor_escort
-			}
-		}
-		response_text = acot_precursor_databank.900.escort.response
-		add_resource = {
-			acot_sr_dark_energy = -500
-			sr_dark_matter = -500
-		}
-		set_country_flag = project_escort_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 100
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 100
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### BATTLECRUISER ###
-	option = {
-		name = acot_precursor_databank.900.bc
-		custom_tooltip = acot_precursor_databank.900.bc.infodata
-		allow = {
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1250
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1250
-			}
-		}
-		trigger = {
-			NOR = {
-				has_tech_option = tech_precursor_bc
-				has_technology = tech_precursor_bc
-			}
-		}
-		response_text = acot_precursor_databank.900.bc.response
-		add_resource = {
-			acot_sr_dark_energy = -1250
-			sr_dark_matter = -1250
-		}
-		set_country_flag = project_bc_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 150
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 150
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### GUARDIAN ###
-	option = {
-		name = acot_precursor_databank.900.guard
-		custom_tooltip = acot_precursor_databank.900.guard.infodata
-		allow = {
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1250
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1250
-			}
-		}
-		trigger = {
-			NOR = {
-				has_tech_option = tech_precursor_guardian
-				has_technology = tech_precursor_guardian
-			}
-		}
-		response_text = acot_precursor_databank.900.guard.response
-		add_resource = {
-			acot_sr_dark_energy = -1250
-			sr_dark_matter = -1250
-		}
-		set_country_flag = project_guard_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 150
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 150
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### Oracke ###
-	option = {
-		name = acot_precursor_databank.900.oracle
-		custom_tooltip = acot_precursor_databank.900.oracle.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1000
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1000
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_escort
-			NOR = {
-				has_tech_option = tech_precursor_science
-				has_technology = tech_precursor_science
-			}
-		}
-		response_text = acot_precursor_databank.900.oracle.response
-		add_resource = {
-			acot_sr_dark_energy = -1000
-			sr_dark_matter = -1000
-		}
-		set_country_flag = project_oracle_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 150
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 150
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### Emissary ###
-	option = {
-		name = acot_precursor_databank.900.emiss
-		custom_tooltip = acot_precursor_databank.900.emiss.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1000
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1000
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_escort
-			NOR = {
-				has_tech_option = tech_precursor_colonizer
-				has_technology = tech_precursor_colonizer
-			}
-		}
-		response_text = acot_precursor_databank.900.emiss.response
-		add_resource = {
-			acot_sr_dark_energy = -1000
-			sr_dark_matter = -1000
-		}
-		set_country_flag = project_emiss_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 200
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 200
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### Initialzer ###
-	option = {
-		name = acot_precursor_databank.900.initi
-		custom_tooltip = acot_precursor_databank.900.initi.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1000
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1000
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_escort
-			NOR = {
-				has_tech_option = tech_precursor_construcor
-				has_technology = tech_precursor_construcor
-			}
-		}
-		response_text = acot_precursor_databank.900.initi.response
-		add_resource = {
-			acot_sr_dark_energy = -1000
-			sr_dark_matter = -1000
-		}
-		set_country_flag = project_initi_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 200
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 200
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### SHAPER ###
-	option = {
-		name = acot_precursor_databank.900.shaper
-		custom_tooltip = acot_precursor_databank.900.shaper.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1000
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1000
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_escort
-			NOR = {
-				has_tech_option = tech_precursor_world_shaper
-				has_technology = tech_precursor_world_shaper
-			}
-		}
-		response_text = acot_precursor_databank.900.shaper.response
-		add_resource = {
-			acot_sr_dark_energy = -1000
-			sr_dark_matter = -1000
-		}
-		set_country_flag = project_shaper_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 400
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 400
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### Hyperion ###
-	option = {
-		name = acot_precursor_databank.900.titan
-		custom_tooltip = acot_precursor_databank.900.titan.infodata
-		allow = {
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1750
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1750
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_bc
-			NOR = {
-				has_tech_option = tech_precursor_titan
-				has_technology = tech_precursor_titan
-			}
-		}
-		response_text = acot_precursor_databank.900.titan.response
-		add_resource = {
-			acot_sr_dark_energy = -1750
-			sr_dark_matter = -1750
-		}
-		set_country_flag = project_titan_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 250
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 250
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### PAC ###
-	option = {
-		name = acot_precursor_databank.900.pac
-		custom_tooltip = acot_precursor_databank.900.pac.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1750
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1750
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_bc
-			NOR = {
-				has_tech_option = tech_precursor_assault_carrier
-				has_technology = tech_precursor_assault_carrier
-			}
-		}
-		response_text = acot_precursor_databank.900.pac.response
-		add_resource = {
-			acot_sr_dark_energy = -1750
-			sr_dark_matter = -1750
-		}
-		set_country_flag = project_pac_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 250
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 250
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### SENTINEL ###
-	option = {
-		name = acot_precursor_databank.900.sentinel
-		custom_tooltip = acot_precursor_databank.900.sentinel.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 2000
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 2000
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_guardian
-			NOR = {
-				has_tech_option = tech_precursor_sentinel
-				has_technology = tech_precursor_sentinel
-			}
-		}
-		response_text = acot_precursor_databank.900.sentinel.response
-		add_resource = {
-			acot_sr_dark_energy = -2000
-			sr_dark_matter = -2000
-		}
-		set_country_flag = project_sentinel_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 250
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 250
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### DM Habitats ###
-	option = {
-		name = acot_precursor_databank.900.dm_hab
-		custom_tooltip = acot_precursor_databank.900.dm_hab.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1500
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1500
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_guardian
-			has_technology = tech_precursor_sentinel
-			NOR = {
-				has_tech_option = tech_dm_habitat
-				has_technology = tech_dm_habitat
-				any_owned_planet = {
-					is_planet_class = pc_dm_habitat
-				}
-			}
-		}
-		response_text = acot_precursor_databank.900.dm_hab.response
-		add_resource = {
-			acot_sr_dark_energy = -1500
-			sr_dark_matter = -1500
-		}
-		set_country_flag = project_dm_hab_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 350
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 350
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### Citadel ###
-	option = {
-		name = acot_precursor_databank.900.citadel
-		custom_tooltip = acot_precursor_databank.900.citadel.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 2500
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 2500
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_guardian
-			has_technology = tech_precursor_sentinel
-			NOR = {
-				has_tech_option = tech_precursor_citadel
-				has_technology = tech_precursor_citadel
-			}
-		}
-		response_text = acot_precursor_databank.900.citadel.response
-		add_resource = {
-			acot_sr_dark_energy = -2500
-			sr_dark_matter = -2500
-		}
-		set_country_flag = project_citadel_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 600
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 600
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### Enigmalith ###
-	option = {
-		name = acot_precursor_databank.900.enigmalith
-		custom_tooltip = acot_precursor_databank.900.enigmalith.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1800
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1800
-			}
-		}
-		trigger = {
-			has_technology = tech_acot_dm_dark_matter_generator
-			has_technology = tech_acot_dm_dark_energy_pylon
-			NOR = {
-				has_tech_option = tech_precursor_enigmalith
-				has_technology = tech_precursor_enigmalith
-			}
-		}
-		response_text = acot_precursor_databank.900.enigmalith.response
-		add_resource = {
-			acot_sr_dark_energy = -1800
-			sr_dark_matter = -1800
-		}
-		set_country_flag = project_enigmalith_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 600
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 600
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### Gatekeepers ###
-	option = {
-		name = acot_precursor_databank.900.aot_gatekeeper
-		custom_tooltip = acot_precursor_databank.900.aot_gatekeeper.infodata
-		allow = {
-			has_ascension_perk = ap_precursor_dream
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 2500
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 2500
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_guardian
-			has_technology = tech_precursor_sentinel
-			has_technology = tech_precursor_titan
-			NOR = {
-				has_tech_option = tech_gatekeepers
-				has_technology = tech_gatekeepers
-			}
-		}
-		response_text = acot_precursor_databank.900.aot_gatekeeper.response
-		add_resource = {
-			acot_sr_dark_energy = -2500
-			sr_dark_matter = -2500
-		}
-		set_country_flag = project_aot_gatekeeper_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 400
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 400
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### DM Juggernaut ###
-	option = {
-		name = acot_precursor_databank.900.dm_jugg
-		custom_tooltip = acot_precursor_databank.900.dm_jugg.infodata
-		allow = {
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 5000
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 5000
-			}
-		}
-		trigger = {
-			has_technology = tech_gatekeepers
-			NOR = {
-				has_tech_option = tech_precursor_juggernaut
-				has_technology = tech_precursor_juggernaut
-			}
-		}
-		response_text = acot_precursor_databank.900.dm_jugg.response
-		add_resource = {
-			acot_sr_dark_energy = -5000
-			sr_dark_matter = -5000
-		}
-		set_country_flag = project_dm_jugg_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 450
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 450
-			}
-			if = {
-				limit = {
-					has_ascension_perk = ap_precursor_dream
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 6
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 6
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_ascension_perk = ap_precursor_dream
-					}
-				}
-				add_event_chain_counter = {
-					event_chain = acot_precursor_design_chain
-					counter = attempts_remain
-					amount = 5
-				}
-				set_variable = {
-					which = acot_quota_attempts
-					value = 5
-				}
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	### Enigmatic Fortress Platform ###
-	option = {
-		name = acot_precursor_databank.900.enigmatic_fortress
-		custom_tooltip = acot_precursor_databank.900.enigmatic_fortress.infodata
-		allow = {
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1500
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1500
-			}
-		}
-		trigger = {
-			has_technology = tech_precursor_guardian
-			has_technology = tech_precursor_sentinel
-			has_technology = tech_precursor_titan
-			NOR = {
-				has_tech_option = tech_dm_enigmatic_fortress_platform
-				has_technology = tech_dm_enigmatic_fortress_platform
-			}
-		}
-		response_text = acot_precursor_databank.900.enigmatic_fortress.response
-		add_resource = {
-			acot_sr_dark_energy = -1500
-			sr_dark_matter = -1500
-		}
-		set_country_flag = project_enigmatic_fortress_selected
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = acot_precursor_design_chain
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = quota_required
-				amount = 500
-			}
-			set_variable = {
-				which = acot_quota_required
-				value = 500
-			}
-			add_event_chain_counter = {
-				event_chain = acot_precursor_design_chain
-				counter = attempts_remain
-				amount = 5
-			}
-			set_variable = {
-				which = acot_quota_attempts
-				value = 5
-			}
-			set_country_flag = precuursor_design_project_active
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.901
-				days = 1
-			}
-		}
-	}
-	###  BACK ###
-	option = {
-		name = acot_precursor_databank.9.c
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-			country_event = {
-				id = acot_precursor_databank.200
-			}
-		}
-	}
-	### EXIT
-	option = {
-		name = acot_precursor_databank.2.end
-		response_text = EXCELLENT
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
+    id = acot_precursor_databank.900
+    title = acot_precursor_databank.3.name
+    desc = acot_precursor_databank.900.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    picture_event_data = {
+        room = acot_sophia_room
+        portrait = event_target:acot_sophia_ruler
+    }
+    custom_gui = "acot_enclave_sophia_window"
+    custom_gui_option = "acot_enclave_sophia_option"
+    trigger = {
+    }
+    immediate = {
+        set_country_flag = acot_databank_diplomacy_engaged
+    }
+    after = {
+    }
+    ### ESCORT ###
+    option = {
+        name = acot_precursor_databank.900.escort
+        custom_tooltip = acot_precursor_databank.900.escort.infodata
+        allow = {
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 500
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 500
+            }
+        }
+        trigger = {
+            NOR = {
+                has_tech_option = tech_precursor_escort
+                has_technology = tech_precursor_escort
+            }
+        }
+        response_text = acot_precursor_databank.900.escort.response
+        add_resource = {
+            acot_sr_dark_energy = -500
+            sr_dark_matter = -500
+        }
+        set_country_flag = project_escort_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 100
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 100
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### BATTLECRUISER ###
+    option = {
+        name = acot_precursor_databank.900.bc
+        custom_tooltip = acot_precursor_databank.900.bc.infodata
+        allow = {
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1250
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1250
+            }
+        }
+        trigger = {
+            NOR = {
+                has_tech_option = tech_precursor_bc
+                has_technology = tech_precursor_bc
+            }
+        }
+        response_text = acot_precursor_databank.900.bc.response
+        add_resource = {
+            acot_sr_dark_energy = -1250
+            sr_dark_matter = -1250
+        }
+        set_country_flag = project_bc_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 150
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 150
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### GUARDIAN ###
+    option = {
+        name = acot_precursor_databank.900.guard
+        custom_tooltip = acot_precursor_databank.900.guard.infodata
+        allow = {
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1250
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1250
+            }
+        }
+        trigger = {
+            NOR = {
+                has_tech_option = tech_precursor_guardian
+                has_technology = tech_precursor_guardian
+            }
+        }
+        response_text = acot_precursor_databank.900.guard.response
+        add_resource = {
+            acot_sr_dark_energy = -1250
+            sr_dark_matter = -1250
+        }
+        set_country_flag = project_guard_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 150
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 150
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### Oracke ###
+    option = {
+        name = acot_precursor_databank.900.oracle
+        custom_tooltip = acot_precursor_databank.900.oracle.infodata
+        allow = {
+            has_ascension_perk = ap_precursor_dream
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1000
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1000
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_escort
+            NOR = {
+                has_tech_option = tech_precursor_science
+                has_technology = tech_precursor_science
+            }
+        }
+        response_text = acot_precursor_databank.900.oracle.response
+        add_resource = {
+            acot_sr_dark_energy = -1000
+            sr_dark_matter = -1000
+        }
+        set_country_flag = project_oracle_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 150
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 150
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### Emissary ###
+    option = {
+        name = acot_precursor_databank.900.emiss
+        custom_tooltip = acot_precursor_databank.900.emiss.infodata
+        allow = {
+            has_ascension_perk = ap_precursor_dream
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1000
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1000
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_escort
+            NOR = {
+                has_tech_option = tech_precursor_colonizer
+                has_technology = tech_precursor_colonizer
+            }
+        }
+        response_text = acot_precursor_databank.900.emiss.response
+        add_resource = {
+            acot_sr_dark_energy = -1000
+            sr_dark_matter = -1000
+        }
+        set_country_flag = project_emiss_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 200
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 200
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### Initialzer ###
+    option = {
+        name = acot_precursor_databank.900.initi
+        custom_tooltip = acot_precursor_databank.900.initi.infodata
+        allow = {
+            has_ascension_perk = ap_precursor_dream
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1000
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1000
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_escort
+            NOR = {
+                has_tech_option = tech_precursor_construcor
+                has_technology = tech_precursor_construcor
+            }
+        }
+        response_text = acot_precursor_databank.900.initi.response
+        add_resource = {
+            acot_sr_dark_energy = -1000
+            sr_dark_matter = -1000
+        }
+        set_country_flag = project_initi_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 200
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 200
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### SHAPER ###
+    option = {
+        name = acot_precursor_databank.900.shaper
+        custom_tooltip = acot_precursor_databank.900.shaper.infodata
+        allow = {
+            has_ascension_perk = ap_precursor_dream
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1000
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1000
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_escort
+            NOR = {
+                has_tech_option = tech_precursor_world_shaper
+                has_technology = tech_precursor_world_shaper
+            }
+        }
+        response_text = acot_precursor_databank.900.shaper.response
+        add_resource = {
+            acot_sr_dark_energy = -1000
+            sr_dark_matter = -1000
+        }
+        set_country_flag = project_shaper_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 400
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 400
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### Hyperion ###
+    option = {
+        name = acot_precursor_databank.900.titan
+        custom_tooltip = acot_precursor_databank.900.titan.infodata
+        allow = {
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1750
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1750
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_bc
+            NOR = {
+                has_tech_option = tech_precursor_titan
+                has_technology = tech_precursor_titan
+            }
+        }
+        response_text = acot_precursor_databank.900.titan.response
+        add_resource = {
+            acot_sr_dark_energy = -1750
+            sr_dark_matter = -1750
+        }
+        set_country_flag = project_titan_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 250
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 250
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### PAC ###
+    option = {
+        name = acot_precursor_databank.900.pac
+        custom_tooltip = acot_precursor_databank.900.pac.infodata
+        allow = {
+            has_ascension_perk = ap_precursor_dream
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1750
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1750
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_bc
+            NOR = {
+                has_tech_option = tech_precursor_assault_carrier
+                has_technology = tech_precursor_assault_carrier
+            }
+        }
+        response_text = acot_precursor_databank.900.pac.response
+        add_resource = {
+            acot_sr_dark_energy = -1750
+            sr_dark_matter = -1750
+        }
+        set_country_flag = project_pac_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 250
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 250
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### SENTINEL ###
+    option = {
+        name = acot_precursor_databank.900.sentinel
+        custom_tooltip = acot_precursor_databank.900.sentinel.infodata
+        allow = {
+            has_ascension_perk = ap_precursor_dream
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 2000
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 2000
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_guardian
+            NOR = {
+                has_tech_option = tech_precursor_sentinel
+                has_technology = tech_precursor_sentinel
+            }
+        }
+        response_text = acot_precursor_databank.900.sentinel.response
+        add_resource = {
+            acot_sr_dark_energy = -2000
+            sr_dark_matter = -2000
+        }
+        set_country_flag = project_sentinel_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 250
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 250
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### DM Habitats ###
+    option = {
+        name = acot_precursor_databank.900.dm_hab
+        custom_tooltip = acot_precursor_databank.900.dm_hab.infodata
+        allow = {
+            has_ascension_perk = ap_precursor_dream
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1500
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1500
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_guardian
+            has_technology = tech_precursor_sentinel
+            NOR = {
+                has_tech_option = tech_dm_habitat
+                has_technology = tech_dm_habitat
+                any_owned_planet = {
+                    is_planet_class = pc_dm_habitat
+                }
+            }
+        }
+        response_text = acot_precursor_databank.900.dm_hab.response
+        add_resource = {
+            acot_sr_dark_energy = -1500
+            sr_dark_matter = -1500
+        }
+        set_country_flag = project_dm_hab_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 350
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 350
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### Citadel ###
+    option = {
+        name = acot_precursor_databank.900.citadel
+        custom_tooltip = acot_precursor_databank.900.citadel.infodata
+        allow = {
+            has_ascension_perk = ap_precursor_dream
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 2500
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 2500
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_guardian
+            has_technology = tech_precursor_sentinel
+            NOR = {
+                has_tech_option = tech_precursor_citadel
+                has_technology = tech_precursor_citadel
+            }
+        }
+        response_text = acot_precursor_databank.900.citadel.response
+        add_resource = {
+            acot_sr_dark_energy = -2500
+            sr_dark_matter = -2500
+        }
+        set_country_flag = project_citadel_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 600
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 600
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### Enigmalith ###
+    option = {
+        name = acot_precursor_databank.900.enigmalith
+        custom_tooltip = acot_precursor_databank.900.enigmalith.infodata
+        allow = {
+            has_ascension_perk = ap_precursor_dream
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1800
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1800
+            }
+        }
+        trigger = {
+            has_technology = tech_acot_dm_dark_matter_generator
+            has_technology = tech_acot_dm_dark_energy_pylon
+            NOR = {
+                has_tech_option = tech_precursor_enigmalith
+                has_technology = tech_precursor_enigmalith
+            }
+        }
+        response_text = acot_precursor_databank.900.enigmalith.response
+        add_resource = {
+            acot_sr_dark_energy = -1800
+            sr_dark_matter = -1800
+        }
+        set_country_flag = project_enigmalith_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 600
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 600
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### Gatekeepers ###
+    option = {
+        name = acot_precursor_databank.900.aot_gatekeeper
+        custom_tooltip = acot_precursor_databank.900.aot_gatekeeper.infodata
+        allow = {
+            has_ascension_perk = ap_precursor_dream
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 2500
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 2500
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_guardian
+            has_technology = tech_precursor_sentinel
+            has_technology = tech_precursor_titan
+            NOR = {
+                has_tech_option = tech_gatekeepers
+                has_technology = tech_gatekeepers
+            }
+        }
+        response_text = acot_precursor_databank.900.aot_gatekeeper.response
+        add_resource = {
+            acot_sr_dark_energy = -2500
+            sr_dark_matter = -2500
+        }
+        set_country_flag = project_aot_gatekeeper_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 400
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 400
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### DM Juggernaut ###
+    option = {
+        name = acot_precursor_databank.900.dm_jugg
+        custom_tooltip = acot_precursor_databank.900.dm_jugg.infodata
+        allow = {
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 5000
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 5000
+            }
+        }
+        trigger = {
+            has_technology = tech_gatekeepers
+            NOR = {
+                has_tech_option = tech_precursor_juggernaut
+                has_technology = tech_precursor_juggernaut
+            }
+        }
+        response_text = acot_precursor_databank.900.dm_jugg.response
+        add_resource = {
+            acot_sr_dark_energy = -5000
+            sr_dark_matter = -5000
+        }
+        set_country_flag = project_dm_jugg_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 450
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 450
+            }
+            if = {
+                limit = {
+                    has_ascension_perk = ap_precursor_dream
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 6
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 6
+                }
+            }
+            else_if = {
+                limit = {
+                    NOT = {
+                        has_ascension_perk = ap_precursor_dream
+                    }
+                }
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = attempts_remain
+                    amount = 5
+                }
+                set_variable = {
+                    which = acot_quota_attempts
+                    value = 5
+                }
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ### Enigmatic Fortress Platform ###
+    option = {
+        name = acot_precursor_databank.900.enigmatic_fortress
+        custom_tooltip = acot_precursor_databank.900.enigmatic_fortress.infodata
+        allow = {
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1500
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1500
+            }
+        }
+        trigger = {
+            has_technology = tech_precursor_guardian
+            has_technology = tech_precursor_sentinel
+            has_technology = tech_precursor_titan
+            has_biogenesis_dlc = yes
+            NOR = {
+                has_tech_option = tech_dm_enigmatic_fortress_platform
+                has_technology = tech_dm_enigmatic_fortress_platform
+            }
+        }
+        response_text = acot_precursor_databank.900.enigmatic_fortress.response
+        add_resource = {
+            acot_sr_dark_energy = -1500
+            sr_dark_matter = -1500
+        }
+        set_country_flag = project_enigmatic_fortress_selected
+        hidden_effect = {
+            begin_event_chain = {
+                event_chain = acot_precursor_design_chain
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = quota_required
+                amount = 500
+            }
+            set_variable = {
+                which = acot_quota_required
+                value = 500
+            }
+            add_event_chain_counter = {
+                event_chain = acot_precursor_design_chain
+                counter = attempts_remain
+                amount = 5
+            }
+            set_variable = {
+                which = acot_quota_attempts
+                value = 5
+            }
+            set_country_flag = precuursor_design_project_active
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.901
+                days = 1
+            }
+        }
+    }
+    ###  BACK ###
+    option = {
+        name = acot_precursor_databank.9.c
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = {
+                id = acot_precursor_databank.200
+            }
+        }
+    }
+    ### EXIT
+    option = {
+        name = acot_precursor_databank.2.end
+        response_text = EXCELLENT
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
 }
 
 #### PROJECT RESOURCE CALL
 country_event = {
-	id = acot_precursor_databank.901
-	title = acot_precursor_databank.3.name
-	desc = acot_precursor_databank.901.desc
-	is_triggered_only = yes
-	diplomatic = yes
-	picture_event_data = {
-		room = acot_sophia_room
-		portrait = event_target:acot_sophia_ruler
-	}
-	custom_gui = "acot_enclave_sophia_window"
-	custom_gui_option = "acot_enclave_sophia_option"
-	trigger = {
-	}
-	immediate = {
-		set_country_flag = acot_databank_diplomacy_engaged
-	}
-	after = {
-	}
-	### STANDARD ###
-	option = {
-		name = acot_precursor_databank.901.a
-		custom_tooltip = acot_precursor_databank.901.a.explain
-		allow = {
-		}
-		enable_special_project = {
-			name = "RESEARCH_PRECURSOR_ATTEMPT"
-			owner = root
-		}
-		default_hide_option = yes
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
-	### HIGH ###
-	option = {
-		name = acot_precursor_databank.901.b
-		custom_tooltip = acot_precursor_databank.901.b.explain
-		allow = {
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 500
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 500
-			}
-			resource_stockpile_compare = {
-				resource = minor_artifacts
-				value >= 10
-			}
-		}
-		add_resource = {
-			acot_sr_dark_energy = -500
-			sr_dark_matter = -500
-			minor_artifacts = -10
-		}
-		capital_scope = {
-			save_event_target_as = pc_home
-		}
-		enable_special_project = {
-			name = "RESEARCH_PRECURSOR_ATTEMPT_HIGH"
-			owner = root
-		}
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
-	### EXTREME ###
-	option = {
-		name = acot_precursor_databank.901.c
-		custom_tooltip = acot_precursor_databank.901.c.explain
-		allow = {
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 1500
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 1500
-			}
-			resource_stockpile_compare = {
-				resource = minor_artifacts
-				value >= 35
-			}
-		}
-		add_resource = {
-			acot_sr_dark_energy = -1500
-			sr_dark_matter = -1500
-			minor_artifacts = -35
-		}
-		capital_scope = {
-			save_event_target_as = pc_home
-		}
-		enable_special_project = {
-			name = "RESEARCH_PRECURSOR_ATTEMPT_EXTREME"
-			owner = root
-		}
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
-	### INSANE ###
-	option = {
-		name = aot_precursor_databank.901.d
-		custom_tooltip = aot_precursor_databank.901.d.explain
-		allow = {
-			resource_stockpile_compare = {
-				resource = acot_sr_dark_energy
-				value >= 5000
-			}
-			resource_stockpile_compare = {
-				resource = sr_dark_matter
-				value >= 5000
-			}
-			resource_stockpile_compare = {
-				resource = minor_artifacts
-				value >= 110
-			}
-		}
-		add_resource = {
-			acot_sr_dark_energy = -5000
-			sr_dark_matter = -5000
-			minor_artifacts = -110
-		}
-		capital_scope = {
-			save_event_target_as = pc_home
-		}
-		enable_special_project = {
-			name = "RESEARCH_PRECURSOR_ATTEMPT_INSANE"
-			owner = root
-		}
-		hidden_effect = {
-			remove_country_flag = acot_databank_diplomacy_engaged
-		}
-	}
+    id = acot_precursor_databank.901
+    title = acot_precursor_databank.3.name
+    desc = acot_precursor_databank.901.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    picture_event_data = {
+        room = acot_sophia_room
+        portrait = event_target:acot_sophia_ruler
+    }
+    custom_gui = "acot_enclave_sophia_window"
+    custom_gui_option = "acot_enclave_sophia_option"
+    trigger = {
+    }
+    immediate = {
+        set_country_flag = acot_databank_diplomacy_engaged
+    }
+    after = {
+    }
+    ### STANDARD ###
+    option = {
+        name = acot_precursor_databank.901.a
+        custom_tooltip = acot_precursor_databank.901.a.explain
+        allow = {
+        }
+        enable_special_project = {
+            name = "RESEARCH_PRECURSOR_ATTEMPT"
+            owner = root
+        }
+        default_hide_option = yes
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
+    ### HIGH ###
+    option = {
+        name = acot_precursor_databank.901.b
+        custom_tooltip = acot_precursor_databank.901.b.explain
+        allow = {
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 500
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 500
+            }
+            resource_stockpile_compare = {
+                resource = minor_artifacts
+                value >= 10
+            }
+        }
+        add_resource = {
+            acot_sr_dark_energy = -500
+            sr_dark_matter = -500
+            minor_artifacts = -10
+        }
+        capital_scope = {
+            save_event_target_as = pc_home
+        }
+        enable_special_project = {
+            name = "RESEARCH_PRECURSOR_ATTEMPT_HIGH"
+            owner = root
+        }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
+    ### EXTREME ###
+    option = {
+        name = acot_precursor_databank.901.c
+        custom_tooltip = acot_precursor_databank.901.c.explain
+        allow = {
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 1500
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 1500
+            }
+            resource_stockpile_compare = {
+                resource = minor_artifacts
+                value >= 35
+            }
+        }
+        add_resource = {
+            acot_sr_dark_energy = -1500
+            sr_dark_matter = -1500
+            minor_artifacts = -35
+        }
+        capital_scope = {
+            save_event_target_as = pc_home
+        }
+        enable_special_project = {
+            name = "RESEARCH_PRECURSOR_ATTEMPT_EXTREME"
+            owner = root
+        }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
+    ### INSANE ###
+    option = {
+        name = aot_precursor_databank.901.d
+        custom_tooltip = aot_precursor_databank.901.d.explain
+        allow = {
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 5000
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 5000
+            }
+            resource_stockpile_compare = {
+                resource = minor_artifacts
+                value >= 110
+            }
+        }
+        add_resource = {
+            acot_sr_dark_energy = -5000
+            sr_dark_matter = -5000
+            minor_artifacts = -110
+        }
+        capital_scope = {
+            save_event_target_as = pc_home
+        }
+        enable_special_project = {
+            name = "RESEARCH_PRECURSOR_ATTEMPT_INSANE"
+            owner = root
+        }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
 }
 
 # CHECK IF ALREADY HAVE TECHS THEN CANCEL PROJECT
 country_event = {
-	id = acot_precursor_databank.905
-	title = acot_precursor_databank.905.name
-	desc = acot_precursor_databank.905.desc
-	picture = GFX_evt_matter_decompressor
-	show_sound = event_completed
-	is_triggered_only = yes
-	trigger = {
-		OR = {
-			AND = {
-				has_country_flag = project_escort_selected
-				last_increased_tech = tech_precursor_escort
-			}
-			AND = {
-				has_country_flag = project_bc_selected
-				last_increased_tech = tech_precursor_bc
-			}
-			AND = {
-				has_country_flag = project_guard_selected
-				last_increased_tech = tech_precursor_guardian
-			}
-			AND = {
-				has_country_flag = project_initi_selected
-				last_increased_tech = tech_precursor_construcor
-			}
-			AND = {
-				has_country_flag = project_oracle_selected
-				last_increased_tech = tech_precursor_science
-			}
-			AND = {
-				has_country_flag = project_shaper_selected
-				last_increased_tech = tech_precursor_world_shaper
-			}
-			AND = {
-				has_country_flag = project_emiss_selected
-				last_increased_tech = tech_precursor_colonizer
-			}
-			AND = {
-				has_country_flag = project_sentinel_selected
-				last_increased_tech = tech_precursor_sentinel
-			}
-			AND = {
-				has_country_flag = project_pac_selected
-				last_increased_tech = tech_precursor_assault_carrier
-			}
-			AND = {
-				has_country_flag = project_titan_selected
-				last_increased_tech = tech_precursor_titan
-			}
-			AND = {
-				has_country_flag = project_enigmalith_selected
-				last_increased_tech = tech_precursor_enigmalith
-			}
-			AND = {
-				has_country_flag = project_citadel_selected
-				last_increased_tech = tech_precursor_citadel
-			}
-			AND = {
-				has_country_flag = project_dm_hab_selected
-				last_increased_tech = tech_dm_habitat
-			}
-			AND = {
-				has_country_flag = project_dm_jugg_selected
-				last_increased_tech = tech_precursor_juggernaut
-			}
-			AND = {
-				has_country_flag = project_aot_gatekeeper_selected
-				last_increased_tech = tech_gatekeepers
-			}
-			AND = {
-				has_country_flag = project_enigmatic_fortress_selected
-				last_increased_tech = tech_dm_enigmatic_fortress_platform
-			}
-		}
-	}
-	immediate = {
-		remove_databank_project_flag = yes
-		switch = {
-			trigger = has_special_project
-			RESEARCH_PRECURSOR_ATTEMPT = {
-				abort_special_project = {
-					type = RESEARCH_PRECURSOR_ATTEMPT
-				}
-			}
-			RESEARCH_PRECURSOR_ATTEMPT_HIGH = {
-				abort_special_project = {
-					type = RESEARCH_PRECURSOR_ATTEMPT_HIGH
-				}
-			}
-			RESEARCH_PRECURSOR_ATTEMPT_EXTREME = {
-				abort_special_project = {
-					type = RESEARCH_PRECURSOR_ATTEMPT_EXTREME
-				}
-			}
-			RESEARCH_PRECURSOR_ATTEMPT_INSANE = {
-				abort_special_project = {
-					type = RESEARCH_PRECURSOR_ATTEMPT_INSANE
-				}
-			}
-		}
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-	}
-	option = {
-		name = acot_precursor_databank.905.a
-		default_hide_option = yes
-	}
+    id = acot_precursor_databank.905
+    title = acot_precursor_databank.905.name
+    desc = acot_precursor_databank.905.desc
+    picture = GFX_evt_matter_decompressor
+    show_sound = event_completed
+    is_triggered_only = yes
+    trigger = {
+        OR = {
+            AND = {
+                has_country_flag = project_escort_selected
+                last_increased_tech = tech_precursor_escort
+            }
+            AND = {
+                has_country_flag = project_bc_selected
+                last_increased_tech = tech_precursor_bc
+            }
+            AND = {
+                has_country_flag = project_guard_selected
+                last_increased_tech = tech_precursor_guardian
+            }
+            AND = {
+                has_country_flag = project_initi_selected
+                last_increased_tech = tech_precursor_construcor
+            }
+            AND = {
+                has_country_flag = project_oracle_selected
+                last_increased_tech = tech_precursor_science
+            }
+            AND = {
+                has_country_flag = project_shaper_selected
+                last_increased_tech = tech_precursor_world_shaper
+            }
+            AND = {
+                has_country_flag = project_emiss_selected
+                last_increased_tech = tech_precursor_colonizer
+            }
+            AND = {
+                has_country_flag = project_sentinel_selected
+                last_increased_tech = tech_precursor_sentinel
+            }
+            AND = {
+                has_country_flag = project_pac_selected
+                last_increased_tech = tech_precursor_assault_carrier
+            }
+            AND = {
+                has_country_flag = project_titan_selected
+                last_increased_tech = tech_precursor_titan
+            }
+            AND = {
+                has_country_flag = project_enigmalith_selected
+                last_increased_tech = tech_precursor_enigmalith
+            }
+            AND = {
+                has_country_flag = project_citadel_selected
+                last_increased_tech = tech_precursor_citadel
+            }
+            AND = {
+                has_country_flag = project_dm_hab_selected
+                last_increased_tech = tech_dm_habitat
+            }
+            AND = {
+                has_country_flag = project_dm_jugg_selected
+                last_increased_tech = tech_precursor_juggernaut
+            }
+            AND = {
+                has_country_flag = project_aot_gatekeeper_selected
+                last_increased_tech = tech_gatekeepers
+            }
+            AND = {
+                has_country_flag = project_enigmatic_fortress_selected
+                last_increased_tech = tech_dm_enigmatic_fortress_platform
+            }
+        }
+    }
+    immediate = {
+        remove_databank_project_flag = yes
+        switch = {
+            trigger = has_special_project
+            RESEARCH_PRECURSOR_ATTEMPT = {
+                abort_special_project = {
+                    type = RESEARCH_PRECURSOR_ATTEMPT
+                }
+            }
+            RESEARCH_PRECURSOR_ATTEMPT_HIGH = {
+                abort_special_project = {
+                    type = RESEARCH_PRECURSOR_ATTEMPT_HIGH
+                }
+            }
+            RESEARCH_PRECURSOR_ATTEMPT_EXTREME = {
+                abort_special_project = {
+                    type = RESEARCH_PRECURSOR_ATTEMPT_EXTREME
+                }
+            }
+            RESEARCH_PRECURSOR_ATTEMPT_INSANE = {
+                abort_special_project = {
+                    type = RESEARCH_PRECURSOR_ATTEMPT_INSANE
+                }
+            }
+        }
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+    }
+    option = {
+        name = acot_precursor_databank.905.a
+        default_hide_option = yes
+    }
 }
 
 # INCOMPLETED BUT STILL HAS ATTEMPTS
 country_event = {
-	id = acot_precursor_databank.902
-	title = acot_precursor_databank.902.name
-	desc = acot_precursor_databank.902.desc
-	picture = GFX_evt_matter_decompressor
-	show_sound = event_completed
-	is_triggered_only = yes
-	trigger = {
-	}
-	immediate = {
-	}
-	option = {
-		name = acot_precursor_databank.902.a
-		custom_tooltip = acot_precursor_databank.902.a.explain
-		default_hide_option = yes
-		hidden_effect = {
-			country_event = {
-				id = acot_precursor_databank.901
-			}
-		}
-	}
-	option = {
-		name = acot_precursor_databank.902.b
-		custom_tooltip = acot_precursor_databank.902.b.explain
-		remove_databank_project_flag = yes
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-	}
+    id = acot_precursor_databank.902
+    title = acot_precursor_databank.902.name
+    desc = acot_precursor_databank.902.desc
+    picture = GFX_evt_matter_decompressor
+    show_sound = event_completed
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    option = {
+        name = acot_precursor_databank.902.a
+        custom_tooltip = acot_precursor_databank.902.a.explain
+        default_hide_option = yes
+        hidden_effect = {
+            country_event = {
+                id = acot_precursor_databank.901
+            }
+        }
+    }
+    option = {
+        name = acot_precursor_databank.902.b
+        custom_tooltip = acot_precursor_databank.902.b.explain
+        remove_databank_project_flag = yes
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+    }
 }
 
 # INCOMPLETED, NO ATTEMPTS LEFT
 country_event = {
-	id = acot_precursor_databank.903
-	title = acot_precursor_databank.903.name
-	desc = acot_precursor_databank.903.desc
-	picture = GFX_evt_exploding_ship
-	show_sound = event_ship_explosion
-	is_triggered_only = yes
-	trigger = {
-	}
-	immediate = {
-	}
-	option = {
-		name = acot_precursor_databank.903.a
-		custom_tooltip = acot_precursor_databank.903.a.explain
-		remove_databank_project_flag = yes
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-	}
+    id = acot_precursor_databank.903
+    title = acot_precursor_databank.903.name
+    desc = acot_precursor_databank.903.desc
+    picture = GFX_evt_exploding_ship
+    show_sound = event_ship_explosion
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    option = {
+        name = acot_precursor_databank.903.a
+        custom_tooltip = acot_precursor_databank.903.a.explain
+        remove_databank_project_flag = yes
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+    }
 }
 
 # SUCCESSS
 country_event = {
-	id = acot_precursor_databank.904
-	title = acot_precursor_databank.904.name
-	desc = {
-		trigger = {
-			has_country_flag = project_escort_selected
-		}
-		text = acot_precursor_databank.904.desc.escort
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_bc_selected
-		}
-		text = acot_precursor_databank.904.desc.bc
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_guard_selected
-		}
-		text = acot_precursor_databank.904.desc.guard
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_initi_selected
-		}
-		text = acot_precursor_databank.904.desc.initi
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_emiss_selected
-		}
-		text = acot_precursor_databank.904.desc.emiss
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_oracle_selected
-		}
-		text = acot_precursor_databank.904.desc.oracle
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_shaper_selected
-		}
-		text = acot_precursor_databank.904.desc.shaper
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_titan_selected
-		}
-		text = acot_precursor_databank.904.desc.titan
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_pac_selected
-		}
-		text = acot_precursor_databank.904.desc.pac
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_sentinel_selected
-		}
-		text = acot_precursor_databank.904.desc.sentinel
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_citadel_selected
-		}
-		text = acot_precursor_databank.904.desc.citadel
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_enigmalith_selected
-		}
-		text = acot_precursor_databank.904.desc.enigmalith
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_dm_hab_selected
-		}
-		text = acot_precursor_databank.904.desc.dm_hab
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_dm_jugg_selected
-		}
-		text = acot_precursor_databank.904.desc.dm_jugg
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_aot_gatekeeper_selected
-		}
-		text = acot_precursor_databank.904.desc.aot_gatekeeper
-	}
-	desc = {
-		trigger = {
-			has_country_flag = project_enigmatic_fortress_selected
-		}
-		text = acot_precursor_databank.904.desc.aot_enigmatic_fortress
-	}
-	picture = GFX_evt_physics_research
-	show_sound = event_completed
-	is_triggered_only = yes
-	trigger = {
-	}
-	immediate = {
-	}
-	### ESCARGOT
-	option = {
-		trigger = {
-			has_country_flag = project_escort_selected
-		}
-		name = acot_precursor_databank.904.escort
-		remove_country_flag = project_escort_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_escort
-		add_tech_progress = {
-			tech = tech_precursor_escort
-			progress = 0.2
-		}
-	}
-	### BATTLEBUS
-	option = {
-		trigger = {
-			has_country_flag = project_bc_selected
-		}
-		name = acot_precursor_databank.904.bc
-		remove_country_flag = project_bc_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_bc
-		add_tech_progress = {
-			tech = tech_precursor_bc
-			progress = 0.2
-		}
-	}
-	### PLATFORM
-	option = {
-		trigger = {
-			has_country_flag = project_guard_selected
-		}
-		name = acot_precursor_databank.904.guard
-		remove_country_flag = project_guard_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_guardian
-		add_tech_progress = {
-			tech = tech_precursor_guardian
-			progress = 0.2
-		}
-	}
-	### ORACLE
-	option = {
-		trigger = {
-			has_country_flag = project_oracle_selected
-		}
-		name = acot_precursor_databank.904.oracle
-		remove_country_flag = project_oracle_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_science
-		add_tech_progress = {
-			tech = tech_precursor_science
-			progress = 0.2
-		}
-	}
-	### INITI
-	option = {
-		trigger = {
-			has_country_flag = project_initi_selected
-		}
-		name = acot_precursor_databank.904.initi
-		remove_country_flag = project_initi_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_construcor
-		add_tech_progress = {
-			tech = tech_precursor_construcor
-			progress = 0.2
-		}
-	}
-	### EMISSARY
-	option = {
-		trigger = {
-			has_country_flag = project_emiss_selected
-		}
-		name = acot_precursor_databank.904.emiss
-		remove_country_flag = project_emiss_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_colonizer
-		add_tech_progress = {
-			tech = tech_precursor_colonizer
-			progress = 0.2
-		}
-	}
-	### SHAPER
-	option = {
-		trigger = {
-			has_country_flag = project_shaper_selected
-		}
-		name = acot_precursor_databank.904.shaper
-		remove_country_flag = project_shaper_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_world_shaper
-		add_tech_progress = {
-			tech = tech_precursor_world_shaper
-			progress = 0.2
-		}
-	}
-	### HYPERION
-	option = {
-		trigger = {
-			has_country_flag = project_titan_selected
-		}
-		name = acot_precursor_databank.904.titan
-		remove_country_flag = project_titan_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_titan
-		add_tech_progress = {
-			tech = tech_precursor_titan
-			progress = 0.2
-		}
-	}
-	### CARRIER
-	option = {
-		trigger = {
-			has_country_flag = project_pac_selected
-		}
-		name = acot_precursor_databank.904.pac
-		remove_country_flag = project_pac_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_assault_carrier
-		add_tech_progress = {
-			tech = tech_precursor_assault_carrier
-			progress = 0.2
-		}
-	}
-	### SENTINEL
-	option = {
-		trigger = {
-			has_country_flag = project_sentinel_selected
-		}
-		name = acot_precursor_databank.904.sentinel
-		remove_country_flag = project_sentinel_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_sentinel
-		add_tech_progress = {
-			tech = tech_precursor_sentinel
-			progress = 0.2
-		}
-	}
-	### CITADEL
-	option = {
-		trigger = {
-			has_country_flag = project_citadel_selected
-		}
-		name = acot_precursor_databank.904.citadel
-		remove_country_flag = project_citadel_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_citadel
-		add_tech_progress = {
-			tech = tech_precursor_citadel
-			progress = 0.2
-		}
-	}
-	### Enigmalith
-	option = {
-		trigger = {
-			has_country_flag = project_enigmalith_selected
-		}
-		name = acot_precursor_databank.904.enigmalith
-		remove_country_flag = project_enigmalith_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_enigmalith
-		add_tech_progress = {
-			tech = tech_precursor_enigmalith
-			progress = 0.2
-		}
-	}
-	### DM Hab
-	option = {
-		trigger = {
-			has_country_flag = project_dm_hab_selected
-		}
-		name = acot_precursor_databank.904.dm_hab
-		remove_country_flag = project_dm_hab_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_dm_habitat
-		add_tech_progress = {
-			tech = tech_dm_habitat
-			progress = 0.2
-		}
-	}
-	### Gatekeepers
-	option = {
-		trigger = {
-			has_country_flag = project_aot_gatekeeper_selected
-		}
-		name = acot_precursor_databank.904.aot_gatekeeper
-		remove_country_flag = project_aot_gatekeeper_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_gatekeepers
-		add_tech_progress = {
-			tech = tech_gatekeepers
-			progress = 0.2
-		}
-	}
-	### DM Juggernaut
-	option = {
-		trigger = {
-			has_country_flag = project_dm_jugg_selected
-		}
-		name = acot_precursor_databank.904.dm_jugg
-		remove_country_flag = project_dm_jugg_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_precursor_juggernaut
-		add_tech_progress = {
-			tech = tech_precursor_juggernaut
-			progress = 0.2
-		}
-	}
-	### DM Juggernaut
-	option = {
-		trigger = {
-			has_country_flag = project_enigmatic_fortress_selected
-		}
-		name = acot_precursor_databank.904.enigmatic_fortress
-		remove_country_flag = project_enigmatic_fortress_selected
-		end_event_chain = acot_precursor_design_chain
-		remove_country_flag = precuursor_design_project_active
-		add_research_option = tech_dm_enigmatic_fortress_platform
-		add_tech_progress = {
-			tech = tech_dm_enigmatic_fortress_platform
-			progress = 0.2
-		}
-	}
+    id = acot_precursor_databank.904
+    title = acot_precursor_databank.904.name
+    desc = {
+        trigger = {
+            has_country_flag = project_escort_selected
+        }
+        text = acot_precursor_databank.904.desc.escort
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_bc_selected
+        }
+        text = acot_precursor_databank.904.desc.bc
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_guard_selected
+        }
+        text = acot_precursor_databank.904.desc.guard
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_initi_selected
+        }
+        text = acot_precursor_databank.904.desc.initi
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_emiss_selected
+        }
+        text = acot_precursor_databank.904.desc.emiss
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_oracle_selected
+        }
+        text = acot_precursor_databank.904.desc.oracle
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_shaper_selected
+        }
+        text = acot_precursor_databank.904.desc.shaper
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_titan_selected
+        }
+        text = acot_precursor_databank.904.desc.titan
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_pac_selected
+        }
+        text = acot_precursor_databank.904.desc.pac
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_sentinel_selected
+        }
+        text = acot_precursor_databank.904.desc.sentinel
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_citadel_selected
+        }
+        text = acot_precursor_databank.904.desc.citadel
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_enigmalith_selected
+        }
+        text = acot_precursor_databank.904.desc.enigmalith
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_dm_hab_selected
+        }
+        text = acot_precursor_databank.904.desc.dm_hab
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_dm_jugg_selected
+        }
+        text = acot_precursor_databank.904.desc.dm_jugg
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_aot_gatekeeper_selected
+        }
+        text = acot_precursor_databank.904.desc.aot_gatekeeper
+    }
+    desc = {
+        trigger = {
+            has_country_flag = project_enigmatic_fortress_selected
+        }
+        text = acot_precursor_databank.904.desc.aot_enigmatic_fortress
+    }
+    picture = GFX_evt_physics_research
+    show_sound = event_completed
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+    }
+    ### ESCARGOT
+    option = {
+        trigger = {
+            has_country_flag = project_escort_selected
+        }
+        name = acot_precursor_databank.904.escort
+        remove_country_flag = project_escort_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_escort
+        add_tech_progress = {
+            tech = tech_precursor_escort
+            progress = 0.2
+        }
+    }
+    ### BATTLEBUS
+    option = {
+        trigger = {
+            has_country_flag = project_bc_selected
+        }
+        name = acot_precursor_databank.904.bc
+        remove_country_flag = project_bc_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_bc
+        add_tech_progress = {
+            tech = tech_precursor_bc
+            progress = 0.2
+        }
+    }
+    ### PLATFORM
+    option = {
+        trigger = {
+            has_country_flag = project_guard_selected
+        }
+        name = acot_precursor_databank.904.guard
+        remove_country_flag = project_guard_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_guardian
+        add_tech_progress = {
+            tech = tech_precursor_guardian
+            progress = 0.2
+        }
+    }
+    ### ORACLE
+    option = {
+        trigger = {
+            has_country_flag = project_oracle_selected
+        }
+        name = acot_precursor_databank.904.oracle
+        remove_country_flag = project_oracle_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_science
+        add_tech_progress = {
+            tech = tech_precursor_science
+            progress = 0.2
+        }
+    }
+    ### INITI
+    option = {
+        trigger = {
+            has_country_flag = project_initi_selected
+        }
+        name = acot_precursor_databank.904.initi
+        remove_country_flag = project_initi_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_construcor
+        add_tech_progress = {
+            tech = tech_precursor_construcor
+            progress = 0.2
+        }
+    }
+    ### EMISSARY
+    option = {
+        trigger = {
+            has_country_flag = project_emiss_selected
+        }
+        name = acot_precursor_databank.904.emiss
+        remove_country_flag = project_emiss_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_colonizer
+        add_tech_progress = {
+            tech = tech_precursor_colonizer
+            progress = 0.2
+        }
+    }
+    ### SHAPER
+    option = {
+        trigger = {
+            has_country_flag = project_shaper_selected
+        }
+        name = acot_precursor_databank.904.shaper
+        remove_country_flag = project_shaper_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_world_shaper
+        add_tech_progress = {
+            tech = tech_precursor_world_shaper
+            progress = 0.2
+        }
+    }
+    ### HYPERION
+    option = {
+        trigger = {
+            has_country_flag = project_titan_selected
+        }
+        name = acot_precursor_databank.904.titan
+        remove_country_flag = project_titan_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_titan
+        add_tech_progress = {
+            tech = tech_precursor_titan
+            progress = 0.2
+        }
+    }
+    ### CARRIER
+    option = {
+        trigger = {
+            has_country_flag = project_pac_selected
+        }
+        name = acot_precursor_databank.904.pac
+        remove_country_flag = project_pac_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_assault_carrier
+        add_tech_progress = {
+            tech = tech_precursor_assault_carrier
+            progress = 0.2
+        }
+    }
+    ### SENTINEL
+    option = {
+        trigger = {
+            has_country_flag = project_sentinel_selected
+        }
+        name = acot_precursor_databank.904.sentinel
+        remove_country_flag = project_sentinel_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_sentinel
+        add_tech_progress = {
+            tech = tech_precursor_sentinel
+            progress = 0.2
+        }
+    }
+    ### CITADEL
+    option = {
+        trigger = {
+            has_country_flag = project_citadel_selected
+        }
+        name = acot_precursor_databank.904.citadel
+        remove_country_flag = project_citadel_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_citadel
+        add_tech_progress = {
+            tech = tech_precursor_citadel
+            progress = 0.2
+        }
+    }
+    ### Enigmalith
+    option = {
+        trigger = {
+            has_country_flag = project_enigmalith_selected
+        }
+        name = acot_precursor_databank.904.enigmalith
+        remove_country_flag = project_enigmalith_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_enigmalith
+        add_tech_progress = {
+            tech = tech_precursor_enigmalith
+            progress = 0.2
+        }
+    }
+    ### DM Hab
+    option = {
+        trigger = {
+            has_country_flag = project_dm_hab_selected
+        }
+        name = acot_precursor_databank.904.dm_hab
+        remove_country_flag = project_dm_hab_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_dm_habitat
+        add_tech_progress = {
+            tech = tech_dm_habitat
+            progress = 0.2
+        }
+    }
+    ### Gatekeepers
+    option = {
+        trigger = {
+            has_country_flag = project_aot_gatekeeper_selected
+        }
+        name = acot_precursor_databank.904.aot_gatekeeper
+        remove_country_flag = project_aot_gatekeeper_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_gatekeepers
+        add_tech_progress = {
+            tech = tech_gatekeepers
+            progress = 0.2
+        }
+    }
+    ### DM Juggernaut
+    option = {
+        trigger = {
+            has_country_flag = project_dm_jugg_selected
+        }
+        name = acot_precursor_databank.904.dm_jugg
+        remove_country_flag = project_dm_jugg_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_precursor_juggernaut
+        add_tech_progress = {
+            tech = tech_precursor_juggernaut
+            progress = 0.2
+        }
+    }
+    ### DM Enigmatic Fortress
+    option = {
+        trigger = {
+            has_country_flag = project_enigmatic_fortress_selected
+        }
+        name = acot_precursor_databank.904.enigmatic_fortress
+        remove_country_flag = project_enigmatic_fortress_selected
+        end_event_chain = acot_precursor_design_chain
+        remove_country_flag = precuursor_design_project_active
+        add_research_option = tech_dm_enigmatic_fortress_platform
+        add_tech_progress = {
+            tech = tech_dm_enigmatic_fortress_platform
+            progress = 0.2
+        }
+    }
 }
