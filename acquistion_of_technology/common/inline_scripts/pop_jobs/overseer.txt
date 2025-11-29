@@ -1,39 +1,39 @@
 #----------------<  This script handles the boilerplate code for the overseer ruler  >--------------
 inline_script = {
-	script = pop_jobs/part/$CATEGORY$
-	CATEGORY = $CATEGORY$
-	JOB = $JOB$
-	RESOURCE = $RESOURCE$
+    script = pop_jobs/part/$CATEGORY$
+    CATEGORY = $CATEGORY$
+    JOB = $JOB$
+    RESOURCE = $RESOURCE$
 }
 tags = {
-	$RESOURCE$
-	amenities
+    $RESOURCE$
+    amenities
 }
 resources = {
-	category = planet_bureaucrats
-	produces = {
-		$RESOURCE$ = $PRODUCTION_AMOUNT$
-	}
-	upkeep = {
-		$UPKEEP$
-	}
+    category = planet_bureaucrats
+    produces = {
+        $RESOURCE$ = $PRODUCTION_AMOUNT$
+    }
+    upkeep = {
+        $UPKEEP$
+    }
 }
 planet_modifier = {
-	planet_amenities_add = @[ 10 * two_exp$EXPONENT$ ]
-	trade = @[ 10 * two_exp$EXPONENT$ ]
+    planet_amenities_add = @[ 10 * two_exp$EXPONENT$ ]
+    trader_jobs_bonus_workforce_mult = @[ 10 * two_exp$EXPONENT$ ]
 }
 triggered_planet_modifier = {
-	potential = {
-		always = yes
-	}
-	planet_amenities_add = @[ 50 * two_exp$EXPONENT$ ]
-	mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+    potential = {
+        always = yes
+    }
+    planet_amenities_add = @[ 50 * two_exp$EXPONENT$ ]
+    mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 }
 triggered_planet_modifier = {
-	potential = {
-		planet = {
-			has_ascended_capital = yes
-		}
-	}
-	planet_jobs_produces_mult = @[ 0.1 * two_exp$EXPONENT$ ]
+    potential = {
+        planet = {
+            has_ascended_capital = yes
+        }
+    }
+    planet_jobs_produces_mult = @[ 0.1 * two_exp$EXPONENT$ ]
 }

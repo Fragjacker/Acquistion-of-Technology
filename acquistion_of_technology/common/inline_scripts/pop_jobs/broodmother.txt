@@ -1,71 +1,70 @@
 #--------------------------------<  Inline script to handle doctors  >------------------------------
 category = $CATEGORY$
 tags = {
-	pop_growth
-	pop_assembly
-	amenities
+    pop_growth
+    pop_assembly
+    amenities
 }
 possible_pre_triggers = {
-	has_owner = yes
-	is_being_purged = no
-	is_being_assimilated = no
-	is_sapient = yes
+    has_owner = yes
+    is_being_purged = no
+    is_being_assimilated = no
+    is_sapient = yes
 }
 possible_precalc = can_fill_drone_job
 possible = {
-	can_think = yes
+    can_think = yes
 }
 planet_modifier = {
-	planet_amenities_add = @[ 1000 * two_exp$EXPONENT$ ]
-	pop_environment_tolerance = @[ 0.025 * two_exp$EXPONENT$ ]
-	planet_pops_organics_upkeep_mult = @[ - 0.05 * two_exp$EXPONENT$ ]
-	logistic_growth_mult = @[ 0.25 * two_exp$EXPONENT$ ]
-	bonus_pop_growth_mult = @[ 0.25 * two_exp$EXPONENT$ ]
+    planet_amenities_add = @[ 1000 * two_exp$EXPONENT$ ]
+    pop_environment_tolerance = @[ 0.025 * two_exp$EXPONENT$ ]
+    planet_pops_organics_upkeep_mult = @[ - 0.05 * two_exp$EXPONENT$ ]
+    logistic_growth_mult = @[ 0.25 * two_exp$EXPONENT$ ]
+    bonus_pop_growth_mult = @[ 0.25 * two_exp$EXPONENT$ ]
 }
 resources = {
-	category = planet_doctors
-	produces = {
-		society_research = @[ 5 * two_exp$EXPONENT$ ]
-	}
-	upkeep = {
-		$UPKEEP$
-	}
+    category = planet_doctors
+    produces = {
+        society_research = @[ 5 * two_exp$EXPONENT$ ]
+    }
+    upkeep = {
+        $UPKEEP$
+    }
 }
 weight = {
-	weight = @spawner_drone_job_weight
-	modifier = {
-		factor = 1.25
-		has_trait = trait_charismatic
-	}
-	modifier = {
-		factor = 0.9
-		has_trait = trait_repugnant
-	}
-	modifier = {
-		factor = 0.5 # Job is less useful if pop control is active, but still gives amenities
-		planet = {
-			has_modifier = planet_population_control_gestalt
-		}
-	}
-	modifier = {
-		factor = 0.01 # Crisis purge
-		exists = planet
-		exists = planet.controller
-		planet.controller = {
-			OR = {
-				is_country_type = swarm
-				is_country_type = ai_empire
-			}
-		}
-	}
+    weight = @spawner_drone_job_weight
+    modifier = {
+        factor = 1.25
+        has_trait = trait_charismatic
+    }
+    modifier = {
+        factor = 0.9
+        has_trait = trait_repugnant
+    }
+    modifier = {
+        factor = 0.5 # Job is less useful if pop control is active, but still gives amenities
+        planet = {
+            has_modifier = planet_population_control_gestalt
+        }
+    }
+    modifier = {
+        factor = 0.01 # Crisis purge
+        exists = planet
+        exists = planet.controller
+        planet.controller = {
+            OR = {
+                is_country_type = swarm
+                is_country_type = ai_empire
+            }
+        }
+    }
 }
 promotion = {
-	time = @standard_promotion_time
-	effect = {
-		pop_amount_change_category = {
-			CATEGORY = $CATEGORY$
-			AMOUNT = local_pop_amount
-		}
-	}
+    time = @standard_promotion_time
+    effect = {
+        pop_amount_change_category = {
+            CATEGORY = $CATEGORY$
+            AMOUNT = local_pop_amount
+        }
+    }
 }
-inline_script = "jobs/automodding_priority_amenities"

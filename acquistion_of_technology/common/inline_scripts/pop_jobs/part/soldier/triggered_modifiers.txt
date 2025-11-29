@@ -1,82 +1,82 @@
 triggered_country_modifier = {
-	potential = {
-		exists = planet
-		planet = {
-			exists = owner
-			owner = { has_technology = "tech_ground_defense_planning" }
-		}
-	}
-	modifier = {
-		country_naval_cap_add = @[ 3 * two_exp$EXPONENT$ ]
-	}
+    potential = {
+        exists = planet
+        any_owned_planet = {
+            exists = owner
+            owner = { has_technology = "tech_ground_defense_planning" }
+        }
+    }
+    modifier = {
+        country_naval_cap_add = @[ 3 * two_exp$EXPONENT$ ]
+    }
 }
 triggered_country_modifier = {
-	potential = {
-		exists = owner
-		owner = {
-			any_owned_leader = {
-				is_councilor = yes
-				has_trait = leader_trait_bellicose
-			}
-		}
-	}
-	modifier = {
-		country_naval_cap_add = @[ 3 * two_exp$EXPONENT$ ]
-	}
-	mult = value:bellicose_naval_cap
+    potential = {
+        exists = owner
+        owner = {
+            any_owned_leader = {
+                is_councilor = yes
+                has_trait = leader_trait_bellicose
+            }
+        }
+    }
+    modifier = {
+        country_naval_cap_add = @[ 3 * two_exp$EXPONENT$ ]
+    }
+    mult = value:bellicose_naval_cap
 }
 planet_modifier = {
-	planet_defense_armies_add = @[ 4 * two_exp$EXPONENT$ ]
-	planet_stability_add = @[ 0.5 * two_exp$EXPONENT$ ]
+    planet_defense_armies_add = @[ 4 * two_exp$EXPONENT$ ]
+    planet_stability_add = @[ 0.5 * two_exp$EXPONENT$ ]
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = owner
-		owner = {
-			any_owned_leader = {
-				is_councilor = yes
-				has_trait = leader_trait_bellicose
-			}
-		}
-	}
-	modifier = {
-		planet_defense_armies_add = @[ 2 * two_exp$EXPONENT$ ]
-	}
-	mult = value:bellicose_naval_cap
+    potential = {
+        exists = owner
+        owner = {
+            any_owned_leader = {
+                is_councilor = yes
+                has_trait = leader_trait_bellicose
+            }
+        }
+    }
+    modifier = {
+        planet_defense_armies_add = @[ 2 * two_exp$EXPONENT$ ]
+    }
+    mult = value:bellicose_naval_cap
 }
 triggered_planet_modifier = {
-	modifier = {
-		planet_stability_add = @[ 2 * two_exp$EXPONENT$ ]
-	}
-	mult = planet.modifier:job_soldier_stability_add
+    modifier = {
+        planet_stability_add = @[ 2 * two_exp$EXPONENT$ ]
+    }
+    mult = planet.modifier:job_soldier_stability_add
 }
 triggered_planet_modifier = {
-	potential = {
-		planet = {
-			exists = owner
-			owner = { has_tradition = "tr_modularity_3" }
-		}
-	}
-	modifier = {
-		planet_stability_add = @[ 0.5 * two_exp$EXPONENT$ ]
-	}
+    potential = {
+        planet = {
+            exists = owner
+            owner = { has_tradition = "tr_modularity_3" }
+        }
+    }
+    modifier = {
+        planet_stability_add = @[ 0.5 * two_exp$EXPONENT$ ]
+    }
 }
 triggered_planet_modifier = {
-	potential = {
-		has_councilor = { COUNCILOR = "councilor_private_military_companies" }
-	}
-	modifier = {
-		planet_stability_add = @[ councilor_private_military_companies_stability * two_exp$EXPONENT$ ]
-	}
-	mult = value:councilor_level|TYPE|councilor_private_military_companies|
+    potential = {
+        has_councilor = { COUNCILOR = "councilor_private_military_companies" }
+    }
+    modifier = {
+        planet_stability_add = @[ councilor_private_military_companies_stability * two_exp$EXPONENT$ ]
+    }
+    mult = value:councilor_level|TYPE|councilor_private_military_companies|
 }
 triggered_country_modifier = {
-	potential = {
-		planet = {
-			has_deposit = d_abandoned_black_needle_base
-		}
-	}
-	modifier = {
-		country_naval_cap_add = @[ abandoned_black_needle_base_naval_cap_from_soldier_job * two_exp$EXPONENT$ ]
-	}
+    potential = {
+        any_owned_planet = {
+            has_deposit = d_abandoned_black_needle_base
+        }
+    }
+    modifier = {
+        country_naval_cap_add = @[ abandoned_black_needle_base_naval_cap_from_soldier_job * two_exp$EXPONENT$ ]
+    }
 }

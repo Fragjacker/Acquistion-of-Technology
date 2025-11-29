@@ -1,179 +1,180 @@
 can_build_phanon_ship = {
-	OR = {
-		AND = {
-			is_scope_type = megastructure
-			OR = {
-				is_megastructure_type = acot_phanon_master_reactor_sphere
-				any_ship_in_system = {
-					has_starbase_size >= acot_star_commander
-				}
-				any_ship_in_system = {
-					has_starbase_building = acot_sb_phanon_assembly
-				}
-			}
-		}
-		AND = {
-			is_scope_type = starbase
-			OR = {
-				has_starbase_size >= acot_star_commander
-				has_starbase_size >= acot_precusor_phanon_starcitadel
-				has_starbase_building = acot_sb_phanon_assembly
-			}
-		}
-	}
+    OR = {
+        AND = {
+            is_scope_type = megastructure
+            OR = {
+                is_megastructure_type = acot_phanon_master_reactor_sphere
+                any_starbase_in_system = {
+                    has_starbase_size >= acot_star_commander
+                }
+                any_starbase_in_system = {
+                    has_starbase_building = acot_sb_phanon_assembly
+                }
+                /
+            }
+        }
+        AND = {
+            is_scope_type = starbase
+            OR = {
+                has_starbase_size >= acot_star_commander
+                has_starbase_size >= acot_precusor_phanon_starcitadel
+                has_starbase_building = acot_sb_phanon_assembly
+            }
+        }
+    }
 }
 can_build_precursor_ship = {
-	OR = {
-		AND = {
-			owner = {
-				is_ai = yes                ### AI SHOULD JUST BE GIVEN A LEEWAY
-			}
-		}
-		AND = {
-			is_scope_type = megastructure
-			OR = {
-				# is_megastructure_type = mega_shipyard_3 ### INVALID
-				is_megastructure_type = acot_precursor_colossus_base
-				is_megastructure_type = acot_precursor_colossus_stage_two
-				is_megastructure_type = acot_amerigo
-				is_megastructure_type = acot_amerigo_ae
-				is_megastructure_type = acot_amerigo_se
-				is_megastructure_type = acot_amerigo_oe
-				is_megastructure_type = acot_amerigo_pe
-				is_megastructure_type = acot_phanon_master_reactor_sphere
-				is_megastructure_type = acot_precursor_mega_shipyard
-				is_sofe_megastructure_shipyard = yes
-				solar_system = {
-					exists = starbase
-					starbase = {
-						OR = {
-							is_precursor_starbase = yes
-							has_starbase_building = acot_precursor_database
-						}
-					}
-				}
-			}
-		}
-		AND = {
-			is_scope_type = starbase
-			starbase = {
-				OR = {
-					has_starbase_size >= juggernaut ### Even if no one's gonna use it ever.
-					has_virtual_shipyard_uplink = yes ### Gigaman X6
-					is_precursor_starbase = yes
-					has_starbase_building = acot_precursor_database
-					has_starbase_size >= precursor_colossus ### Actually is Herculean
-					is_sbtg_origin_starbase = yes
-					has_starbase_size >= sas_xxtitan_warship ### From Another Mod
-					# has_starbase_size >= acot_star_commander #### Phanon no longer should be able to build them. It is not their forte
-					has_starbase_size >= precursor_juggernaut                # AoT Warbarge
-				}
-			}
-		}
-	}
+    OR = {
+        AND = {
+            owner = {
+                is_ai = yes                ### AI SHOULD JUST BE GIVEN A LEEWAY
+            }
+        }
+        AND = {
+            is_scope_type = megastructure
+            OR = {
+                # is_megastructure_type = mega_shipyard_3 ### INVALID
+                is_megastructure_type = acot_precursor_colossus_base
+                is_megastructure_type = acot_precursor_colossus_stage_two
+                is_megastructure_type = acot_amerigo
+                is_megastructure_type = acot_amerigo_ae
+                is_megastructure_type = acot_amerigo_se
+                is_megastructure_type = acot_amerigo_oe
+                is_megastructure_type = acot_amerigo_pe
+                is_megastructure_type = acot_phanon_master_reactor_sphere
+                is_megastructure_type = acot_precursor_mega_shipyard
+                is_sofe_megastructure_shipyard = yes
+                solar_system = {
+                    exists = starbase
+                    starbase = {
+                        OR = {
+                            is_precursor_starbase = yes
+                            has_starbase_building = acot_precursor_database
+                        }
+                    }
+                }
+            }
+        }
+        AND = {
+            is_scope_type = starbase
+            starbase = {
+                OR = {
+                    has_starbase_size >= juggernaut ### Even if no one's gonna use it ever.
+                    has_virtual_shipyard_uplink = yes ### Gigaman X6
+                    is_precursor_starbase = yes
+                    has_starbase_building = acot_precursor_database
+                    has_starbase_size >= precursor_colossus ### Actually is Herculean
+                    is_sbtg_origin_starbase = yes
+                    has_starbase_size >= sas_xxtitan_warship ### From Another Mod
+                    # has_starbase_size >= acot_star_commander #### Phanon no longer should be able to build them. It is not their forte
+                    has_starbase_size >= precursor_juggernaut                # AoT Warbarge
+                }
+            }
+        }
+    }
 }
 acot_has_enigmalith_in_system = {
-	OR = {
-		has_megastructure = acot_dark_matter_obelisk_core_portal
-		has_megastructure = acot_dark_matter_obelisk_core_portal_ae
-		has_megastructure = aot_dark_matter_obelisk_core_portal_pe
-		has_megastructure = acot_dark_matter_obelisk_core_portal_se
-		has_megastructure = acot_dark_matter_obelisk_core_portal_oe
-		has_megastructure = acot_dark_matter_obelisk_core
-		has_megastructure = acot_dark_matter_obelisk_core_advanced
-		has_megastructure = acot_dark_matter_obelisk_core_super
-		has_megastructure = acot_dark_matter_obelisk_core_ae
-		has_megastructure = acot_dark_matter_obelisk_core_advanced_ae
-		has_megastructure = acot_dark_matter_obelisk_core_super_ae
-		has_megastructure = aot_dark_matter_obelisk_core_pe
-		has_megastructure = aot_dark_matter_obelisk_core_advanced_pe
-		has_megastructure = aot_dark_matter_obelisk_core_super_pe
-		has_megastructure = acot_dark_matter_obelisk_core_se
-		has_megastructure = acot_dark_matter_obelisk_core_advanced_se
-		has_megastructure = acot_dark_matter_obelisk_core_super_se
-		has_megastructure = acot_dark_matter_obelisk_core_oe
-		has_megastructure = acot_dark_matter_obelisk_core_advanced_oe
-		has_megastructure = acot_dark_matter_obelisk_core_super_oe
-	}
+    OR = {
+        has_megastructure = acot_dark_matter_obelisk_core_portal
+        has_megastructure = acot_dark_matter_obelisk_core_portal_ae
+        has_megastructure = aot_dark_matter_obelisk_core_portal_pe
+        has_megastructure = acot_dark_matter_obelisk_core_portal_se
+        has_megastructure = acot_dark_matter_obelisk_core_portal_oe
+        has_megastructure = acot_dark_matter_obelisk_core
+        has_megastructure = acot_dark_matter_obelisk_core_advanced
+        has_megastructure = acot_dark_matter_obelisk_core_super
+        has_megastructure = acot_dark_matter_obelisk_core_ae
+        has_megastructure = acot_dark_matter_obelisk_core_advanced_ae
+        has_megastructure = acot_dark_matter_obelisk_core_super_ae
+        has_megastructure = aot_dark_matter_obelisk_core_pe
+        has_megastructure = aot_dark_matter_obelisk_core_advanced_pe
+        has_megastructure = aot_dark_matter_obelisk_core_super_pe
+        has_megastructure = acot_dark_matter_obelisk_core_se
+        has_megastructure = acot_dark_matter_obelisk_core_advanced_se
+        has_megastructure = acot_dark_matter_obelisk_core_super_se
+        has_megastructure = acot_dark_matter_obelisk_core_oe
+        has_megastructure = acot_dark_matter_obelisk_core_advanced_oe
+        has_megastructure = acot_dark_matter_obelisk_core_super_oe
+    }
 }
 ship_uses_acot_battleship_reactor = {
-	OR = {
-		ship_uses_battleship_reactors = yes
-		is_ship_size = acot_stinger_stage_4
-		# Military Station
-		is_ship_size = military_station_medium
-		# FE/ZOFE Ships
-		is_ship_size = large_ship_fallen_empire
-		is_ship_size = fe_battlecruiser
-		# ACOT Ships
+    OR = {
+        ship_uses_battleship_reactors = yes
+        is_ship_size = acot_stinger_stage_4
+        # Military Station
+        is_ship_size = military_station_medium
+        # FE/ZOFE Ships
+        is_ship_size = large_ship_fallen_empire
+        is_ship_size = fe_battlecruiser
+        # ACOT Ships
 
-		is_ship_size = acot_stinger_stage_4
-		is_ship_size = acot_harbinger_stage_4
-		is_ship_size = precursor_platform_l
-		is_ship_size = precursor_battlecruiser
-		# Other Modded Ships
-		is_ship_size = SCX_Carrier
-		is_ship_size = Battlecruiser
-		is_ship_size = rs_dreadnought
-		is_ship_size = rs_heavy_dreadnought_type_a
-		is_ship_size = rs_heavy_dreadnought_type_b
-		is_ship_size = rs_heavy_dreadnought_type_c
-		is_ship_size = rs_heavy_dreadnought_type_d
-		is_ship_size = rs_heavy_dreadnought_type_e
-		is_ship_size = rs_heavy_dreadnought_type_f
-		is_ship_size = rs_heavy_dreadnought_type_g
-		is_ship_size = rs_heavy_dreadnought_type_h
-		is_ship_size = ag_science_constructor
-		is_ship_size = ag_alpha_psionic_cruiser
+        is_ship_size = acot_stinger_stage_4
+        is_ship_size = acot_harbinger_stage_4
+        is_ship_size = precursor_platform_l
+        is_ship_size = precursor_battlecruiser
+        # Other Modded Ships
+        is_ship_size = SCX_Carrier
+        is_ship_size = Battlecruiser
+        is_ship_size = rs_dreadnought
+        is_ship_size = rs_heavy_dreadnought_type_a
+        is_ship_size = rs_heavy_dreadnought_type_b
+        is_ship_size = rs_heavy_dreadnought_type_c
+        is_ship_size = rs_heavy_dreadnought_type_d
+        is_ship_size = rs_heavy_dreadnought_type_e
+        is_ship_size = rs_heavy_dreadnought_type_f
+        is_ship_size = rs_heavy_dreadnought_type_g
+        is_ship_size = rs_heavy_dreadnought_type_h
+        is_ship_size = ag_science_constructor
+        is_ship_size = ag_alpha_psionic_cruiser
 
-		# AoT ships
-		is_aot_ship = yes
-	}
+        # AoT ships
+        is_aot_ship = yes
+    }
 }
 ship_uses_acot_normal_roles = {
-	OR = {
-		is_ship_class = shipclass_military
-		is_ship_class = shipclass_military_special
-		is_ship_size = juggernaut
-		is_aot_ship = yes
-	}
-	NOR = {
-		is_ship_size = precursor_colonizer
-		ship_uses_acot_pac_roles = yes
-	}
+    OR = {
+        is_ship_class = shipclass_military
+        is_ship_class = shipclass_military_special
+        is_ship_size = juggernaut
+        is_aot_ship = yes
+    }
+    NOR = {
+        is_ship_size = precursor_colonizer
+        ship_uses_acot_pac_roles = yes
+    }
 }
 ship_uses_juggernaut_components = {
-	OR = {
-		is_ship_size = juggernaut
-		is_ascended_juggernaut = yes
-	}
+    OR = {
+        is_ship_size = juggernaut
+        is_ascended_juggernaut = yes
+    }
 }
 ship_uses_starbase_components = {
-	OR = {
-		# Starbases
-		is_ship_size = starbase_outpost
-		is_ship_size = starbase_starport
-		is_ship_size = starbase_starhold
-		is_ship_size = starbase_starfortress
-		is_ship_size = starbase_citadel
-		# Orbital Rings
-		is_ship_size = orbital_ring_tier_1
-		is_ship_size = orbital_ring_tier_2
-		is_ship_size = orbital_ring_tier_3
-		# Deep Space Citadel
-		is_ship_size = starbase_deep_space_citadel_1
-		is_ship_size = starbase_deep_space_citadel_2
-		is_ship_size = starbase_deep_space_citadel_3
-		# Deep Space Enigmatic Fortress
-		is_deep_space_enigmatic_fortress = yes
-	}
+    OR = {
+        # Starbases
+        is_ship_size = starbase_outpost
+        is_ship_size = starbase_starport
+        is_ship_size = starbase_starhold
+        is_ship_size = starbase_starfortress
+        is_ship_size = starbase_citadel
+        # Orbital Rings
+        is_ship_size = orbital_ring_tier_1
+        is_ship_size = orbital_ring_tier_2
+        is_ship_size = orbital_ring_tier_3
+        # Deep Space Citadel
+        is_ship_size = starbase_deep_space_citadel_1
+        is_ship_size = starbase_deep_space_citadel_2
+        is_ship_size = starbase_deep_space_citadel_3
+        # Deep Space Enigmatic Fortress
+        is_deep_space_enigmatic_fortress = yes
+    }
 }
 ship_uses_dsc_components = {
-	OR = {
-		is_ship_size = starbase_deep_space_citadel_1
-		is_ship_size = starbase_deep_space_citadel_2
-		is_ship_size = starbase_deep_space_citadel_3
-		# Deep Space Enigmatic Fortress
-		is_deep_space_enigmatic_fortress = yes
-	}
+    OR = {
+        is_ship_size = starbase_deep_space_citadel_1
+        is_ship_size = starbase_deep_space_citadel_2
+        is_ship_size = starbase_deep_space_citadel_3
+        # Deep Space Enigmatic Fortress
+        is_deep_space_enigmatic_fortress = yes
+    }
 }
