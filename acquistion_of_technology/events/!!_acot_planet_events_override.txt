@@ -1,0 +1,60 @@
+namespace = acot_planets
+
+planet_event = {
+    id = acot_planets.800
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        remove_capital_building = yes
+        if = {
+            limit = {
+                planet_owner = {
+                    has_technology = tech_acot_advanced_colony
+                    has_technology = tech_acot_ship_colony_upgrade
+                    has_stellarite_capital_building_tech = yes
+                }
+            }
+            aot_add_stellarite_capital_building = yes
+        }
+        else_if = {
+            limit = {
+                planet_owner = {
+                    has_technology = tech_acot_advanced_colony
+                    has_technology = tech_acot_ship_colony_upgrade
+                    has_phanon_capital_building_tech = yes
+                }
+            }
+            aot_add_phanon_capital_building = yes
+        }
+        else_if = {
+            limit = {
+                planet_owner = {
+                    has_technology = tech_acot_advanced_colony
+                    has_technology = tech_acot_ship_colony_upgrade
+                    has_alpha_capital_building_tech = yes
+                }
+            }
+            aot_add_alpha_capital_building = yes
+        }
+        else_if = {
+            limit = {
+                planet_owner = {
+                    has_technology = tech_acot_advanced_colony
+                    has_technology = tech_acot_ship_colony_upgrade
+                }
+            }
+            add_advanced_capital_building = yes
+        }
+        else_if = {
+            limit = {
+                planet_owner = {
+                    has_technology = tech_acot_ship_colony_upgrade
+                    NOT = {
+                        has_technology = tech_acot_advanced_colony
+                    }
+                }
+            }
+            add_base_capital_building = yes
+        }
+    }
+}
