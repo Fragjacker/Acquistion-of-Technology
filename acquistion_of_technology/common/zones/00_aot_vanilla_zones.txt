@@ -59,7 +59,6 @@ inline_script = {
     SE_NORM_JOB2 = job_stellarite_artisan_add
     SE_GEST_JOB2 = job_stellarite_artisan_drone_add
 }
-
 # foundry
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech
@@ -87,7 +86,6 @@ inline_script = {
     SE_NORM_JOB = job_stellarite_alloyman_add
     SE_GEST_JOB = job_stellarite_alloydrone_add
 }
-
 # factory
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech
@@ -115,7 +113,6 @@ inline_script = {
     SE_NORM_JOB = job_stellarite_artisan_add
     SE_GEST_JOB = job_stellarite_artisan_drone_add
 }
-
 # research
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech
@@ -142,297 +139,35 @@ inline_script = {
     SE_NORM_JOB = job_stellarite_researcher_add
     SE_GEST_JOB = job_stellarite_researcher_drone_add
 }
-
 # soldier
-xhk_acot_zone_DM_fortress = {
-    inline_script = {
-        script = zones/xhk_acotzone_maker_1job
-        ICON = "GFX_xhk_acot_zone_DM_ARMY"
-        TECH = "tech_acot_dm_stronghold"
-        OTHER_REQ = ""
-        OTHER_COST = ""
-        CAPITAL_TRIGGER = "has_enigmatic_capital = yes"
-    }
-
-    inline_script = {
-        script = jobs/xhk_general_zone_job_adder
-        NORMAL_JOB = job_aot_dm_soldier_add
-        GESTALT_JOB = job_aot_dm_soldier_drone_add
-        AMOUNT = @scaling_district_1_job
-    }
-
-    included_building_sets = {
+inline_script = {
+    script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech
+    TYPE = "fortress"
+    TECH_SUFFIX = "stronghold"
+    OTHER_OWNER_REQ = ""
+    PLANET_REQ = ""
+    BUILDING_SETS = "
         fortress
         urban_automation
         origin
-    }
-
-    zone_sets = {
+    "
+    ZONE_SETS = "
         urban
         habitat_urban
-    }
-
-    inline_script = {
-        script = zones/shared_city_non_urban_zone_modifiers
-    }
-    #ai_weight_coefficient = 1.1
-}
-xhk_acot_zone_DE_fortress = {
-    inline_script = {
-        script = zones/xhk_acotzone_maker_1job
-        ICON = "GFX_xhk_acot_zone_DE_ARMY"
-        TECH = "tech_acot_ae_stronghold"
-        OTHER_REQ = ""
-        OTHER_COST = ""
-        CAPITAL_TRIGGER = "has_ascended_capital = yes"
-    }
-
-    inline_script = {
-        script = jobs/xhk_general_zone_job_adder
-        NORMAL_JOB = job_acot_soldier_add
-        GESTALT_JOB = job_acot_soldier_drone_add
-        AMOUNT = @scaling_district_1_job
-    }
-
-    included_building_sets = {
-        fortress
-        urban_automation
-        origin
-    }
-
-    zone_sets = {
-        urban
-        habitat_urban
-        resort
-    }
-
-    inline_script = {
-        script = zones/shared_city_non_urban_zone_modifiers
-    }
-
-    #ai_weight_coefficient = 1.1
-}
-xhk_acot_zone_PE_fortress = {
-    inline_script = {
-        script = zones/xhk_acotzone_maker_1job
-        ICON = "GFX_xhk_acot_zone_PE_ARMY"
-        TECH = "tech_phanon_stronghold"
-        OTHER_REQ = ""
-        OTHER_COST = ""
-        CAPITAL_TRIGGER = "has_phanon_capital = yes"
-    }
-
-    inline_script = {
-        script = jobs/xhk_general_zone_job_adder
-        NORMAL_JOB = job_phanon_soldier_add
-        GESTALT_JOB = job_phanon_soldier_drone_add
-        AMOUNT = @scaling_district_1_job
-    }
-
-    included_building_sets = {
-        fortress
-        urban_automation
-        origin
-    }
-
-    zone_sets = {
-        urban
-        habitat_urban
-        resort
-    }
-
-    inline_script = {
-        script = zones/shared_city_non_urban_zone_modifiers
-    }
-
-    #ai_weight_coefficient = 1.1
-}
-xhk_acot_zone_SE_fortress = {
-    inline_script = {
-        script = zones/xhk_acotzone_maker_1job
-        ICON = "GFX_xhk_acot_zone_SE_ARMY"
-        TECH = "tech_stellarite_stronghold"
-        OTHER_REQ = ""
-        OTHER_COST = ""
-        CAPITAL_TRIGGER = "has_stellarite_capital = yes"
-    }
-
-    inline_script = {
-        script = jobs/xhk_general_zone_job_adder
-        NORMAL_JOB = job_stellarite_soldier_add
-        GESTALT_JOB = job_stellarite_soldier_drone_add
-        AMOUNT = @scaling_district_1_job
-    }
-
-    included_building_sets = {
-        fortress
-        urban_automation
-        origin
-    }
-
-    zone_sets = {
-        urban
-        habitat_urban
-        resort
-    }
-
-    inline_script = {
-        script = zones/shared_city_non_urban_zone_modifiers
-    }
-
-    #ai_weight_coefficient = 1.1
+    "
+    GFX_SUFFIX = "ARMY"
+    AMOUNT = @scaling_district_1_job
+    DM_NORM_JOB = job_aot_dm_soldier_add
+    DM_GEST_JOB = job_aot_dm_soldier_drone_add
+    DE_NORM_JOB = job_acot_soldier_add
+    DE_GEST_JOB = job_acot_soldier_drone_add
+    PE_NORM_JOB = job_phanon_soldier_add
+    PE_GEST_JOB = job_phanon_soldier_drone_add
+    SE_NORM_JOB = job_stellarite_soldier_add
+    SE_GEST_JOB = job_stellarite_soldier_drone_add
 }
 
 # trade
-xhk_acot_zone_DM_trade = {
-    inline_script = {
-        script = zones/xhk_acotzone_maker_1job
-        ICON = "GFX_xhk_acot_zone_DM_TRADE"
-        TECH = "tech_acot_dm_trade_center"
-        OTHER_REQ = ""
-        OTHER_COST = ""
-        CAPITAL_TRIGGER = "has_enigmatic_capital = yes"
-    }
-
-    inline_script = {
-        script = jobs/xhk_general_zone_job_adder
-        NORMAL_JOB = job_acot_trader_add
-        GESTALT_JOB = job_acot_trader_drone_add
-        AMOUNT = @scaling_district_1_job
-    }
-
-    included_building_sets = {
-        urban
-        trade
-        urban_automation
-        origin
-    }
-
-    zone_sets = {
-        urban
-        habitat_urban
-        resort
-    }
-
-    inline_script = {
-        script = zones/shared_city_non_urban_zone_modifiers
-    }
-    #ai_weight_coefficient = 1.1
-}
-xhk_acot_zone_DE_trade = {
-    inline_script = {
-        script = zones/xhk_acotzone_maker_1job
-        ICON = "GFX_xhk_acot_zone_DE_TRADE"
-        TECH = "tech_ae_commercial_megaplex"
-        OTHER_REQ = "
-            is_gestalt = no
-        "
-        OTHER_COST = ""
-        CAPITAL_TRIGGER = "has_ascended_capital = yes"
-    }
-
-    inline_script = {
-        script = jobs/xhk_general_zone_job_adder
-        NORMAL_JOB = job_ae_clerk_add
-        GESTALT_JOB = job_ae_alloydrone_add
-        AMOUNT = @scaling_district_1_job
-    }
-
-    included_building_sets = {
-        urban
-        trade
-        urban_automation
-        origin
-    }
-
-    zone_sets = {
-        urban
-        habitat_urban
-        resort
-    }
-
-    inline_script = {
-        script = zones/shared_city_non_urban_zone_modifiers
-    }
-
-    #ai_weight_coefficient = 1.1
-}
-xhk_acot_zone_PE_trade = {
-    inline_script = {
-        script = zones/xhk_acotzone_maker_1job
-        ICON = "GFX_xhk_acot_zone_PE_TRADE"
-        TECH = "tech_phanon_commercial_megaplex"
-        OTHER_REQ = "
-            is_gestalt = no
-        "
-        OTHER_COST = ""
-        CAPITAL_TRIGGER = "has_phanon_capital = yes"
-    }
-
-    inline_script = {
-        script = jobs/xhk_general_zone_job_adder
-        NORMAL_JOB = job_phanon_clerk_add
-        GESTALT_JOB = job_phanon_alloydrone_add
-        AMOUNT = @scaling_district_1_job
-    }
-
-    included_building_sets = {
-        urban
-        trade
-        urban_automation
-        origin
-    }
-
-    zone_sets = {
-        urban
-        habitat_urban
-        resort
-    }
-
-    inline_script = {
-        script = zones/shared_city_non_urban_zone_modifiers
-    }
-
-    #ai_weight_coefficient = 1.1
-}
-xhk_acot_zone_SE_trade = {
-    inline_script = {
-        script = zones/xhk_acotzone_maker_1job
-        ICON = "GFX_xhk_acot_zone_SE_TRADE"
-        TECH = "tech_stellarite_commercial_megaplex"
-        OTHER_REQ = "
-            is_gestalt = no
-        "
-        OTHER_COST = ""
-        CAPITAL_TRIGGER = "has_stellarite_capital = yes"
-    }
-
-    inline_script = {
-        script = jobs/xhk_general_zone_job_adder
-        NORMAL_JOB = job_stellarite_clerk_add
-        GESTALT_JOB = job_stellarite_alloydrone_add
-        AMOUNT = @scaling_district_1_job
-    }
-
-    included_building_sets = {
-        urban
-        trade
-        urban_automation
-        origin
-    }
-
-    zone_sets = {
-        urban
-        habitat_urban
-        resort
-    }
-
-    inline_script = {
-        script = zones/shared_city_non_urban_zone_modifiers
-    }
-
-    #ai_weight_coefficient = 1.1
-}
 
 # unity
 
@@ -490,7 +225,6 @@ inline_script = {
     BASE_NORM_JOB = job_miner_add
     BASE_GEST_JOB = job_miner_drone_add
 }
-
 # energy
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_rurals
@@ -521,7 +255,6 @@ inline_script = {
     BASE_NORM_JOB = job_technician_add
     BASE_GEST_JOB = job_technician_drone_add
 }
-
 # food
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_rurals
@@ -598,7 +331,6 @@ inline_script = {
     SE_NORM_JOB2 = job_stellarite_artisan_add
     SE_GEST_JOB2 = job_stellarite_artisan_drone_add
 }
-
 # foundry ecu
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary
@@ -626,7 +358,6 @@ inline_script = {
     SE_NORM_JOB = job_stellarite_alloyman_add
     SE_GEST_JOB = job_stellarite_alloydrone_add
 }
-
 # factory ecu
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary
@@ -654,7 +385,6 @@ inline_script = {
     SE_NORM_JOB = job_stellarite_artisan_add
     SE_GEST_JOB = job_stellarite_artisan_drone_add
 }
-
 # research ecu
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary
@@ -682,20 +412,48 @@ inline_script = {
     SE_NORM_JOB = job_stellarite_researcher_add
     SE_GEST_JOB = job_stellarite_researcher_drone_add
 }
+# soldier ecu
+inline_script = {
+    script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary
+    TYPE = "fortress"
+    TRAILER_TYPE_LEADING_UNDERSCORE = "_arcology"
+    TECH_SUFFIX = "stronghold"
+    OTHER_OWNER_REQ = ""
+    PLANET_REQ = ""
+    BUILDING_SETS = "
+        fortress
+        urban_automation_arcology
+        origin
+    "
+    ZONE_SETS = "
+        arcology
+    "
+    GFX_SUFFIX = "ARMY"
+    AMOUNT = @doubled_scaling_district_1_job
+    DM_NORM_JOB = job_aot_dm_soldier_add
+    DM_GEST_JOB = job_aot_dm_soldier_drone_add
+    DE_NORM_JOB = job_acot_soldier_add
+    DE_GEST_JOB = job_acot_soldier_drone_add
+    PE_NORM_JOB = job_phanon_soldier_add
+    PE_GEST_JOB = job_phanon_soldier_drone_add
+    SE_NORM_JOB = job_stellarite_soldier_add
+    SE_GEST_JOB = job_stellarite_soldier_drone_add
+}
 
 # unity
 # priest
 # biotrophy
-# fortress
+
 # trade
 
+###################################################
 ######### RING
+###################################################
 
 # industry ring
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_2tech_secondary_ring
     TYPE = "industry"
-    TRAILER_TYPE_LEADING_UNDERSCORE = "_ring_world"
     TECH_SUFFIX = "alloy_foundry"
     TECH_SUFFIX2 = "factory"
     OTHER_OWNER_REQ = ""
@@ -704,9 +462,6 @@ inline_script = {
         industrial
         urban_automation
         origin
-    "
-    ZONE_SETS = "
-        ring_world
     "
     GFX_SUFFIX = "INDUSTRY"
     AMOUNT = @doubled_scaling_district_2_jobs
@@ -727,12 +482,10 @@ inline_script = {
     SE_NORM_JOB2 = job_stellarite_artisan_add
     SE_GEST_JOB2 = job_stellarite_artisan_drone_add
 }
-
 # foundry ring
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary_ring
     TYPE = "foundry"
-    TRAILER_TYPE_LEADING_UNDERSCORE = "_ring_world"
     TECH_SUFFIX = "alloy_foundry"
     OTHER_OWNER_REQ = ""
     PLANET_REQ = ""
@@ -740,9 +493,6 @@ inline_script = {
         foundry
         urban_automation
         origin
-    "
-    ZONE_SETS = "
-        ring_world
     "
     GFX_SUFFIX = "ALLOY"
     AMOUNT = @doubled_scaling_district_1_job
@@ -755,12 +505,10 @@ inline_script = {
     SE_NORM_JOB = job_stellarite_alloyman_add
     SE_GEST_JOB = job_stellarite_alloydrone_add
 }
-
 # factory ring
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary_ring
     TYPE = "factory"
-    TRAILER_TYPE_LEADING_UNDERSCORE = "_ring_world"
     TECH_SUFFIX = "factory"
     OTHER_OWNER_REQ = ""
     PLANET_REQ = ""
@@ -768,9 +516,6 @@ inline_script = {
         factory
         urban_automation
         origin
-    "
-    ZONE_SETS = "
-        ring_world
     "
     GFX_SUFFIX = "CONSUMER_GOODS"
     AMOUNT = @doubled_scaling_district_1_job
@@ -783,12 +528,10 @@ inline_script = {
     SE_NORM_JOB = job_stellarite_artisan_add
     SE_GEST_JOB = job_stellarite_artisan_drone_add
 }
-
 # research ring
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary_ring
     TYPE = "research"
-    TRAILER_TYPE_LEADING_UNDERSCORE = "_ring_world"
     TECH_SUFFIX = "enigmatic_lab"
     OTHER_OWNER_REQ = ""
     PLANET_REQ = ""
@@ -796,9 +539,6 @@ inline_script = {
         research
         urban_automation
         origin
-    "
-    ZONE_SETS = "
-        ring_world
     "
     GFX_SUFFIX = "RESEARCH"
     AMOUNT = @doubled_scaling_district_1_job
@@ -811,6 +551,29 @@ inline_script = {
     SE_NORM_JOB = job_stellarite_researcher_add
     SE_GEST_JOB = job_stellarite_researcher_drone_add
 }
+# soldier ring
+inline_script = {
+    script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary_ring
+    TYPE = "fortress"
+    TECH_SUFFIX = "stronghold"
+    OTHER_OWNER_REQ = ""
+    PLANET_REQ = ""
+    BUILDING_SETS = "
+        fortress
+        urban_automation
+        origin
+    "
+    GFX_SUFFIX = "ARMY"
+    AMOUNT = @doubled_scaling_district_1_job
+    DM_NORM_JOB = job_aot_dm_soldier_add
+    DM_GEST_JOB = job_aot_dm_soldier_drone_add
+    DE_NORM_JOB = job_acot_soldier_add
+    DE_GEST_JOB = job_acot_soldier_drone_add
+    PE_NORM_JOB = job_phanon_soldier_add
+    PE_GEST_JOB = job_phanon_soldier_drone_add
+    SE_NORM_JOB = job_stellarite_soldier_add
+    SE_GEST_JOB = job_stellarite_soldier_drone_add
+}
 
 # unity
 # priest
@@ -820,7 +583,9 @@ inline_script = {
 # food
 # energy
 
+###################################################
 ######### MACHINE
+###################################################
 
 # industry
 # foundry
@@ -834,7 +599,9 @@ inline_script = {
 # minerals
 # energy
 
+###################################################
 ######### HIVE
+###################################################
 
 # industry
 # foundry
