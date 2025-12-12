@@ -4,14 +4,6 @@
 # so they should be able to go in every spot the vanilla ones can
 #################################################################################################################
 
-######################################################################################
-# variations of zones in 00_zones.txt
-######################################################################################
-
-#####
-# Zones for general urban districts, listed in the order they appear on the wiki
-#####
-
 # FOR SOME REASON THE FIRST ZONE IN THE FILE CANNOT BE SWAPPED AWAY FROM
 # THIS IS THE FIX
 xhk_acot_zone_dummy = {
@@ -22,7 +14,15 @@ xhk_acot_zone_dummy = {
         always = no
     }
 }
+# DONT DELETE THIS
 
+######################################################################################
+# variations of zones in 00_zones.txt
+######################################################################################
+
+#######################################
+# Zones for general urban districts, listed in the order they appear on the wiki
+#######################################
 # industry
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_2tech
@@ -194,7 +194,6 @@ inline_script = {
 #######################################
 # Zones for rural districts, listed in the order they appear on the wiki
 #######################################
-
 # minerals
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_rurals
@@ -294,7 +293,6 @@ inline_script = {
 ###################################################
 ######### ECU
 ###################################################
-
 # industry ecu
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_2tech_secondary
@@ -443,13 +441,11 @@ inline_script = {
 # unity
 # priest
 # biotrophy
-
 # trade
 
 ###################################################
 ######### RING
 ###################################################
-
 # industry ring
 inline_script = {
     script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_2tech_secondary_ring
@@ -580,24 +576,54 @@ inline_script = {
 # biotrophy
 # fortress
 # trade
+
+# energy
+inline_script = {
+    script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary_ring
+    TYPE = "energy"
+    TECH_SUFFIX = "power_hub"
+    OTHER_OWNER_REQ = ""
+    PLANET_REQ = ""
+    BUILDING_SETS = "
+        generator
+        fallen_empire_generator
+        generator_automation
+    "
+    GFX_SUFFIX = "ENERGY"
+    AMOUNT = @doubled_scaling_district_1_job
+    DM_NORM_JOB = job_acot_energyman_add
+    DM_GEST_JOB = job_acot_energydrone_add
+    DE_NORM_JOB = job_ae_energyman_add
+    DE_GEST_JOB = job_ae_energydrone_add
+    PE_NORM_JOB = job_phanon_energyman_add
+    PE_GEST_JOB = job_phanon_energydrone_add
+    SE_NORM_JOB = job_stellarite_energyman_add
+    SE_GEST_JOB = job_stellarite_energydrone_add
+}
 # food
-# energy
-
-###################################################
-######### MACHINE
-###################################################
-
-# industry
-# foundry
-# factory
-# research
-# unity
-# priest
-# biotrophy
-# fortress
-# trade
-# minerals
-# energy
+inline_script = {
+    script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary_ring
+    TYPE = "food"
+    TECH_SUFFIX = "food_processing"
+    OTHER_OWNER_REQ = ""
+    PLANET_REQ = ""
+    BUILDING_SETS = "
+        farming
+        hydroponics
+        farming_automation
+        fallen_empire_farming
+    "
+    GFX_SUFFIX = "FOOD"
+    AMOUNT = @doubled_scaling_district_1_job
+    DM_NORM_JOB = job_acot_foodman_add
+    DM_GEST_JOB = job_acot_fooddrone_add
+    DE_NORM_JOB = job_ae_foodman_add
+    DE_GEST_JOB = job_ae_fooddrone_add
+    PE_NORM_JOB = job_phanon_foodman_add
+    PE_GEST_JOB = job_phanon_fooddrone_add
+    SE_NORM_JOB = job_stellarite_foodman_add
+    SE_GEST_JOB = job_stellarite_fooddrone_add
+}
 
 ###################################################
 ######### HIVE
@@ -607,9 +633,161 @@ inline_script = {
 # foundry
 # factory
 # research
-# unity
 # fortress
+
+# unity
 # trade
-# food
+
 # minerals
+inline_script = {
+    script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary
+    TYPE = "mineral"
+    TRAILER_TYPE_LEADING_UNDERSCORE = "_hive"
+    TECH_SUFFIX = "mineral_processing_plant"
+    OTHER_OWNER_REQ = ""
+    PLANET_REQ = ""
+    BUILDING_SETS = "
+        mining
+        fallen_empire_mining
+        mining_automation
+    "
+    ZONE_SETS = "
+        hive
+    "
+    GFX_SUFFIX = "MINERAL"
+    AMOUNT = @doubled_scaling_district_1_job
+    DM_NORM_JOB = job_acot_mineralman_add
+    DM_GEST_JOB = job_acot_mineraldrone_add
+    DE_NORM_JOB = job_ae_mineralman_add
+    DE_GEST_JOB = job_ae_mineraldrone_add
+    PE_NORM_JOB = job_phanon_mineralman_add
+    PE_GEST_JOB = job_phanon_mineraldrone_add
+    SE_NORM_JOB = job_stellarite_mineralman_add
+    SE_GEST_JOB = job_stellarite_mineraldrone_add
+}
 # energy
+inline_script = {
+    script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary
+    TYPE = "energy"
+    TRAILER_TYPE_LEADING_UNDERSCORE = "_hive"
+    TECH_SUFFIX = "power_hub"
+    OTHER_OWNER_REQ = ""
+    PLANET_REQ = ""
+    BUILDING_SETS = "
+        generator
+        fallen_empire_generator
+        generator_automation
+    "
+    ZONE_SETS = "
+        hive
+    "
+    GFX_SUFFIX = "ENERGY"
+    AMOUNT = @doubled_scaling_district_1_job
+    DM_NORM_JOB = job_acot_energyman_add
+    DM_GEST_JOB = job_acot_energydrone_add
+    DE_NORM_JOB = job_ae_energyman_add
+    DE_GEST_JOB = job_ae_energydrone_add
+    PE_NORM_JOB = job_phanon_energyman_add
+    PE_GEST_JOB = job_phanon_energydrone_add
+    SE_NORM_JOB = job_stellarite_energyman_add
+    SE_GEST_JOB = job_stellarite_energydrone_add
+}
+# food
+inline_script = {
+    script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary
+    TYPE = "food"
+    TRAILER_TYPE_LEADING_UNDERSCORE = "_hive"
+    TECH_SUFFIX = "food_processing"
+    OTHER_OWNER_REQ = ""
+    PLANET_REQ = ""
+    BUILDING_SETS = "
+        farming
+        hydroponics
+        farming_automation
+        fallen_empire_farming
+    "
+    ZONE_SETS = "
+        hive
+    "
+    GFX_SUFFIX = "FOOD"
+    AMOUNT = @doubled_scaling_district_1_job
+    DM_NORM_JOB = job_acot_foodman_add
+    DM_GEST_JOB = job_acot_fooddrone_add
+    DE_NORM_JOB = job_ae_foodman_add
+    DE_GEST_JOB = job_ae_fooddrone_add
+    PE_NORM_JOB = job_phanon_foodman_add
+    PE_GEST_JOB = job_phanon_fooddrone_add
+    SE_NORM_JOB = job_stellarite_foodman_add
+    SE_GEST_JOB = job_stellarite_fooddrone_add
+}
+
+
+###################################################
+######### MACHINE
+###################################################
+
+# industry
+# foundry
+# factory
+# research
+# fortress
+
+# unity
+# priest
+# biotrophy
+# trade
+
+# minerals
+inline_script = {
+    script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary
+    TYPE = "mineral"
+    TRAILER_TYPE_LEADING_UNDERSCORE = "_nexus"
+    TECH_SUFFIX = "mineral_processing_plant"
+    OTHER_OWNER_REQ = ""
+    PLANET_REQ = ""
+    BUILDING_SETS = "
+        mining
+        fallen_empire_mining
+        mining_automation
+    "
+    ZONE_SETS = "
+        nexus
+    "
+    GFX_SUFFIX = "MINERAL"
+    AMOUNT = @doubled_scaling_district_1_job
+    DM_NORM_JOB = job_acot_mineralman_add
+    DM_GEST_JOB = job_acot_mineraldrone_add
+    DE_NORM_JOB = job_ae_mineralman_add
+    DE_GEST_JOB = job_ae_mineraldrone_add
+    PE_NORM_JOB = job_phanon_mineralman_add
+    PE_GEST_JOB = job_phanon_mineraldrone_add
+    SE_NORM_JOB = job_stellarite_mineralman_add
+    SE_GEST_JOB = job_stellarite_mineraldrone_add
+}
+# energy
+inline_script = {
+    script = zones/aot_vanilla_zones/aot_zone_no_base_jobs_1tech_secondary
+    TYPE = "energy"
+    TRAILER_TYPE_LEADING_UNDERSCORE = "_nexus"
+    TECH_SUFFIX = "power_hub"
+    OTHER_OWNER_REQ = ""
+    PLANET_REQ = ""
+    BUILDING_SETS = "
+        generator
+        fallen_empire_generator
+        generator_automation
+    "
+    ZONE_SETS = "
+        nexus
+    "
+    GFX_SUFFIX = "ENERGY"
+    AMOUNT = @doubled_scaling_district_1_job
+    DM_NORM_JOB = job_acot_energyman_add
+    DM_GEST_JOB = job_acot_energydrone_add
+    DE_NORM_JOB = job_ae_energyman_add
+    DE_GEST_JOB = job_ae_energydrone_add
+    PE_NORM_JOB = job_phanon_energyman_add
+    PE_GEST_JOB = job_phanon_energydrone_add
+    SE_NORM_JOB = job_stellarite_energyman_add
+    SE_GEST_JOB = job_stellarite_energydrone_add
+}
