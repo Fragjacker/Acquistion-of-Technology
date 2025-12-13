@@ -281,6 +281,115 @@ building_fe_nourishment_center = {
 }
 
 # Consumer Goods
+building_acot_dm_factory = {
+    base_buildtime = @acot_building_basic_build_time
+
+    category = manufacturing
+
+    building_sets = {
+        industrial
+        factory
+    }
+
+    allow = {
+        has_enigmatic_capital = yes
+    }
+
+    potential = {
+        planet_owner = {
+            OR = {
+                is_gestalt = no
+                has_valid_civic = civic_machine_servitor
+            }
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = planet_owner
+            planet_owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            job_acot_artisan_add = 200
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = planet_owner
+            planet_owner = { is_gestalt = yes }
+        }
+        modifier = {
+            job_acot_artisan_drone_add = 200
+        }
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            alloys = @acot_building_basic_alloy_cost
+            sr_dark_matter = @acot_building_basic_dm_cost
+            acot_sr_dark_energy = @acot_building_basic_de_cost
+        }
+        produces = {
+            consumer_goods = 25
+        }
+        produces = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            consumer_goods = 20
+        }
+        upkeep = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            sr_dark_matter = 1
+            acot_sr_dark_energy = 1
+            minerals = 10
+        }
+    }
+
+    prerequisites = {
+        tech_acot_dm_factory
+    }
+
+    ai_weight = {
+        weight = 2
+        modifier = {
+            factor = 5
+            planet_owner = {
+                has_monthly_income = {
+                    resource = consumer_goods
+                    value < 5
+                }
+                has_monthly_income = {
+                    resource = minerals
+                    value > 6
+                }
+            }
+        }
+        # There are already unworked jobs
+        # Blocks buildings unworkable by remaining pops (slaves/robots etc)
+        # Will be improved... at some point
+        modifier = {
+            factor = 0
+            free_jobs > 0
+        }
+    }
+
+    ai_resource_production = {
+        consumer_goods = 10
+        trigger = {
+            always = yes
+        }
+    }
+
+    upgrades = {
+        building_acot_ae_factory
+    }
+}
+
 building_fe_affluence_center = {
     icon = building_affluence_center
     inline_script = {
