@@ -1,0 +1,36 @@
+base_buildtime = @zone_buildtime
+
+potential = { # planet scope
+    NOT = { is_planet_class = pc_giga_frameworld }
+    hidden_trigger = {
+        exists = owner
+        owner = {
+            is_wilderness_empire = no
+            $OWNER_REQ$
+        }
+    }
+    has_ascended_capital = yes
+    $PLANET_REQ$
+}
+
+unlock = { # planet scope
+    hidden_trigger = {
+        exists = owner
+        owner = {
+            is_wilderness_empire = no
+        }
+    }
+}
+
+resources = {
+    category = planet_zones
+    cost = {
+        minerals = @zone_cost
+        sr_dark_matter = 200
+        acot_sr_dark_energy = 200
+    }
+}
+
+planet_modifier = {
+    zone_building_slots_add = 3
+}
