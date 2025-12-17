@@ -1,78 +1,77 @@
 inline_script = {
-    script = shared/normal_buildings_base
-    ALLOW = "$ALLOW$"
-    CAN_BUILD = $CAN_BUILD$
-    PREREQUISITE = $PREREQUISITE$
-    UPGRADES_INTO = $UPGRADES_INTO$
-    AI_FACTORS = "$AI_FACTORS$"
-    TIER = $TIER$
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
 }
 @num_jobs = @[ 200 * $TIER$ ]
 category = research
 building_sets = {
-    research
-    aot_building_tier_$TIER$
+	research
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
-        has_technology = $PREREQUISITE$
-    }
-    NOR = {
-        is_special_colony_type = yes
-        has_building = building_acot_dm_institute_super
-        has_building = building_acot_ae_institute_super
-    }
+	exists = planet_owner
+	planet_owner = {
+		has_technology = $PREREQUISITE$
+	}
+	NOR = {
+		is_special_colony_type = yes
+		has_building = building_acot_dm_institute_super
+		has_building = building_acot_ae_institute_super
+	}
 }
 destroy_trigger = {
-    OR = {
-        is_special_colony_type = yes
-        has_building = building_acot_dm_institute_super
-        has_building = building_acot_ae_institute_super
-    }
+	OR = {
+		is_special_colony_type = yes
+		has_building = building_acot_dm_institute_super
+		has_building = building_acot_ae_institute_super
+	}
 }
 resources = {
-    category = planet_buildings
-    produces = {
-        physics_research = @[ 100 * $TIER$ ]
-        engineering_research = @[ 100 * $TIER$ ]
-        society_research = @[ 100 * $TIER$ ]
-        minor_artifacts = @[ 10 + ( 5 * $TIER$ ) ]
-    }
-    cost = {
-        $COST$
-    }
-    upkeep = {
-        trigger = {
-            planet_owner = {
-                NOT = {
-                    has_technology = tech_acot_fractured_autoharvesting
-                }
-            }
-        }
-        sr_dark_matter = 50
-        acot_sr_dark_energy = 50
-    }
+	category = planet_buildings
+	produces = {
+		physics_research = @[ 100 * $TIER$ ]
+		engineering_research = @[ 100 * $TIER$ ]
+		society_research = @[ 100 * $TIER$ ]
+		minor_artifacts = @[ 10 + ( 5 * $TIER$ ) ]
+	}
+	cost = {
+		$COST$
+	}
+	upkeep = {
+		trigger = {
+			planet_owner = {
+				NOT = {
+					has_technology = tech_acot_fractured_autoharvesting
+				}
+			}
+		}
+		sr_dark_matter = 50
+		acot_sr_dark_energy = 50
+	}
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_regular_empire = yes
-        }
-    }
-    modifier = {
-        job_$JOB$_add = @num_jobs
-        pop_$JOB$_bonus_workforce_mult = 0.5
-    }
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_regular_empire = yes
+		}
+	}
+	modifier = {
+		job_$JOB$_add = @num_jobs
+		pop_$JOB$_bonus_workforce_mult = 0.5
+	}
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = { is_gestalt = yes }
-    }
-    modifier = {
-        job_$JOB_HIVE$_add = @num_jobs
-        pop_$JOB_HIVE$_bonus_workforce_mult = 0.5
-    }
+	potential = {
+		exists = planet_owner
+		planet_owner = { is_gestalt = yes }
+	}
+	modifier = {
+		job_$JOB_HIVE$_add = @num_jobs
+		pop_$JOB_HIVE$_bonus_workforce_mult = 0.5
+	}
 }

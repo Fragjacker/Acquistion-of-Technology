@@ -1,116 +1,115 @@
 inline_script = {
-    script = shared/normal_buildings_base
-    ALLOW = "$ALLOW$"
-    CAN_BUILD = $CAN_BUILD$
-    PREREQUISITE = $PREREQUISITE$
-    UPGRADES_INTO = $UPGRADES_INTO$
-    AI_FACTORS = "$AI_FACTORS$"
-    TIER = $TIER$
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
 }
 category = pop_assembly
 building_sets = {
-    government
-    urban
-    aot_building_tier_$TIER$
+	government
+	urban
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            OR = {
-                is_regular_empire = yes
-                is_individual_machine = yes
-            }
-        }
-    }
-    job_$JOB$_add = @[ 200 * $TIER$ * $TIER$ ]
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			OR = {
+				is_regular_empire = yes
+				is_individual_machine = yes
+			}
+		}
+	}
+	job_$JOB$_add = @[ 200 * $TIER$ * $TIER$ ]
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_machine_empire = yes
-        }
-    }
-    job_$JOB_MACHINE$_add = @[ 300 * $TIER$ * $TIER$ ]
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_machine_empire = yes
+		}
+	}
+	job_$JOB_MACHINE$_add = @[ 300 * $TIER$ * $TIER$ ]
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            OR = {
-                has_origin = origin_mechanists
-                is_individual_machine = yes
-                has_country_flag = synthetic_empire
-            }
-        }
-        any_owned_pop_group = {
-            has_auto_modding_trait = yes
-        }
-    }
-    modifier = {
-        auto_mod_monthly_add = @[ 400 * $TIER$ ]
-    }
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			OR = {
+				has_origin = origin_mechanists
+				is_individual_machine = yes
+				has_country_flag = synthetic_empire
+			}
+		}
+		any_owned_pop_group = {
+			has_auto_modding_trait = yes
+		}
+	}
+	modifier = {
+		auto_mod_monthly_add = @[ 400 * $TIER$ ]
+	}
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = owner
-        owner = {
-            has_country_flag = synth_safe_updates
-        }
-    }
-    modifier = {
-        planet_pop_assembly_mult = @[ - 0.1 * $TIER$ ]
-        planet_stability_add = @[ 2.5 * $TIER$ ]
-    }
+	potential = {
+		exists = owner
+		owner = {
+			has_country_flag = synth_safe_updates
+		}
+	}
+	modifier = {
+		planet_pop_assembly_mult = @[ - 0.1 * $TIER$ ]
+		planet_stability_add = @[ 2.5 * $TIER$ ]
+	}
 }
 
 ### JOB STRATA FOCUS MODIFIERS ###
 triggered_planet_modifier = {
-    # Synth ruler focus
-    potential = {
-        exists = owner
-        owner = {
-            has_country_flag = synth_focus_rulers
-        }
-    }
-    modifier = {
-        planet_jobs_ruler_produces_mult = @[ 0.075 * $TIER$ ]
-    }
+	# Synth ruler focus
+	potential = {
+		exists = owner
+		owner = {
+			has_country_flag = synth_focus_rulers
+		}
+	}
+	modifier = {
+		planet_jobs_ruler_produces_mult = @[ 0.075 * $TIER$ ]
+	}
 }
 triggered_planet_modifier = {
-    # Synth specialist focus
-    potential = {
-        exists = owner
-        owner = {
-            has_country_flag = synth_focus_specialists
-        }
-    }
-    modifier = {
-        planet_jobs_specialist_produces_mult = @[ 0.025 * $TIER$ ]
-    }
+	# Synth specialist focus
+	potential = {
+		exists = owner
+		owner = {
+			has_country_flag = synth_focus_specialists
+		}
+	}
+	modifier = {
+		planet_jobs_specialist_produces_mult = @[ 0.025 * $TIER$ ]
+	}
 }
 triggered_planet_modifier = {
-    # Synth worker focus
-    potential = {
-        exists = owner
-        owner = {
-            has_country_flag = synth_focus_workers
-        }
-    }
-    modifier = {
-        planet_jobs_worker_produces_mult = @[ 0.05 * $TIER$ ]
-    }
+	# Synth worker focus
+	potential = {
+		exists = owner
+		owner = {
+			has_country_flag = synth_focus_workers
+		}
+	}
+	modifier = {
+		planet_jobs_worker_produces_mult = @[ 0.05 * $TIER$ ]
+	}
 }
 triggered_planet_modifier = {
-    # Synth upkeep focus
-    potential = {
-        exists = owner
-        owner = {
-            has_country_flag = synth_focus_upkeep
-        }
-    }
-    modifier = {
-        planet_jobs_upkeep_mult = @[ - 0.025 * $TIER$ ]
-    }
+	# Synth upkeep focus
+	potential = {
+		exists = owner
+		owner = {
+			has_country_flag = synth_focus_upkeep
+		}
+	}
+	modifier = {
+		planet_jobs_upkeep_mult = @[ - 0.025 * $TIER$ ]
+	}
 }
