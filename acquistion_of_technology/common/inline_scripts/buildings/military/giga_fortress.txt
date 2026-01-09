@@ -1,11 +1,11 @@
 inline_script = {
-    script = shared/normal_buildings_base
-    ALLOW = "$ALLOW$"
-    CAN_BUILD = $CAN_BUILD$
-    PREREQUISITE = $PREREQUISITE$
-    UPGRADES_INTO = "$UPGRADES_INTO$"
-    AI_FACTORS = "$AI_FACTORS$"
-    TIER = $TIER$
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = "$UPGRADES_INTO$"
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
 }
 planet_limit = 1
 can_be_ruined = no
@@ -14,114 +14,113 @@ position_priority = 100
 planetary_ftl_inhibitor = yes
 category = army
 building_sets = {
-    government
-    fortress
-    aot_building_tier_$TIER$
+	government
+	fortress
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
-        has_technology = $PREREQUISITE$
-    }
-    NOT = {
-        has_modifier = resort_colony
-    }
+	exists = planet_owner
+	planet_owner = {
+		has_technology = $PREREQUISITE$
+	}
+	NOT = {
+		has_modifier = resort_colony
+	}
 }
 on_built = {
-    if = {
-        limit = {
-            NOT = {
-                any_planet_army = {
-                    army_type = acot_garrison_army_giga
-                }
-            }
-        }
-        create_army = {
-            owner = planet_owner
-            type = acot_garrison_army_giga
-        }
-    }
+	if = {
+		limit = {
+			NOT = {
+				any_planet_army = {
+					army_type = acot_garrison_army_giga
+				}
+			}
+		}
+		create_army = {
+			owner = planet_owner
+			type = acot_garrison_army_giga
+		}
+	}
 }
 on_destroy = {
-    if = {
-        limit = {
-            has_giga_fort = no
-        }
-        every_planet_army = {
-            limit = {
-                army_type = acot_garrison_army_giga
-            }
-            remove_army = yes
-        }
-    }
+	if = {
+		limit = {
+			has_giga_fort = no
+		}
+		every_planet_army = {
+			limit = {
+				army_type = acot_garrison_army_giga
+			}
+			remove_army = yes
+		}
+	}
 }
 triggered_planet_modifier = {
-    potential = {
-        has_ground_combat = yes
-    }
-    planet_defense_armies_add = @[ 10 * $TIER$ ]
+	potential = {
+		has_ground_combat = yes
+	}
+	planet_defense_armies_add = @[ 10 * $TIER$ ]
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_gestalt = no
-        }
-    }
-    $JOBS_REGULAR$
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = no
+		}
+	}
+	$JOBS_REGULAR$
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_machine_empire = yes
-        }
-    }
-    $JOBS_MACHINE$
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_machine_empire = yes
+		}
+	}
+	$JOBS_MACHINE$
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_hive_empire = yes
-        }
-    }
-    $JOBS_HIVE$
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_hive_empire = yes
+		}
+	}
+	$JOBS_HIVE$
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_fallen_empire = yes
-        }
-    }
-    $JOBS_FE$
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_fallen_empire = yes
+		}
+	}
+	$JOBS_FE$
 }
 resources = {
-    category = planet_buildings
-    produces = {
-        $PRODUCES$
-    }
-    produces = {
-        trigger = {
-            planet_owner = {
-                country_uses_food = yes
-            }
-        }
-        food = @[ 50 * $TIER$ ]
-    }
-    produces = {
-        trigger = {
-            planet_owner = {
-                country_uses_food = no
-            }
-        }
-        energy = @[ 25 * $TIER$ ]
-    }
-    cost = {
-        $COST$
-    }
-    upkeep = {
-        $UPKEEP$
-    }
+	category = planet_buildings
+	produces = {
+		$PRODUCES$
+	}
+	produces = {
+		trigger = {
+			planet_owner = {
+				country_uses_food = yes
+			}
+		}
+		food = @[ 50 * $TIER$ ]
+	}
+	produces = {
+		trigger = {
+			planet_owner = {
+				country_uses_food = no
+			}
+		}
+		energy = @[ 25 * $TIER$ ]
+	}
+	cost = {
+		$COST$
+	}
+	upkeep = {
+		$UPKEEP$
+	}
 }

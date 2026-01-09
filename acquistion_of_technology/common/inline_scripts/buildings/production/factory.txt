@@ -1,89 +1,88 @@
 inline_script = {
-    script = shared/normal_buildings_base
-    ALLOW = "$ALLOW$"
-    CAN_BUILD = $CAN_BUILD$
-    PREREQUISITE = $PREREQUISITE$
-    UPGRADES_INTO = $UPGRADES_INTO$
-    AI_FACTORS = "$AI_FACTORS$"
-    TIER = $TIER$
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
 }
 @num_jobs = @[ 200 * $TIER$ ]
 category = manufacturing
 building_sets = {
-    industrial
-    factory
-    aot_building_tier_$TIER$
+	industrial
+	factory
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
-        OR = {
-            is_gestalt = no
-            has_valid_civic = civic_machine_servitor
-        }
-        has_technology = $PREREQUISITE$
-    }
+	exists = planet_owner
+	planet_owner = {
+		OR = {
+			is_gestalt = no
+			has_valid_civic = civic_machine_servitor
+		}
+		has_technology = $PREREQUISITE$
+	}
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_individualistic_empire = yes
-        }
-    }
-    modifier = {
-        job_$JOB$_add = @num_jobs
-    }
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_individualistic_empire = yes
+		}
+	}
+	modifier = {
+		job_$JOB$_add = @num_jobs
+	}
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_gestalt = yes
-        }
-    }
-    modifier = {
-        job_$JOB_HIVE$_add = @num_jobs
-    }
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = yes
+		}
+	}
+	modifier = {
+		job_$JOB_HIVE$_add = @num_jobs
+	}
 }
 resources = {
-    category = planet_buildings
-    cost = {
-        $COST$
-    }
-    produces = {
-        $PRODUCES$
-    }
-    produces = {
-        trigger = {
-            has_modifier = acot_modifier_ascended_city
-        }
-        consumer_goods = 40
-    }
-    upkeep = {
-        trigger = {
-            has_modifier = acot_modifier_ascended_city
-        }
-        sr_dark_matter = 2
-        acot_sr_dark_energy = 2
-        minerals = 20
-    }
+	category = planet_buildings
+	cost = {
+		$COST$
+	}
+	produces = {
+		$PRODUCES$
+	}
+	produces = {
+		trigger = {
+			has_modifier = acot_modifier_ascended_city
+		}
+		consumer_goods = 40
+	}
+	upkeep = {
+		trigger = {
+			has_modifier = acot_modifier_ascended_city
+		}
+		sr_dark_matter = 2
+		acot_sr_dark_energy = 2
+		minerals = 20
+	}
 }
 triggered_desc = {
-    trigger = {
-        exists = planet_owner
-        planet_owner = {
-            is_individualistic_empire = yes
-        }
-    }
-    text = job_artisan_effect_desc
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_individualistic_empire = yes
+		}
+	}
+	text = job_artisan_effect_desc
 }
 triggered_desc = {
-    trigger = {
-        exists = planet_owner
-        planet_owner = {
-            is_gestalt = yes
-        }
-    }
-    text = job_artisan_drone_effect_desc
+	trigger = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = yes
+		}
+	}
+	text = job_artisan_drone_effect_desc
 }

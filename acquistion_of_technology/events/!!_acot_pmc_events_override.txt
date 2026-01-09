@@ -41,27 +41,16 @@ country_event = {
     }
     immediate = {
         create_protecc_country = yes
+        AoT_add_phanon_vault_tracker = {
+            COUNTRY = root
+            ID = 2
+            LOCATION = fromfrom
+        }
         fromfrom = {
-            solar_system = {
-                if = {
-                    limit = {
-                        has_star_flag = phanon_home_base
-                    }
-                    AoT_add_phanon_vault_tracker = {
-                        COUNTRY = root
-                        ID = 2
-                        LOCATION = fromfrom
-                    }
-                }
-            }
             # It seems like the vanilla pop resettle is more proper to avoid void pop creation.
-            root = {
-                while = {
-                    count = 30
-                    create_pop_group = {
-                        species = owner_main_species
-                    }
-                }
+            create_pop_group = {
+                species = owner_main_species
+                size = 3000
             }
             every_owned_pop_group = {
                 limit = {
@@ -1017,7 +1006,8 @@ planet_event = {
                     has_planet_flag = vault_mech_backup_possible
                 }
                 random_list = {
-                    50 = {
+                    1 = { }
+                    1 = {
                         while = {
                             count = 80
                             create_army = {

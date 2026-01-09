@@ -1,60 +1,59 @@
 inline_script = {
-    script = shared/normal_buildings_base
-    ALLOW = "$ALLOW$"
-    CAN_BUILD = $CAN_BUILD$
-    PREREQUISITE = $PREREQUISITE$
-    UPGRADES_INTO = $UPGRADES_INTO$
-    AI_FACTORS = "$AI_FACTORS$"
-    TIER = $TIER$
+	script = shared/normal_buildings_base
+	ALLOW = "$ALLOW$"
+	CAN_BUILD = $CAN_BUILD$
+	PREREQUISITE = $PREREQUISITE$
+	UPGRADES_INTO = $UPGRADES_INTO$
+	AI_FACTORS = "$AI_FACTORS$"
+	TIER = $TIER$
 }
 @num_jobs = @[ 200 * $TIER$ ]
 category = resource
 building_sets = {
-    farming
-    aot_building_tier_$TIER$
+	farming
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_regular_empire = yes
-            has_technology = $PREREQUISITE$
-        }
-    }
-    modifier = {
-        job_$JOB$_add = @num_jobs
-    }
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_regular_empire = yes
+			has_technology = $PREREQUISITE$
+		}
+	}
+	modifier = {
+		job_$JOB$_add = @num_jobs
+	}
 }
 triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_gestalt = yes
-        }
-    }
-    modifier = {
-        job_$JOB_HIVE$_add = @num_jobs
-    }
+	potential = {
+		exists = planet_owner
+		planet_owner = {
+			is_gestalt = yes
+		}
+	}
+	modifier = {
+		job_$JOB_HIVE$_add = @num_jobs
+	}
 }
 resources = {
-    category = planet_buildings
-    cost = {
-        $COST$
-    }
-    produces = {
-        $PRODUCES$
-    }
-    produces = {
-        trigger = {
-            has_modifier = acot_modifier_ascended_city
-        }
-        food = 40
-    }
-    upkeep = {
-        trigger = {
-            has_modifier = acot_modifier_ascended_city
-        }
-        acot_sr_dark_energy = 1
-        sr_dark_matter = 1
-    }
+	category = planet_buildings
+	cost = {
+		$COST$
+	}
+	produces = {
+		$PRODUCES$
+	}
+	produces = {
+		trigger = {
+			has_modifier = acot_modifier_ascended_city
+		}
+		food = 40
+	}
+	upkeep = {
+		trigger = {
+			has_modifier = acot_modifier_ascended_city
+		}
+		acot_sr_dark_energy = 1
+		sr_dark_matter = 1
+	}
 }
