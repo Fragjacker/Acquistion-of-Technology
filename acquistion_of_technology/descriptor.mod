@@ -1,4 +1,4 @@
-version="5.0.4.6"
+version="5.0.4.7"
 tags={
 	"Technologies"
 	"Gameplay"
