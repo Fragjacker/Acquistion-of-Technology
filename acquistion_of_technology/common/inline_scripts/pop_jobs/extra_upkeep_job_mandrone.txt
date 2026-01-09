@@ -1,0 +1,430 @@
+###########
+# makes jobs of every level in both individual and gestalt forms
+#
+# REQUIREMENTS:
+# the job fulfills man and drone suffix
+# the acot job must be delta equivalent
+###########
+
+
+acot_$resource$man = {
+    category = specialist
+
+    swappable_data = {
+        default = {
+            condition_string = SPECIALIST_JOB_TRIGGER
+            building_icon = building_acot_dm_$building_string$
+            icon = $icon_dm$
+        }
+    }
+
+    tags = { $resource_plural$ }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_specialist_job
+    possible = {
+        complex_specialist_job_check_trigger = yes
+    }
+
+    resources = {
+        category = $planet_category$
+        produces = {
+            $resource_plural$ = @aot_$resource$_DM_prod_base
+        }
+
+        upkeep = {
+            sr_dark_matter = @aot_$resource$_DM_upkeep_matter
+            $upkeep_resource$ = @aot_$resource$_DM_upkeep_extra
+        }
+    }
+
+    weight = {
+        weight = @specialist_job_weight
+        mult = value:job_weights_modifier|JOB|acot_$resource$man|RESOURCE|$resource_plural$|
+        modifier = {
+            factor = 0.2
+            has_citizenship_rights = no
+            NOT = { has_trait = trait_mechanical }
+        }
+        modifier = {
+            factor = 0.1
+            can_take_servant_job = yes
+        }
+    }
+
+    inline_script = "jobs/automodding_priority_$resource_plural$"
+}
+
+ae_$resource$man = {
+    category = specialist
+
+    swappable_data = {
+        default = {
+            condition_string = SPECIALIST_JOB_TRIGGER
+            building_icon = building_acot_ae_$building_string$
+            icon = $icon_ae$
+        }
+    }
+
+    tags = { $resource_plural$ }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_specialist_job
+    possible = {
+        complex_specialist_job_check_trigger = yes
+    }
+
+    resources = {
+        category = $planet_category$
+        produces = {
+            $resource_plural$ = @aot_$resource$_DE_prod_base
+        }
+
+        upkeep = {
+            sr_dark_matter = @aot_$resource$_DE_upkeep_matter
+            acot_sr_dark_energy = @aot_$resource$_DE_upkeep_energy
+            $upkeep_resource$ = @aot_$resource$_DE_upkeep_extra
+        }
+    }
+
+    weight = {
+        weight = @specialist_job_weight
+        mult = value:job_weights_modifier|JOB|ae_$resource$man|RESOURCE|$resource_plural$|
+        modifier = {
+            factor = 0.2
+            has_citizenship_rights = no
+            NOT = { has_trait = trait_mechanical }
+        }
+        modifier = {
+            factor = 0.1
+            can_take_servant_job = yes
+        }
+    }
+
+    inline_script = "jobs/automodding_priority_$resource_plural$"
+}
+
+phanon_$resource$man = {
+    category = specialist
+
+    swappable_data = {
+        default = {
+            condition_string = SPECIALIST_JOB_TRIGGER
+            building_icon = building_phanon_$building_string$
+            icon = $icon_phanon$
+        }
+    }
+
+    tags = { $resource_plural$ }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_specialist_job
+    possible = {
+        complex_specialist_job_check_trigger = yes
+    }
+
+    resources = {
+        category = $planet_category$
+        produces = {
+            $resource_plural$ = @aot_$resource$_PE_prod_base
+        }
+
+        upkeep = {
+            aot_sr_runic_power = @aot_$resource$_PE_upkeep_runic
+            $upkeep_resource$ = @aot_$resource$_PE_upkeep_extra
+        }
+    }
+
+    weight = {
+        weight = @specialist_job_weight
+        mult = value:job_weights_modifier|JOB|phanon_$resource$man|RESOURCE|$resource_plural$|
+        modifier = {
+            factor = 0.2
+            has_citizenship_rights = no
+            NOT = { has_trait = trait_mechanical }
+        }
+        modifier = {
+            factor = 0.1
+            can_take_servant_job = yes
+        }
+    }
+
+    inline_script = "jobs/automodding_priority_$resource_plural$"
+}
+
+stellarite_$resource$man = {
+    category = specialist
+
+    swappable_data = {
+        default = {
+            condition_string = SPECIALIST_JOB_TRIGGER
+            building_icon = building_stellarite_$building_string$
+            icon = $icon_stellarite$
+        }
+    }
+
+    tags = { $resource_plural$ }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_specialist_job
+    possible = {
+        complex_specialist_job_check_trigger = yes
+    }
+
+    resources = {
+        category = $planet_category$
+        produces = {
+            $resource_plural$ = @aot_$resource$_SE_prod_base
+        }
+
+        upkeep = {
+            acot_sr_stellarite = @aot_$resource$_SE_upkeep_stellar
+            $upkeep_resource$ = @aot_$resource$_SE_upkeep_extra
+        }
+    }
+
+    weight = {
+        weight = @specialist_job_weight
+        mult = value:job_weights_modifier|JOB|stellarite_$resource$man|RESOURCE|$resource_plural$|
+        modifier = {
+            factor = 0.2
+            has_citizenship_rights = no
+            NOT = { has_trait = trait_mechanical }
+        }
+        modifier = {
+            factor = 0.1
+            can_take_servant_job = yes
+        }
+    }
+
+    inline_script = "jobs/automodding_priority_$resource_plural$"
+}
+
+acot_$resource$drone = {
+    category = complex_drone
+
+    swappable_data = {
+        default = {
+            condition_string = DRONE_JOB_TRIGGER
+            building_icon = building_acot_dm_$building_string$
+            icon = $icon_dm$
+        }
+    }
+
+    tags = { $resource_plural$ }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_drone_job
+
+    resources = {
+        category = $planet_category$
+        produces = {
+            $resource_plural$ = @aot_$resource$_DM_prod_base
+        }
+
+        upkeep = {
+            sr_dark_matter = @aot_$resource$_DM_upkeep_matter
+            $upkeep_resource$ = @aot_$resource$_DM_upkeep_extra
+        }
+    }
+
+    weight = {
+        weight = @complex_drone_job_weight
+        mult = value:job_weights_modifier|JOB|acot_$resource$drone|RESOURCE|$resource_plural$|
+        modifier = {
+            factor = 0.2
+            has_citizenship_rights = no
+            NOT = { has_trait = trait_mechanical }
+        }
+        modifier = {
+            factor = 0.1
+            can_take_servant_job = yes
+        }
+    }
+
+    inline_script = "jobs/automodding_priority_$resource_plural$"
+}
+
+ae_$resource$drone = {
+    category = complex_drone
+
+    swappable_data = {
+        default = {
+            condition_string = DRONE_JOB_TRIGGER
+            building_icon = building_acot_ae_$building_string$
+            icon = $icon_ae$
+        }
+    }
+
+    tags = { $resource_plural$ }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_drone_job
+
+    resources = {
+        category = $planet_category$
+        produces = {
+            $resource_plural$ = @aot_$resource$_DE_prod_base
+        }
+
+        upkeep = {
+            sr_dark_matter = @aot_$resource$_DE_upkeep_matter
+            acot_sr_dark_energy = @aot_$resource$_DE_upkeep_energy
+            $upkeep_resource$ = @aot_$resource$_DE_upkeep_extra
+        }
+    }
+
+    weight = {
+        weight = @complex_drone_job_weight
+        mult = value:job_weights_modifier|JOB|ae_$resource$drone|RESOURCE|$resource_plural$|
+        modifier = {
+            factor = 0.2
+            has_citizenship_rights = no
+            NOT = { has_trait = trait_mechanical }
+        }
+        modifier = {
+            factor = 0.1
+            can_take_servant_job = yes
+        }
+    }
+
+    inline_script = "jobs/automodding_priority_$resource_plural$"
+}
+
+phanon_$resource$drone = {
+    category = complex_drone
+
+    swappable_data = {
+        default = {
+            condition_string = DRONE_JOB_TRIGGER
+            building_icon = building_phanon_$building_string$
+            icon = $icon_phanon$
+        }
+    }
+
+    tags = { $resource_plural$ }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_drone_job
+
+    resources = {
+        category = $planet_category$
+        produces = {
+            $resource_plural$ = @aot_$resource$_PE_prod_base
+        }
+
+        upkeep = {
+            aot_sr_runic_power = @aot_$resource$_PE_upkeep_runic
+            $upkeep_resource$ = @aot_$resource$_PE_upkeep_extra
+        }
+    }
+
+    weight = {
+        weight = @complex_drone_job_weight
+        mult = value:job_weights_modifier|JOB|phanon_$resource$drone|RESOURCE|$resource_plural$|
+        modifier = {
+            factor = 0.2
+            has_citizenship_rights = no
+            NOT = { has_trait = trait_mechanical }
+        }
+        modifier = {
+            factor = 0.1
+            can_take_servant_job = yes
+        }
+    }
+
+    inline_script = "jobs/automodding_priority_$resource_plural$"
+}
+
+stellarite_$resource$drone = {
+    category = complex_drone
+
+    swappable_data = {
+        default = {
+            condition_string = SPECIALIST_JOB_TRIGGER
+            building_icon = building_stellarite_$building_string$
+            icon = $icon_stellarite$
+        }
+    }
+
+    tags = { $resource_plural$ }
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+
+    possible_precalc = can_fill_drone_job
+
+    resources = {
+        category = $planet_category$
+        produces = {
+            $resource_plural$ = @aot_$resource$_SE_prod_base
+        }
+
+        upkeep = {
+            acot_sr_stellarite = @aot_$resource$_SE_upkeep_stellar
+            $upkeep_resource$ = @aot_$resource$_SE_upkeep_extra
+        }
+    }
+
+    weight = {
+        weight = @complex_drone_job_weight
+        mult = value:job_weights_modifier|JOB|stellarite_$resource$drone|RESOURCE|$resource_plural$|
+        modifier = {
+            factor = 0.2
+            has_citizenship_rights = no
+            NOT = { has_trait = trait_mechanical }
+        }
+        modifier = {
+            factor = 0.1
+            can_take_servant_job = yes
+        }
+    }
+
+    inline_script = "jobs/automodding_priority_$resource_plural$"
+}
