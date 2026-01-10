@@ -1,0 +1,60 @@
+inline_script = {
+    script = pop_jobs/part/$CATEGORY$
+    CATEGORY = $CATEGORY$
+    JOB = $JOB$
+    RESOURCE = $RESOURCE$
+}
+
+@sr_upkeep_cost = @[ 1 * two_exp$EXPONENT$ ]
+
+swappable_data = {
+    default = {
+        condition_string = SPECIALIST_JOB_TRIGGER
+        building_icon = $BUILDING_ICON$
+        icon = overlord_trader
+    }
+}
+
+tags = {
+    unity
+    trade
+    amenities
+    strategic_resource
+}
+
+resources = {
+    category = planet_traders
+    produces = {
+        trade = @[ 40 * two_exp$EXPONENT$ ]
+        unity = @[ 10 * two_exp$EXPONENT$ ]
+    }
+    upkeep = {
+        consumer_goods = @[ 2 * two_exp$EXPONENT$ ]
+        $SR_UPKEEP$
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        always = yes
+    }
+    planet_amenities_add = 450
+    mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = planet
+        planet = {
+            exists = orbital_defence
+            orbital_defence = {
+                exists = starbase
+                starbase = {
+                    has_starbase_building = ring_trade_hub
+                }
+            }
+        }
+    }
+    planet_amenities_add = 225
+    mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+}
