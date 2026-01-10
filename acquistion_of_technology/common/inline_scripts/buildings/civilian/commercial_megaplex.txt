@@ -18,7 +18,6 @@ planet_modifier = {
 potential = {
     exists = planet_owner
     planet_owner = {
-        is_regular_empire = yes
         has_technology = $PREREQUISITE$
     }
     NOR = {
@@ -29,7 +28,6 @@ potential = {
 destroy_trigger = {
     exists = planet_owner
     OR = {
-        planet_owner = { is_regular_empire = no }
         has_modifier = slave_colony
         has_modifier = penal_colony
     }
@@ -53,6 +51,7 @@ show_tech_unlock_if = {
     is_regular_empire = yes
 }
 inline_script = {
-    script = jobs/trader_add
+    script = jobs/aot_trader_add
     AMOUNT = @[ 200 * two_exp$EXPONENT$ ]
+    TRADER_JOB = $TRADER_JOB$
 }
