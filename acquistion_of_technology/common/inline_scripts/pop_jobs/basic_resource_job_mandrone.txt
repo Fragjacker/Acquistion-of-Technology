@@ -8,7 +8,11 @@
 
 
 acot_$resource$man = {
-    category = specialist
+    inline_script = {
+        script = pop_jobs/part/specialist
+        JOB = acot_$resource$man
+        RESOURCE = $resource_plural$
+    }
 
     swappable_data = {
         default = {
@@ -20,18 +24,6 @@ acot_$resource$man = {
 
     tags = { $resource_plural$ }
 
-    possible_pre_triggers = {
-        has_owner = yes
-        is_being_purged = no
-        is_being_assimilated = no
-        is_sapient = yes
-    }
-
-    possible_precalc = can_fill_specialist_job
-    possible = {
-        complex_specialist_job_check_trigger = yes
-    }
-
     resources = {
         category = $planet_category$
         produces = {
@@ -42,26 +34,14 @@ acot_$resource$man = {
             sr_dark_matter = @aot_$resource$_DM_upkeep_matter
         }
     }
-
-    weight = {
-        weight = @specialist_job_weight
-        mult = value:job_weights_modifier|JOB|acot_$resource$man|RESOURCE|$resource_plural$|
-        modifier = {
-            factor = 0.2
-            has_citizenship_rights = no
-            NOT = { has_trait = trait_mechanical }
-        }
-        modifier = {
-            factor = 0.1
-            can_take_servant_job = yes
-        }
-    }
-
-    inline_script = "jobs/automodding_priority_$resource_plural$"
 }
 
 ae_$resource$man = {
-    category = specialist
+    inline_script = {
+        script = pop_jobs/part/specialist
+        JOB = ae_$resource$man
+        RESOURCE = $resource_plural$
+    }
 
     swappable_data = {
         default = {
@@ -72,18 +52,6 @@ ae_$resource$man = {
     }
 
     tags = { $resource_plural$ }
-
-    possible_pre_triggers = {
-        has_owner = yes
-        is_being_purged = no
-        is_being_assimilated = no
-        is_sapient = yes
-    }
-
-    possible_precalc = can_fill_specialist_job
-    possible = {
-        complex_specialist_job_check_trigger = yes
-    }
 
     resources = {
         category = $planet_category$
@@ -96,27 +64,14 @@ ae_$resource$man = {
             acot_sr_dark_energy = @aot_$resource$_DE_upkeep_energy
         }
     }
-
-    weight = {
-        weight = @specialist_job_weight
-        mult = value:job_weights_modifier|JOB|ae_$resource$man|RESOURCE|$resource_plural$|
-        modifier = {
-            factor = 0.2
-            has_citizenship_rights = no
-            NOT = { has_trait = trait_mechanical }
-        }
-        modifier = {
-            factor = 0.1
-            can_take_servant_job = yes
-        }
-    }
-
-    inline_script = "jobs/automodding_priority_$resource_plural$"
 }
 
 phanon_$resource$man = {
-    category = specialist
-
+    inline_script = {
+        script = pop_jobs/part/specialist
+        JOB = phanon_$resource$man
+        RESOURCE = $resource_plural$
+    }
     swappable_data = {
         default = {
             condition_string = SPECIALIST_JOB_TRIGGER
@@ -126,18 +81,6 @@ phanon_$resource$man = {
     }
 
     tags = { $resource_plural$ }
-
-    possible_pre_triggers = {
-        has_owner = yes
-        is_being_purged = no
-        is_being_assimilated = no
-        is_sapient = yes
-    }
-
-    possible_precalc = can_fill_specialist_job
-    possible = {
-        complex_specialist_job_check_trigger = yes
-    }
 
     resources = {
         category = $planet_category$
@@ -149,26 +92,14 @@ phanon_$resource$man = {
             aot_sr_runic_power = @aot_$resource$_PE_upkeep_runic
         }
     }
-
-    weight = {
-        weight = @specialist_job_weight
-        mult = value:job_weights_modifier|JOB|phanon_$resource$man|RESOURCE|$resource_plural$|
-        modifier = {
-            factor = 0.2
-            has_citizenship_rights = no
-            NOT = { has_trait = trait_mechanical }
-        }
-        modifier = {
-            factor = 0.1
-            can_take_servant_job = yes
-        }
-    }
-
-    inline_script = "jobs/automodding_priority_$resource_plural$"
 }
 
 stellarite_$resource$man = {
-    category = specialist
+    inline_script = {
+        script = pop_jobs/part/specialist
+        JOB = stellarite_$resource$man
+        RESOURCE = $resource_plural$
+    }
 
     swappable_data = {
         default = {
@@ -180,18 +111,6 @@ stellarite_$resource$man = {
 
     tags = { $resource_plural$ }
 
-    possible_pre_triggers = {
-        has_owner = yes
-        is_being_purged = no
-        is_being_assimilated = no
-        is_sapient = yes
-    }
-
-    possible_precalc = can_fill_specialist_job
-    possible = {
-        complex_specialist_job_check_trigger = yes
-    }
-
     resources = {
         category = $planet_category$
         produces = {
@@ -202,26 +121,14 @@ stellarite_$resource$man = {
             acot_sr_stellarite = @aot_$resource$_SE_upkeep_stellar
         }
     }
-
-    weight = {
-        weight = @specialist_job_weight
-        mult = value:job_weights_modifier|JOB|stellarite_$resource$man|RESOURCE|$resource_plural$|
-        modifier = {
-            factor = 0.2
-            has_citizenship_rights = no
-            NOT = { has_trait = trait_mechanical }
-        }
-        modifier = {
-            factor = 0.1
-            can_take_servant_job = yes
-        }
-    }
-
-    inline_script = "jobs/automodding_priority_$resource_plural$"
 }
 
 acot_$resource$drone = {
-    category = complex_drone
+    inline_script = {
+        script = pop_jobs/part/complex_drone
+        JOB = acot_$resource$drone
+        RESOURCE = $resource_plural$
+    }
 
     swappable_data = {
         default = {
@@ -233,15 +140,6 @@ acot_$resource$drone = {
 
     tags = { $resource_plural$ }
 
-    possible_pre_triggers = {
-        has_owner = yes
-        is_being_purged = no
-        is_being_assimilated = no
-        is_sapient = yes
-    }
-
-    possible_precalc = can_fill_drone_job
-
     resources = {
         category = $planet_category$
         produces = {
@@ -252,26 +150,14 @@ acot_$resource$drone = {
             sr_dark_matter = @aot_$resource$_DM_upkeep_matter
         }
     }
-
-    weight = {
-        weight = @complex_drone_job_weight
-        mult = value:job_weights_modifier|JOB|acot_$resource$drone|RESOURCE|$resource_plural$|
-        modifier = {
-            factor = 0.2
-            has_citizenship_rights = no
-            NOT = { has_trait = trait_mechanical }
-        }
-        modifier = {
-            factor = 0.1
-            can_take_servant_job = yes
-        }
-    }
-
-    inline_script = "jobs/automodding_priority_$resource_plural$"
 }
 
 ae_$resource$drone = {
-    category = complex_drone
+    inline_script = {
+        script = pop_jobs/part/complex_drone
+        JOB = ae_$resource$drone
+        RESOURCE = $resource_plural$
+    }
 
     swappable_data = {
         default = {
@@ -282,15 +168,6 @@ ae_$resource$drone = {
     }
 
     tags = { $resource_plural$ }
-
-    possible_pre_triggers = {
-        has_owner = yes
-        is_being_purged = no
-        is_being_assimilated = no
-        is_sapient = yes
-    }
-
-    possible_precalc = can_fill_drone_job
 
     resources = {
         category = $planet_category$
@@ -303,26 +180,14 @@ ae_$resource$drone = {
             acot_sr_dark_energy = @aot_$resource$_DE_upkeep_energy
         }
     }
-
-    weight = {
-        weight = @complex_drone_job_weight
-        mult = value:job_weights_modifier|JOB|ae_$resource$drone|RESOURCE|$resource_plural$|
-        modifier = {
-            factor = 0.2
-            has_citizenship_rights = no
-            NOT = { has_trait = trait_mechanical }
-        }
-        modifier = {
-            factor = 0.1
-            can_take_servant_job = yes
-        }
-    }
-
-    inline_script = "jobs/automodding_priority_$resource_plural$"
 }
 
 phanon_$resource$drone = {
-    category = complex_drone
+    inline_script = {
+        script = pop_jobs/part/complex_drone
+        JOB = phanon_$resource$drone
+        RESOURCE = $resource_plural$
+    }
 
     swappable_data = {
         default = {
@@ -334,15 +199,6 @@ phanon_$resource$drone = {
 
     tags = { $resource_plural$ }
 
-    possible_pre_triggers = {
-        has_owner = yes
-        is_being_purged = no
-        is_being_assimilated = no
-        is_sapient = yes
-    }
-
-    possible_precalc = can_fill_drone_job
-
     resources = {
         category = $planet_category$
         produces = {
@@ -353,26 +209,14 @@ phanon_$resource$drone = {
             aot_sr_runic_power = @aot_$resource$_PE_upkeep_runic
         }
     }
-
-    weight = {
-        weight = @complex_drone_job_weight
-        mult = value:job_weights_modifier|JOB|phanon_$resource$drone|RESOURCE|$resource_plural$|
-        modifier = {
-            factor = 0.2
-            has_citizenship_rights = no
-            NOT = { has_trait = trait_mechanical }
-        }
-        modifier = {
-            factor = 0.1
-            can_take_servant_job = yes
-        }
-    }
-
-    inline_script = "jobs/automodding_priority_$resource_plural$"
 }
 
 stellarite_$resource$drone = {
-    category = complex_drone
+    inline_script = {
+        script = pop_jobs/part/complex_drone
+        JOB = stellarite_$resource$drone
+        RESOURCE = $resource_plural$
+    }
 
     swappable_data = {
         default = {
@@ -384,15 +228,6 @@ stellarite_$resource$drone = {
 
     tags = { $resource_plural$ }
 
-    possible_pre_triggers = {
-        has_owner = yes
-        is_being_purged = no
-        is_being_assimilated = no
-        is_sapient = yes
-    }
-
-    possible_precalc = can_fill_drone_job
-
     resources = {
         category = $planet_category$
         produces = {
@@ -403,20 +238,4 @@ stellarite_$resource$drone = {
             acot_sr_stellarite = @aot_$resource$_SE_upkeep_stellar
         }
     }
-
-    weight = {
-        weight = @complex_drone_job_weight
-        mult = value:job_weights_modifier|JOB|stellarite_$resource$drone|RESOURCE|$resource_plural$|
-        modifier = {
-            factor = 0.2
-            has_citizenship_rights = no
-            NOT = { has_trait = trait_mechanical }
-        }
-        modifier = {
-            factor = 0.1
-            can_take_servant_job = yes
-        }
-    }
-
-    inline_script = "jobs/automodding_priority_$resource_plural$"
 }
