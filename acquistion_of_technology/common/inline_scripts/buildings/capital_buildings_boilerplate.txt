@@ -133,31 +133,49 @@ triggered_planet_modifier = {
         planet_housing_add = @[ 100 * two_exp$EXPONENT$ ]
     }
 }
+
+###########################################################
+# COPIED STRAIGHT FROM VANILLA
+###########################################################
 triggered_planet_modifier = {
     potential = {
         exists = owner
-        owner = { has_technology = tech_capital_productivity_1 }
+        owner = {
+            has_technology = tech_capital_productivity_1
+            NOT = {
+                has_technology = tech_capital_productivity_2
+            }
+        }
     }
-    modifier = {
-        pop_bonus_workforce_mult = @[ 0.1 * two_exp$EXPONENT$ ]
-    }
+    pop_bonus_workforce_mult = 0.1
 }
+
 triggered_planet_modifier = {
     potential = {
         exists = owner
-        owner = { has_technology = tech_capital_productivity_2 }
+        owner = {
+            has_technology = tech_capital_productivity_2
+            NOT = {
+                has_technology = tech_capital_productivity_3
+            }
+        }
     }
-    modifier = {
-        pop_bonus_workforce_mult = @[ 0.1 * two_exp$EXPONENT$ ]
-    }
+    pop_bonus_workforce_mult = 0.2
 }
+
 triggered_planet_modifier = {
     potential = {
         exists = owner
         owner = { has_technology = tech_capital_productivity_3 }
     }
+    pop_bonus_workforce_mult = 0.3
+}
+# END COPY
+###########################################################
+
+triggered_planet_modifier = {
     modifier = {
-        pop_bonus_workforce_mult = @[ 0.1 * two_exp$EXPONENT$ ]
+        pop_bonus_workforce_mult = @[ 0.1 * $TIER$]
     }
 }
 resources = {
