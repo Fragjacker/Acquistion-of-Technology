@@ -13,12 +13,10 @@ building_sets = {
 }
 planet_modifier = {
     planet_traders_upkeep_mult = @[ - 0.01 * two_exp$EXPONENT$ ]
-    job_$JOB$_add = @[ 1000 * two_exp$EXPONENT$ ]
 }
 potential = {
     exists = planet_owner
     planet_owner = {
-        is_regular_empire = yes
         has_technology = $PREREQUISITE$
     }
     NOR = {
@@ -29,7 +27,6 @@ potential = {
 destroy_trigger = {
     exists = planet_owner
     OR = {
-        planet_owner = { is_regular_empire = no }
         has_modifier = slave_colony
         has_modifier = penal_colony
     }
@@ -53,6 +50,7 @@ show_tech_unlock_if = {
     is_regular_empire = yes
 }
 inline_script = {
-    script = jobs/trader_add
-    AMOUNT = @[ 200 * two_exp$EXPONENT$ ]
+    script = jobs/aot_trader_add
+    AMOUNT = @[ 200 * $TIER$ ]
+    TRADER_JOB = $TRADER_JOB$
 }

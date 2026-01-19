@@ -3,451 +3,319 @@
 # ------------------------------------------------------------------------------------------------ #
 # ----------------------------------------- Enforcer jobs ---------------------------------------- #
 aot_dm_enforcer = {
-    inline_script = {
-        script = pop_jobs/enforcer
-        EXPONENT = @DELTA_EXPONENT
-        CATEGORY = specialist
-    }
-    swappable_data = {
-        default = {
-            condition_string = SOLDIER_JOB_TRIGGER
-            building_icon = building_acot_dm_stronghold
-        }
-    }
+	inline_script = {
+		script = pop_jobs/enforcer
+		EXPONENT = @DELTA_EXPONENT
+		CATEGORY = specialist
+	}
+	swappable_data = {
+		default = {
+			condition_string = SOLDIER_JOB_TRIGGER
+			building_icon = building_acot_dm_stronghold
+		}
+	}
 }
 aot_dm_enforcer_drone = {
-    inline_script = {
-        script = pop_jobs/enforcer
-        EXPONENT = @DELTA_EXPONENT
-        CATEGORY = complex_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_dm_stronghold
-            icon = aot_dm_enforcer
-        }
-    }
+	inline_script = {
+		script = pop_jobs/enforcer
+		EXPONENT = @DELTA_EXPONENT
+		CATEGORY = complex_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_dm_stronghold
+			icon = aot_dm_enforcer
+		}
+	}
 }
 
 # ----------------------------------------- Miliary jobs ----------------------------------------- #
 aot_dm_soldier = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @DELTA_EXPONENT
-        CATEGORY = worker
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_acot_dm_stronghold
-            icon = aot_dm_enforcer
-        }
-    }
-    possible = {
-        soldier_job_check_trigger = yes
-        owner = {
-            is_gestalt = no
-        }
-    }
-    resources = {
-        category = planet_soldiers
-        produces = {
-            unity = 0.25
-        }
-        produces = {
-            trigger = {
-                planet = {
-                    is_planet_class = pc_dark_fractured
-                }
-            }
-            unity = 0.25
-        }
-        upkeep = {
-            trigger = {
-                planet = {
-                    NOT = {
-                        is_planet_class = pc_dark_fractured
-                    }
-                }
-            }
-            sr_dark_matter = 0.5
-            acot_sr_dark_energy = 0.5
-        }
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @DELTA_EXPONENT
+		CATEGORY = worker
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_acot_dm_stronghold
+			icon = aot_dm_enforcer
+		}
+	}
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = {
+			is_gestalt = no
+		}
+	}
+	resources = {
+		category = planet_soldiers
+		produces = {
+			unity = 0.25
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			unity = 0.25
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					NOT = {
+						is_planet_class = pc_dark_fractured
+					}
+				}
+			}
+			sr_dark_matter = 0.5
+			acot_sr_dark_energy = 0.5
+		}
+	}
 }
 aot_dm_soldier_drone = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @DELTA_EXPONENT
-        CATEGORY = simple_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_dm_stronghold
-            icon = aot_dm_enforcer
-        }
-    }
-    possible = { can_think = yes }
-    resources = {
-        category = planet_soldiers
-        produces = {
-            unity = 0.25
-        }
-        produces = {
-            trigger = {
-                planet = {
-                    is_planet_class = pc_dark_fractured
-                }
-            }
-            unity = 0.25
-        }
-        upkeep = {
-            sr_dark_matter = 0.5
-            acot_sr_dark_energy = 0.5
-        }
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @DELTA_EXPONENT
+		CATEGORY = simple_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_dm_stronghold
+			icon = aot_dm_enforcer
+		}
+	}
+	possible = { can_think = yes }
+	resources = {
+		category = planet_soldiers
+		produces = {
+			unity = 0.25
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			unity = 0.25
+		}
+		upkeep = {
+			sr_dark_matter = 0.5
+			acot_sr_dark_energy = 0.5
+		}
+	}
 }
 aot_dm_giga_fortress_operator = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @DELTA_EXPONENT
-        CATEGORY = specialist
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_giga_fortress_dm
-            icon = aot_dm_enforcer
-        }
-    }
-    possible = {
-        soldier_job_check_trigger = yes
-        owner = {
-            is_gestalt = no
-        }
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @DELTA_EXPONENT
+		CATEGORY = specialist
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_giga_fortress_dm
+			icon = aot_dm_enforcer
+		}
+	}
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = {
+			is_gestalt = no
+		}
+	}
 }
 aot_dm_giga_fortress_operator_drone = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @DELTA_EXPONENT
-        CATEGORY = complex_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_giga_fortress_dm
-            icon = aot_dm_giga_fortress_operator
-        }
-    }
-    triggered_planet_modifier = {
-        potential = {
-            planet = {
-                OR = {
-                    has_modifier = compliance_protocols
-                    has_modifier = hunter_killer_drones
-                }
-            }
-        }
-        modifier = {
-            planet_stability_add = 10
-        }
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @DELTA_EXPONENT
+		CATEGORY = complex_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_giga_fortress_dm
+			icon = aot_dm_giga_fortress_operator
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				OR = {
+					has_modifier = compliance_protocols
+					has_modifier = hunter_killer_drones
+				}
+			}
+		}
+		modifier = {
+			planet_stability_add = 10
+		}
+	}
 }
 
 # ------------------------------------------ Civil jobs ------------------------------------------ #
 dm_bureaucrat = {
-    inline_script = {
-        script = pop_jobs/bureaucrat
-        CATEGORY = specialist
-        RESOURCE = unity
-        JOB = dm_bureaucrat
-        EXPONENT = @DELTA_EXPONENT
-        PRODUCES = "
+	inline_script = {
+		script = pop_jobs/bureaucrat
+		CATEGORY = specialist
+		RESOURCE = unity
+		JOB = dm_bureaucrat
+		EXPONENT = @DELTA_EXPONENT
+		PRODUCES = "
 			unity = 15
 			"
-        UPKEEP = "
+		UPKEEP = "
 			sr_dark_matter = 2
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_dm_bureaucratic
-            icon = dm_bureaucrat
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_dm_bureaucratic
+			icon = dm_bureaucrat
+		}
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #                                        AE Specialist Jobs                                        #
 # ------------------------------------------------------------------------------------------------ #
 ae_bureaucrat = {
-    inline_script = {
-        script = pop_jobs/bureaucrat
-        CATEGORY = specialist
-        RESOURCE = unity
-        JOB = dm_bureaucrat
-        EXPONENT = @ALPHA_EXPONENT
-        PRODUCES = "
+	inline_script = {
+		script = pop_jobs/bureaucrat
+		CATEGORY = specialist
+		RESOURCE = unity
+		JOB = dm_bureaucrat
+		EXPONENT = @ALPHA_EXPONENT
+		PRODUCES = "
 			unity = 30
 			"
-        UPKEEP = "
+		UPKEEP = "
 			sr_dark_matter = 3
 			acot_sr_dark_energy = 3
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_ae_bureaucratic
-            icon = ae_bureaucrat
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_ae_bureaucratic
+			icon = ae_bureaucrat
+		}
+	}
 }
 ae_dark_energy_man = {
-    inline_script = {
-        script = pop_jobs/dark_energy_and_dark_matter
-        CATEGORY = specialist
-        RESOURCE = acot_sr_dark_energy
-        JOB = acot_sr_dark_energy
-        PRODUCTION_AMOUNT = 4
-        UPKEEP_RESOURCE = energy
-        UPKEEP_AMOUNT = 16
-        TRIGGER_MODIFIER = acot_modifier_supercharged_pylon
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_acot_ae_dark_energy_pylon
-            icon = acot_dark_energy_man
-        }
-    }
+	inline_script = {
+		script = pop_jobs/dark_energy_and_dark_matter
+		CATEGORY = specialist
+		RESOURCE = sr_dark_matter
+		JOB = acot_sr_dark_energy
+		PRODUCTION_AMOUNT = 4
+		UPKEEP_RESOURCE = energy
+		UPKEEP_AMOUNT = 16
+		TRIGGER_MODIFIER = acot_modifier_supercharged_pylon
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_acot_ae_dark_energy_pylon
+			icon = acot_dark_energy_man
+		}
+	}
 }
 ae_dark_energy_drone = {
-    inline_script = {
-        script = pop_jobs/dark_energy_and_dark_matter
-        CATEGORY = complex_drone
-        RESOURCE = acot_sr_dark_energy
-        JOB = ae_dark_energy_drone
-        PRODUCTION_AMOUNT = 4
-        UPKEEP_RESOURCE = energy
-        UPKEEP_AMOUNT = 16
-        TRIGGER_MODIFIER = acot_modifier_supercharged_pylon
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_ae_dark_energy_pylon
-            icon = acot_dark_energy_drone
-        }
-    }
+	inline_script = {
+		script = pop_jobs/dark_energy_and_dark_matter
+		CATEGORY = complex_drone
+		RESOURCE = acot_sr_dark_energy
+		JOB = ae_dark_energy_drone
+		PRODUCTION_AMOUNT = 4
+		UPKEEP_RESOURCE = energy
+		UPKEEP_AMOUNT = 16
+		TRIGGER_MODIFIER = acot_modifier_supercharged_pylon
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_ae_dark_energy_pylon
+			icon = acot_dark_energy_drone
+		}
+	}
 }
 ae_dark_matter_man = {
-    inline_script = {
-        script = pop_jobs/dark_energy_and_dark_matter
-        CATEGORY = specialist
-        RESOURCE = sr_dark_matter
-        JOB = ae_dark_matter_man
-        PRODUCTION_AMOUNT = 4
-        UPKEEP_RESOURCE = minerals
-        UPKEEP_AMOUNT = 16
-        TRIGGER_MODIFIER = acot_modifier_supercharged_reactor
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_acot_ae_dark_matter_generator
-            icon = acot_dark_matter_man
-        }
-    }
+	inline_script = {
+		script = pop_jobs/dark_energy_and_dark_matter
+		CATEGORY = specialist
+		RESOURCE = sr_dark_matter
+		JOB = ae_dark_matter_man
+		PRODUCTION_AMOUNT = 4
+		UPKEEP_RESOURCE = minerals
+		UPKEEP_AMOUNT = 16
+		TRIGGER_MODIFIER = acot_modifier_supercharged_reactor
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_acot_ae_dark_matter_generator
+			icon = acot_dark_matter_man
+		}
+	}
 }
 ae_dark_matter_drone = {
-    inline_script = {
-        script = pop_jobs/dark_energy_and_dark_matter
-        CATEGORY = complex_drone
-        RESOURCE = sr_dark_matter
-        JOB = ae_dark_matter_drone
-        PRODUCTION_AMOUNT = 4
-        UPKEEP_RESOURCE = minerals
-        UPKEEP_AMOUNT = 16
-        TRIGGER_MODIFIER = acot_modifier_supercharged_reactor
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_ae_dark_matter_generator
-            icon = acot_dark_matter_drone
-        }
-    }
-}
-ae_energyman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @ALPHA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_technician
-        JOB = ae_energyman
-        RESOURCE = energy
-        AMOUNT = 40
-        UPKEEP = "
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_acot_ae_power_hub
-            icon = acot_energyman
-        }
-    }
-}
-ae_energydrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @ALPHA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_technician
-        JOB = ae_energydrone
-        RESOURCE = energy
-        AMOUNT = 40
-        UPKEEP = "
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_ae_power_hub
-            icon = acot_energydrone
-        }
-    }
-}
-ae_mineralman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @ALPHA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_miners
-        JOB = ae_mineralman
-        RESOURCE = minerals
-        AMOUNT = 30
-        UPKEEP = "
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_acot_ae_mineral_processing_plant
-            icon = acot_dimesiona_traveler
-        }
-    }
-}
-ae_mineraldrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @ALPHA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_miners
-        JOB = ae_mineraldrone
-        RESOURCE = minerals
-        AMOUNT = 30
-        UPKEEP = "
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_ae_mineral_processing_plant
-            icon = acot_dimesiona_traveler
-        }
-    }
-}
-ae_alloyman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @ALPHA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_metallurgists
-        JOB = ae_alloyman
-        RESOURCE = alloys
-        AMOUNT = 30
-        UPKEEP = "
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_acot_ae_alloy_forge
-            icon = acot_alloyman
-        }
-    }
-}
-ae_alloydrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @ALPHA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_metallurgists
-        JOB = ae_alloydrone
-        RESOURCE = alloys
-        AMOUNT = 30
-        UPKEEP = "
-			sr_dark_matter = 1
-			acot_sr_dark_energy = 1
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_ae_alloy_forge
-            icon = acot_alloydrone
-        }
-    }
+	inline_script = {
+		script = pop_jobs/dark_energy_and_dark_matter
+		CATEGORY = complex_drone
+		RESOURCE = sr_dark_matter
+		JOB = ae_dark_matter_drone
+		PRODUCTION_AMOUNT = 4
+		UPKEEP_RESOURCE = minerals
+		UPKEEP_AMOUNT = 16
+		TRIGGER_MODIFIER = acot_modifier_supercharged_reactor
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_ae_dark_matter_generator
+			icon = acot_dark_matter_drone
+		}
+	}
 }
 ae_researcher = {
-    inline_script = {
-        script = pop_jobs/researcher
-        EXPONENT = @ALPHA_EXPONENT
-        CATEGORY = specialist
-        JOB = ae_researcher
-        RESOURCE = physics_research
-        AMOUNT = 40
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/researcher
+		EXPONENT = @ALPHA_EXPONENT
+		CATEGORY = specialist
+		JOB = ae_researcher
+		RESOURCE = physics_research
+		AMOUNT = 40
+		UPKEEP = "
 			upkeep = {
 				consumer_goods = 3
 				sr_dark_matter = 2
 				acot_sr_dark_energy = 2
 			}
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_acot_ae_enigmatic_lab
-            icon = acot_researcher
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_acot_ae_enigmatic_lab
+			icon = acot_researcher
+		}
+	}
 }
 ae_researcher_drone = {
-    inline_script = {
-        script = pop_jobs/researcher
-        EXPONENT = @ALPHA_EXPONENT
-        CATEGORY = complex_drone
-        JOB = ae_researcher_drone
-        RESOURCE = physics_research
-        AMOUNT = 40
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/researcher
+		EXPONENT = @ALPHA_EXPONENT
+		CATEGORY = complex_drone
+		JOB = ae_researcher_drone
+		RESOURCE = physics_research
+		AMOUNT = 40
+		UPKEEP = "
 			upkeep = {
 				sr_dark_matter = 2
 				acot_sr_dark_energy = 2
@@ -469,180 +337,180 @@ ae_researcher_drone = {
 				energy = 4
 			}
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_ae_enigmatic_lab
-            icon = acot_researcher
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_ae_enigmatic_lab
+			icon = acot_researcher
+		}
+	}
 }
 
 # Missing alpha mentat drone job fix from acot
 aot_ae_giga_fortress_operator_mentat_drone = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @ALPHA_EXPONENT
-        CATEGORY = complex_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_giga_fortress_array
-            icon = acot_giga_fortress_operator_mentat
-        }
-    }
-    country_modifier = {
-        country_naval_cap_mult = 0.2
-        command_limit_add = 200
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @ALPHA_EXPONENT
+		CATEGORY = complex_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_giga_fortress_array
+			icon = acot_giga_fortress_operator_mentat
+		}
+	}
+	country_modifier = {
+		country_naval_cap_mult = 0.2
+		command_limit_add = 200
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #                                       Sigma Governing Jobs                                       #
 # ------------------------------------------------------------------------------------------------ #
 phanon_overlord = {
-    inline_script = {
-        script = pop_jobs/overlord
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = ruler
-        JOB = phanon_overlord
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 40
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overlord
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = ruler
+		JOB = phanon_overlord
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 40
+		UPKEEP = "
 			aot_sr_runic_power = 6
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = RULER_JOB_TRIGGER
-            building_icon = building_phanon_palace
-            icon = politician
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_phanon_palace
+			icon = politician
+		}
+	}
 }
 phanon_overseer = {
-    inline_script = {
-        script = pop_jobs/overseer
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = ruler
-        JOB = phanon_overseer
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 40
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overseer
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = ruler
+		JOB = phanon_overseer
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 40
+		UPKEEP = "
 			aot_sr_runic_power = 2
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = RULER_JOB_TRIGGER
-            building_icon = building_phanon_palace
-            icon = politician
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_phanon_palace
+			icon = politician
+		}
+	}
 }
 phanon_overlord_droid = {
-    inline_script = {
-        script = pop_jobs/overlord
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB = phanon_overlord_droid
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 40
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overlord
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+		JOB = phanon_overlord_droid
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 40
+		UPKEEP = "
 			aot_sr_runic_power = 6
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_control_center
-            icon = coordinator
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_control_center
+			icon = coordinator
+		}
+	}
 }
 phanon_overseer_droid = {
-    inline_script = {
-        script = pop_jobs/overseer
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB = phanon_overseer_droid
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 40
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overseer
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+		JOB = phanon_overseer_droid
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 40
+		UPKEEP = "
 			aot_sr_runic_power = 2
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_control_center
-            icon = coordinator
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_control_center
+			icon = coordinator
+		}
+	}
 }
 phanon_overlord_drone = {
-    inline_script = {
-        script = pop_jobs/overlord
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB = phanon_overlord_drone
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 40
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overlord
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+		JOB = phanon_overlord_drone
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 40
+		UPKEEP = "
 			aot_sr_runic_power = 6
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_hive_cluster
-            icon = coordinator
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_hive_cluster
+			icon = coordinator
+		}
+	}
 }
 phanon_overseer_drone = {
-    inline_script = {
-        script = pop_jobs/overseer
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB = phanon_overseer_drone
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 40
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overseer
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+		JOB = phanon_overseer_drone
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 40
+		UPKEEP = "
 			aot_sr_runic_power = 2
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_hive_cluster
-            icon = coordinator
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_hive_cluster
+			icon = coordinator
+		}
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #                                           Creator Jobs                                           #
 # ------------------------------------------------------------------------------------------------ #
 phanon_apothecary = {
-    inline_script = {
-        script = pop_jobs/apothecary
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/apothecary
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+		UPKEEP = "
 			consumer_goods = 3
 			aot_sr_runic_power = 3
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_hospital
-            icon = healthcare
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_hospital
+			icon = healthcare
+		}
+	}
 }
 phanon_broodmother = {
     inline_script = {
@@ -653,656 +521,442 @@ phanon_broodmother = {
 			energy = 3
 			aot_sr_runic_power = 3
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_hive_pool
-            icon = spawning_drone
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_hive_pool
+			icon = spawning_drone
+		}
+	}
 }
 phanon_roboman = {
-    inline_script = {
-        script = pop_jobs/robo
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/robo
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+		UPKEEP = "
 			aot_sr_runic_power = 3
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_super_assembly
-            icon = acot_roboman
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_super_assembly
+			icon = acot_roboman
+		}
+	}
 }
 phanon_robodrone = {
-    inline_script = {
-        script = pop_jobs/robo
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/robo
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+		UPKEEP = "
 			aot_sr_runic_power = 3
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_super_assembly
-            icon = acot_robodrone
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_super_assembly
+			icon = acot_robodrone
+		}
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #                                       Phanon Civilian Jobs                                       #
 # ------------------------------------------------------------------------------------------------ #
-phanon_energyman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_technician
-        JOB = phanon_energyman
-        RESOURCE = energy
-        AMOUNT = 60
-        UPKEEP = "
-			aot_sr_runic_power = 8
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_acot_ae_power_hub
-            icon = phanon_energyman
-        }
-    }
-}
-phanon_energydrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_technician
-        JOB = phanon_energydrone
-        RESOURCE = energy
-        AMOUNT = 60
-        UPKEEP = "
-			aot_sr_runic_power = 8
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_ae_power_hub
-            icon = phanon_energydrone
-        }
-    }
-}
-phanon_mineralman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_miners
-        JOB = phanon_mineralman
-        RESOURCE = minerals
-        AMOUNT = 60
-        UPKEEP = "
-			aot_sr_runic_power = 8
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_mineral_processing_plant
-            icon = phanon_mineralman
-        }
-    }
-}
-phanon_mineraldrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_technician
-        JOB = phanon_mineraldrone
-        RESOURCE = minerals
-        AMOUNT = 60
-        UPKEEP = "
-			aot_sr_runic_power = 8
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_mineral_processing_plant
-            icon = phanon_mineraldrone
-        }
-    }
-}
-phanon_alloyman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_metallurgists
-        JOB = phanon_alloyman
-        RESOURCE = alloys
-        AMOUNT = 50
-        UPKEEP = "
-			aot_sr_runic_power = 6
-			minerals = 15
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_alloy_forge
-            icon = phanon_alloyman
-        }
-    }
-}
-phanon_alloydrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_metallurgists
-        JOB = phanon_alloydrone
-        RESOURCE = alloys
-        AMOUNT = 50
-        UPKEEP = "
-			aot_sr_runic_power = 6
-			minerals = 15
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_alloy_forge
-            icon = phanon_alloydrone
-        }
-    }
-}
-phanon_foodman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_farmers
-        JOB = phanon_foodman
-        RESOURCE = food
-        AMOUNT = 60
-        UPKEEP = "
-			aot_sr_runic_power = 3
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_food_processing_complex
-            icon = phanon_foodman
-        }
-    }
-}
-phanon_fooddrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_farmers
-        JOB = phanon_fooddrone
-        RESOURCE = food
-        AMOUNT = 60
-        UPKEEP = "
-			aot_sr_runic_power = 3
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_food_processing_complex
-            icon = phanon_foodman
-        }
-    }
-}
 phanon_transmute_man = {
-    inline_script = {
-        script = pop_jobs/transmute
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB = phanon_transmute_man
-        RESOURCE = rare_crystals
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/transmute
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+		JOB = phanon_transmute_man
+		RESOURCE = rare_crystals
+		UPKEEP = "
 			aot_sr_runic_power = 1
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_transmutor
-            icon = phanon_alloyman
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_transmutor
+			icon = phanon_alloyman
+		}
+	}
 }
 phanon_transmute_drone = {
-    inline_script = {
-        script = pop_jobs/transmute
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB = phanon_transmute_man
-        RESOURCE = rare_crystals
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/transmute
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+		JOB = phanon_transmute_man
+		RESOURCE = rare_crystals
+		UPKEEP = "
 			aot_sr_runic_power = 1
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_transmutor
-            icon = phanon_alloyman
-        }
-    }
-}
-phanon_artisan = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_artisans
-        JOB = phanon_artisan
-        RESOURCE = consumer_goods
-        AMOUNT = 60
-        UPKEEP = "
-			aot_sr_runic_power = 6
-			minerals = 15
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_civilian_factory
-            icon = acot_artisan
-        }
-    }
-}
-phanon_artisan_drone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_artisans
-        JOB = phanon_artisan_drone
-        RESOURCE = consumer_goods
-        AMOUNT = 60
-        UPKEEP = "
-			aot_sr_runic_power = 6
-			minerals = 15
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_civilian_factory
-            icon = acot_artisan
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_transmutor
+			icon = phanon_alloyman
+		}
+	}
 }
 phanon_entertainer = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_entertainers
-        JOB = phanon_entertainer
-        RESOURCE = unity
-        AMOUNT = 60
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_entertainers
+		JOB = phanon_entertainer
+		RESOURCE = unity
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 6
 			consumer_goods = 6
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_mansion
-            icon = acot_entertainer
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_mansion
+			icon = acot_entertainer
+		}
+	}
 }
 phanon_entertainer_drone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_entertainers
-        JOB = phanon_entertainer_drone
-        RESOURCE = unity
-        AMOUNT = 60
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_entertainers
+		JOB = phanon_entertainer_drone
+		RESOURCE = unity
+		AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 6
 			energy = 6
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_mansion
-            icon = acot_entertainer
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_mansion
+			icon = acot_entertainer
+		}
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #                                       Phanon Military Jobs                                       #
 # ------------------------------------------------------------------------------------------------ #
 phanon_enforcer = {
-    inline_script = {
-        script = pop_jobs/enforcer
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-    }
-    swappable_data = {
-        default = {
-            condition_string = SOLDIER_JOB_TRIGGER
-            building_icon = building_phanon_stronghold
-            icon = aot_pe_enforcer
-        }
-    }
+	inline_script = {
+		script = pop_jobs/enforcer
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+	}
+	swappable_data = {
+		default = {
+			condition_string = SOLDIER_JOB_TRIGGER
+			building_icon = building_phanon_stronghold
+			icon = aot_pe_enforcer
+		}
+	}
 }
 phanon_enforcer_drone = {
-    inline_script = {
-        script = pop_jobs/enforcer
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_stronghold
-            icon = aot_pe_enforcer
-        }
-    }
+	inline_script = {
+		script = pop_jobs/enforcer
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_stronghold
+			icon = aot_pe_enforcer
+		}
+	}
 }
 phanon_soldier = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = worker
-    }
-    swappable_data = {
-        default = {
-            condition_string = SOLDIER_JOB_TRIGGER
-            building_icon = building_phanon_stronghold
-            icon = aot_pe_enforcer
-        }
-    }
-    possible = {
-        soldier_job_check_trigger = yes
-        owner = {
-            is_gestalt = no
-        }
-    }
-    resources = {
-        category = planet_soldiers
-        produces = {
-            unity = 0.75
-        }
-        produces = {
-            trigger = {
-                planet = {
-                    is_planet_class = pc_dark_fractured
-                }
-            }
-            unity = 0.75
-        }
-        upkeep = {
-            trigger = {
-                planet = {
-                    NOT = {
-                        is_planet_class = pc_dark_fractured
-                    }
-                }
-            }
-            aot_sr_runic_power = 2
-        }
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = worker
+	}
+	swappable_data = {
+		default = {
+			condition_string = SOLDIER_JOB_TRIGGER
+			building_icon = building_phanon_stronghold
+			icon = aot_pe_enforcer
+		}
+	}
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = {
+			is_gestalt = no
+		}
+	}
+	resources = {
+		category = planet_soldiers
+		produces = {
+			unity = 0.75
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			unity = 0.75
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					NOT = {
+						is_planet_class = pc_dark_fractured
+					}
+				}
+			}
+			aot_sr_runic_power = 2
+		}
+	}
 }
 phanon_soldier_drone = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = simple_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_stronghold
-            icon = aot_pe_enforcer
-        }
-    }
-    possible = {
-        can_think = yes
-    }
-    resources = {
-        category = planet_soldiers
-        produces = {
-            unity = 0.75
-        }
-        produces = {
-            trigger = {
-                planet = {
-                    is_planet_class = pc_dark_fractured
-                }
-            }
-            unity = 0.75
-        }
-        upkeep = {
-            aot_sr_runic_power = 2
-        }
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = simple_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_stronghold
+			icon = aot_pe_enforcer
+		}
+	}
+	possible = {
+		can_think = yes
+	}
+	resources = {
+		category = planet_soldiers
+		produces = {
+			unity = 0.75
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			unity = 0.75
+		}
+		upkeep = {
+			aot_sr_runic_power = 2
+		}
+	}
 }
 phanon_giga_fortress_operator = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_giga_fortress
-            icon = acot_giga_fortress_operator
-        }
-    }
-    possible = {
-        complex_specialist_job_check_trigger = yes
-    }
-    country_modifier = {
-        country_naval_cap_add = 600
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_giga_fortress
+			icon = acot_giga_fortress_operator
+		}
+	}
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+	country_modifier = {
+		country_naval_cap_add = 600
+	}
 }
 phanon_giga_fortress_operator_drone = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_giga_fortress
-            icon = acot_giga_fortress_operator
-        }
-    }
-    country_modifier = {
-        country_naval_cap_add = 600
-    }
-    triggered_planet_modifier = {
-        potential = {
-            planet = {
-                OR = {
-                    has_modifier = compliance_protocols
-                    has_modifier = hunter_killer_drones
-                }
-            }
-        }
-        modifier = {
-            planet_stability_add = 60
-        }
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_giga_fortress
+			icon = acot_giga_fortress_operator
+		}
+	}
+	country_modifier = {
+		country_naval_cap_add = 600
+	}
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				OR = {
+					has_modifier = compliance_protocols
+					has_modifier = hunter_killer_drones
+				}
+			}
+		}
+		modifier = {
+			planet_stability_add = 60
+		}
+	}
 }
 phanon_giga_fortress_operator_mentat = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_giga_fortress_array
-            icon = acot_giga_fortress_operator_mentat
-        }
-    }
-    possible = {
-        complex_specialist_job_check_trigger = yes
-    }
-    country_modifier = {
-        country_naval_cap_mult = 0.06
-        command_limit_add = 300
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_giga_fortress_array
+			icon = acot_giga_fortress_operator_mentat
+		}
+	}
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+	country_modifier = {
+		country_naval_cap_mult = 0.06
+		command_limit_add = 300
+	}
 }
 phanon_giga_fortress_operator_mentat_drone = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_giga_fortress_array
-            icon = acot_giga_fortress_operator_mentat
-        }
-    }
-    country_modifier = {
-        country_naval_cap_mult = 0.6
-        command_limit_add = 300
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_giga_fortress_array
+			icon = acot_giga_fortress_operator_mentat
+		}
+	}
+	country_modifier = {
+		country_naval_cap_mult = 0.6
+		command_limit_add = 300
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #									 Stellarite Research Jobs									 #
 # ------------------------------------------------------------------------------------------------ #
 phanon_researcher = {
-    inline_script = {
-        script = pop_jobs/researcher
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB = phanon_researcher
-        RESOURCE = physics_research
-        AMOUNT = 60
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/researcher
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+		JOB = phanon_researcher
+		RESOURCE = physics_research
+		AMOUNT = 60
+		UPKEEP = "
 			upkeep = {
 				aot_sr_runic_power = 6
 				consumer_goods = 4
 			}
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_enigmatic_lab
-            icon = acot_researcher
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_enigmatic_lab
+			icon = acot_researcher
+		}
+	}
 }
 phanon_researcher_drone = {
-    inline_script = {
-        script = pop_jobs/researcher
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB = phanon_researcher_drone
-        RESOURCE = physics_research
-        AMOUNT = 60
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/researcher
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+		JOB = phanon_researcher_drone
+		RESOURCE = physics_research
+		AMOUNT = 60
+		UPKEEP = "
 			upkeep = {
 				aot_sr_runic_power = 6
 				energy = 4
 			}
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_enigmatic_lab
-            icon = acot_researcher
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_enigmatic_lab
+			icon = acot_researcher
+		}
+	}
 }
 phanon_priest = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_aid_workers
-        JOB = phanon_priest
-        RESOURCE = unity
-        AMOUNT = 60
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_aid_workers
+		JOB = phanon_priest
+		RESOURCE = unity
+		AMOUNT = 60
+		UPKEEP = "
 			consumer_goods = 3
 			aot_sr_runic_power = 4
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_empyrean_shrine
-            icon = acot_priest
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_empyrean_shrine
+			icon = acot_priest
+		}
+	}
 }
 phanon_bureaucrat = {
-    inline_script = {
-        script = pop_jobs/bureaucrat
-        CATEGORY = specialist
-        RESOURCE = unity
-        JOB = dm_bureaucrat
-        EXPONENT = @PHANON_EXPONENT
-        PRODUCES = "
+	inline_script = {
+		script = pop_jobs/bureaucrat
+		CATEGORY = specialist
+		RESOURCE = unity
+		JOB = dm_bureaucrat
+		EXPONENT = @PHANON_EXPONENT
+		PRODUCES = "
 			unity = 50
 			"
-        UPKEEP = "
+		UPKEEP = "
 			aot_sr_runic_power = 8
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_bureaucratic
-            icon = phanon_bureaucrat
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_bureaucratic
+			icon = phanon_bureaucrat
+		}
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #										Phanon Creator Jobs									   #
 # ------------------------------------------------------------------------------------------------ #
 phanon_dimension_folder = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_jobs
-        JOB = phanon_dimension_folder
-        RESOURCE = aot_sr_runic_power
-        AMOUNT = 15
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_jobs
+		JOB = phanon_dimension_folder
+		RESOURCE = aot_sr_runic_power
+		AMOUNT = 15
+		UPKEEP = "
 			sr_dark_matter = 50
 			acot_sr_dark_energy = 50
 			energy = 100
@@ -1314,25 +968,25 @@ phanon_dimension_folder = {
 			rare_crystals = 10
 			nanites = 10
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_phanon_runic_generator
-            icon = phanon_runicman
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_phanon_runic_generator
+			icon = phanon_runicman
+		}
+	}
 }
 phanon_dimension_folderdrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_jobs
-        JOB = phanon_dimension_folder
-        RESOURCE = aot_sr_runic_power
-        AMOUNT = 15
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_jobs
+		JOB = phanon_dimension_folder
+		RESOURCE = aot_sr_runic_power
+		AMOUNT = 15
+		UPKEEP = "
 			sr_dark_matter = 50
 			acot_sr_dark_energy = 50
 			energy = 100
@@ -1344,160 +998,160 @@ phanon_dimension_folderdrone = {
 			rare_crystals = 10
 			nanites = 10
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_phanon_runic_generator
-            icon = phanon_runicdrone
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_phanon_runic_generator
+			icon = phanon_runicdrone
+		}
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #									   Sigma Governing Jobs									   #
 # ------------------------------------------------------------------------------------------------ #
 stellarite_overlord = {
-    inline_script = {
-        script = pop_jobs/overlord
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = ruler
-        JOB = stellarite_overlord
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 80
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overlord
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = ruler
+		JOB = stellarite_overlord
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 80
+		UPKEEP = "
 			acot_sr_stellarite = 8
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = RULER_JOB_TRIGGER
-            building_icon = building_stellarite_palace
-            icon = politician
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_stellarite_palace
+			icon = politician
+		}
+	}
 }
 stellarite_overseer = {
-    inline_script = {
-        script = pop_jobs/overseer
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = ruler
-        JOB = stellarite_overseer
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 60
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overseer
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = ruler
+		JOB = stellarite_overseer
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 60
+		UPKEEP = "
 			acot_sr_stellarite = 4
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = RULER_JOB_TRIGGER
-            building_icon = building_stellarite_palace
-            icon = politician
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = building_stellarite_palace
+			icon = politician
+		}
+	}
 }
 stellarite_overlord_droid = {
-    inline_script = {
-        script = pop_jobs/overlord
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB = stellarite_overlord_droid
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 80
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overlord
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+		JOB = stellarite_overlord_droid
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 80
+		UPKEEP = "
 			acot_sr_stellarite = 8
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_control_center
-            icon = coordinator
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_control_center
+			icon = coordinator
+		}
+	}
 }
 stellarite_overseer_droid = {
-    inline_script = {
-        script = pop_jobs/overseer
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB = stellarite_overseer_droid
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 60
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overseer
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+		JOB = stellarite_overseer_droid
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 60
+		UPKEEP = "
 			aot_sr_runic_power = 6
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_control_center
-            icon = coordinator
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_control_center
+			icon = coordinator
+		}
+	}
 }
 stellarite_overlord_drone = {
-    inline_script = {
-        script = pop_jobs/overlord
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB = stellarite_overlord_drone
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 80
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overlord
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+		JOB = stellarite_overlord_drone
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 80
+		UPKEEP = "
 			acot_sr_stellarite = 8
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_hive_cluster
-            icon = coordinator
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_hive_cluster
+			icon = coordinator
+		}
+	}
 }
 stellarite_overseer_drone = {
-    inline_script = {
-        script = pop_jobs/overseer
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB = phanon_overseer_drone
-        RESOURCE = unity
-        PRODUCTION_AMOUNT = 60
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/overseer
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+		JOB = phanon_overseer_drone
+		RESOURCE = unity
+		PRODUCTION_AMOUNT = 60
+		UPKEEP = "
 			acot_sr_stellarite = 6
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_hive_cluster
-            icon = coordinator
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_hive_cluster
+			icon = coordinator
+		}
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #										Sigma Creator Jobs										#
 # ------------------------------------------------------------------------------------------------ #
 stellarite_apothecary = {
-    inline_script = {
-        script = pop_jobs/apothecary
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/apothecary
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = specialist
+		UPKEEP = "
 			consumer_goods = 9
 			acot_sr_stellarite = 9
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_hospital
-            icon = healthcare
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_hospital
+			icon = healthcare
+		}
+	}
 }
 stellarite_broodmother = {
     inline_script = {
@@ -1508,735 +1162,522 @@ stellarite_broodmother = {
             energy = 9
 			acot_sr_stellarite = 9
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_hive_pool
-            icon = spawning_drone
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_hive_pool
+			icon = spawning_drone
+		}
+	}
 }
 stellarite_roboman = {
-    inline_script = {
-        script = pop_jobs/robo
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/robo
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = specialist
+		UPKEEP = "
 			acot_sr_stellarite = 15
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_super_assembly
-            icon = acot_roboman
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_super_assembly
+			icon = acot_roboman
+		}
+	}
 }
 stellarite_robodrone = {
-    inline_script = {
-        script = pop_jobs/robo
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/robo
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+		UPKEEP = "
 			acot_sr_stellarite = 15
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_super_assembly
-            icon = acot_robodrone
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_super_assembly
+			icon = acot_robodrone
+		}
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #										Sigma Special Jobs										#
 # ------------------------------------------------------------------------------------------------ #
-stellarite_energyman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_technician
-        JOB = stellarite_energyman
-        RESOURCE = energy
-        AMOUNT = 120
-        UPKEEP = "
-			acot_sr_stellarite = 12
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_power_hub
-            icon = stellarite_energyman
-        }
-    }
-}
-stellarite_energydrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_technician
-        JOB = stellarite_energydrone
-        RESOURCE = energy
-        AMOUNT = 120
-        UPKEEP = "
-			acot_sr_stellarite = 12
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_power_hub
-            icon = stellarite_energydrone
-        }
-    }
-}
-stellarite_mineralman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_miners
-        JOB = stellarite_mineralman
-        RESOURCE = minerals
-        AMOUNT = 120
-        UPKEEP = "
-			acot_sr_stellarite = 12
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_mineral_processing_plant
-            icon = stellarite_mineralman
-        }
-    }
-}
-stellarite_mineraldrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_technician
-        JOB = stellarite_mineraldrone
-        RESOURCE = minerals
-        AMOUNT = 120
-        UPKEEP = "
-			acot_sr_stellarite = 12
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_mineral_processing_plant
-            icon = stellarite_mineraldrone
-        }
-    }
-}
-stellarite_alloyman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_metallurgists
-        JOB = stellarite_alloyman
-        RESOURCE = alloys
-        AMOUNT = 100
-        UPKEEP = "
-			acot_sr_stellarite = 12
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_alloy_forge
-            icon = stellarite_alloyman
-        }
-    }
-}
-stellarite_alloydrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_metallurgists
-        JOB = stellarite_alloydrone
-        RESOURCE = alloys
-        AMOUNT = 100
-        UPKEEP = "
-			acot_sr_stellarite = 12
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_alloy_forge
-            icon = stellarite_alloydrone
-        }
-    }
-}
-stellarite_foodman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_farmers
-        JOB = stellarite_foodman
-        RESOURCE = food
-        AMOUNT = 120
-        UPKEEP = "
-			acot_sr_stellarite = 6
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_food_processing_complex
-            icon = acot_foodman
-        }
-    }
-}
-stellarite_fooddrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_farmers
-        JOB = stellarite_fooddrone
-        RESOURCE = food
-        AMOUNT = 120
-        UPKEEP = "
-			acot_sr_stellarite = 6
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_food_processing_complex
-            icon = acot_fooddrone
-        }
-    }
-}
 stellarite_transmute_man = {
-    inline_script = {
-        script = pop_jobs/transmute
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        JOB = stellarite_transmute_man
-        RESOURCE = rare_crystals
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/transmute
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = specialist
+		JOB = stellarite_transmute_man
+		RESOURCE = rare_crystals
+		UPKEEP = "
 			acot_sr_stellarite = 2
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_transmutor
-            icon = stellarite_alloyman
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_transmutor
+			icon = stellarite_alloyman
+		}
+	}
 }
 stellarite_transmute_drone = {
-    inline_script = {
-        script = pop_jobs/transmute
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB = stellarite_transmute_drone
-        RESOURCE = rare_crystals
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/transmute
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+		JOB = stellarite_transmute_drone
+		RESOURCE = rare_crystals
+		UPKEEP = "
 			acot_sr_stellarite = 2
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_transmutor
-            icon = stellarite_alloyman
-        }
-    }
-}
-stellarite_artisan = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_artisans
-        JOB = stellarite_artisan
-        RESOURCE = consumer_goods
-        AMOUNT = 120
-        UPKEEP = "
-			acot_sr_stellarite = 9
-			minerals = 30
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_civilian_factory
-            icon = acot_artisan
-        }
-    }
-}
-stellarite_artisan_drone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_artisans
-        JOB = stellarite_artisan_drone
-        RESOURCE = consumer_goods
-        AMOUNT = 60
-        AMOUNT = 120
-        UPKEEP = "
-			acot_sr_stellarite = 9
-			minerals = 30
-			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_civilian_factory
-            icon = acot_artisan
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_transmutor
+			icon = stellarite_alloyman
+		}
+	}
 }
 stellarite_entertainer = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_entertainers
-        JOB = stellarite_entertainer
-        RESOURCE = unity
-        AMOUNT = 100
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_entertainers
+		JOB = stellarite_entertainer
+		RESOURCE = unity
+		AMOUNT = 100
+		UPKEEP = "
 			acot_sr_stellarite = 9
 			consumer_goods = 9
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_mansion
-            icon = acot_entertainer
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_mansion
+			icon = acot_entertainer
+		}
+	}
 }
 stellarite_entertainer_drone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_entertainers
-        JOB = stellarite_entertainer_drone
-        RESOURCE = unity
-        AMOUNT = 100
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_entertainers
+		JOB = stellarite_entertainer_drone
+		RESOURCE = unity
+		AMOUNT = 100
+		UPKEEP = "
 			acot_sr_stellarite = 9
 			energy = 9
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_mansion
-            icon = acot_entertainer
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_mansion
+			icon = acot_entertainer
+		}
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #										Sigma Military Jobs									   #
 # ------------------------------------------------------------------------------------------------ #
 stellarite_enforcer = {
-    inline_script = {
-        script = pop_jobs/enforcer
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-    }
-    swappable_data = {
-        default = {
-            condition_string = SOLDIER_JOB_TRIGGER
-            building_icon = building_stellarite_stronghold
-            icon = aot_se_enforcer
-        }
-    }
+	inline_script = {
+		script = pop_jobs/enforcer
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = specialist
+	}
+	swappable_data = {
+		default = {
+			condition_string = SOLDIER_JOB_TRIGGER
+			building_icon = building_stellarite_stronghold
+			icon = aot_se_enforcer
+		}
+	}
 }
 stellarite_enforcer_drone = {
-    inline_script = {
-        script = pop_jobs/enforcer
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_stronghold
-            icon = aot_se_enforcer
-        }
-    }
+	inline_script = {
+		script = pop_jobs/enforcer
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_stronghold
+			icon = aot_se_enforcer
+		}
+	}
 }
 stellarite_soldier = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = worker
-    }
-    swappable_data = {
-        default = {
-            condition_string = SOLDIER_JOB_TRIGGER
-            building_icon = building_stellarite_stronghold
-            icon = aot_se_enforcer
-        }
-    }
-    possible = {
-        soldier_job_check_trigger = yes
-        owner = {
-            is_gestalt = no
-        }
-    }
-    country_modifier = {
-        country_naval_cap_add = 36        # Built-in sum from ground defense planning then x2 it
-    }
-    resources = {
-        category = planet_soldiers
-        produces = {
-            unity = 1.5
-        }
-        produces = {
-            trigger = {
-                planet = {
-                    is_planet_class = pc_dark_fractured
-                }
-            }
-            unity = 1.5
-        }
-        upkeep = {
-            trigger = {
-                planet = {
-                    NOT = {
-                        is_planet_class = pc_dark_fractured
-                    }
-                }
-            }
-            acot_sr_stellarite = 4
-        }
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = worker
+	}
+	swappable_data = {
+		default = {
+			condition_string = SOLDIER_JOB_TRIGGER
+			building_icon = building_stellarite_stronghold
+			icon = aot_se_enforcer
+		}
+	}
+	possible = {
+		soldier_job_check_trigger = yes
+		owner = {
+			is_gestalt = no
+		}
+	}
+	country_modifier = {
+		country_naval_cap_add = 36        # Built-in sum from ground defense planning then x2 it
+	}
+	resources = {
+		category = planet_soldiers
+		produces = {
+			unity = 1.5
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			unity = 1.5
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					NOT = {
+						is_planet_class = pc_dark_fractured
+					}
+				}
+			}
+			acot_sr_stellarite = 4
+		}
+	}
 }
 stellarite_soldier_drone = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = simple_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_stronghold
-            icon = aot_se_enforcer
-        }
-    }
-    possible = {
-        can_think = yes
-    }
-    country_modifier = {
-        country_naval_cap_add = 36
-    }
-    resources = {
-        category = planet_soldiers
-        produces = {
-            unity = 1.5
-        }
-        produces = {
-            trigger = {
-                planet = {
-                    is_planet_class = pc_dark_fractured
-                }
-            }
-            unity = 1.5
-        }
-        upkeep = {
-            acot_sr_stellarite = 4
-        }
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = simple_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_stronghold
+			icon = aot_se_enforcer
+		}
+	}
+	possible = {
+		can_think = yes
+	}
+	country_modifier = {
+		country_naval_cap_add = 36
+	}
+	resources = {
+		category = planet_soldiers
+		produces = {
+			unity = 1.5
+		}
+		produces = {
+			trigger = {
+				planet = {
+					is_planet_class = pc_dark_fractured
+				}
+			}
+			unity = 1.5
+		}
+		upkeep = {
+			acot_sr_stellarite = 4
+		}
+	}
 }
 stellarite_giga_fortress_operator = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_giga_fortress
-            icon = acot_giga_fortress_operator
-        }
-    }
-    possible_precalc = can_fill_specialist_job
-    possible = {
-        complex_specialist_job_check_trigger = yes
-    }
-    country_modifier = {
-        country_naval_cap_add = 1200
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = specialist
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_giga_fortress
+			icon = acot_giga_fortress_operator
+		}
+	}
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+	country_modifier = {
+		country_naval_cap_add = 1200
+	}
 }
 stellarite_giga_fortress_operator_drone = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_giga_fortress
-            icon = acot_giga_fortress_operator
-        }
-    }
-    country_modifier = {
-        country_naval_cap_add = 1200
-    }
-    triggered_planet_modifier = {
-        potential = {
-            planet = {
-                OR = {
-                    has_modifier = compliance_protocols
-                    has_modifier = hunter_killer_drones
-                }
-            }
-        }
-        modifier = {
-            planet_stability_add = 120
-        }
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_giga_fortress
+			icon = acot_giga_fortress_operator
+		}
+	}
+	country_modifier = {
+		country_naval_cap_add = 1200
+	}
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				OR = {
+					has_modifier = compliance_protocols
+					has_modifier = hunter_killer_drones
+				}
+			}
+		}
+		modifier = {
+			planet_stability_add = 120
+		}
+	}
 }
 stellarite_giga_fortress_operator_mentat = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_giga_fortress_array
-            icon = acot_giga_fortress_operator_mentat
-        }
-    }
-    possible = {
-        complex_specialist_job_check_trigger = yes
-    }
-    country_modifier = {
-        country_naval_cap_mult = 0.18
-        command_limit_add = 400
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = specialist
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_giga_fortress_array
+			icon = acot_giga_fortress_operator_mentat
+		}
+	}
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+	country_modifier = {
+		country_naval_cap_mult = 0.18
+		command_limit_add = 400
+	}
 }
 stellarite_giga_fortress_operator_mentat_drone = {
-    inline_script = {
-        script = pop_jobs/soldier_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_giga_fortress_array
-            icon = acot_giga_fortress_operator_mentat
-        }
-    }
-    country_modifier = {
-        country_naval_cap_mult = 1.8
-        command_limit_add = 400
-    }
+	inline_script = {
+		script = pop_jobs/soldier_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_giga_fortress_array
+			icon = acot_giga_fortress_operator_mentat
+		}
+	}
+	country_modifier = {
+		country_naval_cap_mult = 1.8
+		command_limit_add = 400
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #										Sigma Research Jobs									   #
 # ------------------------------------------------------------------------------------------------ #
 stellarite_researcher = {
-    inline_script = {
-        script = pop_jobs/researcher
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        JOB = stellarite_researcher
-        RESOURCE = physics_research
-        AMOUNT = 120
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/researcher
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = specialist
+		JOB = stellarite_researcher
+		RESOURCE = physics_research
+		AMOUNT = 120
+		UPKEEP = "
 			upkeep = {
 				acot_sr_stellarite = 9
 				consumer_goods = 9
 			}
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_enigmatic_lab
-            icon = acot_researcher
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_enigmatic_lab
+			icon = acot_researcher
+		}
+	}
 }
 stellarite_researcher_drone = {
-    inline_script = {
-        script = pop_jobs/researcher
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB = phanon_researcher_drone
-        RESOURCE = physics_research
-        AMOUNT = 60
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/researcher
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+		JOB = phanon_researcher_drone
+		RESOURCE = physics_research
+		AMOUNT = 60
+		UPKEEP = "
 			upkeep = {
 				acot_sr_stellarite = 9
 				energy = 9
 			}
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_enigmatic_lab
-            icon = acot_researcher
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_enigmatic_lab
+			icon = acot_researcher
+		}
+	}
 }
 stellarite_priest = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @PHANON_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_aid_workers
-        JOB = stellarite_priest
-        RESOURCE = unity
-        AMOUNT = 120
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @PHANON_EXPONENT
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_aid_workers
+		JOB = stellarite_priest
+		RESOURCE = unity
+		AMOUNT = 120
+		UPKEEP = "
 			consumer_goods = 9
 			acot_sr_stellarite = 9
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_empyrean_shrine
-            icon = acot_priest
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_empyrean_shrine
+			icon = acot_priest
+		}
+	}
 }
 stellarite_bureaucrat = {
-    inline_script = {
-        script = pop_jobs/bureaucrat
-        CATEGORY = specialist
-        RESOURCE = unity
-        JOB = dm_bureaucrat
-        EXPONENT = @SIGMA_EXPONENT
-        PRODUCES = "
+	inline_script = {
+		script = pop_jobs/bureaucrat
+		CATEGORY = specialist
+		RESOURCE = unity
+		JOB = dm_bureaucrat
+		EXPONENT = @SIGMA_EXPONENT
+		PRODUCES = "
 			unity = 100
 			"
-        UPKEEP = "
+		UPKEEP = "
 			acot_sr_stellarite = 12
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_bureaucratic
-            icon = stellarite_bureaucrat
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_bureaucratic
+			icon = stellarite_bureaucrat
+		}
+	}
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #									  Stellarite Creator Jobs									 #
 # ------------------------------------------------------------------------------------------------ #
 aot_ae_stellariteman = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_jobs
-        JOB = aot_ae_stellariteman
-        RESOURCE = acot_sr_stellarite
-        AMOUNT = 15
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_jobs
+		JOB = aot_ae_stellariteman
+		RESOURCE = acot_sr_stellarite
+		AMOUNT = 15
+		UPKEEP = "
 			energy = 150
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_acot_stellarite_generator_ae
-            icon = aot_ae_stellariteman
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_acot_stellarite_generator_ae
+			icon = aot_ae_stellariteman
+		}
+	}
 }
 aot_ae_stellaritedrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_jobs
-        JOB = aot_ae_stellaritedrone
-        RESOURCE = acot_sr_stellarite
-        AMOUNT = 15
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_jobs
+		JOB = aot_ae_stellaritedrone
+		RESOURCE = acot_sr_stellarite
+		AMOUNT = 15
+		UPKEEP = "
 			energy = 150
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_acot_stellarite_generator_ae
-            icon = aot_ae_stellaritedrone
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_acot_stellarite_generator_ae
+			icon = aot_ae_stellaritedrone
+		}
+	}
 }
 sun_master = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = specialist
-        JOB_CATEGORY = planet_jobs
-        JOB = aot_ae_stellariteman
-        RESOURCE = acot_sr_stellarite
-        AMOUNT = 30
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = specialist
+		JOB_CATEGORY = planet_jobs
+		JOB = aot_ae_stellariteman
+		RESOURCE = acot_sr_stellarite
+		AMOUNT = 30
+		UPKEEP = "
 			aot_sr_runic_power = 300
 			energy = 150
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = SPECIALIST_JOB_TRIGGER
-            building_icon = building_stellarite_generator_lvl3
-            icon = aot_ae_stellariteman
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_stellarite_generator_lvl3
+			icon = aot_ae_stellariteman
+		}
+	}
 }
 sun_masterdrone = {
-    inline_script = {
-        script = pop_jobs/simple_jobs_base
-        EXPONENT = @SIGMA_EXPONENT
-        CATEGORY = complex_drone
-        JOB_CATEGORY = planet_jobs
-        JOB = sun_masterdrone
-        RESOURCE = acot_sr_stellarite
-        AMOUNT = 30
-        UPKEEP = "
+	inline_script = {
+		script = pop_jobs/simple_jobs_base
+		EXPONENT = @SIGMA_EXPONENT
+		CATEGORY = complex_drone
+		JOB_CATEGORY = planet_jobs
+		JOB = sun_masterdrone
+		RESOURCE = acot_sr_stellarite
+		AMOUNT = 30
+		UPKEEP = "
 			aot_sr_runic_power = 300
 			energy = 150
 			"
-    }
-    swappable_data = {
-        default = {
-            condition_string = DRONE_JOB_TRIGGER
-            building_icon = building_stellarite_generator_lvl3
-            icon = aot_ae_stellaritedrone
-        }
-    }
+	}
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_stellarite_generator_lvl3
+			icon = aot_ae_stellaritedrone
+		}
+	}
 }
