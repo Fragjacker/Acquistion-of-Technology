@@ -23,6 +23,8 @@ planet_event = {
             has_building = building_fe_stronghold
             has_building = building_acot_dm_stronghold
             has_building = building_acot_ae_stronghold
+            has_building = building_phanon_stronghold
+            has_building = building_stellarite_stronghold
         }
     }
     immediate = {
@@ -34,7 +36,7 @@ planet_event = {
             limit = { is_owned_by = from }
             #---------------------------------------<  Delta Strongholds  >-------------------------------------
             stronghold_damage_bombarding_ships_in_orbit = {
-                BUILDING_TYPE = building_acot_dm_stronghold
+                BUILDING_TYPE = building_fe_stronghold
                 MIN_DAMAGE = 1000
                 MAX_DAMAGE = 2000
                 AMBIENT_OBJECT = acot_planet_cannon_dm
@@ -225,7 +227,10 @@ planet_event = {
             }
             else_if = {
                 limit = {
-                    has_orbital_bombardment_stance = acot_bombardment_ae
+                    OR = {
+                        has_orbital_bombardment_stance = acot_bombardment_ae
+                        has_orbital_bombardment_stance = acot_bombardment_re
+                    }
                 }
                 every_fleet_in_orbit = {
                     limit = { is_owned_by = from }
