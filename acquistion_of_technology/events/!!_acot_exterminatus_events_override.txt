@@ -15,6 +15,7 @@ planet_event = {
         OR = {
             has_orbital_bombardment_stance = acot_bombardment_dm
             has_orbital_bombardment_stance = acot_bombardment_ae
+            has_orbital_bombardment_stance = acot_bombardment_re
             has_orbital_bombardment_stance = acot_bombardment_se
         }
         NOR = {
@@ -40,6 +41,15 @@ planet_event = {
             inline_script = {
                 script = exterminatus_standard_effect
                 EFFECT = exterminatus_planet_effect_final_destination
+            }
+        }
+        else_if = {
+            limit = {
+                has_orbital_bombardment_stance = acot_bombardment_re
+            }
+            inline_script = {
+                script = exterminatus_standard_effect
+                EFFECT = exterminatus_planet_effect_re
             }
         }
         else_if = {
@@ -70,7 +80,7 @@ planet_event = {
                 80 = {
                     modifier = {
                         factor = 0
-                        pop_amount <= 500
+                        sapient_pop_amount <= 500
                     }
                     if = {
                         limit = {
