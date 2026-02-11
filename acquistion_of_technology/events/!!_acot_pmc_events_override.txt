@@ -63,8 +63,68 @@ country_event = {
             set_owner = root
             set_controller = root
             change_colony_foundation_date = 0            # Needed for acot_pmc.9101
+            ### CLEAR OUT ZONES IF NO TECH
+            if = {
+                limit = {
+                    NOT = {
+                        has_planet_flag = acot_vault_floor_one_cleared
+                    }
+                }
+                remove_zone = {
+                    zone = zone_acot_vault_a
+                    zone_slot = 0
+                }
+                remove_zone = {
+                    zone = zone_acot_vault_b
+                    zone_slot = 0
+                }
+                remove_zone = {
+                    zone = zone_acot_vault_c
+                    zone_slot = 0
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_planet_flag = acot_vault_floor_two_cleared
+                    }
+                }
+                remove_zone = {
+                    zone = zone_acot_vault_a_01
+                    zone_slot = 1
+                }
+                remove_zone = {
+                    zone = zone_acot_vault_b_01
+                    zone_slot = 1
+                }
+                remove_zone = {
+                    zone = zone_acot_vault_c_01
+                    zone_slot = 1
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_planet_flag = acot_vault_floor_three_cleared
+                    }
+                }
+                remove_zone = {
+                    zone = zone_acot_vault_a_01
+                    zone_slot = 2
+                }
+                remove_zone = {
+                    zone = zone_acot_vault_b_01
+                    zone_slot = 2
+                }
+                remove_zone = {
+                    zone = zone_acot_vault_c_01
+                    zone_slot = 2
+                }
+            }
+            ### END
         }
     }
+
     option = {
         name = acot_pmc.11.a
         custom_tooltip = acot_pmc.11.a.tooltip
@@ -93,7 +153,10 @@ country_event = {
             amount = 3
         }
         fromfrom = {
-            set_planet_size = 25
+            set_planet_flag = acot_vault_floor_one_cleared
+            set_planet_flag = acot_vault_floor_two_cleared
+            set_planet_flag = acot_vault_floor_three_cleared
+            set_planet_size = 40
         }
         hidden_effect = {
             create_fleet = {
@@ -390,7 +453,7 @@ country_event = {
     option = {
         name = acot_pmc.1200.a
         fromfrom = {
-            set_planet_size = 15
+            set_planet_size = 25
             set_planet_flag = acot_vault_floor_one_cleared
         }
         phanon_type_a_tech_gift = yes
@@ -541,7 +604,7 @@ planet_event = {
                 }
             }
             while = {
-                count = 30
+                count = 20
                 create_army = {
                     owner = event_target:phanon_protecc_base_country
                     type = acot_phanon_defense_droid_shielder
@@ -614,7 +677,7 @@ country_event = {
     option = {
         name = acot_pmc.1300.a
         fromfrom = {
-            set_planet_size = 20
+            set_planet_size = 30
         }
         set_country_flag = acot_phanon_tech_stage_two_enabled
         phanon_type_civ_tech_gift = yes
@@ -851,7 +914,7 @@ country_event = {
     option = {
         name = acot_pmc.1400.a
         fromfrom = {
-            set_planet_size = 25
+            set_planet_size = 35
         }
         phanon_type_ship_tech_gift = yes
         set_country_flag = acot_phanon_tech_stage_three_enabled
@@ -1089,7 +1152,7 @@ country_event = {
     option = {
         name = acot_pmc.1500.a
         fromfrom = {
-            set_planet_size = 30
+            set_planet_size = 40
         }
         phanon_type_a_tech_gift = yes
         phanon_type_civ_tech_gift = yes
@@ -1191,7 +1254,6 @@ country_event = {
     custom_gui_option = "acot_enclave_phanon_option"
     immediate = {
         set_country_flag = acot_phanon_diplomacy_engaged
-        set_global_flag = acot_phanon_rival_plan_succeed
         IF = {
             limit = {
                 has_country_flag = acot_phanon_rival_contact_enabled
