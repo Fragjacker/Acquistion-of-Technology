@@ -1651,6 +1651,35 @@ planet_event = {
             }
             kill_all_pop = yes
         }
+        if = {
+            limit = {
+                from.owner = {
+                    has_ascension_perk = ap_archaeoengineers
+                }
+            }
+            planet = {
+                every_planet_army = {
+                    limit = {
+                        OR = {
+                            army_type = occupation_army
+                            army_type = cybrex_warform
+                            army_type = care_defensive_protocols
+                            army_type = gray_army
+                            army_type = robot_uprising_army
+                            army_type = robotic_army
+                            army_type = machine_assault_1
+                            army_type = machine_assault_2
+                            army_type = machine_assault_3
+                            army_type = robotic_defense_army
+                            army_type = machine_defense
+                            army_type = robotic_occupation_army
+                            army_type = machine_occupation_army
+                        }
+                    }
+                    remove_army = yes
+                }
+            }
+        }
         while = {
             limit = {
                 any_owned_pop_group = {
@@ -1689,7 +1718,7 @@ planet_event = {
             change_species = event_target:species_target
         }
         random_list = {
-            33 = {}
+            33 = { }
             33 = {
                 weighted_random_owned_pop_group = {
                     change_species = event_target:species_target
@@ -1706,6 +1735,49 @@ planet_event = {
         }
         planet = {
             every_planet_army = {
+                limit = {
+                    OR = {
+                        army_type = occupation_army
+                        army_type = offspring_defense
+                        army_type = undead_defense_army
+                        army_type = fanatic_guardian
+                        army_type = defense_army
+                        army_type = assault_army
+                        army_type = slave_army
+                        army_type = clone_army
+                        army_type = psionic_army
+                        army_type = xenomorph_army
+                        army_type = gene_warrior_army
+                        army_type = undead_army
+                        army_type = rebel_army
+                        army_type = rebel_slave_defense_army
+                        army_type = primitive_army
+                        army_type = primitive_additional_army
+                        army_type = industrial_army
+                        army_type = postatomic_army
+                        army_type = subterranean_industrial_army
+                        army_type = subterranean_postatomic_army
+                        army_type = mutant_army
+                        army_type = swarm_army
+                        army_type = tree_army
+                        army_type = enraged_army
+                        army_type = ketling_army
+                        army_type = titanic_assault_army
+                        army_type = titanic_azizian_assault_army
+                        army_type = titanic_guardian_army
+                        army_type = imperial_legion
+                        army_type = giant_undead_army
+                        army_type = ice_army
+                        army_type = mercenary_army
+                        army_type = mecha_army
+                        army_type = subterranean_defense_army
+                        army_type = new_world_order_defensive_army
+                        army_type = new_world_order_offensive_army
+                        army_type = warpling_army
+                        army_type = flamestorm_troopers_army
+                        army_type = mindwarden_army
+                    }
+                }
                 remove_army = yes
             }
             check_planet_employment = yes
