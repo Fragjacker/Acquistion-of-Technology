@@ -1,0 +1,23 @@
+apply_stellarite_planet_detonation_damage = {
+    if = {
+        limit = {
+            root = {
+                has_active_building = $BUILDING_TYPE$
+            }
+        }
+        save_event_target_as = imminent_bombing
+        solar_system = {
+            every_fleet_in_system = {
+                limit = {
+                    exists = orbit
+                    orbit = {
+                        is_planet = event_target:imminent_bombing
+                    }
+                }
+                every_owned_ship = {
+                    reduce_hp = value:aot_get_stellarite_generators_on_planet_of_type|BUILDING_TYPE|$BUILDING_TYPE$|DAMAGE_PER_BUILDING|$DAMAGE_PER_BUILDING$|
+                }
+            }
+        }
+    }
+}
