@@ -24,7 +24,7 @@ country_event = {
         from = {
             is_country_type = acot_databank
         }
-        has_country_flag = acot_databank_installed
+        has_country_flag = acot_databank_sophia_agreed
         NOR = {
             has_ascension_perk = ap_cosmogenesis
             has_country_flag = acot_databank_diplomacy_engaged
@@ -51,38 +51,35 @@ country_event = {
             assign_leader = last_created_leader
         }
     }
-    after = {
-        hidden_effect = {
-            remove_country_flag = acot_databank_diplomacy_engaged
-        }
-    }
+
     ###  ACCESS ALPHA TECH EVIDENCE
     option = {
         name = acot_precursor_databank.2.a
         trigger = {
             NOR = {
+                has_global_flag = acot_alpha_forbidden
                 has_tech_option = tech_dark_matter_power_core_ae
                 has_technology = tech_dark_matter_power_core_ae
                 has_country_flag = learned_dm_alpha_existence
             }
         }
         hidden_effect = {
-            country_event = {
-                id = acot_precursor_databank.3
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.3 }
         }
     }
+
     ###  ACCESS ARCHIVE
     option = {
         name = acot_precursor_databank.2.b
         custom_tooltip = acot_precursor_databank.2.b.tooltip
         hidden_effect = {
-            country_event = {
-                id = acot_precursor_databank.4
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.5 }
         }
     }
-    ### ACCESS Project Reimagionation
+
+    ### ASK ABOUT PRECURSORS
     option = {
         name = acot_precursor_databank.2.c
         trigger = {
@@ -91,11 +88,11 @@ country_event = {
             }
         }
         hidden_effect = {
-            country_event = {
-                id = acot_precursor_databank.6
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.6 }
         }
     }
+
     ### ACCESS Project Reimagionation
     option = {
         name = acot_precursor_databank.2.d
@@ -122,12 +119,12 @@ country_event = {
             }
         }
         hidden_effect = {
-            country_event = {
-                id = acot_precursor_databank.9
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.9 }
         }
     }
-    ### ACCESS Project Reimagionation
+
+    ### Stelllarite Stuffus
     option = {
         name = acot_precursor_databank.2.e
         trigger = {
@@ -139,11 +136,11 @@ country_event = {
             }
         }
         hidden_effect = {
-            country_event = {
-                id = stellarite_events.100
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = stellarite_events.100 }
         }
     }
+
     ### ACCESS Project MASTER
     option = {
         name = acot_precursor_databank.2.g
@@ -163,22 +160,36 @@ country_event = {
             }
         }
         hidden_effect = {
-            country_event = {
-                id = acot_precursor_databank.1002
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.1002 }
         }
     }
+
     option = {
         name = acot_precursor_databank.2.f
-        hidden_country_self_event_call = {
-            EVENT_ID = acot_precursor_databank.7
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.7 }
         }
     }
+
+    ### Teach
+    option = {
+        name = acot_precursor_databank.2.h
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.11 }
+        }
+    }
+
     ### EXIT
     option = {
         name = acot_precursor_databank.2.end
         response_text = EXCELLENT
         default_hide_option = yes
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
     }
 }
 
@@ -212,6 +223,7 @@ country_event = {
     option = {
         trigger = {
             NOR = {
+                has_global_flag = acot_alpha_forbidden
                 has_tech_option = tech_dark_matter_power_core_ae
                 has_technology = tech_dark_matter_power_core_ae
                 has_country_flag = learned_dm_alpha_existence
@@ -230,11 +242,11 @@ country_event = {
         custom_tooltip = acot_precursor_databank.2.b.tooltip
         hidden_effect = {
             country_event = {
-                id = acot_precursor_databank.4
+                id = acot_precursor_databank.5
             }
         }
     }
-    ### ACCESS Project Reimagionation
+    ### ASK ABOUT PRECURSORS
     option = {
         name = acot_precursor_databank.2.c
         trigger = {
@@ -326,6 +338,16 @@ country_event = {
             EVENT_ID = acot_precursor_databank.7
         }
     }
+
+
+    ### Teach
+    option = {
+        name = acot_precursor_databank.2.h
+        hidden_effect = {
+            country_event = { id = acot_precursor_databank.11 }
+        }
+    }
+
     ### EXIT
     option = {
         name = acot_precursor_databank.2.end
@@ -335,6 +357,328 @@ country_event = {
 }
 
 ############################################################ PRECURSOR STUFFS ############################################################
+# Databank ALPHA TECH PATH
+country_event = {
+    id = acot_precursor_databank.5
+    title = acot_precursor_databank.3.name
+    desc = acot_precursor_databank.5.desc
+
+    is_triggered_only = yes
+    diplomatic = yes
+
+    picture_event_data = {
+        room = acot_sophia_room
+        portrait = event_target:acot_sophia_ruler
+    }
+    custom_gui = "acot_enclave_sophia_window"
+    custom_gui_option = "acot_enclave_sophia_option"
+
+    trigger = {
+    }
+
+    immediate = {
+        set_country_flag = acot_databank_diplomacy_engaged
+    }
+
+    after = {
+    }
+
+    ### 1 ESCORT NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.escort
+        response_text = acot_precursor_databank.5.nodata.escort.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_escort } }
+    }
+    ### 1 ESCORT ###
+    option = {
+        name = acot_precursor_databank.5.escort
+        trigger = { has_technology = tech_precursor_escort }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.500 }
+        }
+    }
+
+    ### 2 BC NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.bc
+        response_text = acot_precursor_databank.5.nodata.bc.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_bc } }
+    }
+    ### 2 BC ###
+    option = {
+        name = acot_precursor_databank.5.bc
+        trigger = { has_technology = tech_precursor_bc }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.501 }
+        }
+    }
+
+    ### 3 HYPERION NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.titan
+        response_text = acot_precursor_databank.5.nodata.titan.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_titan } }
+    }
+    ### 3 HYPERION ###
+    option = {
+        name = acot_precursor_databank.5.titan
+        trigger = { has_technology = tech_precursor_titan }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.502 }
+        }
+    }
+
+    ### 4 PAC NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.pac
+        response_text = acot_precursor_databank.5.nodata.pac.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_assault_carrier } }
+    }
+    ### 4 PAC ###
+    option = {
+        name = acot_precursor_databank.5.pac
+        trigger = { has_technology = tech_precursor_assault_carrier }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.503 }
+        }
+    }
+
+    ### 5 GUARDIAN NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.guardian
+        response_text = acot_precursor_databank.5.nodata.guardian.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_guardian } }
+    }
+    ### 5 GUARDIAN ###
+    option = {
+        name = acot_precursor_databank.5.guardian
+        trigger = { has_technology = tech_precursor_guardian }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.504 }
+        }
+    }
+
+    ### 6 SENTINEL NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.sentinel
+        response_text = acot_precursor_databank.5.nodata.sentinel.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_sentinel } }
+    }
+    ### 6 SENTINEL ###
+    option = {
+        name = acot_precursor_databank.5.sentinel
+        trigger = { has_technology = tech_precursor_sentinel }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.505 }
+        }
+    }
+
+    ### 8 ORACLE NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.oracle
+        response_text = acot_precursor_databank.5.nodata.oracle.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_science } }
+    }
+    ### 8 ORACLE ###
+    option = {
+        name = acot_precursor_databank.5.oracle
+        trigger = { has_technology = tech_precursor_science }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.507 }
+        }
+    }
+
+    ### 9 INITIALIZER NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.initer
+        response_text = acot_precursor_databank.5.nodata.initer.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_construcor } }
+    }
+    ### 9 INITIALIZER ###
+    option = {
+        name = acot_precursor_databank.5.initer
+        trigger = { has_technology = tech_precursor_construcor }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.508 }
+        }
+    }
+
+    ### 10 EMISSARY NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.emiss
+        response_text = acot_precursor_databank.5.nodata.emiss.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_colonizer } }
+    }
+    ### 10 EMISSARY ###
+    option = {
+        name = acot_precursor_databank.5.emiss
+        trigger = { has_technology = tech_precursor_colonizer }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.509 }
+        }
+    }
+
+    ### 11 CITADEL NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.citadel
+        response_text = acot_precursor_databank.5.nodata.citadel.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_citadel } }
+    }
+    ### 11 CITADEL ###
+    option = {
+        name = acot_precursor_databank.5.citadel
+        trigger = { has_technology = tech_precursor_citadel }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.510 }
+        }
+    }
+
+    ### 12 ENIGMALITH NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.enigmalith
+        response_text = acot_precursor_databank.5.nodata.enigmalith.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_enigmalith } }
+    }
+    ### 12 ENIGMALITH ###
+    option = {
+        name = acot_precursor_databank.5.enigmalith
+        trigger = { has_technology = tech_precursor_enigmalith }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.511 }
+        }
+    }
+
+    ### 13 HERCULEAN NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.colos
+        response_text = acot_precursor_databank.5.nodata.colos.desc
+        is_dialog_only = yes
+        trigger = {
+            NOR = {
+                has_technology = tech_precursor_colossus
+                has_global_flag = acot_herculean_forbidden
+            }
+        }
+    }
+    ### 13 HERCULEAN ###
+    option = {
+        name = acot_precursor_databank.5.colos
+        trigger = {
+            has_technology = tech_precursor_colossus
+            NOT = { has_global_flag = acot_herculean_forbidden }
+        }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.512 }
+        }
+    }
+
+    ### 14 WORLD SHAAPER NO DATA ###
+    option = {
+        name = acot_precursor_databank.5.nodata.shaper
+        response_text = acot_precursor_databank.5.nodata.shaper.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_world_shaper } }
+    }
+    ### 14 EMISSARY ###
+    option = {
+        name = acot_precursor_databank.5.emiss
+        trigger = { has_technology = tech_precursor_world_shaper }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.509 }
+        }
+    }
+    ### 15 WARBAGE NO DATA ###
+    option = {
+        name = acot_precursor_databank.4.nodata.warbarge
+        response_text = acot_precursor_databank.4.nodata.warbarge.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_precursor_juggernaut } }
+    }
+    ### 15 WARBARGE ###
+    option = {
+        name = acot_precursor_databank.4.warbarge
+        trigger = { has_technology = tech_precursor_juggernaut }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.413 }
+        }
+    }
+    ### 16 GATEKEEPERS NO DATA ###
+    option = {
+        name = acot_precursor_databank.4.nodata.gatekeepers
+        response_text = acot_precursor_databank.4.nodata.gatekeepers.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_gatekeepers } }
+    }
+    ### 16 GATEKEEPERS ###
+    option = {
+        name = acot_precursor_databank.4.gatekeepers
+        trigger = { has_technology = tech_gatekeepers }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.415 }
+        }
+    }
+    ### 17 ENIGMATIC DEEP SPACE FORTRESS NO DATA ###
+    option = {
+        name = acot_precursor_databank.4.nodata.enigmatic_fortress_platform
+        response_text = acot_precursor_databank.4.nodata.enigmatic_fortress_platform.desc
+        is_dialog_only = yes
+        trigger = { NOT = { has_technology = tech_dm_enigmatic_fortress_platform } }
+    }
+    ### 17 ENIGMATIC DEEP SPACE FORTRESS ###
+    option = {
+        name = acot_precursor_databank.4.enigmatic_fortress
+        trigger = { has_technology = tech_dm_enigmatic_fortress_platform }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.416 }
+        }
+    }
+
+    ###  BACK ###
+    option = {
+        name = acot_precursor_databank.5.b
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.200 }
+        }
+    }
+
+    ### EXIT
+    option = {
+        name = acot_precursor_databank.2.end
+        response_text = EXCELLENT
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
+}
+
 # Databank Warbarge
 country_event = {
     id = acot_precursor_databank.413
@@ -367,11 +711,11 @@ country_event = {
     }
     ###  BACK ###
     option = {
-        name = acot_precursor_databank.400.b
+        name = acot_precursor_databank.500.b
         hidden_effect = {
             remove_country_flag = acot_databank_diplomacy_engaged
             country_event = {
-                id = acot_precursor_databank.4
+                id = acot_precursor_databank.5
             }
         }
     }
@@ -418,11 +762,11 @@ country_event = {
     }
     ###  BACK ###
     option = {
-        name = acot_precursor_databank.400.b
+        name = acot_precursor_databank.500.b
         hidden_effect = {
             remove_country_flag = acot_databank_diplomacy_engaged
             country_event = {
-                id = acot_precursor_databank.4
+                id = acot_precursor_databank.5
             }
         }
     }
@@ -469,11 +813,11 @@ country_event = {
     }
     ###  BACK ###
     option = {
-        name = acot_precursor_databank.400.b
+        name = acot_precursor_databank.500.b
         hidden_effect = {
             remove_country_flag = acot_databank_diplomacy_engaged
             country_event = {
-                id = acot_precursor_databank.4
+                id = acot_precursor_databank.5
             }
         }
     }
