@@ -1,0 +1,34 @@
+# Exponent is based on the cost of the Extreme allocation, cost triple for each factor increase.
+option = {
+    name = $NAME$
+    custom_tooltip = $CUSTOM_TOOLTIP$
+    allow = {
+        resource_stockpile_compare = {
+            resource = acot_sr_dark_energy
+            value >= @[ 1500 * three_exp$EXPONENT$ ]
+        }
+        resource_stockpile_compare = {
+            resource = sr_dark_matter
+            value >= @[ 1500 * three_exp$EXPONENT$ ]
+        }
+        resource_stockpile_compare = {
+            resource = minor_artifacts
+            value >= @[ 35 * three_exp$EXPONENT$ ]
+        }
+    }
+    add_resource = {
+        acot_sr_dark_energy = @[ - 1500 * three_exp$EXPONENT$ ]
+        sr_dark_matter = @[ - 1500 * three_exp$EXPONENT$ ]
+        minor_artifacts = @[ - 35 * three_exp$EXPONENT$ ]
+    }
+    capital_scope = {
+        save_event_target_as = pc_home
+    }
+    enable_special_project = {
+        name = $SPECIAL_PROJECT_NAME$
+        owner = root
+    }
+    hidden_effect = {
+        remove_country_flag = acot_databank_diplomacy_engaged
+    }
+}
