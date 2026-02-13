@@ -9,7 +9,28 @@ district_dm_hab_housing = {
 			acot_sr_dark_energy = @special_resource_cost
 			"
         EXPONENT = @DELTA_EXPONENT
-        DISTRICT_SET = dm_habitat
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = dm_habitat
+            uses_district_set = ae_habitat
+            uses_district_set = phanon_habitat
+            uses_district_set = sigma_habitat
+        }
+    }
+    potential = {
+        OR = {
+            uses_district_set = dm_habitat
+            uses_district_set = ae_habitat
+            uses_district_set = phanon_habitat
+            uses_district_set = sigma_habitat
+        }
+        NAND = {
+            is_capital = yes
+            owner = {
+                has_menace_perk = menp_behemoth_mind_meld
+            }
+        }
     }
 }
 district_dm_hab_energy = {
@@ -23,7 +44,22 @@ district_dm_hab_energy = {
         JOB = acot_energyman
         JOB_GESTALT = acot_energydrone
         DISTRICT = district_dm_hab_energy
-        DISTRICT_SET = dm_habitat
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = dm_habitat
+            uses_district_set = ae_habitat
+            uses_district_set = phanon_habitat
+            uses_district_set = sigma_habitat
+        }
+    }
+    potential = {
+        OR = {
+            uses_district_set = dm_habitat
+            uses_district_set = ae_habitat
+            uses_district_set = phanon_habitat
+            uses_district_set = sigma_habitat
+        }
     }
 }
 district_dm_hab_mining = {
@@ -37,7 +73,22 @@ district_dm_hab_mining = {
         JOB = acot_mineralman
         JOB_GESTALT = acot_mineraldrone
         DISTRICT = district_dm_hab_mining
-        DISTRICT_SET = dm_habitat
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = dm_habitat
+            uses_district_set = ae_habitat
+            uses_district_set = phanon_habitat
+            uses_district_set = sigma_habitat
+        }
+    }
+    potential = {
+        OR = {
+            uses_district_set = dm_habitat
+            uses_district_set = ae_habitat
+            uses_district_set = phanon_habitat
+            uses_district_set = sigma_habitat
+        }
     }
 }
 district_dm_hab_dark_matter_energy = {
@@ -49,26 +100,30 @@ district_dm_hab_dark_matter_energy = {
 			"
         EXPONENT = @DELTA_EXPONENT
         DISTRICT = district_dm_hab_dark_matter_energy
-        DISTRICT_SET = dm_habitat
         TIER_TYPE = delta_and_alpha
         JOBS_AMOUNT = 200
+    }
+    show_on_uncolonized = {
+        OR = {
+            uses_district_set = dm_habitat
+            uses_district_set = ae_habitat
+            uses_district_set = phanon_habitat
+            uses_district_set = sigma_habitat
+        }
+    }
+    potential = {
+        OR = {
+            uses_district_set = dm_habitat
+            uses_district_set = ae_habitat
+            uses_district_set = phanon_habitat
+            uses_district_set = sigma_habitat
+        }
     }
 }
 
 #####################
 # Dark Energy Tier (Alpha)
 #####################
-district_ae_hab_housing = {
-    inline_script = {
-        script = districts/aot_habitats/housing
-        COST = "
-			sr_dark_matter = @special_resource_cost
-			acot_sr_dark_energy = @special_resource_cost
-			"
-        EXPONENT = @ALPHA_EXPONENT
-        DISTRICT_SET = ae_habitat
-    }
-}
 district_ae_hab_energy = {
     inline_script = {
         script = districts/aot_habitats/energy
@@ -80,7 +135,12 @@ district_ae_hab_energy = {
         JOB = ae_energyman
         JOB_GESTALT = ae_energydrone
         DISTRICT = district_ae_hab_energy
-        DISTRICT_SET = ae_habitat
+    }
+    show_on_uncolonized = {
+        always = no
+    }
+    potential = {
+        always = no
     }
 }
 district_ae_hab_mining = {
@@ -94,7 +154,12 @@ district_ae_hab_mining = {
         JOB = ae_mineralman
         JOB_GESTALT = ae_mineraldrone
         DISTRICT = district_ae_hab_mining
-        DISTRICT_SET = ae_habitat
+    }
+    show_on_uncolonized = {
+        always = no
+    }
+    potential = {
+        always = no
     }
 }
 district_ae_hab_dark_matter_energy = {
@@ -106,26 +171,20 @@ district_ae_hab_dark_matter_energy = {
 			"
         EXPONENT = @ALPHA_EXPONENT
         DISTRICT = district_ae_hab_dark_matter_energy
-        DISTRICT_SET = ae_habitat
         TIER_TYPE = delta_and_alpha
         JOBS_AMOUNT = 200
+    }
+    show_on_uncolonized = {
+        always = no
+    }
+    potential = {
+        always = no
     }
 }
 
 #####################
 # Phanon (Red)
 #####################
-district_hab_phanon_housing = {
-    icon = district_macripp_housing
-    inline_script = {
-        script = districts/aot_habitats/housing
-        COST = "
-			aot_sr_runic_power = @special_resource_cost
-			"
-        EXPONENT = @PHANON_EXPONENT
-        DISTRICT_SET = phanon_habitat
-    }
-}
 district_hab_phanon_energy = {
     inline_script = {
         script = districts/aot_habitats/energy
@@ -136,7 +195,12 @@ district_hab_phanon_energy = {
         JOB = phanon_energyman
         JOB_GESTALT = phanon_energydrone
         DISTRICT = district_hab_phanon_energy
-        DISTRICT_SET = phanon_habitat
+    }
+    show_on_uncolonized = {
+        always = no
+    }
+    potential = {
+        always = no
     }
 }
 district_hab_phanon_mining = {
@@ -149,7 +213,12 @@ district_hab_phanon_mining = {
         JOB = phanon_mineralman
         JOB_GESTALT = phanon_mineraldrone
         DISTRICT = district_hab_phanon_mining
-        DISTRICT_SET = phanon_habitat
+    }
+    show_on_uncolonized = {
+        always = no
+    }
+    potential = {
+        always = no
     }
 }
 district_hab_phanon_generator = {
@@ -162,25 +231,20 @@ district_hab_phanon_generator = {
 			"
         EXPONENT = @PHANON_EXPONENT
         DISTRICT = district_hab_phanon_generator
-        DISTRICT_SET = phanon_habitat
         TIER_TYPE = phanon
         JOBS_AMOUNT = 200
+    }
+    show_on_uncolonized = {
+        always = no
+    }
+    potential = {
+        always = no
     }
 }
 
 #####################
 # Stellarite (Sigma)
 #####################
-district_hab_stellarite_housing = {
-    inline_script = {
-        script = districts/aot_habitats/housing
-        COST = "
-			acot_sr_stellarite = @special_resource_cost
-			"
-        EXPONENT = @SIGMA_EXPONENT
-        DISTRICT_SET = sigma_habitat
-    }
-}
 district_hab_stellarite_energy = {
     inline_script = {
         script = districts/aot_habitats/energy
@@ -191,7 +255,12 @@ district_hab_stellarite_energy = {
         JOB = stellarite_energyman
         JOB_GESTALT = stellarite_energydrone
         DISTRICT = district_hab_stellarite_energy
-        DISTRICT_SET = sigma_habitat
+    }
+    show_on_uncolonized = {
+        always = no
+    }
+    potential = {
+        always = no
     }
 }
 district_hab_stellarite_mining = {
@@ -204,7 +273,12 @@ district_hab_stellarite_mining = {
         JOB = stellarite_mineralman
         JOB_GESTALT = stellarite_mineraldrone
         DISTRICT = district_hab_stellarite_mining
-        DISTRICT_SET = sigma_habitat
+    }
+    show_on_uncolonized = {
+        always = no
+    }
+    potential = {
+        always = no
     }
 }
 district_hab_stellarite_generator = {
@@ -216,8 +290,13 @@ district_hab_stellarite_generator = {
 			"
         EXPONENT = @SIGMA_EXPONENT
         DISTRICT = district_hab_stellarite_generator
-        DISTRICT_SET = sigma_habitat
         TIER_TYPE = sigma
         JOBS_AMOUNT = 200
+    }
+    show_on_uncolonized = {
+        always = no
+    }
+    potential = {
+        always = no
     }
 }
