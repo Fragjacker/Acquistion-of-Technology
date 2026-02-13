@@ -1,120 +1,114 @@
 base_buildtime = @[ hab_base_build_time + ( 120 * two_exp$EXPONENT$ ) ]
 is_capped_by_modifier = yes
 zone_slots = {
-	slot_aot_habitat_minerals
-}
-show_on_uncolonized = {
-	uses_district_set = $DISTRICT_SET$
-}
-potential = {
-	uses_district_set = $DISTRICT_SET$
+    slot_aot_habitat_minerals
 }
 planet_modifier = {
-	planet_housing_add = @[ 300 * two_exp$EXPONENT$ ]
+    planet_housing_add = @[ 300 * two_exp$EXPONENT$ ]
 }
 inline_script = {
-	script = districts/aot_habitats/parts/cost
-	EXPONENT = $EXPONENT$
-	COST = "$COST$"
+    script = districts/aot_habitats/parts/cost
+    EXPONENT = $EXPONENT$
+    COST = "$COST$"
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = owner
-		owner = {
-			is_gestalt = no
-			is_fallen_empire_spiritualist = no
-		}
-	}
-	modifier = {
-		job_$JOB$_add = @[ 300 * two_exp$EXPONENT$ ]
-	}
+    potential = {
+        exists = owner
+        owner = {
+            is_gestalt = no
+            is_fallen_empire_spiritualist = no
+        }
+    }
+    modifier = {
+        job_$JOB$_add = @[ 300 * two_exp$EXPONENT$ ]
+    }
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = owner
-		owner = {
-			is_machine_empire = yes
-		}
-	}
-	modifier = {
-		job_$JOB_GESTALT$_add = @[ 300 * two_exp$EXPONENT$ ]
-	}
+    potential = {
+        exists = owner
+        owner = {
+            is_machine_empire = yes
+        }
+    }
+    modifier = {
+        job_$JOB_GESTALT$_add = @[ 300 * two_exp$EXPONENT$ ]
+    }
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = owner
-		owner = {
-			is_hive_empire = yes
-		}
-	}
-	modifier = {
-		job_$JOB_GESTALT$_add = @[ 400 * two_exp$EXPONENT$ ]
-	}
+    potential = {
+        exists = owner
+        owner = {
+            is_hive_empire = yes
+        }
+    }
+    modifier = {
+        job_$JOB_GESTALT$_add = @[ 400 * two_exp$EXPONENT$ ]
+    }
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = owner
-		owner = {
-			is_fallen_empire_spiritualist = yes
-		}
-	}
-	modifier = {
-		job_fe_acolyte_mine_add = @[ 300 * two_exp$EXPONENT$ ]
-	}
+    potential = {
+        exists = owner
+        owner = {
+            is_fallen_empire_spiritualist = yes
+        }
+    }
+    modifier = {
+        job_fe_acolyte_mine_add = @[ 300 * two_exp$EXPONENT$ ]
+    }
 }
 triggered_desc = {
-	trigger = {
-		exists = owner
-		owner = {
-			is_gestalt = yes
-		}
-	}
-	text = job_$JOB_GESTALT$_desc
+    trigger = {
+        exists = owner
+        owner = {
+            is_gestalt = yes
+        }
+    }
+    text = job_$JOB_GESTALT$_desc
 }
 triggered_desc = {
-	trigger = {
-		exists = owner
-		owner = {
-			is_gestalt = no
-			is_fallen_empire_spiritualist = no
-		}
-	}
-	text = job_$JOB$_desc
+    trigger = {
+        exists = owner
+        owner = {
+            is_gestalt = no
+            is_fallen_empire_spiritualist = no
+        }
+    }
+    text = job_$JOB$_desc
 }
 triggered_desc = {
-	trigger = {
-		exists = owner
-		owner = {
-			is_fallen_empire_spiritualist = yes
-		}
-	}
-	text = job_fe_acolyte_mine_effect_desc
+    trigger = {
+        exists = owner
+        owner = {
+            is_fallen_empire_spiritualist = yes
+        }
+    }
+    text = job_fe_acolyte_mine_effect_desc
 }
 ai_weight = {
-	weight = 0
-	modifier = {
-		weight = 400
-		OR = {
-			owner = {
-				has_monthly_income = {
-					resource = energy
-					value < 200
-				}
-			}
-			planet = {
-				has_district = $DISTRICT$
-			}
-		}
-	}
+    weight = 0
+    modifier = {
+        weight = 400
+        OR = {
+            owner = {
+                has_monthly_income = {
+                    resource = energy
+                    value < 200
+                }
+            }
+            planet = {
+                has_district = $DISTRICT$
+            }
+        }
+    }
 }
 ai_resource_production = {
-	minerals = 1
-	trigger = {
-		always = yes
-	}
+    minerals = 1
+    trigger = {
+        always = yes
+    }
 }
 on_built = {
-	planet_event = {
-		id = aot_habitat_events.110        # Spawn a mining orbital
-	}
+    planet_event = {
+        id = aot_habitat_events.110        # Spawn a mining orbital
+    }
 }
