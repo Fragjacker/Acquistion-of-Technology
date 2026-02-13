@@ -1,311 +1,443 @@
 # Dark Matter habitat Project
 decision_convert_dm_habitat = {
-	owned_planets_only = yes
-	icon = decision_convert_to_dm_habitat
-	enactment_time = 1080
-	resources = {
-		category = decisions
-		cost = {
-			unity = 5000
-			alloys = 3000
-			sr_dark_matter = 5000
-		}
-	}
-	potential = {
-		NOR = {
-			is_planet_class = pc_dm_habitat
-		}
-		owner = {
-			has_technology = tech_dm_habitat
-		}
-		merg_is_habitat = yes
-		exists = owner
-	}
-	prerequisites = {
-		tech_dm_habitat
-	}
-	allow = {
-	}
-	effect = {
-		custom_tooltip = decision_convert_dm_habitat_effects
-		hidden_effect = {
-			upgrade_dm_habitat = yes
-		}
-	}
-	ai_weight = {
-		weight = 1
-	}
+    owned_planets_only = yes
+    icon = decision_convert_to_dm_habitat
+    enactment_time = 1080
+    resources = {
+        category = decisions
+        cost = {
+            unity = 5000
+            alloys = 3000
+            sr_dark_matter = 5000
+        }
+    }
+    potential = {
+        NOR = {
+            is_planet_class = pc_dm_habitat
+        }
+        owner = {
+            has_technology = tech_dm_habitat
+        }
+        merg_is_habitat = yes
+        exists = owner
+    }
+    prerequisites = {
+        tech_dm_habitat
+    }
+    allow = {
+    }
+    effect = {
+        custom_tooltip = decision_convert_dm_habitat_effects
+        hidden_effect = {
+            upgrade_dm_habitat = yes
+        }
+    }
+    ai_weight = {
+        weight = 1
+    }
 }
 decision_retrofit_ae_habitat = {
-	owned_planets_only = yes
-	icon = decision_convert_to_ae_habitat
-	enactment_time = 1440
-	resources = {
-		category = decisions
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = from
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 1000
-		}
-		cost = {
-			sr_dark_matter = 1000
-			acot_sr_dark_energy = 5000
-		}
-	}
-	potential = {
-		is_planet_class = pc_dm_habitat
-		NOT = {
-			has_planet_flag = retrofitted_ae_habitat
-		}
-		exists = owner
-		owner = {
-			has_technology = tech_ae_habitat
-		}
-	}
-	prerequisites = {
-		tech_ae_habitat
-	}
-	allow = {
-	}
-	effect = {
-		custom_tooltip = decision_retrofit_ae_habitat_effects
-		hidden_effect = {
-			upgrade_ae_habitat = yes
-		}
-	}
-	ai_weight = {
-		weight = 1
-	}
+    owned_planets_only = yes
+    icon = decision_convert_to_ae_habitat
+    enactment_time = 1440
+    resources = {
+        category = decisions
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 1000
+        }
+        cost = {
+            sr_dark_matter = 1000
+            acot_sr_dark_energy = 5000
+        }
+    }
+    potential = {
+        is_planet_class = pc_dm_habitat
+        NOT = {
+            has_planet_flag = retrofitted_ae_habitat
+        }
+        exists = owner
+        owner = {
+            has_technology = tech_ae_habitat
+        }
+    }
+    prerequisites = {
+        tech_ae_habitat
+    }
+    allow = {
+    }
+    effect = {
+        custom_tooltip = decision_retrofit_ae_habitat_effects
+        hidden_effect = {
+            upgrade_ae_habitat = yes
+        }
+    }
+    ai_weight = {
+        weight = 1
+    }
 }
 decision_retrofit_phanon_habitat = {
-	owned_planets_only = yes
-	icon = decision_convert_to_phanon_habitat
-	enactment_time = 1440
-	resources = {
-		category = decisions
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = from
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 1000
-		}
-		cost = {
-			sr_dark_matter = 2500
-			acot_sr_dark_energy = 2500
-		}
-	}
-	potential = {
-		is_planet_class = pc_ae_habitat
-		NOT = {
-			has_planet_flag = retrofitted_phanon_habitat
-		}
-		exists = owner
-		owner = {
-			has_technology = tech_phanon_habitat
-		}
-	}
-	prerequisites = {
-		tech_phanon_habitat
-	}
-	allow = {
-	}
-	effect = {
-		custom_tooltip = decision_retrofit_phanon_habitat_effects
-		hidden_effect = {
-			upgrade_phanon_habitat = yes
-		}
-	}
-	ai_weight = {
-		weight = 1
-	}
+    owned_planets_only = yes
+    icon = decision_convert_to_phanon_habitat
+    enactment_time = 1440
+    resources = {
+        category = decisions
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 1000
+        }
+        cost = {
+            sr_dark_matter = 2500
+            acot_sr_dark_energy = 2500
+        }
+    }
+    potential = {
+        is_planet_class = pc_ae_habitat
+        NOT = {
+            has_planet_flag = retrofitted_phanon_habitat
+        }
+        exists = owner
+        owner = {
+            has_technology = tech_phanon_habitat
+        }
+    }
+    prerequisites = {
+        tech_phanon_habitat
+    }
+    allow = {
+    }
+    effect = {
+        custom_tooltip = decision_retrofit_phanon_habitat_effects
+        hidden_effect = {
+            upgrade_phanon_habitat = yes
+        }
+    }
+    ai_weight = {
+        weight = 1
+    }
 }
 decision_retrofit_sigma_habitat = {
-	owned_planets_only = yes
-	icon = decision_convert_to_stellarite_habitat
-	enactment_time = 1440
-	resources = {
-		category = decisions
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = from
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 1000
-		}
-		cost = {
-			aot_sr_runic_power = 5000
-		}
-	}
-	potential = {
-		is_planet_class = pc_phanon_habitat
-		NOT = {
-			has_planet_flag = retrofitted_sigma_habitat
-		}
-		exists = owner
-		owner = {
-			has_technology = tech_stellarite_habitat
-		}
-	}
-	prerequisites = {
-		tech_stellarite_habitat
-	}
-	allow = {
-	}
-	effect = {
-		custom_tooltip = decision_retrofit_sigma_habitat_effects
-		hidden_effect = {
-			upgrade_sigma_habitat = yes
-		}
-	}
-	ai_weight = {
-		weight = 1
-	}
+    owned_planets_only = yes
+    icon = decision_convert_to_stellarite_habitat
+    enactment_time = 1440
+    resources = {
+        category = decisions
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 1000
+        }
+        cost = {
+            aot_sr_runic_power = 5000
+        }
+    }
+    potential = {
+        is_planet_class = pc_phanon_habitat
+        NOT = {
+            has_planet_flag = retrofitted_sigma_habitat
+        }
+        exists = owner
+        owner = {
+            has_technology = tech_stellarite_habitat
+        }
+    }
+    prerequisites = {
+        tech_stellarite_habitat
+    }
+    allow = {
+    }
+    effect = {
+        custom_tooltip = decision_retrofit_sigma_habitat_effects
+        hidden_effect = {
+            upgrade_sigma_habitat = yes
+        }
+    }
+    ai_weight = {
+        weight = 1
+    }
 }
 decision_open_resurrection_chambers_menu = {
-	owned_planets_only = yes
-	icon = decision_access_resurrection_chambers
-	potential = {
-		has_building = building_stellarite_clone_vats
-	}
-	allow = {
-		has_building = building_stellarite_clone_vats
-	}
-	effect = {
-		planet_event = {
-			id = aot_events.3
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value <= 250
-				}
-			}
-		}
-	}
+    owned_planets_only = yes
+    icon = decision_access_resurrection_chambers
+    potential = {
+        has_building = building_stellarite_clone_vats
+    }
+    allow = {
+        has_building = building_stellarite_clone_vats
+    }
+    effect = {
+        planet_event = {
+            id = aot_events.3
+        }
+    }
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                resource_stockpile_compare = {
+                    resource = unity
+                    value <= 250
+                }
+            }
+        }
+    }
 }
 decision_open_resurrection_evochambers_menu = {
-	owned_planets_only = yes
-	icon = decision_access_resurrection_evochambers
-	potential = {
-		has_building = building_stellarite_hive_evochamber
-	}
-	allow = {
-		has_building = building_stellarite_hive_evochamber
-	}
-	effect = {
-		planet_event = {
-			id = aot_events.3
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value <= 250
-				}
-			}
-		}
-	}
+    owned_planets_only = yes
+    icon = decision_access_resurrection_evochambers
+    potential = {
+        has_building = building_stellarite_hive_evochamber
+    }
+    allow = {
+        has_building = building_stellarite_hive_evochamber
+    }
+    effect = {
+        planet_event = {
+            id = aot_events.3
+        }
+    }
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                resource_stockpile_compare = {
+                    resource = unity
+                    value <= 250
+                }
+            }
+        }
+    }
 }
 decision_open_kool_aid_vats_menu = {
-	owned_planets_only = yes
-	icon = decision_access_kool_aid_vats
-	potential = {
-		has_building = building_phanon_clone_vats
-	}
-	allow = {
-		has_building = building_phanon_clone_vats
-	}
-	effect = {
-		planet_event = {
-			id = aot_events.8
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value <= 25000
-				}
-			}
-		}
-	}
+    owned_planets_only = yes
+    icon = decision_access_kool_aid_vats
+    potential = {
+        has_building = building_phanon_clone_vats
+    }
+    allow = {
+        has_building = building_phanon_clone_vats
+    }
+    effect = {
+        planet_event = {
+            id = aot_events.8
+        }
+    }
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                resource_stockpile_compare = {
+                    resource = unity
+                    value <= 25000
+                }
+            }
+        }
+    }
 }
 decision_open_kool_aid_evochambers_menu = {
-	owned_planets_only = yes
-	icon = decision_access_kool_aid_evochambers
-	potential = {
-		has_building = building_phanon_hive_evochamber
-	}
-	allow = {
-		has_building = building_phanon_hive_evochamber
-	}
-	effect = {
-		planet_event = {
-			id = aot_events.8
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value <= 25000
-				}
-			}
-		}
-	}
+    owned_planets_only = yes
+    icon = decision_access_kool_aid_evochambers
+    potential = {
+        has_building = building_phanon_hive_evochamber
+    }
+    allow = {
+        has_building = building_phanon_hive_evochamber
+    }
+    effect = {
+        planet_event = {
+            id = aot_events.8
+        }
+    }
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                resource_stockpile_compare = {
+                    resource = unity
+                    value <= 25000
+                }
+            }
+        }
+    }
 }
 decision_open_kool_aid_assembly_menu = {
-	owned_planets_only = yes
-	icon = decision_machine_sapience
-	potential = {
-		OR = {
-			has_building = building_phanon_synt_center
-			has_building = building_phanon_machine_dome
-			has_building = building_stellarite_synt_center
-			has_building = building_stellarite_machine_dome
-		}
-	}
-	allow = {
-		OR = {
-			has_building = building_phanon_synt_center
-			has_building = building_phanon_machine_dome
-			has_building = building_stellarite_synt_center
-			has_building = building_stellarite_machine_dome
-		}
-	}
-	effect = {
-		planet_event = {
-			id = aot_events.81
-		}
-	}
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			owner = {
-				resource_stockpile_compare = {
-					resource = unity
-					value <= 25000
-				}
-			}
-		}
-	}
+    owned_planets_only = yes
+    icon = decision_machine_sapience
+    potential = {
+        OR = {
+            has_building = building_phanon_synt_center
+            has_building = building_phanon_machine_dome
+            has_building = building_stellarite_synt_center
+            has_building = building_stellarite_machine_dome
+        }
+    }
+    allow = {
+        OR = {
+            has_building = building_phanon_synt_center
+            has_building = building_phanon_machine_dome
+            has_building = building_stellarite_synt_center
+            has_building = building_stellarite_machine_dome
+        }
+    }
+    effect = {
+        planet_event = {
+            id = aot_events.81
+        }
+    }
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                resource_stockpile_compare = {
+                    resource = unity
+                    value <= 25000
+                }
+            }
+        }
+    }
 }
+decision_retrofit_all_system_megaturrets = {
+    enactment_time = 30
+    resources = {
+        category = decisions
+        cost = {
+            trigger = {
+                from = {
+                    country_uses_bio_ships = no
+                }
+            }
+            alloys = @mega_turret_retrofit_cost_alloys
+            mult = value:aot_count_megaturrets_for_retrofit
+        }
+        cost = {
+            trigger = {
+                from = {
+                    country_uses_bio_ships = yes
+                }
+            }
+            food = @mega_turret_retrofit_cost_alloys
+            mult = value:aot_count_megaturrets_for_retrofit|MULT|@alloy_to_food_cost_ratio|
+        }
+        cost = {
+            trigger = {
+                from = {
+                    country_uses_bio_ships = yes
+                }
+            }
+            alloys = @mega_turret_retrofit_cost_alloys
+            mult = value:aot_count_megaturrets_for_retrofit|MULT|0.5|
+        }
+    }
+    potential = {
+        always = yes
+    }
+    prerequisites = {
+    }
+    allow = {
+        this.solar_system = {
+            any_fleet_in_system = {
+                is_ship_size = aot_megaturret
+            }
+        }
+    }
+    effect = {
+        hidden_effect = {
+            this.solar_system = {
+                every_ship_in_system = {
+                    limit = { is_ship_size = aot_megaturret }
+                    set_ship_design = { random_existing_design = aot_megaturret }
+                }
+            }
+        }
+    }
+    ai_weight = {
+        weight = 100
+    }
+}
+decision_upgrade_all_system_megaturrets = {
+    enactment_time = 0
+    resources = {
+        category = decisions
+        cost = {
+            trigger = {
+                from = {
+                    country_uses_bio_ships = no
+                }
+            }
+            alloys = @mega_turret_upgrade_cost_alloys
+            mult = value:aot_count_megaturrets_for_upgrade
+        }
+        cost = {
+            trigger = {
+                from = {
+                    country_uses_bio_ships = yes
+                }
+            }
+            food = @mega_turret_upgrade_cost_alloys
+            mult = value:aot_count_megaturrets_for_upgrade|MULT|@alloy_to_food_cost_ratio|
+        }
+        cost = {
+            trigger = {
+                from = {
+                    country_uses_bio_ships = yes
+                }
+            }
+            alloys = @mega_turret_upgrade_cost_alloys
+            mult = value:aot_count_megaturrets_for_upgrade|MULT|0.5|
+        }
+        cost = {
+            aot_sr_runic_power = @mega_turret_upgrade_cost_runic_power
+            mult = value:aot_count_megaturrets_for_upgrade
+        }
+    }
+    potential = {
+        always = yes
+    }
+    prerequisites = {
+    }
+    allow = {
+        this.solar_system = {
+            any_system_megastructure = {
+                OR = {
+                    is_megastructure_type = phanon_megaturret_1
+                    is_megastructure_type = phanon_megaturret_destroyed_0
+                }
+                is_upgrading = no
+            }
+        }
+    }
+    effect = {
+        hidden_effect = {
+            this.solar_system = {
+                every_system_megastructure = {
+                    limit = {
+                        is_upgradeable_megaturret = yes
+                        is_upgrading = no
+                    }
+                    switch = {
+                        trigger = is_megastructure_type
+                        phanon_megaturret_1 = { upgrade_megastructure_to = phanon_megaturret_2 }
+                        phanon_megaturret_destroyed_0 = { upgrade_megastructure_to = phanon_megaturret_destroyed_1 }
+                    }
+                }
+            }
+        }
+    }
+    ai_weight = {
+        weight = 100
+    }
+}
+

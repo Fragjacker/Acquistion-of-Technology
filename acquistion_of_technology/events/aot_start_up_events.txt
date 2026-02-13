@@ -1,16 +1,116 @@
 namespace = aot_startup
 # Set global flag to detect if this mod is installed
 event = {
-	id = aot_startup.1
-	hide_window = yes
-	fire_only_once = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = {
-			has_global_flag = has_aot_mod
-		}
-	}
-	immediate = {
-		set_global_flag = has_aot_mod
-	}
+    id = aot_startup.1
+    hide_window = yes
+    fire_only_once = yes
+    is_triggered_only = yes
+    trigger = {
+        NOT = {
+            has_global_flag = has_aot_mod
+            has_global_flag = aot_live_version_v6
+        }
+    }
+    immediate = {
+        set_global_flag = has_aot_mod
+        set_global_flag = aot_live_version_v6
+    }
+}
+
+event = {
+    id = aot_startup.9998
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        NAND = {
+            has_global_flag = acot_live_version_v5 #
+            has_global_flag = aot_live_version_v6 #
+        }
+    }
+
+    immediate = {
+        set_global_flag = aot_live_version_v6
+        every_playable_country = {
+            limit = {
+                is_ai = no
+            }
+            country_event = {
+                id = acot_startup.9999
+            }
+        }
+    }
+    after = {
+    }
+}
+
+country_event = {
+    id = aot_startup.9999
+    title = acot_startup.9999.name
+    desc = acot_startup.9999.desc
+    is_triggered_only = yes
+    diplomatic = yes
+    show_sound = event_phanon_fun_time
+
+    picture_event_data = {
+        room = acot_mad_panada_room
+    }
+    custom_gui = "acot_enclave_phanon_window"
+    custom_gui_option = "acot_enclave_phanon_option"
+
+    immediate = {
+    }
+
+    option = {
+        name = acot_startup.9999.a
+        response_text = acot_startup.9999.a.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = acot_startup.9999.b
+        response_text = acot_startup.9999.b.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = acot_startup.9999.c
+        response_text = acot_startup.9999.c.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = acot_startup.9999.d
+        response_text = acot_startup.9999.d.response
+        is_dialog_only = yes
+    }
+    option = {
+        name = acot_startup.9999.e
+        response_text = acot_startup.9999.e.response
+        every_playable_country = {
+            every_owned_fleet = {
+                set_owner = root
+            }
+            every_owned_army = {
+                set_owner = root
+            }
+            every_owned_megastructure = {
+                set_owner = root
+            }
+            every_owned_planet = {
+                set_owner = root
+            }
+        }
+        win = yes
+    }
+    option = {
+        name = acot_startup.9999.f
+        response_text = acot_startup.9999.f.tooltip
+        add_resource = {
+            food = 1
+        }
+        hidden_effect = {
+            set_global_flag = acot_live_version_v312
+        }
+    }
+
+    after = {
+    }
 }
