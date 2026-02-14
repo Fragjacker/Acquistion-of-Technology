@@ -30,13 +30,12 @@ event = {
     }
 
     immediate = {
-        set_global_flag = aot_live_version_v6
         every_playable_country = {
             limit = {
                 is_ai = no
             }
             country_event = {
-                id = acot_startup.9999
+                id = aot_startup.9999
             }
         }
     }
@@ -46,14 +45,14 @@ event = {
 
 country_event = {
     id = aot_startup.9999
-    title = acot_startup.9999.name
-    desc = acot_startup.9999.desc
+    title = aot_startup.9999.name
+    desc = aot_startup.9999.desc
     is_triggered_only = yes
     diplomatic = yes
-    show_sound = event_phanon_fun_time
+    show_sound = event_warning_suffering
 
     picture_event_data = {
-        room = acot_mad_panada_room
+        room = aot_outdated_mod_warning_room
     }
     custom_gui = "acot_enclave_phanon_window"
     custom_gui_option = "acot_enclave_phanon_option"
@@ -62,28 +61,30 @@ country_event = {
     }
 
     option = {
-        name = acot_startup.9999.a
-        response_text = acot_startup.9999.a.response
+        trigger = {
+            has_global_flag = aot_live_version_v6
+            NOT = {
+                has_global_flag = acot_live_version_v5
+            }
+        }
+        name = aot_startup.9999.a
+        response_text = aot_startup.9999.a1.response
         is_dialog_only = yes
     }
     option = {
-        name = acot_startup.9999.b
-        response_text = acot_startup.9999.b.response
+        trigger = {
+            has_global_flag = acot_live_version_v5
+            NOT = {
+                has_global_flag = aot_live_version_v6
+            }
+        }
+        name = aot_startup.9999.a
+        response_text = aot_startup.9999.a2.response
         is_dialog_only = yes
     }
     option = {
-        name = acot_startup.9999.c
-        response_text = acot_startup.9999.c.response
-        is_dialog_only = yes
-    }
-    option = {
-        name = acot_startup.9999.d
-        response_text = acot_startup.9999.d.response
-        is_dialog_only = yes
-    }
-    option = {
-        name = acot_startup.9999.e
-        response_text = acot_startup.9999.e.response
+        name = aot_startup.9999.e
+        response_text = aot_startup.9999.e.response
         every_playable_country = {
             every_owned_fleet = {
                 set_owner = root
@@ -101,13 +102,10 @@ country_event = {
         win = yes
     }
     option = {
-        name = acot_startup.9999.f
-        response_text = acot_startup.9999.f.tooltip
-        add_resource = {
-            food = 1
-        }
+        name = aot_startup.9999.f
+        response_text = aot_startup.9999.f.response
         hidden_effect = {
-            set_global_flag = acot_live_version_v312
+            set_global_flag = aot_live_version_v6
         }
     }
 
