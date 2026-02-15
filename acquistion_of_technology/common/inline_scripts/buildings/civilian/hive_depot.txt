@@ -1,27 +1,28 @@
 inline_script = {
-	script = shared/normal_buildings_base
-	ALLOW = "$ALLOW$"
-	CAN_BUILD = $CAN_BUILD$
-	PREREQUISITE = $PREREQUISITE$
-	UPGRADES_INTO = $UPGRADES_INTO$
-	AI_FACTORS = "$AI_FACTORS$"
-	TIER = $TIER$
+    script = shared/normal_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
 }
 category = unity
 building_sets = {
-	government
-	urban
+    government
+    urban
+    aot_building_tier_$TIER$
 }
 potential = {
-	exists = planet_owner
-	planet_owner = { is_hive_empire = yes }
+    exists = planet_owner
+    planet_owner = { is_hive_empire = yes }
 }
 destroy_trigger = {
-	exists = planet_owner
-	planet_owner = { is_hive_empire = no }
+    exists = planet_owner
+    planet_owner = { is_hive_empire = no }
 }
 planet_modifier = {
-	planet_housing_add = @[ 4000 * $TIER$ ]
-	planet_amenities_add = @[ 7500 * $TIER$ ]
-	job_acot_entertainer_drone_add = @[ 200 * $TIER$ ]
+    planet_housing_add = @[ 4000 * $TIER$ ]
+    planet_amenities_add = @[ 7500 * $TIER$ ]
+    job_acot_entertainer_drone_add = @[ 200 * $TIER$ ]
 }

@@ -1,11 +1,11 @@
 inline_script = {
-	script = shared/normal_buildings_base
-	ALLOW = "$ALLOW$"
-	CAN_BUILD = $CAN_BUILD$
-	PREREQUISITE = $PREREQUISITE$
-	UPGRADES_INTO = $UPGRADES_INTO$
-	AI_FACTORS = "$AI_FACTORS$"
-	TIER = $TIER$
+    script = shared/normal_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
 }
 @num_jobs = @[ 200 * $TIER$ ]
 @ascended_sr_prod = @[ 6 * $TIER$ ]
@@ -13,150 +13,151 @@ inline_script = {
 @ascended_sr_upkeep = @[ 1 * $TIER$ ]
 category = manufacturing
 building_sets = {
-	industrial
-	factory
-	foundry
+    industrial
+    factory
+    foundry
+    aot_building_tier_$TIER$
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_gestalt = no
-			has_technology = $PREREQUISITE$
-		}
-	}
-	modifier = {
-		job_$JOB$_add = @num_jobs
-	}
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_gestalt = no
+            has_technology = $PREREQUISITE$
+        }
+    }
+    modifier = {
+        job_$JOB$_add = @num_jobs
+    }
 }
 triggered_planet_modifier = {
-	potential = {
-		exists = planet_owner
-		planet_owner = {
-			is_gestalt = yes
-		}
-	}
-	modifier = {
-		job_$JOB_HIVE$_add = @num_jobs
-	}
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_gestalt = yes
+        }
+    }
+    modifier = {
+        job_$JOB_HIVE$_add = @num_jobs
+    }
 }
 resources = {
-	category = planet_buildings
-	cost = {
-		$COST$
-	}
-	produces = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_rare_crystals
-			}
-		}
-		rare_crystals = @ascended_sr_prod
-	}
-	produces = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_volatile_motes
-			}
-		}
-		volatile_motes = @ascended_sr_prod
-	}
-	produces = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_exotic_gases
-			}
-		}
-		exotic_gases = @ascended_sr_prod
-	}
-	produces = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_mine_living_metal
-			}
-		}
-		sr_living_metal = @ascended_sr_prod_small
-	}
-	produces = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_nanite_transmutation
-			}
-		}
-		nanites = @ascended_sr_prod_small
-	}
-	produces = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_mine_zro
-			}
-		}
-		sr_zro = @ascended_sr_prod_small
-	}
-	upkeep = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_rare_crystals
-			}
-		}
-		acot_sr_dark_energy = @ascended_sr_upkeep
-		sr_dark_matter = @ascended_sr_upkeep
-	}
-	upkeep = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_volatile_motes
-			}
-		}
-		acot_sr_dark_energy = @ascended_sr_upkeep
-		sr_dark_matter = @ascended_sr_upkeep
-	}
-	upkeep = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_exotic_gases
-			}
-		}
-		acot_sr_dark_energy = @ascended_sr_upkeep
-		sr_dark_matter = @ascended_sr_upkeep
-	}
-	upkeep = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_mine_living_metal
-			}
-		}
-		acot_sr_dark_energy = @ascended_sr_upkeep
-		sr_dark_matter = @ascended_sr_upkeep
-	}
-	upkeep = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_nanite_transmutation
-			}
-		}
-		acot_sr_dark_energy = @ascended_sr_upkeep
-		sr_dark_matter = @ascended_sr_upkeep
-	}
-	upkeep = {
-		trigger = {
-			has_modifier = acot_modifier_ascended_city
-			planet_owner = {
-				has_technology = tech_mine_zro
-			}
-		}
-		acot_sr_dark_energy = @ascended_sr_upkeep
-		sr_dark_matter = @ascended_sr_upkeep
-	}
+    category = planet_buildings
+    cost = {
+        $COST$
+    }
+    produces = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_rare_crystals
+            }
+        }
+        rare_crystals = @ascended_sr_prod
+    }
+    produces = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_volatile_motes
+            }
+        }
+        volatile_motes = @ascended_sr_prod
+    }
+    produces = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_exotic_gases
+            }
+        }
+        exotic_gases = @ascended_sr_prod
+    }
+    produces = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_mine_living_metal
+            }
+        }
+        sr_living_metal = @ascended_sr_prod_small
+    }
+    produces = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_nanite_transmutation
+            }
+        }
+        nanites = @ascended_sr_prod_small
+    }
+    produces = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_mine_zro
+            }
+        }
+        sr_zro = @ascended_sr_prod_small
+    }
+    upkeep = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_rare_crystals
+            }
+        }
+        acot_sr_dark_energy = @ascended_sr_upkeep
+        sr_dark_matter = @ascended_sr_upkeep
+    }
+    upkeep = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_volatile_motes
+            }
+        }
+        acot_sr_dark_energy = @ascended_sr_upkeep
+        sr_dark_matter = @ascended_sr_upkeep
+    }
+    upkeep = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_exotic_gases
+            }
+        }
+        acot_sr_dark_energy = @ascended_sr_upkeep
+        sr_dark_matter = @ascended_sr_upkeep
+    }
+    upkeep = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_mine_living_metal
+            }
+        }
+        acot_sr_dark_energy = @ascended_sr_upkeep
+        sr_dark_matter = @ascended_sr_upkeep
+    }
+    upkeep = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_nanite_transmutation
+            }
+        }
+        acot_sr_dark_energy = @ascended_sr_upkeep
+        sr_dark_matter = @ascended_sr_upkeep
+    }
+    upkeep = {
+        trigger = {
+            has_modifier = acot_modifier_ascended_city
+            planet_owner = {
+                has_technology = tech_mine_zro
+            }
+        }
+        acot_sr_dark_energy = @ascended_sr_upkeep
+        sr_dark_matter = @ascended_sr_upkeep
+    }
 }
