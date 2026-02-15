@@ -351,12 +351,11 @@ restore_special_zones = {
             has_planet_flag = has_zone_habitat_knights
         }
         hidden_effect = {
-            switch = {
-                trigger = is_planet_class
-                pc_dm_habitat = { add_zone = { district = district_dm_hab_housing zone = zone_habitat_knights zone_slot = 1 replace = yes } }
-                pc_ae_habitat = { add_zone = { district = district_ae_hab_housing zone = zone_habitat_knights zone_slot = 1 replace = yes } }
-                pc_phanon_habitat = { add_zone = { district = district_hab_phanon_housing zone = zone_habitat_knights zone_slot = 1 replace = yes } }
-                pc_sigma_habitat = { add_zone = { district = district_hab_stellarite_housing zone = zone_habitat_knights zone_slot = 1 replace = yes } }
+            add_zone = {
+                district = district_dm_hab_housing
+                zone = zone_habitat_knights
+                zone_slot = 1
+                replace = yes
             }
             add_building = {
                 zone = zone_habitat_knights
@@ -522,6 +521,47 @@ replace_habitat_capital_building = {
         }
     }
 }
+# Helper function to upgrade the habitat special resource zone on retrofit.
+swap_special_habitat_zone = {
+    optimize_memory
+    if = {
+        limit = { has_zone = { zone = zone_aot_$FROM$_habitat_special_booster } }
+        add_zone = {
+            district = district_dm_hab_dark_matter_energy
+            zone = zone_aot_$TO$_habitat_special_booster
+            zone_slot = 0
+            replace = yes
+        }
+    }
+    else_if = {
+        limit = { has_zone = { zone = zone_aot_$FROM$_habitat_special_research } }
+        add_zone = {
+            district = district_dm_hab_dark_matter_energy
+            zone = zone_aot_$TO$_habitat_special_research
+            zone_slot = 0
+            replace = yes
+        }
+    }
+    else = {
+        add_zone = {
+            district = district_dm_hab_dark_matter_energy
+            zone = zone_aot_$TO$_habitat_special_resources
+            zone_slot = 0
+            replace = yes
+        }
+    }
+}
+# Upgrades the habitat special resource district to the current habitat tier.
+upgrade_habitat_special_resource_zone = {
+    optimize_memory
+    switch = {
+        trigger = is_planet_class
+        pc_ae_habitat = { swap_special_habitat_zone = { FROM = delta TO = alpha } }
+        pc_phanon_habitat = { swap_special_habitat_zone = { FROM = alpha TO = phanon } }
+        pc_sigma_habitat = { swap_special_habitat_zone = { FROM = phanon TO = sigma } }
+        pc_sigma_deepspace_habitat = { swap_special_habitat_zone = { FROM = phanon TO = sigma } }
+    }
+}
 
 # -------- Temporary disabled mining and energy district code, as it doesn't work anyways. ------- #
 upgrade_dm_habitat = {
@@ -605,6 +645,7 @@ upgrade_ae_habitat = {
     }
     replace_habitat_capital_building = yes
     upgrade_all_support_pylons = yes
+    upgrade_habitat_special_resource_zone = yes
     # Refresh and upgrade orbitals.
     planet_event = {
         id = aot_habitat_events.90
@@ -655,6 +696,7 @@ upgrade_phanon_habitat = {
     }
     replace_habitat_capital_building = yes
     upgrade_all_support_pylons = yes
+    upgrade_habitat_special_resource_zone = yes
     # Refresh and upgrade orbitals.
     planet_event = {
         id = aot_habitat_events.90
@@ -706,6 +748,7 @@ upgrade_sigma_habitat = {
     }
     replace_habitat_capital_building = yes
     upgrade_all_support_pylons = yes
+    upgrade_habitat_special_resource_zone = yes
     # Refresh and upgrade orbitals.
     planet_event = {
         id = aot_habitat_events.90
