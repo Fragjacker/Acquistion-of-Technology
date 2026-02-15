@@ -1,56 +1,57 @@
 inline_script = {
-	script = shared/normal_buildings_base
-	ALLOW = "$ALLOW$"
-	CAN_BUILD = $CAN_BUILD$
-	PREREQUISITE = $PREREQUISITE$
-	UPGRADES_INTO = $UPGRADES_INTO$
-	AI_FACTORS = "$AI_FACTORS$"
-	TIER = $TIER$
+    script = shared/normal_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
 }
 @base_jobs = 400
 category = unity
 building_sets = {
-	unity
-	government
+    unity
+    government
+    aot_building_tier_$TIER$
 }
 potential = {
-	exists = planet_owner
-	planet_owner = {
-		is_individualistic_empire = yes
-		has_technology = $PREREQUISITE$
-	}
+    exists = planet_owner
+    planet_owner = {
+        is_individualistic_empire = yes
+        has_technology = $PREREQUISITE$
+    }
 }
 destroy_trigger = {
-	exists = planet_owner
-	OR = {
-		planet_owner = {
-			is_regular_empire = no
-		}
-	}
+    exists = planet_owner
+    OR = {
+        planet_owner = {
+            is_regular_empire = no
+        }
+    }
 }
 planet_modifier = {
-	job_$JOB$_add = @[ base_jobs * two_exp$EXPONENT$ ]
+    job_$JOB$_add = @[ base_jobs * two_exp$EXPONENT$ ]
 }
 country_modifier = {
-	empire_size_mult = @[ - 0.01 * $TIER$ ]
+    empire_size_mult = @[ - 0.01 * $TIER$ ]
 }
 triggered_desc = {
-	text = job_$JOB$_effect_desc
+    text = job_$JOB$_effect_desc
 }
 resources = {
-	category = planet_buildings
-	cost = {
-		$COST$
-	}
-	upkeep = {
-		$UPKEEP$
-	}
+    category = planet_buildings
+    cost = {
+        $COST$
+    }
+    upkeep = {
+        $UPKEEP$
+    }
 }
 on_queued = {
-	planet = {
-		set_timed_planet_flag = {
-			flag = recent_admin_building_built
-			years = 2
-		}
-	}
+    planet = {
+        set_timed_planet_flag = {
+            flag = recent_admin_building_built
+            years = 2
+        }
+    }
 }

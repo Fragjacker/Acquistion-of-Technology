@@ -1,47 +1,48 @@
 inline_script = {
-	script = shared/normal_buildings_base
-	ALLOW = "$ALLOW$"
-	CAN_BUILD = $CAN_BUILD$
-	PREREQUISITE = $PREREQUISITE$
-	UPGRADES_INTO = $UPGRADES_INTO$
-	AI_FACTORS = "$AI_FACTORS$"
-	TIER = $TIER$
+    script = shared/normal_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
 }
 category = unity
 building_sets = {
-	government
-	urban
-	entertainment
+    government
+    urban
+    entertainment
+    aot_building_tier_$TIER$
 }
 potential = {
-	NOR = {
-		has_modifier = slave_colony
-		has_modifier = penal_colony
-	}
-	planet_owner = {
-		is_regular_empire = yes
-	}
-	NOT = { has_building = building_low_tech_capital }
-	OR = {
-		has_planet_flag = ignore_ai_building_limitations
-		planet_owner = {
-			NOT = { is_ai = yes }
-		}
-		AND = {
-			NOT = { has_available_jobs = acot_entertainer }
-			NOT = { has_forbidden_jobs = acot_entertainer }
-		}
-	}
+    NOR = {
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
+    planet_owner = {
+        is_regular_empire = yes
+    }
+    NOT = { has_building = building_low_tech_capital }
+    OR = {
+        has_planet_flag = ignore_ai_building_limitations
+        planet_owner = {
+            NOT = { is_ai = yes }
+        }
+        AND = {
+            NOT = { has_available_jobs = acot_entertainer }
+            NOT = { has_forbidden_jobs = acot_entertainer }
+        }
+    }
 }
 destroy_trigger = {
-	exists = planet_owner
-	OR = {
-		planet_owner = { is_regular_empire = no }
-		has_modifier = slave_colony
-	}
+    exists = planet_owner
+    OR = {
+        planet_owner = { is_regular_empire = no }
+        has_modifier = slave_colony
+    }
 }
 planet_modifier = {
-	planet_housing_add = @[ auto_housing_dm * $TIER$ ]
-	planet_amenities_add = @[ auto_amenities_dm * $TIER$ ]
-	job_acot_entertainer_add = @[ 200 * $TIER$ ]
+    planet_housing_add = @[ auto_housing_dm * $TIER$ ]
+    planet_amenities_add = @[ auto_amenities_dm * $TIER$ ]
+    job_acot_entertainer_add = @[ 200 * $TIER$ ]
 }
