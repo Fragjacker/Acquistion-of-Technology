@@ -1,0 +1,65 @@
+allow = {
+    has_ascension_perk = ap_precursor_dream
+    resource_stockpile_compare = {
+        resource = acot_sr_dark_energy
+        value >= $SR_COST$
+    }
+    resource_stockpile_compare = {
+        resource = sr_dark_matter
+        value >= $SR_COST$
+    }
+}
+add_resource = {
+    acot_sr_dark_energy = -$SR_COST$
+    sr_dark_matter = -$SR_COST$
+}
+hidden_effect = {
+    begin_event_chain = {
+        event_chain = acot_precursor_design_chain
+    }
+    add_event_chain_counter = {
+        event_chain = acot_precursor_design_chain
+        counter = quota_required
+        amount = $QUOTA$
+    }
+    set_variable = {
+        which = acot_quota_required
+        value = $QUOTA$
+    }
+    if = {
+        limit = {
+            has_ascension_perk = ap_precursor_dream
+        }
+        add_event_chain_counter = {
+            event_chain = acot_precursor_design_chain
+            counter = attempts_remain
+            amount = @[ $ATTEMPTS$ + 1 ]
+        }
+        set_variable = {
+            which = acot_quota_attempts
+            value = @[ $ATTEMPTS$ + 1 ]
+        }
+    }
+    else_if = {
+        limit = {
+            NOT = {
+                has_ascension_perk = ap_precursor_dream
+            }
+        }
+        add_event_chain_counter = {
+            event_chain = acot_precursor_design_chain
+            counter = attempts_remain
+            amount = $ATTEMPTS$
+        }
+        set_variable = {
+            which = acot_quota_attempts
+            value = $ATTEMPTS$
+        }
+    }
+    set_country_flag = precuursor_design_project_active
+    remove_country_flag = acot_databank_diplomacy_engaged
+    country_event = {
+        id = acot_precursor_databank.901
+        days = 1
+    }
+}
