@@ -24,12 +24,17 @@ event = {
 
     trigger = {
         NAND = {
-            has_global_flag = acot_live_version_v5 #
-            has_global_flag = aot_live_version_v6 #
+            has_global_flag = acot_live_version_v5
+            has_global_flag = aot_live_version_v6
         }
     }
 
     immediate = {
+        if = {
+            limit = { NOT = { has_global_flag = aot_live_version_v6 } }
+            set_global_flag = aot_live_version_v6 # Set it now so the event won't trigger more than once.
+            set_global_flag = has_wrong_AoT_version # Set this flag here for error handling downstream.
+        }
         every_playable_country = {
             limit = {
                 is_ai = no
@@ -62,8 +67,8 @@ country_event = {
 
     option = {
         trigger = {
-            has_global_flag = aot_live_version_v6
-            NOT = {
+            NAND = {
+                has_global_flag = has_wrong_AoT_version
                 has_global_flag = acot_live_version_v5
             }
         }
@@ -73,10 +78,8 @@ country_event = {
     }
     option = {
         trigger = {
+            has_global_flag = has_wrong_AoT_version
             has_global_flag = acot_live_version_v5
-            NOT = {
-                has_global_flag = aot_live_version_v6
-            }
         }
         name = aot_startup.9999.a
         response_text = aot_startup.9999.a2.response
