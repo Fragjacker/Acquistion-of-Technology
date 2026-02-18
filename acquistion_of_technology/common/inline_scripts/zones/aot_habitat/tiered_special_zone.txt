@@ -13,6 +13,12 @@ zone_aot_$TIER_NAME$_habitat_special_booster = {
         RESOURCE_MULT = -0.5
         INJECTED_MODIFIERS = "$INJECTED_MODIFIERS_POSITIVE$"
     }
+    inline_script = {
+        script = zones/aot_habitat/zone_job_swaps/$SWAP_MODE$
+        AMOUNT = @habitat_zone_district_1_job
+        NORMAL_JOB = $NORMAL_JOB$
+        GESTALT_JOB = $GESTALT_JOB$
+    }
     included_building_sets = {
         industrial
     }
@@ -28,9 +34,15 @@ zone_aot_$TIER_NAME$_habitat_special_research = {
     }
     inline_script = {
         script = jobs/zones/aot_researchers
-        AMOUNT = $AMOUNT$
+        AMOUNT = @[ habitat_zone_district_1_job * 0.75 * 2 ]
         JOBS = $JOB_TIER$_researcher
         JOBS_GESTALT = $JOB_TIER$_researcherdrone
+    }
+    inline_script = {
+        script = zones/aot_habitat/zone_job_swaps/$SWAP_MODE$
+        AMOUNT = @[ habitat_zone_district_1_job * ( 0.25 ) ]
+        NORMAL_JOB = $NORMAL_JOB$
+        GESTALT_JOB = $GESTALT_JOB$
     }
     inline_script = {
         script = zones/aot_habitat/part/planet_modifer_shared
@@ -53,15 +65,21 @@ zone_aot_$TIER_NAME$_habitat_special_resources = {
     }
     inline_script = {
         script = jobs/zones/aot_miners
-        AMOUNT = $AMOUNT$
+        AMOUNT = @[ habitat_zone_district_1_job * 0.8 * 0.75 * 2 ]
         JOBS = $JOB_TIER$_mineralman
         JOBS_GESTALT = $JOB_TIER$_mineraldrone
     }
     inline_script = {
         script = jobs/zones/aot_technicians
-        AMOUNT = $AMOUNT$
+        AMOUNT = @[ habitat_zone_district_1_job * 0.2 * 0.75 * 2 ]
         JOBS = $JOB_TIER$_energyman
         JOBS_GESTALT = $JOB_TIER$_energydrone
+    }
+    inline_script = {
+        script = zones/aot_habitat/zone_job_swaps/$SWAP_MODE$
+        AMOUNT = @[ habitat_zone_district_1_job * ( 0.25 ) ]
+        NORMAL_JOB = $NORMAL_JOB$
+        GESTALT_JOB = $GESTALT_JOB$
     }
     inline_script = {
         script = zones/aot_habitat/part/planet_modifer_shared
