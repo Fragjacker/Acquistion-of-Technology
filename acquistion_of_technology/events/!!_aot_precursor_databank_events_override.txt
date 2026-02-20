@@ -2554,3 +2554,147 @@ country_event = {
         }
     }
 }
+
+##################################### MASTER CRAFT EVENTS
+
+#### PROJECT RESOURCE CALL
+country_event = {
+    id = acot_precursor_databank.1003
+    title = acot_precursor_databank.3.name
+    desc = acot_precursor_databank.1003.desc
+
+    is_triggered_only = yes
+    diplomatic = yes
+
+    picture_event_data = {
+        room = acot_sophia_room
+        portrait = event_target:acot_sophia_ruler
+    }
+    custom_gui = "acot_enclave_sophia_window"
+    custom_gui_option = "acot_enclave_sophia_option"
+
+    trigger = {
+    }
+
+    immediate = {
+        set_country_flag = acot_databank_diplomacy_engaged
+    }
+
+    after = {
+    }
+
+    ### STANDARD ###
+    option = {
+        name = acot_precursor_databank.1003.a
+        custom_tooltip = acot_precursor_databank.1003.a.explain
+        allow = {
+
+        }
+        enable_special_project = {
+            name = "ACOT_MASTERY_RESEARCH_PRECURSOR_ATTEMPT"
+            owner = root
+        }
+        default_hide_option = yes
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
+
+    ### HIGH ###
+    option = {
+        name = acot_precursor_databank.1003.b
+        custom_tooltip = acot_precursor_databank.1003.b.explain
+        allow = {
+            resource_stockpile_compare = {
+                resource = alloys
+                value >= 100000
+            }
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 25000
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 25000
+            }
+            resource_stockpile_compare = {
+                resource = acot_sr_stellarite
+                value >= 5000
+            }
+        }
+        add_resource = {
+            alloys = -100000
+            acot_sr_dark_energy = -25000
+            sr_dark_matter = -25000
+            acot_sr_stellarite = -5000
+        }
+        enable_special_project = {
+            name = "ACOT_MASTERY_RESEARCH_PRECURSOR_ATTEMPT_HIGH"
+            owner = root
+        }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
+
+    ### EXTREME ###
+    option = {
+        name = acot_precursor_databank.1003.c
+        custom_tooltip = acot_precursor_databank.1003.c.explain
+        allow = {
+            resource_stockpile_compare = {
+                resource = alloys
+                value >= 500000
+            }
+            resource_stockpile_compare = {
+                resource = acot_sr_dark_energy
+                value >= 125000
+            }
+            resource_stockpile_compare = {
+                resource = sr_dark_matter
+                value >= 125000
+            }
+            resource_stockpile_compare = {
+                resource = acot_sr_stellarite
+                value >= 25000
+            }
+        }
+        add_resource = {
+            alloys = -500000
+            acot_sr_dark_energy = -125000
+            sr_dark_matter = -125000
+            acot_sr_stellarite = -25000
+        }
+        enable_special_project = {
+            name = "ACOT_MASTERY_RESEARCH_PRECURSOR_ATTEMPT_EXTREME"
+            owner = root
+        }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+        }
+    }
+    ### INSANE ###
+    inline_script = {
+        script = events/precursor_mastercraft_res_alloc
+        NAME = acot_precursor_databank.1003.d
+        CUSTOM_TOOLTIP = acot_precursor_databank.1003.d.explain
+        SPECIAL_PROJECT = AOT_MASTERY_RESEARCH_PRECURSOR_ATTEMPT_INSANE
+        EXPONENT = 1
+    }
+    ### LUDICROUS ###
+    inline_script = {
+        script = events/precursor_mastercraft_res_alloc
+        NAME = acot_precursor_databank.1003.e
+        CUSTOM_TOOLTIP = acot_precursor_databank.1003.e.explain
+        SPECIAL_PROJECT = AOT_MASTERY_RESEARCH_PRECURSOR_ATTEMPT_INSANE
+        EXPONENT = 2
+    }
+    ### LMAO ###
+    inline_script = {
+        script = events/precursor_mastercraft_res_alloc
+        NAME = acot_precursor_databank.1003.f
+        CUSTOM_TOOLTIP = acot_precursor_databank.1003.f.explain
+        SPECIAL_PROJECT = AOT_MASTERY_RESEARCH_PRECURSOR_ATTEMPT_INSANE
+        EXPONENT = 3
+    }
+}

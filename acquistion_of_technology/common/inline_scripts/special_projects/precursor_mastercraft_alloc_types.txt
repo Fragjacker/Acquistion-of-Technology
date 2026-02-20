@@ -1,0 +1,56 @@
+cost = @[ 5000000 * two_exp$EXPONENT$ ]
+tech_department = engineering_technology
+picture = GFX_evt_engineering_research
+event_chain = acot_master_precursor_design_chain
+event_scope = country_event
+location = no
+abort_trigger = {
+}
+on_success = {
+    random_list = {
+        80 = {
+            add_event_chain_counter = {
+                event_chain = acot_master_precursor_design_chain
+                counter = progress_numbers
+                amount = @[ 250 * two_exp$EXPONENT$ ]
+            }
+            change_variable = {
+                which = acot_master_quota_required
+                value = @[ - 250 * two_exp$EXPONENT$ ]
+            }
+        }
+        20 = {
+            add_event_chain_counter = {
+                event_chain = acot_master_precursor_design_chain
+                counter = progress_numbers
+                amount = @[ 500 * two_exp$EXPONENT$ ]
+            }
+            change_variable = {
+                which = acot_master_quota_required
+                value = @[ - 500 * two_exp$EXPONENT$ ]
+            }
+        }
+    }
+    ### SUCCESS !!?!?!?!
+    if = {
+        limit = {
+            check_variable = {
+                which = acot_master_quota_required
+                value <= 0
+            }
+        }
+        country_event = { id = acot_precursor_databank.1005 }
+    }
+    ### INCOMPLETED, BUT STILL HAS ATTEMPTS
+    else_if = {
+        limit = {
+            check_variable = {
+                which = acot_master_quota_required
+                value > 0
+            }
+        }
+        country_event = { id = acot_precursor_databank.1004 }
+    }
+}
+on_fail = {
+}

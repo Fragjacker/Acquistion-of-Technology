@@ -1,4 +1,4 @@
-cost = @[ 1000000 * two_exp$EXPONENT$ ]
+cost = @[ 500000 * two_exp$EXPONENT$ ]
 tech_department = physics_technology
 picture = GFX_evt_physics_research
 event_chain = acot_precursor_design_chain
@@ -22,6 +22,17 @@ on_success = {
                 add_event_chain_counter = {
                     event_chain = acot_precursor_design_chain
                     counter = progress_numbers
+                    amount = @[ 100 * two_exp$EXPONENT$ ]
+                }
+                change_variable = {
+                    which = acot_quota_required
+                    value = @[ - 100 * two_exp$EXPONENT$ ]
+                }
+            }
+            20 = {
+                add_event_chain_counter = {
+                    event_chain = acot_precursor_design_chain
+                    counter = progress_numbers
                     amount = @[ 200 * two_exp$EXPONENT$ ]
                 }
                 change_variable = {
@@ -33,22 +44,11 @@ on_success = {
                 add_event_chain_counter = {
                     event_chain = acot_precursor_design_chain
                     counter = progress_numbers
-                    amount = @[ 400 * two_exp$EXPONENT$ ]
+                    amount = @[ 50 * two_exp$EXPONENT$ ]
                 }
                 change_variable = {
                     which = acot_quota_required
-                    value = @[ - 400 * two_exp$EXPONENT$ ]
-                }
-            }
-            20 = {
-                add_event_chain_counter = {
-                    event_chain = acot_precursor_design_chain
-                    counter = progress_numbers
-                    amount = @[ 100 * two_exp$EXPONENT$ ]
-                }
-                change_variable = {
-                    which = acot_quota_required
-                    value = @[ - 100 * two_exp$EXPONENT$ ]
+                    value = @[ - 50 * two_exp$EXPONENT$ ]
                 }
             }
         }
