@@ -10,1727 +10,1727 @@
 
 #-------------------------------------------<  BIG BRAIN  >-----------------------------------------
 acot_precursor_science_nexus_portal = {
-	entity = "precursor_dark_obelisk_construction_portal_entity"
-	construction_entity = "precursor_dark_obelisk_construction_portal_entity"
-	portrait = "GFX_acot_precursor_nexus_background"
-	prerequisites = {
-		tech_precursor_nexus
-	}
-	place_entity_on_planet_plane = yes
-	entity_offset = { x = @science_nexus_entity_x y = @science_nexus_entity_y }
+    entity = "precursor_dark_obelisk_construction_portal_entity"
+    construction_entity = "precursor_dark_obelisk_construction_portal_entity"
+    portrait = "GFX_acot_precursor_nexus_background"
+    prerequisites = {
+        tech_precursor_nexus
+    }
+    place_entity_on_planet_plane = yes
+    entity_offset = { x = @science_nexus_entity_x y = @science_nexus_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_nexus
-		}
-	}
-	possible = {
-		hidden_trigger = {
-			exists = starbase
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_similar_mega"
-			NOR = {
-				has_megastructure = acot_precursor_science_nexus_portal
-				has_megastructure = acot_precursor_science_nexus_stage_one
-				has_megastructure = acot_precursor_science_nexus_stage_two
-				has_megastructure = acot_precursor_science_nexus_stage_three
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_nexus
+        }
+    }
+    possible = {
+        hidden_trigger = {
+            exists = starbase
+        }
+        custom_tooltip = {
+            fail_text = "requires_no_existing_similar_mega"
+            NOR = {
+                has_megastructure = acot_precursor_science_nexus_portal
+                has_megastructure = acot_precursor_science_nexus_stage_one
+                has_megastructure = acot_precursor_science_nexus_stage_two
+                has_megastructure = acot_precursor_science_nexus_stage_three
 
-				# Vanilla nexus
-				has_megastructure = think_tank_0
-				has_megastructure = think_tank_1
-				has_megastructure = think_tank_2
-				has_megastructure = think_tank_3
-				has_megastructure = think_tank_4
-				has_megastructure = think_tank_restored
-				has_megastructure = think_tank_ruined
-			}
-		}
-	}
-	placement_rules = {
-		planet_possible = {
-			custom_tooltip = {
-				fail_text = "requires_surveyed_planet"
-				is_surveyed = {
-					# Prevent leaking habitability information
-					who = prev.from
-					status = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_anomaly"
-				has_anomaly = no
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_existing_megastructure"
-				# can_build_megastructure_on_planet = yes
-				NOR = {
-					has_planet_flag = megastructure
-					has_planet_flag = has_megastructure
-					solar_system = {
-						has_star_flag = ring_world_built
-					}
-					merg_is_hab_ringworld = yes
-					is_planet_class = pc_ringworld_habitable_damaged
-					is_planet_class = pc_ringworld_tech
-					is_planet_class = pc_ringworld_tech_damaged
-					is_planet_class = pc_ringworld_seam
-					is_planet_class = pc_ringworld_seam_damaged
-					merg_is_habitat = yes
-				}
-			}
-			# Balance for habitats
-			custom_tooltip = {
-				fail_text = "requires_not_minor_planetary_body"
-				NOR = {
-					is_asteroid = yes
-					is_moon = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_not_star"
-				is_star = no
-			}
-		} # Use these for all non-star megastructures
-	}
-	country_modifier = {
-	}
-	construction_blocks_and_blocked_by = self_type
-	build_time = 1
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-	}
-	ai_weight = {
-		factor = 5
-		modifier = {
-			factor = 0
-			NOR = {
-				starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
-				any_system_planet = {
-					exists = owner
-					is_owned_by = from
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			any_neighbor_system = {
-				exists = owner
-				NOT = {
-					is_owned_by = from
-				}
-			}
-		}
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-			if = {
-				limit = { has_orbital_station = yes }
-				orbital_station = {
-					dismantle = yes
-				}
-			}
-		}
-		fromfrom = {
-			upgrade_megastructure_to = acot_precursor_science_nexus_stage_one
-		}
-	}
+                # Vanilla nexus
+                has_megastructure = think_tank_0
+                has_megastructure = think_tank_1
+                has_megastructure = think_tank_2
+                has_megastructure = think_tank_3
+                has_megastructure = think_tank_4
+                has_megastructure = think_tank_restored
+                has_megastructure = think_tank_ruined
+            }
+        }
+    }
+    placement_rules = {
+        planet_possible = {
+            custom_tooltip = {
+                fail_text = "requires_surveyed_planet"
+                is_surveyed = {
+                    # Prevent leaking habitability information
+                    who = prev.from
+                    status = yes
+                }
+            }
+            custom_tooltip = {
+                fail_text = "requires_no_anomaly"
+                has_anomaly = no
+            }
+            custom_tooltip = {
+                fail_text = "requires_no_existing_megastructure"
+                # can_build_megastructure_on_planet = yes
+                NOR = {
+                    has_planet_flag = megastructure
+                    has_planet_flag = has_megastructure
+                    solar_system = {
+                        has_star_flag = ring_world_built
+                    }
+                    merg_is_hab_ringworld = yes
+                    is_planet_class = pc_ringworld_habitable_damaged
+                    is_planet_class = pc_ringworld_tech
+                    is_planet_class = pc_ringworld_tech_damaged
+                    is_planet_class = pc_ringworld_seam
+                    is_planet_class = pc_ringworld_seam_damaged
+                    merg_is_habitat = yes
+                }
+            }
+            # Balance for habitats
+            custom_tooltip = {
+                fail_text = "requires_not_minor_planetary_body"
+                NOR = {
+                    is_asteroid = yes
+                    is_moon = yes
+                }
+            }
+            custom_tooltip = {
+                fail_text = "requires_not_star"
+                is_star = no
+            }
+        } # Use these for all non-star megastructures
+    }
+    country_modifier = {
+    }
+    construction_blocks_and_blocked_by = self_type
+    build_time = 1
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+    }
+    ai_weight = {
+        factor = 5
+        modifier = {
+            factor = 0
+            NOR = {
+                starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+                any_system_planet = {
+                    exists = owner
+                    is_owned_by = from
+                }
+            }
+        }
+        modifier = {
+            factor = 0
+            any_neighbor_system = {
+                exists = owner
+                NOT = {
+                    is_owned_by = from
+                }
+            }
+        }
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        fromfrom.planet = {
+            set_planet_flag = has_megastructure
+            if = {
+                limit = { has_orbital_station = yes }
+                orbital_station = {
+                    dismantle = yes
+                }
+            }
+        }
+        fromfrom = {
+            upgrade_megastructure_to = acot_precursor_science_nexus_stage_one
+        }
+    }
 }
 acot_precursor_science_nexus_stage_one = {
-	entity = "acot_precursor_nexus_stage_1_entity"
-	construction_entity = "acot_precursor_nexus_stage_1_entity"
-	portrait = "GFX_acot_precursor_nexus_background"
-	prerequisites = {
-		tech_precursor_nexus
-	}
-	upgrade_from = {
-		acot_precursor_science_nexus_portal
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @science_nexus_entity_x y = @science_nexus_entity_y }
+    entity = "acot_precursor_nexus_stage_1_entity"
+    construction_entity = "acot_precursor_nexus_stage_1_entity"
+    portrait = "GFX_acot_precursor_nexus_background"
+    prerequisites = {
+        tech_precursor_nexus
+    }
+    upgrade_from = {
+        acot_precursor_science_nexus_portal
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @science_nexus_entity_x y = @science_nexus_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_nexus
-		}
-	}
-	country_modifier = {
-		all_technology_research_speed = 0.05
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-		produces = {
-			society_research = 300
-			engineering_research = 300
-			physics_research = 300
-			minor_artifacts = 3
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_nexus
+        }
+    }
+    country_modifier = {
+        all_technology_research_speed = 0.05
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+        produces = {
+            society_research = 300
+            engineering_research = 300
+            physics_research = 300
+            minor_artifacts = 3
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 acot_precursor_science_nexus_stage_two = {
-	entity = "acot_precursor_nexus_stage_2_entity"
-	construction_entity = "acot_precursor_nexus_stage_2_entity"
-	portrait = "GFX_acot_precursor_nexus_background"
-	prerequisites = {
-		tech_precursor_nexus
-	}
-	upgrade_from = {
-		acot_precursor_science_nexus_stage_one
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @science_nexus_entity_x y = @science_nexus_entity_y }
+    entity = "acot_precursor_nexus_stage_2_entity"
+    construction_entity = "acot_precursor_nexus_stage_2_entity"
+    portrait = "GFX_acot_precursor_nexus_background"
+    prerequisites = {
+        tech_precursor_nexus
+    }
+    upgrade_from = {
+        acot_precursor_science_nexus_stage_one
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @science_nexus_entity_x y = @science_nexus_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_nexus
-		}
-	}
-	country_modifier = {
-		all_technology_research_speed = 0.1
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-		produces = {
-			society_research = 450
-			engineering_research = 450
-			physics_research = 450
-			minor_artifacts = 4.5
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_nexus
+        }
+    }
+    country_modifier = {
+        all_technology_research_speed = 0.1
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+        produces = {
+            society_research = 450
+            engineering_research = 450
+            physics_research = 450
+            minor_artifacts = 4.5
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 acot_precursor_science_nexus_stage_three = {
-	entity = "acot_precursor_nexus_stage_3_entity"
-	construction_entity = "acot_precursor_nexus_stage_3_entity"
-	portrait = "GFX_acot_precursor_nexus_background"
-	prerequisites = {
-		tech_precursor_nexus
-	}
-	upgrade_from = {
-		acot_precursor_science_nexus_stage_two
-		think_tank_3
-		think_tank_4
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @science_nexus_entity_x y = @science_nexus_entity_y }
+    entity = "acot_precursor_nexus_stage_3_entity"
+    construction_entity = "acot_precursor_nexus_stage_3_entity"
+    portrait = "GFX_acot_precursor_nexus_background"
+    prerequisites = {
+        tech_precursor_nexus
+    }
+    upgrade_from = {
+        acot_precursor_science_nexus_stage_two
+        think_tank_3
+        think_tank_4
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @science_nexus_entity_x y = @science_nexus_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_nexus
-		}
-	}
-	country_modifier = {
-		all_technology_research_speed = 0.2
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-		produces = {
-			society_research = 600
-			engineering_research = 600
-			physics_research = 600
-			minor_artifacts = 6
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_nexus
+        }
+    }
+    country_modifier = {
+        all_technology_research_speed = 0.2
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+        produces = {
+            society_research = 600
+            engineering_research = 600
+            physics_research = 600
+            minor_artifacts = 6
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 
 #--------------------------------------------<  RTS MEGA  >-----------------------------------------
 
 acot_precursor_strategy_center_portal = {
-	entity = "precursor_dark_obelisk_construction_portal_entity"
-	construction_entity = "precursor_dark_obelisk_construction_portal_entity"
-	portrait = "GFX_acot_precursor_strategy_background"
-	prerequisites = {
-		tech_precursor_strategy_center
-	}
-	place_entity_on_planet_plane = yes
-	entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
+    entity = "precursor_dark_obelisk_construction_portal_entity"
+    construction_entity = "precursor_dark_obelisk_construction_portal_entity"
+    portrait = "GFX_acot_precursor_strategy_background"
+    prerequisites = {
+        tech_precursor_strategy_center
+    }
+    place_entity_on_planet_plane = yes
+    entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_strategy_center
-		}
-	}
-	possible = {
-		hidden_trigger = {
-			exists = starbase
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_similar_mega"
-			NOR = {
-				has_megastructure = acot_precursor_strategy_center_portal
-				has_megastructure = acot_precursor_strategy_center_stage_one
-				has_megastructure = acot_precursor_strategy_center_stage_two
-				has_megastructure = acot_precursor_strategy_center_stage_three
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_strategy_center
+        }
+    }
+    possible = {
+        hidden_trigger = {
+            exists = starbase
+        }
+        custom_tooltip = {
+            fail_text = "requires_no_existing_similar_mega"
+            NOR = {
+                has_megastructure = acot_precursor_strategy_center_portal
+                has_megastructure = acot_precursor_strategy_center_stage_one
+                has_megastructure = acot_precursor_strategy_center_stage_two
+                has_megastructure = acot_precursor_strategy_center_stage_three
 
-				# Vanilla
-				has_megastructure = strategic_coordination_center_0
-				has_megastructure = strategic_coordination_center_1
-				has_megastructure = strategic_coordination_center_2
-				has_megastructure = strategic_coordination_center_3
-				has_megastructure = strategic_coordination_center_restored
-				has_megastructure = strategic_coordination_center_ruined
-			}
-		}
-	}
-	placement_rules = {
-		planet_possible = {
-			custom_tooltip = {
-				fail_text = "requires_surveyed_planet"
-				is_surveyed = {
-					# Prevent leaking habitability information
-					who = prev.from
-					status = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_anomaly"
-				has_anomaly = no
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_existing_megastructure"
-				# can_build_megastructure_on_planet = yes
-				NOR = {
-					has_planet_flag = megastructure
-					has_planet_flag = has_megastructure
-					solar_system = {
-						has_star_flag = ring_world_built
-					}
-					merg_is_hab_ringworld = yes
-					is_planet_class = pc_ringworld_habitable_damaged
-					is_planet_class = pc_ringworld_tech
-					is_planet_class = pc_ringworld_tech_damaged
-					is_planet_class = pc_ringworld_seam
-					is_planet_class = pc_ringworld_seam_damaged
-					merg_is_habitat = yes
-				}
-			}
-			# Balance for habitats
-			custom_tooltip = {
-				fail_text = "requires_not_minor_planetary_body"
-				NOR = {
-					is_asteroid = yes
-					is_moon = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_not_star"
-				is_star = no
-			}
-		} # Use these for all non-star megastructures
-	}
-	country_modifier = {
-	}
-	construction_blocks_and_blocked_by = self_type
-	build_time = 1
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-	}
-	ai_weight = {
-		factor = 5
-		modifier = {
-			factor = 0
-			NOR = {
-				starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
-				any_system_planet = {
-					exists = owner
-					is_owned_by = from
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			any_neighbor_system = {
-				exists = owner
-				NOT = {
-					is_owned_by = from
-				}
-			}
-		}
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-			if = {
-				limit = { has_orbital_station = yes }
-				orbital_station = {
-					dismantle = yes
-				}
-			}
-		}
-		fromfrom = {
-			upgrade_megastructure_to = acot_precursor_strategy_center_stage_one
-		}
-	}
+                # Vanilla
+                has_megastructure = strategic_coordination_center_0
+                has_megastructure = strategic_coordination_center_1
+                has_megastructure = strategic_coordination_center_2
+                has_megastructure = strategic_coordination_center_3
+                has_megastructure = strategic_coordination_center_restored
+                has_megastructure = strategic_coordination_center_ruined
+            }
+        }
+    }
+    placement_rules = {
+        planet_possible = {
+            custom_tooltip = {
+                fail_text = "requires_surveyed_planet"
+                is_surveyed = {
+                    # Prevent leaking habitability information
+                    who = prev.from
+                    status = yes
+                }
+            }
+            custom_tooltip = {
+                fail_text = "requires_no_anomaly"
+                has_anomaly = no
+            }
+            custom_tooltip = {
+                fail_text = "requires_no_existing_megastructure"
+                # can_build_megastructure_on_planet = yes
+                NOR = {
+                    has_planet_flag = megastructure
+                    has_planet_flag = has_megastructure
+                    solar_system = {
+                        has_star_flag = ring_world_built
+                    }
+                    merg_is_hab_ringworld = yes
+                    is_planet_class = pc_ringworld_habitable_damaged
+                    is_planet_class = pc_ringworld_tech
+                    is_planet_class = pc_ringworld_tech_damaged
+                    is_planet_class = pc_ringworld_seam
+                    is_planet_class = pc_ringworld_seam_damaged
+                    merg_is_habitat = yes
+                }
+            }
+            # Balance for habitats
+            custom_tooltip = {
+                fail_text = "requires_not_minor_planetary_body"
+                NOR = {
+                    is_asteroid = yes
+                    is_moon = yes
+                }
+            }
+            custom_tooltip = {
+                fail_text = "requires_not_star"
+                is_star = no
+            }
+        } # Use these for all non-star megastructures
+    }
+    country_modifier = {
+    }
+    construction_blocks_and_blocked_by = self_type
+    build_time = 1
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+    }
+    ai_weight = {
+        factor = 5
+        modifier = {
+            factor = 0
+            NOR = {
+                starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+                any_system_planet = {
+                    exists = owner
+                    is_owned_by = from
+                }
+            }
+        }
+        modifier = {
+            factor = 0
+            any_neighbor_system = {
+                exists = owner
+                NOT = {
+                    is_owned_by = from
+                }
+            }
+        }
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        fromfrom.planet = {
+            set_planet_flag = has_megastructure
+            if = {
+                limit = { has_orbital_station = yes }
+                orbital_station = {
+                    dismantle = yes
+                }
+            }
+        }
+        fromfrom = {
+            upgrade_megastructure_to = acot_precursor_strategy_center_stage_one
+        }
+    }
 }
 acot_precursor_strategy_center_stage_one = {
-	entity = "acot_precursor_strategic_coordination_center_stage_1_entity"
-	construction_entity = "acot_precursor_strategic_coordination_center_stage_1_entity"
-	portrait = "GFX_acot_precursor_strategy_background"
-	prerequisites = {
-		tech_precursor_strategy_center
-	}
-	upgrade_from = {
-		acot_precursor_strategy_center_portal
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
+    entity = "acot_precursor_strategic_coordination_center_stage_1_entity"
+    construction_entity = "acot_precursor_strategic_coordination_center_stage_1_entity"
+    portrait = "GFX_acot_precursor_strategy_background"
+    prerequisites = {
+        tech_precursor_strategy_center
+    }
+    upgrade_from = {
+        acot_precursor_strategy_center_portal
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_strategy_center
-		}
-	}
-	country_modifier = {
-		country_naval_cap_add = 150
-		country_starbase_capacity_add = 6
-		starbase_defense_platform_capacity_add = 12
-		ship_speed_mult = 0.15
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-		produces = {
-			unity = 250
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_strategy_center
+        }
+    }
+    country_modifier = {
+        country_naval_cap_add = 150
+        country_starbase_capacity_add = 6
+        starbase_defense_platform_capacity_add = 12
+        ship_speed_mult = 0.15
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+        produces = {
+            unity = 250
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 acot_precursor_strategy_center_stage_two = {
-	entity = "acot_precursor_strategic_coordination_center_stage_2_entity"
-	construction_entity = "acot_precursor_strategic_coordination_center_stage_2_entity"
-	portrait = "GFX_acot_precursor_strategy_background"
-	prerequisites = {
-		tech_precursor_strategy_center
-	}
-	upgrade_from = {
-		acot_precursor_strategy_center_stage_one
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
+    entity = "acot_precursor_strategic_coordination_center_stage_2_entity"
+    construction_entity = "acot_precursor_strategic_coordination_center_stage_2_entity"
+    portrait = "GFX_acot_precursor_strategy_background"
+    prerequisites = {
+        tech_precursor_strategy_center
+    }
+    upgrade_from = {
+        acot_precursor_strategy_center_stage_one
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_strategy_center
-		}
-	}
-	country_modifier = {
-		country_naval_cap_add = 200
-		country_starbase_capacity_add = 9
-		starbase_defense_platform_capacity_add = 16
-		ship_speed_mult = 0.25
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-		produces = {
-			unity = 500
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_strategy_center
+        }
+    }
+    country_modifier = {
+        country_naval_cap_add = 200
+        country_starbase_capacity_add = 9
+        starbase_defense_platform_capacity_add = 16
+        ship_speed_mult = 0.25
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+        produces = {
+            unity = 500
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 acot_precursor_strategy_center_stage_three = {
-	entity = "acot_precursor_strategic_coordination_center_stage_3_entity"
-	construction_entity = "acot_precursor_strategic_coordination_center_stage_3_entity"
-	portrait = "GFX_acot_precursor_strategy_background"
-	prerequisites = {
-		tech_precursor_strategy_center
-	}
-	upgrade_from = {
-		acot_precursor_strategy_center_stage_two
-		strategic_coordination_center_3
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
+    entity = "acot_precursor_strategic_coordination_center_stage_3_entity"
+    construction_entity = "acot_precursor_strategic_coordination_center_stage_3_entity"
+    portrait = "GFX_acot_precursor_strategy_background"
+    prerequisites = {
+        tech_precursor_strategy_center
+    }
+    upgrade_from = {
+        acot_precursor_strategy_center_stage_two
+        strategic_coordination_center_3
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_strategy_center
-		}
-	}
-	country_modifier = {
-		country_naval_cap_add = 450
-		country_starbase_capacity_add = 12
-		starbase_defense_platform_capacity_add = 20
-		ship_speed_mult = 0.40
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-		produces = {
-			unity = 1000
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_strategy_center
+        }
+    }
+    country_modifier = {
+        country_naval_cap_add = 450
+        country_starbase_capacity_add = 12
+        starbase_defense_platform_capacity_add = 20
+        ship_speed_mult = 0.40
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+        produces = {
+            unity = 1000
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 #--------------------------------------------<  SENTERY  >------------------------------------------
 
 acot_precursor_sentry_orb_portal = {
-	entity = "precursor_dark_obelisk_construction_portal_entity"
-	construction_entity = "precursor_dark_obelisk_construction_portal_entity"
-	portrait = "GFX_acot_precursor_spy_orb_background"
-	prerequisites = {
-		tech_precursor_spyorb
-	}
-	place_entity_on_planet_plane = yes
-	entity_offset = { x = @spy_orb_phase_0_entity_x y = @spy_orb_phase_0_entity_y }
+    entity = "precursor_dark_obelisk_construction_portal_entity"
+    construction_entity = "precursor_dark_obelisk_construction_portal_entity"
+    portrait = "GFX_acot_precursor_spy_orb_background"
+    prerequisites = {
+        tech_precursor_spyorb
+    }
+    place_entity_on_planet_plane = yes
+    entity_offset = { x = @spy_orb_phase_0_entity_x y = @spy_orb_phase_0_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_spyorb
-		}
-	}
-	possible = {
-		hidden_trigger = {
-			exists = starbase
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_similar_mega"
-			NOR = {
-				has_megastructure = acot_precursor_sentry_orb_portal
-				has_megastructure = acot_precursor_sentry_orb_stage_one
-				has_megastructure = acot_precursor_sentry_orb_stage_two
-				has_megastructure = acot_precursor_sentry_orb_stage_three
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_spyorb
+        }
+    }
+    possible = {
+        hidden_trigger = {
+            exists = starbase
+        }
+        custom_tooltip = {
+            fail_text = "requires_no_existing_similar_mega"
+            NOR = {
+                has_megastructure = acot_precursor_sentry_orb_portal
+                has_megastructure = acot_precursor_sentry_orb_stage_one
+                has_megastructure = acot_precursor_sentry_orb_stage_two
+                has_megastructure = acot_precursor_sentry_orb_stage_three
 
-				# Vanilla
-				has_megastructure = spy_orb_0
-				has_megastructure = spy_orb_1
-				has_megastructure = spy_orb_2
-				has_megastructure = spy_orb_3
-				has_megastructure = spy_orb_4
-				has_megastructure = spy_orb_restored
-				has_megastructure = spy_orb_ruined
-			}
-		}
-	}
-	placement_rules = {
-		planet_possible = {
-			custom_tooltip = {
-				fail_text = "requires_surveyed_planet"
-				is_surveyed = {
-					# Prevent leaking habitability information
-					who = prev.from
-					status = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_anomaly"
-				has_anomaly = no
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_existing_megastructure"
-				# can_build_megastructure_on_planet = yes
-				NOR = {
-					has_planet_flag = megastructure
-					has_planet_flag = has_megastructure
-					solar_system = {
-						has_star_flag = ring_world_built
-					}
-					merg_is_hab_ringworld = yes
-					is_planet_class = pc_ringworld_habitable_damaged
-					is_planet_class = pc_ringworld_tech
-					is_planet_class = pc_ringworld_tech_damaged
-					is_planet_class = pc_ringworld_seam
-					is_planet_class = pc_ringworld_seam_damaged
-					merg_is_habitat = yes
-				}
-			}
-			# Balance for habitats
-			custom_tooltip = {
-				fail_text = "requires_not_minor_planetary_body"
-				NOR = {
-					is_asteroid = yes
-					is_moon = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_not_star"
-				is_star = no
-			}
-		} # Use these for all non-star megastructures
-	}
-	country_modifier = {
-	}
-	construction_blocks_and_blocked_by = self_type
-	build_time = 1
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-	}
-	ai_weight = {
-		factor = 5
-		modifier = {
-			factor = 0
-			NOR = {
-				starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
-				any_system_planet = {
-					exists = owner
-					is_owned_by = from
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			any_neighbor_system = {
-				exists = owner
-				NOT = {
-					is_owned_by = from
-				}
-			}
-		}
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-			if = {
-				limit = { has_orbital_station = yes }
-				orbital_station = {
-					dismantle = yes
-				}
-			}
-		}
-		fromfrom = {
-			upgrade_megastructure_to = acot_precursor_sentry_orb_stage_one
-		}
-	}
+                # Vanilla
+                has_megastructure = spy_orb_0
+                has_megastructure = spy_orb_1
+                has_megastructure = spy_orb_2
+                has_megastructure = spy_orb_3
+                has_megastructure = spy_orb_4
+                has_megastructure = spy_orb_restored
+                has_megastructure = spy_orb_ruined
+            }
+        }
+    }
+    placement_rules = {
+        planet_possible = {
+            custom_tooltip = {
+                fail_text = "requires_surveyed_planet"
+                is_surveyed = {
+                    # Prevent leaking habitability information
+                    who = prev.from
+                    status = yes
+                }
+            }
+            custom_tooltip = {
+                fail_text = "requires_no_anomaly"
+                has_anomaly = no
+            }
+            custom_tooltip = {
+                fail_text = "requires_no_existing_megastructure"
+                # can_build_megastructure_on_planet = yes
+                NOR = {
+                    has_planet_flag = megastructure
+                    has_planet_flag = has_megastructure
+                    solar_system = {
+                        has_star_flag = ring_world_built
+                    }
+                    merg_is_hab_ringworld = yes
+                    is_planet_class = pc_ringworld_habitable_damaged
+                    is_planet_class = pc_ringworld_tech
+                    is_planet_class = pc_ringworld_tech_damaged
+                    is_planet_class = pc_ringworld_seam
+                    is_planet_class = pc_ringworld_seam_damaged
+                    merg_is_habitat = yes
+                }
+            }
+            # Balance for habitats
+            custom_tooltip = {
+                fail_text = "requires_not_minor_planetary_body"
+                NOR = {
+                    is_asteroid = yes
+                    is_moon = yes
+                }
+            }
+            custom_tooltip = {
+                fail_text = "requires_not_star"
+                is_star = no
+            }
+        } # Use these for all non-star megastructures
+    }
+    country_modifier = {
+    }
+    construction_blocks_and_blocked_by = self_type
+    build_time = 1
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+    }
+    ai_weight = {
+        factor = 5
+        modifier = {
+            factor = 0
+            NOR = {
+                starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+                any_system_planet = {
+                    exists = owner
+                    is_owned_by = from
+                }
+            }
+        }
+        modifier = {
+            factor = 0
+            any_neighbor_system = {
+                exists = owner
+                NOT = {
+                    is_owned_by = from
+                }
+            }
+        }
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        fromfrom.planet = {
+            set_planet_flag = has_megastructure
+            if = {
+                limit = { has_orbital_station = yes }
+                orbital_station = {
+                    dismantle = yes
+                }
+            }
+        }
+        fromfrom = {
+            upgrade_megastructure_to = acot_precursor_sentry_orb_stage_one
+        }
+    }
 }
 acot_precursor_sentry_orb_stage_one = {
-	entity = "acot_precursor_spyorb_phase_02_entity"
-	construction_entity = "acot_precursor_spyorb_phase_02_entity"
-	portrait = "GFX_acot_precursor_spy_orb_background"
-	prerequisites = {
-		tech_precursor_spyorb
-	}
-	upgrade_from = {
-		acot_precursor_sentry_orb_portal
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @spy_orb_entity_x y = @spy_orb_entity_y }
+    entity = "acot_precursor_spyorb_phase_02_entity"
+    construction_entity = "acot_precursor_spyorb_phase_02_entity"
+    portrait = "GFX_acot_precursor_spy_orb_background"
+    prerequisites = {
+        tech_precursor_spyorb
+    }
+    upgrade_from = {
+        acot_precursor_sentry_orb_portal
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @spy_orb_entity_x y = @spy_orb_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_spyorb
-		}
-	}
-	country_modifier = {
-		ship_sensor_range_add = 10
-		ship_hyperlane_range_add = 20
-		add_base_country_intel = 40
-		ship_tracking_mult = 0.20
-		ship_accuracy_mult = 0.20
-		ship_weapon_range_mult = 0.20
-		intel_encryption_add = 4
-		intel_decryption_add = 4
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-		produces = {
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_spyorb
+        }
+    }
+    country_modifier = {
+        ship_sensor_range_add = 10
+        ship_hyperlane_range_add = 20
+        add_base_country_intel = 40
+        ship_tracking_mult = 0.20
+        ship_accuracy_mult = 0.20
+        ship_weapon_range_mult = 0.20
+        intel_encryption_add = 4
+        intel_decryption_add = 4
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+        produces = {
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 acot_precursor_sentry_orb_stage_two = {
-	entity = "acot_precursor_spyorb_phase_03_entity"
-	construction_entity = "acot_precursor_spyorb_phase_03_entity"
-	portrait = "GFX_acot_precursor_spy_orb_background"
-	prerequisites = {
-		tech_precursor_spyorb
-	}
-	upgrade_from = {
-		acot_precursor_sentry_orb_stage_one
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @spy_orb_entity_x y = @spy_orb_entity_y }
+    entity = "acot_precursor_spyorb_phase_03_entity"
+    construction_entity = "acot_precursor_spyorb_phase_03_entity"
+    portrait = "GFX_acot_precursor_spy_orb_background"
+    prerequisites = {
+        tech_precursor_spyorb
+    }
+    upgrade_from = {
+        acot_precursor_sentry_orb_stage_one
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @spy_orb_entity_x y = @spy_orb_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_spyorb
-		}
-	}
-	country_modifier = {
-		ship_sensor_range_add = 15
-		ship_hyperlane_range_add = 30
-		add_base_country_intel = 60
-		ship_tracking_mult = 0.30
-		ship_accuracy_mult = 0.30
-		ship_weapon_range_mult = 0.30
-		intel_encryption_add = 5
-		intel_decryption_add = 5
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-		produces = {
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_spyorb
+        }
+    }
+    country_modifier = {
+        ship_sensor_range_add = 15
+        ship_hyperlane_range_add = 30
+        add_base_country_intel = 60
+        ship_tracking_mult = 0.30
+        ship_accuracy_mult = 0.30
+        ship_weapon_range_mult = 0.30
+        intel_encryption_add = 5
+        intel_decryption_add = 5
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+        produces = {
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 acot_precursor_sentry_orb_stage_three = {
-	entity = "acot_precursor_spyorb_phase_04_entity"
-	construction_entity = "acot_precursor_spyorb_phase_04_entity"
-	portrait = "GFX_acot_precursor_spy_orb_background"
-	prerequisites = {
-		tech_precursor_spyorb
-	}
-	upgrade_from = {
-		acot_precursor_sentry_orb_stage_two
-		spy_orb_4
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @spy_orb_entity_x y = @spy_orb_entity_y }
+    entity = "acot_precursor_spyorb_phase_04_entity"
+    construction_entity = "acot_precursor_spyorb_phase_04_entity"
+    portrait = "GFX_acot_precursor_spy_orb_background"
+    prerequisites = {
+        tech_precursor_spyorb
+    }
+    upgrade_from = {
+        acot_precursor_sentry_orb_stage_two
+        spy_orb_4
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @spy_orb_entity_x y = @spy_orb_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_spyorb
-		}
-	}
-	country_modifier = {
-		ship_sensor_range_add = 20
-		ship_hyperlane_range_add = 40
-		add_base_country_intel = 80
-		ship_tracking_mult = 0.40
-		ship_accuracy_mult = 0.40
-		ship_weapon_range_mult = 0.40
-		intel_encryption_add = 6
-		intel_decryption_add = 6
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-		produces = {
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_spyorb
+        }
+    }
+    country_modifier = {
+        ship_sensor_range_add = 20
+        ship_hyperlane_range_add = 40
+        add_base_country_intel = 80
+        ship_tracking_mult = 0.40
+        ship_accuracy_mult = 0.40
+        ship_weapon_range_mult = 0.40
+        intel_encryption_add = 6
+        intel_decryption_add = 6
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+        produces = {
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 
 #---------------------------------------------<  SPHERE  >------------------------------------------
 
 acot_precursor_dyson_sphere_portal = {
-	entity = "precursor_dark_obelisk_construction_portal_entity"
-	construction_entity = "precursor_dark_obelisk_construction_portal_entity"
-	portrait = "GFX_acot_precursor_sphere_background"
-	prerequisites = {
-		tech_precursor_dyson_sphere
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = -7 y = -7 }
+    entity = "precursor_dark_obelisk_construction_portal_entity"
+    construction_entity = "precursor_dark_obelisk_construction_portal_entity"
+    portrait = "GFX_acot_precursor_sphere_background"
+    prerequisites = {
+        tech_precursor_dyson_sphere
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = -7 y = -7 }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_dyson_sphere
-		}
-	}
-	possible = {
-		hidden_trigger = {
-			exists = starbase
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_similar_mega"
-			NOR = {
-				has_megastructure = acot_precursor_dyson_sphere_portal
-				has_megastructure = acot_precursor_dyson_sphere_stage_one
-				has_megastructure = acot_precursor_dyson_sphere_stage_two
-			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_inside_border"
-			is_inside_border = from
-		}
-		custom_tooltip = {
-			fail_text = "requires_surveyed_system"
-			NOT = {
-				any_system_planet = {
-					is_surveyed = {
-						who = prev.from
-						status = no
-					}
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_arc_furnace"
-			system_has_arc_furnace = no
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_arc_furnace_construction"
-			if = {
-				limit = {
-					system_has_arc_furnace = no
-				}
-				NOT = {
-					solar_system = {
-						has_star_flag = arc_furnace_construction
-					}
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = "blocked_by_pre_ftl_policy"
-			if = {
-				limit = {
-					any_system_planet = {
-						exists = owner
-						owner = {
-							is_primitive = yes
-						}
-					}
-				}
-				from = {
-					has_policy_flag = interference_aggressive
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_binary_trinary"
-			NOR = {
-				is_star_class = sc_binary_1
-				is_star_class = sc_binary_2
-				is_star_class = sc_binary_3
-				is_star_class = sc_binary_4
-				is_star_class = sc_binary_5
-				is_star_class = sc_binary_6
-				is_star_class = sc_binary_7
-				is_star_class = sc_binary_8
-				is_star_class = sc_binary_9
-				is_star_class = sc_binary_10
-				is_star_class = sc_trinary_1
-				is_star_class = sc_trinary_2
-				is_star_class = sc_trinary_3
-				is_star_class = sc_trinary_4
-			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_megastructure"
-			has_no_non_gate_megastructure = yes
-			NOT = {
-				any_system_planet = {
-					is_planet_class = pc_cosmogenesis_world
-				}
-			}
-		}
-	}
-	placement_rules = {
-		planet_possible = {
-			custom_tooltip = {
-				fail_text = "must_build_around_star"
-				is_star = yes
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_anomaly"
-				NOT = { has_anomaly = yes }
-			}
-		}
-	}
-	country_modifier = {
-	}
-	construction_blocks_and_blocked_by = self_type
-	build_time = 1
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-	}
-	ai_weight = {
-		factor = 5
-		modifier = {
-			factor = 0
-			NOR = {
-				starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
-				any_system_planet = {
-					exists = owner
-					is_owned_by = from
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			any_neighbor_system = {
-				exists = owner
-				NOT = {
-					is_owned_by = from
-				}
-			}
-		}
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-			if = {
-				limit = { has_orbital_station = yes }
-				orbital_station = {
-					dismantle = yes
-				}
-			}
-		}
-		fromfrom = {
-			upgrade_megastructure_to = acot_precursor_dyson_sphere_stage_one
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_dyson_sphere
+        }
+    }
+    possible = {
+        hidden_trigger = {
+            exists = starbase
+        }
+        custom_tooltip = {
+            fail_text = "requires_no_existing_similar_mega"
+            NOR = {
+                has_megastructure = acot_precursor_dyson_sphere_portal
+                has_megastructure = acot_precursor_dyson_sphere_stage_one
+                has_megastructure = acot_precursor_dyson_sphere_stage_two
+            }
+        }
+        custom_tooltip = {
+            fail_text = "requires_inside_border"
+            is_inside_border = from
+        }
+        custom_tooltip = {
+            fail_text = "requires_surveyed_system"
+            NOT = {
+                any_system_planet = {
+                    is_surveyed = {
+                        who = prev.from
+                        status = no
+                    }
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = "requires_no_arc_furnace"
+            system_has_arc_furnace = no
+        }
+        custom_tooltip = {
+            fail_text = "requires_no_arc_furnace_construction"
+            if = {
+                limit = {
+                    system_has_arc_furnace = no
+                }
+                NOT = {
+                    solar_system = {
+                        has_star_flag = arc_furnace_construction
+                    }
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = "blocked_by_pre_ftl_policy"
+            if = {
+                limit = {
+                    any_system_planet = {
+                        exists = owner
+                        owner = {
+                            is_primitive = yes
+                        }
+                    }
+                }
+                from = {
+                    has_policy_flag = interference_aggressive
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = "requires_no_binary_trinary"
+            NOR = {
+                is_star_class = sc_binary_1
+                is_star_class = sc_binary_2
+                is_star_class = sc_binary_3
+                is_star_class = sc_binary_4
+                is_star_class = sc_binary_5
+                is_star_class = sc_binary_6
+                is_star_class = sc_binary_7
+                is_star_class = sc_binary_8
+                is_star_class = sc_binary_9
+                is_star_class = sc_binary_10
+                is_star_class = sc_trinary_1
+                is_star_class = sc_trinary_2
+                is_star_class = sc_trinary_3
+                is_star_class = sc_trinary_4
+            }
+        }
+        custom_tooltip = {
+            fail_text = "requires_no_existing_megastructure"
+            has_no_non_gate_megastructure = yes
+            NOT = {
+                any_system_planet = {
+                    is_planet_class = pc_cosmogenesis_world
+                }
+            }
+        }
+    }
+    placement_rules = {
+        planet_possible = {
+            custom_tooltip = {
+                fail_text = "must_build_around_star"
+                is_star = yes
+            }
+            custom_tooltip = {
+                fail_text = "requires_no_anomaly"
+                NOT = { has_anomaly = yes }
+            }
+        }
+    }
+    country_modifier = {
+    }
+    construction_blocks_and_blocked_by = self_type
+    build_time = 1
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+    }
+    ai_weight = {
+        factor = 5
+        modifier = {
+            factor = 0
+            NOR = {
+                starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+                any_system_planet = {
+                    exists = owner
+                    is_owned_by = from
+                }
+            }
+        }
+        modifier = {
+            factor = 0
+            any_neighbor_system = {
+                exists = owner
+                NOT = {
+                    is_owned_by = from
+                }
+            }
+        }
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        fromfrom.planet = {
+            set_planet_flag = has_megastructure
+            if = {
+                limit = { has_orbital_station = yes }
+                orbital_station = {
+                    dismantle = yes
+                }
+            }
+        }
+        fromfrom = {
+            upgrade_megastructure_to = acot_precursor_dyson_sphere_stage_one
+        }
+    }
 }
 acot_precursor_dyson_sphere_stage_one = {
-	entity = "acot_precursor_dyson_sphere_stage_1_entity"
-	construction_entity = "acot_precursor_dyson_sphere_stage_1_entity"
-	portrait = "GFX_acot_precursor_sphere_background"
-	prerequisites = {
-		tech_precursor_dyson_sphere
-	}
-	upgrade_from = {
-		acot_precursor_dyson_sphere_portal
-		dyson_swarm_3
-	}
+    entity = "acot_precursor_dyson_sphere_stage_1_entity"
+    construction_entity = "acot_precursor_dyson_sphere_stage_1_entity"
+    portrait = "GFX_acot_precursor_sphere_background"
+    prerequisites = {
+        tech_precursor_dyson_sphere
+    }
+    upgrade_from = {
+        acot_precursor_dyson_sphere_portal
+        dyson_swarm_3
+    }
 
-	#place_entity_on_planet_plane = no
+    #place_entity_on_planet_plane = no
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_dyson_sphere
-		}
-	}
-	country_modifier = {
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		produces = {
-			energy = 5000
-		}
-		produces = {
-			trigger = {
-				solar_system = {
-					OR = {
-						is_star_class = sc_black_hole
-						is_star_class = sc_acot_void_star
-					}
-				}
-			}
-			sr_dark_matter = 500
-			acot_sr_dark_energy = 500
-		}
-		upkeep = {
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_dyson_sphere
+        }
+    }
+    country_modifier = {
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        produces = {
+            energy = 5000
+        }
+        produces = {
+            trigger = {
+                solar_system = {
+                    OR = {
+                        is_star_class = sc_black_hole
+                        is_star_class = sc_acot_void_star
+                    }
+                }
+            }
+            sr_dark_matter = 500
+            acot_sr_dark_energy = 500
+        }
+        upkeep = {
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 acot_precursor_dyson_sphere_stage_two = {
-	entity = "acot_precursor_dyson_sphere_stage_2_entity"
-	construction_entity = "acot_precursor_dyson_sphere_stage_2_entity"
-	portrait = "GFX_acot_precursor_sphere_background"
-	prerequisites = {
-		tech_precursor_enigmalith
-	}
-	upgrade_from = {
-		acot_precursor_dyson_sphere_stage_one
-	}
+    entity = "acot_precursor_dyson_sphere_stage_2_entity"
+    construction_entity = "acot_precursor_dyson_sphere_stage_2_entity"
+    portrait = "GFX_acot_precursor_sphere_background"
+    prerequisites = {
+        tech_precursor_enigmalith
+    }
+    upgrade_from = {
+        acot_precursor_dyson_sphere_stage_one
+    }
 
-	#place_entity_on_planet_plane = no
+    #place_entity_on_planet_plane = no
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_dyson_sphere
-		}
-	}
-	country_modifier = {
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		produces = {
-			energy = 10000
-		}
-		produces = {
-			trigger = {
-				solar_system = {
-					OR = {
-						is_star_class = sc_black_hole
-						is_star_class = sc_acot_void_star
-					}
-				}
-			}
-			sr_dark_matter = 500
-			acot_sr_dark_energy = 500
-		}
-		upkeep = {
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_dyson_sphere
+        }
+    }
+    country_modifier = {
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        produces = {
+            energy = 10000
+        }
+        produces = {
+            trigger = {
+                solar_system = {
+                    OR = {
+                        is_star_class = sc_black_hole
+                        is_star_class = sc_acot_void_star
+                    }
+                }
+            }
+            sr_dark_matter = 500
+            acot_sr_dark_energy = 500
+        }
+        upkeep = {
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 
 #--------------------------------------------<  SHIPYARD  >-----------------------------------------
 
 
 acot_precursor_mega_shipyard_portal = {
-	entity = "precursor_dark_obelisk_construction_portal_entity"
-	construction_entity = "precursor_dark_obelisk_construction_portal_entity"
-	portrait = "GFX_acot_precursor_shipyard_background"
-	prerequisites = {
-		tech_precursor_mega_shipyard
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
+    entity = "precursor_dark_obelisk_construction_portal_entity"
+    construction_entity = "precursor_dark_obelisk_construction_portal_entity"
+    portrait = "GFX_acot_precursor_shipyard_background"
+    prerequisites = {
+        tech_precursor_mega_shipyard
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_mega_shipyard
-		}
-	}
-	possible = {
-		hidden_trigger = {
-			exists = starbase
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_similar_mega"
-			NOR = {
-				has_megastructure = acot_precursor_mega_shipyard_portal
-				has_megastructure = acot_precursor_mega_shipyard
-			}
-		}
-	}
-	placement_rules = {
-		planet_possible = {
-			custom_tooltip = {
-				fail_text = "requires_surveyed_planet"
-				is_surveyed = {
-					# Prevent leaking habitability information
-					who = prev.from
-					status = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_anomaly"
-				has_anomaly = no
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_existing_megastructure"
-				# can_build_megastructure_on_planet = yes
-				NOR = {
-					has_planet_flag = megastructure
-					has_planet_flag = has_megastructure
-					solar_system = {
-						has_star_flag = ring_world_built
-					}
-					merg_is_hab_ringworld = yes
-					is_planet_class = pc_ringworld_habitable_damaged
-					is_planet_class = pc_ringworld_tech
-					is_planet_class = pc_ringworld_tech_damaged
-					is_planet_class = pc_ringworld_seam
-					is_planet_class = pc_ringworld_seam_damaged
-					merg_is_habitat = yes
-				}
-			}
-			# Balance for habitats
-			custom_tooltip = {
-				fail_text = "requires_not_minor_planetary_body"
-				NOR = {
-					is_asteroid = yes
-					is_moon = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_not_star"
-				is_star = no
-			}
-		} # Use these for all non-star megastructures
-	}
-	country_modifier = {
-	}
-	construction_blocks_and_blocked_by = self_type
-	build_time = 1
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-	}
-	ai_weight = {
-		factor = 5
-		modifier = {
-			factor = 0
-			NOR = {
-				starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
-				any_system_planet = {
-					exists = owner
-					is_owned_by = from
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			any_neighbor_system = {
-				exists = owner
-				NOT = {
-					is_owned_by = from
-				}
-			}
-		}
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-			if = {
-				limit = { has_orbital_station = yes }
-				orbital_station = {
-					dismantle = yes
-				}
-			}
-		}
-		fromfrom = {
-			upgrade_megastructure_to = acot_precursor_mega_shipyard
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_mega_shipyard
+        }
+    }
+    possible = {
+        hidden_trigger = {
+            exists = starbase
+        }
+        custom_tooltip = {
+            fail_text = "requires_no_existing_similar_mega"
+            NOR = {
+                has_megastructure = acot_precursor_mega_shipyard_portal
+                has_megastructure = acot_precursor_mega_shipyard
+            }
+        }
+    }
+    placement_rules = {
+        planet_possible = {
+            custom_tooltip = {
+                fail_text = "requires_surveyed_planet"
+                is_surveyed = {
+                    # Prevent leaking habitability information
+                    who = prev.from
+                    status = yes
+                }
+            }
+            custom_tooltip = {
+                fail_text = "requires_no_anomaly"
+                has_anomaly = no
+            }
+            custom_tooltip = {
+                fail_text = "requires_no_existing_megastructure"
+                # can_build_megastructure_on_planet = yes
+                NOR = {
+                    has_planet_flag = megastructure
+                    has_planet_flag = has_megastructure
+                    solar_system = {
+                        has_star_flag = ring_world_built
+                    }
+                    merg_is_hab_ringworld = yes
+                    is_planet_class = pc_ringworld_habitable_damaged
+                    is_planet_class = pc_ringworld_tech
+                    is_planet_class = pc_ringworld_tech_damaged
+                    is_planet_class = pc_ringworld_seam
+                    is_planet_class = pc_ringworld_seam_damaged
+                    merg_is_habitat = yes
+                }
+            }
+            # Balance for habitats
+            custom_tooltip = {
+                fail_text = "requires_not_minor_planetary_body"
+                NOR = {
+                    is_asteroid = yes
+                    is_moon = yes
+                }
+            }
+            custom_tooltip = {
+                fail_text = "requires_not_star"
+                is_star = no
+            }
+        } # Use these for all non-star megastructures
+    }
+    country_modifier = {
+    }
+    construction_blocks_and_blocked_by = self_type
+    build_time = 1
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+    }
+    ai_weight = {
+        factor = 5
+        modifier = {
+            factor = 0
+            NOR = {
+                starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+                any_system_planet = {
+                    exists = owner
+                    is_owned_by = from
+                }
+            }
+        }
+        modifier = {
+            factor = 0
+            any_neighbor_system = {
+                exists = owner
+                NOT = {
+                    is_owned_by = from
+                }
+            }
+        }
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        fromfrom.planet = {
+            set_planet_flag = has_megastructure
+            if = {
+                limit = { has_orbital_station = yes }
+                orbital_station = {
+                    dismantle = yes
+                }
+            }
+        }
+        fromfrom = {
+            upgrade_megastructure_to = acot_precursor_mega_shipyard
+        }
+    }
 }
 acot_precursor_mega_shipyard = {
-	entity = "acot_precursor_shipyard_stage_3_section_entity"
-	construction_entity = "acot_precursor_shipyard_stage_3_section_entity"
-	portrait = "GFX_acot_precursor_shipyard_background"
-	prerequisites = {
-		tech_precursor_mega_shipyard
-	}
-	upgrade_from = {
-		mega_shipyard_3
-		acot_precursor_mega_shipyard_portal
-	}
-	place_entity_on_planet_plane = no
-	entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
+    entity = "acot_precursor_shipyard_stage_3_section_entity"
+    construction_entity = "acot_precursor_shipyard_stage_3_section_entity"
+    portrait = "GFX_acot_precursor_shipyard_background"
+    prerequisites = {
+        tech_precursor_mega_shipyard
+    }
+    upgrade_from = {
+        mega_shipyard_3
+        acot_precursor_mega_shipyard_portal
+    }
+    place_entity_on_planet_plane = no
+    entity_offset = { x = @generic_center_entity_x y = @generic_center_entity_y }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		is_fallen_empire = no
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_mega_shipyard
-		}
-	}
-	ship_modifier = {
-		ship_starting_experience_add = 2500
-	}
-	station_modifier = {
-		starbase_shipyard_capacity_add = 100
-	}
-	country_modifier = {
-		starbase_shipyard_build_speed_mult = 2
-	}
-	build_time = @mega_build_time
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 20000
-		}
-		cost = {
-			sr_dark_matter = 2000
-			acot_sr_dark_energy = 2000
-		}
-		upkeep = {
-		}
-	}
-	ai_weight = {
-		factor = 10
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		create_message = {
-			type = ACOT_MEGA_BUILT
-			localization = message_acot_mega_enigmalith_built
-			days = 20
-			target = fromfrom
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        is_fallen_empire = no
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_mega_shipyard
+        }
+    }
+    ship_modifier = {
+        ship_starting_experience_add = 2500
+    }
+    station_modifier = {
+        starbase_shipyard_capacity_add = 100
+    }
+    country_modifier = {
+        starbase_shipyard_build_speed_mult = 2
+    }
+    build_time = @mega_build_time
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 20000
+        }
+        cost = {
+            sr_dark_matter = 2000
+            acot_sr_dark_energy = 2000
+        }
+        upkeep = {
+        }
+    }
+    ai_weight = {
+        factor = 10
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        create_message = {
+            type = ACOT_MEGA_BUILT
+            localization = message_acot_mega_enigmalith_built
+            days = 20
+            target = fromfrom
+        }
+    }
 }
 
 #--------------------------------------------<  Gateways  >-----------------------------------------
 
 acot_ancient_gateway_portal = {
-	entity = "precursor_dark_obelisk_construction_portal_entity"
-	construction_entity = "precursor_gateway_entity"
-	portrait = "GFX_acot_precursor_nexus_background"
-	prerequisites = {
-		tech_precursor_gateway
-	}
-	place_entity_on_planet_plane = yes
-	build_type = inside_gravity_well
-	entity_offset = { x = 0 y = 0 }
+    entity = "precursor_dark_obelisk_construction_portal_entity"
+    construction_entity = "precursor_gateway_entity"
+    portrait = "GFX_acot_precursor_portal_background"
+    prerequisites = {
+        tech_precursor_gateway
+    }
+    place_entity_on_planet_plane = yes
+    build_type = inside_gravity_well
+    entity_offset = { x = 0 y = 0 }
 
-	# Used from script only
-	# upgrade_desc = hide
-	potential = {
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_gateway
-		}
-	}
-	possible = {
-		exists = starbase
-		custom_tooltip = {
-			fail_text = "requires_inside_border"
-			OR = {
-				is_inside_border = from
-				solar_system = {
-					owner = {
-						OR = {
-							has_defensive_pact = from
-							is_in_federation_with = from
-							AND = {
-								is_subject = yes
-								FROM = {
-									is_overlord_to = prev
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_surveyed_system"
-			NOT = {
-				any_system_planet = {
-					is_surveyed = {
-						who = prev.from
-						status = no
-					}
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_gateway"
-			NOR = {
-				has_megastructure = acot_ancient_gateway
-			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_technology_gateway_construction"
-			from = { has_technology = tech_gateway_construction }
-		}
-	}
-	placement_rules = {
-		# Use these for all non-star megastructures
-	}
-	country_modifier = {
-	}
-	construction_blocks_and_blocked_by = self_type
-	build_time = 1
-	resources = {
-		category = megastructures
-		inline_script = {
-			script = resources/convert_to_food
-			SCOPE = this.owner
-			MODE = cost
-			RESOURCE = alloys
-			AMOUNT = 10000
-		}
-		cost = {
-			sr_dark_matter = 2500
-			acot_sr_dark_energy = 2500
-			influence = 100
-		}
-	}
-	ai_weight = {
-		factor = 5
-		modifier = {
-			factor = 0
-			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
-		}
-		modifier = {
-			factor = 0
-			any_neighbor_system = {
-				OR = {
-					has_megastructure = gateway_0
-					has_megastructure = gateway_ruined
-					has_megastructure = gateway_restored
-					has_megastructure = gateway_final
-					has_megastructure = acot_ancient_gateway
-				}
-			}
-		}
-	}
-	on_build_start = {}
-	on_build_cancel = {}
-	on_build_complete = {
-		fromfrom = {
-			upgrade_megastructure_to = acot_ancient_gateway
-		}
-	}
+    # Used from script only
+    # upgrade_desc = hide
+    potential = {
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_gateway
+        }
+    }
+    possible = {
+        exists = starbase
+        custom_tooltip = {
+            fail_text = "requires_inside_border"
+            OR = {
+                is_inside_border = from
+                solar_system = {
+                    owner = {
+                        OR = {
+                            has_defensive_pact = from
+                            is_in_federation_with = from
+                            AND = {
+                                is_subject = yes
+                                FROM = {
+                                    is_overlord_to = prev
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = "requires_surveyed_system"
+            NOT = {
+                any_system_planet = {
+                    is_surveyed = {
+                        who = prev.from
+                        status = no
+                    }
+                }
+            }
+        }
+        custom_tooltip = {
+            fail_text = "requires_no_existing_gateway"
+            NOR = {
+                has_megastructure = acot_ancient_gateway
+            }
+        }
+        custom_tooltip = {
+            fail_text = "requires_technology_gateway_construction"
+            from = { has_technology = tech_gateway_construction }
+        }
+    }
+    placement_rules = {
+        # Use these for all non-star megastructures
+    }
+    country_modifier = {
+    }
+    construction_blocks_and_blocked_by = self_type
+    build_time = 1
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 10000
+        }
+        cost = {
+            sr_dark_matter = 2500
+            acot_sr_dark_energy = 2500
+            influence = 100
+        }
+    }
+    ai_weight = {
+        factor = 5
+        modifier = {
+            factor = 0
+            starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+        }
+        modifier = {
+            factor = 0
+            any_neighbor_system = {
+                OR = {
+                    has_megastructure = gateway_0
+                    has_megastructure = gateway_ruined
+                    has_megastructure = gateway_restored
+                    has_megastructure = gateway_final
+                    has_megastructure = acot_ancient_gateway
+                }
+            }
+        }
+    }
+    on_build_start = { }
+    on_build_cancel = { }
+    on_build_complete = {
+        fromfrom = {
+            upgrade_megastructure_to = acot_ancient_gateway
+        }
+    }
 }
 acot_ancient_gateway = {
-	entity = "precursor_gateway_entity"
-	construction_entity = "precursor_gateway_entity"
-	portrait = "GFX_acot_precursor_portal_background"
-	prerequisites = {
-		tech_precursor_gateway
-	}
-	place_entity_on_planet_plane = yes
-	entity_offset = { x = 0 y = 0 }
-	show_galactic_map_icon = no
-	potential = {
-		exists = owner
-		owner = {
-			has_technology = tech_precursor_gateway
-		}
-	}
-	upgrade_from = {
-		acot_ancient_gateway_portal
-	}
-	dismantle_cost = {
-		category = megastructures_hyper_relay
-		cost = {
-			energy = 2500
-		}
-	}
-	dismantle_time = 360
-	dismantle_potential = {
-		always = yes
-	}
-	dismantle_possible = {
-		can_dismantle_megastructure = {
-			TECH = tech_precursor_gateway
-		}
-	}
-	on_dismantle_complete = {
-		from = {
-			add_resource = {
-				alloys = 2500
-				mult = modifier:megastructure_dismantle_refund_mult
-			}
-		}
-	}
-	build_time = @mega_build_time
-	construction_blocks_others = no
-	ai_weight = {
-		factor = 5
-		modifier = {
-			factor = 0
-			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
-		}
-		modifier = {
-			factor = 0
-			any_neighbor_system = {
-				OR = {
-					has_megastructure = gateway_0
-					has_megastructure = gateway_ruined
-					has_megastructure = gateway_restored
-					has_megastructure = gateway_final
-					has_megastructure = acot_ancient_gateway
-				}
-			}
-		}
-	}
-	bypass_type = gateway
-	on_build_complete = {
-		activate_gateway = fromfrom
-	}
+    entity = "precursor_gateway_entity"
+    construction_entity = "precursor_gateway_entity"
+    portrait = "GFX_acot_precursor_portal_background"
+    prerequisites = {
+        tech_precursor_gateway
+    }
+    place_entity_on_planet_plane = yes
+    entity_offset = { x = 0 y = 0 }
+    show_galactic_map_icon = no
+    potential = {
+        exists = owner
+        owner = {
+            has_technology = tech_precursor_gateway
+        }
+    }
+    upgrade_from = {
+        acot_ancient_gateway_portal
+    }
+    dismantle_cost = {
+        category = megastructures_hyper_relay
+        cost = {
+            energy = 2500
+        }
+    }
+    dismantle_time = 360
+    dismantle_potential = {
+        always = yes
+    }
+    dismantle_possible = {
+        can_dismantle_megastructure = {
+            TECH = tech_precursor_gateway
+        }
+    }
+    on_dismantle_complete = {
+        from = {
+            add_resource = {
+                alloys = 2500
+                mult = modifier:megastructure_dismantle_refund_mult
+            }
+        }
+    }
+    build_time = @mega_build_time
+    construction_blocks_others = no
+    ai_weight = {
+        factor = 5
+        modifier = {
+            factor = 0
+            starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+        }
+        modifier = {
+            factor = 0
+            any_neighbor_system = {
+                OR = {
+                    has_megastructure = gateway_0
+                    has_megastructure = gateway_ruined
+                    has_megastructure = gateway_restored
+                    has_megastructure = gateway_final
+                    has_megastructure = acot_ancient_gateway
+                }
+            }
+        }
+    }
+    bypass_type = gateway
+    on_build_complete = {
+        activate_gateway = fromfrom
+    }
 }
