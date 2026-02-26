@@ -1607,12 +1607,6 @@ acot_ancient_gateway_portal = {
             }
         }
         custom_tooltip = {
-            fail_text = "requires_no_existing_gateway"
-            NOR = {
-                has_megastructure = acot_ancient_gateway
-            }
-        }
-        custom_tooltip = {
             fail_text = "requires_technology_gateway_construction"
             from = { has_technology = tech_gateway_construction }
         }
@@ -1684,11 +1678,30 @@ acot_ancient_gateway = {
     }
     upgrade_from = {
         acot_ancient_gateway_portal
+        gateway_final
+        gateway_restored
+        gateway_ness_restored
+        gateway_derelict
     }
     dismantle_cost = {
         category = megastructures_hyper_relay
         cost = {
             energy = 2500
+        }
+    }
+    resources = {
+        category = megastructures
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = this.owner
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 10000
+        }
+        cost = {
+            sr_dark_matter = 2500
+            acot_sr_dark_energy = 2500
+            influence = 100
         }
     }
     dismantle_time = 360
@@ -1732,5 +1745,22 @@ acot_ancient_gateway = {
     bypass_type = gateway
     on_build_complete = {
         activate_gateway = fromfrom
+
+        # Remove other ancient gateways if we built another one to allow for moving gateways without down time.
+        fromfrom = {
+            set_megastructure_flag = is_newly_built_gateway
+        }
+        every_system_megastructure = {
+            limit = {
+                is_megastructure_type = acot_ancient_gateway
+                NOT = {
+                    has_megastructure_flag = is_newly_built_gateway
+                }
+            }
+            remove_megastructure = this
+        }
+        fromfrom = {
+            remove_megastructure_flag = is_newly_built_gateway
+        }
     }
 }
