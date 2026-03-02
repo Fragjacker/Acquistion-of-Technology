@@ -1,4 +1,4 @@
-version="6.0.5.1"
+version="6.0.6.0"
 tags={
 	"Technologies"
 	"Gameplay"
