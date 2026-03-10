@@ -63,6 +63,39 @@ country_event = {
             set_owner = root
             set_controller = root
             change_colony_foundation_date = 0            # Needed for acot_pmc.9101
+            # Account for when the user already cleared another phanon vault via Mirror in the Sky event.
+            if = {
+                limit = {
+                    root = {
+                        has_country_flag = acot_phanon_tech_stage_one_enabled
+                    }
+                }
+                set_planet_flag = acot_vault_floor_one_cleared
+            }
+            if = {
+                limit = {
+                    root = {
+                        has_country_flag = acot_phanon_tech_stage_two_enabled
+                    }
+                }
+                set_planet_flag = acot_vault_floor_two_cleared
+            }
+            if = {
+                limit = {
+                    root = {
+                        has_country_flag = acot_phanon_tech_stage_three_enabled
+                    }
+                }
+                set_planet_flag = acot_vault_floor_three_cleared
+            }
+            if = {
+                limit = {
+                    root = {
+                        has_country_flag = acot_phanon_tech_stage_four_enabled
+                    }
+                }
+                set_planet_flag = acot_vault_floor_four_cleared
+            }
             ### CLEAR OUT ZONES IF NO TECH
             if = {
                 limit = {
@@ -452,7 +485,8 @@ country_event = {
     }
     option = {
         name = acot_pmc.1200.a
-        fromfrom = {
+        every_owned_planet = {
+            limit = { is_planet_class = pc_acot_pmc_vault }
             set_planet_size = 25
             set_planet_flag = acot_vault_floor_one_cleared
         }
@@ -658,12 +692,15 @@ country_event = {
     immediate = {
         fromfrom = {
             remove_planet_flag = ongoing_vault_infiltration
-            set_planet_flag = acot_vault_floor_two_cleared
             add_planet_devastation = -100
             add_modifier = {
                 modifier = acot_modifier_vault_delay
                 years = 2
             }
+        }
+        every_owned_planet = {
+            limit = { is_planet_class = pc_acot_pmc_vault }
+            set_planet_flag = acot_vault_floor_two_cleared
         }
         if = {
             limit = {
@@ -895,12 +932,15 @@ country_event = {
         }
         fromfrom = {
             remove_planet_flag = ongoing_vault_infiltration
-            set_planet_flag = acot_vault_floor_three_cleared
             add_planet_devastation = -100
             add_modifier = {
                 modifier = acot_modifier_vault_delay
                 years = 3
             }
+        }
+        every_owned_planet = {
+            limit = { is_planet_class = pc_acot_pmc_vault }
+            set_planet_flag = acot_vault_floor_three_cleared
         }
         if = {
             limit = {
@@ -1151,7 +1191,8 @@ country_event = {
     }
     option = {
         name = acot_pmc.1500.a
-        fromfrom = {
+        every_owned_planet = {
+            limit = { is_planet_class = pc_acot_pmc_vault }
             set_planet_size = 40
         }
         phanon_type_a_tech_gift = yes
