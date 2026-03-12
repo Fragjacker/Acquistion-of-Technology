@@ -19,9 +19,10 @@ entity = {
         emissive_recolor_crunch = 5.0
     }
 }
+#-------------------------------------------<  Barrel FX  >-----------------------------------------
 entity = {
-    name = "warlord_barrel_fx_entity"
-    pdxmesh = "warlord_barrel_fx_mesh"
+    name = "warlord_barrel_fx_delta_entity"
+    pdxmesh = "warlord_barrel_fx_delta_mesh"
     default_state = "idle"
     scale = 1
 
@@ -35,21 +36,20 @@ entity = {
 
     game_data = {
         shader_type = VFX
-
-        bloom_factor = 0.72
-        uv_animation_speed = 0.12
-        uv_animation_direction = { 0.46 0.67 }
+        bloom_factor = 3
+        uv_animation_speed = 0.35
+        uv_animation_direction = { 0.5 0.5 }
 
         wpo_animation_speed = 0.15
         wpo_animation_direction = { 0.5 1.0 }
         wpo_animation_scale = 1.0
         wpo_animation_big_scale = 0.85
-        wpo_animation_offset_strength = 4.0
+        wpo_animation_offset_strength = 10.0
     }
 }
 entity = {
-    name = "warlord_barrel_particle_fx_entity"
-    pdxmesh = "warlord_barrel_fx_mesh"
+    name = "warlord_barrel_fx_alpha_entity"
+    pdxmesh = "warlord_barrel_fx_alpha_mesh"
     default_state = "idle"
     scale = 1
 
@@ -63,19 +63,101 @@ entity = {
 
     game_data = {
         shader_type = VFX
-
-        bloom_factor = 0.72
-        uv_animation_speed = 0.12
-        uv_animation_direction = { 0.46 0.67 }
+        bloom_factor = 3
+        uv_animation_speed = 0.35
+        uv_animation_direction = { 0.5 0.5 }
 
         wpo_animation_speed = 0.15
         wpo_animation_direction = { 0.5 1.0 }
         wpo_animation_scale = 1.0
         wpo_animation_big_scale = 0.85
-        wpo_animation_offset_strength = 4.0
+        wpo_animation_offset_strength = 10.0
     }
 }
+entity = {
+    name = "warlord_barrel_fx_phanon_entity"
+    pdxmesh = "warlord_barrel_fx_phanon_mesh"
+    default_state = "idle"
+    scale = 1
 
+    state = {
+        name = "idle"
+        animation = "idle"
+        animation_speed = 0.5
+        animation_blend_time = 4
+        looping = yes
+    }
+
+    game_data = {
+        shader_type = VFX
+        bloom_factor = 3
+        uv_animation_speed = 0.35
+        uv_animation_direction = { 0.5 0.5 }
+
+        wpo_animation_speed = 0.15
+        wpo_animation_direction = { 0.5 1.0 }
+        wpo_animation_scale = 1.0
+        wpo_animation_big_scale = 0.85
+        wpo_animation_offset_strength = 10.0
+    }
+}
+entity = {
+    name = "warlord_barrel_fx_sigma_entity"
+    pdxmesh = "warlord_barrel_fx_sigma_mesh"
+    default_state = "idle"
+    scale = 1
+
+    state = {
+        name = "idle"
+        animation = "idle"
+        animation_speed = 0.5
+        animation_blend_time = 4
+        looping = yes
+    }
+
+    game_data = {
+        shader_type = VFX
+        bloom_factor = 3
+        uv_animation_speed = 0.35
+        uv_animation_direction = { 0.5 0.5 }
+
+        wpo_animation_speed = 0.15
+        wpo_animation_direction = { 0.5 1.0 }
+        wpo_animation_scale = 1.0
+        wpo_animation_big_scale = 0.85
+        wpo_animation_offset_strength = 10.0
+    }
+}
+entity = {
+    name = "warlord_barrel_fx_omega_entity"
+    pdxmesh = "warlord_barrel_fx_omega_mesh"
+    default_state = "idle"
+    scale = 1
+
+    state = {
+        name = "idle"
+        animation = "idle"
+        animation_speed = 0.5
+        animation_blend_time = 4
+        looping = yes
+    }
+
+    game_data = {
+        shader_type = VFX
+        bloom_factor = 3
+        uv_animation_speed = 0.35
+        uv_animation_direction = { 0.5 0.5 }
+
+        wpo_animation_speed = 0.15
+        wpo_animation_direction = { 0.5 1.0 }
+        wpo_animation_scale = 1.0
+        wpo_animation_big_scale = 0.85
+        wpo_animation_offset_strength = 10.0
+    }
+}
+#--------------------------------------------------------------------------------------------------
+#---------------------------------<  Main warlord entity definition  >------------------------------
+#--------------------------------------------------------------------------------------------------
 entity = {
     name = "dm_warlord_entity"
     pdxmesh = "dm_warlord_mesh"
@@ -111,7 +193,7 @@ entity = {
         event = { time = 0 node = "warlord_right_singularity" particle = "dm_jugg_black_hole_effect" keep_particle = yes trigger_once = yes }
         event = { time = 0 node = "warlord_left_singularity" particle = "dm_jugg_black_hole_effect" keep_particle = yes trigger_once = yes }
 
-        event = { time = 0 node = "main_spinal_gun" particle = "delta_enigmalith_super_effect" keep_particle = yes trigger_once = yes }
+        event = { time = 0 node = "main_spinal_gun" particle = "delta_warlord_barrel_FX" keep_particle = yes trigger_once = yes }
 
         event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_01_idle" } }
         event = { trigger_once = yes sound = { soundeffect = juggernaut_humanoid_idle } }
@@ -146,7 +228,7 @@ entity = {
         event = { time = 0 node = "warlord_right_singularity" particle = "dm_jugg_black_hole_effect" keep_particle = yes trigger_once = yes }
         event = { time = 0 node = "warlord_left_singularity" particle = "dm_jugg_black_hole_effect" keep_particle = yes trigger_once = yes }
 
-        event = { time = 0 node = "main_spinal_gun" particle = "delta_enigmalith_super_effect" keep_particle = yes trigger_once = yes }
+        event = { time = 0 node = "main_spinal_gun" particle = "delta_warlord_barrel_FX" keep_particle = yes trigger_once = yes }
 
         event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_01_idle" } }
         event = { sound = { soundeffect = juggernaut_humanoid_move } }
@@ -166,7 +248,7 @@ entity = {
         event = { time = 6.96 node = "big_explosion_locator" particle = "juggernaut_burn_effect" keep_particle = yes trigger_once = no }
     }
 
-    attach = { main_spinal_gun = "warlord_barrel_fx_entity" }
+    attach = { main_spinal_gun = "warlord_barrel_fx_delta_entity" }
     game_data = {
         trail_locators = {
             "engine_large_01" = { width = @large_trail_W lenght = @large_trail_L }
@@ -221,7 +303,7 @@ entity = {
         event = { time = 0 node = "warlord_right_singularity" particle = "alpha_jugg_black_hole_effect" keep_particle = yes trigger_once = yes }
         event = { time = 0 node = "warlord_left_singularity" particle = "alpha_jugg_black_hole_effect" keep_particle = yes trigger_once = yes }
 
-        event = { time = 0 node = "main_spinal_gun" particle = "quantum_catapult_lightning_stage_2_effect" keep_particle = yes trigger_once = yes }
+        event = { time = 0 node = "main_spinal_gun" particle = "alpha_warlord_barrel_FX" keep_particle = yes trigger_once = yes }
 
         event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
         event = { trigger_once = yes sound = { soundeffect = juggernaut_humanoid_idle } }
@@ -256,7 +338,7 @@ entity = {
         event = { time = 0 node = "warlord_right_singularity" particle = "alpha_jugg_black_hole_effect" keep_particle = yes trigger_once = yes }
         event = { time = 0 node = "warlord_left_singularity" particle = "alpha_jugg_black_hole_effect" keep_particle = yes trigger_once = yes }
 
-        event = { time = 0 node = "main_spinal_gun" particle = "quantum_catapult_lightning_stage_2_effect" keep_particle = yes trigger_once = yes }
+        event = { time = 0 node = "main_spinal_gun" particle = "alpha_warlord_barrel_FX" keep_particle = yes trigger_once = yes }
 
         event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
         event = { sound = { soundeffect = juggernaut_humanoid_move } }
@@ -276,7 +358,7 @@ entity = {
         event = { time = 6.96 node = "big_explosion_locator" particle = "juggernaut_burn_effect" keep_particle = yes trigger_once = no }
     }
 
-    attach = { main_spinal_gun = "warlord_barrel_fx_entity" }
+    attach = { main_spinal_gun = "warlord_barrel_fx_alpha_entity" }
     game_data = {
         trail_locators = {
             "engine_large_01" = { width = @large_trail_W lenght = @large_trail_L }
@@ -331,7 +413,7 @@ entity = {
         event = { time = 0 node = "warlord_right_singularity" particle = "phanon_jugg_stellarite_sun_effect" keep_particle = yes trigger_once = yes }
         event = { time = 0 node = "warlord_left_singularity" particle = "phanon_jugg_stellarite_sun_effect" keep_particle = yes trigger_once = yes }
 
-        event = { time = 0 node = "main_spinal_gun" particle = "phanon_enigmalith_super_effect" keep_particle = yes trigger_once = yes }
+        event = { time = 0 node = "main_spinal_gun" particle = "phanon_warlord_barrel_FX" keep_particle = yes trigger_once = yes }
 
         event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
         event = { trigger_once = yes sound = { soundeffect = juggernaut_humanoid_idle } }
@@ -366,7 +448,7 @@ entity = {
         event = { time = 0 node = "warlord_right_singularity" particle = "phanon_jugg_stellarite_sun_effect" keep_particle = yes trigger_once = yes }
         event = { time = 0 node = "warlord_left_singularity" particle = "phanon_jugg_stellarite_sun_effect" keep_particle = yes trigger_once = yes }
 
-        event = { time = 0 node = "main_spinal_gun" particle = "phanon_enigmalith_super_effect" keep_particle = yes trigger_once = yes }
+        event = { time = 0 node = "main_spinal_gun" particle = "phanon_warlord_barrel_FX" keep_particle = yes trigger_once = yes }
 
         event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
         event = { sound = { soundeffect = juggernaut_humanoid_move } }
@@ -386,7 +468,7 @@ entity = {
         event = { time = 6.96 node = "big_explosion_locator" particle = "juggernaut_burn_effect" keep_particle = yes trigger_once = no }
     }
 
-    attach = { main_spinal_gun = "warlord_barrel_fx_entity" }
+    attach = { main_spinal_gun = "warlord_barrel_fx_phanon_entity" }
     game_data = {
         trail_locators = {
             "engine_large_01" = { width = @large_trail_W lenght = @large_trail_L }
@@ -441,8 +523,7 @@ entity = {
         event = { time = 0 node = "warlord_right_singularity" particle = "sigma_jugg_stellarite_sun_effect" keep_particle = yes trigger_once = yes }
         event = { time = 0 node = "warlord_left_singularity" particle = "sigma_jugg_stellarite_sun_effect" keep_particle = yes trigger_once = yes }
 
-        event = { time = 0 node = "main_spinal_gun" particle = "sigma_enigmalith_super_effect" keep_particle = yes trigger_once = yes }
-        event = { time = 0 node = "main_spinal_gun" particle = "sigma_enigmalith_energy_effect" keep_particle = yes trigger_once = yes }
+        event = { time = 0 node = "main_spinal_gun" particle = "sigma_warlord_barrel_FX" keep_particle = yes trigger_once = yes }
 
         event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
         event = { trigger_once = yes sound = { soundeffect = juggernaut_humanoid_idle } }
@@ -477,8 +558,7 @@ entity = {
         event = { time = 0 node = "warlord_right_singularity" particle = "sigma_jugg_stellarite_sun_effect" keep_particle = yes trigger_once = yes }
         event = { time = 0 node = "warlord_left_singularity" particle = "sigma_jugg_stellarite_sun_effect" keep_particle = yes trigger_once = yes }
 
-        event = { time = 0 node = "main_spinal_gun" particle = "sigma_enigmalith_super_effect" keep_particle = yes trigger_once = yes }
-        event = { time = 0 node = "main_spinal_gun" particle = "sigma_enigmalith_energy_effect" keep_particle = yes trigger_once = yes }
+        event = { time = 0 node = "main_spinal_gun" particle = "sigma_warlord_barrel_FX" keep_particle = yes trigger_once = yes }
 
         event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
         event = { trigger_once = yes sound = { soundeffect = juggernaut_humanoid_idle } }
@@ -500,7 +580,7 @@ entity = {
         event = { time = 6.96 node = "big_explosion_locator" particle = "juggernaut_burn_effect" keep_particle = yes trigger_once = no }
     }
 
-    attach = { main_spinal_gun = "warlord_barrel_fx_entity" }
+    attach = { main_spinal_gun = "warlord_barrel_fx_sigma_entity" }
     game_data = {
         trail_locators = {
             "engine_large_01" = { width = @large_trail_W lenght = @large_trail_L }
@@ -555,8 +635,7 @@ entity = {
         event = { time = 0 node = "warlord_right_singularity" particle = "omega_jugg_light_core_effect" keep_particle = yes trigger_once = yes }
         event = { time = 0 node = "warlord_left_singularity" particle = "omega_jugg_light_core_effect" keep_particle = yes trigger_once = yes }
 
-        event = { time = 0 node = "main_spinal_gun" particle = "sigma_enigmalith_super_effect" keep_particle = yes trigger_once = yes }
-        event = { time = 0 node = "main_spinal_gun" particle = "sigma_enigmalith_energy_effect" keep_particle = yes trigger_once = yes }
+        event = { time = 0 node = "main_spinal_gun" particle = "omega_warlord_barrel_FX" keep_particle = yes trigger_once = yes }
 
         event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
         event = { trigger_once = yes sound = { soundeffect = juggernaut_humanoid_idle } }
@@ -591,8 +670,7 @@ entity = {
         event = { time = 0 node = "warlord_right_singularity" particle = "omega_jugg_light_core_effect" keep_particle = yes trigger_once = yes }
         event = { time = 0 node = "warlord_left_singularity" particle = "omega_jugg_light_core_effect" keep_particle = yes trigger_once = yes }
 
-        event = { time = 0 node = "main_spinal_gun" particle = "sigma_enigmalith_super_effect" keep_particle = yes trigger_once = yes }
-        event = { time = 0 node = "main_spinal_gun" particle = "sigma_enigmalith_energy_effect" keep_particle = yes trigger_once = yes }
+        event = { time = 0 node = "main_spinal_gun" particle = "omega_warlord_barrel_FX" keep_particle = yes trigger_once = yes }
 
         event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_quantum_catapult_level_02_idle" } }
         event = { sound = { soundeffect = juggernaut_humanoid_move } }
@@ -612,7 +690,7 @@ entity = {
         event = { time = 6.96 node = "big_explosion_locator" particle = "juggernaut_burn_effect" keep_particle = yes trigger_once = no }
     }
 
-    attach = { main_spinal_gun = "warlord_barrel_fx_entity" }
+    attach = { main_spinal_gun = "warlord_barrel_fx_omega_entity" }
     game_data = {
         trail_locators = {
             "engine_large_01" = { width = @large_trail_W lenght = @large_trail_L }
