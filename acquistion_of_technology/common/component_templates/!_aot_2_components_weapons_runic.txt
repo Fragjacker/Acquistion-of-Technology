@@ -4232,7 +4232,7 @@ strike_craft_component_template = {
     armor_damage = 2
     shield_penetration = 0.5
     shield_damage = 2
-    size_damage_factor = 0.5
+    size_damage_factor = 0.25
     upgrades_to = ACOT_BOMBERS_HANGAR_SE
     resources = {
         category = ship_components
@@ -4396,6 +4396,16 @@ weapon_component_template = {
     armor_damage = 2
     tracking = 1
     power = -8000
+	injected_modifier = {
+		modifier = {
+			modifier = acot_yamato_debuff
+			days = 180
+		}
+		stack_info = {			#A ship can only be affected by one injected modifier of a certain id. If multiple modifiers have the same ID the one with the highest priority will be applied.
+			id = acot_yamato_cannon_debuff
+			priority = 1
+		}
+	}
     upgrades_to = ACOT_PERDITION_BEAM_SE
     target_weights = {
         battleship = 2
@@ -4466,7 +4476,7 @@ weapon_component_template = {
     min_range = 100
     damage = {
         min = 50000
-        max = 200000
+        max = 100000
     }
     windup = {
         min = 300
