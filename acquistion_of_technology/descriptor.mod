@@ -9,5 +9,5 @@ dependencies={
 }
 name="Acquisition of Technology"
 picture="thumbnail.png"
-supported_version="v4.2.*"
+supported_version="v4.3.*"
 remote_file_id="2178603631"
