@@ -1,89 +1,99 @@
 checked_modifier_remove = {
-	if = {
-		limit = {
-			has_modifier = $MODIFIER$
-		}
-		remove_modifier = $MODIFIER$
-	}
+    if = {
+        limit = {
+            has_modifier = $MODIFIER$
+        }
+        remove_modifier = $MODIFIER$
+    }
 }
 checked_planet_flag_remove = {
-	if = {
-		limit = {
-			has_planet_flag = $FLAG$
-		}
-		remove_planet_flag = $FLAG$
-	}
+    if = {
+        limit = {
+            has_planet_flag = $FLAG$
+        }
+        remove_planet_flag = $FLAG$
+    }
+}
+checked_add_research_option = {
+    if = {
+        limit = {
+            NOT = {
+                has_tech_option = $TECHNOLOGY$
+            }
+        }
+        add_research_option = $TECHNOLOGY$
+    }
 }
 AoT_MTTH = {
-	if = {
-		limit = {
-			$START_TRIGGER$                # Start the whole thing once the Dark Energy Reactor got researched.
-		}
-		country_event = {
-			id = $FOLLOW_UP_ID$
-			[[INITAL_TIME] days = $INITAL_TIME$ ]
-			[[INITAL_RANDOM] random = $INITAL_RANDOM$ ]
-		}
-	}
+    if = {
+        limit = {
+            $START_TRIGGER$                # Start the whole thing once the Dark Energy Reactor got researched.
+        }
+        country_event = {
+            id = $FOLLOW_UP_ID$
+            [[INITAL_TIME] days = $INITAL_TIME$ ]
+            [[INITAL_RANDOM] random = $INITAL_RANDOM$ ]
+        }
+    }
 }
 AoT_RecurringMTTH = {
-	if = {
-		limit = {
-			$END_TRIGGER$                # Is the actual criteria fulfilled? If not check again in a year.
-		}
-		country_event = {
-			id = $TARGET_EVENT$
-		}
-	}
-	else = {
-		country_event = {
-			id = $RECURRING_ID$
-			[[RECURRING_TIME] days = $RECURRING_TIME$ ]
-			[[RECURRING_RANDOM] random = $RECURRING_RANDOM$ ]
-		}
-	}
+    if = {
+        limit = {
+            $END_TRIGGER$                # Is the actual criteria fulfilled? If not check again in a year.
+        }
+        country_event = {
+            id = $TARGET_EVENT$
+        }
+    }
+    else = {
+        country_event = {
+            id = $RECURRING_ID$
+            [[RECURRING_TIME] days = $RECURRING_TIME$ ]
+            [[RECURRING_RANDOM] random = $RECURRING_RANDOM$ ]
+        }
+    }
 }
 AoT_add_phanon_vault_tracker = {
-	if = {
-		limit = {
-			$COUNTRY$ = {
-				NOT = {
-					has_event_chain = phanon_vault_track_list
-				}
-			}
-		}
-		begin_event_chain = {
-			event_chain = phanon_vault_track_list
-			target = $COUNTRY$
-		}
-		owner = {
-			create_point_of_interest = {
-				id = phanon_vault.$ID$
-				name = "pc_acot_pmc_vault"
-				desc = "pc_acot_pmc_vault_desc"
-				event_chain = phanon_vault_track_list
-				location = $LOCATION$
-			}
-		}
-	}
+    if = {
+        limit = {
+            $COUNTRY$ = {
+                NOT = {
+                    has_event_chain = phanon_vault_track_list
+                }
+            }
+        }
+        begin_event_chain = {
+            event_chain = phanon_vault_track_list
+            target = $COUNTRY$
+        }
+        owner = {
+            create_point_of_interest = {
+                id = phanon_vault.$ID$
+                name = "pc_acot_pmc_vault"
+                desc = "pc_acot_pmc_vault_desc"
+                event_chain = phanon_vault_track_list
+                location = $LOCATION$
+            }
+        }
+    }
 }
 add_resource_checked_for_bioships = {
-	if = {
-		limit = {
-			country_uses_bio_ships = yes
-		}
-		add_resource = {
-			food = $AMOUNT$
-			mult = @alloy_to_food_cost_ratio
-		}
-		add_resource = {
-			$RESOURCE$ = $AMOUNT$
-			mult = 0.5
-		}
-	}
-	else = {
-		add_resource = {
-			$RESOURCE$ = $AMOUNT$
-		}
-	}
+    if = {
+        limit = {
+            country_uses_bio_ships = yes
+        }
+        add_resource = {
+            food = $AMOUNT$
+            mult = @alloy_to_food_cost_ratio
+        }
+        add_resource = {
+            $RESOURCE$ = $AMOUNT$
+            mult = 0.5
+        }
+    }
+    else = {
+        add_resource = {
+            $RESOURCE$ = $AMOUNT$
+        }
+    }
 }
