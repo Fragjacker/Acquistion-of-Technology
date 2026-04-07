@@ -1,0 +1,703 @@
+#################################################################################################################
+# All of these zones have the same zone_sets and included_building_sets as the vanilla ones,
+# so they should be able to go in every spot the vanilla ones can
+#################################################################################################################
+
+# FOR SOME REASON THE FIRST ZONE IN THE FILE CANNOT BE SWAPPED AWAY FROM
+# THIS IS THE FIX
+acot_zone_dummy = {
+    potential = {
+        always = no
+    }
+    unlock = {
+        always = no
+    }
+}
+# DONT DELETE THIS
+
+
+######################################################################################
+# variations of zones in 00_zones.txt
+######################################################################################
+
+#######################################
+# Zones for general urban districts, listed in the order they appear on the wiki
+#######################################
+
+zone_acot_ae_urban = {
+    icon = GFX_acot_zone_ae_urban
+    base_buildtime = 60
+    potential = {
+        # planet scope
+        NOT = { has_giga_frameworld = yes }
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+        is_exclusively_alpha_tier = yes
+    }
+
+    unlock = {
+        # planet scope
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+
+    resources = {
+        category = planet_zones
+        cost = {
+            alloys = 1000
+            sr_dark_matter = 100
+            acot_sr_dark_energy = 100
+        }
+    }
+
+    triggered_district_planet_modifier = {
+        planet_housing_add = 2000
+    }
+
+    max_buildings = 3
+
+    zone_sets = {
+        urban
+        habitat_urban
+    }
+
+    include = {
+        all
+    }
+
+    excluded_building_sets = {
+        generator
+        mining
+        farming
+        knights
+        betharian
+        generator_automation
+        mining_automation
+        farming_automation
+        urban_automation_arcology
+        urban_automation
+    }
+
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_overseer_add
+        HIVE_JOB = job_acot_overseer_drone_add
+        MACHINE_JOB = job_acot_overseer_droid_add
+        AMOUNT = 200 #@scaling_district_1_job
+    }
+
+    planet_modifier = {
+        zone_building_slots_add = 3
+        planet_amenities_add = 2000
+    }
+
+    triggered_desc = {
+        trigger = {
+            always = yes
+        }
+        text = zone_urban_triggered_desc
+    }
+
+    ai_priority = 2
+    ai_weight_coefficient = 0.5
+}
+
+# industry
+zone_acot_ae_industry = {
+    icon = GFX_acot_zone_ae_industry
+    base_buildtime = @zone_buildtime
+
+    potential = {
+        # planet scope
+        NOT = { has_giga_frameworld = yes }
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+                has_technology = tech_acot_ae_alloy_foundry
+                has_technology = tech_acot_ae_factory
+            }
+        }
+        is_exclusively_alpha_tier = yes
+    }
+
+    unlock = {
+        # planet scope
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    resources = {
+        category = planet_zones
+        cost = {
+            alloys = 3000
+            sr_dark_matter = 300
+            acot_sr_dark_energy = 300
+        }
+    }
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+    max_buildings = 3
+
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_alloyman_add
+        GESTALT_JOB = job_acot_alloydrone_add
+        AMOUNT = 100 #@scaling_district_2_job
+    }
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_artisan_add
+        GESTALT_JOB = job_acot_artisan_drone_add
+        AMOUNT = 100 #@scaling_district_2_job
+    }
+
+    included_building_sets = {
+        industrial
+        urban_automation
+        origin
+    }
+
+    zone_sets = {
+        urban
+        habitat_urban
+    }
+
+    inline_script = {
+        script = zones/shared_city_non_urban_zone_modifiers
+    }
+}
+# foundry
+zone_acot_ae_foundry = {
+    icon = GFX_acot_zone_ae_alloy
+    base_buildtime = @zone_buildtime
+
+    potential = {
+        # planet scope
+        NOT = { has_giga_frameworld = yes }
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+                has_technology = tech_acot_ae_alloy_foundry
+            }
+        }
+        is_exclusively_alpha_tier = yes
+    }
+
+    unlock = {
+        # planet scope
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    resources = {
+        category = planet_zones
+        cost = {
+            alloys = 3000
+            sr_dark_matter = 300
+            acot_sr_dark_energy = 300
+        }
+    }
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+    max_buildings = 3
+
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_alloyman_add
+        GESTALT_JOB = job_acot_alloydrone_add
+        AMOUNT = 200 #@scaling_district_1_job
+    }
+
+    included_building_sets = {
+        foundry
+        urban_automation
+        origin
+    }
+
+    zone_sets = {
+        urban
+        habitat_urban
+    }
+
+    inline_script = {
+        script = zones/shared_city_non_urban_zone_modifiers
+    }
+}
+# factory
+zone_acot_ae_factory = {
+    icon = GFX_acot_zone_ae_consumer_goods
+    base_buildtime = @zone_buildtime
+
+    potential = {
+        # planet scope
+        NOT = { has_giga_frameworld = yes }
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+                has_technology = tech_acot_ae_factory
+            }
+        }
+        is_exclusively_alpha_tier = yes
+    }
+
+    unlock = {
+        # planet scope
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    resources = {
+        category = planet_zones
+        cost = {
+            alloys = 3000
+            sr_dark_matter = 300
+            acot_sr_dark_energy = 300
+        }
+    }
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+    max_buildings = 3
+
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_artisan_add
+        GESTALT_JOB = job_acot_artisan_drone_add
+        AMOUNT = 200 #@scaling_district_1_job
+    }
+
+    included_building_sets = {
+        factory
+        urban_automation
+        origin
+    }
+
+    zone_sets = {
+        urban
+        habitat_urban
+    }
+
+    inline_script = {
+        script = zones/shared_city_non_urban_zone_modifiers
+    }
+}
+# research
+zone_acot_ae_research = {
+    icon = GFX_acot_zone_ae_research
+    base_buildtime = @zone_buildtime
+
+    potential = {
+        # planet scope
+        NOT = { has_giga_frameworld = yes }
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+                has_technology = tech_acot_ae_enigmatic_lab
+            }
+        }
+        is_exclusively_alpha_tier = yes
+    }
+
+    unlock = {
+        # planet scope
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    resources = {
+        category = planet_zones
+        cost = {
+            alloys = 3000
+            sr_dark_matter = 300
+            acot_sr_dark_energy = 300
+        }
+    }
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+    max_buildings = 3
+
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_researcher_add
+        GESTALT_JOB = job_acot_researcher_drone_add
+        AMOUNT = 200 #@scaling_district_1_job
+    }
+
+    included_building_sets = {
+        research
+        urban_automation
+        origin
+    }
+
+    zone_sets = {
+        urban
+    }
+
+    inline_script = {
+        script = zones/shared_city_non_urban_zone_modifiers
+    }
+}
+# soldier
+zone_acot_ae_fortress = {
+    icon = GFX_acot_zone_ae_army
+    base_buildtime = @zone_buildtime
+
+    potential = {
+        # planet scope
+        NOT = { has_giga_frameworld = yes }
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+                has_technology = tech_acot_ae_stronghold
+            }
+        }
+        is_exclusively_alpha_tier = yes
+    }
+
+    unlock = {
+        # planet scope
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    resources = {
+        category = planet_zones
+        cost = {
+            alloys = 3000
+            sr_dark_matter = 300
+            acot_sr_dark_energy = 300
+        }
+    }
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+    max_buildings = 3
+
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_soldier_add
+        GESTALT_JOB = job_acot_soldier_drone_add
+        AMOUNT = 200 #@scaling_district_1_job
+    }
+
+    included_building_sets = {
+        fortress
+        urban_automation
+        origin
+    }
+
+    zone_sets = {
+        urban
+        habitat_urban
+    }
+
+    inline_script = {
+        script = zones/shared_city_non_urban_zone_modifiers
+    }
+}
+# trade
+zone_acot_ae_trade = {
+    icon = GFX_acot_zone_ae_trade
+    base_buildtime = @zone_buildtime
+
+    potential = {
+        # planet scope
+        NOT = { has_giga_frameworld = yes }
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+                has_technology = tech_acot_ae_trade_center
+            }
+        }
+        is_exclusively_alpha_tier = yes
+    }
+
+    unlock = {
+        # planet scope
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    resources = {
+        category = planet_zones
+        cost = {
+            alloys = 3000
+            sr_dark_matter = 300
+            acot_sr_dark_energy = 300
+        }
+    }
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+    max_buildings = 3
+
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_trader_add
+        GESTALT_JOB = job_acot_trader_drone_add
+        AMOUNT = 200 #@scaling_district_1_job
+    }
+
+    included_building_sets = {
+        trade
+        urban_automation
+        origin
+    }
+
+    zone_sets = {
+        urban
+        habitat_urban
+    }
+
+    inline_script = {
+        script = zones/shared_city_non_urban_zone_modifiers
+    }
+}
+# unity
+# priest
+# biotrophy
+
+#######################################
+# Zones for primary urban districts, listed in the order they appear on the wiki
+#######################################
+# archive
+# spawning
+# replication
+
+#######################################
+# Zones for rural districts, listed in the order they appear on the wiki
+#######################################
+# minerals
+zone_acot_ae_minerals = {
+    icon = GFX_acot_zone_ae_mineral
+    base_buildtime = @zone_buildtime
+
+    potential = {
+        # planet scope
+        NOT = { has_giga_frameworld = yes }
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+                has_technology = tech_acot_ae_mineral_processing_plant
+            }
+        }
+        is_exclusively_alpha_tier = yes
+    }
+
+    unlock = {
+        # planet scope
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    resources = {
+        category = planet_zones
+        cost = {
+            alloys = 3000
+            sr_dark_matter = 300
+            acot_sr_dark_energy = 300
+        }
+    }
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+    max_buildings = 3
+
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_mineralman_add
+        GESTALT_JOB = job_acot_mineraldrone_add
+        AMOUNT = @[ 1 * base_rural_district_jobs ] # (scaling_district_1_job + base_rural_district_jobs)]
+    }
+    # remove existing rurals
+    inline_script = {
+        script = jobs/zone_miner_add
+        AMOUNT = @[ - 1 * base_rural_district_jobs ]
+    }
+
+    included_building_sets = {
+        mining
+        fallen_empire_mining
+        mining_automation
+    }
+
+    zone_sets = {
+        minerals
+        habitat_minerals
+    }
+
+    swap_type = district_acot_swap_ae_mineral
+    swap_type_weight = 20
+}
+
+# energy
+zone_acot_ae_energy = {
+    icon = GFX_acot_zone_ae_energy
+    base_buildtime = @zone_buildtime
+
+    potential = {
+        # planet scope
+        NOT = { has_giga_frameworld = yes }
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+                has_technology = tech_acot_ae_power_hub
+            }
+        }
+        is_exclusively_alpha_tier = yes
+    }
+
+    unlock = {
+        # planet scope
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    resources = {
+        category = planet_zones
+        cost = {
+            alloys = 3000
+            sr_dark_matter = 300
+            acot_sr_dark_energy = 300
+        }
+    }
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+    max_buildings = 3
+
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_energyman_add
+        GESTALT_JOB = job_acot_energydrone_add
+        AMOUNT = @[ 1 * base_rural_district_jobs ] # (scaling_district_1_job + base_rural_district_jobs)]
+    }
+    # remove existing rurals
+    inline_script = {
+        script = jobs/zone_technicians_add
+        AMOUNT = @[ - 1 * base_rural_district_jobs ]
+    }
+
+    included_building_sets = {
+        generator
+        fallen_empire_generator
+        generator_automation
+    }
+
+    zone_sets = {
+        energy
+        habitat_energy
+    }
+
+    swap_type = district_acot_swap_ae_energy
+    swap_type_weight = 20
+}
+# food
+zone_acot_ae_food = {
+    icon = GFX_acot_zone_ae_food
+    base_buildtime = @zone_buildtime
+
+    potential = {
+        # planet scope
+        NOT = { has_giga_frameworld = yes }
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+                has_technology = tech_acot_ae_food_processing
+            }
+        }
+        is_exclusively_alpha_tier = yes
+    }
+
+    unlock = {
+        # planet scope
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    resources = {
+        category = planet_zones
+        cost = {
+            alloys = 3000
+            sr_dark_matter = 300
+            acot_sr_dark_energy = 300
+        }
+    }
+    planet_modifier = {
+        zone_building_slots_add = 3
+    }
+    max_buildings = 3
+
+    inline_script = {
+        script = zones/acot_general_zone_job_adder
+        NORMAL_JOB = job_acot_foodman_add
+        GESTALT_JOB = job_acot_fooddrone_add
+        AMOUNT = @[ 1 * base_rural_district_jobs ] # (scaling_district_1_job + base_rural_district_jobs)]
+    }
+    # remove existing rurals
+    inline_script = {
+        script = jobs/zone_farmers_add
+        AMOUNT = @[ - 1 * base_rural_district_jobs ]
+    }
+
+    included_building_sets = {
+        farming
+        hydroponics
+        farming_automation
+        #fallen_empire_farming
+    }
+
+    zone_sets = {
+        food
+    }
+
+    swap_type = district_acot_swap_ae_food
+    swap_type_weight = 20
+}
