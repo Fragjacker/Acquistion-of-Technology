@@ -1,0 +1,75 @@
+inline_script = {
+    script = shared/normal_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
+}
+building_sets = {
+    generator
+    mining
+    farming
+    aot_building_tier_$TIER$
+}
+country_modifier = {
+    country_resource_max_energy_add = @[ 50000 * two_exp$EXPONENT$ ]
+    country_resource_max_minerals_add = @[ 50000 * two_exp$EXPONENT$ ]
+    country_resource_max_food_add = @[ 50000 * two_exp$EXPONENT$ ]
+}
+
+planet_modifier = {
+    planet_technician_energy_produces_add = @[ 4 * two_exp$EXPONENT$ ]
+    planet_miners_minerals_produces_add = @[ 4 * two_exp$EXPONENT$ ]
+    planet_farmers_food_produces_add = @[ 4 * two_exp$EXPONENT$ ]
+    district_farming_max_add = @[ 2 * two_exp$EXPONENT$ ]
+    district_mining_max_add = @[ 2 * two_exp$EXPONENT$ ]
+    district_generator_max_add = @[ 2 * two_exp$EXPONENT$ ]
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = planet_owner
+        planet_owner = { is_regular_empire = yes }
+    }
+    modifier = {
+        job_acot_workerman_add = @[ 100 * two_exp$EXPONENT$ ]
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = planet_owner
+        planet_owner = { is_gestalt = yes }
+    }
+    modifier = {
+        job_acot_workerdrone_add = @[ 100 * two_exp$EXPONENT$ ]
+    }
+}
+
+resources = {
+    category = planet_buildings
+    cost = {
+        alloys = @acot_building_pleb_basic_alloy_cost
+        sr_dark_matter = @acot_building_pleb_basic_dm_cost
+        acot_sr_dark_energy = @acot_building_pleb_basic_de_cost
+    }
+    cost = {
+        trigger = { planet_owner = { has_technology = tech_dark_matter_power_core_re } }
+        aot_sr_runic_power = @[ acot_building_pleb_basic_dm_cost * two_exp$EXPONENT$ ]
+    }
+    cost = {
+        trigger = { planet_owner = { has_technology = tech_dark_matter_power_core_se } }
+        acot_sr_stellarite = @[ acot_building_pleb_basic_dm_cost * two_exp$EXPONENT$ ]
+    }
+}
+
+ai_resource_production = {
+    energy = @[ 10 * two_exp$EXPONENT$ ]
+    food = @[ 10 * two_exp$EXPONENT$ ]
+    minerals = @[ 10 * two_exp$EXPONENT$ ]
+    trigger = {
+        always = yes
+    }
+}
