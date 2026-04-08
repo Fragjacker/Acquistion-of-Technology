@@ -1992,3 +1992,199 @@ building_phanon_embassy = {
 			"
     }
 }
+
+#####################
+# SPECIAL BUILDINGS
+#####################
+building_phanon_resource_silo = {
+    inline_script = {
+        script = buildings/civilian/resource_silo
+        TIER = @PHANON_TIER
+        EXPONENT = @PHANON_EXPONENT
+        ALLOW = "
+                has_phanon_capital = yes
+                    hidden_trigger = {
+                        OR = {
+                            owner = { is_ai = no }
+                            AND = {
+                                NOT = { has_building = building_phanon_resource_silo }
+                                OR = {
+                                    owner = {
+                                        is_machine_empire = yes
+                                        has_active_tradition = tr_domination_modular_depot
+                                    }
+                        is_active_resolution = resolution_greatergood_balance_in_the_middle
+                        is_active_resolution = resolution_greatergood_universal_prosperity_mandate
+                        owner = {
+                            has_ascension_perk = ap_arcology_project
+                            NOT = { has_technology = tech_mega_engineering }
+                        }
+                    }
+                }
+            }
+        }
+        "
+        CAN_BUILD = no
+        PREREQUISITE = tech_phanon_resource_silo
+        UPGRADES_INTO = building_stellarite_resource_silo
+        AI_FACTORS = "
+            modifier = {
+				weight = 5
+				planet_owner = {
+					resource_stockpile_compare = {
+						resource = alloys
+						value >= @[50000 * two_exp2]
+					}
+				}
+			}
+			modifier = {
+				factor = 10
+				planet_owner = {
+					resource_stockpile_compare = {
+						resource = energy
+						value >= @[50000 * two_exp2]
+					}
+				}
+			}
+			modifier = {
+				factor = 10
+				exists = planet_owner
+				planet_owner = {
+					is_megacorp = yes
+				}
+			}
+			"
+    }
+}
+building_phanon_institute_super = {
+    inline_script = {
+        script = buildings/civilian/institute_super
+        TIER = @PHANON_TIER
+        EXPONENT = @PHANON_EXPONENT
+        ALLOW = "has_phanon_capital = yes"
+        TYPE = phanon
+        JOB_TYPE = phanon_researcher
+        CAN_BUILD = no
+        PREREQUISITE = tech_phanon_institute
+        UPGRADES_INTO = building_stellarite_institute_super
+        AI_FACTORS = "
+            weight = 1000
+            # There are already unworked jobs
+            # Blocks buildings unworkable by remaining pops (slaves/robots etc)
+            # Will be improved... at some point
+            modifier = {
+                factor = 0
+                free_jobs > 0
+            }
+			"
+    }
+}
+building_phanon_district_amplifier = {
+    inline_script = {
+        script = buildings/civilian/district_amplifier
+        TIER = @PHANON_TIER
+        EXPONENT = @PHANON_EXPONENT
+        ALLOW = "has_phanon_capital = yes"
+        CAN_BUILD = no
+        PREREQUISITE = tech_phanon_district_amplifier
+        UPGRADES_INTO = building_stellarite_district_amplifier
+        AI_FACTORS = "
+                weight = 3000
+                modifier = {
+                    factor = 5
+                    OR = {
+                        num_districts = {
+                            type = district_generator
+                            value >= 4
+                        }
+                        num_districts = {
+                            type = district_mining
+                            value >= 4
+                        }
+                        num_districts = {
+                            type = district_farming
+                            value >= 4
+                        }
+                    }
+                }
+			"
+    }
+}
+building_phanon_alloygood_amplifier = {
+    inline_script = {
+        script = buildings/civilian/alloygood_amplifier
+        TIER = @PHANON_TIER
+        EXPONENT = @PHANON_EXPONENT
+        ALLOW = "has_phanon_capital = yes"
+        CAN_BUILD = no
+        PREREQUISITE = tech_phanon_alloygood_amplifier
+        UPGRADES_INTO = building_stellarite_alloygood_amplifier
+        AI_FACTORS = "
+                weight = 3000
+			"
+    }
+}
+building_phanon_trade_center = {
+    inline_script = {
+        script = buildings/civilian/trade_center
+        TIER = @PHANON_TIER
+        EXPONENT = @PHANON_EXPONENT
+        ALLOW = "has_phanon_capital = yes"
+        CAN_BUILD = no
+        PREREQUISITE = tech_phanon_trade_center
+        UPGRADES_INTO = building_stellarite_trade_center
+        AI_FACTORS = "
+            weight = 50
+            modifier = {
+                factor = 0
+                planet_owner = {
+                    has_monthly_income = {
+                        resource = sr_dark_matter
+                        value <= 3
+                    }
+                }
+            }
+            modifier = {
+                factor = 0
+                planet_owner = {
+                    has_monthly_income = {
+                        resource = energy
+                        value <= 10
+                    }
+                }
+            }
+            modifier = {
+                factor = 0
+                planet_owner = {
+                    has_monthly_income = {
+                        resource = consumer_goods
+                        value <= 10
+                    }
+                }
+            }
+			"
+    }
+}
+building_phanon_temple = {
+    inline_script = {
+        script = buildings/civilian/temple
+        TIER = @PHANON_TIER
+        EXPONENT = @PHANON_EXPONENT
+        ALLOW = "has_phanon_capital = yes"
+        TYPE = phanon
+        CAN_BUILD = no
+        PREREQUISITE = tech_phanon_temple
+        UPGRADES_INTO = building_stellarite_temple
+        AI_FACTORS = "
+            weight = 100
+            modifier = {
+                factor = 300000
+                free_amenities < 0
+            }
+            modifier = {
+                factor = 500000
+                free_housing < 1
+            }
+			"
+    }
+}

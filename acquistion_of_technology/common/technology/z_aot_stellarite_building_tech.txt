@@ -1891,3 +1891,150 @@ tech_acot_stellarite_nexus = {
         factor = 200        # components are OP
     }
 }
+
+# Special Alpha tier buildings
+tech_stellarite_resource_silo = {
+    cost = @acot_tier9cost1
+    area = physics # Dimensional Stuffs so Physics instead
+    tier = 9
+    category = { field_manipulation }
+    prerequisites = { tech_phanon_resource_silo tech_dark_matter_power_core_se }
+    weight = @acot_techweight_basic
+
+    potential = {
+        NOT = { has_global_flag = acot_building_forbidden }
+        has_technology = tech_phanon_resource_silo
+    }
+
+    weight_modifier = {
+        modifier = {
+            factor = 0
+            NOR = {
+                has_technology = tech_stellarite_control_center
+                has_technology = tech_stellarite_palace
+                has_technology = tech_stellarite_hive_cluster
+            }
+        }
+    }
+}
+tech_stellarite_trade_center = {
+    area = physics
+    category = { computing }
+    tier = 9
+    cost = @acot_tier9cost2
+    prerequisites = { tech_phanon_trade_center tech_dark_matter_power_core_se }
+    weight = @acot_techweight_basic
+
+    potential = {
+        NOT = { has_global_flag = acot_building_forbidden }
+        has_technology = tech_phanon_trade_center
+    }
+
+    weight_modifier = {
+        modifier = {
+            factor = 0
+            NOR = {
+                has_technology = tech_stellarite_control_center
+                has_technology = tech_stellarite_palace
+                has_technology = tech_stellarite_hive_cluster
+            }
+        }
+    }
+    ai_weight = {
+        weight = 10
+    }
+}
+tech_stellarite_district_amplifier = {
+    cost = @acot_tier9cost1
+    area = physics
+    tier = 9
+    category = { particles }
+    prerequisites = { tech_phanon_district_amplifier tech_dark_matter_power_core_se }
+    weight = @acot_techweight_basic
+
+    potential = {
+        NOT = { has_global_flag = acot_building_forbidden }
+        has_technology = tech_phanon_district_amplifier
+    }
+
+    weight_modifier = {
+        modifier = {
+            factor = 0
+            NOR = {
+                has_technology = tech_phanon_control_center
+                has_technology = tech_phanon_palace
+                has_technology = tech_phanon_hive_cluster
+            }
+        }
+    }
+    ai_weight = {
+        factor = 5 # important resource
+    }
+}
+tech_stellarite_alloygood_amplifier = {
+    cost = @acot_tier8cost1
+    area = physics
+    tier = 8
+    category = { particles }
+    prerequisites = {
+        tech_phanon_alloygood_amplifier
+        tech_stellarite_district_amplifier
+        tech_dark_matter_power_core_se
+    }
+    weight = @acot_techweight_basic
+
+    potential = {
+        NOT = { has_global_flag = acot_building_forbidden }
+        has_technology = tech_dark_matter_power_core_se
+    }
+
+    weight_modifier = {
+        modifier = {
+            factor = 0
+            NOR = {
+                has_technology = tech_stellarite_control_center
+                has_technology = tech_stellarite_palace
+                has_technology = tech_stellarite_hive_cluster
+            }
+        }
+    }
+
+    ai_weight = {
+        factor = 5 # important resource
+    }
+}
+tech_stellarite_temple = {
+    cost = @acot_tier9cost1
+    area = society
+    category = { statecraft }
+    tier = 9
+    prerequisites = { tech_phanon_temple tech_dark_matter_power_core_se }
+    weight = @acot_techweight_basic
+
+    potential = {
+        OR = {
+            is_spiritualist = yes
+            AND = {
+                is_gestalt = no
+                has_make_spiritualist_perk = yes
+            }
+        }
+        NOT = { has_global_flag = acot_building_forbidden }
+        has_technology = tech_dark_matter_power_core_se
+    }
+
+    weight_modifier = {
+        modifier = {
+            factor = 0
+            NOR = {
+                has_technology = tech_phanon_control_center
+                has_technology = tech_phanon_palace
+                has_technology = tech_phanon_hive_cluster
+            }
+        }
+    }
+
+    ai_weight = {
+        factor = 5 # important resource
+    }
+}
