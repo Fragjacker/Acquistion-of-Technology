@@ -1,26 +1,26 @@
 inline_script = pop_jobs/pre_triggers/ruler
 weight = {
-	weight = @ruler_job_weight
-	mult = value:job_weights_modifier|JOB|$JOB$|RESOURCE|$RESOURCE$|
-	mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
-	modifier = {
-		factor = 0.1
-		has_citizenship_rights = no
-		NOT = { has_trait = trait_mechanical }
-	}
-	# crisis purge
-	modifier = {
-		factor = 0.01
-		exists = planet
-		exists = planet.controller
-		planet.controller = {
-			OR = {
-				is_country_type = swarm
-				is_country_type = ai_empire
-			}
-		}
-	}
+    weight = @ruler_job_weight
+    mult = value:job_weights_modifier|JOB|$JOB$|RESOURCE|$RESOURCE$|
+    mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+    modifier = {
+        factor = 0.1
+        has_citizenship_rights = no
+        NOT = { has_trait = trait_mechanical }
+    }
+    # crisis purge
+    modifier = {
+        factor = 0.01
+        exists = planet
+        exists = planet.controller
+        planet.controller = {
+            OR = {
+                is_country_type = swarm
+                is_country_type = ai_empire
+            }
+        }
+    }
 }
 inline_script = { script = pop_jobs/part/shared/promotion CATEGORY = $CATEGORY$ }
-inline_script = "output/politician_output_modifier"
+inline_script = "output/politician_output"
 inline_script = "jobs/automodding_priority_$RESOURCE$"
