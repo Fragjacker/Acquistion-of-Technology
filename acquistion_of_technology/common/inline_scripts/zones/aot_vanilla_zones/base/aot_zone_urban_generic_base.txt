@@ -1,0 +1,68 @@
+base_buildtime = 60
+potential = {
+    # planet scope
+    NOT = {
+        has_giga_frameworld = yes
+    }
+    hidden_trigger = {
+        exists = owner
+        owner = {
+            is_wilderness_empire = no
+        }
+    }
+    $PLANET_REQ$
+}
+unlock = {
+    # planet scope
+    hidden_trigger = {
+        exists = owner
+        owner = {
+            is_wilderness_empire = no
+        }
+    }
+}
+resources = {
+    category = planet_zones
+    cost = {
+        alloys = 1000
+        sr_dark_matter = 100
+        acot_sr_dark_energy = 100
+    }
+    cost = {
+        trigger = { planet_owner = { has_technology = tech_dark_matter_power_core_re } }
+        aot_sr_runic_power = 100
+    }
+    cost = {
+        trigger = { planet_owner = { has_technology = tech_dark_matter_power_core_se } }
+        acot_sr_stellarite = 100
+    }
+}
+triggered_district_planet_modifier = {
+    planet_housing_add = $HOUSING_AMOUNT$
+}
+max_buildings = 3
+zone_sets = {
+    urban
+    habitat_urban
+}
+include = {
+    all
+}
+excluded_building_sets = {
+    generator
+    mining
+    farming
+    knights
+    betharian
+    generator_automation
+    mining_automation
+    farming_automation
+    urban_automation_arcology
+    urban_automation
+}
+planet_modifier = {
+    zone_building_slots_add = 3
+    planet_amenities_add = $HOUSING_AMOUNT$
+}
+ai_priority = 2
+ai_weight_coefficient = 0.5
