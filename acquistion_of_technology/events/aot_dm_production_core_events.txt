@@ -1,255 +1,328 @@
 namespace = aot_dm_production_core_events
 country_event = {
-	id = aot_dm_production_core_events.1
-	title = "aot_dm_production_core.1.name"
-	desc = "aot_dm_production_core.1.desc"
-	picture = GFX_evt_fallen_empire
-	show_sound = event_mystery
-	trigger = {
-		is_eligible_production_core_country = yes
-	}
-	mean_time_to_happen = {
-		years = 5
-	}
-	option = {
-		allow = {
-			NOT = {
-				has_event_chain = aot_dm_production_core_chain
-			}
-		}
-		name = aot_dm_production_core_events.1.a
-		custom_tooltip = aot_dm_production_core_events.1.a_desc
-		set_country_flag = dm_production_core_project_offer
-		default_hide_option = yes
-		trigger = {
-			is_ai = no
-		}
-		hidden_effect = {
-			begin_event_chain = {
-				event_chain = aot_dm_production_core_chain
-			}
-			add_event_chain_counter = {
-				event_chain = aot_dm_production_core_chain
-				counter = dm_production_core_energy_required
-				amount = @required_dm_score
-			}
-			set_variable = {
-				which = var_dm_production_core_energy
-				value = @required_dm_score
-			}
-			set_variable = {
-				which = current_dm_production_core_energy_level
-				value = 0
-			}
-			set_variable = {
-				which = previous_power_level_value
-				value = var_dm_production_core_energy
-			}
-			country_event = {
-				id = aot_dm_production_core_events.2
-			}
-		}
-		ai_chance = {
-			factor = 0
-		}
-	}
-	option = {
-		name = aot_dm_production_core_postpone
-		custom_tooltip = aot_dm_production_core_postpone_desc
-		trigger = {
-			is_ai = no
-		}
-		set_timed_country_flag = {
-			flag = block_dm_production_core_project
-			years = 5
-		}
-		ai_chance = {
-			factor = 0
-		}
-	}
-	option = {
-		name = aot_dm_production_core_skip
-		custom_tooltip = aot_dm_production_core_skip_desc
-		trigger = {
-			is_ai = no
-		}
-		set_country_flag = block_dm_production_core_project
-		ai_chance = {
-			factor = 0
-		}
-	}
-	# The AI is too dumb for this, so give the option right away but without any progress.
-	option = {
-		name = aot_dm_production_core_events.1.a
-		custom_tooltip = aot_dm_production_core_events.1.a_desc
-		trigger = {
-			is_ai = yes
-		}
-		hidden_effect = {
-			add_research_option = tech_dm_production_core
-		}
-		ai_chance = {
-			factor = 1000
-		}
-	}
+    id = aot_dm_production_core_events.1
+    title = "aot_dm_production_core.1.name"
+    desc = "aot_dm_production_core.1.desc"
+    picture = GFX_evt_fallen_empire
+    show_sound = event_mystery
+    trigger = {
+        is_eligible_production_core_country = yes
+    }
+    mean_time_to_happen = {
+        years = 5
+    }
+    option = {
+        allow = {
+            NOT = {
+                country_has_situation = { SITUATION = situation_aot_production_core }
+            }
+        }
+        name = aot_dm_production_core_events.1.a
+        custom_tooltip = aot_dm_production_core_events.1.a_desc
+        set_country_flag = dm_production_core_project_offer
+        default_hide_option = yes
+        trigger = {
+            is_ai = no
+        }
+        hidden_effect = {
+            set_variable = {
+                which = current_dm_production_core_energy_level
+                value = 0
+            }
+            start_situation = {
+                type = situation_aot_production_core
+                target = this
+            }
+        }
+        ai_chance = {
+            factor = 0
+        }
+    }
+    option = {
+        name = aot_dm_production_core_postpone
+        custom_tooltip = aot_dm_production_core_postpone_desc
+        trigger = {
+            is_ai = no
+        }
+        set_timed_country_flag = {
+            flag = block_dm_production_core_project
+            years = 5
+        }
+        ai_chance = {
+            factor = 0
+        }
+    }
+    option = {
+        name = aot_dm_production_core_skip
+        custom_tooltip = aot_dm_production_core_skip_desc
+        trigger = {
+            is_ai = no
+        }
+        set_country_flag = block_dm_production_core_project
+        ai_chance = {
+            factor = 0
+        }
+    }
+    # The AI is too dumb for this, so give the option right away but without any progress.
+    option = {
+        name = aot_dm_production_core_events.1.a
+        custom_tooltip = aot_dm_production_core_events.1.a_desc
+        trigger = {
+            is_ai = yes
+        }
+        hidden_effect = {
+            add_research_option = tech_dm_production_core
+        }
+        ai_chance = {
+            factor = 1000
+        }
+    }
 }
 
-country_event = {
-	id = aot_dm_production_core_events.2
-	title = "aot_dm_production_core.2.name"
-	desc = "aot_dm_production_core.2.desc"
-	diplomatic = yes
-	custom_gui = "dm_production_core_gui"
-	is_triggered_only = yes
-	trigger = {
-	}
-	option = {
-		allow = {
-			has_country_flag = has_ongoing_production_core_study
-		}
-		name = aot_dm_production_core_events.2.a
-		custom_tooltip = aot_dm_production_core_events.2.a.explain
-		default_hide_option = yes
-		hidden_effect = {
-			# Reset everything back to 0 for each attempt
-			set_variable = {
-				which = current_dm_production_core_energy_level
-				value = 0
-			}
-			set_variable = {
-				which = aot_production_core_project_cost
-				value = 0
-			}
-			set_variable = {
-				which = aot_production_core_failure_chance
-				value = 0
-			}
-		}
-	}
+situation_event = {
+    id = aot_dm_production_core_events.2
+    title = "aot_dm_production_core.2.name"
+    desc = "aot_dm_production_core.2.desc"
+    diplomatic = yes
+    custom_gui = "dm_production_core_gui"
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+        # Reset everything back to 0 for each attempt
+        owner = {
+            set_variable = {
+                which = current_dm_production_core_energy_level
+                value = 0
+            }
+            set_variable = {
+                which = aot_production_core_project_cost
+                value = 0
+            }
+            set_variable = {
+                which = aot_production_core_failure_chance
+                value = 0
+            }
+        }
+    }
+    option = {
+        name = aot_dm_production_core_events.2.a
+        custom_tooltip = aot_dm_production_core_events.2.a.explain
+        default_hide_option = yes
+        hidden_effect = {
+            owner = {
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = current_dm_production_core_energy_level
+                            value <= 0
+                        }
+                    }
+                }
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            which = current_dm_production_core_energy_level
+                            value <= 1
+                        }
+                    }
+                    add_resource = {
+                        sr_dark_matter = @[ - dm_cost_1 ]
+                    }
+                }
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            which = current_dm_production_core_energy_level
+                            value <= 2
+                        }
+                    }
+                    add_resource = {
+                        sr_dark_matter = @[ - dm_cost_2 ]
+                    }
+                }
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            which = current_dm_production_core_energy_level
+                            value <= 3
+                        }
+                    }
+                    add_resource = {
+                        sr_dark_matter = @[ - dm_cost_3 ]
+                    }
+                }
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            which = current_dm_production_core_energy_level
+                            value <= 4
+                        }
+                    }
+                    add_resource = {
+                        sr_dark_matter = @[ - dm_cost_4 ]
+                    }
+                }
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            which = current_dm_production_core_energy_level
+                            value <= 5
+                        }
+                    }
+                    add_resource = {
+                        sr_dark_matter = @[ - dm_cost_5 ]
+                    }
+                }
+                country_event = {
+                    id = aot_dm_production_core_events.1000
+                    days = 15
+                }
+            }
+        }
+    }
 }
 
 # Success but power Level not yet reached!
 country_event = {
-	id = aot_dm_production_core_events.3
-	title = aot_dm_production_core_events.3.name
-	desc = aot_dm_production_core_events.3.desc
-	picture = GFX_evt_sapient_AI
-	show_sound = event_energy_field
-	is_triggered_only = yes
-	trigger = {
-	}
-	immediate = {
-		remove_country_flag = has_ongoing_production_core_study
-	}
-	option = {
-		name = aot_dm_production_core_events.3.a
-		custom_tooltip = aot_dm_production_core_events.3.a.explain
-		default_hide_option = yes
-		hidden_effect = {
-			country_event = {
-				id = aot_dm_production_core_events.2
-			}
-		}
-	}
-	option = {
-		name = aot_dm_production_core_events.3.b
-		custom_tooltip = aot_dm_production_core_events.3.b.explain
-		hidden_effect = {
-			end_event_chain = aot_dm_production_core_chain
-			remove_country_flag = dm_production_core_project_offer
-			set_timed_country_flag = {
-				flag = block_dm_production_core_project
-				years = 1
-			}
-		}
-	}
+    id = aot_dm_production_core_events.3
+    title = aot_dm_production_core_events.3.name
+    desc = aot_dm_production_core_events.3.desc
+    picture = GFX_evt_sapient_AI
+    show_sound = event_energy_field
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+        remove_country_flag = has_ongoing_production_core_study
+    }
+    option = {
+        name = aot_dm_production_core_events.3.a
+        custom_tooltip = aot_dm_production_core_events.3.a.explain
+        default_hide_option = yes
+    }
 }
 
 # SUCCESSS
-country_event = {
-	id = aot_dm_production_core_events.4
-	title = aot_dm_production_core_events.4.name
-	desc = aot_dm_production_core_events.4.desc
-	picture = GFX_evt_physics_research
-	show_sound = event_celebration
-	is_triggered_only = yes
-	trigger = {
-	}
-	immediate = {
-		end_event_chain = aot_dm_production_core_chain
-		remove_country_flag = has_ongoing_production_core_study
-		set_country_flag = finished_dm_production_core_chain
-	}
-	### AUTOMATONS REIGN SUPREME
-	option = {
-		name = aot_dm_production_core_events.4.a
-		add_research_option = tech_dm_production_core
-		add_tech_progress = {
-			tech = tech_dm_production_core
-			progress = 0.2
-		}
-	}
+situation_event = {
+    id = aot_dm_production_core_events.4
+    title = aot_dm_production_core_events.4.name
+    desc = aot_dm_production_core_events.4.desc
+    picture = GFX_evt_physics_research
+    show_sound = event_celebration
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+        owner = {
+            remove_country_flag = has_ongoing_production_core_study
+            set_country_flag = finished_dm_production_core_chain
+        }
+    }
+    ### AUTOMATONS REIGN SUPREME
+    option = {
+        name = aot_dm_production_core_events.4.a
+        owner = {
+            add_research_option = tech_dm_production_core
+            add_tech_progress = {
+                tech = tech_dm_production_core
+                progress = 0.2
+            }
+        }
+        hidden_effect = {
+            destroy_situation = this
+        }
+    }
 }
 
 # POWER CORE PROJECT FAILED SUCCESSFULLY
-country_event = {
-	id = aot_dm_production_core_events.5
-	title = aot_dm_production_core_events.5.name
-	desc = aot_dm_production_core_events.5.desc
-	picture = GFX_evt_black_hole
-	show_sound = event_comms_cutoff
-	is_triggered_only = yes
-	immediate = {
-	}
-	option = {
-		name = aot_dm_production_core_events.5.a
-		custom_tooltip = aot_dm_production_core_events.5.a.explain
-		default_hide_option = yes
-		hidden_effect = {
-			end_event_chain = aot_dm_production_core_chain
-			remove_country_flag = dm_production_core_project_offer
-			remove_country_flag = has_ongoing_production_core_study
-			set_timed_country_flag = {
-				flag = block_dm_production_core_project
-				years = 1
-			}
-		}
-	}
+situation_event = {
+    id = aot_dm_production_core_events.5
+    title = aot_dm_production_core_events.5.name
+    desc = aot_dm_production_core_events.5.desc
+    picture = GFX_evt_black_hole
+    show_sound = event_comms_cutoff
+    is_triggered_only = yes
+    immediate = {
+    }
+    option = {
+        name = aot_dm_production_core_events.5.a
+        custom_tooltip = aot_dm_production_core_events.5.a.explain
+        default_hide_option = yes
+        hidden_effect = {
+            abort_situation = this
+            owner = {
+                remove_country_flag = dm_production_core_project_offer
+                remove_country_flag = has_ongoing_production_core_study
+                set_timed_country_flag = {
+                    flag = block_dm_production_core_project
+                    years = 1
+                }
+            }
+        }
+    }
 }
 
 # Failure with power level decrease and final level not yet reached!
 country_event = {
-	id = aot_dm_production_core_events.6
-	title = aot_dm_production_core_events.6.name
-	desc = aot_dm_production_core_events.6.desc
-	picture = GFX_evt_laser_grid
-	show_sound = event_power_down
-	is_triggered_only = yes
-	trigger = {
-	}
-	immediate = {
-		remove_country_flag = has_ongoing_production_core_study
-	}
-	option = {
-		name = aot_dm_production_core_events.6.a
-		custom_tooltip = aot_dm_production_core_events.6.a.explain
-		default_hide_option = yes
-		hidden_effect = {
-			country_event = {
-				id = aot_dm_production_core_events.2
-			}
-		}
-	}
-	option = {
-		name = aot_dm_production_core_events.6.b
-		custom_tooltip = aot_dm_production_core_events.6.b.explain
-		end_event_chain = aot_dm_production_core_chain
-		hidden_effect = {
-			remove_country_flag = dm_production_core_project_offer
-			set_timed_country_flag = {
-				flag = block_dm_production_core_project
-				years = 1
-			}
-		}
-	}
+    id = aot_dm_production_core_events.6
+    title = aot_dm_production_core_events.6.name
+    desc = aot_dm_production_core_events.6.desc
+    picture = GFX_evt_laser_grid
+    show_sound = event_power_down
+    is_triggered_only = yes
+    trigger = {
+    }
+    immediate = {
+        remove_country_flag = has_ongoing_production_core_study
+    }
+    option = {
+        name = aot_dm_production_core_events.6.a
+        custom_tooltip = aot_dm_production_core_events.6.a.explain
+        default_hide_option = yes
+        hidden_effect = {
+        }
+    }
 }
+
+# Gamble event to determine the outcome of the experiment.
+country_event = {
+    id = aot_dm_production_core_events.1000
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        random_situation = {
+            limit = { is_situation_type = situation_aot_production_core }
+            save_event_target_as = ongoing_production_core_situation
+        }
+        if = {
+            limit = { check_variable = { which = current_dm_production_core_energy_level value = 0 } }
+            event_target:ongoing_production_core_situation = {
+                add_situation_progress = @dm_yield_0
+            }
+            country_event = {
+                id = aot_dm_production_core_events.3
+            }
+        }
+        else_if = {
+            limit = { check_variable = { which = current_dm_production_core_energy_level value = 1 } }
+            roll_production_core_result = { SUCCESS_CHANCE = 95 FAIL_CHANCE = 5 PROGRESS = @dm_yield_1 REGRESS = @[ - dm_yield_1 ] }
+        }
+        else_if = {
+            limit = { check_variable = { which = current_dm_production_core_energy_level value = 2 } }
+            roll_production_core_result = { SUCCESS_CHANCE = 90 FAIL_CHANCE = 10 PROGRESS = @dm_yield_2 REGRESS = @[ - dm_yield_2 ] }
+        }
+        else_if = {
+            limit = { check_variable = { which = current_dm_production_core_energy_level value = 3 } }
+            roll_production_core_result = { SUCCESS_CHANCE = 85 FAIL_CHANCE = 15 PROGRESS = @dm_yield_3 REGRESS = @[ - dm_yield_3 ] }
+        }
+        else_if = {
+            limit = { check_variable = { which = current_dm_production_core_energy_level value = 4 } }
+            roll_production_core_result = { SUCCESS_CHANCE = 80 FAIL_CHANCE = 20 PROGRESS = @dm_yield_4 REGRESS = @[ - dm_yield_4 ] }
+        }
+        else = {
+            roll_production_core_result = { SUCCESS_CHANCE = 75 FAIL_CHANCE = 25 PROGRESS = @dm_yield_5 REGRESS = @[ - dm_yield_5 ] }
+        }
+    }
+}
+
