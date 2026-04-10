@@ -1151,58 +1151,6 @@ remove_databank_project_flag = {
         project_enigmatic_fortress_selected = { remove_country_flag = project_enigmatic_fortress_selected }
     }
 }
-check_production_core_state = {
-    IF = {
-        limit = {
-            check_variable = {
-                which = var_dm_production_core_energy
-                value <= 0
-            }
-        }
-        country_event = {
-            id = aot_dm_production_core_events.4
-        }
-    }
-    else_if = {
-        limit = {
-            check_variable = {
-                which = var_dm_production_core_energy
-                value > @required_dm_score
-            }
-        }
-        country_event = {
-            id = aot_dm_production_core_events.5
-        }
-    }
-    else_if = {
-        limit = {
-            check_variable = {
-                which = var_dm_production_core_energy
-                value <= @required_dm_score
-            }
-            check_variable = {
-                which = var_dm_production_core_energy
-                value > 0
-            }
-            check_variable = {
-                which = var_dm_production_core_energy
-                value > previous_power_level_value
-            }
-        }
-        country_event = {
-            id = aot_dm_production_core_events.6
-        }
-    }
-    else = {
-        country_event = {
-            id = aot_dm_production_core_events.3
-        }
-    }
-    set_variable = {
-        which = previous_power_level_value
-        value = var_dm_production_core_energy
-    }
-}
 exterminatus_planet_effect_phanon_digitizer = {
     if = {
         limit = {
