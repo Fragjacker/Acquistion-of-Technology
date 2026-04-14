@@ -525,6 +525,64 @@ tech_aot_ae_sky_dome = {
         }
     }
 }
+tech_fe_ae_mine = {
+    cost = @acot_tier7cost3
+    area = engineering
+    tier = 7
+    category = {
+        materials
+    }
+    prerequisites = {
+        tech_fe_mine_2
+        tech_dark_matter_power_core_ae
+        tech_dm_production_core
+    }
+    weight = @tier5weight1
+    potential = {
+        NOT = {
+            has_global_flag = acot_building_forbidden
+        }
+        has_technology = tech_fe_mine_2
+        has_technology = tech_dark_matter_power_core_ae
+        has_technology = tech_dm_production_core
+    }
+    weight = @tier5weight1
+    weight_modifier = {
+        modifier = {
+            factor = 0
+            NOT = {
+                has_technology = tech_dm_production_core
+            }
+        }
+        modifier = {
+            factor = 10
+            OR = {
+                has_technology = tech_mine_exotic_gases
+                has_technology = tech_exotic_gases
+            }
+        }
+        modifier = {
+            factor = 2
+            has_tradition = tr_prosperity_adopt
+        }
+        modifier = {
+            factor = 1.25
+            has_trait_in_council = {
+                TRAIT = leader_trait_expertise_materials
+            }
+        }
+    }
+    ai_weight = {
+        factor = 30
+        modifier = {
+            factor = 1.25
+            has_trait_in_council = {
+                TRAIT = leader_trait_expertise_materials
+            }
+        }
+    }
+}
+
 
 # Interstellar Economics
 tech_dm_commercial_megaplex = {
@@ -1225,6 +1283,55 @@ tech_aot_fe_empyrean_shrine = {
             factor = 1.75
             has_trait_in_council = {
                 TRAIT = leader_trait_expertise_psionics
+            }
+        }
+    }
+}
+tech_aot_fe_mine_2 = {
+    cost = @acot_tier6cost3
+    area = engineering
+    tier = 6
+    category = {
+        materials
+    }
+    prerequisites = {
+        tech_dm_production_core
+    }
+    weight = @tier5weight1
+    potential = {
+        has_technology = tech_dm_production_core
+    }
+    weight_modifier = {
+        modifier = {
+            factor = 0
+            NOT = {
+                has_technology = tech_dm_production_core
+            }
+        }
+        modifier = {
+            factor = 10
+            OR = {
+                has_technology = tech_mine_exotic_gases
+                has_technology = tech_exotic_gases
+            }
+        }
+        modifier = {
+            factor = 2
+            has_tradition = tr_prosperity_adopt
+        }
+        modifier = {
+            factor = 1.25
+            has_trait_in_council = {
+                TRAIT = leader_trait_expertise_materials
+            }
+        }
+    }
+    ai_weight = {
+        factor = 30
+        modifier = {
+            factor = 1.25
+            has_trait_in_council = {
+                TRAIT = leader_trait_expertise_materials
             }
         }
     }
