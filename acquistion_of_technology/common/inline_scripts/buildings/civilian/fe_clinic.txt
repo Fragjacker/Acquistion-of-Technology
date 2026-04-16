@@ -1,0 +1,172 @@
+inline_script = {
+    script = shared/automated_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    PRODUCES = "$PRODUCES$"
+    COST = "$COST$"
+    UPKEEP = "$UPKEEP$"
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
+}
+
+category = pop_assembly
+
+building_sets = {
+    fallen_empire
+    urban
+}
+
+potential = {
+    exists = owner
+    planet_owner = {
+        has_technology = $PREREQUISITE$
+    }
+    owner = {
+        OR = {
+            is_regular_empire = yes
+            is_hive_empire = yes
+        }
+    }
+    NOR = {
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
+}
+
+destroy_trigger = {
+    exists = owner
+    owner = {
+        is_machine_empire = yes
+        is_fallen_empire = no
+    }
+}
+
+country_modifier = {
+    leader_lifespan_add = @[ 2 * two_exp$EXPONENT$ ]
+}
+
+planet_modifier = {
+    logistic_growth_mult = @[ 0.02 * two_exp$EXPONENT$ ]
+    bonus_pop_growth_mult = @[ 0.1 * two_exp$EXPONENT$ ]
+    bonus_pop_growth = @[ 0.6 * two_exp$TIER$ ]
+    fake_pop_growth_mod = @[ 0.6 * two_exp$TIER$ ]
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_hive_empire = yes
+        }
+    }
+    modifier = {
+        job_$JOB_HIVE$_add = 300
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_regular_empire = yes
+        }
+    }
+    modifier = {
+        job_$JOB$_add = 300
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            merg_is_awakened_fe = yes
+            is_fallen_empire_spiritualist = no
+        }
+    }
+    modifier = {
+        job_acot_fe_healthcare_add = 300
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            merg_is_awakened_fe = yes
+            is_fallen_empire_spiritualist = yes
+        }
+    }
+    modifier = {
+        job_acot_fe_acolyte_healthcare_add = 300
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            has_technology = tech_gene_tailoring
+        }
+        any_owned_pop_group = {
+            has_auto_modding_trait = yes
+        }
+    }
+    modifier = {
+        auto_mod_monthly_add = @[ 600 * two_exp$TIER$ ]
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            game_start_auto_mod_empire = yes
+        }
+        any_owned_pop_group = {
+            has_auto_modding_trait = yes
+        }
+    }
+    modifier = {
+        auto_mod_monthly_add = @[ 600 * two_exp$TIER$ ]
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            has_country_flag = clone_army_full_potential
+            has_active_tradition = tr_cloning_artificial_population_clone_army
+        }
+    }
+    clone_soldiers_sustained = @[ clones_sustained_low * two_exp$TIER$ ]
+    mult = 2
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            OR = {
+                has_purity_heightened_attributes_tradition = yes
+                has_cloning_artificial_population_tradition = yes
+                has_mutation_somatic_subversiveness_tradition = yes
+            }
+        }
+    }
+    organic_pop_bonus_workforce_mult = @[ medical_workforce_mult * two_exp$TIER$ ]
+    mult = 2
+}
+
+triggered_desc = {
+    trigger = {
+        exists = owner
+        owner = {
+            is_regular_empire = yes
+        }
+    }
+    text = job_healthcare_effect_desc
+}
