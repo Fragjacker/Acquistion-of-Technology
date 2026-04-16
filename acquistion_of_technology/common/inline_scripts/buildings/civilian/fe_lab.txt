@@ -1,0 +1,128 @@
+inline_script = {
+    script = shared/automated_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    PRODUCES = "$PRODUCES$"
+    COST = "$COST$"
+    UPKEEP = "$UPKEEP$"
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
+}
+category = research
+
+building_sets = {
+    fallen_empire
+    research
+    physics
+    society
+    engineering
+    aot_building_tier_$TIER$
+}
+
+potential = {
+    exists = owner
+    planet_owner = {
+        has_technology = $PREREQUISITE$
+    }
+    NOR = {
+        has_modifier = resort_colony
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
+}
+
+destroy_trigger = {
+    always = no
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            merg_is_awakened_fe = yes
+            is_fallen_empire_spiritualist = no
+        }
+    }
+    modifier = {
+        job_acot_fe_researcher_add = 200
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            merg_is_awakened_fe = yes
+            is_fallen_empire_spiritualist = yes
+        }
+    }
+    modifier = {
+        job_acot_fe_acolyte_researcher_add = 200
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_individualistic_empire = yes
+        }
+    }
+    modifier = {
+        job_$JOB$_add = @[ b1_jobs / 2 ]
+    }
+}
+triggered_planet_modifier = {
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_hive_empire = yes
+        }
+    }
+    modifier = {
+        job_$JOB_DRONE$_add = @[ b1_jobs / 2 ]
+    }
+}
+triggered_planet_modifier = {
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_machine_empire = yes
+        }
+    }
+    modifier = {
+        job_$JOB_DRONE$_add = @building_static_jobs_high
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_regular_empire = yes
+            is_galactic_community_member = yes
+        }
+        is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+        has_modifier = pm_extradimensional_experimentation
+    }
+    modifier = {
+        job_physicist_add = 200
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_gestalt = yes
+            is_galactic_community_member = yes
+        }
+        is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+        has_modifier = pm_extradimensional_experimentation
+    }
+    modifier = {
+        job_calculator_physicist_add = 200
+    }
+}
