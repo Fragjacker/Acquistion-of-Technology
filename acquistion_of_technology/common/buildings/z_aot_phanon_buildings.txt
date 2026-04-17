@@ -475,6 +475,28 @@ building_phanon_auto_lab = {
     }
 }
 
+building_phanon_auto_market = {
+    inline_script = {
+        script = buildings/civilian/fe_market
+        TIER = @PHANON_TIER
+        EXPONENT = @PHANON_EXPONENT
+        PREREQUISITE = tech_phanon_auto_market
+        ALLOW = "has_phanon_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = building_stellarite_auto_market
+        JOB = phanon_trader
+        JOB_DRONE = phanon_trader_drone
+        COST = "
+			alloys = @b3_minerals
+			"
+        PRODUCES = "
+			trade = @auto_trade_pe
+			"
+        UPKEEP = "
+            aot_sr_runic_power = 12
+			"
+    }
+}
 
 #####################
 # Job based Production
