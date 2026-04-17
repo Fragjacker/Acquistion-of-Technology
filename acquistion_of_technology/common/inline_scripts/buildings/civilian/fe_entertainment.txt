@@ -1,0 +1,82 @@
+inline_script = {
+    script = shared/automated_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    PRODUCES = "$PRODUCES$"
+    COST = "$COST$"
+    UPKEEP = "$UPKEEP$"
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
+}
+category = amenity
+
+building_sets = {
+    fallen_empire
+    urban
+}
+
+potential = {
+    exists = owner
+    planet_owner = {
+        has_technology = $PREREQUISITE$
+    }
+    NOT = {
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
+}
+
+destroy_trigger = {
+    exists = owner
+    owner = {
+        is_regular_empire = no
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_fallen_empire = yes
+            is_fallen_empire_spiritualist = no
+        }
+    }
+    modifier = {
+        job_acot_fe_entertainer_add = 2
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_fallen_empire = yes
+            is_fallen_empire_spiritualist = yes
+        }
+    }
+    modifier = {
+        job_acot_fe_acolyte_entertainer_add = 2
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_fallen_empire = no
+        }
+    }
+    modifier = {
+        job_entertainer_add = @fe_jobs
+    }
+}
+
+planet_modifier = {
+    planet_amenities_add = @[ 10000 * two_exp$EXPONENT$ ]
+}
+
+triggered_desc = {
+    text = job_entertainer_effect_desc
+}
