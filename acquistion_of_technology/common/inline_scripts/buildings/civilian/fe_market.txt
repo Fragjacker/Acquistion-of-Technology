@@ -1,0 +1,96 @@
+inline_script = {
+    script = shared/automated_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    PRODUCES = "$PRODUCES$"
+    COST = "$COST$"
+    UPKEEP = "$UPKEEP$"
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
+}
+
+category = trade
+
+building_sets = {
+    fallen_empire
+    trade
+}
+
+potential = {
+    exists = owner
+    planet_owner = {
+        has_technology = $PREREQUISITE$
+    }
+    NOR = {
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
+}
+
+destroy_trigger = {
+    OR = {
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
+}
+
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = { is_gestalt = no }
+    }
+    job_$JOB$_add = @b1_jobs
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_gestalt = no
+            has_active_tradition = tr_mercantile_commercial_enterprise
+        }
+    }
+    job_$JOB$_add = @b1_jobs
+    mult = 0.5
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = { is_gestalt = yes }
+    }
+    job_$JOB_DRONE$_add = @b1_jobs
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_gestalt = yes
+            has_active_tradition = tr_logistics_2
+        }
+    }
+    job_$JOB_DRONE$_add = @b1_jobs
+    mult = 0.5
+}
+
+country_modifier = {
+    country_trade_produces_mult = @[ 0.01 * ( 1 + $TIER$ ) ]
+}
+
+planet_modifier = {
+    planet_traders_trade_produces_add = @[ 0.5 * two_exp$EXPONENT$ ]
+}
+
+triggered_country_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_megacorp = yes
+        }
+    }
+    branch_office_value_mult = @[ 0.05 * two_exp$EXPONENT$ ]
+}

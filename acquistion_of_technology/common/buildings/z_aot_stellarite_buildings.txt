@@ -496,6 +496,29 @@ building_stellarite_auto_lab = {
     }
 }
 
+building_stellarite_auto_market = {
+    inline_script = {
+        script = buildings/civilian/fe_market
+        TIER = @SIGMA_TIER
+        EXPONENT = @SIGMA_EXPONENT
+        PREREQUISITE = tech_stellarite_auto_market
+        ALLOW = "has_stellarite_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        JOB = stellarite_trader
+        JOB_DRONE = stellarite_trader_drone
+        COST = "
+			alloys = @b3_minerals
+			"
+        PRODUCES = "
+			trade = @auto_trade_se
+			"
+        UPKEEP = "
+            acot_sr_stellarite = 12
+			"
+    }
+}
+
 
 #####################
 # Job based Production
