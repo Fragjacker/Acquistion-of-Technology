@@ -1,0 +1,171 @@
+is_triggered_only = yes
+diplomatic = yes
+
+picture_event_data = {
+    room = acot_sophia_room
+    portrait = event_target:acot_sophia_ruler
+}
+custom_gui = "acot_enclave_sophia_window"
+custom_gui_option = "acot_enclave_sophia_option"
+
+trigger = {
+}
+
+immediate = {
+    set_country_flag = acot_databank_diplomacy_engaged
+    random_country = {
+        limit = {
+            OR = {
+                has_defensive_pact = root
+                is_in_federation_with = root
+                root = { is_overlord_to = prev }
+            }
+            NOR = {
+                has_technology = $PREREQUISITE$
+                has_tech_option = $PREREQUISITE$
+            }
+        }
+        save_event_target_as = acot_gift_target_1
+    }
+    random_country = {
+        limit = {
+            OR = {
+                has_defensive_pact = root
+                is_in_federation_with = root
+                root = { is_overlord_to = prev }
+            }
+            NOR = {
+                has_technology = $PREREQUISITE$
+                has_tech_option = $PREREQUISITE$
+            }
+            NOT = {
+                is_same_value = event_target:acot_gift_target_1
+            }
+        }
+        save_event_target_as = acot_gift_target_2
+    }
+    random_country = {
+        limit = {
+            OR = {
+                has_defensive_pact = root
+                is_in_federation_with = root
+                root = { is_overlord_to = prev }
+            }
+            NOR = {
+                has_technology = $PREREQUISITE$
+                has_tech_option = $PREREQUISITE$
+            }
+            NOR = {
+                is_same_value = event_target:acot_gift_target_1
+                is_same_value = event_target:acot_gift_target_2
+            }
+        }
+        save_event_target_as = acot_gift_target_3
+    }
+    random_country = {
+        limit = {
+            OR = {
+                has_defensive_pact = root
+                is_in_federation_with = root
+                root = { is_overlord_to = prev }
+            }
+            NOR = {
+                has_technology = $PREREQUISITE$
+                has_tech_option = $PREREQUISITE$
+            }
+            NOR = {
+                is_same_value = event_target:acot_gift_target_1
+                is_same_value = event_target:acot_gift_target_2
+                is_same_value = event_target:acot_gift_target_3
+            }
+        }
+        save_event_target_as = acot_gift_target_4
+    }
+    random_country = {
+        limit = {
+            OR = {
+                has_defensive_pact = root
+                is_in_federation_with = root
+                root = { is_overlord_to = prev }
+            }
+            NOR = {
+                has_technology = $PREREQUISITE$
+                has_tech_option = $PREREQUISITE$
+            }
+            NOR = {
+                is_same_value = event_target:acot_gift_target_1
+                is_same_value = event_target:acot_gift_target_2
+                is_same_value = event_target:acot_gift_target_3
+                is_same_value = event_target:acot_gift_target_4
+            }
+        }
+        save_event_target_as = acot_gift_target_5
+    }
+}
+
+option = {
+    name = acot_precursor_databank.12.a
+    trigger = {
+        exists = event_target:acot_gift_target_1
+    }
+    hidden_effect = {
+        event_target:acot_gift_target_1 = { save_event_target_as = acot_gift_target }
+        remove_country_flag = acot_databank_diplomacy_engaged
+        country_event = { id = $FOLLOW_UP_EVENT$ }
+    }
+}
+option = {
+    name = acot_precursor_databank.12.b
+    trigger = {
+        exists = event_target:acot_gift_target_2
+    }
+    hidden_effect = {
+        event_target:acot_gift_target_2 = { save_event_target_as = acot_gift_target }
+        remove_country_flag = acot_databank_diplomacy_engaged
+        country_event = { id = $FOLLOW_UP_EVENT$ }
+    }
+}
+option = {
+    name = acot_precursor_databank.12.c
+    trigger = {
+        exists = event_target:acot_gift_target_3
+    }
+    hidden_effect = {
+        event_target:acot_gift_target_3 = { save_event_target_as = acot_gift_target }
+        remove_country_flag = acot_databank_diplomacy_engaged
+        country_event = { id = $FOLLOW_UP_EVENT$ }
+    }
+}
+option = {
+    name = acot_precursor_databank.12.d
+    trigger = {
+        exists = event_target:acot_gift_target_4
+    }
+    hidden_effect = {
+        event_target:acot_gift_target_4 = { save_event_target_as = acot_gift_target }
+        remove_country_flag = acot_databank_diplomacy_engaged
+        country_event = { id = $FOLLOW_UP_EVENT$ }
+    }
+}
+option = {
+    name = acot_precursor_databank.12.e
+    trigger = {
+        exists = event_target:acot_gift_target_5
+    }
+    hidden_effect = {
+        event_target:acot_gift_target_5 = { save_event_target_as = acot_gift_target }
+        remove_country_flag = acot_databank_diplomacy_engaged
+        country_event = { id = $FOLLOW_UP_EVENT$ }
+    }
+}
+
+###  BACK ###
+option = {
+    name = acot_precursor_databank.12.back
+    trigger = {
+    }
+    hidden_effect = {
+        remove_country_flag = acot_databank_diplomacy_engaged
+        country_event = { id = acot_precursor_databank.200 }
+    }
+}

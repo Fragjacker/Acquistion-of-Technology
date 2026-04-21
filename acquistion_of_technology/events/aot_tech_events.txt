@@ -7,79 +7,94 @@ namespace = aot_tech_events
 # ------------------------------------------------------------------------------------------------ #
 # We don't need the initial starter event in this case since ACoT brings its own.
 country_event = {
-	id = aot_tech_events.9001
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		AoT_RecurringMTTH = {
-			RECURRING_ID = aot_tech_events.9001
-			TARGET_EVENT = acot_alpha_matter_events.100
-			END_TRIGGER = "has_correct_tech_level_for_alpha_matter_event = yes"
-			RECURRING_TIME = 360
-		}
-	}
+    id = aot_tech_events.9001
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        AoT_RecurringMTTH = {
+            RECURRING_ID = aot_tech_events.9001
+            TARGET_EVENT = acot_alpha_matter_events.100
+            END_TRIGGER = "has_correct_tech_level_for_alpha_matter_event = yes"
+            RECURRING_TIME = 360
+        }
+    }
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #                                           Start Phanon                                           #
 # ------------------------------------------------------------------------------------------------ #
 country_event = {
-	id = aot_tech_events.2
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		AoT_MTTH = {
-			START_TRIGGER = "last_increased_tech = tech_dark_matter_power_core_ae"
-			FOLLOW_UP_ID = aot_tech_events.9002
-			INITAL_TIME = 1800
-			INITAL_RANDOM = 720
-		}
-	}
+    id = aot_tech_events.2
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        AoT_MTTH = {
+            START_TRIGGER = "last_increased_tech = tech_dark_matter_power_core_ae"
+            FOLLOW_UP_ID = aot_tech_events.9002
+            INITAL_TIME = 1800
+            INITAL_RANDOM = 720
+        }
+    }
 }
 
 country_event = {
-	id = aot_tech_events.9002
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		AoT_RecurringMTTH = {
-			RECURRING_ID = aot_tech_events.9002
-			TARGET_EVENT = aot_phanon_events.1
-			END_TRIGGER = "is_viable_phanon_research_candidate = yes"
-			RECURRING_TIME = 360
-		}
-	}
+    id = aot_tech_events.9002
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        AoT_RecurringMTTH = {
+            RECURRING_ID = aot_tech_events.9002
+            TARGET_EVENT = aot_phanon_events.1
+            END_TRIGGER = "is_viable_phanon_research_candidate = yes"
+            RECURRING_TIME = 360
+        }
+    }
 }
 
 # ------------------------------------------------------------------------------------------------ #
 #                                         Start Stellarite                                         #
 # ------------------------------------------------------------------------------------------------ #
 country_event = {
-	id = aot_tech_events.3
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		AoT_MTTH = {
-			START_TRIGGER = "last_increased_tech = tech_dark_matter_power_core_re"
-			FOLLOW_UP_ID = aot_tech_events.9003
-			INITAL_TIME = 1800
-			INITAL_RANDOM = 720
-		}
-	}
+    id = aot_tech_events.3
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        AoT_MTTH = {
+            START_TRIGGER = "last_increased_tech = tech_dark_matter_power_core_re"
+            FOLLOW_UP_ID = aot_tech_events.9003
+            INITAL_TIME = 1800
+            INITAL_RANDOM = 720
+        }
+    }
 }
 
 country_event = {
-	id = aot_tech_events.9003
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		AoT_RecurringMTTH = {
-			RECURRING_ID = aot_tech_events.9003
-			TARGET_EVENT = stellarite_events.1
-			END_TRIGGER = "is_viable_sigma_research_candidate = yes"
-			RECURRING_TIME = 360
-		}
-	}
+    id = aot_tech_events.9003
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        AoT_RecurringMTTH = {
+            RECURRING_ID = aot_tech_events.9003
+            TARGET_EVENT = stellarite_events.1
+            END_TRIGGER = "is_viable_sigma_research_candidate = yes"
+            RECURRING_TIME = 360
+        }
+    }
 }
 
 # ------------------------------------------------------------------------------------------------ #
+
+# Tech event to give the phanon technologies from the precursor aid option.
+country_event = {
+    id = aot_tech_events.1000
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        AoT_RecurringMTTH = {
+            RECURRING_ID = aot_tech_events.1000
+            TARGET_EVENT = aot_phanon_events.102
+            END_TRIGGER = "has_technology = tech_dark_matter_power_core_re"
+            RECURRING_TIME = 360
+        }
+    }
+}

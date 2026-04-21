@@ -1,0 +1,118 @@
+################## COMPONENT DAMAGE VALUES - START #########################
+######## MANDIBLES
+# Mandinble
+@min_mandible_enig = 59
+@max_mandible_enig = 155
+@min_mandible_dm = 66
+@max_mandible_dm = 176
+@min_mandible_ae = 86
+@max_mandible_ae = 228
+@min_mandible_pe = 121
+@max_mandible_pe = 319
+@min_mandible_re = 169
+@max_mandible_re = 447
+@min_mandible_se = 181
+@max_mandible_se = 479
+@min_mandible_oe = 1086
+@max_mandible_oe = 2875
+# Healing
+@bio_healing_enig = 106
+@bio_healing_dm = 120
+@bio_healing_ae = 155
+
+################# MANDIBLES
+
+weapon_component_template = {
+    key = "ACOT_MANDIBLE_RE"
+    size = torpedo
+    icon = "GFX_ship_part_acot_mandible_re"
+    icon_frame = 1
+    type = instant
+
+    damage = { min = @min_mandible_re max = @max_mandible_re }
+    windup = { min = 2 max = 6 }
+    total_fire_time = 9
+    range = 25
+    accuracy = 1.0
+    power = @l_pe_power_cost
+    hull_damage = 1.25
+    armor_penetration = 0.0
+    armor_damage = 1.50
+    shield_damage = 1.00
+    shield_penetration = 1.0
+    tracking = 0.50
+    size_damage_factor = 0.10
+
+    firing_arc = 25.0
+
+    resources = {
+        category = ship_components
+        cost = {
+            food = @l_re_cost
+            aot_sr_runic_power = @l_re_sr_cost
+        }
+        upkeep = {
+            alloys = @l_re_upkeep_alloys
+            food = @l_re_upkeep_energy
+        }
+    }
+
+    potential = {
+        OR = {
+            ship_uses_mauler_components = yes
+            AND = {
+                acot_is_precursor_ship = yes
+                from = {
+                    has_technology = tech_acot_bio_precursor_integration
+                }
+            }
+        }
+    }
+
+    prerequisites = { "tech_acot_bio_mandible_re" }
+    component_set = "ACOT_MANDIBLE_RE"
+    projectile_gfx = "biogenesis_01_mandible_attack"
+    tags = { weapon_type_mandible weapon_type_kinetic weapon_type_acot_enigmatic g_slot }
+    ai_tags = { weapon_role_anti_shield brawler brawler_stealth }
+    ai_weight = {
+        weight = 40
+        modifier = {
+            factor = 0.0
+            has_monthly_income = {
+                resource = sr_dark_matter
+                value <= 2
+            }
+            has_resource = {
+                type = sr_dark_matter
+                amount <= 5
+            }
+        }
+        modifier = {
+            factor = 0.0
+            has_resource = {
+                type = acot_sr_dark_energy
+                amount <= 5
+            }
+            has_monthly_income = {
+                resource = acot_sr_dark_energy
+                value <= 2
+            }
+        }
+    }
+}
+
+## HEALER
+
+## CONFUSER
+
+## TRACKER
+
+## EVASION
+
+## SUPPPRESS
+
+## ADRENALINE
+
+################# GROWTH NODES
+
+###### BIO TITAN

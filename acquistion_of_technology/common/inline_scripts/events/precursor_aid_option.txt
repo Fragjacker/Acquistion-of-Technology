@@ -1,0 +1,45 @@
+### Precursor Databank option to provide techs to allies.
+option = {
+    name = $NAME$
+    trigger = {
+        any_country = {
+            OR = {
+                has_defensive_pact = root
+                is_in_federation_with = root
+                root = {
+                    is_overlord_to = prev
+                }
+            }
+            NOR = {
+                has_technology = $PREREQUISITE$
+                has_tech_option = $PREREQUISITE$
+            }
+        }
+    }
+    hidden_effect = {
+        remove_country_flag = acot_databank_diplomacy_engaged
+        country_event = { id = $AID_EVENT$ }
+    }
+}
+option = {
+    name = $NAME$
+    trigger = {
+        NOR = {
+            any_country = {
+                OR = {
+                    has_defensive_pact = root
+                    is_in_federation_with = root
+                    root = {
+                        is_overlord_to = prev
+                    }
+                }
+                NOR = {
+                    has_technology = $PREREQUISITE$
+                    has_tech_option = $PREREQUISITE$
+                }
+            }
+        }
+    }
+    response_text = $FAIL_TEXT$
+    is_dialog_only = yes
+}

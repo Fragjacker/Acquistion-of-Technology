@@ -182,6 +182,42 @@ country_event = {
         }
     }
 
+    # Delta Aid
+    inline_script = {
+        script = events/precursor_aid_option
+        NAME = acot_precursor_databank.2.dm
+        FAIL_TEXT = acot_precursor_databank.2.dm.refuse
+        PREREQUISITE = tech_dark_matter_power_core_dm
+        AID_EVENT = acot_precursor_databank.12
+    }
+
+    # Alpha Aid
+    inline_script = {
+        script = events/precursor_aid_option
+        NAME = acot_precursor_databank.2.ae
+        FAIL_TEXT = acot_precursor_databank.2.ae.refuse
+        PREREQUISITE = tech_dark_matter_power_core_ae
+        AID_EVENT = acot_precursor_databank.13
+    }
+
+    # Phanon Aid
+    inline_script = {
+        script = events/precursor_aid_option
+        NAME = acot_precursor_databank.2.re
+        FAIL_TEXT = acot_precursor_databank.2.re.refuse
+        PREREQUISITE = tech_dark_matter_power_core_re
+        AID_EVENT = acot_precursor_databank.14
+    }
+
+    # Sigma Aid
+    inline_script = {
+        script = events/precursor_aid_option
+        NAME = acot_precursor_databank.2.se
+        FAIL_TEXT = acot_precursor_databank.2.se.refuse
+        PREREQUISITE = tech_dark_matter_power_core_se
+        AID_EVENT = acot_precursor_databank.15
+    }
+
     ### EXIT
     option = {
         name = acot_precursor_databank.2.end
@@ -215,10 +251,8 @@ country_event = {
         set_country_flag = acot_databank_diplomacy_engaged
     }
     after = {
-        hidden_effect = {
-            remove_country_flag = acot_databank_diplomacy_engaged
-        }
     }
+
     ###  ACCESS ALPHA TECH EVIDENCE
     option = {
         trigger = {
@@ -231,21 +265,21 @@ country_event = {
         }
         name = acot_precursor_databank.2.a
         hidden_effect = {
-            country_event = {
-                id = acot_precursor_databank.3
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.3 }
         }
     }
+
     ###  ACCESS ARCHIVE
     option = {
         name = acot_precursor_databank.2.b
         custom_tooltip = acot_precursor_databank.2.b.tooltip
         hidden_effect = {
-            country_event = {
-                id = acot_precursor_databank.4
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.4 }
         }
     }
+
     ### ASK ABOUT PRECURSORS
     option = {
         name = acot_precursor_databank.2.c
@@ -255,11 +289,11 @@ country_event = {
             }
         }
         hidden_effect = {
-            country_event = {
-                id = acot_precursor_databank.6
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.6 }
         }
     }
+
     ### ACCESS Project Reimagionation
     option = {
         name = acot_precursor_databank.2.d
@@ -286,11 +320,11 @@ country_event = {
             }
         }
         hidden_effect = {
-            country_event = {
-                id = acot_precursor_databank.9
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.9 }
         }
     }
+
     ### Stelllarite Stuffus
     option = {
         name = acot_precursor_databank.2.e
@@ -303,11 +337,11 @@ country_event = {
             }
         }
         hidden_effect = {
-            country_event = {
-                id = stellarite_events.100
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = stellarite_events.100 }
         }
     }
+
     ### ACCESS Project MASTER
     option = {
         name = acot_precursor_databank.2.g
@@ -327,15 +361,16 @@ country_event = {
             }
         }
         hidden_effect = {
-            country_event = {
-                id = acot_precursor_databank.1002
-            }
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.1002 }
         }
     }
+
     option = {
         name = acot_precursor_databank.2.f
-        hidden_country_self_event_call = {
-            EVENT_ID = acot_precursor_databank.7
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.7 }
         }
     }
 
@@ -344,14 +379,62 @@ country_event = {
     option = {
         name = acot_precursor_databank.2.h
         hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
             country_event = { id = acot_precursor_databank.11 }
         }
+    }
+
+    ### Aid
+    option = {
+        name = acot_precursor_databank.2.i
+        trigger = {
+            any_country = {
+                OR = {
+                    has_defensive_pact = root
+                    is_in_federation_with = root
+                    root = {
+                        is_overlord_to = prev
+                    }
+                }
+                NOR = {
+                    has_technology = tech_dark_matter_power_core_dm
+                    has_tech_option = tech_dark_matter_power_core_dm
+                }
+            }
+        }
+        hidden_effect = {
+            remove_country_flag = acot_databank_diplomacy_engaged
+            country_event = { id = acot_precursor_databank.12 }
+        }
+    }
+    option = {
+        name = acot_precursor_databank.2.i
+        trigger = {
+            NOR = {
+                any_country = {
+                    OR = {
+                        has_defensive_pact = root
+                        is_in_federation_with = root
+                        root = {
+                            is_overlord_to = prev
+                        }
+                    }
+                    NOR = {
+                        has_technology = tech_dark_matter_power_core_dm
+                        has_tech_option = tech_dark_matter_power_core_dm
+                    }
+                }
+            }
+        }
+        response_text = acot_precursor_databank.2.i.refuse
+        is_dialog_only = yes
     }
 
     ### EXIT
     option = {
         name = acot_precursor_databank.2.end
         response_text = EXCELLENT
+        remove_country_flag = acot_databank_diplomacy_engaged
         default_hide_option = yes
     }
 }
@@ -2696,5 +2779,69 @@ country_event = {
         CUSTOM_TOOLTIP = acot_precursor_databank.1003.f.explain
         SPECIAL_PROJECT_NAME = AOT_MASTERY_RESEARCH_PRECURSOR_ATTEMPT_LMAO
         EXPONENT = 3
+    }
+}
+
+# Databank Santaclause
+country_event = {
+    id = acot_precursor_databank.13
+    title = acot_precursor_databank.12.name
+    desc = acot_precursor_databank.13.desc
+
+    inline_script = {
+        script = events/precursor_aid_event_target_selection
+        PREREQUISITE = tech_dark_matter_power_core_ae
+        FOLLOW_UP_EVENT = acot_precursor_databank.1300
+    }
+}
+
+country_event = {
+    id = acot_precursor_databank.14
+    title = acot_precursor_databank.12.name
+    desc = acot_precursor_databank.14.desc
+
+    inline_script = {
+        script = events/precursor_aid_event_target_selection
+        PREREQUISITE = tech_dark_matter_power_core_re
+        FOLLOW_UP_EVENT = acot_precursor_databank.1400
+    }
+}
+
+country_event = {
+    id = acot_precursor_databank.15
+    title = acot_precursor_databank.12.name
+    desc = acot_precursor_databank.15.desc
+
+    inline_script = {
+        script = events/precursor_aid_event_target_selection
+        PREREQUISITE = tech_dark_matter_power_core_se
+        FOLLOW_UP_EVENT = acot_precursor_databank.1500
+    }
+}
+
+country_event = {
+    id = acot_precursor_databank.1300
+    inline_script = {
+        script = events/precursor_aid_tech_drop_event
+        OPINION_MODIFIER = triggered_opinion_give_ae_with_assist
+        EFFECT_CODE = "give_alpha_tech_drop = yes"
+    }
+}
+
+country_event = {
+    id = acot_precursor_databank.1400
+    inline_script = {
+        script = events/precursor_aid_tech_drop_event
+        OPINION_MODIFIER = triggered_opinion_give_re_with_assist
+        EFFECT_CODE = "give_phanon_tech_drop = yes"
+    }
+}
+
+country_event = {
+    id = acot_precursor_databank.1500
+    inline_script = {
+        script = events/precursor_aid_tech_drop_event
+        OPINION_MODIFIER = triggered_opinion_give_se_with_assist
+        EFFECT_CODE = "give_sigma_tech_drop = yes"
     }
 }

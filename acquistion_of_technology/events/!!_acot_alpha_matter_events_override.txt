@@ -30,6 +30,7 @@ country_event = {
 
     option = {
         name = acot_alpha_matter_events.100.a
+        custom_tooltip = acot_alpha_matter_events.100.a.explain
         trigger = {
             host_has_dlc = "The Machine Age"
         }
@@ -38,7 +39,7 @@ country_event = {
         }
         capital_scope = {
             create_fe_alpha_matter_poi = yes
-            #create_pmc_alpha_matter_poi = yes
+            create_pmc_alpha_matter_poi = yes
             create_curator_alpha_matter_poi = yes
             create_self_alpha_matter_poi = yes
         }
@@ -439,6 +440,207 @@ country_event = {
         name = "utopia.3190.1.c"
         assign_alpha_researcher = {
             TARGET = event_target:leader_3
+        }
+    }
+}
+
+# AI PRECURSOR SHIP STUFFS
+# Might need rearrange to prevent the if chain
+# acot_alpha_matter_events.14
+country_event = {
+    id = acot_alpha_matter_events.14
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        is_ai = yes
+    }
+
+    immediate = {
+        if = {
+            limit = {
+                NOT = {
+                    has_technology = tech_precursor_escort
+                }
+            }
+            add_research_option = tech_precursor_escort
+            add_tech_progress = {
+                tech = tech_precursor_escort
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                has_technology = tech_precursor_escort
+                NOT = {
+                    has_technology = tech_precursor_bc
+                }
+            }
+            add_research_option = tech_precursor_bc
+            add_tech_progress = {
+                tech = tech_precursor_bc
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                has_technology = tech_precursor_bc
+                NOT = {
+                    has_technology = tech_precursor_titan
+                }
+            }
+            add_research_option = tech_precursor_titan
+            add_tech_progress = {
+                tech = tech_precursor_titan
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                has_technology = tech_precursor_bc
+                NOT = {
+                    has_technology = tech_precursor_sentinel
+                }
+            }
+            add_research_option = tech_precursor_sentinel
+            add_tech_progress = {
+                tech = tech_precursor_sentinel
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                has_technology = tech_precursor_bc
+                NOT = {
+                    has_technology = tech_precursor_assault_carrier
+                }
+            }
+            add_research_option = tech_precursor_assault_carrier
+            add_tech_progress = {
+                tech = tech_precursor_assault_carrier
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                has_technology = tech_precursor_titan
+                NOT = {
+                    has_technology = tech_precursor_citadel
+                }
+            }
+            add_research_option = tech_precursor_citadel
+            add_tech_progress = {
+                tech = tech_precursor_citadel
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                has_technology = tech_precursor_titan
+                NOT = {
+                    has_technology = tech_precursor_enigmalith
+                }
+            }
+            add_research_option = tech_precursor_enigmalith
+            add_tech_progress = {
+                tech = tech_precursor_enigmalith
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                has_technology = tech_precursor_bc
+                NOT = {
+                    has_technology = tech_precursor_science
+                }
+            }
+            add_research_option = tech_precursor_science
+            add_tech_progress = {
+                tech = tech_precursor_science
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                has_technology = tech_precursor_science
+                NOT = {
+                    has_technology = tech_precursor_construcor
+                }
+            }
+            add_research_option = tech_precursor_construcor
+            add_tech_progress = {
+                tech = tech_precursor_construcor
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                has_technology = tech_precursor_construcor
+                NOT = {
+                    has_technology = tech_precursor_colonizer
+                }
+            }
+            add_research_option = tech_precursor_colonizer
+            add_tech_progress = {
+                tech = tech_precursor_colonizer
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                NOT = {
+                    has_technology = tech_precursor_guardian
+                }
+            }
+            add_research_option = tech_precursor_guardian
+            add_tech_progress = {
+                tech = tech_precursor_guardian
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                NOT = {
+                    has_technology = tech_precursor_juggernaut
+                }
+            }
+            add_research_option = tech_precursor_juggernaut
+            add_tech_progress = {
+                tech = tech_precursor_juggernaut
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                NOT = {
+                    has_technology = tech_dm_enigmatic_fortress_platform
+                }
+            }
+            add_research_option = tech_dm_enigmatic_fortress_platform
+            add_tech_progress = {
+                tech = tech_dm_enigmatic_fortress_platform
+                progress = 0.25
+            }
+        }
+        if = {
+            limit = {
+                NOT = {
+                    has_technology = tech_dm_habitat
+                }
+            }
+            add_research_option = tech_dm_habitat
+            add_tech_progress = {
+                tech = tech_dm_habitat
+                progress = 0.25
+            }
+        }
+    }
+
+    after = {
+        country_self_event_call = {
+            EVENT_ID = acot_alpha_matter_events.14
+            DAYS = 900
         }
     }
 }
