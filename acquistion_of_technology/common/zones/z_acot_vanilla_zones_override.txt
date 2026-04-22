@@ -24,90 +24,38 @@ acot_zone_dummy = {
 # Zones for general urban districts, listed in the order they appear on the wiki
 #######################################
 
+zone_acot_dm_urban = {
+    icon = GFX_acot_zone_dm_urban
+    swap_type = district_aot_DM_urban
+    swap_type_weight = 5
+    inline_script = {
+        script = zones/aot_vanilla_zones/base/aot_zone_urban_generic_base
+        PLANET_REQ = "is_exclusively_delta_tier = yes"
+        HOUSING_AMOUNT = 1000
+    }
+    inline_script = {
+        script = zones/aot_general_zone_job_adder
+        NORMAL_JOB = job_acot_overseer_add
+        GESTALT_JOB = job_acot_overseer_drone_add
+        AMOUNT = 100
+    }
+}
+
 zone_acot_ae_urban = {
     icon = GFX_acot_zone_ae_urban
-    base_buildtime = 60
-    potential = {
-        # planet scope
-        NOT = { has_giga_frameworld = yes }
-        hidden_trigger = {
-            exists = owner
-            owner = {
-                is_wilderness_empire = no
-            }
-        }
-        is_exclusively_alpha_tier = yes
-    }
-
-    unlock = {
-        # planet scope
-        hidden_trigger = {
-            exists = owner
-            owner = {
-                is_wilderness_empire = no
-            }
-        }
-    }
-
-    resources = {
-        category = planet_zones
-        cost = {
-            alloys = 1000
-            sr_dark_matter = 100
-            acot_sr_dark_energy = 100
-        }
-    }
-
-    triggered_district_planet_modifier = {
-        planet_housing_add = 2000
-    }
-
-    max_buildings = 3
-
-    zone_sets = {
-        urban
-        habitat_urban
-    }
-
-    include = {
-        all
-    }
-
-    excluded_building_sets = {
-        generator
-        mining
-        farming
-        knights
-        betharian
-        generator_automation
-        mining_automation
-        farming_automation
-        urban_automation_arcology
-        urban_automation
-    }
-
+    swap_type = district_aot_DE_urban
+    swap_type_weight = 5
     inline_script = {
-        script = zones/acot_general_zone_job_adder
+        script = zones/aot_vanilla_zones/base/aot_zone_urban_generic_base
+        PLANET_REQ = "is_exclusively_alpha_tier = yes"
+        HOUSING_AMOUNT = 2000
+    }
+    inline_script = {
+        script = zones/aot_general_zone_job_adder
         NORMAL_JOB = job_acot_overseer_add
-        HIVE_JOB = job_acot_overseer_drone_add
-        MACHINE_JOB = job_acot_overseer_droid_add
-        AMOUNT = 200 #@scaling_district_1_job
+        GESTALT_JOB = job_acot_overseer_drone_add
+        AMOUNT = @[ 100 * 2 ]
     }
-
-    planet_modifier = {
-        zone_building_slots_add = 3
-        planet_amenities_add = 2000
-    }
-
-    triggered_desc = {
-        trigger = {
-            always = yes
-        }
-        text = zone_urban_triggered_desc
-    }
-
-    ai_priority = 2
-    ai_weight_coefficient = 0.5
 }
 
 # industry
