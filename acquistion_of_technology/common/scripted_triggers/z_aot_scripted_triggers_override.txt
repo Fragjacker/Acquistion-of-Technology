@@ -112,24 +112,68 @@ acot_has_enigmalith_in_system = {
         has_megastructure = acot_dark_matter_obelisk_core_super_oe
     }
 }
-ship_uses_acot_battleship_reactor = {
+ship_uses_titan_reactors = {
     OR = {
-        ship_uses_battleship_reactors = yes
-        is_ship_size = acot_stinger_stage_4
-        # Military Station
-        is_ship_size = military_station_medium
-        # FE/ZOFE Ships
-        is_ship_size = large_ship_fallen_empire
-        is_ship_size = fe_battlecruiser
-        # ACOT Ships
+        # Regular Ships
+        is_ship_size = titan
+        # First Contact Ships
+        is_ship_size = payback_warship
+        # Cosmogenesis Ships
+        is_ship_size = cosmo_crisis_battlecruiser
+        # Biological Ships
+        is_ship_size = bio_titan
+        is_ship_size = acot_bio_titan_stage_1
+        is_ship_size = acot_bio_titan_stage_2
+        is_ship_size = acot_bio_titan_stage_3
+        is_ship_size = acot_bio_titan_stage_4
+        is_ship_size = acot_bio_titan_stage_5
+        is_ship_size = acot_automated_dread
+        # Platform
+        is_ship_size = military_station_large
 
-        is_ship_size = acot_stinger_stage_4
+        # AoT ships
+        is_aot_titan = yes
+    }
+}
+ship_uses_acot_large_ship_roles = {
+    OR = {
+        # Regular Ships
+        is_ship_size = titan
+        # BTC Ships
+        is_ship_size = cosmo_crisis_titan
+        # Biological Ships
+        is_ship_size = harbinger_stage_1
+        is_ship_size = harbinger_stage_2
+        is_ship_size = harbinger_stage_3
+        is_ship_size = bio_titan
+        is_ship_size = large_fallen_harbinger
+
         is_ship_size = acot_harbinger_stage_4
-        is_ship_size = precursor_platform_l
-        is_ship_size = precursor_battlecruiser
+        is_ship_size = acot_harbinger_stage_5
+        is_ship_size = acot_bio_titan_stage_1
+        is_ship_size = acot_bio_titan_stage_2
+        is_ship_size = acot_bio_titan_stage_3
+        is_ship_size = acot_bio_titan_stage_4
+        is_ship_size = acot_bio_titan_stage_5
+        # Biological Offspring Ships
+        is_ship_size = offspring_harbinger_stage_1
+        is_ship_size = offspring_harbinger_stage_2
+        is_ship_size = offspring_harbinger_stage_3
+        # FE/ZOFE Ships
+        is_ship_size = massive_ship_fallen_empire
+        is_ship_size = fe_titan
+        # ACOT Ships
+        is_ship_size = precursor_titan
+        is_ship_size = sbtg_ancient_cruiser
+        is_ship_size = sbtg_progenitor_titan
+        is_ship_size = offspring_precursor_titan
+        is_ship_size = sbtg_ancient_escort
+
+        is_ship_size = acot_automated_dread
         # Other Modded Ships
-        is_ship_size = SCX_Carrier
-        is_ship_size = Battlecruiser
+        is_ship_size = Dreadnought
+        is_ship_size = supportship
+        is_ship_size = SCX_Dreadnought
         is_ship_size = rs_dreadnought
         is_ship_size = rs_heavy_dreadnought_type_a
         is_ship_size = rs_heavy_dreadnought_type_b
@@ -139,17 +183,37 @@ ship_uses_acot_battleship_reactor = {
         is_ship_size = rs_heavy_dreadnought_type_f
         is_ship_size = rs_heavy_dreadnought_type_g
         is_ship_size = rs_heavy_dreadnought_type_h
-        is_ship_size = ag_science_constructor
-        is_ship_size = ag_alpha_psionic_cruiser
-        is_ship_size = ds_tempest_battleship
-        is_ship_size = ds_pr_reaver
-        is_ship_size = ds_replica
-        is_ship_size = ds_avatar_carrier
-        is_ship_size = ds_spectrals_aron
-        is_ship_size = ds_eldritch_phantom
 
-        # AoT ships
-        is_aot_ship = yes
+        # AoT Titan ships
+        is_aot_titan = yes
+    }
+}
+ship_uses_acot_huge_ship_roles = {
+    OR = {
+        # Regular Ships
+        is_ship_size = juggernaut
+        # BTC Ships
+        is_ship_size = star_eater
+        # Biological Ships
+        is_ship_size = voidspawn_boss
+        # FE/ZOFE Ships
+        is_ship_size = fe_goliath
+        # ACOT Ships
+        is_ship_size = acot_automated_dread_super
+        is_ship_size = acot_giga_fortress
+        is_ship_size = sbtg_aegis_guard
+        is_ship_size = sbtg_gatekeeper_warden
+        is_ship_size = sbtg_progenitor_avatar
+        is_ship_size = acot_reclaimer_guardian
+        # Other Modded Ships
+        is_ship_size = giga_planet_behemoth
+        is_ship_size = Carrier
+        is_ship_size = dcv
+        is_ship_size = Flagship
+        is_ship_size = ultradreadnought
+
+        # AoT Juggernauts
+        is_ascended_juggernaut = yes
     }
 }
 ship_uses_acot_normal_roles = {
@@ -157,7 +221,7 @@ ship_uses_acot_normal_roles = {
         is_ship_class = shipclass_military
         is_ship_class = shipclass_military_special
         is_ship_size = juggernaut
-        is_aot_ship = yes
+        is_ascended_juggernaut = yes
     }
     NOR = {
         is_ship_size = precursor_colonizer
@@ -170,24 +234,15 @@ ship_uses_juggernaut_components = {
         is_ascended_juggernaut = yes
     }
 }
-ship_uses_starbase_components = {
+ship_uses_acot_starbase_reactor = {
+    # Exclude Enigmatic Deep Space Fortress from using starbase reactors it has their own.
+    is_deep_space_enigmatic_fortress = no
+    # Exclude juggernauts from using starbase reactors as they have their own.
+    ship_uses_juggernaut_components = no
+
     OR = {
-        # Starbases
-        is_ship_size = starbase_outpost
-        is_ship_size = starbase_starport
-        is_ship_size = starbase_starhold
-        is_ship_size = starbase_starfortress
-        is_ship_size = starbase_citadel
-        # Orbital Rings
-        is_ship_size = orbital_ring_tier_1
-        is_ship_size = orbital_ring_tier_2
-        is_ship_size = orbital_ring_tier_3
-        # Deep Space Citadel
-        is_ship_size = starbase_deep_space_citadel_1
-        is_ship_size = starbase_deep_space_citadel_2
-        is_ship_size = starbase_deep_space_citadel_3
-        # Deep Space Enigmatic Fortress
-        is_deep_space_enigmatic_fortress = yes
+        ship_uses_starbase_components = yes
+        is_ship_class = shipclass_starbase
     }
 }
 ship_uses_dsc_components = {
@@ -200,25 +255,25 @@ ship_uses_dsc_components = {
     }
 }
 ship_uses_acot_precursor_hangar_standard = {
-	OR = {
-		is_ship_size = precursor_escort
-		is_ship_size = precursor_battlecruiser
-		is_ship_size = precursor_titan
-		is_ship_size = precursor_colossus
-		is_ship_size = precursor_guardian
-		is_ship_size = precursor_platform_l
-		is_ship_size = precursor_platform_m
-		is_ship_size = precursor_sentinel
-		is_ship_size = precursor_colonizer
-		is_ship_size = precursor_constructor
-		is_ship_size = precursor_science
-		is_ship_size = precursor_world_shaper
+    OR = {
+        is_ship_size = precursor_escort
+        is_ship_size = precursor_battlecruiser
+        is_ship_size = precursor_titan
+        is_ship_size = precursor_colossus
+        is_ship_size = precursor_guardian
+        is_ship_size = precursor_platform_l
+        is_ship_size = precursor_platform_m
+        is_ship_size = precursor_sentinel
+        is_ship_size = precursor_colonizer
+        is_ship_size = precursor_constructor
+        is_ship_size = precursor_science
+        is_ship_size = precursor_world_shaper
 
-		is_ship_size = offspring_precursor_escort
-		is_ship_size = offspring_precursor_battlecruiser
-		is_ship_size = offspring_precursor_titan
-		
-		# AOT ships
-		is_aot_ship = yes
-	}
+        is_ship_size = offspring_precursor_escort
+        is_ship_size = offspring_precursor_battlecruiser
+        is_ship_size = offspring_precursor_titan
+
+        # AOT ships
+        is_aot_ship = yes
+    }
 }
