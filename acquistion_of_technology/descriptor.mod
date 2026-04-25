@@ -1,8 +1,14 @@
-version="6.5.3.1"
+version="6.5.4.0"
 tags={
-	"Technologies"
-	"Gameplay"
+	"Balance"
 	"Overhaul"
+	"Economy"
+	"Buildings"
+	"Events"
+	"Gameplay"
+	"Military"
+	"Technologies"
+	"Translation"
 }
 dependencies={
 	"Ancient Cache of Technologies"

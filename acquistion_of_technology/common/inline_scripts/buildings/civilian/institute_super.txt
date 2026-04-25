@@ -69,33 +69,12 @@ resources = {
 }
 
 country_modifier = {
-    country_scientist_cap_add = @[ 1 * $TIER$ ]
-    physics_tech_cost_mult = @[ - 0.10 * two_exp$EXPONENT$ ]
-    society_tech_cost_mult = @[ - 0.10 * two_exp$EXPONENT$ ]
-    engineering_tech_cost_mult = @[ - 0.10 * two_exp$EXPONENT$ ]
-    all_technology_research_speed = @[ 0.2 * two_exp$EXPONENT$ ]
+    country_scientist_cap_add = @[ $TIER$ ]
+    physics_tech_cost_mult = @[ - 1 * ( 0.10 + ( 0.01 * ( $TIER$ - 1 ) ) ) ]
+    society_tech_cost_mult = @[ - 1 * ( 0.10 + ( 0.01 * ( $TIER$ - 1 ) ) ) ]
+    engineering_tech_cost_mult = @[ - 1 * ( 0.10 + ( 0.01 * ( $TIER$ - 1 ) ) ) ]
+    all_technology_research_speed = @[ 0.25 * two_exp$EXPONENT$ ]
 }
 
-triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = {
-            is_regular_empire = yes
-        }
-    }
-    modifier = {
-        job_$JOB_TYPE$_add = @[ 2000 * $TIER$ ]
-        pop_$JOB_TYPE$_bonus_workforce_mult = @[ 0.5 * two_exp$EXPONENT$ ]
-    }
-}
-
-triggered_planet_modifier = {
-    potential = {
-        exists = planet_owner
-        planet_owner = { is_gestalt = yes }
-    }
-    modifier = {
-        job_$JOB_TYPE$_drone_add = @[ 2000 * $TIER$ ]
-        pop_$JOB_TYPE$_drone_bonus_workforce_mult = @[ 0.5 * two_exp$EXPONENT$ ]
-    }
-}
+# Job adder and bonus work force multiplier.
+inline_script = { script = buildings/civilian/parts/institute_super/$TYPE$ BASE_AMOUNT = 1000 BASE_MULT = 0.5 EXPONENT = $EXPONENT$ }

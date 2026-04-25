@@ -1035,3 +1035,25 @@ building_delta_nexus = {
         }
     }
 }
+building_acot_dm_institute_super = {
+    inline_script = {
+        script = buildings/civilian/institute_super
+        TIER = @DELTA_TIER
+        EXPONENT = @DELTA_EXPONENT
+        ALLOW = "has_enigmatic_capital = yes"
+        TYPE = acot_dm
+        CAN_BUILD = yes
+        PREREQUISITE = tech_acot_dm_institute
+        UPGRADES_INTO = building_acot_ae_institute_super
+        AI_FACTORS = "
+            weight = 1000
+            # There are already unworked jobs
+            # Blocks buildings unworkable by remaining pops (slaves/robots etc)
+            # Will be improved... at some point
+            modifier = {
+                factor = 0
+                free_jobs > 0
+            }
+			"
+    }
+}
