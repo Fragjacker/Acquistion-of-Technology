@@ -174,25 +174,24 @@ resources = {
             is_planet_class = pc_dark_fractured
         }
         energy = 20
-        trade = 40
         sr_dark_matter = 10
         acot_sr_dark_energy = 10
     }
     produces = {
         trigger = {
-            is_planet_class = pc_dark_fractured
+            is_planet_class = pc_dark_fractured_ae
         }
-        energy = 10
-        sr_dark_matter = 5
-        acot_sr_dark_energy = 5
+        energy = 40
+        sr_dark_matter = 20
+        acot_sr_dark_energy = 20
     }
     produces = {
         trigger = {
             is_planet_class = pc_acot_enigmopolis
         }
-        energy = 60
-        sr_dark_matter = 30
-        acot_sr_dark_energy = 30
+        energy = 120
+        sr_dark_matter = 60
+        acot_sr_dark_energy = 60
     }
     produces = {
         trigger = {
@@ -200,8 +199,10 @@ resources = {
                 is_ai = yes
             }
         }
-        sr_dark_matter = @[ 100 * two_exp$EXPONENT$ ]
-        acot_sr_dark_energy = @[ 100 * two_exp$EXPONENT$ ]
+	    unity = @[ 50 * two_exp$EXPONENT$ ]
+	    energy = @[ 50 * two_exp$EXPONENT$ ]
+	    minerals = @[ 50 * two_exp$EXPONENT$ ]
+	    alloys = @[ 50 * two_exp$EXPONENT$ ]
     }
     produces = {
         $PRODUCES$
@@ -217,6 +218,45 @@ resources = {
         $COST$
     }
 }
-ai_weight = {
-    weight = 1000
+# CAPITAL BUILDINGS ARE VERY IMPORTANT! BUILD THEM ASAP!
+additional_ai_weight = 1000
+# GIve additional weights to model job efficiency bonus
+ai_resource_production = {
+    unity = @[ 50 * two_exp$EXPONENT$ ]
+    energy = @[ 50 * two_exp$EXPONENT$ ]
+    minerals = @[ 50 * two_exp$EXPONENT$ ]
+    alloys = @[ 50 * two_exp$EXPONENT$ ]
+}
+
+ai_resource_production = {
+    trigger = {
+        is_planet_class = pc_dark_fractured
+    }
+    energy = 20
+    sr_dark_matter = 10
+    acot_sr_dark_energy = 10
+}
+ai_resource_production = {
+    trigger = {
+        is_planet_class = pc_dark_fractured
+    }
+    energy = 20
+    sr_dark_matter = 10
+    acot_sr_dark_energy = 10
+}
+ai_resource_production = {
+    trigger = {
+        is_planet_class = pc_dark_fractured_ae
+    }
+    energy = 40
+    sr_dark_matter = 20
+    acot_sr_dark_energy = 20
+}
+ai_resource_production = {
+    trigger = {
+        is_planet_class = pc_acot_enigmopolis
+    }
+    energy = 120
+    sr_dark_matter = 60
+    acot_sr_dark_energy = 60
 }
