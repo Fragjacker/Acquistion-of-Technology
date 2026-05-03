@@ -62,12 +62,16 @@ resources = {
         acot_sr_stellarite = @[ acot_building_pleb_basic_dm_cost * two_exp$EXPONENT$ ]
     }
 }
-additional_ai_weight = 100
+additional_ai_weight = 10000
 ai_resource_production = {
     energy = @[ 10 * two_exp$EXPONENT$ ]
-    food = @[ 10 * two_exp$EXPONENT$ ]
     minerals = @[ 10 * two_exp$EXPONENT$ ]
+}
+ai_resource_production = {
     trigger = {
-        always = yes
+        planet_owner = {
+            country_uses_food = yes
+        }
     }
+    food = @[ 100 * two_exp$EXPONENT$ ]
 }
