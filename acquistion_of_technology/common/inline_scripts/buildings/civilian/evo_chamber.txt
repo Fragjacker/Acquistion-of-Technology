@@ -44,7 +44,15 @@ destroy_trigger = {
     }
 }
 ai_estimate_without_unemployment = yes
-additional_ai_weight = 1000
+additional_ai_weight = 5000
 ai_resource_production = {
-    unity = 100
+    trigger = {
+        planet_owner = {
+            country_uses_food = yes
+        }
+    }
+    food = @[ 100 * two_exp$EXPONENT$ ]
+}
+ai_resource_production = {
+    unity = @[ 100 * two_exp$EXPONENT$ ]
 }

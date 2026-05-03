@@ -188,7 +188,15 @@ triggered_planet_modifier = {
     planet_amenities_add = @[ replicatory_association_amenities_add * two_exp$TIER$ * 3 ]
 }
 ai_estimate_without_unemployment = yes
-additional_ai_weight = 2000
+additional_ai_weight = 5000
 ai_resource_production = {
-    food = 100
+    unity = @[ 100 * two_exp$EXPONENT$ ]
+}
+ai_resource_production = {
+    trigger = {
+        planet_owner = {
+            country_uses_food = yes
+        }
+    }
+    food = @[ 50 * $TIER$ ]
 }
