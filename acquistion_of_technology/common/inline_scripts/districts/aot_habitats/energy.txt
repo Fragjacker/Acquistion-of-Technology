@@ -86,22 +86,26 @@ triggered_desc = {
 ai_weight = {
     weight = 0
     modifier = {
-        weight = 250
-        OR = {
-            owner = {
-                has_monthly_income = {
-                    resource = energy
-                    value < 200
+        weight = 400
+        planet = {
+            num_free_districts = { type = $DISTRICT$ value > 0 }
                 }
             }
-            colony = {
-                has_district = $DISTRICT$
+    modifier = {
+        factor = value:num_orbital_sites
+    }
+    # We really want to focus on special resource districts when there's inactive support pylons around.
+    modifier = {
+        factor = 0
+        solar_system = {
+            any_owned_megastructure = {
+                is_inactive_support_pylon = yes
             }
         }
     }
 }
 ai_resource_production = {
-    energy = 1
+    energy = @[ 100 * two_exp$EXPONENT$ ]
     trigger = {
         always = yes
     }

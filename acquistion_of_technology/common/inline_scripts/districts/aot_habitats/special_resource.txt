@@ -25,17 +25,114 @@ inline_script = {
 ai_weight = {
     weight = 0
     modifier = {
-        weight = 250
-        colony = {
-            NOT = {
-                has_district = $DISTRICT$
+        # We really want to construct this district in system with planets to kick off the support pylon mechanic.
+        add = 10000
+        num_free_districts = { type = $DISTRICT$ value > 0 }
+        solar_system = {
+            any_owned_megastructure = {
+                is_inactive_support_pylon = yes
             }
         }
+    }
+    modifier = {
+        # We really want to construct this district in system with planets to kick off the support pylon mechanic.
+        add = 1000
         owner = {
-            has_monthly_income = {
-                resource = minerals
-                value > 80
+            OR = {
+                has_monthly_income = { resource = acot_sr_dark_energy value <= 5000 }
+                has_monthly_income = { resource = sr_dark_matter value <= 5000 }
             }
         }
+    }
+}
+ai_weight_coefficient = @[ 1 * ( 0.2 * two_exp$EXPONENT$ ) ]
+ai_resource_production = {
+    sr_dark_matter = @[ 100 * two_exp$EXPONENT$ ]
+    acot_sr_dark_energy = @[ 100 * two_exp$EXPONENT$ ]
+}
+ai_resource_production = {
+    sr_dark_matter = @[ 200 * two_exp$EXPONENT$ ]
+    acot_sr_dark_energy = @[ 200 * two_exp$EXPONENT$ ]
+    trigger = {
+        OR = {
+            has_zone = { zone = zone_aot_delta_habitat_special_booster }
+            has_zone = { zone = zone_aot_alpha_habitat_special_booster }
+            has_zone = { zone = zone_aot_phanon_habitat_special_booster }
+            has_zone = { zone = zone_aot_sigma_habitat_special_booster }
+        }
+    }
+}
+ai_resource_production = {
+    aot_sr_runic_power = @[ 100 * two_exp$EXPONENT$ ]
+    trigger = {
+        OR = {
+            has_zone = { zone = zone_aot_phanon_habitat_special_booster }
+            has_zone = { zone = zone_aot_alpha_habitat_special_booster }
+        }
+    }
+}
+ai_resource_production = {
+    acot_sr_stellarite = @[ 100 * two_exp$EXPONENT$ ]
+    trigger = {
+        has_zone = { zone = zone_aot_sigma_habitat_special_booster }
+    }
+}
+ai_resource_production = {
+    society_research = @[ 100 * two_exp$EXPONENT$ ]
+    trigger = {
+        OR = {
+            has_zone = { zone = zone_aot_delta_habitat_special_research }
+            has_zone = { zone = zone_aot_alpha_habitat_special_research }
+            has_zone = { zone = zone_aot_phanon_habitat_special_research }
+            has_zone = { zone = zone_aot_sigma_habitat_special_research }
+        }
+
+    }
+}
+ai_resource_production = {
+    physics_research = @[ 100 * two_exp$EXPONENT$ ]
+    trigger = {
+        OR = {
+            has_zone = { zone = zone_aot_delta_habitat_special_research }
+            has_zone = { zone = zone_aot_alpha_habitat_special_research }
+            has_zone = { zone = zone_aot_phanon_habitat_special_research }
+            has_zone = { zone = zone_aot_sigma_habitat_special_research }
+        }
+
+    }
+}
+ai_resource_production = {
+    engineering_research = @[ 100 * two_exp$EXPONENT$ ]
+    trigger = {
+        OR = {
+            has_zone = { zone = zone_aot_delta_habitat_special_research }
+            has_zone = { zone = zone_aot_alpha_habitat_special_research }
+            has_zone = { zone = zone_aot_phanon_habitat_special_research }
+            has_zone = { zone = zone_aot_sigma_habitat_special_research }
+        }
+    }
+}
+ai_resource_production = {
+    energy = @[ 100 * two_exp$EXPONENT$ ]
+    trigger = {
+        OR = {
+            has_zone = { zone = zone_aot_delta_habitat_special_resources }
+            has_zone = { zone = zone_aot_alpha_habitat_special_resources }
+            has_zone = { zone = zone_aot_phanon_habitat_special_resources }
+            has_zone = { zone = zone_aot_sigma_habitat_special_resources }
+        }
+
+    }
+}
+ai_resource_production = {
+    minerals = @[ 100 * two_exp$EXPONENT$ ]
+    trigger = {
+        OR = {
+            has_zone = { zone = zone_aot_delta_habitat_special_resources }
+            has_zone = { zone = zone_aot_alpha_habitat_special_resources }
+            has_zone = { zone = zone_aot_phanon_habitat_special_resources }
+            has_zone = { zone = zone_aot_sigma_habitat_special_resources }
+        }
+
     }
 }
