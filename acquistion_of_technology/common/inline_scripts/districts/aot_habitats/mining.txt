@@ -87,7 +87,7 @@ triggered_desc = {
 ai_weight = {
     weight = 0
     modifier = {
-        weight = 400
+        weight = 1000
         planet = {
             num_free_districts = { type = $DISTRICT$ value > 0 }
                 }
@@ -105,10 +105,20 @@ ai_weight = {
         }
     }
 }
+ai_weight_coefficient = @[ 3 * two_exp$EXPONENT$ ]
 ai_resource_production = {
-    minerals = @[ 100 * two_exp$EXPONENT$ ]
+    minerals = @[ 200 * two_exp$EXPONENT$ ]
+}
+ai_resource_production = {
+    minerals = @[ 150 * two_exp$EXPONENT$ ]
     trigger = {
-        always = yes
+        OR = {
+            has_zone = { zone = zone_aot_delta_habitat_special_resources }
+            has_zone = { zone = zone_aot_alpha_habitat_special_resources }
+            has_zone = { zone = zone_aot_phanon_habitat_special_resources }
+            has_zone = { zone = zone_aot_sigma_habitat_special_resources }
+        }
+
     }
 }
 on_built = {
