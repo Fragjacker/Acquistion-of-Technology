@@ -79,9 +79,14 @@ inline_script = {
     PLANET_MODIFIER = "$PLANET_MODIFIER$"
 }
 ai_estimate_without_unemployment = yes
-ai_weight_coefficient = @[ 1 + ( 0.5 * two_exp$EXPONENT$ ) ]
+ai_weight_coefficient = @[ 2 * two_exp$EXPONENT$ ]
 additional_ai_weight = 10000
 ai_resource_production = {
+    trigger = {
+        any_system_planet = {
+            is_aot_habitat = yes
+        }
+    }
     sr_dark_matter = @[ 200 * two_exp$EXPONENT$ ]
     acot_sr_dark_energy = @[ 200 * two_exp$EXPONENT$ ]
     aot_sr_runic_power = @[ 200 * two_exp$EXPONENT$ ]

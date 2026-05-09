@@ -36,16 +36,17 @@ ai_weight = {
     }
     modifier = {
         # We really want to construct this district in system with planets to kick off the support pylon mechanic.
-        add = 1000
+        add = 10000
         owner = {
             OR = {
-                has_monthly_income = { resource = acot_sr_dark_energy value <= 5000 }
-                has_monthly_income = { resource = sr_dark_matter value <= 5000 }
+                resource_income_compare = { resource = acot_sr_dark_energy value <= 5000 }
+                resource_income_compare = { resource = sr_dark_matter value <= 5000 }
             }
         }
     }
 }
-ai_weight_coefficient = @[ 1 * ( 0.2 * two_exp$EXPONENT$ ) ]
+ai_weight_coefficient = @[ 4 * two_exp$EXPONENT$ ]
+additional_ai_weight = 10000
 ai_resource_production = {
     sr_dark_matter = @[ 100 * two_exp$EXPONENT$ ]
     acot_sr_dark_energy = @[ 100 * two_exp$EXPONENT$ ]
@@ -63,7 +64,7 @@ ai_resource_production = {
     }
 }
 ai_resource_production = {
-    aot_sr_runic_power = @[ 100 * two_exp$EXPONENT$ ]
+    aot_sr_runic_power = @[ 150 * two_exp$EXPONENT$ ]
     trigger = {
         OR = {
             has_zone = { zone = zone_aot_phanon_habitat_special_booster }
@@ -72,13 +73,13 @@ ai_resource_production = {
     }
 }
 ai_resource_production = {
-    acot_sr_stellarite = @[ 100 * two_exp$EXPONENT$ ]
+    acot_sr_stellarite = @[ 150 * two_exp$EXPONENT$ ]
     trigger = {
         has_zone = { zone = zone_aot_sigma_habitat_special_booster }
     }
 }
 ai_resource_production = {
-    society_research = @[ 100 * two_exp$EXPONENT$ ]
+    society_research = @[ 150 * two_exp$EXPONENT$ ]
     trigger = {
         OR = {
             has_zone = { zone = zone_aot_delta_habitat_special_research }
@@ -90,7 +91,7 @@ ai_resource_production = {
     }
 }
 ai_resource_production = {
-    physics_research = @[ 100 * two_exp$EXPONENT$ ]
+    physics_research = @[ 150 * two_exp$EXPONENT$ ]
     trigger = {
         OR = {
             has_zone = { zone = zone_aot_delta_habitat_special_research }
@@ -102,7 +103,7 @@ ai_resource_production = {
     }
 }
 ai_resource_production = {
-    engineering_research = @[ 100 * two_exp$EXPONENT$ ]
+    engineering_research = @[ 150 * two_exp$EXPONENT$ ]
     trigger = {
         OR = {
             has_zone = { zone = zone_aot_delta_habitat_special_research }
@@ -113,7 +114,7 @@ ai_resource_production = {
     }
 }
 ai_resource_production = {
-    energy = @[ 100 * two_exp$EXPONENT$ ]
+    energy = @[ 150 * two_exp$EXPONENT$ ]
     trigger = {
         OR = {
             has_zone = { zone = zone_aot_delta_habitat_special_resources }
@@ -121,11 +122,10 @@ ai_resource_production = {
             has_zone = { zone = zone_aot_phanon_habitat_special_resources }
             has_zone = { zone = zone_aot_sigma_habitat_special_resources }
         }
-
     }
 }
 ai_resource_production = {
-    minerals = @[ 100 * two_exp$EXPONENT$ ]
+    minerals = @[ 150 * two_exp$EXPONENT$ ]
     trigger = {
         OR = {
             has_zone = { zone = zone_aot_delta_habitat_special_resources }
