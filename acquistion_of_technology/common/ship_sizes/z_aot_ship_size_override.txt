@@ -178,3 +178,88 @@ acot_precusor_phanon_starcitadel = {
     }
     available_to_everyone = yes
 }
+
+# Star Annihilator - Flagship
+acot_star_annihilator = {
+    formation_priority = 60
+    is_space_object = yes
+    max_speed = 45
+    acceleration = 0.1
+    rotation_speed = 0.1
+    collision_radius = 7
+    modifier = {
+        ship_evasion_add = 15
+        ship_shield_add = 10000000
+        ship_armor_add = 10000000
+        ship_orbit_upkeep_mult = -0.50
+        ship_cloaking_strength_add = 3
+    }
+    max_hitpoints = 20000000
+    combat_size_multiplier = 150
+    size_multiplier = 320
+    fleet_slot_size = 80
+    section_slots = {
+        "hub" = { locator = "hub" }
+
+        "ion_cannon" = { locator = "ion_cannon" }
+
+        "hammer" = { locator = "hammer" }
+        "hammerdown" = { locator = "hammerdown" }
+
+        "spinal" = { locator = "part1" }
+        "spinal2" = { locator = "part1down" }
+
+        "fpart1" = { locator = "fpart1" }
+        "fpart1down" = { locator = "fpart1down" }
+        "fpart2" = { locator = "fpart2" }
+        "fpart2down" = { locator = "fpart2down" }
+
+        "bow" = { locator = "part2" }
+        "mid" = { locator = "part3" }
+        "core" = { locator = "part4" }
+        "stern" = { locator = "part6" }
+        "bow2" = { locator = "part2down" }
+        "mid2" = { locator = "part3down" }
+        "core2" = { locator = "part4down" }
+        "stern2" = { locator = "part6rerverse" }
+        "back" = { locator = "part5" }
+        "side1" = { locator = "side1" locator = "armor1" }
+        "side2" = { locator = "side2" locator = "armor2" }
+
+        "fside1" = { locator = "fside1" }
+        "fside2" = { locator = "fside2" }
+
+        "armor1" = { locator = "armor1" }
+        "armor2" = { locator = "armor2" }
+    }
+    num_target_locators = 0
+    is_space_station = no
+    icon = acot_ship_phanon_annihilator_icon
+    prerequisites = { tech_phanon_mothership }
+
+    resources = {
+        category = ships
+        cost = {
+        }
+        upkeep = {
+        }
+    }
+    base_buildtime = 3750
+    class = shipclass_military
+    is_designable = no
+    potential_construction = {
+        can_build_phanon_ship = yes
+    }
+    possible_country = {
+        custom_tooltip = {
+            fail_text = acot_pmc.601.f.fail
+            NOT = {
+                any_owned_ship = {
+                    is_ship_size = acot_star_annihilator
+                }
+            }
+        }
+    }
+    available_to_everyone = yes
+    construction_type = starbase_shipyard
+}
