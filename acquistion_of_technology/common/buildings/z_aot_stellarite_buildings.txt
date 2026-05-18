@@ -30,7 +30,8 @@ building_stellarite_palace = {
         country_resource_max_acot_sr_stellarite_add = 10000
     }
     potential = {
-        owner? = {
+        exists = planet_owner
+        planet_owner = {
             is_individualistic_empire = yes
             has_technology = tech_stellarite_palace
         }
@@ -398,6 +399,7 @@ building_stellarite_sky_dome = {
         PREREQUISITE = tech_stellarite_sky_dome
         CAN_BUILD = no
         UPGRADES_INTO = "always = yes"
+        PRODUCES = ""
         ALLOW = "
 			has_stellarite_capital = yes
 			"
@@ -495,7 +497,6 @@ building_stellarite_auto_lab = {
 			"
     }
 }
-
 building_stellarite_auto_market = {
     inline_script = {
         script = buildings/civilian/fe_market
@@ -518,7 +519,6 @@ building_stellarite_auto_market = {
 			"
     }
 }
-
 building_stellarite_auto_entertainment = {
     inline_script = {
         script = buildings/civilian/fe_entertainment
@@ -539,7 +539,6 @@ building_stellarite_auto_entertainment = {
 			"
     }
 }
-
 building_stellarite_auto_security = {
     inline_script = {
         script = buildings/civilian/fe_security
@@ -560,7 +559,26 @@ building_stellarite_auto_security = {
 			"
     }
 }
-
+building_stellarite_auto_silo = {
+    inline_script = {
+        script = buildings/civilian/fe_silo
+        TIER = @SIGMA_TIER
+        EXPONENT = @SIGMA_EXPONENT
+        PREREQUISITE = tech_stellarite_auto_silo
+        ALLOW = "has_stellarite_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        COST = "
+			alloys = @b3_minerals
+			"
+        PRODUCES = "
+			unity = @[auto_unity_se / 2]
+			"
+        UPKEEP = "
+            acot_sr_stellarite = 12
+			"
+    }
+}
 
 #####################
 # Job based Production
