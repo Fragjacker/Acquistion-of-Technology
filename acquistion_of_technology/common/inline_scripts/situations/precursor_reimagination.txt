@@ -1,0 +1,52 @@
+picture = GFX_acot_precursor_station_plans
+category = neutral
+complete_icon_frame = GFX_situation_outcome_frame_blue
+complete_icon = GFX_situation_outcome_positive
+fail_icon_frame = GFX_situation_outcome_frame_red
+fail_icon = GFX_situation_outcome_negative
+
+on_start = {
+    set_situation_approach = acot_approach_basic
+    hidden_effect = {
+        owner = {
+            set_country_flag = precuursor_design_project_active
+            set_country_flag = $PROJECT_FLAG$
+        }
+    }
+}
+
+on_progress_complete = {
+    custom_tooltip = situation_precursor_design_finish_tooltip
+    hidden_effect = {
+        owner = {
+            remove_country_flag = precuursor_design_project_active
+            remove_country_flag = $PROJECT_FLAG$
+            country_event = { id = $SUCCESS_EVENT$ }
+        }
+        destroy_situation = this
+    }
+}
+
+on_fail = {
+    custom_tooltip = situation_precursor_design_fail_tooltip
+    hidden_effect = {
+        owner = {
+            remove_country_flag = precuursor_design_project_active
+            remove_country_flag = $PROJECT_FLAG$
+            country_event = { id = acot_precursor_situations_design.9999 }
+        }
+        destroy_situation = this
+    }
+}
+
+start_value = 0
+
+inline_script = {
+    script = situations/acot_precursor_designs
+}
+
+abort_trigger = {
+    owner = {
+        has_technology = $ABORT_TECH_TRIGGER$
+    }
+}
