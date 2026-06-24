@@ -1,4 +1,4 @@
-version = "6.5.6.0"
+version = "7.0.0.0"
 tags = {
     "Balance"
     "Overhaul"
@@ -15,5 +15,5 @@ dependencies = {
 }
 name = "Acquisition of Technology"
 picture = "thumbnail.png"
-supported_version = "v4.3.*"
+supported_version = "v4.4.*"
 remote_file_id = "2178603631"
