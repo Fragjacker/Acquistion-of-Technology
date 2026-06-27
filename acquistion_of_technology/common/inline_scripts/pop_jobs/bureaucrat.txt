@@ -50,8 +50,7 @@ resources = {
     produces = {
         trigger = {
             bureaucrat_is_death_priest = yes
-            exists = owner
-            owner = { has_sacrificial_edict = yes }
+            owner? = { has_sacrificial_edict = yes }
         }
         unity = @[ 3 * two_exp$EXPONENT$ ]
     }
@@ -66,7 +65,7 @@ resources = {
     produces = {
         trigger = {
             exists = planet
-            planet = {
+            colony = {
                 bureaucrat_is_low_tech = yes
             }
         }
@@ -75,7 +74,7 @@ resources = {
     upkeep = {
         trigger = {
             exists = planet
-            planet = {
+            colony = {
                 bureaucrat_is_low_tech = yes
             }
         }
@@ -84,7 +83,7 @@ resources = {
     produces = {
         trigger = {
             exists = planet
-            planet = {
+            colony = {
                 bureaucrat_is_low_tech_manager = yes
             }
         }
@@ -94,7 +93,7 @@ resources = {
     upkeep = {
         trigger = {
             exists = planet
-            planet = {
+            colony = {
                 bureaucrat_is_low_tech_manager = yes
             }
         }
@@ -103,7 +102,7 @@ resources = {
     produces = {
         trigger = {
             exists = planet
-            planet = {
+            colony = {
                 bureaucrat_is_low_tech_priest = yes
             }
         }
@@ -112,7 +111,7 @@ resources = {
     upkeep = {
         trigger = {
             exists = planet
-            planet = {
+            colony = {
                 bureaucrat_is_low_tech_priest = yes
             }
         }
@@ -129,7 +128,7 @@ resources = {
     produces = {
         trigger = {
             exists = planet
-            planet = {
+            colony = {
                 bureaucrat_is_numistic_priest = yes
             }
         }
@@ -142,7 +141,7 @@ resources = {
 triggered_planet_modifier = {
     potential = {
         exists = planet
-        planet = {
+        colony = {
             check_modifier_value = {
                 modifier = planet_bureaucrats_stability_produces_add
                 value > 0
@@ -162,7 +161,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        planet = {
+        colony = {
             has_active_building = building_league_offices
         }
     }
@@ -171,19 +170,15 @@ triggered_planet_modifier = {
 }
 triggered_country_modifier = {
     potential = {
-        exists = owner
-        owner = { has_valid_civic = civic_efficient_bureaucracy }
+        owner? = { has_valid_civic = civic_efficient_bureaucracy }
     }
     country_edict_fund_add = @[ 2 * two_exp$EXPONENT$ ]
     mult = value:job_total_output_modifier|JOB|bureaucrat|RESOURCE|unity|
 }
 triggered_planet_modifier = {
     potential = {
-        planet = {
-            exists = owner
-            owner = {
-                has_tradition = tr_modularity_4
-            }
+        owner? = {
+            has_tradition = tr_modularity_4
         }
     }
     planet_jobs_worker_produces_mult = @[ 0.02 * two_exp$EXPONENT$ ]
@@ -191,8 +186,7 @@ triggered_planet_modifier = {
 #-------------------------------------------<  Memoralist  >----------------------------------------
 triggered_country_modifier = {
     potential = {
-        exists = owner
-        owner = { is_militarist = yes }
+        owner? = { is_militarist = yes }
         any_owned_planet = {
             bureaucrat_is_memorialist = yes
         }
@@ -202,9 +196,8 @@ triggered_country_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = owner
-        owner = { is_pacifist = yes }
-        planet = {
+        owner? = { is_pacifist = yes }
+        colony? = {
             bureaucrat_is_memorialist = yes
         }
     }
@@ -213,8 +206,7 @@ triggered_planet_modifier = {
 }
 triggered_country_modifier = {
     potential = {
-        exists = owner
-        owner = { is_authoritarian = yes }
+        owner? = { is_authoritarian = yes }
         any_owned_planet = {
             bureaucrat_is_memorialist = yes
         }
@@ -224,9 +216,8 @@ triggered_country_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = owner
-        owner = { is_xenophobe = yes }
-        planet = {
+        owner? = { is_xenophobe = yes }
+        colony? = {
             bureaucrat_is_memorialist = yes
         }
     }
@@ -235,9 +226,8 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = owner
-        owner = { is_xenophile = yes }
-        planet = {
+        owner? = { is_xenophile = yes }
+        colony? = {
             bureaucrat_is_memorialist = yes
         }
     }
@@ -255,8 +245,7 @@ weight = {
     }
     modifier = {
         factor = 2
-        exists = owner
-        owner = { has_civic = civic_exalted_priesthood }
+        owner? = { has_civic = civic_exalted_priesthood }
     }
     modifier = {
         factor = 0.1

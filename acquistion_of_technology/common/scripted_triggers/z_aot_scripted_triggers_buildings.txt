@@ -75,7 +75,7 @@ has_upgraded_capital = {
         }
     }
     else_if = {
-        limit = { owner = { is_wilderness_empire = yes } }
+        limit = { owner? = { is_wilderness_empire = yes } }
         custom_tooltip = {
             fail_text = "requires_building_wilderness_capital"
             OR = {
@@ -95,7 +95,7 @@ has_upgraded_capital = {
     }
     else_if = {
         limit = {
-            planet_owner = {
+            owner? = {
                 is_hive_empire = yes
             }
         }
@@ -118,7 +118,7 @@ has_upgraded_capital = {
     }
     else_if = {
         limit = {
-            planet_owner = {
+            owner? = {
                 is_machine_empire = yes
             }
         }
@@ -236,7 +236,7 @@ has_major_upgraded_capital = {
         }
     }
     else_if = {
-        limit = { owner = { is_wilderness_empire = yes } }
+        limit = { owner? = { is_wilderness_empire = yes } }
         custom_tooltip = {
             fail_text = "requires_building_wilderness_major_capital"
             OR = {
@@ -255,7 +255,7 @@ has_major_upgraded_capital = {
     }
     else_if = {
         limit = {
-            planet_owner = {
+            owner? = {
                 is_hive_empire = yes
             }
         }
@@ -277,7 +277,7 @@ has_major_upgraded_capital = {
     }
     else_if = {
         limit = {
-            planet_owner = {
+            owner? = {
                 is_machine_empire = yes
             }
         }
@@ -388,7 +388,7 @@ has_fully_upgraded_capital = {
         }
     }
     else_if = {
-        limit = { owner = { is_wilderness_empire = yes } }
+        limit = { owner? = { is_wilderness_empire = yes } }
         custom_tooltip = {
             fail_text = "requires_building_wilderness_system_capital"
             OR = {
@@ -406,7 +406,7 @@ has_fully_upgraded_capital = {
     }
     else_if = {
         limit = {
-            planet_owner = {
+            owner? = {
                 is_hive_empire = yes
             }
         }
@@ -428,7 +428,7 @@ has_fully_upgraded_capital = {
     }
     else_if = {
         limit = {
-            planet_owner = {
+            owner? = {
                 is_machine_empire = yes
             }
         }
@@ -469,7 +469,7 @@ has_fully_upgraded_capital = {
 }
 has_enigmatic_capital = {
     if = {
-        limit = { owner = { is_wilderness_empire = yes } }
+        limit = { owner? = { is_wilderness_empire = yes } }
         custom_tooltip = {
             fail_text = "requires_building_wilderness_system_capital"
             OR = {
@@ -485,7 +485,7 @@ has_enigmatic_capital = {
     }
     else_if = {
         limit = {
-            planet_owner = {
+            owner? = {
                 is_hive_empire = yes
             }
         }
@@ -506,7 +506,7 @@ has_enigmatic_capital = {
     }
     else_if = {
         limit = {
-            planet_owner = {
+            owner? = {
                 is_machine_empire = yes
             }
         }
@@ -544,7 +544,7 @@ has_enigmatic_capital = {
 }
 has_ascended_capital = {
     if = {
-        limit = { owner = { is_wilderness_empire = yes } }
+        limit = { owner? = { is_wilderness_empire = yes } }
         custom_tooltip = {
             fail_text = "requires_building_wilderness_system_capital"
             OR = {
@@ -560,7 +560,7 @@ has_ascended_capital = {
     }
     else_if = {
         limit = {
-            planet_owner = {
+            owner? = {
                 is_hive_empire = yes
             }
         }
@@ -579,7 +579,7 @@ has_ascended_capital = {
     }
     else_if = {
         limit = {
-            planet_owner = {
+            owner? = {
                 is_machine_empire = yes
             }
         }
@@ -613,7 +613,7 @@ has_ascended_capital = {
 }
 has_stellarite_capital = {
     if = {
-        limit = { owner = { is_wilderness_empire = yes } }
+        limit = { owner? = { is_wilderness_empire = yes } }
         custom_tooltip = {
             fail_text = "requires_building_wilderness_system_capital"
             OR = {
@@ -626,7 +626,7 @@ has_stellarite_capital = {
     }
     else_if = {
         limit = {
-            owner = {
+            owner? = {
                 is_hive_empire = yes
             }
         }
@@ -642,7 +642,7 @@ has_stellarite_capital = {
     }
     else_if = {
         limit = {
-            owner = {
+            owner? = {
                 is_machine_empire = yes
             }
         }
@@ -670,7 +670,7 @@ has_stellarite_capital = {
 }
 has_phanon_capital = {
     if = {
-        limit = { owner = { is_wilderness_empire = yes } }
+        limit = { owner? = { is_wilderness_empire = yes } }
         custom_tooltip = {
             fail_text = "requires_building_wilderness_system_capital"
             OR = {
@@ -684,7 +684,7 @@ has_phanon_capital = {
     }
     else_if = {
         limit = {
-            owner = {
+            owner? = {
                 is_hive_empire = yes
             }
         }
@@ -702,7 +702,7 @@ has_phanon_capital = {
     }
     else_if = {
         limit = {
-            owner = {
+            owner? = {
                 is_machine_empire = yes
             }
         }
@@ -807,15 +807,14 @@ last_building_was_conduit_building = {
 
 # ------------------------------- clone vat and huve depot triggers ------------------------------ #
 potential_can_have_vats_or_evochamber = {
-    exists = owner
-    owner = {
+    owner? = {
         has_genetic_ascension = yes
     }
     NOT = {
         has_modifier = resort_colony
     }
     OR = {
-        owner = {
+        owner? = {
             is_ai = no
         }
         NOT = {
@@ -826,7 +825,7 @@ potential_can_have_vats_or_evochamber = {
         }
     }
     OR = {
-        owner = {
+        owner? = {
             is_ai = no
         }
         NAND = {

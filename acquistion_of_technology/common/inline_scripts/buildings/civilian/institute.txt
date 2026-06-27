@@ -14,8 +14,7 @@ building_sets = {
     aot_building_tier_$TIER$
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
+    owner? = {
         has_technology = $PREREQUISITE$
     }
     NOR = {
@@ -44,7 +43,7 @@ resources = {
     }
     upkeep = {
         trigger = {
-            planet_owner = {
+            owner? = {
                 NOT = {
                     has_technology = tech_acot_fractured_autoharvesting
                 }
@@ -56,8 +55,7 @@ resources = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
-        planet_owner = {
+        owner? = {
             is_regular_empire = yes
         }
     }
@@ -68,8 +66,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
-        planet_owner = { is_gestalt = yes }
+        owner? = { is_gestalt = yes }
     }
     modifier = {
         job_$JOB_HIVE$_add = @num_jobs

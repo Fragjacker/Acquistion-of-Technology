@@ -25,8 +25,7 @@ planet_modifier = {
     bonus_pop_growth_mult = @[ 0.5 * two_exp$EXPONENT$ ]
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
+    owner? = {
         is_hive_empire = yes
         has_technology = $PREREQUISITE$
     }
@@ -34,7 +33,7 @@ potential = {
 destroy_trigger = {
     exists = owner
     OR = {
-        planet_owner = { is_hive_empire = no }
+        owner = { is_hive_empire = no }
         AND = {
             owner = { is_ai = yes }
             free_district_slots = 0

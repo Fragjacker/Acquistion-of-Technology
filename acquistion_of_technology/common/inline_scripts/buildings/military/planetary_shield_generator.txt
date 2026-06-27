@@ -20,8 +20,7 @@ building_sets = {
     aot_building_tier_$TIER$
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
+    owner? = {
         has_technology = $PREREQUISITE$
     }
 }
@@ -30,10 +29,8 @@ custom_storm_ai_weight = {
     modifier = {
         factor = 5
         AND = {
-            exists = owner
             solar_system = {
-                exists = owner
-                owner = { num_cosmic_storms_encountered >= 2 }
+                owner? = { num_cosmic_storms_encountered >= 2 }
             }
         }
     }

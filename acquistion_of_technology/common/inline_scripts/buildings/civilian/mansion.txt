@@ -19,13 +19,13 @@ potential = {
         has_modifier = slave_colony
         has_modifier = penal_colony
     }
-    planet_owner = {
+    owner? = {
         is_regular_empire = yes
     }
     NOT = { has_building = building_low_tech_capital }
     OR = {
-        has_planet_flag = ignore_ai_building_limitations
-        planet_owner = {
+        has_carrier_flag = ignore_ai_building_limitations
+        owner? = {
             NOT = { is_ai = yes }
         }
         AND = {
@@ -35,9 +35,9 @@ potential = {
     }
 }
 destroy_trigger = {
-    exists = planet_owner
+    exists = owner
     OR = {
-        planet_owner = { is_regular_empire = no }
+        owner = { is_regular_empire = no }
         has_modifier = slave_colony
     }
 }

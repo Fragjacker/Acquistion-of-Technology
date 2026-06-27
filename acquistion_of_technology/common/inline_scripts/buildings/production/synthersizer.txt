@@ -16,8 +16,7 @@ building_sets = {
     aot_building_tier_$TIER$
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
+    owner? = {
         has_technology = $PREREQUISITE$
     }
 }
@@ -27,8 +26,7 @@ country_modifier = {
 # Additional jobs and workforce bonus
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
-        planet_owner = { is_gestalt = no }
+        owner? = { is_gestalt = no }
     }
     job_acot_dark_matter_man_add = @[ 400 + ( 100 * two_exp$EXPONENT$ ) ]
     job_acot_dark_energy_man_add = @[ 400 + ( 100 * two_exp$EXPONENT$ ) ]
@@ -36,8 +34,7 @@ triggered_planet_modifier = {
 
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
-        planet_owner = { is_gestalt = yes }
+        owner? = { is_gestalt = yes }
         has_active_building = building_acot_ae_dark_matter_synthersizer
     }
     job_acot_dark_matter_drone_add = @[ 200 + ( 100 * two_exp$EXPONENT$ ) ]
@@ -45,7 +42,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
+        exists = owner
         has_active_building = building_acot_ae_dark_matter_synthersizer
     }
     planet_jobs_acot_sr_dark_energy_produces_mult = 1.0
@@ -53,7 +50,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
+        exists = owner
         has_active_building = building_phanon_synthersizer
     }
     planet_jobs_aot_sr_runic_power_produces_mult = 1.0
@@ -61,7 +58,7 @@ triggered_planet_modifier = {
 
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
+        exists = owner
         has_active_building = building_stellarite_synthersizer
     }
     planet_jobs_acot_sr_stellarite_produces_mult = 1.0
@@ -300,7 +297,7 @@ resources = {
     }
     upkeep = {
         trigger = {
-            planet_owner = {
+            owner? = {
                 NOT = {
                     has_technology = tech_acot_fractured_autoharvesting
                 }

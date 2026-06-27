@@ -13,24 +13,22 @@ building_sets = {
     aot_building_tier_$TIER$
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
+    owner? = {
         is_individualistic_empire = yes
         has_technology = $PREREQUISITE$
     }
-    planet = {
+    colony = {
         is_capital = yes
     }
 }
 destroy_trigger = {
     OR = {
         AND = {
-            exists = planet_owner
-            planet_owner = {
+            owner? = {
                 is_regular_empire = no
             }
         }
-        planet = {
+        colony = {
             is_capital = no
         }
     }

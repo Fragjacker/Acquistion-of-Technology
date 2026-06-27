@@ -14,15 +14,13 @@ building_sets = {
     aot_building_tier_$TIER$
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
+    owner? = {
         is_hive_empire = yes
         has_technology = $PREREQUISITE$
     }
 }
 destroy_trigger = {
-    exists = planet_owner
-    planet_owner = {
+    owner? = {
         is_hive_empire = no
     }
 }
@@ -32,8 +30,7 @@ convert_to = {
 triggered_planet_modifier = {
     potential = {
         NAND = {
-            exists = planet_owner
-            planet_owner = {
+            owner? = {
                 has_origin = origin_progenitor_hive
             }
         }
@@ -42,8 +39,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
-        planet_owner = {
+        owner? = {
             has_origin = origin_progenitor_hive
         }
     }
@@ -51,8 +47,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
-        planet_owner = {
+        owner? = {
             has_technology = tech_gene_tailoring
         }
         any_owned_pop_group = {
@@ -65,8 +60,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
-        planet_owner = {
+        owner? = {
             has_origin = origin_overtuned
         }
         any_owned_pop_group = {
@@ -79,8 +73,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
-        planet_owner = { has_active_tradition = tr_cybernetics_synaptic_sub_processing }
+        owner? = { has_active_tradition = tr_cybernetics_synaptic_sub_processing }
     }
     modifier = {
         job_augmentor_drone_add = @[ 200 * two_exp$TIER$ ]
@@ -90,7 +83,7 @@ resources = {
     category = planet_buildings
     cost = {
         trigger = {
-            planet_owner = {
+            owner? = {
                 is_wilderness_empire = no
             }
         }
@@ -98,7 +91,7 @@ resources = {
     }
     cost = {
         trigger = {
-            planet_owner = {
+            owner? = {
                 is_wilderness_empire = yes
             }
         }
@@ -111,7 +104,7 @@ resources = {
     }
     upkeep = {
         trigger = {
-            planet_owner = {
+            owner? = {
                 is_wilderness_empire = no
                 NOT = { has_technology = tech_acot_fractured_autoharvesting }
             }
@@ -122,7 +115,7 @@ resources = {
     }
     upkeep = {
         trigger = {
-            planet_owner = {
+            owner? = {
                 is_wilderness_empire = yes
                 NOT = { has_technology = tech_acot_fractured_autoharvesting }
             }

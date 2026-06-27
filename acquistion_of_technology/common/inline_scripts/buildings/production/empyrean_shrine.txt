@@ -16,15 +16,13 @@ building_sets = {
     aot_building_tier_$TIER$
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
+    owner? = {
         is_spiritualist = yes
         has_technology = $PREREQUISITE$
     }
 }
 destroy_trigger = {
-    exists = planet_owner
-    planet_owner = {
+    owner? = {
         is_spiritualist = no
     }
 }
@@ -35,8 +33,7 @@ convert_to = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
-        planet_owner = {
+        owner? = {
             is_fallen_empire_spiritualist = yes
         }
     }
@@ -44,8 +41,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = planet_owner
-        planet_owner = {
+        owner? = {
             is_fallen_empire = no
             is_spiritualist = yes
         }
@@ -54,24 +50,21 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
-        exists = owner
-        owner = { is_fallen_empire = yes }
+        owner? = { is_fallen_empire = yes }
     }
     job_fe_augur_add = @[ 300 * $TIER$ ]
 }
 
 triggered_planet_modifier = {
     potential = {
-        exists = owner
-        owner = { has_tradition = tr_psionics_psi_corps }
+        owner? = { has_tradition = tr_psionics_psi_corps }
     }
     job_telepath_add = @fe_jobs
 }
 
 triggered_country_modifier = {
     potential = {
-        exists = owner
-        owner = {
+        owner? = {
             has_country_flag = breached_shroud
         }
     }
@@ -80,8 +73,7 @@ triggered_country_modifier = {
 
 triggered_planet_modifier = {
     potential = {
-        exists = owner
-        owner = { NOT = { has_tradition = tr_psionics_psi_corps } }
+        owner? = { NOT = { has_tradition = tr_psionics_psi_corps } }
     }
     planet_bureaucrats_produces_mult = @[ 0.25 * $TIER$ ]
 }

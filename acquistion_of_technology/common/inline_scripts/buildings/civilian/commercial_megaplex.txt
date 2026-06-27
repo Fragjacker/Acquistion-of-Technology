@@ -16,8 +16,7 @@ planet_modifier = {
     planet_traders_upkeep_mult = @[ - 0.01 * two_exp$EXPONENT$ ]
 }
 potential = {
-    exists = planet_owner
-    planet_owner = {
+    owner? = {
         has_technology = $PREREQUISITE$
     }
     NOR = {
@@ -26,7 +25,7 @@ potential = {
     }
 }
 destroy_trigger = {
-    exists = planet_owner
+    exists = owner
     OR = {
         has_modifier = slave_colony
         has_modifier = penal_colony
