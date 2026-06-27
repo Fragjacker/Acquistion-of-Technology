@@ -70,7 +70,7 @@ country_event = {
                         has_country_flag = acot_phanon_tech_stage_one_enabled
                     }
                 }
-                set_planet_flag = acot_vault_floor_one_cleared
+                set_carrier_flag = acot_vault_floor_one_cleared
             }
             if = {
                 limit = {
@@ -78,7 +78,7 @@ country_event = {
                         has_country_flag = acot_phanon_tech_stage_two_enabled
                     }
                 }
-                set_planet_flag = acot_vault_floor_two_cleared
+                set_carrier_flag = acot_vault_floor_two_cleared
             }
             if = {
                 limit = {
@@ -86,7 +86,7 @@ country_event = {
                         has_country_flag = acot_phanon_tech_stage_three_enabled
                     }
                 }
-                set_planet_flag = acot_vault_floor_three_cleared
+                set_carrier_flag = acot_vault_floor_three_cleared
             }
             if = {
                 limit = {
@@ -94,13 +94,13 @@ country_event = {
                         has_country_flag = acot_phanon_tech_stage_four_enabled
                     }
                 }
-                set_planet_flag = acot_vault_floor_four_cleared
+                set_carrier_flag = acot_vault_floor_four_cleared
             }
             ### CLEAR OUT ZONES IF NO TECH
             if = {
                 limit = {
                     NOT = {
-                        has_planet_flag = acot_vault_floor_one_cleared
+                        has_carrier_flag = acot_vault_floor_one_cleared
                     }
                 }
                 remove_zone = {
@@ -119,7 +119,7 @@ country_event = {
             if = {
                 limit = {
                     NOT = {
-                        has_planet_flag = acot_vault_floor_two_cleared
+                        has_carrier_flag = acot_vault_floor_two_cleared
                     }
                 }
                 remove_zone = {
@@ -138,7 +138,7 @@ country_event = {
             if = {
                 limit = {
                     NOT = {
-                        has_planet_flag = acot_vault_floor_three_cleared
+                        has_carrier_flag = acot_vault_floor_three_cleared
                     }
                 }
                 remove_zone = {
@@ -185,9 +185,9 @@ country_event = {
             amount = 3
         }
         fromfrom = {
-            set_planet_flag = acot_vault_floor_one_cleared
-            set_planet_flag = acot_vault_floor_two_cleared
-            set_planet_flag = acot_vault_floor_three_cleared
+            set_carrier_flag = acot_vault_floor_one_cleared
+            set_carrier_flag = acot_vault_floor_two_cleared
+            set_carrier_flag = acot_vault_floor_three_cleared
             set_planet_size = 40
         }
         hidden_effect = {
@@ -284,7 +284,7 @@ country_event = {
 }
 
 # Vault Invasion Commencing - Phase One
-planet_event = {
+carrier_event = {
     id = acot_pmc.12
     title = "acot_pmc.12.title"
     desc = "acot_pmc.12.desc"
@@ -412,7 +412,7 @@ planet_event = {
     option = {
         name = acot_pmc.12.d
         hidden_effect = {
-            remove_planet_flag = ongoing_vault_infiltration
+            remove_carrier_flag = ongoing_vault_infiltration
         }
     }
 }
@@ -431,7 +431,7 @@ country_event = {
         is_playable_country = yes
         fromfrom = {
             is_planet_class = pc_acot_pmc_vault
-            has_planet_flag = ongoing_vault_infiltration
+            has_carrier_flag = ongoing_vault_infiltration
         }
         NOR = {
             has_country_flag = acot_phanon_tech_stage_one_enabled
@@ -440,7 +440,7 @@ country_event = {
     }
     immediate = {
         fromfrom = {
-            remove_planet_flag = ongoing_vault_infiltration
+            remove_carrier_flag = ongoing_vault_infiltration
             add_planet_devastation = -100
             add_modifier = {
                 modifier = acot_modifier_vault_delay
@@ -484,12 +484,12 @@ country_event = {
     }
     option = {
         name = acot_pmc.1200.a
-        every_owned_planet = {
+        every_owned_colony = {
             limit = {
                 is_planet_class = pc_acot_pmc_vault
             }
             set_planet_size = 25
-            set_planet_flag = acot_vault_floor_one_cleared
+            set_carrier_flag = acot_vault_floor_one_cleared
         }
         phanon_type_a_tech_gift = yes
         set_country_flag = acot_phanon_tech_stage_one_enabled
@@ -504,7 +504,7 @@ country_event = {
 }
 
 # Vault Invasion Commencing - Phase Two
-planet_event = {
+carrier_event = {
     id = acot_pmc.13
     title = "acot_pmc.13.title"
     desc = "acot_pmc.13.desc"
@@ -622,7 +622,7 @@ planet_event = {
                     species = owner_main_species
                 }
             }
-            planet_event = {
+            carrier_event = {
                 id = acot_pmc.1301
                 days = 360
             }
@@ -664,7 +664,7 @@ planet_event = {
     option = {
         name = acot_pmc.13.d
         hidden_effect = {
-            remove_planet_flag = ongoing_vault_infiltration
+            remove_carrier_flag = ongoing_vault_infiltration
         }
     }
 }
@@ -683,7 +683,7 @@ country_event = {
         is_playable_country = yes
         fromfrom = {
             is_planet_class = pc_acot_pmc_vault
-            has_planet_flag = ongoing_vault_infiltration
+            has_carrier_flag = ongoing_vault_infiltration
         }
         NOR = {
             has_country_flag = acot_phanon_tech_stage_two_enabled
@@ -692,18 +692,18 @@ country_event = {
     }
     immediate = {
         fromfrom = {
-            remove_planet_flag = ongoing_vault_infiltration
+            remove_carrier_flag = ongoing_vault_infiltration
             add_planet_devastation = -100
             add_modifier = {
                 modifier = acot_modifier_vault_delay
                 years = 2
             }
         }
-        every_owned_planet = {
+        every_owned_colony = {
             limit = {
                 is_planet_class = pc_acot_pmc_vault
             }
-            set_planet_flag = acot_vault_floor_two_cleared
+            set_carrier_flag = acot_vault_floor_two_cleared
         }
         if = {
             limit = {
@@ -733,7 +733,7 @@ country_event = {
 }
 
 # Vault Invasion Commencing - Phase Three
-planet_event = {
+carrier_event = {
     id = acot_pmc.14
     title = "acot_pmc.14.title"
     desc = "acot_pmc.14.desc"
@@ -776,8 +776,8 @@ planet_event = {
                     type = acot_phanon_defense_commander
                 }
             }
-            set_planet_flag = vault_mech_backup_possible
-            planet_event = {
+            set_carrier_flag = vault_mech_backup_possible
+            carrier_event = {
                 id = acot_pmc.1401
                 days = 180
             }
@@ -815,8 +815,8 @@ planet_event = {
                     type = acot_phanon_defense_droid_commander
                 }
             }
-            set_planet_flag = vault_bio_backup_possible
-            planet_event = {
+            set_carrier_flag = vault_bio_backup_possible
+            carrier_event = {
                 id = acot_pmc.1401
                 days = 180
             }
@@ -898,7 +898,7 @@ planet_event = {
     option = {
         name = acot_pmc.14.d
         hidden_effect = {
-            remove_planet_flag = ongoing_vault_infiltration
+            remove_carrier_flag = ongoing_vault_infiltration
         }
     }
 }
@@ -917,7 +917,7 @@ country_event = {
         is_playable_country = yes
         fromfrom = {
             is_planet_class = pc_acot_pmc_vault
-            has_planet_flag = ongoing_vault_infiltration
+            has_carrier_flag = ongoing_vault_infiltration
         }
         NOR = {
             has_country_flag = acot_phanon_tech_stage_three_enabled
@@ -934,18 +934,18 @@ country_event = {
             }
         }
         fromfrom = {
-            remove_planet_flag = ongoing_vault_infiltration
+            remove_carrier_flag = ongoing_vault_infiltration
             add_planet_devastation = -100
             add_modifier = {
                 modifier = acot_modifier_vault_delay
                 years = 3
             }
         }
-        every_owned_planet = {
+        every_owned_colony = {
             limit = {
                 is_planet_class = pc_acot_pmc_vault
             }
-            set_planet_flag = acot_vault_floor_three_cleared
+            set_carrier_flag = acot_vault_floor_three_cleared
         }
         if = {
             limit = {
@@ -974,7 +974,7 @@ country_event = {
 }
 
 # Vault Invasion Commencing - Phase Four
-planet_event = {
+carrier_event = {
     id = acot_pmc.15
     title = "acot_pmc.15.title"
     desc = "acot_pmc.15.desc"
@@ -1067,7 +1067,7 @@ planet_event = {
             ### POSSIBLE REINFORCEMENT
             if = {
                 limit = {
-                    has_planet_flag = vault_bio_backup_possible
+                    has_carrier_flag = vault_bio_backup_possible
                 }
                 random_list = {
                     1 = {
@@ -1105,13 +1105,13 @@ planet_event = {
                                 type = acot_phanon_defense_commander
                             }
                         }
-                        remove_planet_flag = vault_bio_backup_possible
+                        remove_carrier_flag = vault_bio_backup_possible
                     }
                 }
             }
             if = {
                 limit = {
-                    has_planet_flag = vault_mech_backup_possible
+                    has_carrier_flag = vault_mech_backup_possible
                 }
                 random_list = {
                     1 = {
@@ -1145,7 +1145,7 @@ planet_event = {
                                 type = acot_phanon_defense_droid_commander
                             }
                         }
-                        remove_planet_flag = vault_mech_backup_possible
+                        remove_carrier_flag = vault_mech_backup_possible
                     }
                 }
             }
@@ -1154,7 +1154,7 @@ planet_event = {
     option = {
         name = acot_pmc.15.d
         hidden_effect = {
-            remove_planet_flag = ongoing_vault_infiltration
+            remove_carrier_flag = ongoing_vault_infiltration
         }
     }
 }
@@ -1173,7 +1173,7 @@ country_event = {
         is_playable_country = yes
         fromfrom = {
             is_planet_class = pc_acot_pmc_vault
-            has_planet_flag = ongoing_vault_infiltration
+            has_carrier_flag = ongoing_vault_infiltration
         }
         NOR = {
             has_country_flag = acot_phanon_tech_stage_four_enabled
@@ -1182,8 +1182,8 @@ country_event = {
     }
     immediate = {
         fromfrom = {
-            remove_planet_flag = ongoing_vault_infiltration
-            set_planet_flag = acot_vault_floor_four_cleared
+            remove_carrier_flag = ongoing_vault_infiltration
+            set_carrier_flag = acot_vault_floor_four_cleared
             add_planet_devastation = -100
         }
         if = {
@@ -1197,7 +1197,7 @@ country_event = {
     }
     option = {
         name = acot_pmc.1500.a
-        every_owned_planet = {
+        every_owned_colony = {
             limit = {
                 is_planet_class = pc_acot_pmc_vault
             }

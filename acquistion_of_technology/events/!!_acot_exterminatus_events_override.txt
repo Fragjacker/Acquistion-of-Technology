@@ -6,7 +6,7 @@
 namespace = acot_exterminatus_event
 
 # Colony Rolls Chance to being MEMED
-planet_event = {
+carrier_event = {
     id = acot_exterminatus_event.100
     hide_window = yes
     is_triggered_only = yes
@@ -20,13 +20,12 @@ planet_event = {
         }
         NOR = {
             has_global_flag = acot_exterminatus_forbidden
-            has_planet_flag = bombardment_cooldown
+            has_carrier_flag = bombardment_cooldown
         }
         OR = {
             colonizable_planet = yes
             AND = {
-                exists = owner
-                planet_owner = {
+                owner? = {
                     is_same_value = event_target:exterminatus_victim_country
                 }
             }

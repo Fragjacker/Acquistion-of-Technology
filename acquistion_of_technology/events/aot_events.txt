@@ -1,636 +1,636 @@
 namespace = aot_events
 # Turn all planet pops into main species
-planet_event = {
-	id = aot_events.3
-	title = aot_mod_options.3.title
-	desc = {
-		trigger = {
-			owner = {
-				is_hive_empire = no
-			}
-		}
-		text = aot_mod_options.3.desc
-	}
-	desc = {
-		trigger = {
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		text = aot_mod_options.3.desc.a
-	}
-	picture = GFX_evt_society_research
-	is_triggered_only = yes
-	option = {
-		name = acot_special_menu.3.1.name
-		custom_tooltip = acot_special_menu.3.1.explain
-		inline_script = {
-			script = events/clean_bad_traits
-			LIMIT = "is_organic_species = yes"
-			FAIL_TEXT = not_has_shitty_leaders
-			RESOURCE = unity
-			AMOUNT = 15000
-			MODE = swap
-		}
-	}
-	option = {
-		name = acot_special_menu.3.2.name
-		custom_tooltip = acot_special_menu.3.2.explain
-		inline_script = {
-			script = events/add_leader_experience
-			LIMIT = "is_organic_species = yes"
-			MODIFIER_ADD = jumpstarted_exp_development
-			RESOURCE = unity
-			AMOUNT = 25000
-		}
-	}
-	option = {
-		name = aot_mod_options.chrysalis.name
-		custom_tooltip = aot_mod_options.chrysalis.explain
-		allow = {
-			fail_text = {
-				text = too_soon_to_do_that_nub
-			}
-			NOT = {
-				has_modifier = chrysalis_protocol_activated
-			}
-			owner = {
-				any_owned_pop_group = {
-					is_organic_species = yes
-					NOT = {
-						is_same_species = owner_species
-					}
-				}
-				any_owned_pop_group = {
-					is_organic_species = yes
-					is_same_species = owner_species
-				}
-				custom_tooltip_fail = {
-					text = no_xenos_in_empire
-				}
-				resource_stockpile_compare = {
-					resource = unity
-					value >= 20000
-				}
-				resource_stockpile_compare = {
-					resource = acot_sr_stellarite
-					value >= 2500
-				}
-				resource_stockpile_compare = {
-					resource = energy
-					value >= 10000
-				}
-			}
-		}
-		hidden_effect = {
-			perform_chrysalis_transformation = yes
-		}
-		owner = {
-			add_resource = {
-				unity = -20000
-				acot_sr_stellarite = -2500
-				energy = -10000
-			}
-			country_event = {
-				id = aot_events.5
-			}
-		}
-	}
-	option = {
-		name = aot_mod_options.koolaid.name
-		custom_tooltip = aot_mod_options.koolaid.explain
-		allow = {
-			fail_text = {
-				text = too_soon_to_do_that_nub
-			}
-			NOT = {
-				has_modifier = kool_aid_enrichment_activated
-			}
-			owner = {
-				resource_stockpile_compare = {
-					resource = energy
-					value >= 50000
-				}
-				resource_stockpile_compare = {
-					resource = aot_sr_runic_power
-					value >= 10000
-				}
-				fail_text = {
-					text = no_normal_leaders
-				}
-				any_owned_leader = {
-					has_phanon_traits = no
-				}
-			}
-		}
-		hidden_effect = {
-			add_modifier = {
-				modifier = kool_aid_enrichment_activated
-				years = 5
-			}
-			owner = {
-				add_resource = {
-					energy = -50000
-					aot_sr_runic_power = -10000
-				}
-			}
-			add_phanon_traits = yes
-		}
-	}
-	option = {
-		name = acot_special_menu.exit.a
-		name = acot_special_menu.exit.b
-		name = acot_special_menu.exit.c
-		name = acot_special_menu.exit.d
-		custom_tooltip = acot_special_menu.exit.tooltip
-	}
+carrier_event = {
+    id = aot_events.3
+    title = aot_mod_options.3.title
+    desc = {
+        trigger = {
+            owner = {
+                is_hive_empire = no
+            }
+        }
+        text = aot_mod_options.3.desc
+    }
+    desc = {
+        trigger = {
+            owner = {
+                is_hive_empire = yes
+            }
+        }
+        text = aot_mod_options.3.desc.a
+    }
+    picture = GFX_evt_society_research
+    is_triggered_only = yes
+    option = {
+        name = acot_special_menu.3.1.name
+        custom_tooltip = acot_special_menu.3.1.explain
+        inline_script = {
+            script = events/clean_bad_traits
+            LIMIT = "is_organic_species = yes"
+            FAIL_TEXT = not_has_shitty_leaders
+            RESOURCE = unity
+            AMOUNT = 15000
+            MODE = swap
+        }
+    }
+    option = {
+        name = acot_special_menu.3.2.name
+        custom_tooltip = acot_special_menu.3.2.explain
+        inline_script = {
+            script = events/add_leader_experience
+            LIMIT = "is_organic_species = yes"
+            MODIFIER_ADD = jumpstarted_exp_development
+            RESOURCE = unity
+            AMOUNT = 25000
+        }
+    }
+    option = {
+        name = aot_mod_options.chrysalis.name
+        custom_tooltip = aot_mod_options.chrysalis.explain
+        allow = {
+            fail_text = {
+                text = too_soon_to_do_that_nub
+            }
+            NOT = {
+                has_modifier = chrysalis_protocol_activated
+            }
+            owner = {
+                any_owned_pop_group = {
+                    is_organic_species = yes
+                    NOT = {
+                        is_same_species = owner_species
+                    }
+                }
+                any_owned_pop_group = {
+                    is_organic_species = yes
+                    is_same_species = owner_species
+                }
+                custom_tooltip_fail = {
+                    text = no_xenos_in_empire
+                }
+                resource_stockpile_compare = {
+                    resource = unity
+                    value >= 20000
+                }
+                resource_stockpile_compare = {
+                    resource = acot_sr_stellarite
+                    value >= 2500
+                }
+                resource_stockpile_compare = {
+                    resource = energy
+                    value >= 10000
+                }
+            }
+        }
+        hidden_effect = {
+            perform_chrysalis_transformation = yes
+        }
+        owner = {
+            add_resource = {
+                unity = -20000
+                acot_sr_stellarite = -2500
+                energy = -10000
+            }
+            country_event = {
+                id = aot_events.5
+            }
+        }
+    }
+    option = {
+        name = aot_mod_options.koolaid.name
+        custom_tooltip = aot_mod_options.koolaid.explain
+        allow = {
+            fail_text = {
+                text = too_soon_to_do_that_nub
+            }
+            NOT = {
+                has_modifier = kool_aid_enrichment_activated
+            }
+            owner = {
+                resource_stockpile_compare = {
+                    resource = energy
+                    value >= 50000
+                }
+                resource_stockpile_compare = {
+                    resource = aot_sr_runic_power
+                    value >= 10000
+                }
+                fail_text = {
+                    text = no_normal_leaders
+                }
+                any_owned_leader = {
+                    has_phanon_traits = no
+                }
+            }
+        }
+        hidden_effect = {
+            add_modifier = {
+                modifier = kool_aid_enrichment_activated
+                years = 5
+            }
+            owner = {
+                add_resource = {
+                    energy = -50000
+                    aot_sr_runic_power = -10000
+                }
+            }
+            add_phanon_traits = yes
+        }
+    }
+    option = {
+        name = acot_special_menu.exit.a
+        name = acot_special_menu.exit.b
+        name = acot_special_menu.exit.c
+        name = acot_special_menu.exit.d
+        custom_tooltip = acot_special_menu.exit.tooltip
+    }
 }
 
 # On Bio Leader deth
 country_event = {
-	id = aot_events.4
-	is_triggered_only = yes
-	title = aot_mod_options.resurrect.title
-	desc = aot_mod_options.resurrect.desc
-	picture = GFX_evt_space_funeral
-	show_sound = event_bad_omen
-	trigger = {
-		from = {
-			has_leader_flag = is_resurrection_candidate
-		}
-		root = {
-			any_owned_planet = {
-				OR = {
-					has_building = building_stellarite_clone_vats
-					has_building = building_stellarite_hive_evochamber
-					has_building = building_phanon_clone_vats
-					has_building = building_phanon_hive_evochamber
-				}
-			}
-		}
-	}
-	immediate = {
-		from = {
-			save_event_target_as = to_be_resurrected_leader
-		}
-	}
-	option = {
-		name = aot_mod_options.resurrect.1.a
-		custom_tooltip = aot_mod_options.resurrect.1.a.explain
-		allow = {
-			resource_stockpile_compare = {
-				resource = energy
-				value >= 50000
-			}
-			resource_stockpile_compare = {
-				resource = aot_sr_runic_power
-				value >= 10000
-			}
-		}
-		add_resource = {
-			energy = -50000
-			aot_sr_runic_power = -10000
-		}
-		hidden_effect = {
-			clone_leader = {
-				target = event_target:to_be_resurrected_leader
-				effect = {
-					save_event_target_as = cloned_leader
-					if = {
-						limit = {
-							NOT = {
-								has_trait = leader_trait_cell_activated
-							}
-						}
-						add_trait = {
-							trait = leader_trait_cell_activated
-							show_message = no
-						}
-					}
-					set_leader_flag = is_resurrection_candidate
-				}
-			}
-		}
-	}
-	option = {
-		name = aot_mod_options.resurrect.1.b
-	}
+    id = aot_events.4
+    is_triggered_only = yes
+    title = aot_mod_options.resurrect.title
+    desc = aot_mod_options.resurrect.desc
+    picture = GFX_evt_space_funeral
+    show_sound = event_bad_omen
+    trigger = {
+        from = {
+            has_leader_flag = is_resurrection_candidate
+        }
+        root = {
+            any_owned_planet = {
+                OR = {
+                    has_building = building_stellarite_clone_vats
+                    has_building = building_stellarite_hive_evochamber
+                    has_building = building_phanon_clone_vats
+                    has_building = building_phanon_hive_evochamber
+                }
+            }
+        }
+    }
+    immediate = {
+        from = {
+            save_event_target_as = to_be_resurrected_leader
+        }
+    }
+    option = {
+        name = aot_mod_options.resurrect.1.a
+        custom_tooltip = aot_mod_options.resurrect.1.a.explain
+        allow = {
+            resource_stockpile_compare = {
+                resource = energy
+                value >= 50000
+            }
+            resource_stockpile_compare = {
+                resource = aot_sr_runic_power
+                value >= 10000
+            }
+        }
+        add_resource = {
+            energy = -50000
+            aot_sr_runic_power = -10000
+        }
+        hidden_effect = {
+            clone_leader = {
+                target = event_target:to_be_resurrected_leader
+                effect = {
+                    save_event_target_as = cloned_leader
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_trait = leader_trait_cell_activated
+                            }
+                        }
+                        add_trait = {
+                            trait = leader_trait_cell_activated
+                            show_message = no
+                        }
+                    }
+                    set_leader_flag = is_resurrection_candidate
+                }
+            }
+        }
+    }
+    option = {
+        name = aot_mod_options.resurrect.1.b
+    }
 }
 
 # Chrysalis event window
 country_event = {
-	id = aot_events.5
-	is_triggered_only = yes
-	title = aot_mod_options.chrysalis_happened.title
-	desc = aot_mod_options.chrysalis_happened.desc
-	picture = GFX_evt_chrysalis_protocol
-	show_sound = event_energy_field
-	option = {
-		name = aot_mod_options.chrysalis_happened.1.b
-		name = aot_mod_options.chrysalis_happened.1.c
-		name = aot_mod_options.chrysalis_happened.1.d
-		name = aot_mod_options.chrysalis_happened.1.e
-	}
+    id = aot_events.5
+    is_triggered_only = yes
+    title = aot_mod_options.chrysalis_happened.title
+    desc = aot_mod_options.chrysalis_happened.desc
+    picture = GFX_evt_chrysalis_protocol
+    show_sound = event_energy_field
+    option = {
+        name = aot_mod_options.chrysalis_happened.1.b
+        name = aot_mod_options.chrysalis_happened.1.c
+        name = aot_mod_options.chrysalis_happened.1.d
+        name = aot_mod_options.chrysalis_happened.1.e
+    }
 }
 
 # Chrysalis event window
 country_event = {
-	id = aot_events.50
-	is_triggered_only = yes
-	title = aot_mod_options.kool_aid_chrysalis_happened.title
-	desc = aot_mod_options.kool_aid_chrysalis_happened.desc
-	picture = GFX_evt_kool_aid_protocol
-	show_sound = event_energy_field
-	option = {
-		name = aot_mod_options.chrysalis_happened.1.b
-		name = aot_mod_options.chrysalis_happened.1.c
-		name = aot_mod_options.chrysalis_happened.1.d
-		name = aot_mod_options.chrysalis_happened.1.e
-	}
+    id = aot_events.50
+    is_triggered_only = yes
+    title = aot_mod_options.kool_aid_chrysalis_happened.title
+    desc = aot_mod_options.kool_aid_chrysalis_happened.desc
+    picture = GFX_evt_kool_aid_protocol
+    show_sound = event_energy_field
+    option = {
+        name = aot_mod_options.chrysalis_happened.1.b
+        name = aot_mod_options.chrysalis_happened.1.c
+        name = aot_mod_options.chrysalis_happened.1.d
+        name = aot_mod_options.chrysalis_happened.1.e
+    }
 }
 
 # Assign the resurrection candidate flag to valuable, leaders that have just levelled up.
 leader_event = {
-	id = aot_events.7
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		this = {
-			set_leader_flag = is_resurrection_candidate
-		}
-	}
+    id = aot_events.7
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        this = {
+            set_leader_flag = is_resurrection_candidate
+        }
+    }
 }
 
 # Remove the resurrection candidate flag.
 event = {
-	id = aot_events.71
-	is_triggered_only = yes
-	hide_window = yes
-	immediate = {
-		from = {
-			remove_leader_flag = is_resurrection_candidate
-		}
-	}
+    id = aot_events.71
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        from = {
+            remove_leader_flag = is_resurrection_candidate
+        }
+    }
 }
 
 # Phanon Kool Aid Vats Menu
-planet_event = {
-	id = aot_events.8
-	title = aot_mod_options.8.title
-	desc = {
-		trigger = {
-			owner = {
-				is_hive_empire = no
-			}
-		}
-		text = aot_mod_options.8.desc
-	}
-	desc = {
-		trigger = {
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		text = aot_mod_options.8.desc.a
-	}
-	picture = GFX_evt_society_research
-	is_triggered_only = yes
-	option = {
-		name = acot_special_menu.3.1.name
-		custom_tooltip = acot_special_menu.3.1.explain
-		inline_script = {
-			script = events/clean_bad_traits
-			LIMIT = "is_organic_species = yes"
-			FAIL_TEXT = not_has_shitty_leaders
-			RESOURCE = unity
-			AMOUNT = 15000
-			MODE = swap
-		}
-	}
-	option = {
-		name = acot_special_menu.3.2.name
-		custom_tooltip = acot_special_menu.3.2.explain
-		inline_script = {
-			script = events/add_leader_experience
-			LIMIT = "is_organic_species = yes"
-			MODIFIER_ADD = jumpstarted_exp_development
-			RESOURCE = unity
-			AMOUNT = 25000
-		}
-	}
-	option = {
-		name = aot_mod_options.chrysalis.name
-		custom_tooltip = aot_mod_options.chrysalis.explain
-		allow = {
-			fail_text = {
-				text = too_soon_to_do_that_nub
-			}
-			NOT = {
-				has_modifier = chrysalis_protocol_activated
-			}
-			owner = {
-				any_owned_pop_group = {
-					is_organic_species = yes
-					NOT = {
-						is_same_species = owner_species
-					}
-				}
-				any_owned_pop_group = {
-					is_organic_species = yes
-					is_same_species = owner_species
-				}
-				custom_tooltip_fail = {
-					text = no_xenos_in_empire
-				}
-				resource_stockpile_compare = {
-					resource = unity
-					value >= 20000
-				}
-				resource_stockpile_compare = {
-					resource = aot_sr_runic_power
-					value >= 5000
-				}
-				resource_stockpile_compare = {
-					resource = energy
-					value >= 10000
-				}
-			}
-		}
-		hidden_effect = {
-			perform_chrysalis_transformation = yes
-		}
-		owner = {
-			add_resource = {
-				unity = -20000
-				aot_sr_runic_power = -5000
-				energy = -10000
-			}
-			country_event = {
-				id = aot_events.50
-			}
-		}
-	}
-	option = {
-		name = aot_mod_options.koolaid.name
-		custom_tooltip = aot_mod_options.koolaid.explain
-		allow = {
-			fail_text = {
-				text = too_soon_to_do_that_nub
-			}
-			NOT = {
-				has_modifier = kool_aid_enrichment_activated
-			}
-			owner = {
-				resource_stockpile_compare = {
-					resource = energy
-					value >= 50000
-				}
-				resource_stockpile_compare = {
-					resource = aot_sr_runic_power
-					value >= 10000
-				}
-				fail_text = {
-					text = no_normal_leaders
-				}
-				any_owned_leader = {
-					has_phanon_traits = no
-				}
-			}
-		}
-		owner = {
-			add_resource = {
-				energy = -100000
-				aot_sr_runic_power = -10000
-			}
-		}
-		hidden_effect = {
-			add_modifier = {
-				modifier = kool_aid_enrichment_activated
-				years = 5
-			}
-			add_phanon_traits = yes
-		}
-	}
-	option = {
-		name = acot_special_menu.exit.a
-		name = acot_special_menu.exit.b
-		name = acot_special_menu.exit.c
-		name = acot_special_menu.exit.d
-		custom_tooltip = acot_special_menu.exit.tooltip
-	}
+carrier_event = {
+    id = aot_events.8
+    title = aot_mod_options.8.title
+    desc = {
+        trigger = {
+            owner = {
+                is_hive_empire = no
+            }
+        }
+        text = aot_mod_options.8.desc
+    }
+    desc = {
+        trigger = {
+            owner = {
+                is_hive_empire = yes
+            }
+        }
+        text = aot_mod_options.8.desc.a
+    }
+    picture = GFX_evt_society_research
+    is_triggered_only = yes
+    option = {
+        name = acot_special_menu.3.1.name
+        custom_tooltip = acot_special_menu.3.1.explain
+        inline_script = {
+            script = events/clean_bad_traits
+            LIMIT = "is_organic_species = yes"
+            FAIL_TEXT = not_has_shitty_leaders
+            RESOURCE = unity
+            AMOUNT = 15000
+            MODE = swap
+        }
+    }
+    option = {
+        name = acot_special_menu.3.2.name
+        custom_tooltip = acot_special_menu.3.2.explain
+        inline_script = {
+            script = events/add_leader_experience
+            LIMIT = "is_organic_species = yes"
+            MODIFIER_ADD = jumpstarted_exp_development
+            RESOURCE = unity
+            AMOUNT = 25000
+        }
+    }
+    option = {
+        name = aot_mod_options.chrysalis.name
+        custom_tooltip = aot_mod_options.chrysalis.explain
+        allow = {
+            fail_text = {
+                text = too_soon_to_do_that_nub
+            }
+            NOT = {
+                has_modifier = chrysalis_protocol_activated
+            }
+            owner = {
+                any_owned_pop_group = {
+                    is_organic_species = yes
+                    NOT = {
+                        is_same_species = owner_species
+                    }
+                }
+                any_owned_pop_group = {
+                    is_organic_species = yes
+                    is_same_species = owner_species
+                }
+                custom_tooltip_fail = {
+                    text = no_xenos_in_empire
+                }
+                resource_stockpile_compare = {
+                    resource = unity
+                    value >= 20000
+                }
+                resource_stockpile_compare = {
+                    resource = aot_sr_runic_power
+                    value >= 5000
+                }
+                resource_stockpile_compare = {
+                    resource = energy
+                    value >= 10000
+                }
+            }
+        }
+        hidden_effect = {
+            perform_chrysalis_transformation = yes
+        }
+        owner = {
+            add_resource = {
+                unity = -20000
+                aot_sr_runic_power = -5000
+                energy = -10000
+            }
+            country_event = {
+                id = aot_events.50
+            }
+        }
+    }
+    option = {
+        name = aot_mod_options.koolaid.name
+        custom_tooltip = aot_mod_options.koolaid.explain
+        allow = {
+            fail_text = {
+                text = too_soon_to_do_that_nub
+            }
+            NOT = {
+                has_modifier = kool_aid_enrichment_activated
+            }
+            owner = {
+                resource_stockpile_compare = {
+                    resource = energy
+                    value >= 50000
+                }
+                resource_stockpile_compare = {
+                    resource = aot_sr_runic_power
+                    value >= 10000
+                }
+                fail_text = {
+                    text = no_normal_leaders
+                }
+                any_owned_leader = {
+                    has_phanon_traits = no
+                }
+            }
+        }
+        owner = {
+            add_resource = {
+                energy = -100000
+                aot_sr_runic_power = -10000
+            }
+        }
+        hidden_effect = {
+            add_modifier = {
+                modifier = kool_aid_enrichment_activated
+                years = 5
+            }
+            add_phanon_traits = yes
+        }
+    }
+    option = {
+        name = acot_special_menu.exit.a
+        name = acot_special_menu.exit.b
+        name = acot_special_menu.exit.c
+        name = acot_special_menu.exit.d
+        custom_tooltip = acot_special_menu.exit.tooltip
+    }
 }
 
 # Phanon Kool Aid Assembly Menu
-planet_event = {
-	id = aot_events.81
-	title = acot_special_menu.4.title
-	desc = acot_special_menu.4.desc
-	picture = GFX_evt_machine_sapience
-	is_triggered_only = yes
-	option = {
-		name = acot_special_menu.3.1.name
-		custom_tooltip = acot_special_menu.3.1.explain
-		inline_script = {
-			script = events/clean_bad_traits
-			LIMIT = "is_machine_species = yes"
-			FAIL_TEXT = not_has_shitty_leaders_machine
-			RESOURCE = unity
-			AMOUNT = 15000
-			MODE = swap
-		}
-	}
-	option = {
-		name = aot_special_menu.5.2.name
-		custom_tooltip = aot_special_menu.5.2.explain
-		inline_script = {
-			script = events/add_leader_experience
-			LIMIT = "is_machine_species = yes"
-			MODIFIER_ADD = jumpstarted_mecha_exp_development
-			RESOURCE = unity
-			AMOUNT = 25000
-		}
-	}
-	option = {
-		name = aot_mod_options.mecha_koolaid.name
-		custom_tooltip = aot_mod_options.mecha_koolaid.explain
-		allow = {
-			fail_text = {
-				text = too_soon_to_do_that_nub
-			}
-			NOT = {
-				has_modifier = kool_aid_enrichment_activated
-			}
-			owner = {
-				resource_stockpile_compare = {
-					resource = energy
-					value >= 50000
-				}
-				resource_stockpile_compare = {
-					resource = aot_sr_runic_power
-					value >= 10000
-				}
-				fail_text = {
-					text = no_normal_leaders
-				}
-				any_owned_leader = {
-					has_phanon_traits = no
-				}
-			}
-		}
-		owner = {
-			add_resource = {
-				energy = -100000
-				aot_sr_runic_power = -10000
-			}
-		}
-		hidden_effect = {
-			add_modifier = {
-				modifier = kool_aid_enrichment_activated
-				years = 5
-			}
-			add_phanon_traits = yes
-		}
-	}
-	option = {
-		name = acot_special_menu.exit.a
-		name = acot_special_menu.exit.b
-		name = acot_special_menu.exit.c
-		name = acot_special_menu.exit.d
-		custom_tooltip = acot_special_menu.exit.tooltip
-	}
+carrier_event = {
+    id = aot_events.81
+    title = acot_special_menu.4.title
+    desc = acot_special_menu.4.desc
+    picture = GFX_evt_machine_sapience
+    is_triggered_only = yes
+    option = {
+        name = acot_special_menu.3.1.name
+        custom_tooltip = acot_special_menu.3.1.explain
+        inline_script = {
+            script = events/clean_bad_traits
+            LIMIT = "is_machine_species = yes"
+            FAIL_TEXT = not_has_shitty_leaders_machine
+            RESOURCE = unity
+            AMOUNT = 15000
+            MODE = swap
+        }
+    }
+    option = {
+        name = aot_special_menu.5.2.name
+        custom_tooltip = aot_special_menu.5.2.explain
+        inline_script = {
+            script = events/add_leader_experience
+            LIMIT = "is_machine_species = yes"
+            MODIFIER_ADD = jumpstarted_mecha_exp_development
+            RESOURCE = unity
+            AMOUNT = 25000
+        }
+    }
+    option = {
+        name = aot_mod_options.mecha_koolaid.name
+        custom_tooltip = aot_mod_options.mecha_koolaid.explain
+        allow = {
+            fail_text = {
+                text = too_soon_to_do_that_nub
+            }
+            NOT = {
+                has_modifier = kool_aid_enrichment_activated
+            }
+            owner = {
+                resource_stockpile_compare = {
+                    resource = energy
+                    value >= 50000
+                }
+                resource_stockpile_compare = {
+                    resource = aot_sr_runic_power
+                    value >= 10000
+                }
+                fail_text = {
+                    text = no_normal_leaders
+                }
+                any_owned_leader = {
+                    has_phanon_traits = no
+                }
+            }
+        }
+        owner = {
+            add_resource = {
+                energy = -100000
+                aot_sr_runic_power = -10000
+            }
+        }
+        hidden_effect = {
+            add_modifier = {
+                modifier = kool_aid_enrichment_activated
+                years = 5
+            }
+            add_phanon_traits = yes
+        }
+    }
+    option = {
+        name = acot_special_menu.exit.a
+        name = acot_special_menu.exit.b
+        name = acot_special_menu.exit.c
+        name = acot_special_menu.exit.d
+        custom_tooltip = acot_special_menu.exit.tooltip
+    }
 }
 
 # New AoT Assembly Menu
-planet_event = {
-	id = aot_events.82
-	title = acot_special_menu.4.title
-	desc = acot_special_menu.4.desc
-	picture = GFX_evt_machine_sapience
-	is_triggered_only = yes
-	option = {
-		name = acot_special_menu.4.1.name
-		custom_tooltip = acot_special_menu.4.1.explain
-		inline_script = {
-			script = events/clean_bad_traits
-			LIMIT = "is_machine_species = yes"
-			FAIL_TEXT = not_has_shitty_leaders_machine
-			RESOURCE = unity
-			AMOUNT = 15000
-			MODE = remove
-		}
-	}
-	option = {
-		name = aot_special_menu.5.2.name
-		custom_tooltip = aot_special_menu.5.2.explain
-		inline_script = {
-			script = events/add_leader_experience
-			LIMIT = "is_machine_species = yes"
-			MODIFIER_ADD = jumpstarted_mecha_exp_development
-			RESOURCE = unity
-			AMOUNT = 25000
-		}
-	}
-	option = {
-		name = acot_special_menu.exit.a
-		name = acot_special_menu.exit.b
-		name = acot_special_menu.exit.c
-		name = acot_special_menu.exit.d
-		custom_tooltip = acot_special_menu.exit.tooltip
-	}
+carrier_event = {
+    id = aot_events.82
+    title = acot_special_menu.4.title
+    desc = acot_special_menu.4.desc
+    picture = GFX_evt_machine_sapience
+    is_triggered_only = yes
+    option = {
+        name = acot_special_menu.4.1.name
+        custom_tooltip = acot_special_menu.4.1.explain
+        inline_script = {
+            script = events/clean_bad_traits
+            LIMIT = "is_machine_species = yes"
+            FAIL_TEXT = not_has_shitty_leaders_machine
+            RESOURCE = unity
+            AMOUNT = 15000
+            MODE = remove
+        }
+    }
+    option = {
+        name = aot_special_menu.5.2.name
+        custom_tooltip = aot_special_menu.5.2.explain
+        inline_script = {
+            script = events/add_leader_experience
+            LIMIT = "is_machine_species = yes"
+            MODIFIER_ADD = jumpstarted_mecha_exp_development
+            RESOURCE = unity
+            AMOUNT = 25000
+        }
+    }
+    option = {
+        name = acot_special_menu.exit.a
+        name = acot_special_menu.exit.b
+        name = acot_special_menu.exit.c
+        name = acot_special_menu.exit.d
+        custom_tooltip = acot_special_menu.exit.tooltip
+    }
 }
 
 # Kool Aid event window
 country_event = {
-	id = aot_events.9
-	is_triggered_only = yes
-	title = aot_mod_options.koolaid_consoomed.title
-	desc = {
-		trigger = {
-			is_organic_species = yes
-		}
-		text = aot_mod_options.koolaid_consoomed.desc
-	}
-	desc = {
-		trigger = {
-			species = {
-				OR = {
-					is_archetype = MACHINE
-					is_archetype = ROBOT
-				}
-			}
-		}
-		text = aot_mod_options.mecha_koolaid_consoomed.desc
-	}
-	picture = GFX_evt_kool_aid_protocol
-	show_sound = event_energy_field
-	option = {
-		trigger = {
-			is_organic_species = yes
-		}
-		name = aot_mod_options.koolaid_consoomed.1.b
-		name = aot_mod_options.koolaid_consoomed.1.c
-		name = aot_mod_options.koolaid_consoomed.1.d
-		name = aot_mod_options.koolaid_consoomed.1.e
-	}
-	option = {
-		trigger = {
-			species = {
-				OR = {
-					is_archetype = MACHINE
-					is_archetype = ROBOT
-				}
-			}
-		}
-		name = aot_mod_options.koolaid_consoomed.1.b
-		name = aot_mod_options.koolaid_consoomed.2.c
-		name = aot_mod_options.koolaid_consoomed.2.d
-		name = aot_mod_options.koolaid_consoomed.2.e
-	}
+    id = aot_events.9
+    is_triggered_only = yes
+    title = aot_mod_options.koolaid_consoomed.title
+    desc = {
+        trigger = {
+            is_organic_species = yes
+        }
+        text = aot_mod_options.koolaid_consoomed.desc
+    }
+    desc = {
+        trigger = {
+            species = {
+                OR = {
+                    is_archetype = MACHINE
+                    is_archetype = ROBOT
+                }
+            }
+        }
+        text = aot_mod_options.mecha_koolaid_consoomed.desc
+    }
+    picture = GFX_evt_kool_aid_protocol
+    show_sound = event_energy_field
+    option = {
+        trigger = {
+            is_organic_species = yes
+        }
+        name = aot_mod_options.koolaid_consoomed.1.b
+        name = aot_mod_options.koolaid_consoomed.1.c
+        name = aot_mod_options.koolaid_consoomed.1.d
+        name = aot_mod_options.koolaid_consoomed.1.e
+    }
+    option = {
+        trigger = {
+            species = {
+                OR = {
+                    is_archetype = MACHINE
+                    is_archetype = ROBOT
+                }
+            }
+        }
+        name = aot_mod_options.koolaid_consoomed.1.b
+        name = aot_mod_options.koolaid_consoomed.2.c
+        name = aot_mod_options.koolaid_consoomed.2.d
+        name = aot_mod_options.koolaid_consoomed.2.e
+    }
 }
 
 # New Leaders Get Phanon Traits Trait
 country_event = {
-	id = aot_events.10
-	is_triggered_only = yes
-	hide_window = yes
-	trigger = {
-		from = {
-			species = {
-				OR = {
-					has_trait = trait_phanon_people_mans
-					has_trait = trait_phanon_suporbot
-				}
-				has_phanon_traits = no
-			}
-		}
-	}
-	immediate = {
-		from = {
-			switch = {
-				trigger = leader_class
-				commander = {
-					add_trait = {
-						trait = leader_trait_acot_phanon_admiral
-						show_message = no
-					}
-					add_trait = {
-						trait = leader_trait_phanon_six_stars_general
-						show_message = no
-					}
-				}
-				official = {
-					add_trait = {
-						trait = leader_trait_phanon_big_leader
-						show_message = no
-					}
-				}
-				scientist = {
-					add_trait = {
-						trait = leader_trait_phanon_big_brain
-						show_message = no
-					}
-				}
-			}
-		}
-	}
+    id = aot_events.10
+    is_triggered_only = yes
+    hide_window = yes
+    trigger = {
+        from = {
+            species = {
+                OR = {
+                    has_trait = trait_phanon_people_mans
+                    has_trait = trait_phanon_suporbot
+                }
+                has_phanon_traits = no
+            }
+        }
+    }
+    immediate = {
+        from = {
+            switch = {
+                trigger = leader_class
+                commander = {
+                    add_trait = {
+                        trait = leader_trait_acot_phanon_admiral
+                        show_message = no
+                    }
+                    add_trait = {
+                        trait = leader_trait_phanon_six_stars_general
+                        show_message = no
+                    }
+                }
+                official = {
+                    add_trait = {
+                        trait = leader_trait_phanon_big_leader
+                        show_message = no
+                    }
+                }
+                scientist = {
+                    add_trait = {
+                        trait = leader_trait_phanon_big_brain
+                        show_message = no
+                    }
+                }
+            }
+        }
+    }
 }

@@ -339,7 +339,7 @@ save_special_zones = {
             has_zone = { zone = zone_habitat_knights }
         }
         # set_variable = { which = zone_habitat_knights value = 1 }
-        set_planet_flag = has_zone_habitat_knights
+        set_carrier_flag = has_zone_habitat_knights
     }
 }
 # ---------------------------- Restore lost zones due to planet change --------------------------- #
@@ -348,7 +348,7 @@ restore_special_zones = {
     if = {
         limit = {
             # is_variable_set = zone_habitat_knights
-            has_planet_flag = has_zone_habitat_knights
+            has_carrier_flag = has_zone_habitat_knights
         }
         hidden_effect = {
             add_zone = {
@@ -363,7 +363,7 @@ restore_special_zones = {
             }
         }
         # clear_variable = zone_habitat_knights
-        remove_planet_flag = has_zone_habitat_knights
+        remove_carrier_flag = has_zone_habitat_knights
     }
 }
 
@@ -371,10 +371,10 @@ restore_special_zones = {
 create_fe_dm_habitat = {
     clear_deposits = yes
     prevent_anomaly = yes
-    set_planet_flag = fallen_empire_world
-    set_planet_flag = megastructure
-    set_planet_flag = habitat
-    set_planet_flag = habitat_level_1
+    set_carrier_flag = fallen_empire_world
+    set_carrier_flag = megastructure
+    set_carrier_flag = habitat
+    set_carrier_flag = habitat_level_1
     set_owner = root
     set_controller = root
     set_planet_size = @size_lvl1
@@ -430,7 +430,7 @@ spawn_aot_habitat_effect = {
             }
             save_event_target_as = target_habitat
             event_target:target_planet = {
-                set_planet_flag = habitat@PREV
+                set_carrier_flag = habitat@PREV
             }
             add_deposit_if_missing = {
                 DEPOSIT = aot_habitat_system_resources
@@ -584,7 +584,7 @@ upgrade_dm_habitat = {
         entity = "dm_habitat_phase_03_entity"
     }
     set_planet_size = @size_lvl1
-    set_planet_flag = advanced_ascended_habitat_2
+    set_carrier_flag = advanced_ascended_habitat_2
     add_modifier = {
         modifier = dm_habitat_mod
         days = -1
@@ -602,7 +602,7 @@ upgrade_dm_habitat = {
     replace_habitat_capital_building = yes
     spawn_support_pylons_in_system = yes
     # Refresh and upgrade orbitals.
-    planet_event = {
+    carrier_event = {
         id = aot_habitat_events.90
     }
 }
@@ -610,8 +610,8 @@ upgrade_ae_habitat = {
     optimize_memory
     clear_deposits = yes
     set_colony_type = col_habitat_dm
-    set_planet_flag = retrofitted_ae_habitat
-    set_planet_flag = advanced_ascended_habitat_2
+    set_carrier_flag = retrofitted_ae_habitat
+    set_carrier_flag = advanced_ascended_habitat_2
     remove_modifier = dm_habitat_mod
     change_pc = pc_ae_habitat
     add_modifier = {
@@ -623,7 +623,7 @@ upgrade_ae_habitat = {
     }
     if = {
         limit = {
-            has_planet_flag = is_base_dm_habitat
+            has_carrier_flag = is_base_dm_habitat
         }
         set_planet_entity = {
             entity = "alpha_habitat_phase_01_entity"
@@ -632,7 +632,7 @@ upgrade_ae_habitat = {
     }
     if = {
         limit = {
-            has_planet_flag = advanced_ascended_habitat
+            has_carrier_flag = advanced_ascended_habitat
         }
         set_planet_entity = {
             entity = "alpha_habitat_phase_02_entity"
@@ -641,7 +641,7 @@ upgrade_ae_habitat = {
     }
     if = {
         limit = {
-            has_planet_flag = advanced_ascended_habitat_2
+            has_carrier_flag = advanced_ascended_habitat_2
         }
         set_planet_entity = {
             entity = "alpha_habitat_phase_03_entity"
@@ -652,7 +652,7 @@ upgrade_ae_habitat = {
     upgrade_all_support_pylons = yes
     upgrade_habitat_special_resource_zone = yes
     # Refresh and upgrade orbitals.
-    planet_event = {
+    carrier_event = {
         id = aot_habitat_events.90
     }
 }
@@ -660,8 +660,8 @@ upgrade_phanon_habitat = {
     optimize_memory
     clear_deposits = yes
     set_colony_type = col_habitat_phanon
-    set_planet_flag = retrofitted_phanon_habitat
-    set_planet_flag = advanced_ascended_habitat_2
+    set_carrier_flag = retrofitted_phanon_habitat
+    set_carrier_flag = advanced_ascended_habitat_2
     remove_modifier = dm_habitat_mod
     remove_modifier = ae_habitat_mod
     change_pc = pc_phanon_habitat
@@ -674,7 +674,7 @@ upgrade_phanon_habitat = {
     }
     if = {
         limit = {
-            has_planet_flag = is_base_dm_habitat
+            has_carrier_flag = is_base_dm_habitat
         }
         set_planet_entity = {
             entity = "phanon_habitat_phase_01_entity"
@@ -683,7 +683,7 @@ upgrade_phanon_habitat = {
     }
     if = {
         limit = {
-            has_planet_flag = advanced_ascended_habitat
+            has_carrier_flag = advanced_ascended_habitat
         }
         set_planet_entity = {
             entity = "phanon_habitat_phase_02_entity"
@@ -692,7 +692,7 @@ upgrade_phanon_habitat = {
     }
     if = {
         limit = {
-            has_planet_flag = advanced_ascended_habitat_2
+            has_carrier_flag = advanced_ascended_habitat_2
         }
         set_planet_entity = {
             entity = "phanon_habitat_phase_03_entity"
@@ -703,7 +703,7 @@ upgrade_phanon_habitat = {
     upgrade_all_support_pylons = yes
     upgrade_habitat_special_resource_zone = yes
     # Refresh and upgrade orbitals.
-    planet_event = {
+    carrier_event = {
         id = aot_habitat_events.90
     }
 }
@@ -711,8 +711,8 @@ upgrade_sigma_habitat = {
     optimize_memory
     clear_deposits = yes
     set_colony_type = col_habitat_stellarite
-    set_planet_flag = retrofitted_sigma_habitat
-    set_planet_flag = advanced_ascended_habitat_2
+    set_carrier_flag = retrofitted_sigma_habitat
+    set_carrier_flag = advanced_ascended_habitat_2
     remove_modifier = dm_habitat_mod
     remove_modifier = ae_habitat_mod
     remove_modifier = phanon_habitat_mod
@@ -726,7 +726,7 @@ upgrade_sigma_habitat = {
     }
     if = {
         limit = {
-            has_planet_flag = is_base_dm_habitat
+            has_carrier_flag = is_base_dm_habitat
         }
         set_planet_entity = {
             entity = "sigma_habitat_phase_01_entity"
@@ -735,7 +735,7 @@ upgrade_sigma_habitat = {
     }
     if = {
         limit = {
-            has_planet_flag = advanced_ascended_habitat
+            has_carrier_flag = advanced_ascended_habitat
         }
         set_planet_entity = {
             entity = "sigma_habitat_phase_02_entity"
@@ -744,7 +744,7 @@ upgrade_sigma_habitat = {
     }
     if = {
         limit = {
-            has_planet_flag = advanced_ascended_habitat_2
+            has_carrier_flag = advanced_ascended_habitat_2
         }
         set_planet_entity = {
             entity = "sigma_habitat_phase_03_entity"
@@ -755,7 +755,7 @@ upgrade_sigma_habitat = {
     upgrade_all_support_pylons = yes
     upgrade_habitat_special_resource_zone = yes
     # Refresh and upgrade orbitals.
-    planet_event = {
+    carrier_event = {
         id = aot_habitat_events.90
     }
 }
@@ -781,7 +781,7 @@ spawn_support_pylons = {
                     merg_is_habitat = yes                    # Should not be vanilla habitat
                     is_aot_habitat = yes                     # Should not be AoT habitat
                     is_uneligible_for_support_pylons = yes   # Should not be any un-eligible planet.
-                    has_planet_flag = has_support_pylons        # Should not already have support pylons.
+                    has_carrier_flag = has_support_pylons        # Should not already have support pylons.
                 }
             }
             solar_system = {
@@ -791,7 +791,7 @@ spawn_support_pylons = {
             }
         }
         get_aot_habitat_type = yes
-        set_planet_flag = has_support_pylons
+        set_carrier_flag = has_support_pylons
         event_target:system_aot_habitat = {
             switch = {
                 trigger = is_planet_class
@@ -1064,7 +1064,7 @@ spawn_orbital_on_eligible_planet_in_system = {
                 is_artificial = no
                 is_astral_scar = no
                 NOT = {
-                    has_planet_flag = has_orbital
+                    has_carrier_flag = has_orbital
                 }
                 has_orbital_$TYPE$_deposit = yes
                 habitat_owner_has_tech_for_deposit = yes

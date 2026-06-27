@@ -1,16 +1,15 @@
 namespace = acot_planets
 
-planet_event = {
+carrier_event = {
     id = acot_planets.800
     hide_window = yes
     is_triggered_only = yes
     immediate = {
         remove_capital_building = yes
-        if = {
+        else_if = {
             limit = {
-                planet_owner = {
-                    has_technology = tech_acot_advanced_colony
-                    has_technology = tech_acot_ship_colony_upgrade
+                owner? = {
+                    has_policy_flag = acot_capital_settlement_delta
                     has_stellarite_capital_building_tech = yes
                 }
             }
@@ -18,9 +17,8 @@ planet_event = {
         }
         else_if = {
             limit = {
-                planet_owner = {
-                    has_technology = tech_acot_advanced_colony
-                    has_technology = tech_acot_ship_colony_upgrade
+                owner? = {
+                    has_policy_flag = acot_capital_settlement_delta
                     has_phanon_capital_building_tech = yes
                 }
             }
@@ -28,9 +26,8 @@ planet_event = {
         }
         else_if = {
             limit = {
-                planet_owner = {
-                    has_technology = tech_acot_advanced_colony
-                    has_technology = tech_acot_ship_colony_upgrade
+                owner? = {
+                    has_policy_flag = acot_capital_settlement_delta
                     has_alpha_capital_building_tech = yes
                 }
             }
@@ -38,20 +35,16 @@ planet_event = {
         }
         else_if = {
             limit = {
-                planet_owner = {
-                    has_technology = tech_acot_advanced_colony
-                    has_technology = tech_acot_ship_colony_upgrade
+                owner? = {
+                    has_policy_flag = acot_capital_settlement_delta
                 }
             }
             add_advanced_capital_building = yes
         }
         else_if = {
             limit = {
-                planet_owner = {
-                    has_technology = tech_acot_ship_colony_upgrade
-                    NOT = {
-                        has_technology = tech_acot_advanced_colony
-                    }
+                owner? = {
+                    has_policy_flag = acot_capital_settlement_base_max
                 }
             }
             add_base_capital_building = yes
