@@ -7,7 +7,7 @@ event = {
     is_triggered_only = yes
     immediate = {
         checked_global_flag_add = { FLAG = has_aot_mod }
-        checked_global_flag_add = { FLAG = aot_live_version_v6 }
+        checked_global_flag_add = { FLAG = aot_live_version_v7 }
     }
 }
 
@@ -18,15 +18,15 @@ event = {
 
     trigger = {
         NAND = {
-            has_global_flag = acot_live_version_v5
-            has_global_flag = aot_live_version_v6
+            has_global_flag = acot_live_version_v6
+            has_global_flag = aot_live_version_v7
         }
     }
 
     immediate = {
         if = {
-            limit = { NOT = { has_global_flag = aot_live_version_v6 } }
-            set_global_flag = aot_live_version_v6 # Set it now so the event won't trigger more than once.
+            limit = { NOT = { has_global_flag = aot_live_version_v7 } }
+            set_global_flag = aot_live_version_v7 # Set it now so the event won't trigger more than once.
             set_global_flag = has_wrong_AoT_version # Set this flag here for error handling downstream.
         }
         every_playable_country = {
@@ -63,7 +63,7 @@ country_event = {
         trigger = {
             NAND = {
                 has_global_flag = has_wrong_AoT_version
-                has_global_flag = acot_live_version_v5
+                has_global_flag = acot_live_version_v6
             }
         }
         name = aot_startup.9999.a
@@ -73,7 +73,7 @@ country_event = {
     option = {
         trigger = {
             has_global_flag = has_wrong_AoT_version
-            has_global_flag = acot_live_version_v5
+            has_global_flag = acot_live_version_v6
         }
         name = aot_startup.9999.a
         response_text = aot_startup.9999.a2.response
@@ -102,7 +102,7 @@ country_event = {
         name = aot_startup.9999.f
         response_text = aot_startup.9999.f.response
         hidden_effect = {
-            set_global_flag = aot_live_version_v6
+            set_global_flag = aot_live_version_v7
         }
     }
 
