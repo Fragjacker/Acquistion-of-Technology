@@ -1,0 +1,62 @@
+# Provides a generic possible trigger block, used in megastructure possible blocks
+if = {
+    limit = {
+        from = { is_nomadic = no }
+    }
+    hidden_trigger = {
+        exists = starbase
+    }
+    custom_tooltip = {
+        fail_text = "requires_inside_border_or_subject"
+        OR = {
+            is_inside_border = from
+            AND = {
+                owner? = {
+                    is_subject = yes
+                    overlord = { is_same_value = from }
+                }
+            }
+            AND = {
+                from = { has_menace_perk = menp_defender_galcom_2 }
+                exists = solar_system
+                solar_system.owner? = {
+                    OR = {
+                        has_defensive_pact = from
+                        is_in_federation_with = from
+                        from = { has_subject = prev }
+                    }
+                }
+            }
+        }
+    }
+}
+else = {
+    custom_tooltip = {
+        fail_text = requires_tier_2_waystation_on_wayline
+        OR = {
+            any_starbase_in_system = {
+                is_waystation_starbase = yes
+                owner? = {
+                    is_same_value = from
+                }
+                any_starbase_in_network = {
+                    has_starbase_size >= starbase_waystation_2
+                    owner? = {
+                        is_same_value = from
+                    }
+                }
+            }
+            AND = {
+                from = { has_menace_perk = menp_defender_galcom_2 }
+                exists = solar_system
+                solar_system.owner? = {
+                    OR = {
+                        has_defensive_pact = from
+                        is_in_federation_with = from
+                        from = { has_subject = prev }
+                    }
+                }
+            }
+        }
+    }
+}
