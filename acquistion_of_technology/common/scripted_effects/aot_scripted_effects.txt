@@ -411,7 +411,7 @@ spawn_aot_habitat_effect = {
         init_effect = {
             set_name = {
                 key = HABITAT_PLANET_NAME
-                variable_string = "\\[FROM.from.solar_system.GetName]"
+                variable_string = "[prev.solar_system.GetName]"
             }
             set_planet_entity = {
                 entity = $ENTITY$
@@ -763,7 +763,7 @@ upgrade_sigma_habitat = {
 #--------------------<  Initial spawn of support pylons when building a habitat  >------------------
 spawn_support_pylons_in_system = {
     solar_system = {
-        every_system_colony = {
+        every_system_planet_colony = {
             limit = {
                 has_conduit_building = yes
             }
@@ -1051,7 +1051,7 @@ spawn_aot_orbital_effect = {
     event_target:target_orbital = {
         set_name = {
             key = TARGET_AOT_ORBITAL_NAME
-            variable_string = "\\[target_planet.GetName]"
+            variable_string = "[target_planet.GetName]"
         }
     }
 }
@@ -1059,12 +1059,12 @@ spawn_aot_orbital_effect = {
 # Find fitting planets in system for an orbital.
 spawn_orbital_on_eligible_planet_in_system = {
     solar_system = {
-        random_system_planet = {
+        random_system_colony = {
             limit = {
                 is_artificial = no
                 is_astral_scar = no
                 NOT = {
-                    has_carrier_flag = has_orbital
+                    has_planet_flag = has_orbital
                 }
                 has_orbital_$TYPE$_deposit = yes
                 habitat_owner_has_tech_for_deposit = yes
