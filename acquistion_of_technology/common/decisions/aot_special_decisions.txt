@@ -15,11 +15,10 @@ decision_convert_dm_habitat = {
         NOR = {
             is_planet_class = pc_dm_habitat
         }
-        owner = {
+        owner? = {
             has_technology = tech_dm_habitat
         }
         merg_is_habitat = yes
-        exists = owner
     }
     prerequisites = {
         tech_dm_habitat
@@ -59,8 +58,7 @@ decision_retrofit_ae_habitat = {
         NOT = {
             has_carrier_flag = retrofitted_ae_habitat
         }
-        exists = owner
-        owner = {
+        owner? = {
             has_technology = tech_ae_habitat
         }
     }
@@ -102,8 +100,7 @@ decision_retrofit_phanon_habitat = {
         NOT = {
             has_carrier_flag = retrofitted_phanon_habitat
         }
-        exists = owner
-        owner = {
+        owner? = {
             has_technology = tech_phanon_habitat
         }
     }
@@ -144,8 +141,7 @@ decision_retrofit_sigma_habitat = {
         NOT = {
             has_carrier_flag = retrofitted_sigma_habitat
         }
-        exists = owner
-        owner = {
+        owner? = {
             has_technology = tech_stellarite_habitat
         }
     }
@@ -168,6 +164,7 @@ decision_open_resurrection_chambers_menu = {
     owned_planets_only = yes
     icon = decision_access_resurrection_chambers
     potential = {
+        exists = owner
         has_building = building_stellarite_clone_vats
     }
     allow = {
@@ -195,6 +192,7 @@ decision_open_resurrection_evochambers_menu = {
     owned_planets_only = yes
     icon = decision_access_resurrection_evochambers
     potential = {
+        exists = owner
         has_building = building_stellarite_hive_evochamber
     }
     allow = {
@@ -222,6 +220,7 @@ decision_open_kool_aid_vats_menu = {
     owned_planets_only = yes
     icon = decision_access_kool_aid_vats
     potential = {
+        exists = owner
         has_building = building_phanon_clone_vats
     }
     allow = {
@@ -249,6 +248,7 @@ decision_open_kool_aid_evochambers_menu = {
     owned_planets_only = yes
     icon = decision_access_kool_aid_evochambers
     potential = {
+        exists = owner
         has_building = building_phanon_hive_evochamber
     }
     allow = {
@@ -276,6 +276,7 @@ decision_open_kool_aid_assembly_menu = {
     owned_planets_only = yes
     icon = decision_machine_sapience
     potential = {
+        exists = owner
         OR = {
             has_building = building_phanon_synt_center
             has_building = building_phanon_machine_dome
@@ -342,20 +343,24 @@ decision_retrofit_all_system_megaturrets = {
         }
     }
     potential = {
-        this.solar_system = {
+        exists = owner
+        solar_system? = {
             any_fleet_in_system = {
                 is_ship_size = aot_megaturret
             }
         }
+
     }
     prerequisites = {
     }
     allow = {
-        this.solar_system = {
+        exists = owner
+        solar_system? = {
             any_fleet_in_system = {
                 is_ship_size = aot_megaturret
             }
         }
+
     }
     effect = {
         hidden_effect = {
@@ -408,7 +413,8 @@ decision_upgrade_all_system_megaturrets = {
         }
     }
     potential = {
-        this.solar_system = {
+        exists = owner
+        solar_system? = {
             any_system_megastructure = {
                 OR = {
                     is_megastructure_type = phanon_megaturret_1
@@ -420,7 +426,8 @@ decision_upgrade_all_system_megaturrets = {
     prerequisites = {
     }
     allow = {
-        this.solar_system = {
+        exists = owner
+        solar_system? = {
             any_system_megastructure = {
                 OR = {
                     is_megastructure_type = phanon_megaturret_1
@@ -432,7 +439,7 @@ decision_upgrade_all_system_megaturrets = {
     }
     effect = {
         hidden_effect = {
-            this.solar_system = {
+            solar_system = {
                 every_system_megastructure = {
                     limit = {
                         is_upgradeable_megaturret = yes
