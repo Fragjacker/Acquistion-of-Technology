@@ -790,16 +790,18 @@ spawn_support_pylons = {
                 }
             }
         }
-        get_aot_habitat_type = yes
         set_carrier_flag = has_support_pylons
-        event_target:system_aot_habitat = {
-            switch = {
-                trigger = is_planet_class
-                pc_ae_habitat = { spawn_4_support_pylons = { TYPE = alpha } }
-                pc_phanon_habitat = { spawn_4_support_pylons = { TYPE = phanon } }
-                pc_sigma_habitat = { spawn_4_support_pylons = { TYPE = sigma } }
-                default = { spawn_4_support_pylons = { TYPE = delta } }
-            }
+        inline_script = {
+            script = decorators/get_aot_habitat_scope
+            CODE = "
+                switch = {
+                    trigger = is_planet_class
+                    pc_ae_habitat = { spawn_4_support_pylons = { TYPE = alpha } }
+                    pc_phanon_habitat = { spawn_4_support_pylons = { TYPE = phanon } }
+                    pc_sigma_habitat = { spawn_4_support_pylons = { TYPE = sigma } }
+                    default = { spawn_4_support_pylons = { TYPE = delta } }
+                }
+            "
         }
     }
 }
@@ -818,31 +820,33 @@ get_aot_habitat_type = {
 
 #-----------<  Spawns a new set of support pylons in the system, replacing existing ones.  >--------
 upgrade_all_support_pylons = {
-    get_aot_habitat_type = yes
-    event_target:system_aot_habitat = {
-        switch = {
-            trigger = is_planet_class
-            pc_ae_habitat = {
-                upgrade_all_system_support_pylons = {
-                    TIER_FROM = delta
-                    TIER_TO = alpha
+    inline_script = {
+        script = decorators/get_aot_habitat_scope
+        CODE = "
+            switch = {
+                trigger = is_planet_class
+                pc_ae_habitat = {
+                    upgrade_all_system_support_pylons = {
+                        TIER_FROM = delta
+                        TIER_TO = alpha
+                    }
+                }
+                pc_phanon_habitat = {
+                    upgrade_all_system_support_pylons = {
+                        TIER_FROM = alpha
+                        TIER_TO = phanon
+                    }
+                }
+                pc_sigma_habitat = {
+                    upgrade_all_system_support_pylons = {
+                        TIER_FROM = phanon
+                        TIER_TO = sigma
+                    }
+                }
+                default = {
                 }
             }
-            pc_phanon_habitat = {
-                upgrade_all_system_support_pylons = {
-                    TIER_FROM = alpha
-                    TIER_TO = phanon
-                }
-            }
-            pc_sigma_habitat = {
-                upgrade_all_system_support_pylons = {
-                    TIER_FROM = phanon
-                    TIER_TO = sigma
-                }
-            }
-            default = {
-            }
-        }
+            "
     }
     # The support pylons respawn inactive, activate them now.
     while = {
@@ -985,51 +989,53 @@ spawn_aot_habitat_blast_effect = {
 # ------------------------------------------------------------------------------------------------ #
 # Get the type of the habitat in this system and then spawn an orbital of the same tier.
 spawn_orbitals_depending_on_system_habitat_type = {
-    get_aot_habitat_type = yes
-    event_target:system_aot_habitat = {
-        switch = {
-            trigger = is_planet_class
-            pc_ae_habitat = {
-                solar_system = {
-                    spawn_aot_orbital_effect = {
-                        TYPE = $TYPE$
-                        TIER = alpha
-                        HABITAT_OWNER = event_target:system_aot_habitat.owner
-                        TARGET_PLANET = event_target:target_planet
+    inline_script = {
+        script = decorators/get_aot_habitat_scope
+        CODE = "
+            switch = {
+                trigger = is_planet_class
+                pc_ae_habitat = {
+                    solar_system = {
+                        spawn_aot_orbital_effect = {
+                            TYPE = $TYPE$
+                            TIER = alpha
+                            HABITAT_OWNER = event_target:system_aot_habitat.owner
+                            TARGET_PLANET = event_target:target_planet
+                        }
+                    }
+                }
+                pc_phanon_habitat = {
+                    solar_system = {
+                        spawn_aot_orbital_effect = {
+                            TYPE = $TYPE$
+                            TIER = phanon
+                            HABITAT_OWNER = event_target:system_aot_habitat.owner
+                            TARGET_PLANET = event_target:target_planet
+                        }
+                    }
+                }
+                pc_sigma_habitat = {
+                    solar_system = {
+                        spawn_aot_orbital_effect = {
+                            TYPE = $TYPE$
+                            TIER = sigma
+                            HABITAT_OWNER = event_target:system_aot_habitat.owner
+                            TARGET_PLANET = event_target:target_planet
+                        }
+                    }
+                }
+                default = {
+                    solar_system = {
+                        spawn_aot_orbital_effect = {
+                            TYPE = $TYPE$
+                            TIER = delta
+                            HABITAT_OWNER = event_target:system_aot_habitat.owner
+                            TARGET_PLANET = event_target:target_planet
+                        }
                     }
                 }
             }
-            pc_phanon_habitat = {
-                solar_system = {
-                    spawn_aot_orbital_effect = {
-                        TYPE = $TYPE$
-                        TIER = phanon
-                        HABITAT_OWNER = event_target:system_aot_habitat.owner
-                        TARGET_PLANET = event_target:target_planet
-                    }
-                }
-            }
-            pc_sigma_habitat = {
-                solar_system = {
-                    spawn_aot_orbital_effect = {
-                        TYPE = $TYPE$
-                        TIER = sigma
-                        HABITAT_OWNER = event_target:system_aot_habitat.owner
-                        TARGET_PLANET = event_target:target_planet
-                    }
-                }
-            }
-            default = {
-                solar_system = {
-                    spawn_aot_orbital_effect = {
-                        TYPE = $TYPE$
-                        TIER = delta
-                        HABITAT_OWNER = event_target:system_aot_habitat.owner
-                        TARGET_PLANET = event_target:target_planet
-                    }
-                }
-            }
-        }
+        "
     }
 }
 
