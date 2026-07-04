@@ -6,10 +6,13 @@ carrier_event = {
     is_triggered_only = yes
     immediate = {
         remove_capital_building = yes
-        else_if = {
+        if = {
             limit = {
                 owner? = {
-                    has_policy_flag = acot_capital_settlement_delta
+                    OR = {
+                        has_policy_flag = acot_capital_settlement_base_max
+                        has_policy_flag = acot_capital_settlement_delta
+                    }
                     has_stellarite_capital_building_tech = yes
                 }
             }
@@ -18,7 +21,10 @@ carrier_event = {
         else_if = {
             limit = {
                 owner? = {
-                    has_policy_flag = acot_capital_settlement_delta
+                    OR = {
+                        has_policy_flag = acot_capital_settlement_base_max
+                        has_policy_flag = acot_capital_settlement_delta
+                    }
                     has_phanon_capital_building_tech = yes
                 }
             }
@@ -27,7 +33,10 @@ carrier_event = {
         else_if = {
             limit = {
                 owner? = {
-                    has_policy_flag = acot_capital_settlement_delta
+                    OR = {
+                        has_policy_flag = acot_capital_settlement_base_max
+                        has_policy_flag = acot_capital_settlement_delta
+                    }
                     has_alpha_capital_building_tech = yes
                 }
             }
@@ -36,17 +45,15 @@ carrier_event = {
         else_if = {
             limit = {
                 owner? = {
-                    has_policy_flag = acot_capital_settlement_delta
+                    OR = {
+                        has_policy_flag = acot_capital_settlement_base_max
+                        has_policy_flag = acot_capital_settlement_delta
+                    }
                 }
             }
             add_advanced_capital_building = yes
         }
-        else_if = {
-            limit = {
-                owner? = {
-                    has_policy_flag = acot_capital_settlement_base_max
-                }
-            }
+        else = {
             add_base_capital_building = yes
         }
     }
