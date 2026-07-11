@@ -16,17 +16,18 @@ building_sets = {
     aot_capital_building_tier_$TIER$
 }
 planet_modifier = {
-    planet_housing_add = @[ 6000 * two_exp$EXPONENT$ ]
-    planet_amenities_add = @[ 12000 * two_exp$EXPONENT$ ]
-    planet_max_districts_add = @[ 5 + $TIER$ ]
-    planet_max_branch_office_buildings_add = @[ 2 + $TIER$ ]
     job_$OVERLORD_JOB$_add = @[ 100 * ( 1 + ( 0.25 * ( $TIER$ - 1 ) ) ) ]
     job_$OVERSEER_JOB$_add = @[ 400 * $TIER$ ]
     job_$ENFORCER_JOB$_add = @[ 300 * $TIER$ ]
+    planet_housing_add = @[ 6000 * two_exp$EXPONENT$ ]
+    planet_amenities_add = @[ 12000 * two_exp$EXPONENT$ ]
+    planet_max_districts_add = @[ 3 * $TIER$ ]
+    planet_max_branch_office_buildings_add = @[ 4 + ( 2 * $TIER$ ) ]
     planet_orbital_bombardment_damage = @[ - 0.10 * $TIER$ ]
     pop_environment_tolerance = @[ 0.15 * $TIER$ ]
     planet_defense_armies_add = @[ 18 + ( 2 * $TIER$ ) ]
     planet_traders_trade_produces_add = @[ 0.1 * $TIER$ ]
+    planet_building_capacity_add = @[ 1 * $TIER$ ]
 }
 custom_tooltip = acot_capital_building_storm_resistance_$TOOLTIP_TIER$
 triggered_planet_modifier = {
@@ -41,6 +42,9 @@ triggered_planet_modifier = {
         }
     }
     job_roboticist_add = @[ 100 * two_exp$EXPONENT$ ]
+}
+inline_script = {
+    script = buildings/on_all_habitat_capital_buildings
 }
 # Max Districts Multiplier
 triggered_planet_modifier = {
@@ -140,7 +144,7 @@ triggered_planet_modifier = {
             }
         }
     }
-    pop_bonus_workforce_mult = 0.1
+    pop_bonus_workforce_mult = @[ 0.1 + ( 0.05 * $TIER$ ) ]
 }
 
 triggered_planet_modifier = {
@@ -152,23 +156,17 @@ triggered_planet_modifier = {
             }
         }
     }
-    pop_bonus_workforce_mult = 0.2
+    pop_bonus_workforce_mult = @[ 0.1 + ( 0.05 * $TIER$ ) ]
 }
 
 triggered_planet_modifier = {
     potential = {
         owner? = { has_technology = tech_capital_productivity_3 }
     }
-    pop_bonus_workforce_mult = 0.3
+    pop_bonus_workforce_mult = @[ 0.1 + ( 0.05 * $TIER$ ) ]
 }
 # END COPY
 ###########################################################
-
-triggered_planet_modifier = {
-    modifier = {
-        pop_bonus_workforce_mult = @[ 0.1 * $TIER$ ]
-    }
-}
 resources = {
     category = planet_buildings
     produces = {
@@ -176,24 +174,34 @@ resources = {
             is_planet_class = pc_dark_fractured
         }
         energy = 20
+        trade = 40
         sr_dark_matter = 10
         acot_sr_dark_energy = 10
     }
     produces = {
         trigger = {
-            is_planet_class = pc_dark_fractured_ae
+            is_planet_class = pc_dark_fractured
         }
-        energy = 40
-        sr_dark_matter = 20
-        acot_sr_dark_energy = 20
+        energy = 10
+        sr_dark_matter = 5
+        acot_sr_dark_energy = 5
     }
     produces = {
         trigger = {
             is_planet_class = pc_acot_enigmopolis
         }
-        energy = 120
-        sr_dark_matter = 60
-        acot_sr_dark_energy = 60
+        energy = 60
+        sr_dark_matter = 30
+        acot_sr_dark_energy = 30
+    }
+    produces = {
+        trigger = {
+            owner = {
+                is_ai = yes
+            }
+        }
+        sr_dark_matter = @[ 100 * two_exp$EXPONENT$ ]
+        acot_sr_dark_energy = @[ 100 * two_exp$EXPONENT$ ]
     }
     produces = {
         $PRODUCES$
@@ -210,5 +218,5 @@ resources = {
     }
 }
 ai_weight = {
-    weight = 100
+    weight = 1000
 }
