@@ -5378,6 +5378,190 @@ utility_component_template = {
     }
 }
 
+utility_component_template = {
+    key = "SMALL_ACOT_ARMOR_HULL_RE"
+    size = small
+    icon = "GFX_ship_part_armor_aegis_re"
+    icon_frame = 1
+    power = 0
+    modifier = {
+        ship_hull_add = 1000
+        ship_hull_regen_add_static = 50
+        ship_armor_add = 250
+        ship_shield_add = 250
+    }
+    resources = {
+        category = ship_components
+        cost = {
+            aot_sr_runic_power = @armor_s_re_sr_cost
+        }
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = @armor_s_re_cost
+        }
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = upkeep
+            RESOURCE = alloys
+            AMOUNT = @armor_s_re_upkeep_alloys
+        }
+    }
+    upgrades_to = SMALL_ACOT_HULL_POWER_SE
+    prerequisites = { "tech_armor_hull_re" }
+    component_set = "ACOT_ARMOR_HULL_RE"
+    ai_weight = {
+        weight = 40
+        modifier = {
+            factor = 0.0
+            has_monthly_income = {
+                resource = sr_dark_matter
+                value <= 2
+            }
+            has_resource = {
+                type = sr_dark_matter
+                amount <= 5
+            }
+        }
+        modifier = {
+            factor = 0.0
+            has_resource = {
+                type = acot_sr_dark_energy
+                amount <= 5
+            }
+            has_monthly_income = {
+                resource = acot_sr_dark_energy
+                value <= 2
+            }
+        }
+    }
+}
+utility_component_template = {
+    key = "MEDIUM_ACOT_ARMOR_HULL_RE"
+    size = medium
+    icon = "GFX_ship_part_armor_aegis_re"
+    icon_frame = 1
+    power = 0
+    modifier = {
+        ship_hull_add = 2500
+        ship_hull_regen_add_static = 125
+        ship_armor_add = 625
+        ship_shield_add = 625
+    }
+    resources = {
+        category = ship_components
+        cost = {
+            aot_sr_runic_power = @armor_m_re_sr_cost
+        }
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = @armor_m_re_sr_cost
+        }
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = upkeep
+            RESOURCE = alloys
+            AMOUNT = @armor_m_re_upkeep_alloys
+        }
+    }
+    upgrades_to = MEDIUM_ACOT_HULL_POWER_SE
+    prerequisites = { "tech_armor_hull_re" }
+    component_set = "ACOT_ARMOR_HULL_RE"
+    ai_weight = {
+        weight = 40
+        modifier = {
+            factor = 0.0
+            has_monthly_income = {
+                resource = sr_dark_matter
+                value <= 2
+            }
+            has_resource = {
+                type = sr_dark_matter
+                amount <= 5
+            }
+        }
+        modifier = {
+            factor = 0.0
+            has_resource = {
+                type = acot_sr_dark_energy
+                amount <= 5
+            }
+            has_monthly_income = {
+                resource = acot_sr_dark_energy
+                value <= 2
+            }
+        }
+    }
+}
+utility_component_template = {
+    key = "LARGE_ACOT_ARMOR_HULL_RE"
+    size = large
+    icon = "GFX_ship_part_armor_aegis_re"
+    icon_frame = 1
+    power = 0
+    modifier = {
+        ship_hull_add = 6000
+        ship_hull_regen_add_static = 300
+        ship_armor_add = 1500
+        ship_shield_add = 1500
+    }
+    resources = {
+        category = ship_components
+        cost = {
+            aot_sr_runic_power = @armor_l_re_sr_cost
+        }
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = @armor_l_re_cost
+        }
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = upkeep
+            RESOURCE = alloys
+            AMOUNT = @armor_l_re_upkeep_alloys
+        }
+    }
+    upgrades_to = LARGE_ACOT_HULL_POWER_SE
+    prerequisites = { "tech_armor_hull_re" }
+    component_set = "ACOT_ARMOR_HULL_RE"
+    ai_weight = {
+        weight = 40
+        modifier = {
+            factor = 0.0
+            has_monthly_income = {
+                resource = sr_dark_matter
+                value <= 2
+            }
+            has_resource = {
+                type = sr_dark_matter
+                amount <= 5
+            }
+        }
+        modifier = {
+            factor = 0.0
+            has_resource = {
+                type = acot_sr_dark_energy
+                amount <= 5
+            }
+            has_monthly_income = {
+                resource = acot_sr_dark_energy
+                value <= 2
+            }
+        }
+    }
+}
+
 #####################################################
 ####  OTHERS
 #####################################################
@@ -6343,7 +6527,7 @@ utility_component_template = {
     size = aux
     icon = "GFX_ship_part_darkmatter_reactor_booster_re"
     icon_frame = 1
-    power = 20000
+    power = 2000
     resources = {
         category = ship_components
         inline_script = {
@@ -6394,8 +6578,7 @@ utility_component_template = {
     size = medium
     icon = "GFX_ship_part_darkmatter_reactor_booster_re"
     icon_frame = 1
-    power = 60000
-    upgrades_to = ACOT_REACTOR_BOOSTER_AURA_SE
+    power = 6000
     resources = {
         category = ship_components
         cost = {
@@ -6411,6 +6594,7 @@ utility_component_template = {
     prerequisites = {
         "tech_darkmatter_reactor_booster_re"
     }
+    upgrades_to = ACOT_REACTOR_BOOSTER_AURA_SE
     component_set = "ship_aura_components"
     ship_modifier = {
         ship_shield_regen_add_perc = 0.16
@@ -7768,12 +7952,13 @@ utility_component_template = {
         weight = 100
     }
 }
+
 utility_component_template = {
     key = "ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR_RE"
     size = small
     icon = "GFX_ship_part_dark_matter_power_core_re"
     icon_frame = 1
-    power = 500000
+    power = 200000
     resources = {
         category = ship_components
         cost = {
