@@ -751,81 +751,94 @@ decision_acot_gigafortress_deploy = {
     }
     effect = {
         hidden_effect = {
-            create_fleet = {
-                effect = {
-                    set_owner? = from.owner
-                    create_ship = {
-                        name = random
-                        random_existing_design = acot_giga_fortress
-                        graphical_culture = from.owner
+            from.owner? = {
+                if = {
+                    limit = {
+                        NOT = {
+                            has_existing_ship_design = acot_giga_fortress
+                        }
                     }
-                    set_location = {
-                        target = prev
-                        distance = 30
-                        angle = random
-                    }
+                    create_ship_design = { design = NAME_ACOT_GIGAFORTRESS }
+                    add_ship_design = last_created_design
+                    create_ship_design = { design = NAME_ACOT_GIGAFORTRESS_OBELISK }
+                    add_ship_design = last_created_design
                 }
             }
             switch = {
                 trigger = has_building
                 building_acot_giga_fortress = {
                     remove_building = building_acot_giga_fortress
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS
+                    }
                 }
                 building_fe_giga_fortress = {
                     remove_building = building_fe_giga_fortress
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS
+                    }
                 }
                 building_acot_giga_fortress_array = {
                     remove_building = building_acot_giga_fortress_array
-                    last_created_fleet = {
-                        set_fleet_flag = acot_gigafortress_array
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS
+                        FLEET_FLAG = acot_gigafortress_array
                     }
                 }
                 building_acot_giga_fortress_lab = {
                     remove_building = building_acot_giga_fortress_lab
-                    last_created_fleet = {
-                        set_fleet_flag = acot_gigafortress_lab
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS
+                        FLEET_FLAG = acot_gigafortress_lab
                     }
                 }
                 building_acot_giga_fortress_obelisk = {
                     remove_building = building_acot_giga_fortress_obelisk
-                    last_created_fleet = {
-                        set_fleet_flag = acot_gigafortress_obelisk
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS_OBELISK
+                        FLEET_FLAG = acot_gigafortress_obelisk
                     }
                 }
                 building_phanon_giga_fortress_obelisk = {
                     remove_building = building_phanon_giga_fortress_obelisk
-                    last_created_fleet = {
-                        set_fleet_flag = aot_phanon_gigafortress_obelisk
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS_OBELISK
+                        FLEET_FLAG = aot_phanon_gigafortress_obelisk
                     }
                 }
                 building_phanon_giga_fortress_lab = {
                     remove_building = building_phanon_giga_fortress_lab
-                    last_created_fleet = {
-                        set_fleet_flag = aot_phanon_gigafortress_lab
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS
+                        FLEET_FLAG = aot_phanon_gigafortress_lab
                     }
                 }
                 building_phanon_giga_fortress_array = {
                     remove_building = building_phanon_giga_fortress_array
-                    last_created_fleet = {
-                        set_fleet_flag = aot_phanon_gigafortress_array
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS
+                        FLEET_FLAG = aot_phanon_gigafortress_array
                     }
                 }
                 building_stellarite_giga_fortress_obelisk = {
                     remove_building = building_stellarite_giga_fortress_obelisk
-                    last_created_fleet = {
-                        set_fleet_flag = aot_stellarite_gigafortress_obelisk
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS_OBELISK
+                        FLEET_FLAG = aot_stellarite_gigafortress_obelisk
                     }
                 }
                 building_stellarite_giga_fortress_lab = {
                     remove_building = building_stellarite_giga_fortress_lab
-                    last_created_fleet = {
-                        set_fleet_flag = aot_stellarite_gigafortress_lab
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS
+                        FLEET_FLAG = aot_stellarite_gigafortress_lab
                     }
                 }
                 building_stellarite_giga_fortress_array = {
                     remove_building = building_stellarite_giga_fortress_array
-                    last_created_fleet = {
-                        set_fleet_flag = aot_stellarite_gigafortress_array
+                    aot_spawn_giga_fortress_in_space = {
+                        DESIGN = NAME_ACOT_GIGAFORTRESS
+                        FLEET_FLAG = aot_stellarite_gigafortress_array
                     }
                 }
             }

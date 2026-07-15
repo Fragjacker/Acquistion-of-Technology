@@ -45,3 +45,28 @@ aot_add_alpha_capital_building = {
         CAPITAL_MACHINE = building_acot_ae_ancient_control_center
     }
 }
+aot_spawn_giga_fortress_in_space = {
+    create_fleet = {
+        effect = {
+            set_owner = from.owner
+            create_ship = {
+                name = random
+                design = "$DESIGN$"
+                graphical_culture = from.owner
+            }
+            set_location = {
+                target = prev
+                distance = 30
+                angle = random
+            }
+        }
+        settings = {
+            can_upgrade = no
+        }
+    }
+    [[FLEET_FLAG]
+        last_created_fleet = {
+            set_fleet_flag = $FLEET_FLAG$
+        }
+    ]
+}

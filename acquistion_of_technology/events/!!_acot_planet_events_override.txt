@@ -1,6 +1,46 @@
 namespace = acot_planets
 
 carrier_event = {
+    id = acot_planets.11
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+    }
+
+    immediate = {
+        if = {
+            limit = {
+                has_building = building_acot_ruined_absent_fortress
+            }
+            remove_building = building_acot_ruined_absent_fortress
+            carrier_event = {
+                id = acot_final_sparks.106
+            }
+        }
+        from = {
+            switch = {
+                trigger = has_fleet_flag
+                acot_gigafortress_obelisk = { add_building = building_acot_giga_fortress_obelisk }
+                acot_gigafortress_lab = { add_building = building_acot_giga_fortress_lab }
+                acot_gigafortress_array = { add_building = building_acot_giga_fortress_array }
+                acot_gigafortress_ruined = { add_building = building_acot_ruined_giga_fortress }
+                # AoT Giga Fortresses
+                aot_phanon_gigafortress_array = { add_building = building_acot_ruined_giga_fortress }
+                aot_phanon_gigafortress_obelisk = { add_building = building_acot_ruined_giga_fortress }
+                aot_phanon_gigafortress_lab = { add_building = building_acot_ruined_giga_fortress }
+                aot_stellarite_gigafortress_obelisk = { add_building = building_acot_ruined_giga_fortress }
+                aot_stellarite_gigafortress_array = { add_building = building_acot_ruined_giga_fortress }
+                aot_stellarite_gigafortress_lab = { add_building = building_acot_ruined_giga_fortress }
+                default = { add_building = building_acot_giga_fortress }
+            }
+            delete_fleet = this
+        }
+    }
+}
+
+carrier_event = {
     id = acot_planets.800
     hide_window = yes
     is_triggered_only = yes
@@ -9,6 +49,7 @@ carrier_event = {
         if = {
             limit = {
                 owner? = {
+                    is_fallen_empire = no
                     OR = {
                         has_policy_flag = acot_capital_settlement_base_max
                         has_policy_flag = acot_capital_settlement_delta
@@ -21,6 +62,7 @@ carrier_event = {
         else_if = {
             limit = {
                 owner? = {
+                    is_fallen_empire = no
                     OR = {
                         has_policy_flag = acot_capital_settlement_base_max
                         has_policy_flag = acot_capital_settlement_delta
@@ -33,6 +75,7 @@ carrier_event = {
         else_if = {
             limit = {
                 owner? = {
+                    is_fallen_empire = no
                     OR = {
                         has_policy_flag = acot_capital_settlement_base_max
                         has_policy_flag = acot_capital_settlement_delta

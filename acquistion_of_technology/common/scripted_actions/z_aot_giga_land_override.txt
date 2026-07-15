@@ -1,0 +1,42 @@
+acot_giga_planet_land = {
+    user_scope = fleet
+    scope = planet
+
+    possible = {
+        is_colony = yes
+        OR = {
+            free_building_slots >= 1
+            AND = {
+                free_building_slots = 0
+                has_building = building_acot_ruined_absent_fortress
+            }
+        }
+        has_aot_giga_fortress = no
+        owner? = {
+            OR = {
+                is_same_value = from.owner
+                #is_at_war_with = from.owner # Will be done later.
+                #is_hostile = from.owner
+            }
+        }
+    }
+
+    button_clickable = {
+    }
+
+    #name = on_acot_giga_planet_land_activated
+    on_completed = on_acot_giga_planet_land_activated
+    tooltip = acot_giga_planet_land_tooltip
+    icon = GFX_scripted_action_acot_gigafortress_land
+    icon_selected = GFX_scripted_action_acot_gigafortress_land
+    activity_key = acot_giga_planet_land_key
+    context_menu_name = acot_giga_planet_land_name
+    progress_activity_key = acot_giga_planet_land_key
+    required_progress = 10
+
+    cost = {
+    }
+
+    shortcut = "SHIFT+Z"
+    slot = 1
+}
