@@ -1,0 +1,2061 @@
+###############################################################
+# Government Building
+###############################################################
+building_theta_palace = {
+    inline_script = {
+        script = buildings/capital_buildings_boilerplate
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        OVERLORD_JOB = theta_overlord
+        OVERSEER_JOB = theta_overseer
+        ENFORCER_JOB = theta_enforcer
+        TOOLTIP_TIER = theta
+        PRODUCES = "
+			energy = 160
+			sm_sr_perfect_runic_energy = 10
+			"
+        ALLOY_COST = 1500
+        COST = "
+			unity = 30000
+			energy = 10000
+			minerals = 20000
+			sm_sr_perfect_runic_energy = 5000
+			"
+    }
+    country_modifier = {
+        country_resource_max_add = 30000
+        country_resource_max_acot_sr_dark_energy_add = 5000
+        country_resource_max_sr_dark_matter_add = 5000
+        country_resource_max_aot_sr_runic_power_add = 10000
+        country_resource_max_sm_sr_perfect_runic_energy_add = 10000
+    }
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_individualistic_empire = yes
+            has_technology = tech_theta_palace
+        }
+        NOR = {
+            has_modifier = resort_colony
+            has_modifier = slave_colony
+        }
+    }
+    convert_to = {
+        building_ancient_control_center
+        building_ancient_palace
+        building_ancient_hive_capital
+        building_theta_control_center
+        building_theta_hive_cluster
+    }
+    prerequisites = {
+        tech_theta_palace
+    }
+}
+
+# Supra Nexus
+building_theta_control_center = {
+    inline_script = {
+        script = buildings/capital_buildings_boilerplate
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        OVERLORD_JOB = theta_overlord_droid
+        OVERSEER_JOB = theta_overseer_droid
+        ENFORCER_JOB = theta_enforcer_drone
+        TOOLTIP_TIER = theta
+        PRODUCES = "
+			energy = 160
+			sm_sr_perfect_runic_energy = 10
+			"
+        ALLOY_COST = 1500
+        COST = "
+			unity = 30000
+			energy = 10000
+			minerals = 20000
+			sm_sr_perfect_runic_energy = 5000
+			"
+    }
+    country_modifier = {
+        country_resource_max_add = 30000
+        country_resource_max_acot_sr_dark_energy_add = 5000
+        country_resource_max_sr_dark_matter_add = 5000
+        country_resource_max_aot_sr_runic_power_add = 10000
+        country_resource_max_sm_sr_perfect_runic_energy_add = 10000
+    }
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_machine_empire = yes
+            has_technology = tech_theta_control_center
+        }
+    }
+    convert_to = {
+        building_ancient_control_center
+        building_ancient_palace
+        building_ancient_hive_capital
+        building_theta_palace
+        building_theta_hive_cluster
+    }
+    prerequisites = {
+        tech_theta_control_center
+    }
+    show_tech_unlock_if = {
+        is_machine_empire = yes
+    }
+}
+
+# Hive Nexus
+building_theta_hive_cluster = {
+    inline_script = {
+        script = buildings/capital_buildings_boilerplate
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        OVERLORD_JOB = theta_overlord_drone
+        OVERSEER_JOB = theta_overseer_drone
+        ENFORCER_JOB = theta_enforcer_drone
+        TOOLTIP_TIER = theta
+        PRODUCES = "
+			energy = 160
+			sm_sr_perfect_runic_energy = 10
+			"
+        ALLOY_COST = 1500
+        COST = "
+			unity = 30000
+			energy = 10000
+			minerals = 20000
+			sm_sr_perfect_runic_energy = 5000
+			"
+    }
+    country_modifier = {
+        country_resource_max_add = 25000        # Mod Pack: Reduced from 30000
+        country_resource_max_acot_sr_dark_energy_add = 5000
+        country_resource_max_sr_dark_matter_add = 5000
+        country_resource_max_aot_sr_runic_power_add = 10000
+        country_resource_max_sm_sr_perfect_runic_energy_add = 10000
+    }
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            is_hive_empire = yes
+            has_technology = tech_theta_hive_cluster
+        }
+    }
+    convert_to = {
+        building_ancient_control_center
+        building_ancient_palace
+        building_ancient_hive_capital
+        building_theta_control_center
+        building_theta_palace
+    }
+    prerequisites = {
+        tech_theta_hive_cluster
+    }
+    show_tech_unlock_if = {
+        is_hive_empire = yes
+    }
+}
+
+#####################
+# Automated Production
+#####################
+building_theta_affluence_center = {
+    inline_script = {
+        script = buildings/production/affluence_center
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_affluence_center
+        JOB = artisan
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = yes"
+        COST = "
+			energy = 5000
+			minerals = 5000
+			sm_sr_perfect_runic_energy = 750
+			"
+        PRODUCES = "
+			consumer_goods = @auto_cg_se
+			unity = @auto_unity_se
+			society_research = 400
+			"
+        UPKEEP = "
+			energy = 100
+			sm_sr_perfect_runic_energy = 20
+			"
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            energy = 5000
+            minerals = 5000
+            sm_sr_perfect_runic_energy = 750
+        }
+        produces = {
+            consumer_goods = @auto_cg_se
+            unity = @auto_unity_se
+        }
+        upkeep = {
+            energy = 100
+            sm_sr_perfect_runic_energy = 20
+        }
+    }
+}
+building_theta_nourishment_center = {
+    inline_script = {
+        script = buildings/production/nourishment_center
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_nourishment_center
+        JOB = farmer
+        JOB_DRONE = agri
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = yes"
+        COST = "
+			energy = 5000
+			minerals = 5000
+			sm_sr_perfect_runic_energy = 750
+			"
+        PRODUCES = "
+			food = @auto_food_se
+			"
+        UPKEEP = "
+			energy = 100
+			sm_sr_perfect_runic_energy = 20
+			"
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            energy = 5000
+            minerals = 5000
+            sm_sr_perfect_runic_energy = 750
+        }
+        produces = {
+            food = @auto_food_se
+        }
+        upkeep = {
+            energy = 100
+            sm_sr_perfect_runic_energy = 20
+        }
+    }
+}
+building_theta_dimensional_fabricator = {
+    inline_script = {
+        script = buildings/production/dimensional_fabricator
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_dimensional_fabricator
+        UPGRADES_INTO = "always = yes"
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        COST = "
+			energy = 5000
+			minerals = 5000
+			sm_sr_perfect_runic_energy = 750
+			"
+        PRODUCES = "
+			minerals = @auto_minerals_se
+			rare_crystals = @auto_sr_se
+			exotic_gases = @auto_sr_se
+			volatile_motes = @auto_sr_se
+			sr_zro = @auto_sr_se
+			nanites = @auto_sr_se
+			sr_living_metal = @auto_sr_se
+			sr_dark_matter = @auto_sr_pe
+			acot_sr_dark_energy = @auto_sr_pe
+			aot_sr_runic_power = @auto_sr_pe
+			"
+        UPKEEP = "
+			energy = 200
+			sm_sr_perfect_runic_energy = 40
+			"
+    }
+}
+building_theta_class_11_singularity = {
+    inline_script = {
+        script = buildings/production/class_x_singularity
+        TIER = @THETA_TIER
+        CAN_BUILD = no
+        PREREQUISITE = tech_theta_class_12_singularity
+        ALLOW = "has_theta_capital = yes"
+        UPGRADES_INTO = "always = yes"
+        JOB = technician
+        COST = "
+			energy = 5000
+			minerals = 5000
+			sm_sr_perfect_runic_energy = 750
+			"
+        PRODUCES = "
+			energy = @auto_energy_se
+			acot_sr_dark_energy = 90
+			sr_dark_matter = 90
+			physics_research = 90
+			aot_sr_runic_power = 160
+			"
+        UPKEEP = "
+			aot_sr_runic_power = 60
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			sm_sr_perfect_runic_energy = 100
+			"
+    }
+}
+building_theta_nano_forge = {
+    inline_script = {
+        script = buildings/production/nano_forge
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_nano_forge
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = yes"
+        JOB = foundry
+        JOB_DRONE = alloy
+        JOB_MACHINE = fabricator
+        COST = "
+			energy = 5000
+			minerals = 5000
+			sm_sr_perfect_runic_energy = 1000
+			"
+        PRODUCES = "
+			alloys = @auto_alloy_se
+			engineering_research = 100
+			"
+        UPKEEP = "
+			aot_sr_runic_power = 60
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			sm_sr_perfect_runic_energy = 50
+			"
+    }
+}
+building_theta_master_archive = {
+    inline_script = {
+        script = buildings/production/master_archive
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_master_archive
+        ALLOW = "
+			has_theta_capital = yes
+			"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = yes"
+        JOB = theta_researcher
+        JOB_DRONE = theta_researcher_drone
+        COST = "
+			energy = 5000
+			minerals = 5000
+			sm_sr_perfect_runic_energy = 1500
+			"
+        PRODUCES = "
+			physics_research = @auto_research_se
+			society_research = @auto_research_se
+			engineering_research = @auto_research_se
+			minor_artifacts = 20
+			"
+        UPKEEP = "
+			energy = 750
+			sm_sr_perfect_runic_energy = 100
+			aot_sr_runic_power = 60
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
+    }
+}
+building_theta_empyrean_shrine = {
+    inline_script = {
+        script = buildings/production/empyrean_shrine
+        TIER = @THETA_TIER
+        CAN_BUILD = no
+        PREREQUISITE = tech_theta_empyrean_shrine
+        UPGRADES_INTO = "always = yes"
+        ALLOW = "
+			has_theta_capital = yes
+			planet_owner = {
+				is_machine_empire = no
+			}
+			NOT = {
+				has_modifier = slave_colony
+			}
+			"
+        JOB = high_priest
+        COST = "
+			energy = 5000
+			minerals = 5000
+			sm_sr_perfect_runic_energy = 600
+			"
+        PRODUCES = "
+			society_research = 320
+			sr_zro = 200
+			unity = @auto_unity_se
+			influence = 2
+			"
+        UPKEEP = "
+			energy = 100
+			sm_sr_perfect_runic_energy = 75
+			aot_sr_runic_power = 30
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
+    }
+}
+building_theta_sky_dome = {
+    inline_script = {
+        script = buildings/production/sky_dome
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_sky_dome
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = yes"
+        ALLOW = "
+			has_theta_capital = yes
+			"
+        COST = "
+			energy = 5000
+			minerals = 5000
+			sm_sr_perfect_runic_energy = 750
+			"
+        UPKEEP = "
+			energy = 200
+			sm_sr_perfect_runic_energy = 40
+			sr_dark_matter = 20
+			acot_sr_dark_energy = 20
+			"
+        AI_FACTORS = "
+			# ---------------------------- Build only if we have no districts left --------------------------- #
+			modifier = {
+				factor = 0
+				free_district_slots > 0
+			}
+			modifier = {
+				factor = 2
+				free_district_slots = 0
+			}
+			modifier = {
+				factor = 10
+				free_housing <= 0
+			}
+			"
+    }
+}
+
+#####################
+# Job based Production
+#####################
+building_theta_alloy_forge = {
+    inline_script = {
+        script = buildings/production/alloy_forge
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_alloy_foundry
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        JOB = theta_alloyman
+        JOB_MACHINE = theta_alloydrone
+        JOB_HIVE = theta_alloydrone
+        CAN_BUILD = no
+        AI_FACTORS = "
+			modifier = {
+				factor = 50
+				planet_owner = {
+					has_monthly_income = {
+						resource = alloys
+						value < 5
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 2
+					}
+				}
+			}
+			"
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            energy = 4000
+            minerals = 4000
+            sm_sr_perfect_runic_energy = 800
+        }
+        produces = {
+            alloys = 100
+        }
+        produces = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            alloys = 40
+        }
+        upkeep = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            sr_dark_matter = 2
+            acot_sr_dark_energy = 2
+            minerals = 20
+        }
+        upkeep = {
+            energy = 100
+            sm_sr_perfect_runic_energy = 50
+            minerals = 50
+        }
+    }
+}
+building_theta_transmutor = {
+    inline_script = {
+        script = buildings/production/transmutor
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_transmutor
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        JOB = theta_transmute_man
+        JOB_HIVE = theta_transmute_drone
+        CAN_BUILD = no
+        COST = "
+			energy = 3000
+			minerals = 3000
+			sm_sr_perfect_runic_energy = 450
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 5000
+				planet_owner = {
+					OR = {
+						has_monthly_income = {
+							resource = rare_crystals
+							value < 4
+						}
+						has_monthly_income = {
+							resource = exotic_gases
+							value < 4
+						}
+						has_monthly_income = {
+							resource = volatile_motes
+							value < 4
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				num_buildings = {
+					type = building_theta_transmutor
+					value >= 1
+				}
+			}
+			"
+    }
+}
+building_theta_mineral_processing_plant = {
+    inline_script = {
+        script = buildings/production/mineral_processing_plant
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_mineral_processing_plant
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        JOB = theta_mineralman
+        JOB_HIVE = theta_mineraldrone
+        CAN_BUILD = no
+        COST = "
+			energy = 2000
+			alloys = 1000
+			sm_sr_perfect_runic_energy = 500
+			"
+        PRODUCES = "
+			minerals = 400
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = minerals
+						value < 5
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = energy
+						value < 5
+					}
+				}
+			}
+			"
+    }
+}
+
+########## ENERGY NEXOUS
+building_theta_power_hub = {
+    inline_script = {
+        script = buildings/production/power_hub
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_power_hub
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        JOB = theta_energyman
+        JOB_HIVE = theta_energydrone
+        CAN_BUILD = no
+        COST = "
+			energy = 4000
+			minerals = 4000
+			sm_sr_perfect_runic_energy = 800
+			"
+        PRODUCES = "
+			energy = 400
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = energy
+						value < 10
+					}
+				}
+			}
+			"
+    }
+}
+
+### FOOOD FIDDLEEE ###
+building_theta_food_processing_complex = {
+    inline_script = {
+        script = buildings/production/food_processing_complex
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_food_processing
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        JOB = theta_foodman
+        JOB_HIVE = theta_fooddrone
+        CAN_BUILD = no
+        COST = "
+			energy = 4000
+			minerals = 4000
+			sm_sr_perfect_runic_energy = 800
+			"
+        PRODUCES = "
+			food = 200
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = food
+						value < 5
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				planet_owner = {
+					OR = {
+						is_mechanical_empire = no
+						AND = {
+							is_mechanical_empire = yes
+							OR = {
+								has_civic = civic_machine_servitor
+								has_civic = civic_machine_assimilator
+							}
+						}
+					}
+					has_monthly_income = {
+						resource = energy
+						value < 5
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				planet_owner = {
+					is_mechanical_empire = yes
+					NOR = {
+						has_civic = civic_machine_servitor
+						has_civic = civic_machine_assimilator
+					}
+				}
+			}
+			"
+    }
+}
+building_theta_civilian_factory = {
+    inline_script = {
+        script = buildings/production/factory
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_civilian_factory
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        JOB = theta_artisan
+        JOB_HIVE = theta_artisan
+        CAN_BUILD = no
+        COST = "
+			energy = 4000
+			minerals = 4000
+			sm_sr_perfect_runic_energy = 800
+			"
+        PRODUCES = "
+			consumer_goods = 200
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 5
+				planet_owner = {
+					has_monthly_income = {
+						resource = consumer_goods
+						value < 5
+					}
+					has_monthly_income = {
+						resource = minerals
+						value > 6
+					}
+				}
+			}
+			"
+    }
+}
+
+#####################
+# Research Building
+#####################
+building_theta_enigmatic_lab = {
+    inline_script = {
+        script = buildings/civilian/enigmatic_lab
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        PREREQUISITE = tech_theta_enigmatic_lab
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        JOB = theta_researcher
+        JOB_HIVE = theta_researcher_drone
+        CAN_BUILD = no
+        COST = "
+			energy = 4000
+			minerals = 4000
+			sm_sr_perfect_runic_energy = 800
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value <= 3
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = energy
+						value <= 10
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = consumer_goods
+						value <= 10
+					}
+				}
+			}
+			"
+    }
+}
+building_theta_institute = {
+    inline_script = {
+        script = buildings/civilian/institute
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_institute
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        JOB = theta_researcher
+        JOB_HIVE = theta_researcher_drone
+        COST = "
+			energy = 5000
+			minerals = 5000
+			sm_sr_perfect_runic_energy = 1000
+			"
+        PRODUCES = "
+			physics_research = 400
+			engineering_research = 400
+			society_research = 400
+			minor_artifacts = 20
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				free_jobs > 0
+			}
+			"
+    }
+}
+
+#####################
+# Training Building
+#####################
+building_theta_hospital = {
+    inline_script = {
+        script = buildings/civilian/hospital
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_hospital
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        AI_FACTORS = "
+			modifier = {
+				factor = 5
+				free_amenities < 2
+			}
+			# There are already unworked jobs
+			# Blocks buildings unworkable by remaining pops (slaves/robots etc)
+			# Will be improved... at some point
+			modifier = {
+				factor = 0
+				free_jobs > 0
+			}
+			"
+    }
+}
+building_theta_hive_pool = {
+    inline_script = {
+        script = buildings/civilian/hive_pool
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_hive_pool
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        JOB_HIVE = theta_broodmother
+        COST = "
+			energy = 2000
+			minerals = 2000
+			aot_sr_runic_power = 600
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 5
+				free_amenities < 2
+			}
+			modifier = {
+				factor = 0
+				has_building = building_theta_hive_pool
+			}
+			"
+    }
+}
+building_theta_super_assembly = {
+    inline_script = {
+        script = buildings/civilian/super_assembly
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_super_assembly
+        ALLOW = "
+			has_theta_capital = yes
+			hidden_trigger = {
+				OR = {
+					owner = { is_ai = no }
+					NAND = {
+						free_district_slots = 0
+						free_building_slots <= 1
+						free_housing <= 0
+						free_jobs <= 0
+					}
+				}
+			}
+			"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        JOB = theta_roboman
+        JOB_MACHINE = theta_robodrone
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				num_buildings = {
+					type = building_theta_super_assembly
+					value >= 1
+				}
+			}
+			"
+    }
+    # Potential and destroy blocks
+    inline_script = {
+        script = buildings/civilian/parts/super_assembly/organic
+    }
+    convert_to = {
+        building_theta_super_assembly_machine
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            energy = 4000
+            minerals = 4000
+            sm_sr_perfect_runic_energy = 1000
+        }
+        upkeep = {
+            energy = 100
+            sm_sr_perfect_runic_energy = 50
+        }
+    }
+}
+building_theta_super_assembly_machine = {
+    icon = building_theta_super_assembly
+    inline_script = {
+        script = buildings/civilian/super_assembly
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_super_assembly
+        ALLOW = "
+			has_theta_capital = yes
+			hidden_trigger = {
+				OR = {
+					owner = { is_ai = no }
+					NAND = {
+						free_district_slots = 0
+						free_building_slots <= 1
+						free_housing <= 0
+						free_jobs <= 0
+					}
+				}
+			}
+			"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        JOB = theta_roboman
+        JOB_MACHINE = theta_robodrone
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				num_buildings = {
+					type = building_theta_super_assembly_machine
+					value >= 1
+				}
+			}
+			"
+    }
+    # Potential and destroy blocks
+    inline_script = {
+        script = buildings/civilian/parts/super_assembly/machine
+    }
+    convert_to = {
+        building_theta_super_assembly
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            energy = 4000
+            minerals = 4000
+            sm_sr_perfect_runic_energy = 600
+        }
+        upkeep = {
+            energy = 100
+            sm_sr_perfect_runic_energy = 50
+        }
+    }
+}
+
+### SOECIAL POP BUILDINGER
+building_theta_clone_vats = {
+    inline_script = {
+        script = buildings/civilian/clone_vats
+        CAN_BUILD = no
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        PREREQUISITE = tech_theta_clone_vats
+        PLANET_MODIFIER = "
+			sm_sr_perfect_runic_energy = @vats_cost
+			"
+        PLANET_UPKEEP = "
+			sm_sr_perfect_runic_energy = @vats_upkeep
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_theta_clone_vats
+				}
+			}
+			"
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            energy = 4000
+            minerals = 4000
+            sm_sr_perfect_runic_energy = 1000
+        }
+        upkeep = {
+            sm_sr_perfect_runic_energy = 40
+        }
+        upkeep = {
+            trigger = {
+                planet_owner = {
+                    NOT = {
+                        has_technology = tech_acot_fractured_autoharvesting
+                    }
+                }
+            }
+            sr_dark_matter = 4
+            acot_sr_dark_energy = 4
+        }
+        upkeep = {
+            trigger = {
+                exists = planet_owner
+                planet_owner = {
+                    is_lithoid_empire = no
+                }
+            }
+            food = 20
+        }
+        upkeep = {
+            trigger = {
+                exists = planet_owner
+                planet_owner = {
+                    is_lithoid_empire = yes
+                }
+            }
+            minerals = 20
+        }
+    }
+}
+
+# Synth path
+building_theta_synt_center = {
+    inline_script = {
+        script = buildings/civilian/synt_center
+        TIER = @THETA_TIER
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        PREREQUISITE = tech_theta_synt_center
+        CAN_BUILD = no
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_theta_synt_center
+				}
+			}
+			"
+    }
+    resources = {
+        category = planet_buildings
+        produces = {
+            engineering_research = 60
+        }
+        cost = {
+            energy = 4000
+            minerals = 4000
+            sm_sr_perfect_runic_energy = 1000
+        }
+        upkeep = {
+            sm_sr_perfect_runic_energy = 40
+        }
+        upkeep = {
+            trigger = {
+                planet_owner = {
+                    NOT = {
+                        has_technology = tech_acot_fractured_autoharvesting
+                    }
+                }
+            }
+            sr_dark_matter = 10
+            acot_sr_dark_energy = 10
+        }
+    }
+}
+
+# PSIONOIDE path
+building_theta_psi_altar = {
+    inline_script = {
+        script = buildings/civilian/psi_altar
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        PREREQUISITE = tech_theta_psi_altar
+        CAN_BUILD = no
+        COST = "
+			energy = 4000
+			minerals = 4000
+			sm_sr_perfect_runic_energy = 800
+			"
+        PRODUCES = "
+			sr_zro = 40
+			unity = 200
+			"
+        UPKEEP = "
+			sm_sr_perfect_runic_energy = 40
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_theta_psi_altar
+				}
+			}
+			"
+    }
+}
+
+# Machine path
+building_theta_machine_dome = {
+    inline_script = {
+        script = buildings/civilian/machine_dome
+        TIER = @THETA_TIER
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        PREREQUISITE = tech_theta_machine_dome
+        CAN_BUILD = no
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_theta_machine_dome
+				}
+			}
+			"
+    }
+    resources = {
+        category = planet_buildings
+        produces = {
+        }
+        cost = {
+            energy = 4000
+            minerals = 4000
+            sm_sr_perfect_runic_energy = 1000
+        }
+        upkeep = {
+            sm_sr_perfect_runic_energy = 20
+        }
+        upkeep = {
+            trigger = {
+                planet_owner = {
+                    NOT = {
+                        has_technology = tech_acot_fractured_autoharvesting
+                    }
+                }
+            }
+            sr_dark_matter = 10
+            acot_sr_dark_energy = 10
+        }
+    }
+}
+
+#### HIVE PATHOS
+building_theta_hive_evochamber = {
+    inline_script = {
+        script = buildings/civilian/evo_chamber
+        CAN_BUILD = no
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        PREREQUISITE = tech_theta_hive_evochamber
+        UPGRADES_INTO = "always = no"
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        PLANET_MODIFIER = "
+			sm_sr_perfect_runic_energy = @vats_cost
+			"
+        PLANET_UPKEEP = "
+			sm_sr_perfect_runic_energy = @vats_upkeep
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				OR = {
+					has_building = building_theta_hive_evochamber
+				}
+			}
+			"
+    }
+}
+
+#####################
+# Military
+#####################
+building_theta_psg = {
+    inline_script = {
+        script = buildings/military/planetary_shield_generator
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_psg
+        ALLOW = "
+			has_theta_capital = yes
+			NOT = {
+				has_building = building_planetary_shield_generator
+			}
+			if = {
+				limit = { exists = orbital_defence }
+				orbital_defence = {
+					exists = starbase
+					starbase = {
+						NOR = {
+							has_starbase_building = ring_orbital_shield_generator
+							is_starbase_building_building = ring_orbital_shield_generator
+						}
+					}
+				}
+			}
+			"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        REDUCTION_FACTOR = -1.0
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = acot_sr_dark_energy
+						value <= 3
+					}
+				}
+			}
+			"
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            energy = 10000
+            minerals = 10000
+            sm_sr_perfect_runic_energy = 2000
+        }
+        upkeep = {
+            trigger = {
+                planet_owner = {
+                    is_ai = no
+                }
+            }
+            energy = 2000
+            sm_sr_perfect_runic_energy = 100
+        }
+        upkeep = {
+            trigger = {
+                planet_owner = {
+                    NOT = {
+                        has_technology = tech_acot_fractured_autoharvesting
+                    }
+                }
+            }
+            sr_dark_matter = 10
+            acot_sr_dark_energy = 10
+        }
+    }
+}
+building_theta_giga_fortress_array = {
+    inline_script = {
+        script = buildings/military/giga_fortress
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_giga_fortress
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        JOBS_REGULAR = "
+			job_theta_giga_fortress_operator_add = 100
+			job_theta_giga_fortress_operator_mentat_add = 100
+			"
+        JOBS_HIVE = "
+			job_theta_giga_fortress_operator_drone_add = 100
+			job_theta_giga_fortress_operator_mentat_drone_add = 100
+			"
+        JOBS_MACHINE = "
+			job_theta_giga_fortress_operator_drone_add = 100
+			job_theta_giga_fortress_operator_mentat_drone_add = 100
+			"
+        JOBS_FE = "
+			job_acot_giga_fortress_operator_ancient_add = 100
+			"
+        COST = "
+			energy = 100000
+			minerals = 60000
+			sm_sr_perfect_runic_energy = 5000
+			"
+        UPKEEP = "
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+			sm_sr_perfect_runic_energy = 100
+			"
+        PRODUCES = "
+			unity = 200
+			energy = 150
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = sm_sr_perfect_runic_energy
+						value <= 100
+					}
+				}
+			}
+			"
+    }
+    custom_tooltip = building_theta_giga_fortress_tooltip
+    country_modifier = {
+        country_naval_cap_add = 800
+        starbase_shipyard_build_speed_mult = 0.4
+    }
+    planet_modifier = {
+        planet_amenities_add = 3000
+        planet_housing_add = 3000
+        planet_stability_add = 20
+    }
+    army_modifier = {
+        army_defense_damage_mult = 10        # Mod Pack; reduced from 20
+        army_defense_health_mult = 7        # Mod Pack; reduced from 20
+        army_defense_morale_mult = 7        # Mod Pack; reduced from 20
+    }
+}
+building_theta_giga_fortress_lab = {
+    inline_script = {
+        script = buildings/military/giga_fortress
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_giga_fortress
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        JOBS_REGULAR = "
+			job_theta_fortress_operator_add = 200
+			job_theta_soldier_add = 200
+			job_theta_overseer_add = 300
+			"
+        JOBS_HIVE = "
+			job_theta_fortress_operator_drone_add = 200
+			job_theta_soldier_drone_add = 200
+			job_theta_overseer_drone_add = 200
+			"
+        JOBS_MACHINE = "
+			job_theta_fortress_operator_drone_add = 200
+			job_theta_soldier_drone_add = 200
+			job_theta_overseer_droid_add = 200
+			"
+        JOBS_FE = "
+			job_acot_giga_fortress_operator_ancient_add = 100
+			"
+        COST = "
+			energy = 100000
+			minerals = 60000
+			sm_sr_perfect_runic_energy = 5000
+			"
+        UPKEEP = "
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+			sm_sr_perfect_runic_energy = 100
+			aot_sr_runic_power = 50
+			"
+        PRODUCES = "
+			unity = 400
+			influence = 1.75
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = sm_sr_perfect_runic_energy
+						value <= 100
+					}
+				}
+			}
+			"
+    }
+    custom_tooltip = building_theta_giga_fortress_tooltip
+    planet_modifier = {
+        planet_amenities_add = 4000
+        planet_housing_add = 4000
+        planet_stability_add = 25
+    }
+    army_modifier = {
+        army_defense_damage_mult = 3.5        # Mod Pack: reduced from 40
+        army_defense_health_mult = 3.5        # Mod Pack: reduced from 40
+        army_defense_morale_mult = 3.5        # Mod Pack: reduced from 40
+    }
+}
+building_theta_giga_fortress_obelisk = {
+    inline_script = {
+        script = buildings/military/giga_fortress
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_giga_fortress
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        JOBS_REGULAR = "
+			job_theta_giga_fortress_operator_add = 300
+			job_theta_soldier_add = 1000
+			"
+        JOBS_HIVE = "
+			job_theta_giga_fortress_operator_drone_add = 300
+			job_theta_soldier_drone_add = 1000
+			"
+        JOBS_MACHINE = "
+			job_theta_giga_fortress_operator_drone_add = 300
+			job_theta_soldier_drone_add = 1000
+			"
+        JOBS_FE = "
+			job_acot_giga_fortress_operator_ancient_add = 200
+			job_fe_protector_add = 300
+			"
+        COST = "
+			energy = 100000
+			minerals = 60000
+			sm_sr_perfect_runic_energy = 7500
+			"
+        UPKEEP = "
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+			sr_dark_matter = 5
+			acot_sr_dark_energy = 5
+			sm_sr_perfect_runic_energy = 500
+			aot_sr_runic_power = 100
+			"
+        PRODUCES = "
+			unity = 200
+			energy = 175
+			minerals = 300
+			alloys = 300
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					has_monthly_income = {
+						resource = sm_sr_perfect_runic_energy
+						value <= 100
+					}
+				}
+			}
+			"
+    }
+    custom_tooltip = building_theta_giga_fortress_obelisk_tooltip
+    planet_modifier = {
+        planet_amenities_add = 3500        # Mod Pack: reduced from 80
+        planet_housing_add = 3500        # Mod Pack: reduced from 80
+        planet_stability_add = 40        # Mod Pack: reduced from 400
+        #		planet_crime_add = -400 # Mod Pack: removed (makes the game mechanic irrelavent, which is bad)
+    }
+    army_modifier = {
+        army_defense_morale_mult = 60        # Mod Pack: reduced from 100
+        army_defense_health_mult = 30        # Mod Pack: reduced from 100
+        army_defense_damage_mult = 30        # Mod Pack: reduced from 100
+        army_starting_experience_add = 40000        # Mod Pack: reduced from 100000
+    }
+}
+building_theta_stronghold = {
+    inline_script = {
+        script = buildings/military/stronghold
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_stronghold
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        JOB = theta_soldier
+        AI_FACTORS = "
+			modifier = {
+				weight = 100000
+				num_pops >= 4000
+				NOR = {
+					num_buildings = {
+						type = building_theta_stronghold
+						value <= 2
+					}
+				}
+				planet_owner = {
+					has_monthly_income = {
+						resource = sm_sr_perfect_runic_energy
+						value <= 3
+					}
+				}
+			}
+			"
+    }
+    custom_tooltip = building_theta_stronghold_tooltip
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 5000
+            energy = 5000
+            sm_sr_perfect_runic_energy = 1000
+        }
+        upkeep = {
+            trigger = {
+                planet_owner = {
+                    is_ai = no
+                }
+            }
+            energy = 100
+            sm_sr_perfect_runic_energy = 50
+        }
+    }
+}
+
+#####################
+# Stellarite Generators
+#####################
+building_theta_runic_generator = {
+    base_buildtime = 900
+    can_demolish = yes
+    can_build = no
+    category = manufacturing
+    potential = {
+        exists = planet_owner
+        planet_owner = {
+            has_technology = tech_theta_runic_generator
+        }
+        advanced_resource_generation_building_regulation = yes
+    }
+    allow = {
+        has_theta_capital = yes
+    }
+    country_modifier = {
+        country_resource_max_sm_sr_perfect_runic_energy_add = 2500
+    }
+    planet_modifier = {
+        planet_jobs_sm_sr_perfect_runic_energy_produces_mult = +0.10
+    }
+    upgrades = {
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = planet_owner
+            planet_owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+            job_theta_dimension_folderdrone_add = 200
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = planet_owner
+            planet_owner = {
+                is_gestalt = no
+            }
+        }
+        modifier = {
+            job_theta_dimension_folder_add = 200
+        }
+    }
+    triggered_desc = {
+        trigger = {
+            uses_district_set = sigma_habitat
+            exists = planet_owner
+            planet_owner = {
+                is_individualistic_empire = yes
+            }
+        }
+        text = building_theta_generator_lvl3_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            uses_district_set = sigma_habitat
+            exists = planet_owner
+            planet_owner = {
+                is_hive_empire = yes
+            }
+        }
+        text = building_theta_generator_lvl3_hive_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            uses_district_set = sigma_habitat
+            exists = planet_owner
+            planet_owner = {
+                is_machine_empire = yes
+            }
+        }
+        text = building_theta_generator_lvl3_machine_effect_desc
+    }
+    resources = {
+        category = planet_buildings
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 4500
+        }
+        cost = {
+            minerals = 2500
+            energy = 2500
+            acot_sr_dark_energy = 2500
+            sr_dark_matter = 2500
+        }
+        produces = {
+            trigger = {
+                planet_owner = {
+                    is_ai = yes
+                }
+            }
+            sm_sr_perfect_runic_energy = 1000
+            energy = 200
+        }
+        produces = {
+            trigger = {
+                has_building = building_theta_stellarite_nexus
+            }
+            sm_sr_perfect_runic_energy = 2000
+        }
+        upkeep = {
+            energy = 800
+            acot_sr_dark_energy = 100            # Mod Pack: added upkeep
+            sr_dark_matter = 100
+        }
+    }
+    prerequisites = {
+        tech_theta_runic_generator
+    }
+    ai_weight = {
+        weight = 150000
+        modifier = {
+            factor = 100000
+            planet_owner = {
+                has_monthly_income = {
+                    resource = sm_sr_perfect_runic_energy
+                    value <= 3
+                }
+            }
+        }
+        modifier = {
+            factor = 0.1
+            num_buildings = {
+                type = building_theta_runic_generator
+                value >= 2
+            }
+        }
+        modifier = {
+            factor = 0
+            planet_owner = {
+                merg_is_awakened_fe = yes
+            }
+        }
+    }
+}
+building_theta_synthersizer = {
+    inline_script = {
+        script = buildings/production/synthersizer
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        PREREQUISITE = tech_theta_synthersizer
+        UPGRADES_INTO = building_theta_synthersizer
+        COST = "
+			minerals = 500
+			energy = 500
+			sr_dark_matter = 1500
+			acot_sr_dark_energy = 1500
+			"
+        PRODUCES = "
+			sr_dark_matter = 250
+			acot_sr_dark_energy = 250
+			aot_sr_runic_power = 2000
+			sm_sr_perfect_runic_energy = 500
+			"
+        STORAGE_INCREASE = "
+			country_resource_max_acot_sr_dark_energy_add = @max_resource_add
+			country_resource_max_sr_dark_matter_add = @max_resource_add
+			country_resource_max_aot_sr_runic_power_add = @max_resource_add
+			country_resource_max_sm_sr_perfect_runic_energy_add = @max_resource_add
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 100000
+				planet_owner = {
+					has_monthly_income = {
+						resource = aot_sr_runic_power
+						value <= 100
+					}
+				}
+			}
+			"
+    }
+}
+building_theta_stellarite_nexus = {
+    inline_script = {
+        script = buildings/production/power_conduit
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        ALLOW = "
+			has_theta_capital = yes
+			NOT = { has_building = building_acot_theta_nexus }
+			"
+        CAN_BUILD = no
+        PREREQUISITE = tech_theta_stellarite_nexus
+        UPGRADES_INTO = "always = no"
+        STORAGE_INCREASE = "
+			country_resource_max_sr_dark_matter_add = @max_conduit_storage
+			country_resource_max_acot_sr_dark_energy_add = @max_conduit_storage
+			country_resource_max_aot_sr_runic_power_add = @max_conduit_storage
+			country_resource_max_sm_sr_perfect_runic_energy_add = @max_conduit_storage
+			"
+        PLANET_MODIFIER = "
+			planet_jobs_sr_dark_matter_produces_mult = @planet_mult
+			planet_jobs_acot_sr_dark_energy_produces_mult = @planet_mult
+			planet_jobs_aot_sr_runic_power_produces_mult = @planet_mult
+			planet_jobs_sm_sr_perfect_runic_energy_produces_mult = @planet_mult
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				planet_owner = {
+					merg_is_awakened_fe = yes
+				}
+			}
+			modifier = {
+				factor = 10000
+				planet_owner = {
+					has_monthly_income = {
+						resource = aot_sr_runic_power
+						value <= 1
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				num_buildings = {
+					type = building_acot_theta_nexus
+					value >= 0
+				}
+			}
+			"
+    }
+    resources = {
+        category = planet_buildings
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 6000
+        }
+        cost = {
+            minerals = 8000
+            sm_sr_perfect_runic_energy = 2000
+        }
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
+            MODE = upkeep
+            RESOURCE = energy
+            AMOUNT = 2000
+        }
+        upkeep = {
+            trigger = {
+                planet_owner = {
+                    is_ai = no
+                }
+            }
+            sm_sr_perfect_runic_energy = 1000
+        }
+    }
+}
+
+#####################
+# OTHER STUFFS
+#####################
+building_theta_mansion = {
+    inline_script = {
+        script = buildings/civilian/mansion
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_mansion
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        AI_FACTORS = "
+			modifier = {
+				factor = 300000
+				free_amenities < 0
+			}
+			modifier = {
+				factor = 500000
+				free_housing < 1
+			}
+			modifier = {
+				factor = 0
+				free_housing > 1
+			}
+			"
+    }
+    convert_to = {
+        building_theta_empyrean_shrine
+        building_theta_hive_depot
+        building_theta_ancient_cryo_chamber
+    }
+    resources = {
+        category = planet_buildings
+        produces = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            unity = 60
+        }
+        cost = {
+            energy = 4000
+            minerals = 4000
+            sm_sr_perfect_runic_energy = 800
+        }
+        upkeep = {
+            sm_sr_perfect_runic_energy = 20
+        }
+        upkeep = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            energy = 10            # Mod Pack: added upkeep
+            acot_sr_dark_energy = 4
+            sr_dark_matter = 4
+        }
+    }
+}
+building_theta_hive_depot = {
+    inline_script = {
+        script = buildings/civilian/hive_depot
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_hive_depot
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        AI_FACTORS = "
+			modifier = {
+				factor = 20000
+				free_housing < 0
+			}
+			modifier = {
+				factor = 30000
+				free_amenities < 2
+			}
+			modifier = {
+				factor = 0
+				free_housing > 1
+			}
+			"
+    }
+    convert_to = {
+        building_theta_empyrean_shrine
+        building_theta_mansion
+        building_theta_ancient_cryo_chamber
+    }
+    resources = {
+        category = planet_buildings
+        produces = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            unity = 60
+        }
+        cost = {
+            energy = 4000
+            minerals = 4000
+            sm_sr_perfect_runic_energy = 800
+        }
+        upkeep = {
+            sm_sr_perfect_runic_energy = 20
+        }
+        upkeep = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            acot_sr_dark_energy = 4
+            sr_dark_matter = 4
+        }
+    }
+}
+building_theta_ancient_cryo_chamber = {
+    inline_script = {
+        script = buildings/civilian/cryo_chamber
+        TIER = @THETA_TIER
+        PREREQUISITE = tech_theta_ancient_cryo_chamber
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        UPGRADES_INTO = "always = no"
+        JOB_MACHINE = acot_entertainer
+        AI_FACTORS = "
+			modifier = {
+				factor = 20000
+				free_housing < 0
+			}
+			modifier = {
+				factor = 30000
+				free_amenities < 2
+			}
+			modifier = {
+				factor = 0
+				free_housing > 1
+			}
+			"
+    }
+    convert_to = {
+        building_theta_empyrean_shrine
+        building_theta_mansion
+        building_theta_hive_depot
+    }
+    resources = {
+        category = planet_buildings
+        produces = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            unity = 60
+        }
+        cost = {
+            energy = 4000
+            minerals = 4000
+            sm_sr_perfect_runic_energy = 800
+        }
+        upkeep = {
+            sm_sr_perfect_runic_energy = 20
+        }
+    }
+}
+building_theta_commercial_megaplex = {
+    inline_script = {
+        script = buildings/civilian/commercial_megaplex
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        PREREQUISITE = tech_theta_commercial_megaplex
+        UPGRADES_INTO = "always = no"
+        JOB = theta_clerk
+        COST = "
+			energy = 4000
+			minerals = 4000
+			sm_sr_perfect_runic_energy = 800
+			"
+        UPKEEP = "
+			sm_sr_perfect_runic_energy = 30
+			"
+        AI_FACTORS = "
+			modifier = {
+				weight = 1
+				planet_owner = {
+					resource_income_compare = {
+						resource = sm_sr_perfect_runic_energy
+						value >= 11
+					}
+				}
+			}
+			modifier = {
+				factor = 10
+				exists = planet_owner
+				planet_owner = {
+					is_megacorp = yes
+				}
+			}
+			"
+    }
+}
+building_theta_bureaucratic = {
+    inline_script = {
+        script = buildings/civilian/bureaucratic
+        TIER = @THETA_TIER
+        EXPONENT = @THETA_EXPONENT
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        PREREQUISITE = tech_theta_bureau
+        UPGRADES_INTO = "always = no"
+        JOB = theta_bureaucrat
+        COST = "
+			energy = 4000
+			minerals = 4000
+			sm_sr_perfect_runic_energy = 800
+			"
+        UPKEEP = "
+			sm_sr_perfect_runic_energy = 15
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				buildings_has_crystals = no
+			}
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 0
+				}
+			}
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 10
+				}
+			}
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 20
+				}
+			}
+			modifier = {
+				factor = 2
+				planet_owner = {
+					empire_sprawl_over_cap > 40
+				}
+			}
+			modifier = {
+				factor = 2
+				planet_owner = {
+					has_valid_civic = civic_byzantine_bureaucracy
+				}
+			}
+			"
+    }
+}
+building_theta_embassy = {
+    inline_script = {
+        script = buildings/civilian/embassy
+        TIER = @THETA_TIER
+        ALLOW = "has_theta_capital = yes"
+        CAN_BUILD = no
+        PREREQUISITE = tech_theta_embassy
+        UPGRADES_INTO = "always = no"
+        COST = "
+			influence = 300
+			energy = 6000
+			minerals = 6000
+			sm_sr_perfect_runic_energy = 1500
+			"
+        UPKEEP = "
+			sm_sr_perfect_runic_energy = 100
+			"
+        AI_FACTORS = "
+			modifier = {
+				factor = 0
+				buildings_has_crystals = no
+			}
+			modifier = {
+				factor = 5
+				exists = planet_owner
+				planet_owner = {
+					is_galactic_community_member = yes
+				}
+			}
+			modifier = {
+				factor = 5
+				exists = planet_owner
+				planet_owner = {
+					has_federation = yes
+				}
+			}
+			modifier = {
+				factor = 3
+				exists = planet_owner
+				planet_owner = {
+					is_part_of_galactic_council = yes
+				}
+			}
+			"
+    }
+}
