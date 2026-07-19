@@ -23,4 +23,60 @@ resources = {
 inline_script = { script = pop_jobs/part/soldier/triggered_modifiers EXPONENT = $EXPONENT$ }
 #--------------<  $CATEGORY$ can be complex_drone, simple_drone, specialist or worker.  >-----------
 inline_script = pop_jobs/pre_triggers/$CATEGORY$
-inline_script = pop_jobs/job_weights/soldier/$CATEGORY$
+weight = {
+    weight = @soldier_job_weight
+    modifier = {
+        factor = 10
+        colony? = {
+            exists = leader
+            leader = {
+                leader_class = commander
+            }
+        }
+    }
+    modifier = {
+        factor = 2
+        has_trait = trait_resilient
+    }
+    modifier = {
+        factor = 2
+        has_trait = trait_very_strong
+    }
+    modifier = {
+        factor = 1.5
+        has_trait = trait_strong
+    }
+    modifier = {
+        factor = 0.5
+        has_trait = trait_weak
+    }
+    modifier = {
+        factor = 10
+        is_enslaved = yes
+        has_slavery_type = { type = slavery_military }
+    }
+    modifier = {
+        factor = 1.1
+        has_trait = trait_cybernetic
+    }
+    modifier = {
+        factor = 2
+        has_trait = trait_presapient_earthbound
+    }
+    modifier = {
+        factor = 1.1
+        has_trait = trait_limited_regeneration
+    }
+    modifier = {
+        factor = 0
+        species = { can_be_soldier = no }
+    }
+    modifier = {
+        factor = 2
+        has_trait = trait_lithoid
+    }
+    modifier = {
+        factor = 5
+        has_trait = trait_cyborg_creed_of_war
+    }
+}
