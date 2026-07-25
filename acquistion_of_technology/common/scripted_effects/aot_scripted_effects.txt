@@ -1011,53 +1011,51 @@ spawn_aot_habitat_blast_effect = {
 # ------------------------------------------------------------------------------------------------ #
 # Get the type of the habitat in this system and then spawn an orbital of the same tier.
 spawn_orbitals_depending_on_system_habitat_type = {
-    inline_script = {
-        script = decorators/get_aot_habitat_scope
-        CODE = "
-            switch = {
-                trigger = is_planet_class
-                pc_ae_habitat = {
-                    solar_system = {
-                        spawn_aot_orbital_effect = {
-                            TYPE = $TYPE$
-                            TIER = alpha
-                            HABITAT_OWNER = event_target:system_aot_habitat.owner
-                            TARGET_PLANET = event_target:target_planet
-                        }
-                    }
-                }
-                pc_phanon_habitat = {
-                    solar_system = {
-                        spawn_aot_orbital_effect = {
-                            TYPE = $TYPE$
-                            TIER = phanon
-                            HABITAT_OWNER = event_target:system_aot_habitat.owner
-                            TARGET_PLANET = event_target:target_planet
-                        }
-                    }
-                }
-                pc_sigma_habitat = {
-                    solar_system = {
-                        spawn_aot_orbital_effect = {
-                            TYPE = $TYPE$
-                            TIER = sigma
-                            HABITAT_OWNER = event_target:system_aot_habitat.owner
-                            TARGET_PLANET = event_target:target_planet
-                        }
-                    }
-                }
-                default = {
-                    solar_system = {
-                        spawn_aot_orbital_effect = {
-                            TYPE = $TYPE$
-                            TIER = delta
-                            HABITAT_OWNER = event_target:system_aot_habitat.owner
-                            TARGET_PLANET = event_target:target_planet
-                        }
+    solar_system = {
+        random_system_planet = {
+            limit = {
+                is_aot_habitat = yes
+            }
+            save_event_target_as = system_aot_habitat
+        }
+    }
+    event_target:system_aot_habitat = {
+        switch = {
+            trigger = is_planet_class
+            pc_ae_habitat = {
+                solar_system = {
+                    spawn_aot_orbital_effect = {
+                        TYPE = $TYPE$
+                        TIER = alpha
                     }
                 }
             }
-        "
+            pc_phanon_habitat = {
+                solar_system = {
+                    spawn_aot_orbital_effect = {
+                        TYPE = $TYPE$
+                        TIER = phanon
+                    }
+                }
+            }
+            pc_sigma_habitat = {
+                solar_system = {
+                    spawn_aot_orbital_effect = {
+                        TYPE = $TYPE$
+                        TIER = sigma
+                    }
+                }
+            }
+            default = {
+                solar_system = {
+                    spawn_aot_orbital_effect = {
+                        TYPE = $TYPE$
+                        TIER = delta
+                    }
+                }
+            }
+        }
+
     }
 }
 
@@ -1067,9 +1065,9 @@ spawn_aot_orbital_effect = {
     optimize_memory
     spawn_megastructure = {
         type = aot_$TIER$_habitat_$TYPE$_orbital
-        owner = $HABITAT_OWNER$
-        planet = $TARGET_PLANET$
-        coords_from = $TARGET_PLANET$
+        owner = solar_system.owner
+        planet = event_target:target_planet
+        coords_from = event_target:target_planet
         orbit_distance = 50
         orbit_angle = 50
         init_effect = {
