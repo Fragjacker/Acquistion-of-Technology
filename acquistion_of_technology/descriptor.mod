@@ -1,4 +1,4 @@
-version="7.2.4.0"
+version="7.2.5.0"
 tags={
 	"Balance"
 	"Overhaul"

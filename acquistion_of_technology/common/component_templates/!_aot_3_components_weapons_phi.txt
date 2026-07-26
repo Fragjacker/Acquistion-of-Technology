@@ -1,0 +1,75 @@
+utility_component_template = {
+	key = "ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR_PE"
+	size = small
+	icon = "GFX_ship_part_dark_matter_power_core_pe"
+	icon_frame = 1
+	power = 130000
+	resources = {
+		category = ship_components
+		cost = {
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+		}
+		inline_script = {
+			script = resources/convert_to_food
+			SCOPE = from
+			MODE = cost
+			RESOURCE = alloys
+			AMOUNT = 5000
+		}
+
+		upkeep = {
+			energy = 100
+		}
+		inline_script = {
+			script = resources/convert_to_food
+			SCOPE = from
+			MODE = upkeep
+			RESOURCE = alloys
+			AMOUNT = 7
+		}
+	}
+	modifier = {
+		ship_hull_mult = 0.05
+		ship_weapon_damage = 0.05
+	}
+	ship_modifier = {
+		ship_shield_reduction = -1.2
+		ship_armor_reduction = -1.2
+		ship_fire_rate_mult = 0.15
+	}
+	prerequisites = {
+		"tech_dark_matter_power_core_pe"
+	}
+	component_set = "power_core"
+	upgrades_to = ENIGMATIC_FORTRESS_DARK_MATTER_REACTOR_SE
+	potential = {
+		is_ship_size = deep_space_enigmatic_fortress
+	}
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = sr_dark_matter
+				amount <= 5000
+			}
+			has_resource = {
+				type = acot_sr_dark_energy
+				amount <= 5000
+			}
+			has_resource = {
+				type = alloys
+				amount <= 5000
+			}
+			has_monthly_income = {
+				resource = energy
+				value <= 100
+			}
+			has_monthly_income = {
+				resource = alloys
+				value <= 10
+			}
+		}
+	}
+}

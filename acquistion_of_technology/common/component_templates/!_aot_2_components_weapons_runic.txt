@@ -7922,6 +7922,13 @@ utility_component_template = {
         inline_script = {
             script = resources/convert_to_food
             SCOPE = from
+            MODE = cost
+            RESOURCE = alloys
+            AMOUNT = 5000
+        }
+        inline_script = {
+            script = resources/convert_to_food
+            SCOPE = from
             MODE = upkeep
             RESOURCE = alloys
             AMOUNT = @armor_l_re_upkeep_alloy
@@ -7963,7 +7970,6 @@ utility_component_template = {
         category = ship_components
         cost = {
             aot_sr_runic_power = 10000
-            alloys = 5000
         }
         upkeep = {
             energy = 100
@@ -7971,15 +7977,16 @@ utility_component_template = {
         inline_script = {
             script = resources/convert_to_food
             SCOPE = from
-            MODE = upkeep
+            MODE = cost
             RESOURCE = alloys
-            AMOUNT = 10
+            AMOUNT = 5000
         }
         inline_script = {
-            script = resources/conditional_runic_power_cost
+            script = resources/convert_to_food
             SCOPE = from
             MODE = upkeep
-            AMOUNT = 10
+            RESOURCE = alloys
+            AMOUNT = @armor_l_re_upkeep_alloy
         }
     }
     modifier = {
@@ -7989,6 +7996,7 @@ utility_component_template = {
     ship_modifier = {
         ship_shield_reduction = -1.5
         ship_armor_reduction = -1.5
+        ship_fire_rate_mult = 0.2
     }
     prerequisites = {
         "tech_dark_matter_power_core_re"
