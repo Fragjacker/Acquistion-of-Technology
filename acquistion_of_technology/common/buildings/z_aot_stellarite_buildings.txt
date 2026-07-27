@@ -817,6 +817,18 @@ building_stellarite_hospital = {
 			}
 			"
     }
+    resources = {
+        category = planet_buildings
+        cost = {
+            energy = 3000
+            minerals = 3000
+            acot_sr_stellarite = 800
+        }
+        upkeep = {
+            energy = 100
+            acot_sr_stellarite = 10
+        }
+    }
 }
 building_stellarite_hive_pool = {
     inline_script = {
@@ -830,7 +842,7 @@ building_stellarite_hive_pool = {
         COST = "
 			energy = 2000
 			minerals = 2000
-			aot_sr_runic_power = 600
+			acot_sr_stellarite = 600
 			"
         AI_FACTORS = "
 			modifier = {
@@ -1965,6 +1977,12 @@ building_stellarite_synthersizer = {
 				owner? = {
 					has_monthly_income = {
 						resource = aot_sr_runic_power
+						value <= 100
+					}
+				}
+				owner? = {
+					has_monthly_income = {
+						resource = acot_sr_stellarite
 						value <= 100
 					}
 				}
