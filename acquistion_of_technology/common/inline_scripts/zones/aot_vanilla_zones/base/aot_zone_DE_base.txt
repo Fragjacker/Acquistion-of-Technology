@@ -1,19 +1,35 @@
 base_buildtime = @zone_buildtime
 
-potential = { # planet scope
+potential = {
+    # planet scope
     NOT = { is_planet_class = pc_giga_frameworld }
     hidden_trigger = {
         exists = owner
         owner = {
             is_wilderness_empire = no
-            $OWNER_REQ$
         }
     }
-    is_exclusively_alpha_tier = yes
+    OR = {
+        AND = {
+            is_exclusively_alpha_tier = yes
+            owner = {
+                $OWNER_REQ$
+            }
+        }
+        AND = {
+            is_exclusively_phanon_tier = yes
+            NOR = {
+                owner = {
+                    $DESTROY_REQ$
+                }
+            }
+        }
+    }
     $PLANET_REQ$
 }
 
-unlock = { # planet scope
+unlock = {
+    # planet scope
     hidden_trigger = {
         exists = owner
         owner = {
