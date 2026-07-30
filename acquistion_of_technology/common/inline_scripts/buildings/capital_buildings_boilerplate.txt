@@ -30,19 +30,6 @@ planet_modifier = {
     planet_building_capacity_add = @[ 1 * $TIER$ ]
 }
 custom_tooltip = acot_capital_building_storm_resistance_$TOOLTIP_TIER$
-triggered_planet_modifier = {
-    potential = {
-        owner? = {
-            is_individual_machine = yes
-            NOR = {
-                has_technology = tech_acot_dm_super_assembly
-                has_technology = tech_phanon_super_assembly
-                has_technology = tech_stellarite_super_assembly
-            }
-        }
-    }
-    job_roboticist_add = @[ 100 * two_exp$EXPONENT$ ]
-}
 inline_script = {
     script = buildings/on_all_habitat_capital_buildings
 }
@@ -87,6 +74,20 @@ triggered_planet_modifier = {
     potential = {
         owner? = {
             is_individual_machine = yes
+            NOR = {
+                has_technology = tech_acot_dm_super_assembly
+                has_technology = tech_phanon_super_assembly
+                has_technology = tech_stellarite_super_assembly
+            }
+        }
+    }
+    job_roboticist_add = @[ 100 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+    potential = {
+        is_exclusively_delta_tier = yes
+        owner? = {
+            is_individual_machine = yes
             NOT = {
                 has_technology = tech_acot_dm_super_assembly
             }
@@ -96,6 +97,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
+        is_exclusively_alpha_tier = yes
         owner? = {
             is_individual_machine = yes
             has_technology = tech_acot_dm_super_assembly
@@ -105,6 +107,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
+        is_exclusively_phanon_tier = yes
         owner? = {
             is_individual_machine = yes
             has_technology = tech_phanon_super_assembly
@@ -114,6 +117,7 @@ triggered_planet_modifier = {
 }
 triggered_planet_modifier = {
     potential = {
+        is_exclusively_sigma_tier = yes
         owner? = {
             is_individual_machine = yes
             has_technology = tech_stellarite_super_assembly
