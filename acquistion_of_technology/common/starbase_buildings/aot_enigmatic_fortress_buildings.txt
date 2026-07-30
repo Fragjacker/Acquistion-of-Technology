@@ -1,0 +1,217 @@
+@build_time = 360
+crew_quarters_enigmatic_fortress = {
+    icon = "GFX_spaceport_module_crew_quarters"
+    construction_days = @build_time
+    category = sm_naval_support_cat
+
+    initial = yes
+
+    potential = {
+        exists = owner
+        is_deep_space_enigmatic_fortress = yes
+    }
+
+    resources = {
+        category = starbase_buildings
+        cost = {
+            alloys = 1000
+        }
+
+        upkeep = {
+            energy = 20
+        }
+    }
+
+    orbit_modifier = {
+        ship_orbit_upkeep_mult = -0.75
+    }
+
+    ai_weight = {
+        weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+    }
+}
+
+target_uplink_computer_enigmatic_fortress = {
+    icon = "GFX_spaceport_synchronized_defenses"
+    construction_days = 360
+    category = sm_defense_cat
+
+    potential = {
+        exists = owner
+        is_deep_space_enigmatic_fortress = yes
+    }
+
+    resources = {
+        category = starbase_buildings
+        cost = {
+            alloys = 2000
+        }
+
+        upkeep = {
+            energy = 40
+        }
+    }
+
+    station_modifier = {
+        ship_weapon_range_mult = 2
+    }
+
+    defense_platform_modifier = {
+        ship_weapon_range_mult = 2
+    }
+
+    ai_weight = {
+        weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+    }
+}
+
+command_center_enigmatic_fortress = {
+    icon = "GFX_starbase_command_center"
+    construction_days = @build_time
+    category = sm_aura_cat
+
+    potential = {
+        exists = owner
+        is_deep_space_enigmatic_fortress = yes
+    }
+
+    possible = {
+        solar_system = {
+            count_starbase_buildings = {
+                type = command_center_enigmatic_fortress
+                count < 1
+                include_being_constructed = yes
+            }
+        }
+    }
+
+    abort_construction_trigger = {
+        solar_system = {
+            count_starbase_buildings = {
+                type = communications_jammer
+                count > 1
+                include_being_constructed = yes
+            }
+        }
+    }
+
+    resources = {
+        category = starbase_buildings
+        cost = {
+            alloys = 500
+        }
+
+        upkeep = {
+            energy = 100
+        }
+    }
+
+    system_modifier = {
+        defensive_stations_tracking_add = 10
+        defensive_stations_weapon_range_mult = 2
+    }
+
+    ai_weight = {
+        weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+    }
+}
+
+deep_space_black_site_enigmatic_fortress = {
+    icon = "GFX_starbase_deep_space_black_site"
+    construction_days = @build_time
+    category = sm_colony_cat
+
+    potential = {
+        exists = owner
+        owner = {
+            has_technology = tech_living_state
+            NOT = { has_ethic = ethic_gestalt_consciousness }
+        }
+        is_deep_space_enigmatic_fortress = yes
+    }
+
+    possible = {
+        custom_tooltip = {
+            fail_text = "requires_colonized_planet"
+            solar_system = {
+                any_system_planet_colony = {
+                    is_owned_by = from
+                }
+            }
+        }
+    }
+
+    resources = {
+        category = starbase_buildings
+        cost = {
+            alloys = 2000
+        }
+
+        produces = {
+            unity = 20
+        }
+
+        upkeep = {
+            energy = 40
+        }
+    }
+
+    system_modifier = {
+        pop_government_ethic_attraction = 0.85
+        planet_stability_add = 15
+    }
+
+    show_in_tech = "tech_living_state"
+
+    show_tech_unlock_if = {
+        is_nomadic = no
+    }
+
+    ai_weight = {
+        weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+    }
+}
+
+
+resource_silo_enigmatic_fortress = {
+    icon = "GFX_spaceport_module_resource_silo"
+    construction_days = @build_time
+    category = sm_economy_cat
+
+    potential = {
+        exists = owner
+        is_deep_space_enigmatic_fortress = yes
+    }
+
+    resources = {
+        category = starbase_buildings
+        cost = {
+            alloys = 1000
+        }
+    }
+
+    triggered_country_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                NOT = { has_technology = tech_construction_templates }
+            }
+        }
+        country_resource_max_add = 100000
+    }
+
+    triggered_country_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_construction_templates
+            }
+        }
+        country_resource_max_add = 200000
+    }
+
+    ai_weight = {
+        weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+    }
+}
+
