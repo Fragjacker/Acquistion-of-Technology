@@ -77,7 +77,7 @@ fallen_1 = {
             set_owner = root
             set_controller = root
             set_capital = yes
-
+			clear_deposits = yes
             while = {
                 count = 10
                 add_district = district_arcology_housing
@@ -98,6 +98,27 @@ fallen_1 = {
                 species = owner_main_species
                 size = 9900
             }
+			add_zone = {
+				district = district_arcology_housing
+				zone = zone_urban
+			}
+			add_zone = {
+				district = district_arcology_housing
+				zone = zone_urban
+			}
+			add_zone = {
+				district = district_arcology_urban_1
+				zone = zone_research_physics_arcology
+			}
+			add_zone = {
+				district = district_arcology_urban_2
+				zone = zone_research_society_arcology
+			}
+			add_zone = {
+				district = district_arcology_urban_3
+				zone = zone_research_engineering_arcology
+			}
+
             root = {
                 set_policy = {
                     policy = artificial_intelligence_policy
@@ -138,12 +159,6 @@ fallen_1 = {
             add_building = building_fe_mine_2
             add_building = building_fe_giga_fortress
             # Capital Zone 1
-            add_zone = {
-                district = district_arcology_housing
-                zone = zone_urban
-                zone_slot = 1
-                replace = yes
-            }
             add_building = {
                 zone = zone_urban
                 building = building_fe_clinic_2
@@ -157,12 +172,6 @@ fallen_1 = {
                 building = building_class_4_singularity
             }
             # Capital Zone 2
-            add_zone = {
-                district = district_arcology_housing
-                zone = zone_fortress
-                zone_slot = 2
-                replace = yes
-            }
             add_building = {
                 zone = zone_fortress
                 building = building_fe_stronghold
@@ -176,12 +185,6 @@ fallen_1 = {
                 building = building_fe_psg
             }
             # Generator
-            add_zone = {
-                district = district_arcology_urban_1
-                zone = zone_research_unity
-                zone_slot = 0
-                replace = yes
-            }
             add_building = {
                 zone = zone_research_unity
                 building = building_fe_lab_2
@@ -195,22 +198,10 @@ fallen_1 = {
                 building = building_fe_administration_2
             }
             # Mining
-            add_zone = {
-                district = district_arcology_urban_2
-                zone = zone_industrial
-                zone_slot = 0
-                replace = yes
-            }
             add_building = building_nano_forge
             add_building = building_nano_forge
             add_building = building_fe_dark_matter_synthesizer
             # Food
-            add_zone = {
-                district = district_arcology_urban_3
-                zone = zone_industrial
-                zone_slot = 0
-                replace = yes
-            }
             add_building = building_dimensional_fabricator
             add_building = building_dimensional_fabricator
             add_building = building_fe_dark_matter_synthesizer
@@ -330,6 +321,7 @@ fallen_1 = {
             type = acot_ancient_gateway
             random_pos = yes
             orbit_angle = 360
+            orbit_distance = 80
             graphical_culture = owner
         }
     }
@@ -389,21 +381,13 @@ fallen_1_2 = {
             prevent_anomaly = yes
             set_owner = root
             set_controller = root
-            while = {
-                count = 15
-                add_district = district_city
-            }
-            while = {
-                count = 5
-                add_district = district_generator
-            }
-            while = {
-                count = 5
-                add_district = district_mining
-            }
-            while = {
-                count = 5
-                add_district = district_farming
+
+			inline_script = {
+				script =  game_start/districts_standard_setup
+				CITY = 15
+				GENERATOR = 5
+				MINING = 5
+				FARMING = 5
             }
             create_pop_group = {
                 species = owner_main_species
@@ -535,6 +519,7 @@ fallen_1_2 = {
             type = acot_ancient_gateway
             random_pos = yes
             orbit_angle = 360
+            orbit_distance = 80
             graphical_culture = owner
         }
     }
@@ -623,21 +608,13 @@ fallen_2 = {
             set_owner = root
             set_controller = root
             set_capital = yes
-            while = {
-                count = 15
-                add_district = district_city
-            }
-            while = {
-                count = 10
-                add_district = district_generator
-            }
-            while = {
-                count = 5
-                add_district = district_mining
-            }
-            while = {
-                count = 5
-                add_district = district_farming
+
+			inline_script = {
+				script =  game_start/districts_standard_setup
+				CITY = 15
+				GENERATOR = 10
+				MINING = 5
+				FARMING = 5
             }
             create_pop_group = {
                 species = owner_main_species
@@ -750,21 +727,13 @@ fallen_2 = {
             prevent_anomaly = yes
             set_owner = root
             set_controller = root
-            while = {
-                count = 15
-                add_district = district_city
-            }
-            while = {
-                count = 10
-                add_district = district_generator
-            }
-            while = {
-                count = 5
-                add_district = district_mining
-            }
-            while = {
-                count = 5
-                add_district = district_farming
+
+			inline_script = {
+				script =  game_start/districts_standard_setup
+				CITY = 15
+				GENERATOR = 10
+				MINING = 5
+				FARMING = 5
             }
             create_pop_group = {
                 species = owner_main_species
@@ -976,6 +945,7 @@ fallen_2 = {
             type = acot_ancient_gateway
             random_pos = yes
             orbit_angle = 360
+            orbit_distance = 85
             graphical_culture = owner
         }
     }
@@ -1044,6 +1014,17 @@ fallen_3 = {
                 set_owner = root
                 set_controller = root
                 set_capital = yes
+				inline_script = {
+					script =  game_start/districts_standard_setup
+					CITY = 20
+					GENERATOR = 5
+					MINING = 5
+					FARMING = 5
+				}
+				create_pop_group = {
+					species = owner_main_species
+					size = 5200
+				}
                 root = {
                     set_policy = {
                         policy = artificial_intelligence_policy
@@ -1059,25 +1040,7 @@ fallen_3 = {
                 root = {
                     create_fe_servant_robots = yes
                 }
-                last_created_species = {
-                    save_event_target_as = fe_servants
-                }
-                while = {
-                    count = 20
-                    add_district = district_city
-                }
-                while = {
-                    count = 5
-                    add_district = district_generator
-                }
-                while = {
-                    count = 5
-                    add_district = district_mining
-                }
-                while = {
-                    count = 5
-                    add_district = district_farming
-                }
+				last_created_species = { save_event_target_as = fe_servants }
                 create_pop_group = {
                     species = event_target:fe_servants
                     size = 5200
@@ -1418,6 +1381,7 @@ fallen_3 = {
             type = acot_ancient_gateway
             random_pos = yes
             orbit_angle = 360
+            orbit_distance = 85
             graphical_culture = owner
         }
     }
@@ -1829,6 +1793,7 @@ fallen_4 = {
             type = acot_ancient_gateway
             random_pos = yes
             orbit_angle = 360
+            orbit_distance = 85
             graphical_culture = owner
         }
     }
@@ -1990,6 +1955,7 @@ fallen_col_1 = {
             type = acot_ancient_gateway
             random_pos = yes
             orbit_angle = 360
+            orbit_distance = 80
             graphical_culture = owner
         }
     }
@@ -2159,6 +2125,7 @@ fallen_col_2 = {
             type = acot_ancient_gateway
             random_pos = yes
             orbit_angle = 360
+            orbit_distance = 80
             graphical_culture = owner
         }
     }
@@ -3266,6 +3233,7 @@ fallen_xeno_zoo = {
             type = acot_ancient_gateway
             random_pos = yes
             orbit_angle = 360
+            orbit_distance = 80
             graphical_culture = owner
         }
     }
@@ -4518,6 +4486,7 @@ fallen_machine = {
             type = acot_ancient_gateway
             random_pos = yes
             orbit_angle = 360
+            orbit_distance = 80
             graphical_culture = owner
         }
     }
