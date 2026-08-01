@@ -1,0 +1,23 @@
+has_giga_frameworld = no
+hidden_trigger = {
+    exists = owner
+    owner = {
+        is_wilderness_empire = no
+    }
+    OR = {
+        AND = {
+            is_exclusively_$TIER_TYPE$_tier = yes
+            owner = {
+                $OWNER_REQ$
+            }
+        }
+        AND = {
+            is_exclusively_$NEXT_TIER_TYPE$_tier = yes
+            NOR = {
+                owner = {
+                    $DESTROY_REQ$
+                }
+            }
+        }
+    }
+}

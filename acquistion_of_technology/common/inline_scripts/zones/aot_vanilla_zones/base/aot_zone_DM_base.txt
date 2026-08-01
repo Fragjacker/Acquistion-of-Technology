@@ -1,29 +1,12 @@
 base_buildtime = @zone_buildtime
 
 potential = {
-    # planet scope
-    NOT = { is_planet_class = pc_giga_frameworld }
-    hidden_trigger = {
-        exists = owner
-        owner = {
-            is_wilderness_empire = no
-        }
-    }
-    OR = {
-        AND = {
-            is_exclusively_delta_tier = yes
-            owner = {
-                $OWNER_REQ$
-            }
-        }
-        AND = {
-            is_exclusively_alpha_tier = yes
-            NOR = {
-                owner = {
-                    $DESTROY_REQ$
-                }
-            }
-        }
+    inline_script = {
+        script = shared/aot_zone_possible_trigger
+        OWNER_REQ = "$OWNER_REQ$"
+        DESTROY_REQ = "$DESTROY_REQ$"
+        TIER_TYPE = delta
+        NEXT_TIER_TYPE = alpha
     }
     $PLANET_REQ$
 }
