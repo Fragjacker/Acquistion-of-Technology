@@ -17,11 +17,35 @@ building_sets = {
 potential = {
     owner? = {
         OR = {
-            is_gestalt = no
-            has_valid_civic = civic_machine_servitor
+            country_uses_consumer_goods = yes
+            has_origin = origin_fear_of_the_dark
         }
         has_technology = $PREREQUISITE$
     }
+    OR = {
+        has_carrier_flag = ignore_ai_building_limitations
+        owner = {
+            is_ai = no
+        }
+
+        # Obsessional machines can build these freely. Have fun paperclipping.
+        owner = {
+            has_valid_civic = civic_machine_obsessional_directive
+        }
+
+        # AI is allowed to build one of these if they have a FACTORY specialization - intentionally more restrictive than foundries.
+        AND = {
+            has_any_factory_zone = yes
+            NOR = {
+                has_building = building_factory_1
+                has_building = building_factory_2
+                has_building = building_factory_3
+            }
+        }
+    }
+}
+country_modifier = {
+    country_resource_max_consumer_goods_add = @[5000 * two_exp$EXPONENT$]
 }
 triggered_planet_modifier = {
     potential = {
@@ -37,6 +61,7 @@ triggered_planet_modifier = {
     potential = {
         owner? = {
             is_gestalt = yes
+            country_uses_consumer_goods = yes
         }
     }
     modifier = {
@@ -78,6 +103,7 @@ triggered_desc = {
     trigger = {
         owner? = {
             is_gestalt = yes
+            country_uses_consumer_goods = yes
         }
     }
     text = job_artisan_drone_effect_desc
