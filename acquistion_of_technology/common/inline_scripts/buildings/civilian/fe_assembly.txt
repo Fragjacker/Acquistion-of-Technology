@@ -1,0 +1,242 @@
+inline_script = {
+    script = shared/automated_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    PRODUCES = "$PRODUCES$"
+    COST = "$COST$"
+    UPKEEP = "$UPKEEP$"
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
+}
+
+category = pop_assembly
+
+building_sets = {
+    fallen_empire
+    urban
+    aot_building_tier_$TIER$
+}
+
+potential = {
+    exists = owner
+    planet_owner = {
+        has_technology = $PREREQUISITE$
+    }
+    OR = {
+        owner = {
+            is_regular_empire = yes
+            NOT = { has_policy_flag = robots_outlawed }
+            OR = {
+                is_ai = no
+                NOT = { has_ascension_perk = ap_engineered_evolution }
+                is_materialist = yes
+            }
+        }
+        owner = {
+            is_machine_empire = yes
+        }
+    }
+    NOR = {
+        has_modifier = resort_colony
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
+}
+
+destroy_trigger = {
+    exists = owner
+    owner = {
+        is_fallen_empire = no
+        is_machine_empire = no
+        OR = {
+            is_regular_empire = no
+            has_policy_flag = robots_outlawed
+        }
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_wilderness_empire = yes
+            has_tradition = tr_purity_finish
+        }
+    }
+    planet_building_build_speed_mult = @[ 0.03 * two_exp$EXPONENT$ ]
+    planet_decision_enact_speed_mult = @[ 0.03 * two_exp$EXPONENT$ ]
+}
+
+triggered_planet_modifier = {
+    potential = {
+        owner? = {
+            is_gestalt = no
+            NOR = {
+                has_technology = tech_acot_dm_super_assembly
+                has_technology = tech_phanon_super_assembly
+                has_technology = tech_stellarite_super_assembly
+            }
+        }
+    }
+    job_roboticist_add = @[ 300 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+    potential = {
+        is_exclusively_delta_tier = yes
+        owner? = {
+            is_gestalt = no
+            NOT = {
+                has_technology = tech_acot_dm_super_assembly
+            }
+        }
+    }
+    job_roboticist_add = @[ 300 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+    potential = {
+        is_exclusively_alpha_tier = yes
+        owner? = {
+            is_gestalt = no
+            has_technology = tech_acot_dm_super_assembly
+        }
+    }
+    job_acot_roboman_add = @[ 300 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+    potential = {
+        is_exclusively_phanon_tier = yes
+        owner? = {
+            is_gestalt = no
+            has_technology = tech_phanon_super_assembly
+        }
+    }
+    job_phanon_roboman_add = @[ 300 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+    potential = {
+        is_exclusively_sigma_tier = yes
+        owner? = {
+            is_gestalt = no
+            has_technology = tech_stellarite_super_assembly
+        }
+    }
+    job_stellarite_roboman_add = @[ 300 * two_exp$EXPONENT$ ]
+}
+
+triggered_planet_modifier = {
+    potential = {
+        owner? = {
+            is_gestalt = yes
+            NOR = {
+                has_technology = tech_acot_dm_super_assembly
+                has_technology = tech_phanon_super_assembly
+                has_technology = tech_stellarite_super_assembly
+            }
+        }
+    }
+    job_replicator_add = @[ 300 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+    potential = {
+        is_exclusively_alpha_tier = yes
+        owner? = {
+            is_gestalt = yes
+            has_technology = tech_acot_dm_super_assembly
+        }
+    }
+    job_acot_robodrone_add = @[ 300 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+    potential = {
+        is_exclusively_phanon_tier = yes
+        owner? = {
+            is_gestalt = yes
+            has_technology = tech_phanon_super_assembly
+        }
+    }
+    job_phanon_robodrone_add = @[ 300 * two_exp$EXPONENT$ ]
+}
+triggered_planet_modifier = {
+    potential = {
+        is_exclusively_sigma_tier = yes
+        owner? = {
+            is_gestalt = yes
+            has_technology = tech_stellarite_super_assembly
+        }
+    }
+    job_stellarite_robodrone_add = @[ 300 * two_exp$EXPONENT$ ]
+}
+
+triggered_planet_modifier = {
+    potential = {
+        owner? = { is_wilderness_empire = no }
+    }
+    job_roboticist_automated_workforce_mult = @[ fe_automation_specialist_2 * two_exp$EXPONENT$ ]
+    job_replicator_automated_workforce_mult = @[ fe_automation_specialist_2 * two_exp$EXPONENT$ ]
+}
+
+triggered_planet_modifier = {
+    potential = {
+        owner? = {
+            OR = {
+                has_origin = origin_mechanists
+                is_individual_machine = yes
+                has_country_flag = synthetic_empire
+            }
+        }
+        any_owned_pop_group = {
+            has_auto_modding_trait = yes
+        }
+    }
+    modifier = {
+        auto_mod_monthly_add = @[ 500 * two_exp$EXPONENT$ ]
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            has_country_flag = synth_unscheduled_updates
+        }
+    }
+    modifier = {
+        planet_pop_assembly_mult = @[ 0.1 * two_exp$EXPONENT$ ]
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            has_country_flag = synth_safe_updates
+        }
+    }
+    modifier = {
+        planet_pop_assembly_mult = @[ - 0.1 * two_exp$EXPONENT$ ]
+        planet_stability_add = @[ 1 * two_exp$EXPONENT$ ]
+    }
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_machine_empire = yes
+        }
+        any_owned_pop_group = {
+            has_auto_modding_trait = yes
+        }
+    }
+    modifier = {
+        auto_mod_monthly_add = @[ 500 * two_exp$EXPONENT$ ]
+    }
+}
+
+show_in_tech = $PREREQUISITE$
+additional_ai_weight = 1000
+ai_resource_production = {
+    $PRODUCES$
+}

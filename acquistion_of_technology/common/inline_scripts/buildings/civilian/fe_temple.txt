@@ -1,0 +1,96 @@
+inline_script = {
+    script = shared/automated_buildings_base
+    ALLOW = "$ALLOW$"
+    CAN_BUILD = $CAN_BUILD$
+    PREREQUISITE = $PREREQUISITE$
+    UPGRADES_INTO = $UPGRADES_INTO$
+    PRODUCES = "$PRODUCES$"
+    COST = "$COST$"
+    UPKEEP = "$UPKEEP$"
+    AI_FACTORS = "$AI_FACTORS$"
+    TIER = $TIER$
+}
+
+category = unity
+
+building_sets = {
+    fallen_empire
+    unity
+    aot_building_tier_$TIER$
+}
+
+potential = {
+    exists = owner
+    planet_owner = {
+        has_technology = $PREREQUISITE$
+    }
+    owner = {
+        is_spiritualist = yes
+        OR = {
+            is_regular_empire = yes
+            is_hive_empire = yes
+        }
+    }
+    NOT = {
+        has_modifier = slave_colony
+        has_modifier = penal_colony
+    }
+}
+
+destroy_trigger = {
+    exists = owner
+    owner = {
+        is_spiritualist = no
+    }
+}
+
+convert_to = {
+    building_fe_administration_2
+    building_fe_administration_machine_2
+    building_fe_administration_hive_2
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = {
+            is_wilderness_empire = yes
+            has_tradition = tr_purity_finish
+        }
+    }
+    planet_building_build_speed_mult = @[ 0.03 * two_exp$EXPONENT$ ]
+    planet_decision_enact_speed_mult = @[ 0.03 * two_exp$EXPONENT$ ]
+}
+
+planet_modifier = {
+    pop_government_ethic_attraction = @[ 0.2 * two_exp$EXPONENT$ ]
+    planet_stability_mult = @[ 0.05 * two_exp$EXPONENT$ ]
+}
+
+inline_script = {
+    script = jobs/priests_add
+    AMOUNT = @[ fe2_jobs * two_exp$EXPONENT$ ]
+}
+
+triggered_planet_modifier = {
+    potential = {
+        exists = owner
+        owner = { is_wilderness_empire = no }
+    }
+    job_bureaucrat_automated_workforce_mult = @[ fe_automation_specialist_2 * two_exp$EXPONENT$ ]
+    job_coordinator_automated_workforce_mult = @[ fe_automation_specialist_2 * two_exp$EXPONENT$ ]
+}
+
+show_in_tech = $PREREQUISITE$
+
+show_tech_unlock_if = {
+    OR = {
+        is_spiritualist = yes
+        has_make_spiritualist_perk = yes
+    }
+}
+
+additional_ai_weight = 1000
+ai_resource_production = {
+    $PRODUCES$
+}
