@@ -1,0 +1,463 @@
+# SE Chaser
+@min_se_chaser = 28
+@max_se_chaser = 82
+# SE Lancer
+@min_se_lancer = 1775
+@max_se_lancer = 3549
+#################################################################
+### SE Fighter (Chaser)
+strike_craft_component_template = {
+	key = "ACOT_PAC_HANGAR_ATTACKER_SE"
+	size = LARGE
+	entity = "stellar_precursor_strikecraft_attacker_entity"
+	icon = "GFX_ship_part_pac_attack_craft_se"
+	icon_frame = 1
+
+	weapon_type = point_defence
+	projectile_gfx = "acot_fighter_se"
+	power = -2400
+
+	count = 4
+	regeneration_per_day = 0.1
+	launch_time = 0.25
+	engagement_range = 350
+
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_se_chaser
+		MAX_DMG = @max_se_chaser
+	}
+	cooldown = 1
+	range = 15
+	accuracy = 1.0
+	health = 90
+	armor = 60
+	shield = 110
+	tracking = 1.00
+	speed = 1500
+	rotation_speed = 1.5
+	acceleration = 1.5
+	evasion = 0.90
+
+	hull_damage = 1.0
+	armor_penetration = 0.0
+	armor_damage = 1.50
+	shield_damage = 1.50
+
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 150
+			acot_sr_stellarite = 500
+		}		
+		upkeep = {
+			energy = 1.5
+			alloys = 1.5
+			acot_sr_stellarite = 0.5
+		}
+	}
+
+	potential = {
+		ship_uses_acot_precursor_hangar_standard = yes
+	}
+
+	ship_behavior = "acot_pac_fighters_behavior"
+	component_set = "ACOT_PAC_HANGAR_ATTACKER_SE"
+	prerequisites = { "tech_precursor_assault_carrier_sigma" }
+	tags = { weapon_type_strike_craft weapon_type_acot_stellarite }
+	ai_tags = { weapon_role_point_defense carrier }
+	point_defence_targets = { "strike_craft" "missile" }
+	ai_weight = {
+		weight = 60
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5	
+			}	
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}	
+		}			
+	}
+}
+strike_craft_component_template = {
+	key = "ACOT_PAC_HANGAR_ATTACKER_FULL_SE"
+	size = LARGE
+	entity = "stellar_precursor_strikecraft_attacker_entity"
+	icon = "GFX_ship_part_pac_attack_craft_se"
+	icon_frame = 1
+
+	weapon_type = point_defence
+	projectile_gfx = "acot_fighter_se"
+	power = -2400
+
+	count = 4
+	regeneration_per_day = 0.25
+	launch_time = 0.25
+	engagement_range = 350
+
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_se_chaser
+		MAX_DMG = @max_se_chaser
+	}
+	cooldown = 1
+	range = 15
+	accuracy = 1.0
+	health = 90
+	armor = 60
+	shield = 110
+	tracking = 1.00
+	speed = 1500
+	rotation_speed = 1.5
+	acceleration = 1.5
+	evasion = 0.90
+
+	hull_damage = 1.0
+	armor_penetration = 0.0
+	armor_damage = 1.50
+	shield_damage = 1.50
+
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 150
+			acot_sr_stellarite = 500
+		}		
+		upkeep = {
+			energy = 1.5
+			alloys = 1.5
+			acot_sr_stellarite = 0.5
+		}
+	}
+
+	potential = {
+		ship_uses_acot_precursor_hangar_pac = yes
+	}
+
+	ship_behavior = "acot_pac_fighters_behavior"
+	component_set = "ACOT_PAC_HANGAR_ATTACKER_FULL_SE"
+	prerequisites = { "tech_precursor_assault_carrier_sigma" }
+	tags = { weapon_type_strike_craft weapon_type_acot_stellarite }
+	ai_tags = { weapon_role_point_defense carrier }
+	point_defence_targets = { "strike_craft" "missile" }
+	ai_weight = {
+		weight = 60
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5	
+			}	
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}	
+		}			
+	}
+}
+strike_craft_component_template = {
+	key = "ACOT_PAC_HANGAR_ATTACKER_HERC_SE"
+	size = LARGE
+	entity = "stellar_precursor_strikecraft_attacker_entity"
+	icon = "GFX_ship_part_pac_attack_craft_se"
+	icon_frame = 1
+
+	weapon_type = point_defence
+	projectile_gfx = "acot_fighter_se"
+	power = -2400
+
+	count = 8
+	regeneration_per_day = 1
+	launch_time = 0.25
+	engagement_range = 350
+
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_se_chaser
+		MAX_DMG = @max_se_chaser
+	}
+	cooldown = 1
+	range = 15
+	accuracy = 1.0
+	health = 90
+	armor = 60
+	shield = 110
+	tracking = 1.00
+	speed = 1500
+	rotation_speed = 1.5
+	acceleration = 1.5
+	evasion = 0.90
+
+	hull_damage = 1.0
+	armor_penetration = 0.0
+	armor_damage = 1.50
+	shield_damage = 1.50
+
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 150
+			acot_sr_stellarite = 500
+		}		
+		upkeep = {
+			energy = 1.5
+			alloys = 1.5
+			acot_sr_stellarite = 0.5
+		}
+	}
+
+	potential = {
+		ship_uses_acot_precursor_hangar_herculean = yes
+	}
+
+	ship_behavior = "acot_pac_fighters_behavior"
+	component_set = "ACOT_PAC_HANGAR_ATTACKER_HERC_SE"
+	prerequisites = { "tech_precursor_assault_carrier_sigma" }
+	tags = { weapon_type_strike_craft weapon_type_acot_stellarite }
+	ai_tags = { weapon_role_point_defense carrier }
+	point_defence_targets = { "strike_craft" "missile" }
+	ai_weight = {
+		weight = 60
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5	
+			}	
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}	
+		}			
+	}
+}
+#################################################################
+### SE Fighter (Lancer)
+strike_craft_component_template = {
+	key = "ACOT_PAC_HANGAR_ARTILLERY_SE"
+	size = LARGE
+	entity = "stellar_precursor_strikecraft_lancer_entity"
+	icon = "GFX_ship_part_pac_artillery_craft_se"
+	icon_frame = 1
+
+	weapon_type = instant
+	projectile_gfx = "acot_energy_lance_se"
+	power = -3600
+
+	count = 1
+	regeneration_per_day = 0.05
+	launch_time = 0.25
+	engagement_range = 350
+
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_se_lancer
+		MAX_DMG = @max_se_lancer
+	}
+	cooldown = 14
+	range = 120
+	accuracy = 1.0
+	health = 200
+	armor = 70
+	shield = 280
+	tracking = 0.10
+	speed = 725
+	rotation_speed = 0.6
+	acceleration = 0.5
+	evasion = 0.40
+
+	hull_damage = 1.50
+	armor_penetration = 0.0
+	armor_damage = 1.50
+	shield_damage = 1.50
+
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 150
+			acot_sr_stellarite = 600
+		}		
+		upkeep = {
+			energy = 2.0
+			alloys = 2.0
+			acot_sr_stellarite = 0.6
+		}
+	}
+
+	potential = {
+		ship_uses_acot_precursor_hangar_standard = yes
+	}
+
+	ship_behavior = "origin_gunship_behavior"
+	component_set = "ACOT_PAC_HANGAR_ARTILLERY_SE"
+	prerequisites = { "tech_precursor_assault_carrier_sigma" }
+	tags = { weapon_type_strike_craft weapon_type_acot_stellarite }
+	ai_tags = { weapon_role_point_defense carrier }
+	ai_weight = {
+		weight = 60
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5	
+			}	
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}	
+		}			
+	}
+}
+strike_craft_component_template = {
+	key = "ACOT_PAC_HANGAR_ARTILLERY_FULL_SE"
+	size = LARGE
+	entity = "stellar_precursor_strikecraft_lancer_entity"
+	icon = "GFX_ship_part_pac_artillery_craft_se"
+	icon_frame = 1
+
+	weapon_type = instant
+	projectile_gfx = "acot_energy_lance_se"
+	power = -3600
+
+	count = 1
+	regeneration_per_day = 0.10
+	launch_time = 0.25
+	engagement_range = 350
+
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_se_lancer
+		MAX_DMG = @max_se_lancer
+	}
+	cooldown = 14
+	range = 120
+	accuracy = 1.0
+	health = 200
+	armor = 70
+	shield = 280
+	tracking = 0.10
+	speed = 725
+	rotation_speed = 0.6
+	acceleration = 0.5
+	evasion = 0.40
+
+	hull_damage = 1.50
+	armor_penetration = 0.0
+	armor_damage = 1.50
+	shield_damage = 1.50
+
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 150
+			acot_sr_stellarite = 600
+		}		
+		upkeep = {
+			energy = 2.0
+			alloys = 2.0
+			acot_sr_stellarite = 0.3
+		}
+	}
+
+	potential = {
+		ship_uses_acot_precursor_hangar_pac = yes
+	}
+
+	ship_behavior = "origin_gunship_behavior"
+	component_set = "ACOT_PAC_HANGAR_ARTILLERY_FULL_SE"
+	prerequisites = { "tech_precursor_assault_carrier_sigma" }
+	tags = { weapon_type_strike_craft weapon_type_acot_stellarite }
+	ai_tags = { weapon_role_point_defense carrier }
+	ai_weight = {
+		weight = 60
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5	
+			}	
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}	
+		}			
+	}
+}
+strike_craft_component_template = {
+	key = "ACOT_PAC_HANGAR_ARTILLERY_HERC_SE"
+	size = LARGE
+	entity = "stellar_precursor_strikecraft_lancer_entity"
+	icon = "GFX_ship_part_pac_artillery_craft_se"
+	icon_frame = 1
+
+	weapon_type = instant
+	projectile_gfx = "acot_energy_lance_se"
+	power = -3600
+
+	count = 2
+	regeneration_per_day = 0.5
+	launch_time = 0.25
+	engagement_range = 350
+
+	inline_script = {
+		script = weapons/aot_sigma_weapon_damage
+		MIN_DMG = @min_se_lancer
+		MAX_DMG = @max_se_lancer
+	}
+	cooldown = 14
+	range = 120
+	accuracy = 1.0
+	health = 200
+	armor = 70
+	shield = 280
+	tracking = 0.10
+	speed = 725
+	rotation_speed = 0.6
+	acceleration = 0.5
+	evasion = 0.40
+
+	hull_damage = 1.50
+	armor_penetration = 0.0
+	armor_damage = 1.50
+	shield_damage = 1.50
+
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 150
+			acot_sr_stellarite = 600
+		}		
+		upkeep = {
+			energy = 2.0
+			alloys = 2.0
+			acot_sr_stellarite = 0.3
+		}
+	}
+
+	potential = {
+		ship_uses_acot_precursor_hangar_herculean = yes
+	}
+
+	ship_behavior = "origin_gunship_behavior"
+	component_set = "ACOT_PAC_HANGAR_ARTILLERY_HERC_SE"
+	prerequisites = { "tech_precursor_assault_carrier_sigma" }
+	tags = { weapon_type_strike_craft weapon_type_acot_stellarite }
+	ai_tags = { weapon_role_point_defense carrier }
+	ai_weight = {
+		weight = 60
+		modifier = {
+			factor = 0
+			has_resource = {
+				type = acot_sr_stellarite
+				amount <= 5	
+			}	
+			has_monthly_income = {
+				resource = acot_sr_stellarite
+				value <= 3
+			}	
+		}			
+	}
+}
