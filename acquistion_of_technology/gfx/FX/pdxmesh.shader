@@ -4680,3 +4680,35 @@ Effect AotPlanetShieldPESkinnedShadow
 	PixelShader = "PixelPdxMeshStandardShadow"
 	Defines = { "IS_SHADOW" }
 }
+
+Effect AotPortal
+{
+	VertexShader = "VertexPdxMeshStandard"
+	PixelShader = "PixelAotPortal"
+	BlendState = "BlendStateAlphaBlend"
+	RasterizerState = "RasterizerStateNoCulling"
+	DepthStencilState = "DepthStencilNoZWrite"
+}
+
+Effect AotPortalSkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelAotPortal"
+	BlendState = "BlendStateAlphaBlend"
+	RasterizerState = "RasterizerStateNoCulling"
+	DepthStencilState = "DepthStencilNoZWrite"
+}
+
+Effect AotPortalShadow
+{
+	VertexShader = "VertexPdxMeshStandardShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
+
+Effect AotPortalSkinnedShadow
+{
+	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
