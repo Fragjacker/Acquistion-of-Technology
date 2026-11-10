@@ -4712,3 +4712,35 @@ Effect AotPortalSkinnedShadow
 	PixelShader = "PixelPdxMeshStandardShadow"
 	Defines = { "IS_SHADOW" }
 }
+
+Effect AotPortalCubemap
+{
+	VertexShader = "VertexPdxMeshStandard"
+	PixelShader = "PixelAotPortalCubemap"
+	BlendState = "BlendStateAlphaBlend"
+	RasterizerState = "RasterizerStateNoCulling"
+	DepthStencilState = "DepthStencilNoZWrite"
+}
+
+Effect AotPortalCubemapSkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelAotPortalCubemap"
+	BlendState = "BlendStateAlphaBlend"
+	RasterizerState = "RasterizerStateNoCulling"
+	DepthStencilState = "DepthStencilNoZWrite"
+}
+
+Effect AotPortalCubemapShadow
+{
+	VertexShader = "VertexPdxMeshStandardShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
+
+Effect AotPortalCubemapSkinnedShadow
+{
+	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
