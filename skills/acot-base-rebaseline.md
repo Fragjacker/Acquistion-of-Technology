@@ -98,6 +98,24 @@ Exit code: `0` if the base was found and scanned (even if it reports gaps).
 - **Do not merge "stale" lines** just because the base file has them. Verify each
   against the decision rule before porting. The base's extra lines are frequently
   the pre-refactor form of what we already express.
+- **Whole-list keys are silent replacements.** Our fork often *replaces* a list
+  block the base appends to: `events = { ... }` in on_actions
+  (`on_megastructure_upgraded`), `OR` lists in scripted triggers
+  (`ship_uses_titan_reactors`), `potential`/`unlock` blocks in zones. When the
+  base **adds an entry** (new event, new ship size, new requirement), that entry
+  silently disappears unless we append it too. Treat added tokens inside list
+  blocks as real changes even though no top-level key changed.
+- **Name collisions ≠ same definition.** Two mods can define the *same key name*
+  with different intent (observed: `ship_section_template` — base's arkship
+  entry vs our BATTLESTATION entry; the checker pairs them by name and reports a
+  divergence). Before acting on any diff, confirm the paired blocks are the
+  *same semantic object* (same ship/building/zone), not just the same key.
+- **Inline scripts are the merge point for modifiers.** If the base added a
+  `triggered_country_modifier` (or similar) to a building whose modifiers we
+  express via `inline_script = { script = buildings/... }`, port it **into the
+  inline script**, not into each building block. One edit then covers every tier
+  that shares the script (e.g. `buildings/civilian/resource_silo` feeds the AE,
+  Phanon, and Stellarite silos).
 - **`upgrades = { ... }` chains are the concrete symptom** of the original bug:
   an `upgrades` entry naming a tier definition that is `acot_only` (only in the
   base) or missing from **our** tree means an upgrade path is broken. (Note: the
@@ -124,3 +142,30 @@ Exit code: `0` if the base was found and scanned (even if it reports gaps).
 - Known intended delta: `acot_star_annihilator` unlocked here vs. locked in base.
 - Conclusion: the fork is **not** missing a base capability; apparent "gaps" are
   deliberate Phanon design, not drift to be reverted.
+
+## Rebaseline log
+### 2026-11-10 (base scan 1105 → 1110): 6 merges applied
+1. `acot_star_annihilator` (`z_aot_ship_size_override.txt`): added base's 8
+   `required_component_set` lines (power_core, 2× ftl, 2× thruster, 2× sensor,
+   combat_computers, 2× ship_aura).
+2. `building_acot_ae_resource_silo`: base added two
+   `triggered_country_modifier`s (`is_nomadic` →
+   `situation_nomad_economy_max_progress_add = 10000`; `civic_machine_obsessional_directive`
+   → `country_resource_max_consumer_goods_add = 100000`). Ported into our shared
+   inline script `common/inline_scripts/buildings/civilian/resource_silo.txt`,
+   which also covers the Phanon/Stellarite silos.
+3. `has_enigmatic_capital` / `has_ascended_capital`
+   (`z_aot_scripted_triggers_buildings.txt`): added base's
+   `hidden_trigger = { exists = owner }` guard.
+4. `on_megastructure_upgraded` (`aot_on_actions.txt`): appended base's new
+   `acot_mega.100` event to our `events` list (whole-list replacement!).
+5. `ship_uses_titan_reactors` (`z_aot_scripted_triggers_override.txt`): added
+   `paladin_ship` plus `large_fallen_stinger` / `cosmo_crisis_stinger` from the
+   base OR-list (whole-list replacement!).
+6. `zone_acot_ae_urban` / `zone_acot_dm_urban`
+   (`z_acot_vanilla_zones_override.txt`): base removed the
+   `unlock = { hidden_trigger = { owner is_wilderness_empire = no } }` exclusion;
+   we dropped it too (previously a known intended delta — now aligned with base).
+**False positive, NOT merged:** `ship_section_template` — the checker paired the
+base's arkship section with our BATTLESTATION section by key name alone. Different
+ships; both intentionally keep their own definition.

@@ -2,8 +2,10 @@
 
 Condensed playbook for writing game-compatible custom pixel shaders for
 Stellaris entities (ships/planets), distilled from the vanilla `gfx/FX` files.
-Reference mod implementation: `acquistion_of_technology/gfx/FX/`
-(`pdxmesh.shader` + `aot_shaders.fxh`, effects `AotPortal*`).
+Reference mod implementations: `acquistion_of_technology/gfx/FX/`
+(`pdxmesh.shader` + `aot_shaders.fxh`, effects `AotPortal*`; and
+`aot_fake_portal_shader.fxh`, effect `AotFakePortal` — a faithful port of the
+Clausewitz `portal_cubemap.txt` node graph, see the "Porting" section).
 
 ## When to use
 
@@ -77,6 +79,11 @@ MainCode PixelMyEffect
 - Keep vanilla formatting: `MainCode` one tab in, `ConstantBuffers`/`[[`/`]]`
   one tab in, code one tab deeper (verified: every vanilla .fxh indents
   `MainCode` with exactly one tab — `cat -A` shows `^IMainCode`).
+- Wrapping format (valid, used in Clausewitz exports and our
+  `aot_fake_portal_shader.fxh`): `PixelShader = { MainCode PixelX { ... } }`
+  — same compile target, just scoped under a `PixelShader = { }` block.
+  Shadow variants still pair with `PixelPdxMeshStandardShadow` unless you
+  also write `ShadowShader = { MainCode ... }` + `Defines = { "IS_SHADOW" }`.
 
 ## Effect block: always register the 4 variants
 
@@ -107,11 +114,22 @@ Cubemap portal trick: bind a cubemap DDS (vanilla:
 `gfx/worldgfx/cubemap_filtered_ldr.dds`) to the entity's EnvironmentMap slot
 and `texCUBE( EnvironmentMap, dir )` from the pixel shader.
 
+**NEVER re-declare samplers in your own `.fxh`** — not `Sampler X = {...}`
+and not a `Samplers = { ... }` block. They are defined globally by
+`pdxmesh_samplers.fxh`; a re-declaration (e.g. `Sampler DiffuseMap`)
+collides and breaks the whole pdxmesh.shader compile (surfaced as
+X3003-style errors in `log/error.log`). Just use the names. Real incident:
+first revision of `aot_fake_portal_shader.fxh` declared its own
+`DiffuseMap`/`SpecularMap` samplers copied from a Clausewitz node-graph
+export; removed all `Sampler` blocks to fix.
+
 ## Game-compatible HLSL (what vanilla actually targets)
 
 - The pipeline compiles HLSL for DX9/DX10/11 and GLSL paths. Write
   SM3/SM4-safe HLSL: use `float2/3/4`, `float4x4`, `tex2D`, `texCUBE`,
   `tex2Dlod`, `texCUBElod`, `texCUBEbias` (all present in vanilla).
+- Scalar math verified in vanilla: `atan2(y, x)` (`progress_radial.shader`),
+  `clip( c )` discard, `smoothstep(a, b, x)`, `step`, `saturate`, `pow`.
 - `defines_glsl.fxh` shows the compatibility shims (`tex2Dbias`/`tex2Dgrad`
   fall back to `tex2Dlod0` on the GL path) — don't rely on SM5+ features
   (no texture fetch at arbitrary lod + derivatives mixes, no
@@ -154,6 +172,27 @@ and `texCUBE( EnvironmentMap, dir )` from the pixel shader.
 3. In this sandbox the Steam path is mounted under `D:/` (git-bash) but NOT
    a writable workspace target — read-only reference is fine; all edits go
    under `acquistion_of_technology/`.
+
+## Porting a Clausewitz node-graph export (e.g. `portal_cubemap.txt`)
+
+A Clausewitz .txt node export (VertexPortal/PixelPortal + constants like
+`RoomDepth`, `EdgeColor`) ports to Stellaris with three fixed substitutions
+— the expression trees map 1:1 to PSSL otherwise:
+
+1. **No per-material vertex shader.** Fold the custom vertex part into the
+   pixel shader from the standard outputs (all world-space):
+   `dir = normalize(vCamPos.xyz - vPos.xyz)`, then
+   `float3 d = float3(dot(dir, vTangent), dot(dir, vBitangent), dot(dir, vNormal));`
+   — same math as the reference `VertexPortal`, keeps the standard vertex
+   endpoints (no shadow-path mismatch).
+2. **Material texture slots don't exist.** `texture_specular` bound to a
+   cubemap → global `EnvironmentMap` (`texCUBE(EnvironmentMap, dir)`).
+3. **Time uniform.** `vTime.x` → `HdrRange_Time_ClipHeight.y` (same usage as
+   vanilla `pdxmesh_ship.fxh`).
+
+Reference port: `acquistion_of_technology/portal_cubemap.txt` →
+`aot_fake_portal_shader.fxh` (effect `AotFakePortal`): circular clip,
+ray-box slab "room depth", cubemap interior, animated `atan2` rim.
 
 ## Checklist before shipping a shader change
 
