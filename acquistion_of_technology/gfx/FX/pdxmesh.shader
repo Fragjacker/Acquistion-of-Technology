@@ -12,6 +12,7 @@ Includes = {
 	"tiled_pointlights.fxh"
 	"vertex_structs.fxh"
 	"utils.fxh"
+	"aot_fake_portal_shader.fxh"
 	"aot_shaders.fxh"
 }
 
@@ -4743,4 +4744,46 @@ Effect AotPortalCubemapSkinnedShadow
 	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
 	PixelShader = "PixelPdxMeshStandardShadow"
 	Defines = { "IS_SHADOW" }
+}
+
+BlendState BlendState
+{
+    BlendEnable = yes
+    SourceBlend = "SRC_ALPHA"
+    DestBlend = "INV_SRC_ALPHA"
+    WriteMask = "RED|GREEN|BLUE"
+}
+
+DepthStencilState DepthStencilState
+{
+    DepthEnable = yes
+    DepthWriteMask = "DEPTH_WRITE_ZERO"
+}
+
+Effect AotFakePortal
+{
+    VertexShader = "VertexPdxMeshStandard"
+    PixelShader = "PixelAotFakePortal"
+    BlendState = "BlendState"
+    DepthStencilState = "DepthStencilState"
+}
+
+Effect AotFakePortalSkinned
+{
+    VertexShader = "VertexPdxMeshStandardSkinned"
+    PixelShader = "PixelAotFakePortal"
+    BlendState = "BlendState"
+    DepthStencilState = "DepthStencilState"
+}
+
+Effect AotFakePortalShadow
+{
+    VertexShader = "VertexPdxMeshStandardShadow"
+    PixelShader = "PixelPdxMeshStandardShadow"
+}
+
+Effect AotFakePortalSkinnedShadow
+{
+    VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+    PixelShader = "PixelPdxMeshStandardShadow"
 }
