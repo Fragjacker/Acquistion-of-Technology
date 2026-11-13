@@ -135,6 +135,10 @@ Exit code: `0` if the base was found and scanned (even if it reports gaps).
 5. Verify every `upgrades = { ... }` entry names a definition that exists in
    **our** tree (a target present only in the base = broken upgrade path).
 6. Re-run; confirm TIER 1a returns to the expected baseline.
+7. **Commit the rebaseline edits immediately** on the branch the user is
+   working (ideally `main`) — uncommitted rebaseline work is lost when a
+   non-descendant branch is checked out and resurfaces as a phantom "base
+   change" on the next scan (see 2026-11-13 log entry).
 
 ## Status of this tree (as of the Phanson fork)
 - TIER 1a (structural key gaps): **0**
@@ -169,3 +173,48 @@ Exit code: `0` if the base was found and scanned (even if it reports gaps).
 **False positive, NOT merged:** `ship_section_template` — the checker paired the
 base's arkship section with our BATTLESTATION section by key name alone. Different
 ships; both intentionally keep their own definition.
+
+## 2026-11-13 ACoT base update check
+
+Base mod reported as "just updated" (workshop files dated Nov 11–12, post-dating
+the Nov 10–11 rebaseline). Fresh scan (`acot_base_20261113.json`) vs. the
+**post**-rebaseline baseline (`acot_base_20261110_post.json`): 350 defs, 0 added,
+0 removed, but exactly **one** changed def — `on_megastructure_upgraded` had
+gained `acot_mega.100` in `acot_only_raw` (i.e. base had it, we didn't).
+
+**Root cause — our regression, not a base change.** `acot_mega.100` was already
+in `acot_only_raw` in the PRE-rebaseline scan (`acot_base_20261110.json`), i.e.
+base had it since before Nov 10, and item 4 of the rebaseline above added it to
+our file. The rebaseline edits were **never committed** — they existed only in
+the working tree of the branch where the rebaseline ran. The current branch
+(`shader_testing`, forked from an older commit) carries a tree without them.
+All five other rebaseline merges (items 1–3, 5, 6) survived because they had been
+committed; only item 4 was uncommitted.
+
+**Fix applied (verified):** re-added `acot_mega.100 # added by ACoT base
+rebaseline` as the first line of the `events` list in
+`acquistion_of_technology/common/on_actions/aot_on_actions.txt`. Re-scan
+(`acot_base_20261113_post.json`) now shows **0 deltas** vs. the Nov 10 post
+baseline — the tree is byte-equivalent to the rebaselined state.
+
+**Learnings (workflow):**
+1. **Commit rebaseline edits immediately — to `main` — before switching
+   branches.** Uncommitted rebaseline work is lost on any branch that isn't
+   descended from the commit where it was made, and the next scan will
+   misreport it as a base change.
+2. **A fresh-scan "delta" can go two directions.** Tokens in `acot_only_raw`
+   mean "base has it, we don't" — either a genuine base addition *or* loss of
+   one of our own uncommitted edits. To disambiguate, check the PRE-rebaseline
+   scan: if the token was already in base's side before our last rebaseline, it
+   is almost certainly our regression (fix by re-applying), not base's change.
+3. **Sanity-check "base updated" claims against the tool.** If the base truly
+   added content, new tokens/defs must appear in the diff. If the only change is
+   one token reappearing in `acot_only_raw` that was previously merged, nothing
+   changed in base. (This update's only change was our own missing line; base's
+   other files — events/localisation/interface — carried no new overlapping
+   definitions, so nothing else needed merging.)
+4. `acot_mega.100` (base `events/acot_mega_events.txt`) upgrades
+   `acot_mega_starbase_dm_base` → `acot_starbase_citadel_dm`; those starbase
+   types are defined in base's `common/megastructures/acot_starbase_megastructures.txt`,
+   which we do **not** override, so the event resolves fine at runtime and the
+   merge stays valid.
